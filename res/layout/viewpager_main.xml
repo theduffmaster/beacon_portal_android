@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/homeworkdue_container" >
+ 
+        <com.astuetz.PagerSlidingTabStrip
+    android:id="@+id/pagerTabStrip"
+    android:layout_width="match_parent"
+    android:layout_height="48dip"
+    app:pstsIndicatorColor="#f4842d" 
+    app:pstsUnderlineColor="#f4842d"
+    />
+
+    
+   <android.support.v4.view.ViewPager
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/pagerTabStrip" 
+        ptrScrollingWhileRefreshingEnabled="true"
+        />
+ 
+</RelativeLayout>

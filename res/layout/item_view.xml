@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/item_textteacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/item_texthomeworkdue"
+        android:layout_marginRight="16dp"
+        android:text="Teacher"
+        android:textColor="@color/black_text"
+        android:textAppearance="?android:attr/textAppearanceSmall" 
+        android:singleLine="true"/>
+
+    <TextView
+        android:id="@+id/item_texthomeworkdue"
+       android:layout_alignLeft="@+id/item_textdescription"
+        android:layout_toLeftOf="@+id/item_textteacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        
+        android:layout_marginTop="10dp"
+        android:paddingRight="10dp"
+        android:singleLine="true"
+        
+        android:textSize="17sp"
+        android:textColor="@color/black_text"
+        
+        android:text="Homework Shown Here"
+        
+         />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/item_iconclass"
+        android:background="#D3D3D3" />
+
+    <TextView
+        android:id="@+id/item_textdescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:layout_below="@+id/item_texthomeworkdue"
+        android:layout_marginLeft="72dp"
+        android:layout_toLeftOf="@+id/item_texttype"
+        android:ellipsize="end"
+        android:lines="2"
+        android:paddingRight="10dp"
+        android:textColor="@color/grey_text"
+        android:text="Description Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla"
+        
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/item_iconclass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/item_texthomeworkdue"
+        android:adjustViewBounds="true"
+        android:maxHeight="69dp"
+        android:maxWidth="75dp"
+        android:paddingBottom="18dp"
+        android:paddingTop="6dp"
+        android:paddingLeft="16dp"
+        android:src="@drawable/z" />
+
+    <TextView
+        android:id="@+id/item_texttype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_textdescription"
+        android:layout_alignRight="@+id/item_textteacher"
+        android:singleLine="true"
+        android:text="Homework"
+        android:textColor="@color/black_text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+/>
+
+</RelativeLayout>
