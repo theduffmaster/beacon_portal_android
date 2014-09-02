@@ -280,21 +280,28 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] { "Homework Due", "Schedule", "Unread Mail",
+			title = new String[] { 
+					//"Homework Due",
+					"Schedule", "Unread Mail",
 					"Options", "Logout" };
 
-			icon = new int[] { R.drawable.ic_action_duehomework,
+			icon = new int[] { 
+					//R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_email, R.drawable.ic_action_settings,
 					R.drawable.ic_action_logout };
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { "", "", K9count, "", "" };
+				count = new String[] { 
+						//"",
+						"", K9count, "", "" };
 
 			} else {
 
-				count = new String[] { counterss, "", K9count, "", "", "" };
+				count = new String[] { 
+						//counterss, 
+						"", K9count, "", "", "" };
 
 			}
 
@@ -302,19 +309,25 @@ public class MainActivity extends SherlockFragmentActivity {
 			
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { "", "", K9count, "", "" };
+				count = new String[] { 
+						//"", 
+						"", K9count, "", "" };
 
 			} else {
 
-				count = new String[] { "", counterss, K9count, "", "" };
+				count = new String[] { "", 
+						//counterss, 
+						K9count, "", "" };
 
 			}
 
-			title = new String[] { "Schedule", "Homework Due", "Unread Mail",
+			title = new String[] { "Schedule", 
+					//"Homework Due", 
+					"Unread Mail",
 					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
-					R.drawable.ic_action_duehomework,
+					//R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_email, R.drawable.ic_action_settings,
 					R.drawable.ic_action_logout };
 
@@ -775,22 +788,22 @@ public class MainActivity extends SherlockFragmentActivity {
 		if (Show_View.equals("Homework Due")) {
 
 			switch (position) {
+//			case 0:
+//				ft.replace(R.id.content_frame, fragment2);
+//				break;
 			case 0:
-				ft.replace(R.id.content_frame, fragment2);
-				break;
-			case 1:
 				ft.replace(R.id.content_frame, fragment1);
 				break;
-			case 2:
+			case 1:
 
 				inbox();
 
 				break;
-			case 3:
+			case 2:
 				ft.replace(R.id.content_frame, fragment3);
 				break;
 
-			case 4:
+			case 3:
 
 				alert_logout();
 
@@ -803,46 +816,46 @@ public class MainActivity extends SherlockFragmentActivity {
 			case 0:
 				ft.replace(R.id.content_frame, fragment1);
 				break;
+//			case 1:
+//
+//				SharedPreferences sharedprefers = getSharedPreferences(
+//						"due_tommorow_counter", Context.MODE_PRIVATE);
+//
+//				if (!sharedprefers.contains("last shared preference")) {
+//
+//					try {
+//						Thread.sleep(1000);
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//
+//				}
+//				if (!sharedprefers.contains("last shared preference")) {
+//
+//					Toast.makeText(this, "Please Connect to the Internet!",
+//							8000).show();
+//					Log.d("Home",
+//							"############################You are not online!!!!");
+//
+//				} else {
+//
+//					ft.replace(R.id.content_frame, fragment2);
+//
+//				}
+//
+//				break;
+
 			case 1:
-
-				SharedPreferences sharedprefers = getSharedPreferences(
-						"due_tommorow_counter", Context.MODE_PRIVATE);
-
-				if (!sharedprefers.contains("last shared preference")) {
-
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
-				if (!sharedprefers.contains("last shared preference")) {
-
-					Toast.makeText(this, "Please Connect to the Internet!",
-							8000).show();
-					Log.d("Home",
-							"############################You are not online!!!!");
-
-				} else {
-
-					ft.replace(R.id.content_frame, fragment2);
-
-				}
-
-				break;
-
-			case 2:
 
 				inbox();
 
 				break;
-			case 3:
+			case 2:
 				ft.replace(R.id.content_frame, fragment3);
 				break;
 
-			case 4:
+			case 3:
 
 				alert_logout();
 

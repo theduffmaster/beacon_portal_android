@@ -1194,7 +1194,7 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="edit">Edit Schedule</string>
     <string name="apply">Apply Edits</string>
     <string name="undo">undo</string>
-    <string name="help">You can enter your schedule here to your liking by pressing the button to the left of this one. Use Batch Edit to enter what class you have during each band.  Use Individual Edit to individually specify your classes by day.</string>
+    <string name="help">You can enter your schedule here to your liking by pressing the pencil. Use Batch Edit to enter what class you have during each band.  Use Individual Edit to individually specify your classes by day. Long press an item in the schedule to add a note to it.</string>
     <string name="about_options">Here you can change the color of the app\'s background (except the background of \"Options\") and the app\'s actionbar. The default background color is white, the default ActionBar color is blue, it\'s the bar at the top of the app.</string>
  
  

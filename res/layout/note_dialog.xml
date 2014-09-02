@@ -27,8 +27,34 @@
        
     </RelativeLayout>
     
-     <View
+    <View
         android:id="@+id/view1"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+         
+        android:layout_alignBottom="@+id/Relative_Layout_Settings"
+        android:background="#D3D3D3" />
+    
+    <RelativeLayout
+        android:id="@+id/info"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@drawable/app_start" >
+
+        <TextView
+            android:id="@+id/infotextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:singleLine="true"
+            android:text="Swipe Away Note to Delete That Note"
+            android:textSize="12sp" />
+       
+    </RelativeLayout>
+    
+     <View
+        android:id="@+id/view2"
         android:layout_width="fill_parent"
         android:layout_height="1px"
          

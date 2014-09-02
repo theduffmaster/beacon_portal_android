@@ -26,6 +26,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.astuetz.PagerSlidingTabStrip;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.MainActivity.Update;
 
 public class FragmentsView extends SherlockFragment {
 
@@ -36,6 +37,8 @@ public class FragmentsView extends SherlockFragment {
 			Bundle savedInstanceState) {
 		setHasOptionsMenu(true);
 
+		
+		
 		View view = inflater.inflate(R.layout.viewpager_schedule, container,
 				false);
 
@@ -102,6 +105,24 @@ public class FragmentsView extends SherlockFragment {
 
 		}
 
+		SharedPreferences sharedprefers = getActivity().getSharedPreferences("first_run_schedule",
+				Context.MODE_PRIVATE);
+
+		if (sharedprefers.contains("first_run")) {
+
+		} else {
+
+			SharedPreferences.Editor localEditor = getActivity().getSharedPreferences(
+					"first_run_schedule", Context.MODE_PRIVATE).edit();
+
+			localEditor.putString("first_run", "ran for the first time");
+
+			localEditor.commit();
+
+			alert_help();
+
+		}
+		
 		return view;
 	}
 

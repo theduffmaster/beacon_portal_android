@@ -183,6 +183,14 @@ public class Friday_view extends Fragment {
 					Count.setVisibility(View.GONE);
 					
 				}
+				
+		if( currenthomeworkdue.Note_Number() == 0){
+	
+			BackGround.setVisibility(View.GONE);
+	
+		Count.setVisibility(View.GONE);
+	
+		}
 
 				convertView.setTag(holder);
 
@@ -228,7 +236,7 @@ public class Friday_view extends Fragment {
 		private EnhancedListView mNotes;
 		private static RelativeLayout addNote;
 		private int position_mainlist;
-		
+		private String note_removed;
 		
 		public NotesDialog() {
 			// Empty constructor required for DialogFragment
@@ -287,6 +295,9 @@ public class Friday_view extends Fragment {
 					  
 				    // Remove the item from the adapter
 				    arrayAdapter.remove(item);
+				    
+				    
+				    
 				    // return an Undoable
 				    return new EnhancedListView.Undoable() {
 				      // Reinsert the item to the adapter
@@ -308,13 +319,56 @@ public class Friday_view extends Fragment {
 							SharedPreferences sharedpref = getActivity().getApplicationContext()
 									.getSharedPreferences(band_position, Context.MODE_PRIVATE);
 							
+							int counterssss = sharedpref.getInt(
+									"note_count", 0);
+
+							int countersssss = counterssss+1;
+
+							int ii = -1;
+							
+							for (int i = 0; i < countersssss; i++) {
+							
+								String note_item = Integer.toString(i);
+								
+								String note = sharedpref.getString(
+										 note_item, "");
+								
+								if(item.equals(note)){
+									
+									System.out.println(note + " 1 " + item);
+									
+									String item_positions = Integer.toString(i);
+									
+									localEditor.remove(item_positions);
+									
+									localEditor.commit();
+									
+								}else{
+									
+									System.out.println(note + " 2 " + item);
+									
+									ii++;
+									
+									System.out.println(ii);
+									
+									String item_position = Integer.toString(ii);
+									
+									
+									localEditor.putString(item_position, note);
+									
+								}
+								
+								
+							}
+							
 							int note_counts = sharedpref.getInt("note_count", 0);
 							
 				    	  int note_minus = note_counts - 1;
 				    	  
 				    	  localEditor.putInt("note_count", note_minus);
 				    	  
-				    	  localEditor.commit();
+				    	  
+							localEditor.commit();
 							
 				    	  getActivity().recreate();
 				    	
@@ -332,6 +386,8 @@ public class Friday_view extends Fragment {
 			mNotes.setRequireTouchBeforeDismiss(false);
 			
 			mNotes.setUndoHideDelay(3000);
+			
+			arrayAdapter.remove("");
 			
 			addNote.setOnClickListener(new View.OnClickListener() {
 				@Override
@@ -365,7 +421,12 @@ public class Friday_view extends Fragment {
 
 		
 		
+		      
+		  
+		
+		
 		private void showNoteDialog() {
+			 getDialog().dismiss();
 			FragmentManager fm = getFragmentManager();
 			NoteDialog noteDialog = new NoteDialog();
 			noteDialog.show(fm, bandString);

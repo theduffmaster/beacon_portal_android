@@ -5,7 +5,10 @@ import java.util.List;
 
 import com.bernard.beaconportal.activities.R;
 
+
 import de.timroes.android.listview.EnhancedListView;
+import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
+import de.timroes.android.listview.EnhancedListView.UndoStyle;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -30,9 +33,9 @@ public class Thursday_view extends Fragment {
 
 private int count0, count1, count2, count3, count4, count5, count6;
 	
-	private String bandString;
+	private static String bandString;
 
-	private int position;
+	private static int position;
 	
 	private String ABand, BBand, CBand, DBand, EBand, FBand, HBand, GBand;
 
@@ -174,6 +177,13 @@ private int count0, count1, count2, count3, count4, count5, count6;
 					Count.setVisibility(View.GONE);
 					
 				}
+				if( currenthomeworkdue.Note_Number() == 0){
+					
+					BackGround.setVisibility(View.GONE);
+			
+				Count.setVisibility(View.GONE);
+			
+				}
 				
 				convertView.setTag(holder);
 
@@ -219,12 +229,12 @@ private int count0, count1, count2, count3, count4, count5, count6;
 		return true;
 	}
 	
-	public class NotesDialog extends DialogFragment {
+	public static class NotesDialog extends DialogFragment {
 
 		private EnhancedListView mNotes;
-		private RelativeLayout addNote;
-
-		
+		private static RelativeLayout addNote;
+		private int position_mainlist;
+		private String note_removed;
 		
 		public NotesDialog() {
 			// Empty constructor required for DialogFragment
@@ -243,6 +253,7 @@ private int count0, count1, count2, count3, count4, count5, count6;
 			
 			String band_position = ("thursday"+(Integer.toString(position))).toString();
 			
+			position_mainlist = position;
 			
 			SharedPreferences sharedpref = getActivity().getApplicationContext()
 					.getSharedPreferences(band_position, Context.MODE_PRIVATE);
@@ -252,7 +263,7 @@ private int count0, count1, count2, count3, count4, count5, count6;
 
 			int countersssss = counterssss + 1;
 
-			ArrayList<String> note_list = new ArrayList<String>();
+			final ArrayList<String> note_list = new ArrayList<String>();
 			
 			for (int i = 0; i < countersssss; i++) {
 			
@@ -265,12 +276,116 @@ private int count0, count1, count2, count3, count4, count5, count6;
 			
 			}
 				
-			ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+			final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
 	                 getActivity(), 
 	                 R.layout.note_dialog_item, R.id.textView1,
 	                 note_list );
 			
 			mNotes.setAdapter(arrayAdapter);
+			
+			mNotes.setDismissCallback(new OnDismissCallback() {
+
+				  @Override public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
+
+				    // Store the item for later undo
+				    
+					  final String item = (String) arrayAdapter.getItem(position);
+					  
+				    // Remove the item from the adapter
+				    arrayAdapter.remove(item);
+				    
+				    
+				    
+				    // return an Undoable
+				    return new EnhancedListView.Undoable() {
+				      // Reinsert the item to the adapter
+				      @Override public void undo() {
+				       arrayAdapter.insert(item, position);
+				      }
+
+				      // Return a string for your item
+				      
+
+				       //Delete item completely from your persistent storage
+				      @Override public void discard() {
+				        
+				    	  String band_position = ("thursday"+(Integer.toString(position_mainlist))).toString();
+				    	  
+				    	  SharedPreferences.Editor localEditor = getActivity().getSharedPreferences(
+									band_position	, Context.MODE_PRIVATE).edit();
+							
+							SharedPreferences sharedpref = getActivity().getApplicationContext()
+									.getSharedPreferences(band_position, Context.MODE_PRIVATE);
+							
+							int counterssss = sharedpref.getInt(
+									"note_count", 0);
+
+							int countersssss = counterssss+1;
+
+							int ii = -1;
+							
+							for (int i = 0; i < countersssss; i++) {
+							
+								String note_item = Integer.toString(i);
+								
+								String note = sharedpref.getString(
+										 note_item, "");
+								
+								if(item.equals(note)){
+									
+									System.out.println(note + " 1 " + item);
+									
+									String item_positions = Integer.toString(i);
+									
+									localEditor.remove(item_positions);
+									
+									localEditor.commit();
+									
+								}else{
+									
+									System.out.println(note + " 2 " + item);
+									
+									ii++;
+									
+									System.out.println(ii);
+									
+									String item_position = Integer.toString(ii);
+									
+									
+									localEditor.putString(item_position, note);
+									
+								}
+								
+								
+							}
+							
+							int note_counts = sharedpref.getInt("note_count", 0);
+							
+				    	  int note_minus = note_counts - 1;
+				    	  
+				    	  localEditor.putInt("note_count", note_minus);
+				    	  
+				    	  
+							localEditor.commit();
+							
+				    	  getActivity().recreate();
+				    	
+				      }
+				    };
+
+				  }
+
+				});
+			
+			mNotes.enableSwipeToDismiss();
+			
+			mNotes.setUndoStyle(UndoStyle.MULTILEVEL_POPUP);
+			
+			mNotes.setRequireTouchBeforeDismiss(false);
+			
+			mNotes.setUndoHideDelay(3000);
+			
+			arrayAdapter.remove("");
 			
 			addNote.setOnClickListener(new View.OnClickListener() {
 				@Override
@@ -294,17 +409,28 @@ private int count0, count1, count2, count3, count4, count5, count6;
 						}
 					});
 
+			 
+			
+			
+			
 			return builder.create();
 
 		}
 
+		
+		
+		      
+		  
+		
+		
 		private void showNoteDialog() {
+			 getDialog().dismiss();
 			FragmentManager fm = getFragmentManager();
 			NoteDialog noteDialog = new NoteDialog();
 			noteDialog.show(fm, bandString);
 		}
 
-		public class NoteDialog extends DialogFragment {
+		public static class NoteDialog extends DialogFragment {
 
 			private EditText mEditText;
 
@@ -330,7 +456,9 @@ private int count0, count1, count2, count3, count4, count5, count6;
 
 						getDialog().dismiss();
 
-						showNoteDialog();
+						NotesDialog notes = new NotesDialog();
+						
+						notes.showNoteDialog();
 					}
 				});
 
