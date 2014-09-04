@@ -324,9 +324,9 @@ public class Bands_Linked extends Fragment {
 
 			}
 
-			if (hasContent(editBBand)) {
+			if (hasContent(editFBand)) {
 
-				itor.putString("b_Band", editBBand.getText().toString());
+				itor.putString("f_Band", editFBand.getText().toString());
 
 			} else {
 

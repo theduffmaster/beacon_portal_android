@@ -62,13 +62,13 @@ private int count0, count1, count2, count3, count4, count5, count6;
 
 		SharedPreferences sharedpref = getActivity().getApplicationContext()
 				.getSharedPreferences("thursday", Context.MODE_PRIVATE);
-		EBand = sharedpref.getString("e_Band", null);
+		HBand = sharedpref.getString("h_Band", null);
 		GBand = sharedpref.getString("g_Band", null);
 		FBand = sharedpref.getString("f_Band", null);
-		HBand = sharedpref.getString("h_Band", null);
-		ABand = sharedpref.getString("a_Band", null);
-		CBand = sharedpref.getString("c_Band", null);
+		EBand = sharedpref.getString("e_Band", null);
 		DBand = sharedpref.getString("d_Band", null);
+		CBand = sharedpref.getString("c_Band", null);
+		ABand = sharedpref.getString("a_Band", null);
 
 		SharedPreferences sharedpref0 = getActivity().getApplicationContext()
 				.getSharedPreferences("thursday0", Context.MODE_PRIVATE);
@@ -120,13 +120,13 @@ private int count0, count1, count2, count3, count4, count5, count6;
 	}
 
 	private void populatescheduleList() {
-		myschedule.add(new schedule_view("H Band", EBand, count0));
+		myschedule.add(new schedule_view("H Band", HBand, count0));
 		myschedule.add(new schedule_view("G Band", GBand, count1));
 		myschedule.add(new schedule_view("F Band", FBand, count2));
-		myschedule.add(new schedule_view("E Band", HBand, count3));
-		myschedule.add(new schedule_view("D Band", ABand, count4));
+		myschedule.add(new schedule_view("E Band", EBand, count3));
+		myschedule.add(new schedule_view("D Band", DBand, count4));
 		myschedule.add(new schedule_view("C Band", CBand, count5));
-		myschedule.add(new schedule_view("A Band", DBand, count6));
+		myschedule.add(new schedule_view("A Band", ABand, count6));
 	}
 
 	private void populateListView() {

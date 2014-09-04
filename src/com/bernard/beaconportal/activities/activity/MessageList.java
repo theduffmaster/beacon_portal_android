@@ -1669,7 +1669,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 				FolderInfoHolder folder = (FolderInfoHolder) mAdapter
 						.getItem(info.position
-								- (mAdapter_Accounts.getCount() + 7));
+								- (mAdapter_Accounts.getCount() + 6));
 
 				menu.setHeaderTitle(folder.displayName);
 
@@ -1733,7 +1733,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			if (menuInfo.position - 1 > mAdapter_Accounts.getCount() - 1) {
 
-				if(0 < menuInfo.position- (mAdapter_Accounts.getCount() + 7)){
+				if(0 < menuInfo.position- (mAdapter_Accounts.getCount() + 6)){
 					
 							folder = (FolderInfoHolder) mAdapter.getItem(menuInfo.position);
 							
@@ -4241,7 +4241,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				Log.d("Folders", "clicked");
 
 				onOpenFolder(((FolderInfoHolder) mAdapter
-						.getItem(position - 12)).name);
+						.getItem(position - (mAdapter_Accounts.getCount() + 6))).name);
 
 				Log.d("Folder Click Listener", "clicked");
 
@@ -4294,7 +4294,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 //				localEditor2.putString("fragment_to_start", "3");
 				
-				localEditor2.putString("fragment_to_start", "2 n");
+				localEditor2.putString("fragment_to_start", "2");
 
 				localEditor2.commit();
 				to_main();
@@ -4333,7 +4333,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				Log.d("Folders", "clicked");
 
 				onOpenFolder(((FolderInfoHolder) mAdapter.getItem(position
-						- (mAdapter_Accounts.getCount() + 7))).name);
+						- (mAdapter_Accounts.getCount() + 6))).name);
 
 				Log.d("Folder Click Listener", "clicked");
 

@@ -53,8 +53,8 @@ public class Thursday extends Fragment {
 		TextView EValue = (TextView) view.findViewById(R.id.bandText11111);
 		EValue.setText("H Band");
 
-		editEBand = ((EditText) view.findViewById(R.id.editText11111));
-		editEBand.setText(EBand, TextView.BufferType.EDITABLE);
+		editHBand = ((EditText) view.findViewById(R.id.editText11111));
+		editHBand.setText(HBand, TextView.BufferType.EDITABLE);
 
 		TextView GValue = (TextView) view.findViewById(R.id.bandText22222);
 		GValue.setText("G Band");
@@ -71,14 +71,14 @@ public class Thursday extends Fragment {
 		TextView HValue = (TextView) view.findViewById(R.id.bandText44444);
 		HValue.setText("E Band");
 
-		editHBand = ((EditText) view.findViewById(R.id.editText44444));
-		editHBand.setText(HBand, TextView.BufferType.EDITABLE);
+		editEBand = ((EditText) view.findViewById(R.id.editText44444));
+		editEBand.setText(EBand, TextView.BufferType.EDITABLE);
 
 		TextView AValue = (TextView) view.findViewById(R.id.bandText55555);
 		AValue.setText("D Band");
 
-		editABand = ((EditText) view.findViewById(R.id.editText55555));
-		editABand.setText(ABand, TextView.BufferType.EDITABLE);
+		editDBand = ((EditText) view.findViewById(R.id.editText55555));
+		editDBand.setText(DBand, TextView.BufferType.EDITABLE);
 
 		TextView CValue = (TextView) view.findViewById(R.id.bandText66666);
 		CValue.setText("C Band");
@@ -89,8 +89,8 @@ public class Thursday extends Fragment {
 		TextView DValue = (TextView) view.findViewById(R.id.bandText77777);
 		DValue.setText("A Band");
 
-		editDBand = ((EditText) view.findViewById(R.id.editText77777));
-		editDBand.setText(DBand, TextView.BufferType.EDITABLE);
+		editABand = ((EditText) view.findViewById(R.id.editText77777));
+		editABand.setText(ABand, TextView.BufferType.EDITABLE);
 
 		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
 				this.mClickedReceiver, new IntentFilter("clicked!"));

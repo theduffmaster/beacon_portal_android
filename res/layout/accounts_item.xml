@@ -3,13 +3,13 @@
         android:id="@+id/accounts_item_layout"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-    	android:background="@drawable/list_selector"
+        android:layout_height="wrap_content"
         android:minHeight="?android:attr/listPreferredItemHeight"
         android:orientation="horizontal"
         android:descendantFocusability="blocksDescendants"
         android:gravity="center_vertical">
 
+    
 
     <LinearLayout
             android:layout_width="wrap_content"
@@ -17,19 +17,23 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center_vertical"
-            android:paddingLeft="1dip">
+            android:paddingLeft="15dip">
+
+        <View
+            android:id="@+id/chip"
+            android:layout_width="0dip"
+            android:layout_height="0dp"
+            android:layout_marginRight="8dip"
+            android:background="#ff336699" />
 
         <TextView
                 android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:textColor="@color/black_text"
-        android:gravity="center_vertical"
-        android:minHeight="64dip"
-        android:paddingRight="40dp"
-        android:paddingLeft="16dp"
-        android:textSize="17sp"
-        android:text="text stuff"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/black_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
         <TextView
                 android:id="@+id/email"
@@ -38,105 +42,37 @@
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                />
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     </LinearLayout>
 
-    <RelativeLayout
-   
-    android:id="@+id/active_icons"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:paddingLeft="2dip"
-    android:paddingRight="2dip"
-    android:clickable="true">
+    <include layout="@layout/accounts_folders_icons"/>
 
     <LinearLayout
-        android:id="@+id/flagged_message_count_wrapper"
-        android:orientation="horizontal"
+        android:id="@+id/folder_button_wrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:clickable="true"
-        android:paddingLeft="4dip"
-        android:paddingRight="4dip">
+        android:orientation="horizontal" >
 
         <View
-            android:id="@+id/flagged_message_count_icon"
-            android:layout_width="32dp"
-            android:layout_height="32dp" />
-
-        <TextView
-            android:id="@+id/flagged_message_count"
-      android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/counter_bg"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="8dp"
-        android:textColor="#ffffff" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/new_message_count_wrapper"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/flagged_message_count_wrapper"
-        android:gravity="center_vertical"
-        android:clickable="true"
-        android:paddingLeft="4dip"
-        android:paddingRight="4dip">
-
-        <View
-            android:id="@+id/new_message_count_icon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"/>
-
-        <TextView
-            android:id="@+id/new_message_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/counter_bg"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="8dp"
-        android:textColor="#ffffff"/>
-
-    </LinearLayout>
-
-</RelativeLayout>
-
-    <LinearLayout
-            android:id="@+id/folder_button_wrapper"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-        <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="2dip"
-                android:layout_marginRight="4dip"
-                android:background="?attr/compatDividerVertical" />
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dip"
+            android:layout_marginRight="4dip"
+            android:background="?attr/compatDividerVertical" />
 
         <ImageButton
-                android:id="@+id/folders"
-                android:gravity="center_vertical"
-                android:focusable="false"
-                android:layout_marginRight="3dip"
-                android:src="?attr/iconFolder"
-                android:background="?attr/compatSelectableItemBackground"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:padding="8dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                />
-
+            android:id="@+id/folders"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="3dip"
+            android:background="?attr/compatSelectableItemBackground"
+            android:focusable="false"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:src="?attr/iconFolder" />
     </LinearLayout>
+
 </LinearLayout>
