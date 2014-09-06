@@ -67,7 +67,7 @@ public class Tuesday_view extends Fragment {
 				.getSharedPreferences("tuesday", Context.MODE_PRIVATE);
 		HBand = sharedpref.getString("h_Band", null);
 		GBand = sharedpref.getString("g_Band", null);
-		FBand = sharedpref.getString("f_Band", null);
+		BBand = sharedpref.getString("b_Band", null);
 		EBand = sharedpref.getString("e_Band", null);
 		DBand = sharedpref.getString("d_Band", null);
 		CBand = sharedpref.getString("c_Band", null);
@@ -110,7 +110,7 @@ public class Tuesday_view extends Fragment {
 				"note_count", 1000);
 		
 		SharedPreferences sharedpref6 = getActivity().getApplicationContext()
-				.getSharedPreferences("tuesday5", Context.MODE_PRIVATE);
+				.getSharedPreferences("tuesday6", Context.MODE_PRIVATE);
 		
 		count6 = sharedpref6.getInt(
 				"note_count", 1000);
@@ -125,7 +125,7 @@ public class Tuesday_view extends Fragment {
 	private void populatescheduleList() {
 		myschedule.add(new schedule_view("H Band", HBand, count0));
 		myschedule.add(new schedule_view("G Band", GBand, count1));
-		myschedule.add(new schedule_view("F Band", FBand, count2));
+		myschedule.add(new schedule_view("B Band", BBand, count2));
 		myschedule.add(new schedule_view("E Band", EBand, count3));
 		myschedule.add(new schedule_view("D Band", DBand, count4));
 		myschedule.add(new schedule_view("C Band", CBand, count5));

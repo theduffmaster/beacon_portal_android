@@ -63,10 +63,10 @@ public class Tuesday extends Fragment {
 		editGBand.setText(GBand, TextView.BufferType.EDITABLE);
 
 		TextView BValue = (TextView) view.findViewById(R.id.bandText333);
-		BValue.setText("F Band");
+		BValue.setText("B Band");
 
-		editFBand = ((EditText) view.findViewById(R.id.editText333));
-		editFBand.setText(FBand, TextView.BufferType.EDITABLE);
+		editBBand = ((EditText) view.findViewById(R.id.editText333));
+		editBBand.setText(BBand, TextView.BufferType.EDITABLE);
 
 		TextView HValue = (TextView) view.findViewById(R.id.bandText444);
 		HValue.setText("E Band");
@@ -110,7 +110,7 @@ public class Tuesday extends Fragment {
 
 			localEditor.putString("e_Band", editEBand.getText().toString());
 			localEditor.putString("g_Band", editGBand.getText().toString());
-			localEditor.putString("f_Band", editFBand.getText().toString());
+			localEditor.putString("b_Band", editBBand.getText().toString());
 			localEditor.putString("h_Band", editHBand.getText().toString());
 			localEditor.putString("a_Band", editABand.getText().toString());
 			localEditor.putString("c_Band", editCBand.getText().toString());

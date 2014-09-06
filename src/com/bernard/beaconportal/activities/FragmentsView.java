@@ -12,11 +12,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
@@ -27,10 +29,13 @@ import com.actionbarsherlock.view.MenuItem;
 import com.astuetz.PagerSlidingTabStrip;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.MainActivity.Update;
+import com.faizmalkani.floatingactionbutton.Fab;
 
 public class FragmentsView extends SherlockFragment {
 
 	private String background_colors;
+	
+	private Fab mFab;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +65,8 @@ public class FragmentsView extends SherlockFragment {
 					.getString("background_color", null);
 
 		}
+		
+		
 
 		ViewPager pager = (ViewPager) view.findViewById(R.id.viewPager1);
 
@@ -123,6 +130,40 @@ public class FragmentsView extends SherlockFragment {
 
 		}
 		
+		mFab = (Fab) view.findViewById(R.id.fabbutton);
+		
+		SharedPreferences sharedpref = getActivity().getSharedPreferences("actionbar_color",
+				Context.MODE_PRIVATE);
+
+		if (!sharedpref.contains("actionbar_color")) {
+
+					mFab.setFabColor(
+							Color.parseColor("#03a9f4"));
+					
+		} else {
+
+			String actionbar_colors = sharedpref.getString("actionbar_color",
+					null);
+
+			mFab.setFabColor(
+					Color.parseColor(actionbar_colors));
+
+		}
+
+		mFab.setFabDrawable(getResources().getDrawable(R.drawable.ic_action_edit));
+		
+		mFab.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				
+				alert_dialog();
+				
+			}
+            
+                
+        });
+		
 		return view;
 	}
 
@@ -143,7 +184,7 @@ public class FragmentsView extends SherlockFragment {
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		inflater.inflate(R.menu.android_edit, menu);
+		
 		inflater.inflate(R.menu.android_help, menu);
 	}
 
@@ -158,9 +199,7 @@ public class FragmentsView extends SherlockFragment {
 
 			return true;
 
-		case R.id.edit:
-			alert_dialog();
-			return true;
+		
 		default:
 			return super.onOptionsItemSelected(item);
 		}

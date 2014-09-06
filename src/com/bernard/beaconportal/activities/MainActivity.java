@@ -99,6 +99,8 @@ public class MainActivity extends SherlockFragmentActivity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 
+	private int starts = 0;
+	
 	private BaseAccount mSelectedContextAccount;
 
 	private int shared1;
@@ -127,6 +129,8 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		
+		
 		Log.d(TAG, "onCreate()");
 
 		String packageName = "com.bernard.beaconportal.activities";
@@ -181,6 +185,10 @@ public class MainActivity extends SherlockFragmentActivity {
 					Uri.parse(k9UnreadUri), true, contentObserver);
 		}
 
+		
+		
+		
+		
 		doRefresh();
 
 		int countssssss = getUnreadK9Count(this);
@@ -189,6 +197,31 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		System.out.println("k9 Unread Count = " + countssssss);
 
+		
+		
+		SharedPreferences sharedprefer = getSharedPreferences("first_run_starts",
+				Context.MODE_PRIVATE);
+
+			starts = sharedprefer.getInt("first_run_starts", 0);
+		
+			
+			
+		int start_number = starts + 1;
+		
+		SharedPreferences.Editor localEditors = getSharedPreferences(
+				"first_run_starts", Context.MODE_PRIVATE).edit();
+
+		localEditors.putInt("first_run_starts", start_number);
+
+		localEditors.commit();
+		
+		if (sharedprefer.getInt("first_run_starts", 0) == 2) {
+
+			
+			alert_help();
+			
+		} 
+		
 		SharedPreferences sharedprefers = getSharedPreferences("first_run",
 				Context.MODE_PRIVATE);
 
@@ -416,32 +449,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		}
 
-		SharedPreferences sharedpreferss = getSharedPreferences(
-				"due_tommorow_counter", Context.MODE_PRIVATE);
-
-		if (sharedprefers.contains("first_run")) {
-
-			if (!sharedpreferss.contains("last shared preference")) {
-
-				new Internet_check_reload().execute();
-
-			}
-
-		}
-
-		SharedPreferences sharedprefers1 = getSharedPreferences("Login_info",
-				Context.MODE_PRIVATE);
-
-		if (sharedprefers1.contains("name")) {
-
-		} else {
-
-			Intent i = new Intent(MainActivity.this, AccountSetupBasics.class);
-
-			startActivity(i);
-
-		}
-
+		
 	}
 
 	@Override
@@ -1509,4 +1517,26 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	}
 
+	private void alert_help() {
+
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(R.string.help).setTitle("About");
+
+			builder.setPositiveButton("OK",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int id) {
+
+						}
+					});
+
+			AlertDialog alertDialog = builder.create();
+
+			alertDialog.show();
+
+		}
+
+	}
+	
 }

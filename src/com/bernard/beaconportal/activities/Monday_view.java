@@ -106,7 +106,7 @@ public class Monday_view extends Fragment {
 				"note_count", 1000);
 		
 		SharedPreferences sharedpref6 = getActivity().getApplicationContext()
-				.getSharedPreferences("monday5", Context.MODE_PRIVATE);
+				.getSharedPreferences("monday6", Context.MODE_PRIVATE);
 		
 		count6 = sharedpref6.getInt(
 				"note_count", 1000);

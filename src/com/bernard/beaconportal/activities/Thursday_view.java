@@ -107,7 +107,7 @@ private int count0, count1, count2, count3, count4, count5, count6;
 				"note_count", 1000);
 		
 		SharedPreferences sharedpref6 = getActivity().getApplicationContext()
-				.getSharedPreferences("thursday5", Context.MODE_PRIVATE);
+				.getSharedPreferences("thursday6", Context.MODE_PRIVATE);
 		
 		count6 = sharedpref6.getInt(
 				"note_count", 1000);
