@@ -2383,14 +2383,15 @@ containing a value of this type.
         public static final int upgrade_databases=0x7f03006e;
         public static final int viewpager_main=0x7f03006f;
         public static final int viewpager_schedule=0x7f030070;
-        public static final int viewpager_schedule_linked=0x7f030071;
-        public static final int wednesday=0x7f030072;
-        public static final int welcome_message=0x7f030073;
-        public static final int wizard_cancel=0x7f030074;
-        public static final int wizard_done=0x7f030075;
-        public static final int wizard_next=0x7f030076;
-        public static final int wizard_setup=0x7f030077;
-        public static final int wizard_welcome=0x7f030078;
+        public static final int viewpager_schedule_edit=0x7f030071;
+        public static final int viewpager_schedule_linked=0x7f030072;
+        public static final int wednesday=0x7f030073;
+        public static final int welcome_message=0x7f030074;
+        public static final int wizard_cancel=0x7f030075;
+        public static final int wizard_done=0x7f030076;
+        public static final int wizard_next=0x7f030077;
+        public static final int wizard_setup=0x7f030078;
+        public static final int wizard_welcome=0x7f030079;
     }
     public static final class menu {
         public static final int accounts_context=0x7f0f0000;

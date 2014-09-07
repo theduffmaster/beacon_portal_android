@@ -12,6 +12,8 @@ import android.text.method.TextKeyListener;
 import android.text.method.TextKeyListener.Capitalize;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -124,6 +126,10 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 	}
 
 	protected void onNext() {
+		
+		InputMethodManager im = (InputMethodManager) this.getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		im.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+		
 		if (Utility.requiredFieldValid(mDescription)) {
 			mAccount.setDescription(mDescription.getText().toString());
 		}
@@ -144,6 +150,8 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 		localEditor.putString("name", name);
 
 		localEditor.commit();
+		
+		
 
 	}
 
@@ -152,6 +160,7 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.done:
 			onNext();
+			
 			break;
 		}
 	}

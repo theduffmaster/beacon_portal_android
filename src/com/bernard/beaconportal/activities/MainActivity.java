@@ -40,6 +40,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -129,7 +130,8 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		
+		InputMethodManager im = (InputMethodManager) this.getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		im.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 		
 		Log.d(TAG, "onCreate()");
 
@@ -198,29 +200,6 @@ public class MainActivity extends SherlockFragmentActivity {
 		System.out.println("k9 Unread Count = " + countssssss);
 
 		
-		
-		SharedPreferences sharedprefer = getSharedPreferences("first_run_starts",
-				Context.MODE_PRIVATE);
-
-			starts = sharedprefer.getInt("first_run_starts", 0);
-		
-			
-			
-		int start_number = starts + 1;
-		
-		SharedPreferences.Editor localEditors = getSharedPreferences(
-				"first_run_starts", Context.MODE_PRIVATE).edit();
-
-		localEditors.putInt("first_run_starts", start_number);
-
-		localEditors.commit();
-		
-		if (sharedprefer.getInt("first_run_starts", 0) == 2) {
-
-			
-			alert_help();
-			
-		} 
 		
 		SharedPreferences sharedprefers = getSharedPreferences("first_run",
 				Context.MODE_PRIVATE);
@@ -449,6 +428,63 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		}
 
+		
+		
+		SharedPreferences sharedprefer = getSharedPreferences("first_run_starts",
+				Context.MODE_PRIVATE);
+
+			
+		
+			
+			
+		if(sharedprefer.contains("first_run_starts")){
+			
+			
+			
+			
+		}else{
+		
+			SharedPreferences.Editor localEditors = getSharedPreferences(
+					"first_run_starts", Context.MODE_PRIVATE).edit();
+
+			localEditors.putString("first_run_starts", "yes");
+
+			localEditors.commit();
+			
+		Intent intent = new Intent(this, AccountSetupBasics.class);
+		startActivity(intent);
+		
+		}
+		
+		SharedPreferences sharedpreferences = getSharedPreferences("first_run_starter",
+				Context.MODE_PRIVATE);
+
+			
+		SharedPreferences sharedprefererence = getSharedPreferences("Login_info",
+				Context.MODE_PRIVATE);
+			
+			
+		if(sharedpreferences.contains("first_run_starts")){
+			
+		}else{
+		
+		
+		
+		if (sharedprefererence.contains("name")) {
+
+			
+			SharedPreferences.Editor localEditors = getSharedPreferences(
+					"first_run_starter", Context.MODE_PRIVATE).edit();
+
+			localEditors.putString("first_run_starts", "yes");
+
+			localEditors.commit();
+			
+			alert_help();
+			
+		} 
+		
+		}
 		
 	}
 

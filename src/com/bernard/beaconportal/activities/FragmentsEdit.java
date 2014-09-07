@@ -33,7 +33,7 @@ public class FragmentsEdit extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.viewpager_schedule);
+		setContentView(R.layout.viewpager_schedule_edit);
 
 		SharedPreferences sharedprefer = getSharedPreferences(
 				"background_color", Context.MODE_PRIVATE);

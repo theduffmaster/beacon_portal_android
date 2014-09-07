@@ -112,23 +112,7 @@ public class FragmentsView extends SherlockFragment {
 
 		}
 
-		SharedPreferences sharedprefers = getActivity().getSharedPreferences("first_run_schedule",
-				Context.MODE_PRIVATE);
-
-		if (sharedprefers.contains("first_run")) {
-
-		} else {
-
-			SharedPreferences.Editor localEditor = getActivity().getSharedPreferences(
-					"first_run_schedule", Context.MODE_PRIVATE).edit();
-
-			localEditor.putString("first_run", "ran for the first time");
-
-			localEditor.commit();
-
-			alert_help();
-
-		}
+		
 		
 		mFab = (Fab) view.findViewById(R.id.fabbutton);
 		
@@ -244,6 +228,7 @@ public class FragmentsView extends SherlockFragment {
 								startActivityForResult(myIntent, 0);
 								break;
 							case 1:
+								
 								Intent anIntent = new Intent(((Dialog) dialog)
 										.getContext(), FragmentsEdit.class);
 								startActivityForResult(anIntent, 0);

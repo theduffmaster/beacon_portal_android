@@ -352,7 +352,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 		// Minimum date
 		Calendar minDate = Calendar.getInstance();
 		try {
-			minDate.setTime(formatter.parse("1.1.1994"));
+			minDate.setTime(formatter.parse("1.1.1920"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
