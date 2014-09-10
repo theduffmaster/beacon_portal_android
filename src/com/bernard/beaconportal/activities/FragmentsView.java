@@ -16,6 +16,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,6 +37,10 @@ public class FragmentsView extends SherlockFragment {
 	private String background_colors;
 	
 	private Fab mFab;
+	
+	private int current_minutes;
+	
+	private String checkbox_edit;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -148,6 +153,54 @@ public class FragmentsView extends SherlockFragment {
                 
         });
 		
+		SharedPreferences prefer = getActivity().getSharedPreferences("CheckBox_edit",
+				Context.MODE_PRIVATE);
+
+		checkbox_edit = prefer.getString("checked", null);
+		
+		if (checkbox_edit != null) {
+			if (checkbox_edit.contains("true")) {
+				
+				mFab.setVisibility(View.GONE);
+			}
+		}
+		
+		
+//		Calendar now = Calendar.getInstance();
+//		int day = now.get(Calendar.DAY_OF_WEEK);
+//		
+//		
+//		tabs.setOnPageChangeListener(new OnPageChangeListener() {
+//		    public void onPageScrollStateChanged(int state) {}
+//
+//			@Override
+//			public void onPageScrolled(int arg0, float arg1, int arg2) {
+//				
+//				Calendar now = Calendar.getInstance();
+//				
+//				int hour = now.get(Calendar.HOUR_OF_DAY);
+//				int minute = now.get(Calendar.MINUTE);
+//				
+//				current_minutes = ((hour * 60) + minute);
+//				
+//				System.out.println("total_minutes= " + current_minutes);
+//				
+//			}
+//
+//			@Override
+//			public void onPageSelected(int arg0) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		    
+//		});
+//		
+//		
+//		
+//		if(day == 4){
+//			
+//		}
+		
 		return view;
 	}
 
@@ -169,7 +222,16 @@ public class FragmentsView extends SherlockFragment {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		
+		if (checkbox_edit != null) {
+			if (checkbox_edit.contains("true")) {
+				
+				inflater.inflate(R.menu.android_edit, menu);
+			}
+		}
+		
 		inflater.inflate(R.menu.android_help, menu);
+		
+		
 	}
 
 	@Override
@@ -183,6 +245,16 @@ public class FragmentsView extends SherlockFragment {
 
 			return true;
 
+		case R.id.edit:	
+			
+			if (checkbox_edit != null) {
+				if (checkbox_edit.contains("true")) {
+					
+					alert_dialog();
+					
+				}
+			}
+			
 		
 		default:
 			return super.onOptionsItemSelected(item);

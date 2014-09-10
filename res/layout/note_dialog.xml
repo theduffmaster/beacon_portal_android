@@ -9,6 +9,33 @@
     android:background="#ffffff"
     android:orientation="vertical" >
 
+    
+    <RelativeLayout
+        android:id="@+id/info_time"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/app_start" >
+
+        <TextView
+            android:id="@+id/infotimeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:singleLine="true"
+            android:text=""
+             android:textSize="15sp" />
+       
+    </RelativeLayout>
+    
+     <View
+        android:id="@+id/view4"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+         
+        android:layout_alignBottom="@+id/Relative_Layout_Settings"
+        android:background="#D3D3D3" />
+    
     <RelativeLayout
         android:id="@+id/notesAdd"
         android:layout_width="match_parent"
@@ -74,12 +101,6 @@
         android:divider="@null"
         android:dividerHeight="0dp" >
     </de.timroes.android.listview.EnhancedListView>
-
-    
-
-   
-
-
 
 </LinearLayout>
 

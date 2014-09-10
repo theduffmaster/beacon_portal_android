@@ -1663,17 +1663,19 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		if (v == getListView()) {
 
-			if (info.position > mAdapter_Accounts.getCount() + 4) {
+			
+			
+			if (info.position > mAdapter_Accounts.getCount() + 3) {
 
 				getMenuInflater().inflate(R.menu.folder_context, menu);
 
 				FolderInfoHolder folder = (FolderInfoHolder) mAdapter
 						.getItem(info.position
-								- (mAdapter_Accounts.getCount() + 6));
+								- (mAdapter_Accounts.getCount() + 4));
 
 				menu.setHeaderTitle(folder.displayName);
 
-			} else if (info.position < mAdapter_Accounts.getCount() + 1) {
+			} else if (info.position < mAdapter_Accounts.getCount() ) {
 
 				menu.setHeaderTitle(R.string.accounts_context_menu_title);
 
@@ -1715,6 +1717,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			}
 
+			
 		}
 	}
 
@@ -1727,19 +1730,19 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		FolderInfoHolder folder = null;
 
-		
+
 		
 		if (mListView.getItemAtPosition(menuInfo.position) != null) {
+			
+			if (menuInfo.position - 1 > mAdapter_Accounts.getCount() - 3) {
 
-			if (menuInfo.position - 1 > mAdapter_Accounts.getCount() - 1) {
-
-				if(0 < menuInfo.position- (mAdapter_Accounts.getCount() + 6)){
+				if(0 < menuInfo.position- (mAdapter_Accounts.getCount() + 2)){
 					
-							folder = (FolderInfoHolder) mAdapter.getItem(menuInfo.position);
+							folder = (FolderInfoHolder) mAdapter.getItem(menuInfo.position-(mAdapter_Accounts.getCount() + 4));
 							
 				}else{
 				folder = (FolderInfoHolder) mAdapter.getItem(menuInfo.position
-						- (mAdapter_Accounts.getCount() + 7));
+						- (mAdapter_Accounts.getCount() + 5));
 				
 				}
 
@@ -1758,8 +1761,10 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 				}
 
-			}
+			
 
+		}
+			
 		}
 
 		switch (item.getItemId()) {
@@ -2041,14 +2046,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			}
 
-			@Override
-			public void listFoldersStarted(Account account) {
-				if (account.equals(mAccount)) {
-					mHandler.progress(true);
-				}
-				super.listFoldersStarted(account);
-
-			}
+			
 
 			@Override
 			public void listFoldersFailed(Account account, String message) {
@@ -4215,7 +4213,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			}
 
-			if (position < mAdapter_Accounts.getCount() + 1) {
+			if (position < mAdapter_Accounts.getCount() - 1) {
 				Log.d("Accounts", "clicked");
 
 				progress = ProgressDialog.show(this, "", "", true);
@@ -4232,7 +4230,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			}
 
-			if (position > mAdapter_Accounts.getCount() + 5) {
+			if (position > mAdapter_Accounts.getCount() + 3) {
 
 				progress = ProgressDialog.show(this, "", "", true);
 
@@ -4241,7 +4239,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				Log.d("Folders", "clicked");
 
 				onOpenFolder(((FolderInfoHolder) mAdapter
-						.getItem(position - (mAdapter_Accounts.getCount() + 6))).name);
+						.getItem(position - (mAdapter_Accounts.getCount() + 4))).name);
 
 				Log.d("Folder Click Listener", "clicked");
 
@@ -4307,7 +4305,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			}
 
-			if (position < mAdapter_Accounts.getCount() + 1) {
+			if (position < mAdapter_Accounts.getCount() - 1) {
 				Log.d("Accounts", "clicked");
 
 				progress = ProgressDialog.show(this, "", "", true);
@@ -4324,7 +4322,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			}
 
-			if (position > mAdapter_Accounts.getCount() + 5) {
+			if (position > mAdapter_Accounts.getCount() + 3) {
 
 				progress = ProgressDialog.show(this, "", "", true);
 
@@ -4333,7 +4331,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				Log.d("Folders", "clicked");
 
 				onOpenFolder(((FolderInfoHolder) mAdapter.getItem(position
-						- (mAdapter_Accounts.getCount() + 6))).name);
+						- (mAdapter_Accounts.getCount() + 4))).name);
 
 				Log.d("Folder Click Listener", "clicked");
 
@@ -4565,13 +4563,15 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			BaseAccount allMessagesAccount = SearchAccount
 					.createAllMessagesAccount(this);
 
-			accounts.add(unifiedInboxAccount);
-			accounts.add(allMessagesAccount);
+//			accounts.add(unifiedInboxAccount);
+//			accounts.add(allMessagesAccount);
 		}
 
 		accounts.addAll(Arrays.asList(realAccounts));
 		AccountsAdapter adapter = new AccountsAdapter(accounts);
 
+		
+		
 		getListView().invalidate();
 
 		mergeadapter.addView(header_inbox);
@@ -4585,8 +4585,10 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		mergeadapter.addView(header_folders);
 
 		mergeadapter.addAdapter(mAdapter);
-
+		
 		getListView().setAdapter(mergeadapter);
+		
+		
 
 	}
 

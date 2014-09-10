@@ -102,6 +102,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	private int starts = 0;
 	
+	private String checkbox_edit;
+	
 	private BaseAccount mSelectedContextAccount;
 
 	private int shared1;
@@ -513,6 +515,8 @@ public class MainActivity extends SherlockFragmentActivity {
 			}
 		}
 
+		
+		
 		SharedPreferences Today_Homework = getApplicationContext()
 				.getSharedPreferences("due_today", Context.MODE_PRIVATE);
 

@@ -329,10 +329,7 @@ public class FolderList extends K9ListActivity {
 
 		context = this;
 
-		ChangeLog cl = new ChangeLog(this);
-		if (cl.isFirstRun()) {
-			cl.getLogDialog().show();
-		}
+		
 	}
 
 	private void initializeActionBar() {

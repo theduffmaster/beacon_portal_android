@@ -52,6 +52,9 @@ import com.larswerkman.colorpicker.ColorPicker;
  * account is defined by a UUID.
  */
 public class Account implements BaseAccount {
+	
+	protected Context context;
+	
 	/**
 	 * Default value for the inbox folder (never changes for POP3 and IMAP)
 	 */

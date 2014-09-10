@@ -1,6 +1,7 @@
 package com.bernard.beaconportal.activities;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.bernard.beaconportal.activities.R;
@@ -64,6 +65,15 @@ public class Friday_view extends Fragment {
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
+		
+		Calendar calendar = Calendar.getInstance();
+		int day = calendar.get(Calendar.DAY_OF_WEEK);
+		
+		if(day == 6){
+			
+		}
+		
+		
 		SharedPreferences sharedpref = getActivity().getApplicationContext()
 				.getSharedPreferences("friday", Context.MODE_PRIVATE);
 		GBand = sharedpref.getString("g_Band", null);
@@ -399,6 +409,49 @@ public class Friday_view extends Fragment {
 				}
 			});
 
+			if(bandString.equals("G Band")){
+				
+TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
+				
+				band_times.setText("9:00-9:55");
+				
+			}
+			if(bandString.equals("B Band")){
+				
+TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
+				
+				band_times.setText("10:00-10:55");
+				
+			}
+			if(bandString.equals("Advisory 1")){
+				
+TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
+				
+				band_times.setText("11:00-11:45");
+				
+			}
+			if(bandString.equals("Advisory 2")){
+				
+TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
+				
+				band_times.setText("11:45-12:30");
+				
+			}
+			if(bandString.equals("C Band")){
+				
+TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
+				
+				band_times.setText("12:35-1:30");
+				
+			}
+			if(bandString.equals("F Band")){
+				
+TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
+				
+				band_times.setText("1:35-2:30");
+				
+			}
+			
 			builder.setView(view);
 
 			builder.setTitle(bandString);
