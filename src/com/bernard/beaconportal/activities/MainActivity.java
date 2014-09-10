@@ -84,6 +84,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	DrawerLayout mDrawerLayout;
 	LinearLayout mDrawerLinear;
 	TextView mWelcomePerson;
+	TextView mWelcome;
 	ListView mDrawerList;
 	ActionBarDrawerToggle mDrawerToggle;
 	MenuListAdapter mMenuAdapter;
@@ -361,6 +362,29 @@ public class MainActivity extends SherlockFragmentActivity {
 		mWelcomePerson = (TextView) findViewById(R.id.Person);
 
 		mWelcomePerson.setText(person);
+		
+		mWelcome = (TextView) findViewById(R.id.Welcome);
+		
+		if (!sharedpref.contains("actionbar_color")) {
+
+			mWelcomePerson.setBackground(
+					new ColorDrawable(Color.parseColor("#03a9f4")));
+
+			mWelcome.setBackground(
+					new ColorDrawable(Color.parseColor("#03a9f4")));
+			
+		} else {
+
+			actionbar_colors = sharedpref.getString("actionbar_color", null);
+
+			mWelcomePerson.setBackground(
+					new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+			mWelcome.setBackground(
+					new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+			
+		}
 
 		mDrawerList = (ListView) findViewById(R.id.listview_drawer);
 

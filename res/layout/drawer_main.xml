@@ -26,14 +26,19 @@
     android:background="#ffffff" 
     android:clickable="true">
     
+        
+        
     <TextView
             android:id="@+id/Welcome"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="Welcome"
 			android:textSize="20sp"
+			android:textColor="#ffffff"
             android:gravity="center"
             android:textStyle="bold" 
+            android:background="#e3ecf5"
+            android:paddingTop="16dp"
                 
         /> 
         
@@ -44,20 +49,24 @@
             android:text="Person"
             android:layout_alignBottom="@+id/Welcome"
             android:textSize="18sp"
+            android:textColor="#ffffff"
             android:gravity="center"
+            android:background="#e3ecf5"
+            android:paddingBottom="16dp"
         />     
     
+   
     
     <ListView
         android:id="@+id/listview_drawer"
        android:layout_width="match_parent"
         android:layout_height="wrap_content" 
-        android:paddingTop="8dp"
+        
         android:minHeight="64dip"
        android:layout_alignBottom="@+id/Person"
         android:choiceMode="singleChoice"
         android:divider="#ECF0F1"
-        android:dividerHeight="1dp"       
+        android:dividerHeight="0dp"       
         android:listSelector="@drawable/list_selector"
         android:background="#ffffff"/>
  
