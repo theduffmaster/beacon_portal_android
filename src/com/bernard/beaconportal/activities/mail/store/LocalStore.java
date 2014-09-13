@@ -40,9 +40,10 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.Account.MessageFormat;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.Account.MessageFormat;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.Search;
 import com.bernard.beaconportal.activities.controller.MessageRemovalListener;
 import com.bernard.beaconportal.activities.controller.MessageRetrievalListener;
@@ -57,18 +58,18 @@ import com.bernard.beaconportal.activities.mail.FetchProfile;
 import com.bernard.beaconportal.activities.mail.Flag;
 import com.bernard.beaconportal.activities.mail.Folder;
 import com.bernard.beaconportal.activities.mail.Message;
+import com.bernard.beaconportal.activities.mail.Message.RecipientType;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Part;
 import com.bernard.beaconportal.activities.mail.Store;
-import com.bernard.beaconportal.activities.mail.Message.RecipientType;
 import com.bernard.beaconportal.activities.mail.filter.Base64OutputStream;
 import com.bernard.beaconportal.activities.mail.internet.MimeBodyPart;
 import com.bernard.beaconportal.activities.mail.internet.MimeHeader;
 import com.bernard.beaconportal.activities.mail.internet.MimeMessage;
 import com.bernard.beaconportal.activities.mail.internet.MimeMultipart;
 import com.bernard.beaconportal.activities.mail.internet.MimeUtility;
-import com.bernard.beaconportal.activities.mail.internet.TextBody;
 import com.bernard.beaconportal.activities.mail.internet.MimeUtility.ViewableContainer;
+import com.bernard.beaconportal.activities.mail.internet.TextBody;
 import com.bernard.beaconportal.activities.mail.store.LockableDatabase.DbCallback;
 import com.bernard.beaconportal.activities.mail.store.LockableDatabase.WrappedException;
 import com.bernard.beaconportal.activities.mail.store.StorageManager.StorageProvider;
@@ -76,10 +77,9 @@ import com.bernard.beaconportal.activities.provider.AttachmentProvider;
 import com.bernard.beaconportal.activities.provider.EmailProvider;
 import com.bernard.beaconportal.activities.provider.EmailProvider.MessageColumns;
 import com.bernard.beaconportal.activities.search.LocalSearch;
-import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Attribute;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Searchfield;
-import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
 
 /**
  * <pre>
@@ -105,7 +105,7 @@ public class LocalStore extends Store implements Serializable {
 			+ "forwarded ";
 
 	private static final String GET_FOLDER_COLS = "folders.id, name, visible_limit, last_updated, status, push_state, last_pushed, "
-			+ "integrate, top_group, poll_class, push_class, display_class";
+			+ "integrate, top_group, poll_class, push_class, display_class, notify_class";
 
 	private static final int FOLDER_ID_INDEX = 0;
 	private static final int FOLDER_NAME_INDEX = 1;
@@ -119,6 +119,7 @@ public class LocalStore extends Store implements Serializable {
 	private static final int FOLDER_SYNC_CLASS_INDEX = 9;
 	private static final int FOLDER_PUSH_CLASS_INDEX = 10;
 	private static final int FOLDER_DISPLAY_CLASS_INDEX = 11;
+	private static final int FOLDER_NOTIFY_CLASS_INDEX = 12;
 
 	private static final String[] UID_CHECK_PROJECTION = { "uid" };
 
@@ -143,7 +144,7 @@ public class LocalStore extends Store implements Serializable {
 	 */
 	private static final int THREAD_FLAG_UPDATE_BATCH_SIZE = 500;
 
-	public static final int DB_VERSION = 49;
+	public static final int DB_VERSION = 50;
 
 	public static String getColumnNameForFlag(Flag flag) {
 		switch (flag) {
@@ -244,7 +245,7 @@ public class LocalStore extends Store implements Serializable {
 					db.execSQL("CREATE TABLE folders (id INTEGER PRIMARY KEY, name TEXT, "
 							+ "last_updated INTEGER, unread_count INTEGER, visible_limit INTEGER, status TEXT, "
 							+ "push_state TEXT, last_pushed INTEGER, flagged_count INTEGER default 0, "
-							+ "integrate INTEGER, top_group INTEGER, poll_class TEXT, push_class TEXT, display_class TEXT"
+							+ "integrate INTEGER, top_group INTEGER, poll_class TEXT, push_class TEXT, display_class TEXT, notify_class TEXT"
 							+ ")");
 
 					db.execSQL("CREATE INDEX IF NOT EXISTS folder_name ON folders (name)");
@@ -428,10 +429,9 @@ public class LocalStore extends Store implements Serializable {
 								throw e;
 							}
 						}
+
 						Cursor cursor = null;
-
 						try {
-
 							SharedPreferences prefs = getPreferences();
 							cursor = db.rawQuery(
 									"SELECT id, name FROM folders", null);
@@ -446,13 +446,10 @@ public class LocalStore extends Store implements Serializable {
 											e);
 								}
 							}
-						}
-
-						catch (SQLiteException e) {
+						} catch (SQLiteException e) {
 							Log.e(K9.LOG_TAG,
 									"Exception while upgrading database to v41. folder classes may have vanished",
 									e);
-
 						} finally {
 							Utility.closeQuietly(cursor);
 						}
@@ -736,6 +733,25 @@ public class LocalStore extends Store implements Serializable {
 					if (db.getVersion() < 49) {
 						db.execSQL("CREATE INDEX IF NOT EXISTS msg_composite ON messages (deleted, empty,folder_id,flagged,read)");
 
+					}
+					if (db.getVersion() < 50) {
+						try {
+							db.execSQL("ALTER TABLE folders ADD notify_class TEXT default '"
+									+ Folder.FolderClass.INHERITED.name() + "'");
+						} catch (SQLiteException e) {
+							if (!e.getMessage().startsWith(
+									"duplicate column name:")) {
+								throw e;
+							}
+						}
+
+						ContentValues cv = new ContentValues();
+						cv.put("notify_class",
+								Folder.FolderClass.FIRST_CLASS.name());
+
+						db.update("folders", cv, "name = ?",
+								new String[] { getAccount()
+										.getInboxFolderName() });
 					}
 				}
 
@@ -1353,6 +1369,7 @@ public class LocalStore extends Store implements Serializable {
 						prefHolder.displayClass = LocalFolder.FolderClass.FIRST_CLASS;
 						if (name.equalsIgnoreCase(mAccount.getInboxFolderName())) {
 							prefHolder.integrate = true;
+							prefHolder.notifyClass = LocalFolder.FolderClass.FIRST_CLASS;
 							prefHolder.pushClass = LocalFolder.FolderClass.FIRST_CLASS;
 						} else {
 							prefHolder.pushClass = LocalFolder.FolderClass.INHERITED;
@@ -1370,11 +1387,12 @@ public class LocalStore extends Store implements Serializable {
 														// Preferences
 
 					db.execSQL(
-							"INSERT INTO folders (name, visible_limit, top_group, display_class, poll_class, push_class, integrate) VALUES (?, ?, ?, ?, ?, ?, ?)",
+							"INSERT INTO folders (name, visible_limit, top_group, display_class, poll_class, notify_class, push_class, integrate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
 							new Object[] { name, visibleLimit,
 									prefHolder.inTopGroup ? 1 : 0,
 									prefHolder.displayClass.name(),
 									prefHolder.syncClass.name(),
+									prefHolder.notifyClass.name(),
 									prefHolder.pushClass.name(),
 									prefHolder.integrate ? 1 : 0, });
 
@@ -1418,6 +1436,7 @@ public class LocalStore extends Store implements Serializable {
 		private FolderClass mDisplayClass = FolderClass.NO_CLASS;
 		private FolderClass mSyncClass = FolderClass.INHERITED;
 		private FolderClass mPushClass = FolderClass.SECOND_CLASS;
+		private FolderClass mNotifyClass = FolderClass.INHERITED;
 		private boolean mInTopGroup = false;
 		private String mPushState = null;
 		private boolean mIntegrate = false;
@@ -1527,6 +1546,9 @@ public class LocalStore extends Store implements Serializable {
 			String displayClass = cursor.getString(FOLDER_DISPLAY_CLASS_INDEX);
 			mDisplayClass = Folder.FolderClass
 					.valueOf((displayClass == null) ? noClass : displayClass);
+			String notifyClass = cursor.getString(FOLDER_NOTIFY_CLASS_INDEX);
+			mNotifyClass = Folder.FolderClass
+					.valueOf((notifyClass == null) ? noClass : notifyClass);
 			String pushClass = cursor.getString(FOLDER_PUSH_CLASS_INDEX);
 			mPushClass = Folder.FolderClass
 					.valueOf((pushClass == null) ? noClass : pushClass);
@@ -1596,6 +1618,7 @@ public class LocalStore extends Store implements Serializable {
 		private class PreferencesHolder {
 			FolderClass displayClass = mDisplayClass;
 			FolderClass syncClass = mSyncClass;
+			FolderClass notifyClass = mNotifyClass;
 			FolderClass pushClass = mPushClass;
 			boolean inTopGroup = mInTopGroup;
 			boolean integrate = mIntegrate;
@@ -1814,6 +1837,15 @@ public class LocalStore extends Store implements Serializable {
 			return mSyncClass;
 		}
 
+		public FolderClass getNotifyClass() {
+			return (FolderClass.INHERITED == mNotifyClass) ? getPushClass()
+					: mNotifyClass;
+		}
+
+		public FolderClass getRawNotifyClass() {
+			return mNotifyClass;
+		}
+
 		@Override
 		public FolderClass getPushClass() {
 			return (FolderClass.INHERITED == mPushClass) ? getSyncClass()
@@ -1841,6 +1873,12 @@ public class LocalStore extends Store implements Serializable {
 				throws MessagingException {
 			mPushClass = pushClass;
 			updateFolderColumn("push_class", mPushClass.name());
+		}
+
+		public void setNotifyClass(FolderClass notifyClass)
+				throws MessagingException {
+			mNotifyClass = notifyClass;
+			updateFolderColumn("notify_class", mNotifyClass.name());
 		}
 
 		public boolean isIntegrate() {
@@ -1908,6 +1946,13 @@ public class LocalStore extends Store implements Serializable {
 				editor.putString(id + ".syncMode", mSyncClass.name());
 			}
 
+			if (mNotifyClass == FolderClass.INHERITED
+					&& !mAccount.getInboxFolderName().equals(getName())) {
+				editor.remove(id + ".notifyMode");
+			} else {
+				editor.putString(id + ".notifyMode", mNotifyClass.name());
+			}
+
 			if (mPushClass == FolderClass.SECOND_CLASS
 					&& !mAccount.getInboxFolderName().equals(getName())) {
 				editor.remove(id + ".pushMode");
@@ -1947,6 +1992,18 @@ public class LocalStore extends Store implements Serializable {
 			}
 			if (prefHolder.syncClass == FolderClass.NONE) {
 				prefHolder.syncClass = FolderClass.INHERITED;
+			}
+
+			try {
+				prefHolder.notifyClass = FolderClass.valueOf(preferences
+						.getString(id + ".notifyMode",
+								prefHolder.notifyClass.name()));
+			} catch (Exception e) {
+				Log.e(K9.LOG_TAG, "Unable to load notifyMode for " + getName(),
+						e);
+			}
+			if (prefHolder.notifyClass == FolderClass.NONE) {
+				prefHolder.notifyClass = FolderClass.INHERITED;
 			}
 
 			try {
@@ -4006,7 +4063,7 @@ public class LocalStore extends Store implements Serializable {
 
 			if (this.mFolder == null) {
 				LocalFolder f = new LocalFolder(cursor.getInt(13));
-				f.open(Folder.OPEN_MODE_RW);
+				f.open(LocalFolder.OPEN_MODE_RW);
 				this.mFolder = f;
 			}
 

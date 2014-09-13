@@ -3,12 +3,12 @@ package com.bernard.beaconportal.activities.cache;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bernard.beaconportal.activities.provider.EmailProvider.MessageColumns;
-import com.bernard.beaconportal.activities.provider.EmailProvider.ThreadColumns;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
+
+import com.bernard.beaconportal.activities.provider.EmailProvider.MessageColumns;
+import com.bernard.beaconportal.activities.provider.EmailProvider.ThreadColumns;
 
 /**
  * A {@link CursorWrapper} that utilizes {@link EmailProviderCache}.

@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import android.content.ContentResolver;
@@ -27,9 +27,9 @@ import com.bernard.beaconportal.activities.crypto.Apg;
 import com.bernard.beaconportal.activities.crypto.CryptoProvider;
 import com.bernard.beaconportal.activities.helper.Utility;
 import com.bernard.beaconportal.activities.mail.Address;
+import com.bernard.beaconportal.activities.mail.Folder.FolderClass;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Store;
-import com.bernard.beaconportal.activities.mail.Folder.FolderClass;
 import com.bernard.beaconportal.activities.mail.store.LocalStore;
 import com.bernard.beaconportal.activities.mail.store.StorageManager;
 import com.bernard.beaconportal.activities.mail.store.StorageManager.StorageProvider;
@@ -37,13 +37,12 @@ import com.bernard.beaconportal.activities.provider.EmailProvider;
 import com.bernard.beaconportal.activities.provider.EmailProvider.StatsColumns;
 import com.bernard.beaconportal.activities.search.ConditionsTreeNode;
 import com.bernard.beaconportal.activities.search.LocalSearch;
-import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Attribute;
 import com.bernard.beaconportal.activities.search.SearchSpecification.SearchCondition;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Searchfield;
+import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
 import com.bernard.beaconportal.activities.security.LocalKeyStore;
 import com.bernard.beaconportal.activities.view.ColorChip;
-import com.bernard.beaconportal.activities.R;
 import com.larswerkman.colorpicker.ColorPicker;
 
 /**
@@ -52,9 +51,6 @@ import com.larswerkman.colorpicker.ColorPicker;
  * account is defined by a UUID.
  */
 public class Account implements BaseAccount {
-	
-	protected Context context;
-	
 	/**
 	 * Default value for the inbox folder (never changes for POP3 and IMAP)
 	 */
@@ -171,6 +167,7 @@ public class Account implements BaseAccount {
 	private long mLastAutomaticCheckTime;
 	private long mLatestOldMessageSeenTime;
 	private boolean mNotifyNewMail;
+	private FolderMode mFolderNotifyNewMailMode;
 	private boolean mNotifySelfNewMail;
 	private String mInboxFolderName;
 	private String mDraftsFolderName;
@@ -194,7 +191,6 @@ public class Account implements BaseAccount {
 	private int mMaxPushFolders;
 	private int mIdleRefreshMinutes;
 	private boolean goToUnreadMessageSearch;
-	private boolean mNotificationShowsUnreadCount;
 	private final Map<String, Boolean> compressionMap = new ConcurrentHashMap<String, Boolean>();
 	private Searchable searchableFolders;
 	private boolean subscribedFoldersOnly;
@@ -282,6 +278,7 @@ public class Account implements BaseAccount {
 		mDisplayCount = K9.DEFAULT_VISIBLE_LIMIT;
 		mAccountNumber = -1;
 		mNotifyNewMail = true;
+		mFolderNotifyNewMailMode = FolderMode.ALL;
 		mNotifySync = true;
 		mNotifySelfNewMail = true;
 		mFolderDisplayMode = FolderMode.NOT_SECOND_CLASS;
@@ -298,7 +295,6 @@ public class Account implements BaseAccount {
 		mMaxPushFolders = 10;
 		mChipColor = pickColor(context);
 		goToUnreadMessageSearch = false;
-		mNotificationShowsUnreadCount = true;
 		subscribedFoldersOnly = false;
 		maximumPolledMessageAge = -1;
 		maximumAutoDownloadMessageSize = 32768;
@@ -404,6 +400,12 @@ public class Account implements BaseAccount {
 		mLatestOldMessageSeenTime = prefs.getLong(mUuid
 				+ ".latestOldMessageSeenTime", 0);
 		mNotifyNewMail = prefs.getBoolean(mUuid + ".notifyNewMail", false);
+		try {
+			mFolderNotifyNewMailMode = FolderMode.valueOf(prefs.getString(mUuid
+					+ ".folderNotifyNewMailMode", FolderMode.ALL.name()));
+		} catch (Exception e) {
+			mFolderNotifyNewMailMode = FolderMode.ALL;
+		}
 		mNotifySelfNewMail = prefs.getBoolean(mUuid + ".notifySelfNewMail",
 				true);
 		mNotifySync = prefs.getBoolean(mUuid + ".notifyMailCheck", false);
@@ -424,8 +426,6 @@ public class Account implements BaseAccount {
 		mMaxPushFolders = prefs.getInt(mUuid + ".maxPushFolders", 10);
 		goToUnreadMessageSearch = prefs.getBoolean(mUuid
 				+ ".goToUnreadMessageSearch", false);
-		mNotificationShowsUnreadCount = prefs.getBoolean(mUuid
-				+ ".notificationUnreadCount", true);
 		subscribedFoldersOnly = prefs.getBoolean(mUuid
 				+ ".subscribedFoldersOnly", false);
 		maximumPolledMessageAge = prefs.getInt(mUuid
@@ -621,7 +621,6 @@ public class Account implements BaseAccount {
 		editor.remove(mUuid + ".led");
 		editor.remove(mUuid + ".ledColor");
 		editor.remove(mUuid + ".goToUnreadMessageSearch");
-		editor.remove(mUuid + ".notificationUnreadCount");
 		editor.remove(mUuid + ".subscribedFoldersOnly");
 		editor.remove(mUuid + ".maximumPolledMessageAge");
 		editor.remove(mUuid + ".maximumAutoDownloadMessageSize");
@@ -771,6 +770,8 @@ public class Account implements BaseAccount {
 		editor.putLong(mUuid + ".latestOldMessageSeenTime",
 				mLatestOldMessageSeenTime);
 		editor.putBoolean(mUuid + ".notifyNewMail", mNotifyNewMail);
+		editor.putString(mUuid + ".folderNotifyNewMailMode",
+				mFolderNotifyNewMailMode.name());
 		editor.putBoolean(mUuid + ".notifySelfNewMail", mNotifySelfNewMail);
 		editor.putBoolean(mUuid + ".notifyMailCheck", mNotifySync);
 		editor.putInt(mUuid + ".deletePolicy", mDeletePolicy);
@@ -800,8 +801,6 @@ public class Account implements BaseAccount {
 		editor.putInt(mUuid + ".chipColor", mChipColor);
 		editor.putBoolean(mUuid + ".goToUnreadMessageSearch",
 				goToUnreadMessageSearch);
-		editor.putBoolean(mUuid + ".notificationUnreadCount",
-				mNotificationShowsUnreadCount);
 		editor.putBoolean(mUuid + ".subscribedFoldersOnly",
 				subscribedFoldersOnly);
 		editor.putInt(mUuid + ".maximumPolledMessageAge",
@@ -1148,6 +1147,15 @@ public class Account implements BaseAccount {
 
 	public synchronized void setNotifyNewMail(boolean notifyNewMail) {
 		this.mNotifyNewMail = notifyNewMail;
+	}
+
+	public synchronized FolderMode getFolderNotifyNewMailMode() {
+		return mFolderNotifyNewMailMode;
+	}
+
+	public synchronized void setFolderNotifyNewMailMode(
+			FolderMode folderNotifyNewMailMode) {
+		this.mFolderNotifyNewMailMode = folderNotifyNewMailMode;
 	}
 
 	public synchronized int getDeletePolicy() {
@@ -1637,15 +1645,6 @@ public class Account implements BaseAccount {
 		this.goToUnreadMessageSearch = goToUnreadMessageSearch;
 	}
 
-	public boolean isNotificationShowsUnreadCount() {
-		return mNotificationShowsUnreadCount;
-	}
-
-	public void setNotificationShowsUnreadCount(
-			boolean notificationShowsUnreadCount) {
-		this.mNotificationShowsUnreadCount = notificationShowsUnreadCount;
-	}
-
 	public synchronized boolean subscribedFoldersOnly() {
 		return subscribedFoldersOnly;
 	}
@@ -2023,7 +2022,7 @@ public class Account implements BaseAccount {
 	public void addCertificate(CheckDirection direction,
 			X509Certificate certificate) throws CertificateException {
 		Uri uri;
-		if (direction.equals(CheckDirection.INCOMING)) {
+		if (direction == CheckDirection.INCOMING) {
 			uri = Uri.parse(getStoreUri());
 		} else {
 			uri = Uri.parse(getTransportUri());
@@ -2040,7 +2039,7 @@ public class Account implements BaseAccount {
 	public void deleteCertificate(String newHost, int newPort,
 			CheckDirection direction) {
 		Uri uri;
-		if (direction.equals(CheckDirection.INCOMING)) {
+		if (direction == CheckDirection.INCOMING) {
 			uri = Uri.parse(getStoreUri());
 		} else {
 			uri = Uri.parse(getTransportUri());

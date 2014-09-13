@@ -1,12 +1,16 @@
 package com.bernard.beaconportal.activities.mail.internet;
 
-import com.bernard.beaconportal.activities.mail.Body;
-import com.bernard.beaconportal.activities.mail.MessagingException;
-
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 
 import org.apache.james.mime4j.codec.QuotedPrintableOutputStream;
 import org.apache.james.mime4j.util.MimeUtil;
+
+import com.bernard.beaconportal.activities.mail.Body;
+import com.bernard.beaconportal.activities.mail.MessagingException;
 
 public class TextBody implements Body {
 
@@ -29,7 +33,6 @@ public class TextBody implements Body {
 		this.mBody = body;
 	}
 
-	@Override
 	public void writeTo(OutputStream out) throws IOException,
 			MessagingException {
 		if (mBody != null) {
@@ -58,7 +61,6 @@ public class TextBody implements Body {
 	/**
 	 * Returns an InputStream that reads this body's text.
 	 */
-	@Override
 	public InputStream getInputStream() throws MessagingException {
 		try {
 			byte[] b;
@@ -73,7 +75,6 @@ public class TextBody implements Body {
 		}
 	}
 
-	@Override
 	public void setEncoding(String encoding) {
 		mEncoding = encoding;
 	}

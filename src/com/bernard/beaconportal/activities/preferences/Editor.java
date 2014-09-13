@@ -1,14 +1,14 @@
 package com.bernard.beaconportal.activities.preferences;
 
-import android.util.Log;
-
-import com.bernard.beaconportal.activities.K9;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import android.util.Log;
+
+import com.bernard.beaconportal.activities.K9;
 
 public class Editor implements android.content.SharedPreferences.Editor {
 	private Storage storage;
@@ -44,21 +44,18 @@ public class Editor implements android.content.SharedPreferences.Editor {
 	}
 
 	// @Override
-	@Override
 	public android.content.SharedPreferences.Editor clear() {
 		removeAll = true;
 		return this;
 	}
 
 	// TODO Android 2.3 provides a sexy new "apply" method we need to implement
-	@Override
 	public void apply() {
 		commit();
 	}
 
 	/* This method is poorly defined. It should throw an Exception on failure */
 	// @Override
-	@Override
 	public boolean commit() {
 		try {
 			commitChanges();
@@ -73,7 +70,6 @@ public class Editor implements android.content.SharedPreferences.Editor {
 		long startTime = System.currentTimeMillis();
 		Log.i(K9.LOG_TAG, "Committing preference changes");
 		Runnable committer = new Runnable() {
-			@Override
 			public void run() {
 				if (removeAll) {
 					storage.removeAll();
@@ -102,7 +98,6 @@ public class Editor implements android.content.SharedPreferences.Editor {
 	}
 
 	// @Override
-	@Override
 	public android.content.SharedPreferences.Editor putBoolean(String key,
 			boolean value) {
 		changes.put(key, "" + value);
@@ -110,7 +105,6 @@ public class Editor implements android.content.SharedPreferences.Editor {
 	}
 
 	// @Override
-	@Override
 	public android.content.SharedPreferences.Editor putFloat(String key,
 			float value) {
 		changes.put(key, "" + value);
@@ -118,14 +112,12 @@ public class Editor implements android.content.SharedPreferences.Editor {
 	}
 
 	// @Override
-	@Override
 	public android.content.SharedPreferences.Editor putInt(String key, int value) {
 		changes.put(key, "" + value);
 		return this;
 	}
 
 	// @Override
-	@Override
 	public android.content.SharedPreferences.Editor putLong(String key,
 			long value) {
 		changes.put(key, "" + value);
@@ -133,7 +125,6 @@ public class Editor implements android.content.SharedPreferences.Editor {
 	}
 
 	// @Override
-	@Override
 	public android.content.SharedPreferences.Editor putString(String key,
 			String value) {
 		if (value == null) {
@@ -145,7 +136,6 @@ public class Editor implements android.content.SharedPreferences.Editor {
 	}
 
 	// @Override
-	@Override
 	public android.content.SharedPreferences.Editor remove(String key) {
 		removals.add(key);
 		return this;

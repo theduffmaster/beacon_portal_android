@@ -1,10 +1,10 @@
 package com.bernard.beaconportal.activities;
 
+import static com.bernard.beaconportal.activities.Due_Today_Fragment.KEY_BAND;
 import static com.bernard.beaconportal.activities.Due_Today_Fragment.KEY_DATE;
 import static com.bernard.beaconportal.activities.Due_Today_Fragment.KEY_DESC;
 import static com.bernard.beaconportal.activities.Due_Today_Fragment.KEY_HOMEWORK;
 import static com.bernard.beaconportal.activities.Due_Today_Fragment.KEY_TYPE;
-import static com.bernard.beaconportal.activities.Due_Today_Fragment.KEY_BAND;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
-import com.bernard.beaconportal.activities.R;
 
 public class homeworkdueDetailsActivity extends SherlockActivity {
 

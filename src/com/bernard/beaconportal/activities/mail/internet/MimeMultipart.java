@@ -1,12 +1,16 @@
 package com.bernard.beaconportal.activities.mail.internet;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.util.Locale;
+import java.util.Random;
+
 import com.bernard.beaconportal.activities.mail.BodyPart;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Multipart;
-
-import java.io.*;
-import java.util.Locale;
-import java.util.Random;
 
 public class MimeMultipart extends Multipart {
 	protected String mPreamble;
@@ -68,7 +72,6 @@ public class MimeMultipart extends Multipart {
 				mBoundary);
 	}
 
-	@Override
 	public void writeTo(OutputStream out) throws IOException,
 			MessagingException {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out),
@@ -101,7 +104,6 @@ public class MimeMultipart extends Multipart {
 		writer.flush();
 	}
 
-	@Override
 	public InputStream getInputStream() throws MessagingException {
 		return null;
 	}

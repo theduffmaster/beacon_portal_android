@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -23,11 +24,17 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
+import android.database.ContentObserver;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -48,17 +55,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.content.IntentFilter;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.database.ContentObserver;
-import android.database.Cursor;
-import android.net.Uri;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
-import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.Accounts;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupBasics;
 
@@ -102,9 +101,9 @@ public class MainActivity extends SherlockFragmentActivity {
 	private CharSequence mTitle;
 
 	private int starts = 0;
-	
+
 	private String checkbox_edit;
-	
+
 	private BaseAccount mSelectedContextAccount;
 
 	private int shared1;
@@ -133,15 +132,18 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		InputMethodManager im = (InputMethodManager) this.getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-		im.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-		
+		InputMethodManager im = (InputMethodManager) this
+				.getApplicationContext().getSystemService(
+						Context.INPUT_METHOD_SERVICE);
+		im.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),
+				InputMethodManager.HIDE_NOT_ALWAYS);
+
 		Log.d(TAG, "onCreate()");
 
 		String packageName = "com.bernard.beaconportal.activities";
 
 		counterss = "0";
-		
+
 		int versionNumber = 0;
 
 		try {
@@ -190,10 +192,6 @@ public class MainActivity extends SherlockFragmentActivity {
 					Uri.parse(k9UnreadUri), true, contentObserver);
 		}
 
-		
-		
-		
-		
 		doRefresh();
 
 		int countssssss = getUnreadK9Count(this);
@@ -202,8 +200,6 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		System.out.println("k9 Unread Count = " + countssssss);
 
-		
-		
 		SharedPreferences sharedprefers = getSharedPreferences("first_run",
 				Context.MODE_PRIVATE);
 
@@ -295,54 +291,52 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] { 
-					//"Homework Due",
-					"Schedule", "Unread Mail",
-					"Options", "Logout" };
+			title = new String[] {
+					// "Homework Due",
+					"Schedule", "Unread Mail", "Options", "Logout" };
 
-			icon = new int[] { 
-					//R.drawable.ic_action_duehomework,
+			icon = new int[] {
+					// R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_email, R.drawable.ic_action_settings,
 					R.drawable.ic_action_logout };
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { 
-						//"",
+				count = new String[] {
+						// "",
 						"", K9count, "", "" };
 
 			} else {
 
-				count = new String[] { 
-						//counterss, 
+				count = new String[] {
+						// counterss,
 						"", K9count, "", "", "" };
 
 			}
 
 		} else {
-			
+
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { 
-						//"", 
+				count = new String[] {
+						// "",
 						"", K9count, "", "" };
 
 			} else {
 
-				count = new String[] { "", 
-						//counterss, 
+				count = new String[] { "",
+						// counterss,
 						K9count, "", "" };
 
 			}
 
-			title = new String[] { "Schedule", 
-					//"Homework Due", 
-					"Unread Mail",
-					"Options", "Logout" };
+			title = new String[] { "Schedule",
+					// "Homework Due",
+					"Unread Mail", "Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
-					//R.drawable.ic_action_duehomework,
+					// R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_email, R.drawable.ic_action_settings,
 					R.drawable.ic_action_logout };
 
@@ -362,28 +356,27 @@ public class MainActivity extends SherlockFragmentActivity {
 		mWelcomePerson = (TextView) findViewById(R.id.Person);
 
 		mWelcomePerson.setText(person);
-		
+
 		mWelcome = (TextView) findViewById(R.id.Welcome);
-		
+
 		if (!sharedpref.contains("actionbar_color")) {
 
-			mWelcomePerson.setBackground(
-					new ColorDrawable(Color.parseColor("#03a9f4")));
+			mWelcomePerson.setBackground(new ColorDrawable(Color
+					.parseColor("#03a9f4")));
 
-			mWelcome.setBackground(
-					new ColorDrawable(Color.parseColor("#03a9f4")));
-			
+			mWelcome.setBackground(new ColorDrawable(Color
+					.parseColor("#03a9f4")));
+
 		} else {
 
 			actionbar_colors = sharedpref.getString("actionbar_color", null);
 
-			mWelcomePerson.setBackground(
-					new ColorDrawable(Color.parseColor(actionbar_colors)));
+			mWelcomePerson.setBackground(new ColorDrawable(Color
+					.parseColor(actionbar_colors)));
 
-			mWelcome.setBackground(
-					new ColorDrawable(Color.parseColor(actionbar_colors)));
+			mWelcome.setBackground(new ColorDrawable(Color
+					.parseColor(actionbar_colors)));
 
-			
 		}
 
 		mDrawerList = (ListView) findViewById(R.id.listview_drawer);
@@ -454,64 +447,50 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		}
 
-		
-		
-		SharedPreferences sharedprefer = getSharedPreferences("first_run_starts",
-				Context.MODE_PRIVATE);
+		SharedPreferences sharedprefer = getSharedPreferences(
+				"first_run_starts", Context.MODE_PRIVATE);
 
-			
-		
-			
-			
-		if(sharedprefer.contains("first_run_starts")){
-			
-			
-			
-			
-		}else{
-		
+		if (sharedprefer.contains("first_run_starts")) {
+
+		} else {
+
 			SharedPreferences.Editor localEditors = getSharedPreferences(
 					"first_run_starts", Context.MODE_PRIVATE).edit();
 
 			localEditors.putString("first_run_starts", "yes");
 
 			localEditors.commit();
-			
-		Intent intent = new Intent(this, AccountSetupBasics.class);
-		startActivity(intent);
-		
+
+			Intent intent = new Intent(this, AccountSetupBasics.class);
+			startActivity(intent);
+
 		}
-		
-		SharedPreferences sharedpreferences = getSharedPreferences("first_run_starter",
-				Context.MODE_PRIVATE);
 
-			
-		SharedPreferences sharedprefererence = getSharedPreferences("Login_info",
-				Context.MODE_PRIVATE);
-			
-			
-		if(sharedpreferences.contains("first_run_starts")){
-			
-		}else{
-		
-		
-		
-		if (sharedprefererence.contains("name")) {
+		SharedPreferences sharedpreferences = getSharedPreferences(
+				"first_run_starter", Context.MODE_PRIVATE);
 
-			
-			SharedPreferences.Editor localEditors = getSharedPreferences(
-					"first_run_starter", Context.MODE_PRIVATE).edit();
+		SharedPreferences sharedprefererence = getSharedPreferences(
+				"Login_info", Context.MODE_PRIVATE);
 
-			localEditors.putString("first_run_starts", "yes");
+		if (sharedpreferences.contains("first_run_starts")) {
 
-			localEditors.commit();
-			
-			alert_help();
-			
-		} 
-		
+		} else {
+
+			if (sharedprefererence.contains("name")) {
+
+				SharedPreferences.Editor localEditors = getSharedPreferences(
+						"first_run_starter", Context.MODE_PRIVATE).edit();
+
+				localEditors.putString("first_run_starts", "yes");
+
+				localEditors.commit();
+
+				alert_help();
+
+			}
+
 		}
-		
+
 	}
 
 	@Override
@@ -539,8 +518,6 @@ public class MainActivity extends SherlockFragmentActivity {
 			}
 		}
 
-		
-		
 		SharedPreferences Today_Homework = getApplicationContext()
 				.getSharedPreferences("due_today", Context.MODE_PRIVATE);
 
@@ -860,9 +837,9 @@ public class MainActivity extends SherlockFragmentActivity {
 		if (Show_View.equals("Homework Due")) {
 
 			switch (position) {
-//			case 0:
-//				ft.replace(R.id.content_frame, fragment2);
-//				break;
+			// case 0:
+			// ft.replace(R.id.content_frame, fragment2);
+			// break;
 			case 0:
 				ft.replace(R.id.content_frame, fragment1);
 				break;
@@ -888,35 +865,35 @@ public class MainActivity extends SherlockFragmentActivity {
 			case 0:
 				ft.replace(R.id.content_frame, fragment1);
 				break;
-//			case 1:
-//
-//				SharedPreferences sharedprefers = getSharedPreferences(
-//						"due_tommorow_counter", Context.MODE_PRIVATE);
-//
-//				if (!sharedprefers.contains("last shared preference")) {
-//
-//					try {
-//						Thread.sleep(1000);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//
-//				}
-//				if (!sharedprefers.contains("last shared preference")) {
-//
-//					Toast.makeText(this, "Please Connect to the Internet!",
-//							8000).show();
-//					Log.d("Home",
-//							"############################You are not online!!!!");
-//
-//				} else {
-//
-//					ft.replace(R.id.content_frame, fragment2);
-//
-//				}
-//
-//				break;
+			// case 1:
+			//
+			// SharedPreferences sharedprefers = getSharedPreferences(
+			// "due_tommorow_counter", Context.MODE_PRIVATE);
+			//
+			// if (!sharedprefers.contains("last shared preference")) {
+			//
+			// try {
+			// Thread.sleep(1000);
+			// } catch (InterruptedException e) {
+			// // TODO Auto-generated catch block
+			// e.printStackTrace();
+			// }
+			//
+			// }
+			// if (!sharedprefers.contains("last shared preference")) {
+			//
+			// Toast.makeText(this, "Please Connect to the Internet!",
+			// 8000).show();
+			// Log.d("Home",
+			// "############################You are not online!!!!");
+			//
+			// } else {
+			//
+			// ft.replace(R.id.content_frame, fragment2);
+			//
+			// }
+			//
+			// break;
 
 			case 1:
 
@@ -1602,5 +1579,5 @@ public class MainActivity extends SherlockFragmentActivity {
 		}
 
 	}
-	
+
 }

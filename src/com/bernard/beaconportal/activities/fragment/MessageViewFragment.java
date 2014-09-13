@@ -4,16 +4,17 @@ import java.io.File;
 import java.util.Collections;
 import java.util.Locale;
 
+import org.openintents.openpgp.OpenPgpSignatureResult;
+
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.app.DialogFragment;
-import android.app.FragmentManager;
-import android.text.Html;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
@@ -26,12 +27,13 @@ import android.widget.Toast;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.ChooseFolder;
 import com.bernard.beaconportal.activities.activity.MessageReference;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.controller.MessagingListener;
-import com.bernard.beaconportal.activities.crypto.PgpData;
 import com.bernard.beaconportal.activities.crypto.CryptoProvider.CryptoDecryptCallback;
+import com.bernard.beaconportal.activities.crypto.PgpData;
 import com.bernard.beaconportal.activities.fragment.ConfirmationDialogFragment.ConfirmationDialogFragmentListener;
 import com.bernard.beaconportal.activities.helper.FileBrowserHelper;
 import com.bernard.beaconportal.activities.helper.FileBrowserHelper.FileBrowserFailOverCallback;
@@ -41,12 +43,9 @@ import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Part;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalMessage;
 import com.bernard.beaconportal.activities.view.AttachmentView;
+import com.bernard.beaconportal.activities.view.AttachmentView.AttachmentFileDownloadCallback;
 import com.bernard.beaconportal.activities.view.MessageHeader;
 import com.bernard.beaconportal.activities.view.SingleMessageView;
-import com.bernard.beaconportal.activities.view.AttachmentView.AttachmentFileDownloadCallback;
-import com.bernard.beaconportal.activities.R;
-
-import org.openintents.openpgp.OpenPgpSignatureResult;
 
 public class MessageViewFragment extends Fragment implements OnClickListener,
 		CryptoDecryptCallback, ConfirmationDialogFragmentListener {
@@ -238,8 +237,6 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 
 		mFragmentListener.messageHeaderViewAvailable(mMessageView
 				.getMessageHeaderView());
-
-		// mMessageView.setBackgroundColor(Color.WHITE);
 
 		return view;
 	}
@@ -530,14 +527,10 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 		switch (view.getId()) {
 		case R.id.download: {
 			((AttachmentView) view).saveFile();
-			Log.d("clicked_folder10", "clicked");
-
 			break;
 		}
 		case R.id.download_remainder: {
 			onDownloadRemainder();
-
-			Log.d("clicked_folder11", "clicked");
 			break;
 		}
 		}
@@ -610,9 +603,6 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 					mMessageView.setOnFlagListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
-
-							Log.d("clicked_folder12", "clicked");
-
 							onToggleFlagged();
 						}
 					});

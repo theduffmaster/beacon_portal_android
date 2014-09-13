@@ -41,13 +41,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.Account.FolderMode;
 import com.bernard.beaconportal.activities.AccountStats;
 import com.bernard.beaconportal.activities.BaseAccount;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.Account.FolderMode;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.setup.AccountSettings;
 import com.bernard.beaconportal.activities.activity.setup.FolderSettings;
 import com.bernard.beaconportal.activities.activity.setup.Prefs;
@@ -64,7 +64,6 @@ import com.bernard.beaconportal.activities.search.LocalSearch;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Attribute;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Searchfield;
 import com.bernard.beaconportal.activities.service.MailService;
-import com.bernard.beaconportal.activities.R;
 
 import de.cketti.library.changelog.ChangeLog;
 
@@ -107,7 +106,6 @@ public class FolderList extends K9ListActivity {
 
 		public void refreshTitle() {
 			runOnUiThread(new Runnable() {
-				@Override
 				public void run() {
 					mActionBarTitle.setText(getString(R.string.folders_title));
 
@@ -132,7 +130,6 @@ public class FolderList extends K9ListActivity {
 
 		public void newFolders(final List<FolderInfoHolder> newFolders) {
 			runOnUiThread(new Runnable() {
-				@Override
 				public void run() {
 					mAdapter.mFolders.clear();
 					mAdapter.mFolders.addAll(newFolders);
@@ -144,7 +141,6 @@ public class FolderList extends K9ListActivity {
 
 		public void workingAccount(final int res) {
 			runOnUiThread(new Runnable() {
-				@Override
 				public void run() {
 					String toastText = getString(res, mAccount.getDescription());
 					Toast toast = Toast.makeText(getApplication(), toastText,
@@ -156,7 +152,6 @@ public class FolderList extends K9ListActivity {
 
 		public void accountSizeChanged(final long oldSize, final long newSize) {
 			runOnUiThread(new Runnable() {
-				@Override
 				public void run() {
 					String toastText = getString(
 							R.string.account_size_changed,
@@ -173,7 +168,6 @@ public class FolderList extends K9ListActivity {
 
 		public void folderLoading(final String folder, final boolean loading) {
 			runOnUiThread(new Runnable() {
-				@Override
 				public void run() {
 					FolderInfoHolder folderHolder = mAdapter.getFolder(folder);
 
@@ -193,7 +187,6 @@ public class FolderList extends K9ListActivity {
 			}
 
 			runOnUiThread(new Runnable() {
-				@Override
 				public void run() {
 					if (progress) {
 						mRefreshMenuItem.setActionView(mActionBarProgressView);
@@ -207,7 +200,6 @@ public class FolderList extends K9ListActivity {
 
 		public void dataChanged() {
 			runOnUiThread(new Runnable() {
-				@Override
 				public void run() {
 					mAdapter.notifyDataSetChanged();
 				}
@@ -279,6 +271,45 @@ public class FolderList extends K9ListActivity {
 			return;
 		}
 
+		mActionBarProgressView = getLayoutInflater().inflate(
+				R.layout.actionbar_indeterminate_progress_actionview, null);
+		mActionBar = getActionBar();
+		initializeActionBar();
+		setContentView(R.layout.folder_list);
+		mListView = getListView();
+		mListView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+		mListView.setLongClickable(true);
+		mListView.setFastScrollEnabled(true);
+		mListView.setScrollingCacheEnabled(false);
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				onOpenFolder(((FolderInfoHolder) mAdapter.getItem(position)).name);
+			}
+		});
+		registerForContextMenu(mListView);
+
+		mListView.setSaveEnabled(true);
+
+		mInflater = getLayoutInflater();
+
+		context = this;
+
+		onNewIntent(getIntent());
+		if (isFinishing()) {
+			/*
+			 * onNewIntent() may call finish(), but execution will still
+			 * continue here. We return now because we don't want to display the
+			 * changelog which can result in a leaked window error.
+			 */
+			return;
+		}
+
+		ChangeLog cl = new ChangeLog(this);
+		if (cl.isFirstRun()) {
+			cl.getLogDialog().show();
+		}
+
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
 
@@ -302,34 +333,6 @@ public class FolderList extends K9ListActivity {
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
-		mActionBarProgressView = getLayoutInflater().inflate(
-				R.layout.actionbar_indeterminate_progress_actionview, null);
-		mActionBar = getActionBar();
-		initializeActionBar();
-		setContentView(R.layout.folder_list);
-		mListView = getListView();
-		mListView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-		mListView.setLongClickable(true);
-		mListView.setFastScrollEnabled(true);
-		mListView.setScrollingCacheEnabled(false);
-		mListView.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				onOpenFolder(((FolderInfoHolder) mAdapter.getItem(position)).name);
-			}
-		});
-		registerForContextMenu(mListView);
-
-		mListView.setSaveEnabled(true);
-
-		mInflater = getLayoutInflater();
-
-		onNewIntent(getIntent());
-
-		context = this;
-
-		
 	}
 
 	private void initializeActionBar() {
@@ -356,8 +359,11 @@ public class FolderList extends K9ListActivity {
 		mAccount = Preferences.getPreferences(this).getAccount(accountUuid);
 
 		if (mAccount == null) {
-			// This shouldn't normally happen. But apparently it does. See issue
-			// 2261.
+			/*
+			 * This can happen when a launcher shortcut is created for an
+			 * account, and then the account is deleted or data is wiped, and
+			 * then the shortcut is used.
+			 */
 			finish();
 			return;
 		}
@@ -557,10 +563,7 @@ public class FolderList extends K9ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-
-			Intent intent = new Intent(FolderList.this, MessageList.class);
-
-			startActivity(intent);
+			onAccounts();
 
 			return true;
 
@@ -741,17 +744,14 @@ public class FolderList extends K9ListActivity {
 			return getItem((int) position);
 		}
 
-		@Override
 		public Object getItem(int position) {
 			return mFilteredFolders.get(position);
 		}
 
-		@Override
 		public long getItemId(int position) {
 			return mFilteredFolders.get(position).folder.getName().hashCode();
 		}
 
-		@Override
 		public int getCount() {
 			return mFilteredFolders.size();
 		}
@@ -1048,7 +1048,6 @@ public class FolderList extends K9ListActivity {
 			return null;
 		}
 
-		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (position <= getCount()) {
 				return getItemView(position, convertView, parent);
@@ -1057,42 +1056,6 @@ public class FolderList extends K9ListActivity {
 						+ " called! count is only " + getCount());
 				return null;
 			}
-		}
-
-		private void configureFolderSearchView(Menu menu) {
-			final MenuItem folderMenuItem = menu.findItem(R.id.filter_folders);
-			final SearchView folderSearchView = (SearchView) folderMenuItem
-					.getActionView();
-			folderSearchView
-					.setQueryHint(getString(R.string.folder_list_filter_hint));
-			folderSearchView
-					.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-						@Override
-						public boolean onQueryTextSubmit(String query) {
-							folderMenuItem.collapseActionView();
-							mActionBarTitle
-									.setText(getString(R.string.filter_folders_action));
-							return true;
-						}
-
-						@Override
-						public boolean onQueryTextChange(String newText) {
-							mAdapter.getFilter().filter(newText);
-							return true;
-						}
-					});
-
-			folderSearchView
-					.setOnCloseListener(new SearchView.OnCloseListener() {
-
-						@Override
-						public boolean onClose() {
-							mActionBarTitle
-									.setText(getString(R.string.folders_title));
-							return false;
-						}
-					});
 		}
 
 		public View getItemView(int itemPosition, View convertView,
@@ -1116,20 +1079,20 @@ public class FolderList extends K9ListActivity {
 						.findViewById(R.id.new_message_count);
 				holder.flaggedMessageCount = (TextView) view
 						.findViewById(R.id.flagged_message_count);
-				holder.newMessageCountWrapper = view
+				holder.newMessageCountWrapper = (View) view
 						.findViewById(R.id.new_message_count_wrapper);
-				holder.flaggedMessageCountWrapper = view
+				holder.flaggedMessageCountWrapper = (View) view
 						.findViewById(R.id.flagged_message_count_wrapper);
-				holder.newMessageCountIcon = view
+				holder.newMessageCountIcon = (View) view
 						.findViewById(R.id.new_message_count_icon);
-				holder.flaggedMessageCountIcon = view
+				holder.flaggedMessageCountIcon = (View) view
 						.findViewById(R.id.flagged_message_count_icon);
 
 				holder.folderStatus = (TextView) view
 						.findViewById(R.id.folder_status);
 				holder.activeIcons = (RelativeLayout) view
 						.findViewById(R.id.active_icons);
-
+				holder.chip = view.findViewById(R.id.chip);
 				holder.folderListItemLayout = (LinearLayout) view
 						.findViewById(R.id.folder_list_item_layout);
 				holder.rawFolderName = folder.name;
@@ -1196,7 +1159,9 @@ public class FolderList extends K9ListActivity {
 				holder.newMessageCountWrapper
 						.setOnClickListener(createUnreadSearch(mAccount, folder));
 				holder.newMessageCountWrapper.setVisibility(View.VISIBLE);
-
+				holder.newMessageCountIcon.setBackgroundDrawable(mAccount
+						.generateColorChip(false, false, false, false, false)
+						.drawable());
 			} else {
 				holder.newMessageCountWrapper.setVisibility(View.GONE);
 			}
@@ -1220,21 +1185,22 @@ public class FolderList extends K9ListActivity {
 						.setOnClickListener(createFlaggedSearch(mAccount,
 								folder));
 				holder.flaggedMessageCountWrapper.setVisibility(View.VISIBLE);
-
+				holder.flaggedMessageCountIcon.setBackgroundDrawable(mAccount
+						.generateColorChip(false, false, false, false, true)
+						.drawable());
 			} else {
 				holder.flaggedMessageCountWrapper.setVisibility(View.GONE);
 			}
 
 			holder.activeIcons.setOnClickListener(new OnClickListener() {
-				@Override
 				public void onClick(View v) {
 					Toast toast = Toast.makeText(getApplication(),
 							getString(R.string.tap_hint), Toast.LENGTH_SHORT);
 					toast.show();
-
-					Log.d("clicked4", "clicked");
 				}
 			});
+
+			holder.chip.setBackgroundColor(mAccount.getChipColor());
 
 			mFontSizes.setViewTextSize(holder.folderName,
 					mFontSizes.getFolderName());
@@ -1267,7 +1233,6 @@ public class FolderList extends K9ListActivity {
 			search.addAccountUuid(account.getUuid());
 
 			return new FolderClickListener(search);
-
 		}
 
 		private OnClickListener createUnreadSearch(Account account,
@@ -1278,12 +1243,8 @@ public class FolderList extends K9ListActivity {
 							account.getDescription(), folder.displayName),
 					getString(R.string.unread_modifier));
 
-			Log.d("clicked_folder", "clicked");
-
 			LocalSearch search = new LocalSearch(searchTitle);
 			search.and(Searchfield.READ, "1", Attribute.NOT_EQUALS);
-
-			Log.d("clicked", "clicked");
 
 			search.addAllowedFolder(folder.name);
 			search.addAccountUuid(account.getUuid());
@@ -1304,7 +1265,6 @@ public class FolderList extends K9ListActivity {
 			this.mFilter = filter;
 		}
 
-		@Override
 		public Filter getFilter() {
 			return mFilter;
 		}
@@ -1398,27 +1358,22 @@ public class FolderList extends K9ListActivity {
 
 		public RelativeLayout activeIcons;
 		public String rawFolderName;
-
+		public View chip;
 		public LinearLayout folderListItemLayout;
 	}
 
-	public class FolderClickListener implements OnClickListener {
+	private class FolderClickListener implements OnClickListener {
 
 		final LocalSearch search;
 
 		FolderClickListener(LocalSearch search) {
 			this.search = search;
-			Log.d("clicked_folder5", "clicked");
-
 		}
 
 		@Override
 		public void onClick(View v) {
 			MessageList.actionDisplaySearch(FolderList.this, search, true,
 					false);
-			Log.d("clicked_folder6", "clicked");
-
 		}
 	}
-
 }

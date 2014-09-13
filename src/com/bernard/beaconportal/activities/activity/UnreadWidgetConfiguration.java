@@ -5,13 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.bernard.beaconportal.activities.BaseAccount;
-import com.bernard.beaconportal.activities.provider.UnreadWidgetProvider;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.provider.UnreadWidgetProvider;
 
 /**
  * Activity to select an account for the unread widget.
@@ -43,29 +41,6 @@ public class UnreadWidgetConfiguration extends AccountList {
 			mAppWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID,
 					AppWidgetManager.INVALID_APPWIDGET_ID);
 		}
-
-		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
-				Context.MODE_PRIVATE);
-
-		if (!sharedpref.contains("actionbar_color")) {
-
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#03a9f4")));
-
-		} else {
-
-			String actionbar_colors = sharedpref.getString("actionbar_color",
-					null);
-
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-		}
-
-		android.app.ActionBar bar = getActionBar();
-
-		bar.setIcon(new ColorDrawable(getResources().getColor(
-				android.R.color.transparent)));
 
 		// If they gave us an intent without the widget ID, just bail.
 		if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {

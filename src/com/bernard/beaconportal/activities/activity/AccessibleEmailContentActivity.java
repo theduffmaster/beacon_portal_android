@@ -17,6 +17,7 @@
 package com.bernard.beaconportal.activities.activity;
 
 import java.util.ArrayList;
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -39,6 +40,23 @@ public class AccessibleEmailContentActivity extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		String htmlSource = getIntent().getStringExtra("content");
+		Spanned parsedHtml = Html.fromHtml(htmlSource, null, null);
+		String[] rawListItems = parsedHtml.toString().split("\n");
+
+		ArrayList<String> cleanedList = new ArrayList<String>();
+		for (String rawListItem : rawListItems) {
+			if (rawListItem.trim().length() > 0) {
+				addToCleanedList(cleanedList, rawListItem);
+			}
+		}
+
+		String[] listItems = cleanedList.toArray(EMPTY_STRING_ARRAY);
+
+		setContentView(com.bernard.beaconportal.activities.R.layout.accessible_email_content);
+		setListAdapter(new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, listItems));
 
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
@@ -63,22 +81,6 @@ public class AccessibleEmailContentActivity extends ListActivity {
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
-		String htmlSource = getIntent().getStringExtra("content");
-		Spanned parsedHtml = Html.fromHtml(htmlSource, null, null);
-		String[] rawListItems = parsedHtml.toString().split("\n");
-
-		ArrayList<String> cleanedList = new ArrayList<String>();
-		for (String rawListItem : rawListItems) {
-			if (rawListItem.trim().length() > 0) {
-				addToCleanedList(cleanedList, rawListItem);
-			}
-		}
-
-		String[] listItems = cleanedList.toArray(EMPTY_STRING_ARRAY);
-
-		setContentView(com.bernard.beaconportal.activities.R.layout.accessible_email_content);
-		setListAdapter(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, listItems));
 	}
 
 	private void addToCleanedList(ArrayList<String> cleanedList, String line) {

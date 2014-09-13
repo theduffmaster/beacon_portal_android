@@ -14,23 +14,21 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.text.TextUtils;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.K9.NotificationHideSubject;
 import com.bernard.beaconportal.activities.K9.NotificationQuickDelete;
 import com.bernard.beaconportal.activities.K9.SplitViewMode;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.ColorPickerDialog;
 import com.bernard.beaconportal.activities.activity.K9PreferenceActivity;
 import com.bernard.beaconportal.activities.controller.MessagingController;
@@ -39,8 +37,6 @@ import com.bernard.beaconportal.activities.helper.FileBrowserHelper.FileBrowserF
 import com.bernard.beaconportal.activities.preferences.CheckBoxListPreference;
 import com.bernard.beaconportal.activities.preferences.TimePickerPreference;
 import com.bernard.beaconportal.activities.service.MailService;
-import com.bernard.beaconportal.activities.view.MessageWebView;
-import com.bernard.beaconportal.activities.R;
 
 public class Prefs extends K9PreferenceActivity {
 
@@ -88,10 +84,8 @@ public class Prefs extends K9PreferenceActivity {
 	private static final String PREFERENCE_HIDE_USERAGENT = "privacy_hide_useragent";
 	private static final String PREFERENCE_HIDE_TIMEZONE = "privacy_hide_timezone";
 
-	private static final String PREFERENCE_MESSAGEVIEW_MOBILE_LAYOUT = "messageview_mobile_layout";
 	private static final String PREFERENCE_AUTOFIT_WIDTH = "messageview_autofit_width";
 	private static final String PREFERENCE_BACKGROUND_OPS = "background_ops";
-	private static final String PREFERENCE_GALLERY_BUG_WORKAROUND = "use_gallery_bug_workaround";
 	private static final String PREFERENCE_DEBUG_LOGGING = "debug_logging";
 	private static final String PREFERENCE_SENSITIVE_LOGGING = "sensitive_logging";
 
@@ -136,10 +130,8 @@ public class Prefs extends K9PreferenceActivity {
 	private CheckBoxPreference mFixedWidth;
 	private CheckBoxPreference mReturnToList;
 	private CheckBoxPreference mShowNext;
-	private CheckBoxPreference mMobileOptimizedLayout;
 	private CheckBoxPreference mAutofitWidth;
 	private ListPreference mBackgroundOps;
-	private CheckBoxPreference mUseGalleryBugWorkaround;
 	private CheckBoxPreference mDebugLogging;
 	private CheckBoxPreference mSensitiveLogging;
 	private CheckBoxPreference mHideUserAgent;
@@ -167,12 +159,6 @@ public class Prefs extends K9PreferenceActivity {
 		super.onCreate(savedInstanceState);
 
 		addPreferencesFromResource(R.xml.global_preferences);
-
-		int titleId = getResources().getIdentifier("action_bar_title", "id",
-				"android");
-
-		TextView abTitle = (TextView) findViewById(titleId);
-		abTitle.setTextColor(getResources().getColor((R.color.white)));
 
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
@@ -227,7 +213,6 @@ public class Prefs extends K9PreferenceActivity {
 
 		findPreference(PREFERENCE_FONT_SIZE).setOnPreferenceClickListener(
 				new Preference.OnPreferenceClickListener() {
-					@Override
 					public boolean onPreferenceClick(Preference preference) {
 						onFontSizeSettings();
 						return true;
@@ -332,7 +317,6 @@ public class Prefs extends K9PreferenceActivity {
 		}
 		mChangeContactNameColor
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final Boolean checked = (Boolean) newValue;
@@ -358,14 +342,6 @@ public class Prefs extends K9PreferenceActivity {
 		mShowNext = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGEVIEW_SHOW_NEXT);
 		mShowNext.setChecked(K9.messageViewShowNext());
 
-		mMobileOptimizedLayout = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGEVIEW_MOBILE_LAYOUT);
-		if (!MessageWebView.isSingleColumnLayoutSupported()) {
-			PreferenceCategory prefs = (PreferenceCategory) findPreference("messageview_preferences");
-			prefs.removePreference(mMobileOptimizedLayout);
-		} else {
-			mMobileOptimizedLayout.setChecked(K9.mobileOptimizedLayout());
-		}
-
 		mAutofitWidth = (CheckBoxPreference) findPreference(PREFERENCE_AUTOFIT_WIDTH);
 		mAutofitWidth.setChecked(K9.autofitWidth());
 
@@ -377,7 +353,6 @@ public class Prefs extends K9PreferenceActivity {
 		mQuietTimeStarts.setSummary(K9.getQuietTimeStarts());
 		mQuietTimeStarts
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String time = (String) newValue;
@@ -391,7 +366,6 @@ public class Prefs extends K9PreferenceActivity {
 		mQuietTimeEnds.setDefaultValue(K9.getQuietTimeEnds());
 		mQuietTimeEnds
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String time = (String) newValue;
@@ -410,40 +384,7 @@ public class Prefs extends K9PreferenceActivity {
 		}
 
 		mBackgroundOps = setupListPreference(PREFERENCE_BACKGROUND_OPS, K9
-				.getBackgroundOps().toString());
-		// In ICS+ there is no 'background data' setting that apps can chose to
-		// ignore anymore. So
-		// we hide that option for "Background Sync".
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-			CharSequence[] oldEntries = mBackgroundOps.getEntries();
-			CharSequence[] newEntries = new CharSequence[3];
-			// Use "When 'Auto-sync' is checked" instead of "When 'Background
-			// data' & 'Auto-sync'
-			// are checked" as description.
-			newEntries[0] = getString(R.string.background_ops_auto_sync_only);
-			newEntries[1] = oldEntries[2];
-			newEntries[2] = oldEntries[3];
-
-			CharSequence[] oldValues = mBackgroundOps.getEntryValues();
-			CharSequence[] newValues = new CharSequence[3];
-			newValues[0] = oldValues[1];
-			newValues[1] = oldValues[2];
-			newValues[2] = oldValues[3];
-
-			mBackgroundOps.setEntries(newEntries);
-			mBackgroundOps.setEntryValues(newValues);
-
-			// Since ConnectivityManager.getBackgroundDataSetting() always
-			// returns 'true' on ICS+
-			// we map WHEN_CHECKED to ALWAYS.
-			if (K9.getBackgroundOps() == K9.BACKGROUND_OPS.WHEN_CHECKED) {
-				mBackgroundOps.setValue(K9.BACKGROUND_OPS.ALWAYS.toString());
-				mBackgroundOps.setSummary(mBackgroundOps.getEntry());
-			}
-		}
-
-		mUseGalleryBugWorkaround = (CheckBoxPreference) findPreference(PREFERENCE_GALLERY_BUG_WORKAROUND);
-		mUseGalleryBugWorkaround.setChecked(K9.useGalleryBugWorkaround());
+				.getBackgroundOps().name());
 
 		mDebugLogging = (CheckBoxPreference) findPreference(PREFERENCE_DEBUG_LOGGING);
 		mSensitiveLogging = (CheckBoxPreference) findPreference(PREFERENCE_SENSITIVE_LOGGING);
@@ -587,7 +528,6 @@ public class Prefs extends K9PreferenceActivity {
 		K9.setMessageViewFixedWidthFont(mFixedWidth.isChecked());
 		K9.setMessageViewReturnToList(mReturnToList.isChecked());
 		K9.setMessageViewShowNext(mShowNext.isChecked());
-		K9.setMobileOptimizedLayout(mMobileOptimizedLayout.isChecked());
 		K9.setAutofitWidth(mAutofitWidth.isChecked());
 		K9.setQuietTimeEnabled(mQuietTimeEnabled.isChecked());
 
@@ -612,7 +552,6 @@ public class Prefs extends K9PreferenceActivity {
 		K9.setAttachmentDefaultPath(mAttachmentPathPreference.getSummary()
 				.toString());
 		boolean needsRefresh = K9.setBackgroundOps(mBackgroundOps.getValue());
-		K9.setUseGalleryBugWorkaround(mUseGalleryBugWorkaround.isChecked());
 
 		if (!K9.DEBUG && mDebugLogging.isChecked()) {
 			Toast.makeText(this, R.string.debug_logging_enabled,
@@ -645,7 +584,6 @@ public class Prefs extends K9PreferenceActivity {
 	private void onChooseContactNameColor() {
 		new ColorPickerDialog(this,
 				new ColorPickerDialog.OnColorChangedListener() {
-					@Override
 					public void colorChanged(int color) {
 						K9.setContactNameColor(color);
 					}

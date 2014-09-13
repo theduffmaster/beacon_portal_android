@@ -5,14 +5,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.commons.io.IOUtils;
+
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.activity.misc.Attachment;
-
-import org.apache.commons.io.IOUtils;
 
 /**
  * Loader to fetch the content of an attachment.

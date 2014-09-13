@@ -1,16 +1,16 @@
 package com.bernard.beaconportal.activities.service;
 
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.helper.power.TracingPowerManager.TracingWakeLock;
-
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class SleepService extends CoreService {
 

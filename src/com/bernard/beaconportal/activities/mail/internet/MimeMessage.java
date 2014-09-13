@@ -7,10 +7,10 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
 import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.UUID;
 
 import org.apache.james.mime4j.MimeException;
@@ -184,27 +184,22 @@ public class MimeMessage extends Message {
 		return (contentType == null) ? "text/plain" : contentType;
 	}
 
-	@Override
 	public String getDisposition() throws MessagingException {
 		return getFirstHeader(MimeHeader.HEADER_CONTENT_DISPOSITION);
 	}
 
-	@Override
 	public String getContentId() throws MessagingException {
 		return null;
 	}
 
-	@Override
 	public String getMimeType() throws MessagingException {
 		return MimeUtility.getHeaderParameter(getContentType(), null);
 	}
 
-	@Override
 	public boolean isMimeType(String mimeType) throws MessagingException {
 		return getMimeType().equalsIgnoreCase(mimeType);
 	}
 
-	@Override
 	public int getSize() {
 		return mSize;
 	}
@@ -477,7 +472,6 @@ public class MimeMessage extends Message {
 		return mHeader.getHeaderNames();
 	}
 
-	@Override
 	public void writeTo(OutputStream out) throws IOException,
 			MessagingException {
 
@@ -491,7 +485,6 @@ public class MimeMessage extends Message {
 		}
 	}
 
-	@Override
 	public InputStream getInputStream() throws MessagingException {
 		return null;
 	}
@@ -529,7 +522,6 @@ public class MimeMessage extends Message {
 			}
 		}
 
-		@Override
 		public void startMessage() {
 			if (stack.isEmpty()) {
 				stack.addFirst(MimeMessage.this);
@@ -545,23 +537,19 @@ public class MimeMessage extends Message {
 			}
 		}
 
-		@Override
 		public void endMessage() {
 			expect(MimeMessage.class);
 			stack.removeFirst();
 		}
 
-		@Override
 		public void startHeader() {
 			expect(Part.class);
 		}
 
-		@Override
 		public void endHeader() {
 			expect(Part.class);
 		}
 
-		@Override
 		public void startMultipart(BodyDescriptor bd) {
 			expect(Part.class);
 
@@ -575,7 +563,6 @@ public class MimeMessage extends Message {
 			}
 		}
 
-		@Override
 		public void body(BodyDescriptor bd, InputStream in) throws IOException {
 			expect(Part.class);
 			try {
@@ -587,12 +574,10 @@ public class MimeMessage extends Message {
 			}
 		}
 
-		@Override
 		public void endMultipart() {
 			stack.removeFirst();
 		}
 
-		@Override
 		public void startBodyPart() {
 			expect(MimeMultipart.class);
 
@@ -605,13 +590,11 @@ public class MimeMessage extends Message {
 			}
 		}
 
-		@Override
 		public void endBodyPart() {
 			expect(BodyPart.class);
 			stack.removeFirst();
 		}
 
-		@Override
 		public void epilogue(InputStream is) throws IOException {
 			expect(MimeMultipart.class);
 			StringBuilder sb = new StringBuilder();
@@ -622,7 +605,6 @@ public class MimeMessage extends Message {
 			// ((Multipart) stack.peek()).setEpilogue(sb.toString());
 		}
 
-		@Override
 		public void preamble(InputStream is) throws IOException {
 			expect(MimeMultipart.class);
 			StringBuilder sb = new StringBuilder();
@@ -634,7 +616,6 @@ public class MimeMessage extends Message {
 
 		}
 
-		@Override
 		public void raw(InputStream is) throws IOException {
 			throw new UnsupportedOperationException("Not supported");
 		}
@@ -687,17 +668,14 @@ public class MimeMessage extends Message {
 		return message;
 	}
 
-	@Override
 	public long getId() {
 		return Long.parseLong(mUid); // or maybe .mMessageId?
 	}
 
-	@Override
 	public String getPreview() {
 		return "";
 	}
 
-	@Override
 	public boolean hasAttachments() {
 		return false;
 	}

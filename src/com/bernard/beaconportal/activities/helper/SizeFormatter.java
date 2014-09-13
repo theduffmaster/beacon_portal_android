@@ -1,6 +1,7 @@
 package com.bernard.beaconportal.activities.helper;
 
 import android.content.Context;
+
 import com.bernard.beaconportal.activities.R;
 
 public class SizeFormatter {

@@ -1,5 +1,7 @@
 package com.bernard.beaconportal.activities.activity;
 
+import java.util.List;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -10,14 +12,11 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Identity;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
-
-import java.util.List;
 
 public class EditIdentity extends K9Activity {
 
@@ -45,12 +44,6 @@ public class EditIdentity extends K9Activity {
 		mIdentityIndex = getIntent().getIntExtra(EXTRA_IDENTITY_INDEX, -1);
 		String accountUuid = getIntent().getStringExtra(EXTRA_ACCOUNT);
 		mAccount = Preferences.getPreferences(this).getAccount(accountUuid);
-
-		int titleId = getResources().getIdentifier("action_bar_title", "id",
-				"android");
-
-		TextView abTitle = (TextView) findViewById(titleId);
-		abTitle.setTextColor(getResources().getColor((R.color.white)));
 
 		if (mIdentityIndex == -1) {
 			mIdentity = new Identity();
@@ -89,7 +82,6 @@ public class EditIdentity extends K9Activity {
 		mSignatureUse.setChecked(mIdentity.getSignatureUse());
 		mSignatureUse
 				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-					@Override
 					public void onCheckedChanged(CompoundButton buttonView,
 							boolean isChecked) {
 						if (isChecked) {
@@ -105,7 +97,6 @@ public class EditIdentity extends K9Activity {
 			mSignatureView.setText(mIdentity.getSignature());
 		} else {
 			mSignatureLayout.setVisibility(View.GONE);
-
 		}
 
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",

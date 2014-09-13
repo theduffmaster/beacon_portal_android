@@ -1,11 +1,5 @@
 package com.bernard.beaconportal.activities.mail.internet;
 
-import com.bernard.beaconportal.activities.mail.Body;
-import com.bernard.beaconportal.activities.mail.BodyPart;
-import com.bernard.beaconportal.activities.mail.CompositeBody;
-import com.bernard.beaconportal.activities.mail.MessagingException;
-import com.bernard.beaconportal.activities.mail.Multipart;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -13,6 +7,12 @@ import java.io.OutputStreamWriter;
 import java.util.Locale;
 
 import org.apache.james.mime4j.util.MimeUtil;
+
+import com.bernard.beaconportal.activities.mail.Body;
+import com.bernard.beaconportal.activities.mail.BodyPart;
+import com.bernard.beaconportal.activities.mail.CompositeBody;
+import com.bernard.beaconportal.activities.mail.MessagingException;
+import com.bernard.beaconportal.activities.mail.Multipart;
 
 /**
  * TODO this is a close approximation of Message, need to update along with
@@ -42,32 +42,26 @@ public class MimeBodyPart extends BodyPart {
 		return mHeader.getFirstHeader(name);
 	}
 
-	@Override
 	public void addHeader(String name, String value) throws MessagingException {
 		mHeader.addHeader(name, value);
 	}
 
-	@Override
 	public void setHeader(String name, String value) {
 		mHeader.setHeader(name, value);
 	}
 
-	@Override
 	public String[] getHeader(String name) throws MessagingException {
 		return mHeader.getHeader(name);
 	}
 
-	@Override
 	public void removeHeader(String name) throws MessagingException {
 		mHeader.removeHeader(name);
 	}
 
-	@Override
 	public Body getBody() {
 		return mBody;
 	}
 
-	@Override
 	public void setBody(Body body) throws MessagingException {
 		this.mBody = body;
 		if (body instanceof Multipart) {
@@ -101,18 +95,15 @@ public class MimeBodyPart extends BodyPart {
 		setHeader(MimeHeader.HEADER_CONTENT_TRANSFER_ENCODING, encoding);
 	}
 
-	@Override
 	public String getContentType() throws MessagingException {
 		String contentType = getFirstHeader(MimeHeader.HEADER_CONTENT_TYPE);
 		return (contentType == null) ? "text/plain" : contentType;
 	}
 
-	@Override
 	public String getDisposition() throws MessagingException {
 		return getFirstHeader(MimeHeader.HEADER_CONTENT_DISPOSITION);
 	}
 
-	@Override
 	public String getContentId() throws MessagingException {
 		String contentId = getFirstHeader(MimeHeader.HEADER_CONTENT_ID);
 		if (contentId == null) {
@@ -126,17 +117,14 @@ public class MimeBodyPart extends BodyPart {
 				last) : contentId;
 	}
 
-	@Override
 	public String getMimeType() throws MessagingException {
 		return MimeUtility.getHeaderParameter(getContentType(), null);
 	}
 
-	@Override
 	public boolean isMimeType(String mimeType) throws MessagingException {
 		return getMimeType().equalsIgnoreCase(mimeType);
 	}
 
-	@Override
 	public int getSize() {
 		return mSize;
 	}
@@ -144,7 +132,6 @@ public class MimeBodyPart extends BodyPart {
 	/**
 	 * Write the MimeMessage out in MIME format.
 	 */
-	@Override
 	public void writeTo(OutputStream out) throws IOException,
 			MessagingException {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out),

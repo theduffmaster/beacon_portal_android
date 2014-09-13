@@ -5,20 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.cache.EmailProviderCacheCursor;
-import com.bernard.beaconportal.activities.helper.StringUtils;
-import com.bernard.beaconportal.activities.helper.Utility;
-import com.bernard.beaconportal.activities.mail.MessagingException;
-import com.bernard.beaconportal.activities.mail.store.LocalStore;
-import com.bernard.beaconportal.activities.mail.store.LockableDatabase;
-import com.bernard.beaconportal.activities.mail.store.UnavailableStorageException;
-import com.bernard.beaconportal.activities.mail.store.LockableDatabase.DbCallback;
-import com.bernard.beaconportal.activities.mail.store.LockableDatabase.WrappedException;
-import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
-
-import android.annotation.TargetApi;
 import android.content.ContentProvider;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -28,6 +14,19 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.cache.EmailProviderCacheCursor;
+import com.bernard.beaconportal.activities.helper.StringUtils;
+import com.bernard.beaconportal.activities.helper.Utility;
+import com.bernard.beaconportal.activities.mail.MessagingException;
+import com.bernard.beaconportal.activities.mail.store.LocalStore;
+import com.bernard.beaconportal.activities.mail.store.LockableDatabase;
+import com.bernard.beaconportal.activities.mail.store.LockableDatabase.DbCallback;
+import com.bernard.beaconportal.activities.mail.store.LockableDatabase.WrappedException;
+import com.bernard.beaconportal.activities.mail.store.UnavailableStorageException;
+import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
 
 /**
  * Content Provider used to display the message list etc.
@@ -813,7 +812,6 @@ public class EmailProvider extends ContentProvider {
 			return super.getString(realColumnIndex);
 		}
 
-		@TargetApi(11)
 		@Override
 		public int getType(int columnIndex) {
 			int realColumnIndex = mColumnMapping[columnIndex];

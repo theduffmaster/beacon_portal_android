@@ -33,14 +33,6 @@
 	            
 	            />
 	
-	      
-	        
-	        <com.bernard.beaconportal.activities.view.AccessibleWebView
-	            android:id="@+id/accessible_message_content"
-	            android:layout_height="wrap_content"
-	            android:layout_width="fill_parent"
-	            />
-	
 	        <!-- Attachments area -->
 	
 	        <LinearLayout

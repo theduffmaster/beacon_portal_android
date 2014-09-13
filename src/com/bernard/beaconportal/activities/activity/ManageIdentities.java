@@ -25,7 +25,6 @@ public class ManageIdentities extends ChooseIdentity {
 	protected void setupClickListeners() {
 		this.getListView().setOnItemClickListener(
 				new AdapterView.OnItemClickListener() {
-					@Override
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
 						editItem(position);

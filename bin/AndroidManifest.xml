@@ -3,7 +3,7 @@
     
 
 	package="com.bernard.beaconportal.activities"
-    android:versionCode="11"
+    android:versionCode="12"
     android:versionName="1.07"
     >
 	
@@ -122,14 +122,14 @@
    
         
 
-        <activity
+                <activity
             android:name=".activity.Accounts"
             android:configChanges="locale"
             android:launchMode="singleTop"
             android:uiOptions="splitActionBarWhenNarrow"
             android:label="@string/app_name">
             <intent-filter>
-                
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -165,7 +165,6 @@
             android:name=".activity.setup.AccountSetupBasics"
             android:label="@string/account_setup_basics_title"
             android:configChanges="locale"
-            android:windowSoftInputMode="stateVisible|adjustResize"
             >
         </activity>
         <activity
@@ -268,19 +267,18 @@
             >
             <intent-filter>
                 <!-- This action is only to allow an entry point for launcher shortcuts -->
-                
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.MessageList"
-            
             android:configChanges="locale"
             android:launchMode="singleTop"
             android:uiOptions="splitActionBarWhenNarrow"
             >
             <intent-filter>
                 <!-- This action is only to allow an entry point for launcher shortcuts -->
-                
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

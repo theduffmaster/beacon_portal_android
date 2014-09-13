@@ -8,13 +8,16 @@ import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.service.NotificationActionService;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.service.NotificationActionService;
 
 public class NotificationDeleteConfirmation extends Activity {
 	private final static String EXTRA_ACCOUNT = "account";
@@ -58,6 +61,30 @@ public class NotificationDeleteConfirmation extends Activity {
 		} else {
 			showDialog(DIALOG_CONFIRM);
 		}
+
+		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
+				Context.MODE_PRIVATE);
+
+		if (!sharedpref.contains("actionbar_color")) {
+
+			getActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor("#03a9f4")));
+
+		} else {
+
+			String actionbar_colors = sharedpref.getString("actionbar_color",
+					null);
+
+			getActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+		}
+
+		android.app.ActionBar bar = getActionBar();
+
+		bar.setIcon(new ColorDrawable(getResources().getColor(
+				android.R.color.transparent)));
+
 	}
 
 	@Override

@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.widget.RelativeLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.bernard.beaconportal.activities.R;
 
 public class FragmentsEdit extends FragmentActivity {
 

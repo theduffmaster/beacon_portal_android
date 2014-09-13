@@ -7,12 +7,14 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.preference.*;
-import android.widget.TextView;
+import android.preference.ListPreference;
+import android.preference.Preference;
 
-import com.bernard.beaconportal.activities.*;
-import com.bernard.beaconportal.activities.activity.K9PreferenceActivity;
+import com.bernard.beaconportal.activities.FontSizes;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.activity.K9PreferenceActivity;
 
 /**
  * Activity to configure the font size of the information displayed in the
@@ -75,12 +77,6 @@ public class FontSizeSettings extends K9PreferenceActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		int titleId = getResources().getIdentifier("action_bar_title", "id",
-				"android");
-
-		TextView abTitle = (TextView) findViewById(titleId);
-		abTitle.setTextColor(getResources().getColor((R.color.white)));
 
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);

@@ -1,18 +1,5 @@
 package com.bernard.beaconportal.activities.provider;
 
-import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.AccountStats;
-import com.bernard.beaconportal.activities.BaseAccount;
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.activity.FolderList;
-import com.bernard.beaconportal.activities.activity.MessageList;
-import com.bernard.beaconportal.activities.activity.UnreadWidgetConfiguration;
-import com.bernard.beaconportal.activities.controller.MessagingController;
-import com.bernard.beaconportal.activities.search.LocalSearch;
-import com.bernard.beaconportal.activities.search.SearchAccount;
-import com.bernard.beaconportal.activities.R;
-
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -22,6 +9,19 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.AccountStats;
+import com.bernard.beaconportal.activities.BaseAccount;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.activity.FolderList;
+import com.bernard.beaconportal.activities.activity.MessageList;
+import com.bernard.beaconportal.activities.activity.UnreadWidgetConfiguration;
+import com.bernard.beaconportal.activities.controller.MessagingController;
+import com.bernard.beaconportal.activities.search.LocalSearch;
+import com.bernard.beaconportal.activities.search.SearchAccount;
 
 public class UnreadWidgetProvider extends AppWidgetProvider {
 	private static final int MAX_COUNT = 9999;

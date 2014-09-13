@@ -1,12 +1,12 @@
 package com.bernard.beaconportal.activities.helper;
 
+import java.io.File;
+
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.media.MediaScannerConnection.MediaScannerConnectionClient;
 import android.net.Uri;
-
-import java.io.File;
 
 public class MediaScannerNotifier implements MediaScannerConnectionClient {
 	private MediaScannerConnection mConnection;
@@ -21,12 +21,10 @@ public class MediaScannerNotifier implements MediaScannerConnectionClient {
 
 	}
 
-	@Override
 	public void onMediaScannerConnected() {
 		mConnection.scanFile(mFile.getAbsolutePath(), null);
 	}
 
-	@Override
 	public void onScanCompleted(String path, Uri uri) {
 		try {
 			if (uri != null) {

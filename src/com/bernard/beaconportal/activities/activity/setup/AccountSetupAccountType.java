@@ -1,5 +1,7 @@
 package com.bernard.beaconportal.activities.activity.setup;
 
+import java.net.URI;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,16 +12,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.activity.K9Activity;
 import com.bernard.beaconportal.activities.R;
-
-import java.net.URI;
+import com.bernard.beaconportal.activities.activity.K9Activity;
 
 /**
  * Prompts the user to select an account type. The account type, along with the
@@ -51,11 +50,10 @@ public class AccountSetupAccountType extends K9Activity implements
 		((Button) findViewById(R.id.pop)).setOnClickListener(this);
 		((Button) findViewById(R.id.imap)).setOnClickListener(this);
 		((Button) findViewById(R.id.webdav)).setOnClickListener(this);
-		int titleId = getResources().getIdentifier("action_bar_title", "id",
-				"android");
 
-		TextView abTitle = (TextView) findViewById(titleId);
-		abTitle.setTextColor(getResources().getColor((R.color.white)));
+		String accountUuid = getIntent().getStringExtra(EXTRA_ACCOUNT);
+		mAccount = Preferences.getPreferences(this).getAccount(accountUuid);
+		mMakeDefault = getIntent().getBooleanExtra(EXTRA_MAKE_DEFAULT, false);
 
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
@@ -80,9 +78,6 @@ public class AccountSetupAccountType extends K9Activity implements
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
-		String accountUuid = getIntent().getStringExtra(EXTRA_ACCOUNT);
-		mAccount = Preferences.getPreferences(this).getAccount(accountUuid);
-		mMakeDefault = getIntent().getBooleanExtra(EXTRA_MAKE_DEFAULT, false);
 	}
 
 	private void onPop() {
@@ -130,7 +125,23 @@ public class AccountSetupAccountType extends K9Activity implements
 	private void onWebDav() {
 		try {
 			URI uri = new URI(mAccount.getStoreUri());
-			uri = new URI("webdav+ssl+", uri.getUserInfo(), uri.getHost(),
+
+			/*
+			 * The user info we have been given from
+			 * AccountSetupBasics.onManualSetup() is encoded as an IMAP store
+			 * URI: AuthType:UserName:Password (no fields should be empty).
+			 * However, AuthType is not applicable to WebDAV nor to its store
+			 * URI. Re-encode without it, using just the UserName and Password.
+			 */
+			String userPass = "";
+			String[] userInfo = uri.getUserInfo().split(":");
+			if (userInfo.length > 1) {
+				userPass = userInfo[1];
+			}
+			if (userInfo.length > 2) {
+				userPass = userPass + ":" + userInfo[2];
+			}
+			uri = new URI("webdav+ssl+", userPass, uri.getHost(),
 					uri.getPort(), null, null, null);
 			mAccount.setStoreUri(uri.toString());
 			AccountSetupIncoming.actionIncomingSettings(this, mAccount,
@@ -142,7 +153,6 @@ public class AccountSetupAccountType extends K9Activity implements
 
 	}
 
-	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.pop:

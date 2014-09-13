@@ -4,10 +4,12 @@
               android:layout_height="88dp"
               android:orientation="horizontal"
               android:layout_gravity="center_vertical"
-              
         >
+    
 
-    <LinearLayout
+    
+    
+ <LinearLayout
             android:id="@+id/selected_checkbox_wrapper"
             android:layout_width="wrap_content"
 
@@ -32,6 +34,8 @@
 
     </LinearLayout>
 
+  
+ 
     <QuickContactBadge
             android:id="@+id/contact_badge"
             android:layout_marginRight="16dip"
@@ -46,7 +50,10 @@
             style="?android:attr/quickContactBadgeStyleWindowLarge"
             android:background="@android:color/transparent"/>
 
+    
 
+     
+         
     <RelativeLayout
             android:id="@+id/list_item_inner"
             android:layout_width="match_parent"
@@ -57,8 +64,10 @@
             android:focusableInTouchMode="false"
             android:layout_gravity="center_vertical"
             android:paddingBottom="6dp">
-
+        
         <TextView
+            
+            
                 android:id="@+id/preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -129,8 +138,13 @@
                     android:focusable="false"
                     
                     />
+        
+        
+        
         </LinearLayout>
 
+        
+        
         <CheckBox
                 android:id="@+id/flagged_center_right"
                 style="?android:attr/starStyle"
@@ -173,8 +187,22 @@
                 android:visibility="visible"
                 android:gravity="center_vertical"/>
 
-
+            <View
+            android:id="@+id/chip"
+            android:layout_width="0dip"
+            android:layout_height="0dp"
+            android:layout_marginTop="-5dip"
+            android:background="#ff336699"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" />
+        
     </RelativeLayout>
 
 
+    
+
+    
+   
+  
+     
 </LinearLayout>

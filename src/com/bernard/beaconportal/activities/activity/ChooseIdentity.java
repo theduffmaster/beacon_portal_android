@@ -1,5 +1,7 @@
 package com.bernard.beaconportal.activities.activity;
 
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,19 +10,15 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Identity;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
-
-import java.util.List;
 
 public class ChooseIdentity extends K9ListActivity {
 	Account mAccount;
@@ -38,15 +36,9 @@ public class ChooseIdentity extends K9ListActivity {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.list_content_simple);
 
-		int titleId = getResources().getIdentifier("action_bar_title", "id",
-				"android");
-
-		TextView abTitle = (TextView) findViewById(titleId);
-		abTitle.setTextColor(getResources().getColor((R.color.white)));
-
 		getListView().setTextFilterEnabled(true);
 		getListView().setItemsCanFocus(false);
-		getListView().setChoiceMode(AbsListView.CHOICE_MODE_NONE);
+		getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
 		Intent intent = getIntent();
 		String accountUuid = intent.getStringExtra(EXTRA_ACCOUNT);
 		mAccount = Preferences.getPreferences(this).getAccount(accountUuid);
@@ -79,7 +71,6 @@ public class ChooseIdentity extends K9ListActivity {
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
-
 	}
 
 	@Override
@@ -108,7 +99,6 @@ public class ChooseIdentity extends K9ListActivity {
 	protected void setupClickListeners() {
 		this.getListView().setOnItemClickListener(
 				new AdapterView.OnItemClickListener() {
-					@Override
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
 						Identity identity = mAccount.getIdentity(position);

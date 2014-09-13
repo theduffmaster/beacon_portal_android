@@ -12,10 +12,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.Accounts;
 import com.bernard.beaconportal.activities.activity.K9Activity;
 import com.bernard.beaconportal.activities.helper.HtmlConverter;
-import com.bernard.beaconportal.activities.R;
 
 /**
  * Displays a welcome message when no accounts have been created yet.
@@ -30,17 +30,15 @@ public class WelcomeMessage extends K9Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-
-		Intent intent = new Intent(this, AccountSetupBasics.class);
-		this.startActivity(intent);
-
 		setContentView(R.layout.welcome_message);
 
-		int titleId = getResources().getIdentifier("action_bar_title", "id",
-				"android");
+		TextView welcome = (TextView) findViewById(R.id.welcome_message);
+		welcome.setText(HtmlConverter
+				.htmlToSpanned(getString(R.string.accounts_welcome)));
+		welcome.setMovementMethod(LinkMovementMethod.getInstance());
 
-		TextView abTitle = (TextView) findViewById(titleId);
-		abTitle.setTextColor(getResources().getColor((R.color.white)));
+		((Button) findViewById(R.id.next)).setOnClickListener(this);
+		((Button) findViewById(R.id.import_settings)).setOnClickListener(this);
 
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
@@ -65,13 +63,6 @@ public class WelcomeMessage extends K9Activity implements OnClickListener {
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
-		TextView welcome = (TextView) findViewById(R.id.welcome_message);
-		welcome.setText(HtmlConverter
-				.htmlToSpanned(getString(R.string.accounts_welcome)));
-		welcome.setMovementMethod(LinkMovementMethod.getInstance());
-
-		((Button) findViewById(R.id.next)).setOnClickListener(this);
-		((Button) findViewById(R.id.import_settings)).setOnClickListener(this);
 	}
 
 	@Override

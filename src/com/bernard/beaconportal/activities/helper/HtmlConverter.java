@@ -1,13 +1,5 @@
 package com.bernard.beaconportal.activities.helper;
 
-import android.text.*;
-import android.text.Html.TagHandler;
-import android.util.Log;
-
-import com.bernard.beaconportal.activities.K9;
-
-import org.xml.sax.XMLReader;
-
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Collections;
@@ -15,6 +7,19 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Matcher;
+
+import org.xml.sax.XMLReader;
+
+import android.text.Annotation;
+import android.text.Editable;
+import android.text.Html;
+import android.text.Html.TagHandler;
+import android.text.Spannable;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.bernard.beaconportal.activities.K9;
 
 /**
  * Contains common routines to convert html to text and vice versa.
@@ -107,7 +112,7 @@ public class HtmlConverter {
 			if (opening) {
 				output.setSpan(new Annotation(IGNORED_ANNOTATION_KEY,
 						IGNORED_ANNOTATION_VALUE), len, len,
-						Spanned.SPAN_MARK_MARK);
+						Spannable.SPAN_MARK_MARK);
 			} else {
 				Object start = getOpeningAnnotation(output);
 				if (start != null) {
@@ -135,7 +140,7 @@ public class HtmlConverter {
 					Annotation.class);
 			for (int i = objs.length - 1; i >= 0; i--) {
 				Annotation span = (Annotation) objs[i];
-				if (output.getSpanFlags(objs[i]) == Spanned.SPAN_MARK_MARK
+				if (output.getSpanFlags(objs[i]) == Spannable.SPAN_MARK_MARK
 						&& span.getKey().equals(IGNORED_ANNOTATION_KEY)
 						&& span.getValue().equals(IGNORED_ANNOTATION_VALUE)) {
 					return objs[i];

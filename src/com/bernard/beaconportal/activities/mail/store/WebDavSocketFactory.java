@@ -1,11 +1,5 @@
 package com.bernard.beaconportal.activities.mail.store;
 
-import org.apache.http.conn.ConnectTimeoutException;
-import org.apache.http.conn.scheme.LayeredSocketFactory;
-import org.apache.http.params.HttpParams;
-
-import com.bernard.beaconportal.activities.net.ssl.TrustManagerFactory;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -18,6 +12,12 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
+
+import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.conn.scheme.LayeredSocketFactory;
+import org.apache.http.params.HttpParams;
+
+import com.bernard.beaconportal.activities.net.ssl.TrustManagerFactory;
 
 /*
  * TODO: find out what's going on here and document it.
@@ -40,7 +40,6 @@ public class WebDavSocketFactory implements LayeredSocketFactory {
 				.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
 	}
 
-	@Override
 	public Socket connectSocket(Socket sock, String host, int port,
 			InetAddress localAddress, int localPort, HttpParams params)
 			throws IOException, UnknownHostException, ConnectTimeoutException {
@@ -48,17 +47,14 @@ public class WebDavSocketFactory implements LayeredSocketFactory {
 				localAddress, localPort, params);
 	}
 
-	@Override
 	public Socket createSocket() throws IOException {
 		return mSocketFactory.createSocket();
 	}
 
-	@Override
 	public boolean isSecure(Socket sock) throws IllegalArgumentException {
 		return mSchemeSocketFactory.isSecure(sock);
 	}
 
-	@Override
 	public Socket createSocket(final Socket socket, final String host,
 			final int port, final boolean autoClose) throws IOException,
 			UnknownHostException {

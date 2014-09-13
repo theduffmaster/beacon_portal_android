@@ -1,10 +1,20 @@
 package com.bernard.beaconportal.activities.activity.setup;
 
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+import org.xmlpull.v1.XmlPullParser;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,7 +24,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,24 +34,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.bernard.beaconportal.activities.*;
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.EmailAddressValidator;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.K9Activity;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupCheckSettings.CheckDirection;
 import com.bernard.beaconportal.activities.helper.Utility;
-import com.bernard.beaconportal.activities.R;
-
-import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLEncoder;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
-import org.xmlpull.v1.XmlPullParser;
 
 /**
  * Prompts the user for the email address and password. Attempts to lookup

@@ -136,7 +136,7 @@ public abstract class CoreService extends Service {
 			Integer wakeLockId, boolean createIfNotExists) {
 
 		if (wakeLockId != null) {
-			intent.putExtra(CoreReceiver.WAKE_LOCK_ID, wakeLockId);
+			intent.putExtra(BootReceiver.WAKE_LOCK_ID, wakeLockId);
 			return;
 		}
 
@@ -246,9 +246,9 @@ public abstract class CoreService extends Service {
 
 		// If we were started by BootReceiver, release the wake lock acquired
 		// there.
-		int wakeLockId = intent.getIntExtra(CoreReceiver.WAKE_LOCK_ID, -1);
+		int wakeLockId = intent.getIntExtra(BootReceiver.WAKE_LOCK_ID, -1);
 		if (wakeLockId != -1) {
-			CoreReceiver.releaseWakeLock(this, wakeLockId);
+			BootReceiver.releaseWakeLock(this, wakeLockId);
 		}
 
 		// If we were passed an ID from our own wake lock registry, retrieve
@@ -334,7 +334,6 @@ public abstract class CoreService extends Service {
 		// the service if
 		// appropriate.
 		Runnable myRunner = new Runnable() {
-			@Override
 			public void run() {
 				try {
 					// Get the sync status

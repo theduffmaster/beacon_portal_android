@@ -1,14 +1,20 @@
 package com.bernard.beaconportal.activities.mail.internet;
 
-import com.bernard.beaconportal.activities.mail.Body;
-import com.bernard.beaconportal.activities.mail.MessagingException;
-import com.bernard.beaconportal.activities.mail.filter.Base64OutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FilterInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.james.mime4j.codec.QuotedPrintableOutputStream;
 import org.apache.james.mime4j.util.MimeUtil;
 
-import java.io.*;
+import com.bernard.beaconportal.activities.mail.Body;
+import com.bernard.beaconportal.activities.mail.MessagingException;
+import com.bernard.beaconportal.activities.mail.filter.Base64OutputStream;
 
 /**
  * A Body that is backed by a temp file. The Body exposes a getOutputStream
@@ -28,7 +34,6 @@ public class BinaryTempFileBody implements Body {
 		mTempDirectory = tempDirectory;
 	}
 
-	@Override
 	public void setEncoding(String encoding) throws MessagingException {
 		mEncoding = encoding;
 	}
@@ -46,7 +51,6 @@ public class BinaryTempFileBody implements Body {
 		return new FileOutputStream(mFile);
 	}
 
-	@Override
 	public InputStream getInputStream() throws MessagingException {
 		try {
 			return new BinaryTempFileBodyInputStream(new FileInputStream(mFile));
@@ -55,7 +59,6 @@ public class BinaryTempFileBody implements Body {
 		}
 	}
 
-	@Override
 	public void writeTo(OutputStream out) throws IOException,
 			MessagingException {
 		InputStream in = getInputStream();

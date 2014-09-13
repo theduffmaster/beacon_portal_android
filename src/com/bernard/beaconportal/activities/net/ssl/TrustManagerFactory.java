@@ -1,14 +1,5 @@
 package com.bernard.beaconportal.activities.net.ssl;
 
-import android.util.Log;
-
-import com.bernard.beaconportal.activities.helper.DomainNameChecker;
-import com.bernard.beaconportal.activities.mail.CertificateChainException;
-import com.bernard.beaconportal.activities.security.LocalKeyStore;
-
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -16,6 +7,17 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.net.ssl.SSLException;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import org.apache.http.conn.ssl.StrictHostnameVerifier;
+
+import android.util.Log;
+
+import com.bernard.beaconportal.activities.mail.CertificateChainException;
+import com.bernard.beaconportal.activities.security.LocalKeyStore;
 
 public final class TrustManagerFactory {
 	private static final String LOG_TAG = "TrustManagerFactory";
@@ -49,45 +51,36 @@ public final class TrustManagerFactory {
 			return trustManager;
 		}
 
-		@Override
 		public void checkClientTrusted(X509Certificate[] chain, String authType)
 				throws CertificateException {
 			defaultTrustManager.checkClientTrusted(chain, authType);
 		}
 
-		@Override
 		public void checkServerTrusted(X509Certificate[] chain, String authType)
 				throws CertificateException {
 			String message = null;
-			boolean foundInGlobalKeyStore = false;
+			X509Certificate certificate = chain[0];
+
 			try {
 				defaultTrustManager.checkServerTrusted(chain, authType);
-				foundInGlobalKeyStore = true;
+				new StrictHostnameVerifier().verify(mHost, certificate);
+				return;
 			} catch (CertificateException e) {
+				// cert. chain can't be validated
+				message = e.getMessage();
+			} catch (SSLException e) {
+				// host name doesn't match certificate
 				message = e.getMessage();
 			}
-
-			X509Certificate certificate = chain[0];
 
 			// Check the local key store if we couldn't verify the certificate
 			// using the global
 			// key store or if the host name doesn't match the certificate name
-			if (foundInGlobalKeyStore
-					&& DomainNameChecker.match(certificate, mHost)
-					|| keyStore.isValidCertificate(certificate, mHost, mPort)) {
-				return;
+			if (!keyStore.isValidCertificate(certificate, mHost, mPort)) {
+				throw new CertificateChainException(message, chain);
 			}
-
-			if (message == null) {
-				message = (foundInGlobalKeyStore) ? "Certificate domain name does not match "
-						+ mHost
-						: "Couldn't find certificate in local key store";
-			}
-
-			throw new CertificateChainException(message, chain);
 		}
 
-		@Override
 		public X509Certificate[] getAcceptedIssuers() {
 			return defaultTrustManager.getAcceptedIssuers();
 		}

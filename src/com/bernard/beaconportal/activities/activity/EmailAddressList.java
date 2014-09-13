@@ -8,14 +8,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
-import com.bernard.beaconportal.activities.helper.ContactItem;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.helper.ContactItem;
 
 public class EmailAddressList extends K9ListActivity implements
 		OnItemClickListener {
@@ -27,12 +26,6 @@ public class EmailAddressList extends K9ListActivity implements
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.email_address_list);
-
-		int titleId = getResources().getIdentifier("action_bar_title", "id",
-				"android");
-
-		TextView abTitle = (TextView) findViewById(titleId);
-		abTitle.setTextColor(getResources().getColor((R.color.white)));
 
 		Intent i = getIntent();
 		ContactItem contact = (ContactItem) i
@@ -72,7 +65,6 @@ public class EmailAddressList extends K9ListActivity implements
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
-
 	}
 
 	@Override

@@ -4,12 +4,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.bernard.beaconportal.activities.K9;
-
 import android.content.Context;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.util.Log;
+
+import com.bernard.beaconportal.activities.K9;
 
 public class TracingPowerManager {
 	private final static boolean TRACE = false;

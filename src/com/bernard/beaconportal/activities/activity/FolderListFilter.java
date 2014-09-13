@@ -23,7 +23,6 @@ public class FolderListFilter<T> extends Filter {
 	 * due to the filtering performed by {@link #performFiltering}. This in turn
 	 * will change the folders displayed in the ListView.
 	 */
-
 	private ArrayAdapter<T> mFolders;
 
 	/**

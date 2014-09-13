@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.bernard.beaconportal.activities.R;
 
 public class FragmentTab1 extends SherlockFragment {
 

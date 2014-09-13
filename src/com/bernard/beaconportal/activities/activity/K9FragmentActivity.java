@@ -1,10 +1,6 @@
 package com.bernard.beaconportal.activities.activity;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MotionEvent;
 
@@ -17,10 +13,8 @@ public class K9FragmentActivity extends Activity implements K9ActivityMagic {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-
 		mBase = K9ActivityCommon.newInstance(this);
 		super.onCreate(savedInstanceState);
-
 	}
 
 	@Override

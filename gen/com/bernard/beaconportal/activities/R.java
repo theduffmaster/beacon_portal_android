@@ -24,7 +24,7 @@ public final class R {
         /**  Nav Drawer List Item Icons 
  Keep them in order as the titles are in 
          */
-        public static final int Start_View=0x7f0d0040;
+        public static final int Start_View=0x7f0d0044;
         public static final int account_settings_autodownload_message_size_entries=0x7f0d0006;
         public static final int account_settings_autodownload_message_size_values=0x7f0d0007;
         public static final int account_settings_check_frequency_entries=0x7f0d0000;
@@ -33,67 +33,69 @@ public final class R {
         public static final int account_settings_display_count_values=0x7f0d0003;
         public static final int account_settings_folder_display_mode_entries=0x7f0d0008;
         public static final int account_settings_folder_display_mode_values=0x7f0d0009;
+        public static final int account_settings_folder_notify_new_mail_mode_entries=0x7f0d0014;
+        public static final int account_settings_folder_notify_new_mail_mode_values=0x7f0d0015;
         public static final int account_settings_folder_push_mode_entries=0x7f0d0010;
         public static final int account_settings_folder_push_mode_values=0x7f0d0011;
         public static final int account_settings_folder_sync_mode_entries=0x7f0d000e;
         public static final int account_settings_folder_sync_mode_values=0x7f0d000f;
-        public static final int account_settings_folder_target_mode_entries=0x7f0d0014;
-        public static final int account_settings_folder_target_mode_values=0x7f0d0015;
+        public static final int account_settings_folder_target_mode_entries=0x7f0d0016;
+        public static final int account_settings_folder_target_mode_values=0x7f0d0017;
         public static final int account_settings_message_age_entries=0x7f0d0004;
         public static final int account_settings_message_age_values=0x7f0d0005;
-        public static final int account_settings_message_format_entries=0x7f0d0034;
-        public static final int account_settings_message_format_values=0x7f0d0035;
+        public static final int account_settings_message_format_entries=0x7f0d0038;
+        public static final int account_settings_message_format_values=0x7f0d0039;
         public static final int account_settings_push_limit_entries=0x7f0d0012;
         public static final int account_settings_push_limit_values=0x7f0d0013;
-        public static final int account_settings_quote_style_entries=0x7f0d0032;
-        public static final int account_settings_quote_style_values=0x7f0d0033;
-        public static final int account_settings_remote_search_num_results_entries=0x7f0d0036;
-        public static final int account_settings_remote_search_num_results_values=0x7f0d0037;
+        public static final int account_settings_quote_style_entries=0x7f0d0036;
+        public static final int account_settings_quote_style_values=0x7f0d0037;
+        public static final int account_settings_remote_search_num_results_entries=0x7f0d003a;
+        public static final int account_settings_remote_search_num_results_values=0x7f0d003b;
         public static final int account_settings_searchable_entries=0x7f0d000c;
         public static final int account_settings_searchable_values=0x7f0d000d;
         public static final int account_settings_show_pictures_entries=0x7f0d000a;
         public static final int account_settings_show_pictures_values=0x7f0d000b;
-        public static final int account_settings_vibrate_pattern_entries=0x7f0d002d;
-        public static final int account_settings_vibrate_pattern_values=0x7f0d002e;
-        public static final int account_settings_vibrate_times_label=0x7f0d002f;
-        public static final int account_setup_delete_policy_entries=0x7f0d001c;
-        public static final int account_setup_delete_policy_values=0x7f0d001d;
-        public static final int account_setup_expunge_policy_entries=0x7f0d001e;
-        public static final int account_setup_expunge_policy_values=0x7f0d001f;
-        /**  Note: If you change this make sure the code in Prefs.java is still working 
-         */
-        public static final int background_ops_entries=0x7f0d0027;
-        public static final int background_ops_values=0x7f0d0028;
-        public static final int edit_mode=0x7f0d003e;
-        public static final int folder_settings_folder_display_mode_entries=0x7f0d0016;
-        public static final int folder_settings_folder_display_mode_values=0x7f0d0017;
-        public static final int folder_settings_folder_push_mode_entries=0x7f0d001a;
-        public static final int folder_settings_folder_push_mode_values=0x7f0d001b;
-        public static final int folder_settings_folder_sync_mode_entries=0x7f0d0018;
-        public static final int folder_settings_folder_sync_mode_values=0x7f0d0019;
-        public static final int font_entries=0x7f0d0029;
-        public static final int font_values=0x7f0d002a;
-        public static final int global_settings_notification_hide_subject_entries=0x7f0d0038;
-        public static final int global_settings_notification_hide_subject_values=0x7f0d0039;
-        public static final int global_settings_notification_quick_delete_entries=0x7f0d003a;
-        public static final int global_settings_notification_quick_delete_values=0x7f0d003b;
-        public static final int global_settings_splitview_mode_entries=0x7f0d003c;
-        public static final int global_settings_splitview_mode_values=0x7f0d003d;
-        public static final int idle_refresh_period_entries=0x7f0d002b;
-        public static final int idle_refresh_period_values=0x7f0d002c;
-        public static final int nav_drawer_icons=0x7f0d0041;
+        public static final int account_settings_vibrate_pattern_entries=0x7f0d0031;
+        public static final int account_settings_vibrate_pattern_values=0x7f0d0032;
+        public static final int account_settings_vibrate_times_label=0x7f0d0033;
+        public static final int account_setup_delete_policy_entries=0x7f0d0020;
+        public static final int account_setup_delete_policy_values=0x7f0d0021;
+        public static final int account_setup_expunge_policy_entries=0x7f0d0022;
+        public static final int account_setup_expunge_policy_values=0x7f0d0023;
+        public static final int background_ops_entries=0x7f0d002b;
+        public static final int background_ops_values=0x7f0d002c;
+        public static final int edit_mode=0x7f0d0042;
+        public static final int folder_settings_folder_display_mode_entries=0x7f0d0018;
+        public static final int folder_settings_folder_display_mode_values=0x7f0d0019;
+        public static final int folder_settings_folder_notify_mode_entries=0x7f0d001e;
+        public static final int folder_settings_folder_notify_mode_values=0x7f0d001f;
+        public static final int folder_settings_folder_push_mode_entries=0x7f0d001c;
+        public static final int folder_settings_folder_push_mode_values=0x7f0d001d;
+        public static final int folder_settings_folder_sync_mode_entries=0x7f0d001a;
+        public static final int folder_settings_folder_sync_mode_values=0x7f0d001b;
+        public static final int font_entries=0x7f0d002d;
+        public static final int font_values=0x7f0d002e;
+        public static final int global_settings_notification_hide_subject_entries=0x7f0d003c;
+        public static final int global_settings_notification_hide_subject_values=0x7f0d003d;
+        public static final int global_settings_notification_quick_delete_entries=0x7f0d003e;
+        public static final int global_settings_notification_quick_delete_values=0x7f0d003f;
+        public static final int global_settings_splitview_mode_entries=0x7f0d0040;
+        public static final int global_settings_splitview_mode_values=0x7f0d0041;
+        public static final int idle_refresh_period_entries=0x7f0d002f;
+        public static final int idle_refresh_period_values=0x7f0d0030;
+        public static final int nav_drawer_icons=0x7f0d0045;
         /**  Nav Drawer Menu Items 
          */
-        public static final int nav_drawer_items=0x7f0d003f;
-        public static final int settings_language_entries=0x7f0d0020;
-        public static final int settings_language_values=0x7f0d0021;
-        public static final int settings_message_theme_entries=0x7f0d0025;
-        public static final int settings_message_theme_values=0x7f0d0026;
-        public static final int settings_preview_lines_entries=0x7f0d0031;
-        public static final int settings_preview_lines_values=0x7f0d0030;
-        public static final int settings_theme_entries=0x7f0d0023;
-        public static final int settings_theme_values=0x7f0d0024;
-        public static final int supported_languages=0x7f0d0022;
+        public static final int nav_drawer_items=0x7f0d0043;
+        public static final int settings_language_entries=0x7f0d0024;
+        public static final int settings_language_values=0x7f0d0025;
+        public static final int settings_message_theme_entries=0x7f0d0029;
+        public static final int settings_message_theme_values=0x7f0d002a;
+        public static final int settings_preview_lines_entries=0x7f0d0035;
+        public static final int settings_preview_lines_values=0x7f0d0034;
+        public static final int settings_theme_entries=0x7f0d0027;
+        public static final int settings_theme_values=0x7f0d0028;
+        public static final int supported_languages=0x7f0d0026;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -249,7 +251,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int backgroundColorChooseAccountHeader=0x7f0100a5;
+        public static final int backgroundColorChooseAccountHeader=0x7f0100a7;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
@@ -271,11 +273,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int compatDividerVertical=0x7f0100b2;
+        public static final int compatDividerVertical=0x7f0100b4;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int compatSelectableItemBackground=0x7f0100b3;
+        public static final int compatSelectableItemBackground=0x7f0100b5;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -284,13 +286,13 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int composerBackgroundColor=0x7f0100b1;
+        public static final int composerBackgroundColor=0x7f0100b3;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
-        public static final int contactPictureFallbackDefaultBackgroundColor=0x7f0100b4;
+        public static final int contactPictureFallbackDefaultBackgroundColor=0x7f0100b6;
         /**  Specifies a layout for custom navigation. Overrides navigationMode. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -349,6 +351,14 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int expandActivityOverflowButtonDrawable=0x7f01007f;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int foldedLabel=0x7f0100b7;
         /**  Default background for the menu header. 
          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -412,6 +422,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
+        public static final int iconActionCollapse=0x7f0100a4;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
         public static final int iconActionCompose=0x7f010088;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -421,6 +435,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int iconActionDelete=0x7f010089;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int iconActionExpand=0x7f0100a3;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -619,63 +637,63 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int messageComposeAddContactImage=0x7f0100b0;
+        public static final int messageComposeAddContactImage=0x7f0100b2;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
-        public static final int messageListActiveItemBackgroundColor=0x7f0100ab;
+        public static final int messageListActiveItemBackgroundColor=0x7f0100ad;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int messageListCheckbox=0x7f0100ad;
+        public static final int messageListCheckbox=0x7f0100af;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
-        public static final int messageListDividerColor=0x7f0100ac;
+        public static final int messageListDividerColor=0x7f0100ae;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
-        public static final int messageListReadItemBackgroundColor=0x7f0100a7;
+        public static final int messageListReadItemBackgroundColor=0x7f0100a9;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
-        public static final int messageListSelectedBackgroundColor=0x7f0100a6;
+        public static final int messageListSelectedBackgroundColor=0x7f0100a8;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
-        public static final int messageListThreadCountBackground=0x7f0100aa;
+        public static final int messageListThreadCountBackground=0x7f0100ac;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
-        public static final int messageListThreadCountForegroundColor=0x7f0100a9;
+        public static final int messageListThreadCountForegroundColor=0x7f0100ab;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
-        public static final int messageListUnreadItemBackgroundColor=0x7f0100a8;
+        public static final int messageListUnreadItemBackgroundColor=0x7f0100aa;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int messageViewAttachmentBackground=0x7f0100af;
+        public static final int messageViewAttachmentBackground=0x7f0100b1;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
-        public static final int messageViewHeaderBackgroundColor=0x7f0100ae;
+        public static final int messageViewHeaderBackgroundColor=0x7f0100b0;
         /**  The type of navigation to use. 
          <p>Must be one of the following constant values.</p>
 <table>
@@ -1113,7 +1131,7 @@ containing a value of this type.
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int textColorPrimaryRecipientDropdown=0x7f0100a3;
+        public static final int textColorPrimaryRecipientDropdown=0x7f0100a5;
         /**  Text color for urls in search suggestions, used by things like global search and the browser. @hide 
          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -1124,7 +1142,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int textColorSecondaryRecipientDropdown=0x7f0100a4;
+        public static final int textColorSecondaryRecipientDropdown=0x7f0100a6;
         /**  Specifies title text used for navigationMode="normal" 
          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
@@ -1138,6 +1156,14 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int titleTextStyle=0x7f010020;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int unFoldedLabel=0x7f0100b8;
         /**  Default vertical divider between menu items. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -1754,526 +1780,534 @@ containing a value of this type.
         public static final int z=0x7f020160;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f0a0091;
-        public static final int Linear_Layout_Settings=0x7f0a0160;
-        public static final int Person=0x7f0a0081;
-        public static final int Relative_Layout_Settings=0x7f0a0147;
-        public static final int Relative_Layout_Settings_Edit=0x7f0a0167;
-        public static final int Relative_Layout_Settings_Start=0x7f0a0162;
-        public static final int View2=0x7f0a0197;
-        public static final int Welcome=0x7f0a00b1;
-        public static final int about=0x7f0a01ba;
-        public static final int abs__action_bar=0x7f0a0030;
-        public static final int abs__action_bar_container=0x7f0a002f;
-        public static final int abs__action_bar_subtitle=0x7f0a0021;
-        public static final int abs__action_bar_title=0x7f0a0020;
-        public static final int abs__action_context_bar=0x7f0a0031;
+        public static final int LinearLayout1=0x7f0a0096;
+        public static final int Linear_Layout_Settings=0x7f0a016a;
+        public static final int Person=0x7f0a0085;
+        public static final int Relative_Layout_Settings=0x7f0a0151;
+        public static final int Relative_Layout_Settings_Edit=0x7f0a0171;
+        public static final int Relative_Layout_Settings_Start=0x7f0a016c;
+        public static final int View2=0x7f0a01a1;
+        public static final int Welcome=0x7f0a00b8;
+        public static final int about=0x7f0a01c4;
+        public static final int abs__action_bar=0x7f0a0031;
+        public static final int abs__action_bar_container=0x7f0a0030;
+        public static final int abs__action_bar_subtitle=0x7f0a0022;
+        public static final int abs__action_bar_title=0x7f0a0021;
+        public static final int abs__action_context_bar=0x7f0a0032;
         public static final int abs__action_menu_divider=0x7f0a0018;
         public static final int abs__action_menu_presenter=0x7f0a0019;
-        public static final int abs__action_mode_bar=0x7f0a0035;
-        public static final int abs__action_mode_bar_stub=0x7f0a0034;
-        public static final int abs__action_mode_close_button=0x7f0a0024;
-        public static final int abs__activity_chooser_view_content=0x7f0a0025;
-        public static final int abs__checkbox=0x7f0a002c;
-        public static final int abs__content=0x7f0a0032;
-        public static final int abs__default_activity_button=0x7f0a0028;
-        public static final int abs__expand_activities_button=0x7f0a0026;
+        public static final int abs__action_mode_bar=0x7f0a0036;
+        public static final int abs__action_mode_bar_stub=0x7f0a0035;
+        public static final int abs__action_mode_close_button=0x7f0a0025;
+        public static final int abs__activity_chooser_view_content=0x7f0a0026;
+        public static final int abs__checkbox=0x7f0a002d;
+        public static final int abs__content=0x7f0a0033;
+        public static final int abs__default_activity_button=0x7f0a0029;
+        public static final int abs__expand_activities_button=0x7f0a0027;
         public static final int abs__home=0x7f0a0016;
-        public static final int abs__icon=0x7f0a002a;
-        public static final int abs__image=0x7f0a0027;
-        public static final int abs__imageButton=0x7f0a0022;
-        public static final int abs__list_item=0x7f0a0029;
+        public static final int abs__icon=0x7f0a002b;
+        public static final int abs__image=0x7f0a0028;
+        public static final int abs__imageButton=0x7f0a0023;
+        public static final int abs__list_item=0x7f0a002a;
         public static final int abs__progress_circular=0x7f0a001a;
         public static final int abs__progress_horizontal=0x7f0a001b;
-        public static final int abs__radio=0x7f0a002d;
-        public static final int abs__search_badge=0x7f0a0038;
-        public static final int abs__search_bar=0x7f0a0037;
-        public static final int abs__search_button=0x7f0a0039;
-        public static final int abs__search_close_btn=0x7f0a003e;
-        public static final int abs__search_edit_frame=0x7f0a003a;
-        public static final int abs__search_go_btn=0x7f0a0040;
-        public static final int abs__search_mag_icon=0x7f0a003b;
-        public static final int abs__search_plate=0x7f0a003c;
-        public static final int abs__search_src_text=0x7f0a003d;
-        public static final int abs__search_voice_btn=0x7f0a0041;
-        public static final int abs__shortcut=0x7f0a002e;
-        public static final int abs__split_action_bar=0x7f0a0033;
-        public static final int abs__submit_area=0x7f0a003f;
-        public static final int abs__textButton=0x7f0a0023;
-        public static final int abs__title=0x7f0a002b;
+        public static final int abs__radio=0x7f0a002e;
+        public static final int abs__search_badge=0x7f0a0039;
+        public static final int abs__search_bar=0x7f0a0038;
+        public static final int abs__search_button=0x7f0a003a;
+        public static final int abs__search_close_btn=0x7f0a003f;
+        public static final int abs__search_edit_frame=0x7f0a003b;
+        public static final int abs__search_go_btn=0x7f0a0041;
+        public static final int abs__search_mag_icon=0x7f0a003c;
+        public static final int abs__search_plate=0x7f0a003d;
+        public static final int abs__search_src_text=0x7f0a003e;
+        public static final int abs__search_voice_btn=0x7f0a0042;
+        public static final int abs__shortcut=0x7f0a002f;
+        public static final int abs__split_action_bar=0x7f0a0034;
+        public static final int abs__submit_area=0x7f0a0040;
+        public static final int abs__textButton=0x7f0a0024;
+        public static final int abs__title=0x7f0a002c;
         public static final int abs__up=0x7f0a0017;
-        public static final int accessible_message_content=0x7f0a00e9;
-        public static final int account_always_bcc=0x7f0a004c;
-        public static final int account_auth_type=0x7f0a0058;
-        public static final int account_auth_type_label=0x7f0a0057;
-        public static final int account_check_frequency=0x7f0a006c;
-        public static final int account_description=0x7f0a006b;
-        public static final int account_display_count=0x7f0a006e;
-        public static final int account_email=0x7f0a0046;
-        public static final int account_enable_push=0x7f0a006d;
-        public static final int account_name=0x7f0a004b;
-        public static final int account_notify=0x7f0a006f;
-        public static final int account_notify_sync=0x7f0a0070;
-        public static final int account_password=0x7f0a0047;
-        public static final int account_port=0x7f0a0059;
-        public static final int account_require_login=0x7f0a0071;
-        public static final int account_require_login_settings=0x7f0a0072;
+        public static final int account_always_bcc=0x7f0a004d;
+        public static final int account_auth_type=0x7f0a005a;
+        public static final int account_auth_type_label=0x7f0a0059;
+        public static final int account_check_frequency=0x7f0a0070;
+        public static final int account_client_certificate_label=0x7f0a005c;
+        public static final int account_client_certificate_spinner=0x7f0a005d;
+        public static final int account_description=0x7f0a006f;
+        public static final int account_display_count=0x7f0a0072;
+        public static final int account_email=0x7f0a0047;
+        public static final int account_enable_push=0x7f0a0071;
+        public static final int account_name=0x7f0a004c;
+        public static final int account_notify=0x7f0a0073;
+        public static final int account_notify_sync=0x7f0a0074;
+        public static final int account_password=0x7f0a0048;
+        public static final int account_password_label=0x7f0a005b;
+        public static final int account_port=0x7f0a0057;
+        public static final int account_require_login=0x7f0a0075;
+        public static final int account_require_login_settings=0x7f0a0076;
         public static final int account_security_type=0x7f0a0056;
         public static final int account_server=0x7f0a0055;
         public static final int account_server_label=0x7f0a0054;
-        public static final int account_settings=0x7f0a01b0;
-        public static final int account_signature=0x7f0a004f;
-        public static final int account_signature_layout=0x7f0a004e;
-        public static final int account_signature_location=0x7f0a0050;
-        public static final int account_signature_location_after_quoted_text=0x7f0a0052;
-        public static final int account_signature_location_before_quoted_text=0x7f0a0051;
-        public static final int account_signature_use=0x7f0a004d;
-        public static final int account_username=0x7f0a0053;
-        public static final int accounts_item_layout=0x7f0a007a;
-        public static final int actionbar_message_list=0x7f0a0089;
-        public static final int actionbar_message_view=0x7f0a008f;
-        public static final int actionbar_progress=0x7f0a008d;
-        public static final int actionbar_title_first=0x7f0a008b;
-        public static final int actionbar_title_sub=0x7f0a008c;
-        public static final int actionbar_unread_count=0x7f0a008e;
-        public static final int activate=0x7f0a01c2;
-        public static final int active_icons=0x7f0a0073;
-        public static final int add_attachment=0x7f0a01d6;
-        public static final int add_attachment_image=0x7f0a01db;
-        public static final int add_attachment_video=0x7f0a01dc;
-        public static final int add_bcc=0x7f0a00f8;
-        public static final int add_cc=0x7f0a00f5;
-        public static final int add_cc_bcc=0x7f0a01d5;
-        public static final int add_new_account=0x7f0a01b9;
-        public static final int add_to=0x7f0a00f2;
-        public static final int additional_headers_view=0x7f0a0129;
-        public static final int answered=0x7f0a0123;
-        public static final int app_settings=0x7f0a01cf;
-        public static final int apply=0x7f0a01be;
-        public static final int archive=0x7f0a01e0;
-        public static final int attachment_delete=0x7f0a0108;
-        public static final int attachment_icon=0x7f0a0118;
-        public static final int attachment_info=0x7f0a0119;
-        public static final int attachment_name=0x7f0a0109;
-        public static final int attachments=0x7f0a00eb;
-        public static final int attachments_container=0x7f0a00ea;
-        public static final int bandText=0x7f0a00d4;
-        public static final int bandText10=0x7f0a00e6;
-        public static final int bandText11=0x7f0a0136;
-        public static final int bandText111=0x7f0a017d;
-        public static final int bandText1111=0x7f0a0199;
-        public static final int bandText11111=0x7f0a016f;
-        public static final int bandText111111=0x7f0a00c0;
-        public static final int bandText2=0x7f0a00d6;
-        public static final int bandText22=0x7f0a0139;
-        public static final int bandText222=0x7f0a0180;
-        public static final int bandText2222=0x7f0a019c;
-        public static final int bandText22222=0x7f0a0172;
-        public static final int bandText222222=0x7f0a00c3;
-        public static final int bandText3=0x7f0a00d8;
-        public static final int bandText33=0x7f0a013b;
-        public static final int bandText333=0x7f0a0182;
-        public static final int bandText3333=0x7f0a019e;
-        public static final int bandText33333=0x7f0a0174;
-        public static final int bandText333333=0x7f0a00c5;
-        public static final int bandText4=0x7f0a00da;
-        public static final int bandText44=0x7f0a013d;
-        public static final int bandText444=0x7f0a0184;
-        public static final int bandText4444=0x7f0a01a0;
-        public static final int bandText44444=0x7f0a0176;
-        public static final int bandText444444=0x7f0a00c7;
-        public static final int bandText5=0x7f0a00dc;
-        public static final int bandText55=0x7f0a013f;
-        public static final int bandText555=0x7f0a0186;
-        public static final int bandText5555=0x7f0a01a2;
-        public static final int bandText55555=0x7f0a0178;
-        public static final int bandText555555=0x7f0a00c9;
-        public static final int bandText6=0x7f0a00de;
-        public static final int bandText66=0x7f0a0141;
-        public static final int bandText666=0x7f0a0188;
-        public static final int bandText6666=0x7f0a01a4;
-        public static final int bandText66666=0x7f0a017a;
-        public static final int bandText666666=0x7f0a00cb;
-        public static final int bandText7=0x7f0a00e0;
-        public static final int bandText77=0x7f0a0143;
-        public static final int bandText777=0x7f0a018a;
-        public static final int bandText7777=0x7f0a01a6;
-        public static final int bandText77777=0x7f0a017c;
-        public static final int bandText8=0x7f0a00e2;
-        public static final int bandText9=0x7f0a00e4;
-        public static final int bcc=0x7f0a00f7;
-        public static final int bcc_wrapper=0x7f0a00f6;
-        public static final int black_panel=0x7f0a00a3;
+        public static final int account_settings=0x7f0a01ba;
+        public static final int account_signature=0x7f0a0050;
+        public static final int account_signature_layout=0x7f0a004f;
+        public static final int account_signature_location=0x7f0a0051;
+        public static final int account_signature_location_after_quoted_text=0x7f0a0053;
+        public static final int account_signature_location_before_quoted_text=0x7f0a0052;
+        public static final int account_signature_use=0x7f0a004e;
+        public static final int account_username=0x7f0a0058;
+        public static final int accounts_item_layout=0x7f0a007e;
+        public static final int actionbar_message_list=0x7f0a008e;
+        public static final int actionbar_message_view=0x7f0a0094;
+        public static final int actionbar_progress=0x7f0a0092;
+        public static final int actionbar_title_first=0x7f0a0090;
+        public static final int actionbar_title_sub=0x7f0a0091;
+        public static final int actionbar_unread_count=0x7f0a0093;
+        public static final int activate=0x7f0a01cc;
+        public static final int active_icons=0x7f0a0077;
+        public static final int add_attachment=0x7f0a01e0;
+        public static final int add_bcc=0x7f0a0102;
+        public static final int add_cc=0x7f0a00ff;
+        public static final int add_cc_bcc=0x7f0a01df;
+        public static final int add_new_account=0x7f0a01c3;
+        public static final int add_to=0x7f0a00fc;
+        public static final int additional_headers_view=0x7f0a0133;
+        public static final int answered=0x7f0a012d;
+        public static final int app_settings=0x7f0a01d9;
+        public static final int apply=0x7f0a01c8;
+        public static final int archive=0x7f0a01e8;
+        public static final int attachment_delete=0x7f0a0112;
+        public static final int attachment_icon=0x7f0a0122;
+        public static final int attachment_info=0x7f0a0123;
+        public static final int attachment_name=0x7f0a0113;
+        public static final int attachments=0x7f0a00f5;
+        public static final int attachments_container=0x7f0a00f4;
+        public static final int bandText=0x7f0a00df;
+        public static final int bandText10=0x7f0a00f1;
+        public static final int bandText11=0x7f0a0140;
+        public static final int bandText111=0x7f0a0187;
+        public static final int bandText1111=0x7f0a01a3;
+        public static final int bandText11111=0x7f0a0179;
+        public static final int bandText111111=0x7f0a00cb;
+        public static final int bandText2=0x7f0a00e1;
+        public static final int bandText22=0x7f0a0143;
+        public static final int bandText222=0x7f0a018a;
+        public static final int bandText2222=0x7f0a01a6;
+        public static final int bandText22222=0x7f0a017c;
+        public static final int bandText222222=0x7f0a00ce;
+        public static final int bandText3=0x7f0a00e3;
+        public static final int bandText33=0x7f0a0145;
+        public static final int bandText333=0x7f0a018c;
+        public static final int bandText3333=0x7f0a01a8;
+        public static final int bandText33333=0x7f0a017e;
+        public static final int bandText333333=0x7f0a00d0;
+        public static final int bandText4=0x7f0a00e5;
+        public static final int bandText44=0x7f0a0147;
+        public static final int bandText444=0x7f0a018e;
+        public static final int bandText4444=0x7f0a01aa;
+        public static final int bandText44444=0x7f0a0180;
+        public static final int bandText444444=0x7f0a00d2;
+        public static final int bandText5=0x7f0a00e7;
+        public static final int bandText55=0x7f0a0149;
+        public static final int bandText555=0x7f0a0190;
+        public static final int bandText5555=0x7f0a01ac;
+        public static final int bandText55555=0x7f0a0182;
+        public static final int bandText555555=0x7f0a00d4;
+        public static final int bandText6=0x7f0a00e9;
+        public static final int bandText66=0x7f0a014b;
+        public static final int bandText666=0x7f0a0192;
+        public static final int bandText6666=0x7f0a01ae;
+        public static final int bandText66666=0x7f0a0184;
+        public static final int bandText666666=0x7f0a00d6;
+        public static final int bandText7=0x7f0a00eb;
+        public static final int bandText77=0x7f0a014d;
+        public static final int bandText777=0x7f0a0194;
+        public static final int bandText7777=0x7f0a01b0;
+        public static final int bandText77777=0x7f0a0186;
+        public static final int bandText8=0x7f0a00ed;
+        public static final int bandText9=0x7f0a00ef;
+        public static final int bcc=0x7f0a0101;
+        public static final int bcc_wrapper=0x7f0a0100;
+        public static final int black_panel=0x7f0a00aa;
         public static final int both=0x7f0a0003;
-        public static final int btn_decrypt=0x7f0a0120;
-        public static final int cancel=0x7f0a01a8;
-        public static final int cb_crypto_signature=0x7f0a00fa;
-        public static final int cb_encrypt=0x7f0a00fd;
-        public static final int cc=0x7f0a00f4;
-        public static final int cc_label=0x7f0a0128;
-        public static final int cc_wrapper=0x7f0a00f3;
-        public static final int checkBox1=0x7f0a0165;
-        public static final int checkBoxEdit=0x7f0a016a;
-        public static final int check_mail=0x7f0a01b7;
-        public static final int chip=0x7f0a007b;
-        public static final int clear=0x7f0a01b2;
-        public static final int clear_local_folder=0x7f0a01c4;
-        public static final int clear_pending=0x7f0a01b4;
-        public static final int color_picker=0x7f0a009c;
-        public static final int color_picker_checkmark=0x7f0a009e;
-        public static final int color_picker_swatch=0x7f0a009d;
-        public static final int color_picker_view=0x7f0a00a1;
-        public static final int compact=0x7f0a01cc;
-        public static final int compose=0x7f0a01b8;
-        public static final int compression_label=0x7f0a0066;
-        public static final int compression_mobile=0x7f0a0068;
-        public static final int compression_other=0x7f0a006a;
-        public static final int compression_section=0x7f0a0067;
-        public static final int compression_wifi=0x7f0a0069;
-        public static final int contact_badge=0x7f0a010e;
-        public static final int container=0x7f0a00b3;
-        public static final int content_frame=0x7f0a00af;
-        public static final int copy=0x7f0a01e2;
-        public static final int counter=0x7f0a00ad;
-        public static final int crypto_signature=0x7f0a011d;
-        public static final int cyan_panel=0x7f0a00a4;
-        public static final int databaseUpgradeProgress=0x7f0a018d;
-        public static final int databaseUpgradeText=0x7f0a018e;
-        public static final int date=0x7f0a0113;
-        public static final int delete=0x7f0a01dd;
-        public static final int delete_account=0x7f0a01b1;
-        public static final int description=0x7f0a007c;
-        public static final int deselect=0x7f0a01e8;
+        public static final int btn_decrypt=0x7f0a012a;
+        public static final int cancel=0x7f0a01b2;
+        public static final int cb_crypto_signature=0x7f0a0104;
+        public static final int cb_encrypt=0x7f0a0107;
+        public static final int cc=0x7f0a00fe;
+        public static final int cc_label=0x7f0a0132;
+        public static final int cc_wrapper=0x7f0a00fd;
+        public static final int checkBox1=0x7f0a016f;
+        public static final int checkBoxEdit=0x7f0a0174;
+        public static final int check_mail=0x7f0a01c1;
+        public static final int chip=0x7f0a007f;
+        public static final int clear=0x7f0a01bc;
+        public static final int clear_local_folder=0x7f0a01ce;
+        public static final int clear_pending=0x7f0a01be;
+        public static final int client_certificate_spinner_button=0x7f0a00a1;
+        public static final int client_certificate_spinner_delete=0x7f0a00a2;
+        public static final int color_picker=0x7f0a00a3;
+        public static final int color_picker_checkmark=0x7f0a00a5;
+        public static final int color_picker_swatch=0x7f0a00a4;
+        public static final int color_picker_view=0x7f0a00a8;
+        public static final int compact=0x7f0a01d6;
+        public static final int compose=0x7f0a01c2;
+        public static final int compression_label=0x7f0a006a;
+        public static final int compression_mobile=0x7f0a006c;
+        public static final int compression_other=0x7f0a006e;
+        public static final int compression_section=0x7f0a006b;
+        public static final int compression_wifi=0x7f0a006d;
+        public static final int contact_badge=0x7f0a0118;
+        public static final int container=0x7f0a00ba;
+        public static final int content_frame=0x7f0a00b6;
+        public static final int copy=0x7f0a01ea;
+        public static final int counter=0x7f0a00b4;
+        public static final int crypto_signature=0x7f0a0127;
+        public static final int cyan_panel=0x7f0a00ab;
+        public static final int databaseUpgradeProgress=0x7f0a0197;
+        public static final int databaseUpgradeText=0x7f0a0198;
+        public static final int date=0x7f0a011d;
+        public static final int delete=0x7f0a01e5;
+        public static final int delete_account=0x7f0a01bb;
+        public static final int description=0x7f0a0080;
+        public static final int deselect=0x7f0a01f0;
+        public static final int dialog_account_setup_error=0x7f0a0020;
         public static final int dialog_attachment_progress=0x7f0a001f;
         public static final int dialog_confirm_delete=0x7f0a001d;
         public static final int dialog_confirm_spam=0x7f0a001e;
-        public static final int dialog_datepicker=0x7f0a0099;
-        public static final int dialog_dateview=0x7f0a0098;
-        public static final int dialog_info=0x7f0a009a;
+        public static final int dialog_datepicker=0x7f0a009e;
+        public static final int dialog_dateview=0x7f0a009d;
+        public static final int dialog_info=0x7f0a009f;
         public static final int disableHome=0x7f0a0015;
         public static final int disabled=0x7f0a0000;
-        public static final int discard=0x7f0a01d9;
-        public static final int display_1st_and_2nd_class=0x7f0a01c9;
-        public static final int display_1st_class=0x7f0a01c8;
-        public static final int display_all=0x7f0a01c7;
-        public static final int display_not_second_class=0x7f0a01ca;
-        public static final int divider=0x7f0a01a9;
-        public static final int done=0x7f0a01aa;
-        public static final int down=0x7f0a01d1;
-        public static final int download=0x7f0a011a;
-        public static final int download_remainder=0x7f0a00ee;
-        public static final int drawer_layout=0x7f0a00ae;
-        public static final int drawer_list_item_layout=0x7f0a00aa;
-        public static final int edit=0x7f0a01bf;
-        public static final int editText1=0x7f0a0097;
-        public static final int editText10=0x7f0a00e5;
-        public static final int editText11=0x7f0a0137;
-        public static final int editText111=0x7f0a017e;
-        public static final int editText1111=0x7f0a019a;
-        public static final int editText11111=0x7f0a0170;
-        public static final int editText111111=0x7f0a00c1;
-        public static final int editText2=0x7f0a00d5;
-        public static final int editText22=0x7f0a0138;
-        public static final int editText222=0x7f0a017f;
-        public static final int editText2222=0x7f0a019b;
-        public static final int editText22222=0x7f0a0171;
-        public static final int editText222222=0x7f0a00c2;
-        public static final int editText3=0x7f0a00d7;
-        public static final int editText33=0x7f0a013a;
-        public static final int editText333=0x7f0a0181;
-        public static final int editText3333=0x7f0a019d;
-        public static final int editText33333=0x7f0a0173;
-        public static final int editText333333=0x7f0a00c4;
-        public static final int editText4=0x7f0a00d9;
-        public static final int editText44=0x7f0a013c;
-        public static final int editText444=0x7f0a0183;
-        public static final int editText4444=0x7f0a019f;
-        public static final int editText44444=0x7f0a0175;
-        public static final int editText444444=0x7f0a00c6;
-        public static final int editText5=0x7f0a00db;
-        public static final int editText55=0x7f0a013e;
-        public static final int editText555=0x7f0a0185;
-        public static final int editText5555=0x7f0a01a1;
-        public static final int editText55555=0x7f0a0177;
-        public static final int editText555555=0x7f0a00c8;
-        public static final int editText6=0x7f0a00dd;
-        public static final int editText66=0x7f0a0140;
-        public static final int editText666=0x7f0a0187;
-        public static final int editText6666=0x7f0a01a3;
-        public static final int editText66666=0x7f0a0179;
-        public static final int editText666666=0x7f0a00ca;
-        public static final int editText7=0x7f0a00df;
-        public static final int editText77=0x7f0a0142;
-        public static final int editText777=0x7f0a0189;
-        public static final int editText7777=0x7f0a01a5;
-        public static final int editText77777=0x7f0a017b;
-        public static final int editText8=0x7f0a00e1;
-        public static final int editText9=0x7f0a00e3;
-        public static final int edit_prefs=0x7f0a01bd;
-        public static final int edit_query=0x7f0a0036;
-        public static final int email=0x7f0a007d;
-        public static final int empty_trash=0x7f0a01af;
-        public static final int enter=0x7f0a00a0;
-        public static final int export=0x7f0a01b5;
-        public static final int export_all=0x7f0a01bc;
-        public static final int expunge=0x7f0a0204;
-        public static final int extrabuttons=0x7f0a00bf;
-        public static final int fabbutton=0x7f0a0194;
-        public static final int filter_folders=0x7f0a01c6;
-        public static final int fl_inner=0x7f0a014e;
-        public static final int flag=0x7f0a01e3;
-        public static final int flagged=0x7f0a0126;
-        public static final int flagged_bottom_right=0x7f0a0111;
-        public static final int flagged_center_right=0x7f0a0116;
-        public static final int flagged_message_count=0x7f0a0076;
-        public static final int flagged_message_count_icon=0x7f0a0075;
-        public static final int flagged_message_count_wrapper=0x7f0a0074;
+        public static final int discard=0x7f0a01e3;
+        public static final int display_1st_and_2nd_class=0x7f0a01d3;
+        public static final int display_1st_class=0x7f0a01d2;
+        public static final int display_all=0x7f0a01d1;
+        public static final int display_not_second_class=0x7f0a01d4;
+        public static final int divider=0x7f0a01b3;
+        public static final int done=0x7f0a01b4;
+        public static final int down=0x7f0a01db;
+        public static final int download=0x7f0a0124;
+        public static final int download_remainder=0x7f0a00f8;
+        public static final int drawer_layout=0x7f0a00b5;
+        public static final int drawer_list_item_layout=0x7f0a00b1;
+        public static final int edit=0x7f0a01c9;
+        public static final int editText1=0x7f0a009c;
+        public static final int editText10=0x7f0a00f0;
+        public static final int editText11=0x7f0a0141;
+        public static final int editText111=0x7f0a0188;
+        public static final int editText1111=0x7f0a01a4;
+        public static final int editText11111=0x7f0a017a;
+        public static final int editText111111=0x7f0a00cc;
+        public static final int editText2=0x7f0a00e0;
+        public static final int editText22=0x7f0a0142;
+        public static final int editText222=0x7f0a0189;
+        public static final int editText2222=0x7f0a01a5;
+        public static final int editText22222=0x7f0a017b;
+        public static final int editText222222=0x7f0a00cd;
+        public static final int editText3=0x7f0a00e2;
+        public static final int editText33=0x7f0a0144;
+        public static final int editText333=0x7f0a018b;
+        public static final int editText3333=0x7f0a01a7;
+        public static final int editText33333=0x7f0a017d;
+        public static final int editText333333=0x7f0a00cf;
+        public static final int editText4=0x7f0a00e4;
+        public static final int editText44=0x7f0a0146;
+        public static final int editText444=0x7f0a018d;
+        public static final int editText4444=0x7f0a01a9;
+        public static final int editText44444=0x7f0a017f;
+        public static final int editText444444=0x7f0a00d1;
+        public static final int editText5=0x7f0a00e6;
+        public static final int editText55=0x7f0a0148;
+        public static final int editText555=0x7f0a018f;
+        public static final int editText5555=0x7f0a01ab;
+        public static final int editText55555=0x7f0a0181;
+        public static final int editText555555=0x7f0a00d3;
+        public static final int editText6=0x7f0a00e8;
+        public static final int editText66=0x7f0a014a;
+        public static final int editText666=0x7f0a0191;
+        public static final int editText6666=0x7f0a01ad;
+        public static final int editText66666=0x7f0a0183;
+        public static final int editText666666=0x7f0a00d5;
+        public static final int editText7=0x7f0a00ea;
+        public static final int editText77=0x7f0a014c;
+        public static final int editText777=0x7f0a0193;
+        public static final int editText7777=0x7f0a01af;
+        public static final int editText77777=0x7f0a0185;
+        public static final int editText8=0x7f0a00ec;
+        public static final int editText9=0x7f0a00ee;
+        public static final int edit_prefs=0x7f0a01c7;
+        public static final int edit_query=0x7f0a0037;
+        public static final int email=0x7f0a0081;
+        public static final int empty_trash=0x7f0a01b9;
+        public static final int enter=0x7f0a00a7;
+        public static final int export=0x7f0a01bf;
+        public static final int export_all=0x7f0a01c6;
+        public static final int expunge=0x7f0a020c;
+        public static final int extrabuttons=0x7f0a00ca;
+        public static final int fabbutton=0x7f0a019e;
+        public static final int filter_folders=0x7f0a01d0;
+        public static final int fl_inner=0x7f0a0158;
+        public static final int flag=0x7f0a01eb;
+        public static final int flagged=0x7f0a0130;
+        public static final int flagged_bottom_right=0x7f0a011b;
+        public static final int flagged_center_right=0x7f0a0120;
+        public static final int flagged_message_count=0x7f0a007a;
+        public static final int flagged_message_count_icon=0x7f0a0079;
+        public static final int flagged_message_count_wrapper=0x7f0a0078;
         public static final int flip=0x7f0a0008;
-        public static final int folder_button_wrapper=0x7f0a007e;
-        public static final int folder_list_item_layout=0x7f0a00bc;
-        public static final int folder_name=0x7f0a00bd;
-        public static final int folder_settings=0x7f0a01c5;
-        public static final int folder_status=0x7f0a00be;
-        public static final int folders=0x7f0a007f;
-        public static final int forward=0x7f0a01ec;
-        public static final int forwarded=0x7f0a0124;
-        public static final int from=0x7f0a0125;
-        public static final int green_panel=0x7f0a00a6;
+        public static final int foldableContainer=0x7f0a00c6;
+        public static final int foldableControl=0x7f0a00c3;
+        public static final int foldableIcon=0x7f0a00c4;
+        public static final int foldableText=0x7f0a00c5;
+        public static final int folder_button_wrapper=0x7f0a0082;
+        public static final int folder_list_item_layout=0x7f0a00c7;
+        public static final int folder_name=0x7f0a00c8;
+        public static final int folder_settings=0x7f0a01cf;
+        public static final int folder_status=0x7f0a00c9;
+        public static final int folders=0x7f0a0083;
+        public static final int forward=0x7f0a01f4;
+        public static final int forwarded=0x7f0a012e;
+        public static final int from=0x7f0a012f;
+        public static final int green_panel=0x7f0a00ad;
         public static final int gridview=0x7f0a0009;
-        public static final int header_container=0x7f0a0121;
-        public static final int help=0x7f0a01c0;
-        public static final int hex=0x7f0a009f;
-        public static final int hidden_attachments=0x7f0a00ed;
-        public static final int hide_headers=0x7f0a01fa;
+        public static final int header_container=0x7f0a012b;
+        public static final int help=0x7f0a01ca;
+        public static final int hex=0x7f0a00a6;
+        public static final int hidden_attachments=0x7f0a00f7;
+        public static final int hide_headers=0x7f0a0202;
         public static final int homeAsUp=0x7f0a0012;
-        public static final int homeworkdue_container=0x7f0a018f;
-        public static final int ic_crypto_signature=0x7f0a011e;
-        public static final int ic_crypto_signature_status=0x7f0a011f;
-        public static final int icon=0x7f0a00ab;
-        public static final int icon_container=0x7f0a0122;
-        public static final int identity=0x7f0a00ef;
-        public static final int imageView1=0x7f0a0045;
-        public static final int imap=0x7f0a0042;
-        public static final int imap_autodetect_namespace=0x7f0a005b;
-        public static final int imap_folder_setup_section=0x7f0a005d;
-        public static final int imap_path_prefix=0x7f0a005c;
-        public static final int imap_path_prefix_section=0x7f0a005a;
-        public static final int import_export=0x7f0a01bb;
-        public static final int import_settings=0x7f0a01ac;
-        public static final int incoming_server_password=0x7f0a0084;
-        public static final int info=0x7f0a014a;
-        public static final int info_time=0x7f0a0144;
-        public static final int infotextView=0x7f0a014b;
-        public static final int infotimeView=0x7f0a0145;
-        public static final int item_iconclass=0x7f0a00d1;
-        public static final int item_textdescription=0x7f0a00cf;
-        public static final int item_texthomeworkdue=0x7f0a00ce;
-        public static final int item_textteacher=0x7f0a00cd;
-        public static final int item_texttype=0x7f0a00d2;
-        public static final int layout_decrypt=0x7f0a011c;
-        public static final int layout_decrypt_openpgp=0x7f0a012d;
-        public static final int layout_encrypt=0x7f0a00f9;
-        public static final int left_drawer=0x7f0a00b0;
-        public static final int left_drawer_scrollview=0x7f0a016e;
-        public static final int linked_container=0x7f0a0195;
+        public static final int homeworkdue_container=0x7f0a0199;
+        public static final int ic_crypto_signature=0x7f0a0128;
+        public static final int ic_crypto_signature_status=0x7f0a0129;
+        public static final int icon=0x7f0a00b2;
+        public static final int icon_container=0x7f0a012c;
+        public static final int identity=0x7f0a00f9;
+        public static final int imageView1=0x7f0a0046;
+        public static final int imap=0x7f0a0043;
+        public static final int imap_autodetect_namespace=0x7f0a005f;
+        public static final int imap_folder_setup_section=0x7f0a0061;
+        public static final int imap_path_prefix=0x7f0a0060;
+        public static final int imap_path_prefix_section=0x7f0a005e;
+        public static final int import_export=0x7f0a01c5;
+        public static final int import_settings=0x7f0a01b6;
+        public static final int incoming_server_password=0x7f0a0089;
+        public static final int incoming_server_prompt=0x7f0a0087;
+        public static final int info=0x7f0a0154;
+        public static final int info_time=0x7f0a014e;
+        public static final int infotextView=0x7f0a0155;
+        public static final int infotimeView=0x7f0a014f;
+        public static final int item_iconclass=0x7f0a00dc;
+        public static final int item_textdescription=0x7f0a00da;
+        public static final int item_texthomeworkdue=0x7f0a00d9;
+        public static final int item_textteacher=0x7f0a00d8;
+        public static final int item_texttype=0x7f0a00dd;
+        public static final int layout_decrypt=0x7f0a0126;
+        public static final int layout_decrypt_openpgp=0x7f0a0137;
+        public static final int layout_encrypt=0x7f0a0103;
+        public static final int left_drawer=0x7f0a00b7;
+        public static final int left_drawer_scrollview=0x7f0a0178;
+        public static final int linked_container=0x7f0a019f;
         public static final int listMode=0x7f0a000e;
-        public static final int listView1=0x7f0a0096;
-        public static final int listView2=0x7f0a0157;
-        public static final int listViewNotes=0x7f0a014d;
-        public static final int listViewSettings=0x7f0a015f;
-        public static final int list_folders=0x7f0a01cd;
-        public static final int list_item_inner=0x7f0a010f;
-        public static final int listview_drawer=0x7f0a00b2;
-        public static final int listview_inbox=0x7f0a0080;
-        public static final int lower_signature=0x7f0a0107;
-        public static final int main_text=0x7f0a0117;
+        public static final int listView1=0x7f0a009b;
+        public static final int listView2=0x7f0a0161;
+        public static final int listViewNotes=0x7f0a0157;
+        public static final int listViewSettings=0x7f0a0169;
+        public static final int list_folders=0x7f0a01d7;
+        public static final int list_item_inner=0x7f0a0119;
+        public static final int listview_drawer=0x7f0a00b9;
+        public static final int listview_inbox=0x7f0a0084;
+        public static final int lower_signature=0x7f0a0111;
+        public static final int main_text=0x7f0a0121;
         public static final int manualOnly=0x7f0a0004;
-        public static final int manual_setup=0x7f0a01ab;
-        public static final int mark_all_as_read=0x7f0a0203;
-        public static final int mark_as_read=0x7f0a01de;
-        public static final int mark_as_unread=0x7f0a01df;
-        public static final int menu_refresh=0x7f0a01c1;
-        public static final int message=0x7f0a0049;
-        public static final int message_content=0x7f0a00e8;
-        public static final int message_list=0x7f0a010b;
-        public static final int message_list_container=0x7f0a00b4;
-        public static final int message_list_divider=0x7f0a016d;
-        public static final int message_title_view=0x7f0a0090;
-        public static final int message_view=0x7f0a00e7;
-        public static final int message_view_container=0x7f0a00b5;
-        public static final int move=0x7f0a01e1;
-        public static final int move_down=0x7f0a01ae;
-        public static final int move_up=0x7f0a01ad;
-        public static final int name=0x7f0a009b;
-        public static final int new_color_panel=0x7f0a00a9;
-        public static final int new_identity=0x7f0a01d4;
-        public static final int new_message_count=0x7f0a0079;
-        public static final int new_message_count_icon=0x7f0a0078;
-        public static final int new_message_count_wrapper=0x7f0a0077;
-        public static final int next=0x7f0a0048;
-        public static final int next_message=0x7f0a01ef;
+        public static final int manual_setup=0x7f0a01b5;
+        public static final int mark_all_as_read=0x7f0a020b;
+        public static final int mark_as_read=0x7f0a01e6;
+        public static final int mark_as_unread=0x7f0a01e7;
+        public static final int menu_refresh=0x7f0a01cb;
+        public static final int message=0x7f0a004a;
+        public static final int message_content=0x7f0a00f3;
+        public static final int message_list=0x7f0a0115;
+        public static final int message_list_container=0x7f0a00bb;
+        public static final int message_list_divider=0x7f0a0177;
+        public static final int message_title_view=0x7f0a0095;
+        public static final int message_view=0x7f0a00f2;
+        public static final int message_view_container=0x7f0a00bc;
+        public static final int move=0x7f0a01e9;
+        public static final int move_down=0x7f0a01b8;
+        public static final int move_up=0x7f0a01b7;
+        public static final int name=0x7f0a00a0;
+        public static final int new_color_panel=0x7f0a00b0;
+        public static final int new_identity=0x7f0a01de;
+        public static final int new_message_count=0x7f0a007d;
+        public static final int new_message_count_icon=0x7f0a007c;
+        public static final int new_message_count_wrapper=0x7f0a007b;
+        public static final int next=0x7f0a0049;
+        public static final int next_message=0x7f0a01f7;
         public static final int normal=0x7f0a000d;
-        public static final int note_background=0x7f0a0155;
-        public static final int note_count=0x7f0a0156;
-        public static final int notesAdd=0x7f0a0148;
-        public static final int old_color_panel=0x7f0a00a8;
-        public static final int openpgp_get_key=0x7f0a0134;
-        public static final int openpgp_progress=0x7f0a0135;
-        public static final int openpgp_signature=0x7f0a0131;
-        public static final int openpgp_signature_layout=0x7f0a012f;
-        public static final int openpgp_signature_layout_image=0x7f0a0130;
-        public static final int openpgp_signature_status=0x7f0a0132;
-        public static final int openpgp_text=0x7f0a012e;
-        public static final int openpgp_user_id=0x7f0a0133;
-        public static final int outgoing_server_password=0x7f0a0088;
-        public static final int outgoing_server_prompt=0x7f0a0085;
-        public static final int pagerTabStrip=0x7f0a0190;
-        public static final int pagerTabStrip1=0x7f0a0193;
-        public static final int password_prompt_incoming_server=0x7f0a0083;
-        public static final int password_prompt_intro=0x7f0a0082;
-        public static final int password_prompt_outgoing_server=0x7f0a0086;
-        public static final int pop=0x7f0a0043;
-        public static final int preview=0x7f0a0110;
-        public static final int previous_message=0x7f0a01ee;
-        public static final int progress=0x7f0a004a;
-        public static final int progressBar=0x7f0a010a;
+        public static final int note_background=0x7f0a015f;
+        public static final int note_count=0x7f0a0160;
+        public static final int notesAdd=0x7f0a0152;
+        public static final int old_color_panel=0x7f0a00af;
+        public static final int openpgp_get_key=0x7f0a013e;
+        public static final int openpgp_progress=0x7f0a013f;
+        public static final int openpgp_signature=0x7f0a013b;
+        public static final int openpgp_signature_layout=0x7f0a0139;
+        public static final int openpgp_signature_layout_image=0x7f0a013a;
+        public static final int openpgp_signature_status=0x7f0a013c;
+        public static final int openpgp_text=0x7f0a0138;
+        public static final int openpgp_user_id=0x7f0a013d;
+        public static final int outgoing_server_password=0x7f0a008d;
+        public static final int outgoing_server_prompt=0x7f0a008a;
+        public static final int pagerTabStrip=0x7f0a019a;
+        public static final int pagerTabStrip1=0x7f0a019d;
+        public static final int password_prompt_incoming_server=0x7f0a0088;
+        public static final int password_prompt_intro=0x7f0a0086;
+        public static final int password_prompt_outgoing_server=0x7f0a008b;
+        public static final int pop=0x7f0a0044;
+        public static final int preview=0x7f0a011a;
+        public static final int previous_message=0x7f0a01f6;
+        public static final int progress=0x7f0a004b;
+        public static final int progressBar=0x7f0a0114;
         public static final int pullDownFromTop=0x7f0a0005;
         public static final int pullFromEnd=0x7f0a0002;
         public static final int pullFromStart=0x7f0a0001;
         public static final int pullUpFromBottom=0x7f0a0006;
-        public static final int pull_to_refresh_image=0x7f0a014f;
-        public static final int pull_to_refresh_progress=0x7f0a0150;
-        public static final int pull_to_refresh_sub_text=0x7f0a0152;
-        public static final int pull_to_refresh_text=0x7f0a0151;
-        public static final int quoted_html=0x7f0a0103;
-        public static final int quoted_text=0x7f0a0102;
-        public static final int quoted_text_bar=0x7f0a0101;
-        public static final int quoted_text_buttons=0x7f0a0104;
-        public static final int quoted_text_delete=0x7f0a0106;
-        public static final int quoted_text_edit=0x7f0a0105;
-        public static final int quoted_text_show=0x7f0a0100;
-        public static final int read_receipt=0x7f0a01da;
-        public static final int recreate=0x7f0a01b3;
-        public static final int red_panel=0x7f0a00a5;
-        public static final int refile=0x7f0a01f3;
-        public static final int refile_archive=0x7f0a01f4;
-        public static final int refile_copy=0x7f0a01f7;
-        public static final int refile_move=0x7f0a01f6;
-        public static final int refile_spam=0x7f0a01f5;
-        public static final int refresh_folder=0x7f0a01c3;
-        public static final int remove=0x7f0a01d3;
-        public static final int reply=0x7f0a01ea;
-        public static final int reply_all=0x7f0a01e9;
-        public static final int reply_to=0x7f0a00b6;
+        public static final int pull_to_refresh_image=0x7f0a0159;
+        public static final int pull_to_refresh_progress=0x7f0a015a;
+        public static final int pull_to_refresh_sub_text=0x7f0a015c;
+        public static final int pull_to_refresh_text=0x7f0a015b;
+        public static final int quoted_html=0x7f0a010d;
+        public static final int quoted_text=0x7f0a010c;
+        public static final int quoted_text_bar=0x7f0a010b;
+        public static final int quoted_text_buttons=0x7f0a010e;
+        public static final int quoted_text_delete=0x7f0a0110;
+        public static final int quoted_text_edit=0x7f0a010f;
+        public static final int quoted_text_show=0x7f0a010a;
+        public static final int read_receipt=0x7f0a01e4;
+        public static final int recreate=0x7f0a01bd;
+        public static final int red_panel=0x7f0a00ac;
+        public static final int refile=0x7f0a01fb;
+        public static final int refile_archive=0x7f0a01fc;
+        public static final int refile_copy=0x7f0a01ff;
+        public static final int refile_move=0x7f0a01fe;
+        public static final int refile_spam=0x7f0a01fd;
+        public static final int refresh_folder=0x7f0a01cd;
+        public static final int remove=0x7f0a01dd;
+        public static final int reply=0x7f0a01f2;
+        public static final int reply_all=0x7f0a01f1;
+        public static final int reply_to=0x7f0a00bd;
         public static final int rotate=0x7f0a0007;
-        public static final int same_sender=0x7f0a01ed;
-        public static final int save=0x7f0a01d8;
+        public static final int same_sender=0x7f0a01f5;
+        public static final int save=0x7f0a01e2;
         public static final int scrollview=0x7f0a000b;
-        public static final int scrollview1=0x7f0a00d3;
-        public static final int search=0x7f0a01b6;
-        public static final int search_remote=0x7f0a01f0;
-        public static final int select=0x7f0a01e7;
-        public static final int select_all=0x7f0a01e6;
-        public static final int select_text=0x7f0a0205;
-        public static final int selected_checkbox=0x7f0a010d;
-        public static final int selected_checkbox_wrapper=0x7f0a010c;
-        public static final int send=0x7f0a01d7;
-        public static final int send_again=0x7f0a01eb;
-        public static final int send_messages=0x7f0a01cb;
-        public static final int sender_compact=0x7f0a0114;
-        public static final int set_sort=0x7f0a01fb;
-        public static final int set_sort_arrival=0x7f0a01fd;
-        public static final int set_sort_attach=0x7f0a0202;
-        public static final int set_sort_date=0x7f0a01fc;
-        public static final int set_sort_flag=0x7f0a0200;
-        public static final int set_sort_sender=0x7f0a01ff;
-        public static final int set_sort_subject=0x7f0a01fe;
-        public static final int set_sort_unread=0x7f0a0201;
-        public static final int settings=0x7f0a01ce;
-        public static final int share=0x7f0a01f2;
+        public static final int scrollview1=0x7f0a00de;
+        public static final int search=0x7f0a01c0;
+        public static final int search_remote=0x7f0a01f8;
+        public static final int select=0x7f0a01ef;
+        public static final int select_all=0x7f0a01ee;
+        public static final int select_text=0x7f0a020d;
+        public static final int selected_checkbox=0x7f0a0117;
+        public static final int selected_checkbox_wrapper=0x7f0a0116;
+        public static final int send=0x7f0a01e1;
+        public static final int send_again=0x7f0a01f3;
+        public static final int send_messages=0x7f0a01d5;
+        public static final int sender_compact=0x7f0a011e;
+        public static final int set_sort=0x7f0a0203;
+        public static final int set_sort_arrival=0x7f0a0205;
+        public static final int set_sort_attach=0x7f0a020a;
+        public static final int set_sort_date=0x7f0a0204;
+        public static final int set_sort_flag=0x7f0a0208;
+        public static final int set_sort_sender=0x7f0a0207;
+        public static final int set_sort_subject=0x7f0a0206;
+        public static final int set_sort_unread=0x7f0a0209;
+        public static final int settings=0x7f0a01d8;
+        public static final int share=0x7f0a01fa;
         public static final int showCustom=0x7f0a0014;
         public static final int showHome=0x7f0a0011;
         public static final int showTitle=0x7f0a0013;
-        public static final int show_attachments=0x7f0a012b;
-        public static final int show_folder_list=0x7f0a0207;
-        public static final int show_headers=0x7f0a01f9;
-        public static final int show_hidden_attachments=0x7f0a00ec;
-        public static final int show_message=0x7f0a012c;
-        public static final int show_pictures=0x7f0a012a;
-        public static final int signature=0x7f0a00b9;
-        public static final int signature_layout=0x7f0a00b8;
-        public static final int signature_use=0x7f0a00b7;
-        public static final int single_message_options=0x7f0a01f1;
-        public static final int slider_preference_layout=0x7f0a016b;
-        public static final int slider_preference_seekbar=0x7f0a016c;
-        public static final int spam=0x7f0a01e5;
-        public static final int subject=0x7f0a00fe;
-        public static final int subject_wrapper=0x7f0a0112;
-        public static final int subscribed_folders_only=0x7f0a005e;
-        public static final int swipe=0x7f0a0095;
+        public static final int show_attachments=0x7f0a0135;
+        public static final int show_folder_list=0x7f0a020f;
+        public static final int show_headers=0x7f0a0201;
+        public static final int show_hidden_attachments=0x7f0a00f6;
+        public static final int show_message=0x7f0a0136;
+        public static final int show_pictures=0x7f0a0134;
+        public static final int signature=0x7f0a00c0;
+        public static final int signature_layout=0x7f0a00bf;
+        public static final int signature_use=0x7f0a00be;
+        public static final int single_message_options=0x7f0a01f9;
+        public static final int slider_preference_layout=0x7f0a0175;
+        public static final int slider_preference_seekbar=0x7f0a0176;
+        public static final int spam=0x7f0a01ed;
+        public static final int subject=0x7f0a0108;
+        public static final int subject_wrapper=0x7f0a011c;
+        public static final int subscribed_folders_only=0x7f0a0062;
+        public static final int swipe=0x7f0a009a;
         public static final int tabMode=0x7f0a000f;
-        public static final int text=0x7f0a00ba;
-        public static final int text1=0x7f0a0153;
-        public static final int text2=0x7f0a0154;
-        public static final int textView1=0x7f0a00cc;
-        public static final int textView2=0x7f0a0198;
-        public static final int textViewColor=0x7f0a0159;
-        public static final int textViewSubTitle=0x7f0a0161;
-        public static final int textViewSubTitle_Edit=0x7f0a0169;
-        public static final int textViewSubTitle_Start=0x7f0a0164;
-        public static final int textViewTitle=0x7f0a0158;
-        public static final int textViewTitles=0x7f0a0149;
-        public static final int textViewTitles_Edit=0x7f0a0168;
-        public static final int textViewTitles_Start=0x7f0a0163;
-        public static final int textdate=0x7f0a0092;
-        public static final int textdescription=0x7f0a0094;
-        public static final int texthomeworkdue=0x7f0a0093;
-        public static final int thread_count=0x7f0a0115;
-        public static final int title=0x7f0a00ac;
-        public static final int title_layout=0x7f0a008a;
-        public static final int to=0x7f0a00f1;
-        public static final int to_label=0x7f0a0127;
-        public static final int to_wrapper=0x7f0a00f0;
-        public static final int toggle_message_view_theme=0x7f0a0206;
-        public static final int toggle_unread=0x7f0a01f8;
-        public static final int top=0x7f0a01d2;
-        public static final int undo=0x7f0a00bb;
-        public static final int unflag=0x7f0a01e4;
-        public static final int unread_count=0x7f0a018c;
-        public static final int unread_widget_layout=0x7f0a018b;
-        public static final int up=0x7f0a01d0;
-        public static final int upper_signature=0x7f0a00ff;
+        public static final int text=0x7f0a00c1;
+        public static final int text1=0x7f0a015d;
+        public static final int text2=0x7f0a015e;
+        public static final int textView1=0x7f0a00d7;
+        public static final int textView2=0x7f0a01a2;
+        public static final int textViewColor=0x7f0a0163;
+        public static final int textViewSubTitle=0x7f0a016b;
+        public static final int textViewSubTitle_Edit=0x7f0a0173;
+        public static final int textViewSubTitle_Start=0x7f0a016e;
+        public static final int textViewTitle=0x7f0a0162;
+        public static final int textViewTitles=0x7f0a0153;
+        public static final int textViewTitles_Edit=0x7f0a0172;
+        public static final int textViewTitles_Start=0x7f0a016d;
+        public static final int textdate=0x7f0a0097;
+        public static final int textdescription=0x7f0a0099;
+        public static final int texthomeworkdue=0x7f0a0098;
+        public static final int thread_count=0x7f0a011f;
+        public static final int title=0x7f0a00b3;
+        public static final int title_layout=0x7f0a008f;
+        public static final int to=0x7f0a00fb;
+        public static final int to_label=0x7f0a0131;
+        public static final int to_wrapper=0x7f0a00fa;
+        public static final int toggle_message_view_theme=0x7f0a020e;
+        public static final int toggle_unread=0x7f0a0200;
+        public static final int top=0x7f0a01dc;
+        public static final int undo=0x7f0a00c2;
+        public static final int unflag=0x7f0a01ec;
+        public static final int unread_count=0x7f0a0196;
+        public static final int unread_widget_layout=0x7f0a0195;
+        public static final int up=0x7f0a01da;
+        public static final int upper_signature=0x7f0a0109;
         public static final int useLogo=0x7f0a0010;
-        public static final int use_incoming_server_password=0x7f0a0087;
-        public static final int userId=0x7f0a00fb;
-        public static final int userIdRest=0x7f0a00fc;
-        public static final int view=0x7f0a011b;
-        public static final int view1=0x7f0a00d0;
-        public static final int view2=0x7f0a014c;
-        public static final int view4=0x7f0a0146;
-        public static final int view5=0x7f0a0166;
-        public static final int viewColor=0x7f0a015a;
-        public static final int viewPager=0x7f0a0191;
+        public static final int use_incoming_server_password=0x7f0a008c;
+        public static final int userId=0x7f0a0105;
+        public static final int userIdRest=0x7f0a0106;
+        public static final int view=0x7f0a0125;
+        public static final int view1=0x7f0a00db;
+        public static final int view2=0x7f0a0156;
+        public static final int view4=0x7f0a0150;
+        public static final int view5=0x7f0a0170;
+        public static final int viewColor=0x7f0a0164;
+        public static final int viewPager=0x7f0a019b;
         public static final int viewPager1=0x7f0a001c;
-        public static final int viewPager2=0x7f0a0196;
-        public static final int view_container=0x7f0a0192;
-        public static final int viewbottom=0x7f0a015b;
-        public static final int viewleft=0x7f0a015c;
-        public static final int viewright=0x7f0a015d;
-        public static final int viewtop=0x7f0a015e;
-        public static final int webdav=0x7f0a0044;
-        public static final int webdav_advanced_header=0x7f0a005f;
-        public static final int webdav_auth_path=0x7f0a0065;
-        public static final int webdav_auth_path_section=0x7f0a0064;
-        public static final int webdav_mailbox_alias_section=0x7f0a0060;
-        public static final int webdav_mailbox_path=0x7f0a0061;
-        public static final int webdav_owa_path_section=0x7f0a0062;
-        public static final int webdav_path_prefix=0x7f0a0063;
+        public static final int viewPager2=0x7f0a01a0;
+        public static final int view_container=0x7f0a019c;
+        public static final int viewbottom=0x7f0a0165;
+        public static final int viewleft=0x7f0a0166;
+        public static final int viewright=0x7f0a0167;
+        public static final int viewtop=0x7f0a0168;
+        public static final int webdav=0x7f0a0045;
+        public static final int webdav_advanced_header=0x7f0a0063;
+        public static final int webdav_auth_path=0x7f0a0069;
+        public static final int webdav_auth_path_section=0x7f0a0068;
+        public static final int webdav_mailbox_alias_section=0x7f0a0064;
+        public static final int webdav_mailbox_path=0x7f0a0065;
+        public static final int webdav_owa_path_section=0x7f0a0066;
+        public static final int webdav_path_prefix=0x7f0a0067;
         public static final int webview=0x7f0a000a;
-        public static final int welcome_message=0x7f0a01a7;
-        public static final int white_panel=0x7f0a00a2;
+        public static final int welcome_message=0x7f0a01b1;
+        public static final int white_panel=0x7f0a00a9;
         public static final int wrap_content=0x7f0a000c;
-        public static final int yellow_panel=0x7f0a00a7;
+        public static final int yellow_panel=0x7f0a00ae;
     }
     public static final class integer {
         public static final int abs__max_action_buttons=0x7f0c0000;
@@ -2324,84 +2358,86 @@ containing a value of this type.
         public static final int bdaypicker=0x7f03002a;
         public static final int choose_account_item=0x7f03002b;
         public static final int choose_identity_item=0x7f03002c;
-        public static final int color_picker_dialog=0x7f03002d;
-        public static final int color_picker_swatch=0x7f03002e;
-        public static final int dialog_color_picker=0x7f03002f;
-        public static final int drawer_list_item=0x7f030030;
-        public static final int drawer_list_item1=0x7f030031;
-        public static final int drawer_main=0x7f030032;
-        public static final int drawermain1=0x7f030033;
-        public static final int edit_identity=0x7f030034;
-        public static final int elv_undo_popup=0x7f030035;
-        public static final int email_address_list=0x7f030036;
-        public static final int email_address_list_item=0x7f030037;
-        public static final int empty_item=0x7f030038;
-        public static final int empty_message_view=0x7f030039;
-        public static final int folder_list=0x7f03003a;
-        public static final int folder_list_item=0x7f03003b;
-        public static final int folders_list=0x7f03003c;
-        public static final int footer_folders=0x7f03003d;
-        public static final int footer_homeworkdue=0x7f03003e;
-        public static final int fragment1=0x7f03003f;
-        public static final int fragmenttab1=0x7f030040;
-        public static final int fragmenttab2=0x7f030041;
-        public static final int friday=0x7f030042;
-        public static final int header_drawer=0x7f030043;
-        public static final int header_folders=0x7f030044;
-        public static final int header_inbox=0x7f030045;
-        public static final int item_view=0x7f030046;
-        public static final int linked=0x7f030047;
-        public static final int list_content_simple=0x7f030048;
-        public static final int message=0x7f030049;
-        public static final int message_compose=0x7f03004a;
-        public static final int message_compose_attachment=0x7f03004b;
-        public static final int message_list=0x7f03004c;
-        public static final int message_list_fragment=0x7f03004d;
-        public static final int message_list_item=0x7f03004e;
-        public static final int message_list_item_footer=0x7f03004f;
-        public static final int message_list_loading=0x7f030050;
-        public static final int message_view_attachment=0x7f030051;
-        public static final int message_view_crypto_layout=0x7f030052;
-        public static final int message_view_header=0x7f030053;
-        public static final int message_view_openpgp_layout=0x7f030054;
-        public static final int monday=0x7f030055;
-        public static final int note_dialog=0x7f030056;
-        public static final int note_dialog_item=0x7f030057;
-        public static final int portal_list=0x7f030058;
-        public static final int pull_to_refresh_header_horizontal=0x7f030059;
-        public static final int pull_to_refresh_header_vertical=0x7f03005a;
-        public static final int recipient_dropdown_item=0x7f03005b;
-        public static final int refresh=0x7f03005c;
-        public static final int schedule_list_item=0x7f03005d;
-        public static final int schedule_list_item_view=0x7f03005e;
-        public static final int schedule_list_view=0x7f03005f;
-        public static final int schedule_list_view1=0x7f030060;
-        public static final int schedule_list_view2=0x7f030061;
-        public static final int schedule_list_view3=0x7f030062;
-        public static final int schedule_list_view4=0x7f030063;
-        public static final int setting_color_picker=0x7f030064;
-        public static final int settings=0x7f030065;
-        public static final int settings_layouts=0x7f030066;
-        public static final int sherlock_spinner_dropdown_item=0x7f030067;
-        public static final int sherlock_spinner_item=0x7f030068;
-        public static final int slider_preference_dialog=0x7f030069;
-        public static final int split_drawer_main=0x7f03006a;
-        public static final int split_message_list=0x7f03006b;
-        public static final int thursday=0x7f03006c;
-        public static final int tuesday=0x7f03006d;
-        public static final int unread_widget_layout=0x7f03006e;
-        public static final int upgrade_databases=0x7f03006f;
-        public static final int viewpager_main=0x7f030070;
-        public static final int viewpager_schedule=0x7f030071;
-        public static final int viewpager_schedule_edit=0x7f030072;
-        public static final int viewpager_schedule_linked=0x7f030073;
-        public static final int wednesday=0x7f030074;
-        public static final int welcome_message=0x7f030075;
-        public static final int wizard_cancel=0x7f030076;
-        public static final int wizard_done=0x7f030077;
-        public static final int wizard_next=0x7f030078;
-        public static final int wizard_setup=0x7f030079;
-        public static final int wizard_welcome=0x7f03007a;
+        public static final int client_certificate_spinner=0x7f03002d;
+        public static final int color_picker_dialog=0x7f03002e;
+        public static final int color_picker_swatch=0x7f03002f;
+        public static final int dialog_color_picker=0x7f030030;
+        public static final int drawer_list_item=0x7f030031;
+        public static final int drawer_list_item1=0x7f030032;
+        public static final int drawer_main=0x7f030033;
+        public static final int drawermain1=0x7f030034;
+        public static final int edit_identity=0x7f030035;
+        public static final int elv_undo_popup=0x7f030036;
+        public static final int email_address_list=0x7f030037;
+        public static final int email_address_list_item=0x7f030038;
+        public static final int empty_item=0x7f030039;
+        public static final int empty_message_view=0x7f03003a;
+        public static final int foldable_linearlayout=0x7f03003b;
+        public static final int folder_list=0x7f03003c;
+        public static final int folder_list_item=0x7f03003d;
+        public static final int folders_list=0x7f03003e;
+        public static final int footer_folders=0x7f03003f;
+        public static final int footer_homeworkdue=0x7f030040;
+        public static final int fragment1=0x7f030041;
+        public static final int fragmenttab1=0x7f030042;
+        public static final int fragmenttab2=0x7f030043;
+        public static final int friday=0x7f030044;
+        public static final int header_drawer=0x7f030045;
+        public static final int header_folders=0x7f030046;
+        public static final int header_inbox=0x7f030047;
+        public static final int item_view=0x7f030048;
+        public static final int linked=0x7f030049;
+        public static final int list_content_simple=0x7f03004a;
+        public static final int message=0x7f03004b;
+        public static final int message_compose=0x7f03004c;
+        public static final int message_compose_attachment=0x7f03004d;
+        public static final int message_list=0x7f03004e;
+        public static final int message_list_fragment=0x7f03004f;
+        public static final int message_list_item=0x7f030050;
+        public static final int message_list_item_footer=0x7f030051;
+        public static final int message_list_loading=0x7f030052;
+        public static final int message_view_attachment=0x7f030053;
+        public static final int message_view_crypto_layout=0x7f030054;
+        public static final int message_view_header=0x7f030055;
+        public static final int message_view_openpgp_layout=0x7f030056;
+        public static final int monday=0x7f030057;
+        public static final int note_dialog=0x7f030058;
+        public static final int note_dialog_item=0x7f030059;
+        public static final int portal_list=0x7f03005a;
+        public static final int pull_to_refresh_header_horizontal=0x7f03005b;
+        public static final int pull_to_refresh_header_vertical=0x7f03005c;
+        public static final int recipient_dropdown_item=0x7f03005d;
+        public static final int refresh=0x7f03005e;
+        public static final int schedule_list_item=0x7f03005f;
+        public static final int schedule_list_item_view=0x7f030060;
+        public static final int schedule_list_view=0x7f030061;
+        public static final int schedule_list_view1=0x7f030062;
+        public static final int schedule_list_view2=0x7f030063;
+        public static final int schedule_list_view3=0x7f030064;
+        public static final int schedule_list_view4=0x7f030065;
+        public static final int setting_color_picker=0x7f030066;
+        public static final int settings=0x7f030067;
+        public static final int settings_layouts=0x7f030068;
+        public static final int sherlock_spinner_dropdown_item=0x7f030069;
+        public static final int sherlock_spinner_item=0x7f03006a;
+        public static final int slider_preference_dialog=0x7f03006b;
+        public static final int split_drawer_main=0x7f03006c;
+        public static final int split_message_list=0x7f03006d;
+        public static final int thursday=0x7f03006e;
+        public static final int tuesday=0x7f03006f;
+        public static final int unread_widget_layout=0x7f030070;
+        public static final int upgrade_databases=0x7f030071;
+        public static final int viewpager_main=0x7f030072;
+        public static final int viewpager_schedule=0x7f030073;
+        public static final int viewpager_schedule_edit=0x7f030074;
+        public static final int viewpager_schedule_linked=0x7f030075;
+        public static final int wednesday=0x7f030076;
+        public static final int welcome_message=0x7f030077;
+        public static final int wizard_cancel=0x7f030078;
+        public static final int wizard_done=0x7f030079;
+        public static final int wizard_next=0x7f03007a;
+        public static final int wizard_setup=0x7f03007b;
+        public static final int wizard_welcome=0x7f03007c;
     }
     public static final class menu {
         public static final int accounts_context=0x7f0f0000;
@@ -2429,15 +2465,15 @@ containing a value of this type.
         public static final int settings_import_setting_passwords=0x7f0e0004;
     }
     public static final class string {
-        public static final int Fragment1=0x7f080374;
-        public static final int FragmentTab1=0x7f080375;
-        public static final int FragmentTab2=0x7f080376;
-        public static final int abbrev_bytes=0x7f080097;
-        public static final int abbrev_gigabytes=0x7f080094;
-        public static final int abbrev_kilobytes=0x7f080096;
-        public static final int abbrev_megabytes=0x7f080095;
-        public static final int about_action=0x7f080089;
-        public static final int about_options=0x7f080393;
+        public static final int Fragment1=0x7f08037f;
+        public static final int FragmentTab1=0x7f080380;
+        public static final int FragmentTab2=0x7f080381;
+        public static final int abbrev_bytes=0x7f080095;
+        public static final int abbrev_gigabytes=0x7f080092;
+        public static final int abbrev_kilobytes=0x7f080094;
+        public static final int abbrev_megabytes=0x7f080093;
+        public static final int about_action=0x7f080087;
+        public static final int about_options=0x7f08039e;
         public static final int about_title_fmt=0x7f08003d;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
@@ -2479,7 +2515,7 @@ containing a value of this type.
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f080013;
         public static final int account_clear_dlg_instructions_fmt=0x7f08002f;
-        public static final int account_clear_dlg_title=0x7f08025e;
+        public static final int account_clear_dlg_title=0x7f08026a;
         /**  General strings that include the app name 
 General strings that include the app name
 General strings that include the app name
@@ -2509,283 +2545,297 @@ General strings that include the app name
 General strings that include the app name
          */
         public static final int account_delete_dlg_instructions_fmt=0x7f08002d;
-        public static final int account_delete_dlg_title=0x7f08025c;
+        public static final int account_delete_dlg_title=0x7f080268;
         public static final int account_recreate_dlg_instructions_fmt=0x7f08002e;
-        public static final int account_recreate_dlg_title=0x7f08025d;
+        public static final int account_recreate_dlg_title=0x7f080269;
         public static final int account_settings_action=0x7f08006e;
-        public static final int account_settings_always_bcc_label=0x7f080231;
-        public static final int account_settings_always_show_cc_bcc_label=0x7f0801b4;
-        public static final int account_settings_autodownload_message_size_1=0x7f0801cf;
-        public static final int account_settings_autodownload_message_size_1024=0x7f0801d9;
-        public static final int account_settings_autodownload_message_size_10240=0x7f0801dc;
-        public static final int account_settings_autodownload_message_size_128=0x7f0801d6;
-        public static final int account_settings_autodownload_message_size_16=0x7f0801d3;
-        public static final int account_settings_autodownload_message_size_2=0x7f0801d0;
-        public static final int account_settings_autodownload_message_size_2048=0x7f0801da;
-        public static final int account_settings_autodownload_message_size_256=0x7f0801d7;
-        public static final int account_settings_autodownload_message_size_32=0x7f0801d4;
-        public static final int account_settings_autodownload_message_size_4=0x7f0801d1;
-        public static final int account_settings_autodownload_message_size_512=0x7f0801d8;
-        public static final int account_settings_autodownload_message_size_5120=0x7f0801db;
-        public static final int account_settings_autodownload_message_size_64=0x7f0801d5;
-        public static final int account_settings_autodownload_message_size_8=0x7f0801d2;
-        public static final int account_settings_autodownload_message_size_any=0x7f0801dd;
-        public static final int account_settings_autodownload_message_size_label=0x7f0801ce;
-        public static final int account_settings_color_label=0x7f0801c9;
-        public static final int account_settings_color_summary=0x7f0801ca;
-        public static final int account_settings_composition=0x7f0801a9;
-        public static final int account_settings_composition_label=0x7f080229;
-        public static final int account_settings_composition_summary=0x7f08022a;
-        public static final int account_settings_composition_title=0x7f080228;
-        public static final int account_settings_crypto=0x7f0801bf;
-        public static final int account_settings_crypto_apg_not_installed=0x7f0801c6;
-        public static final int account_settings_crypto_app=0x7f0801c0;
-        public static final int account_settings_crypto_app_none=0x7f0801c1;
-        public static final int account_settings_crypto_auto_encrypt=0x7f0801c4;
-        public static final int account_settings_crypto_auto_encrypt_summary=0x7f0801c5;
-        public static final int account_settings_crypto_auto_signature=0x7f0801c2;
-        public static final int account_settings_crypto_auto_signature_summary=0x7f0801c3;
-        public static final int account_settings_default_label=0x7f080196;
-        public static final int account_settings_default_quoted_text_shown_label=0x7f0801aa;
-        public static final int account_settings_default_quoted_text_shown_summary=0x7f0801ab;
-        public static final int account_settings_default_summary=0x7f080197;
-        public static final int account_settings_description_label=0x7f080218;
-        public static final int account_settings_email_label=0x7f08019a;
-        public static final int account_settings_folder_display_mode_all=0x7f0801ec;
-        public static final int account_settings_folder_display_mode_first_and_second_class=0x7f0801ee;
-        public static final int account_settings_folder_display_mode_first_class=0x7f0801ed;
-        public static final int account_settings_folder_display_mode_label=0x7f0801eb;
-        public static final int account_settings_folder_display_mode_not_second_class=0x7f0801ef;
-        public static final int account_settings_folder_push_mode_all=0x7f0801f7;
-        public static final int account_settings_folder_push_mode_first_and_second_class=0x7f0801f9;
-        public static final int account_settings_folder_push_mode_first_class=0x7f0801f8;
-        public static final int account_settings_folder_push_mode_label=0x7f0801f6;
-        public static final int account_settings_folder_push_mode_none=0x7f0801fb;
-        public static final int account_settings_folder_push_mode_not_second_class=0x7f0801fa;
-        public static final int account_settings_folder_sync_mode_all=0x7f0801f1;
-        public static final int account_settings_folder_sync_mode_first_and_second_class=0x7f0801f3;
-        public static final int account_settings_folder_sync_mode_first_class=0x7f0801f2;
-        public static final int account_settings_folder_sync_mode_label=0x7f0801f0;
-        public static final int account_settings_folder_sync_mode_none=0x7f0801f5;
-        public static final int account_settings_folder_sync_mode_not_second_class=0x7f0801f4;
-        public static final int account_settings_folder_target_mode_all=0x7f0801fd;
-        public static final int account_settings_folder_target_mode_first_and_second_class=0x7f0801ff;
-        public static final int account_settings_folder_target_mode_first_class=0x7f0801fe;
-        public static final int account_settings_folder_target_mode_label=0x7f0801fc;
-        public static final int account_settings_folder_target_mode_not_second_class=0x7f080200;
-        public static final int account_settings_folders=0x7f0801bd;
-        public static final int account_settings_general_title=0x7f0801ba;
-        public static final int account_settings_identities_label=0x7f08022b;
-        public static final int account_settings_identities_summary=0x7f08022c;
-        public static final int account_settings_incoming_label=0x7f080214;
-        public static final int account_settings_incoming_summary=0x7f080215;
-        public static final int account_settings_led_color_label=0x7f0801cb;
-        public static final int account_settings_led_color_summary=0x7f0801cc;
-        public static final int account_settings_led_label=0x7f080226;
-        public static final int account_settings_led_summary=0x7f080227;
-        public static final int account_settings_mail_check_frequency_label=0x7f0801c7;
-        public static final int account_settings_mail_display_count_label=0x7f0801cd;
-        public static final int account_settings_mark_message_as_read_on_view_label=0x7f0801a3;
-        public static final int account_settings_mark_message_as_read_on_view_summary=0x7f0801a4;
-        public static final int account_settings_message_age_0=0x7f0801e0;
-        public static final int account_settings_message_age_1=0x7f0801e1;
-        public static final int account_settings_message_age_14=0x7f0801e4;
-        public static final int account_settings_message_age_1_month=0x7f0801e6;
-        public static final int account_settings_message_age_1_year=0x7f0801ea;
-        public static final int account_settings_message_age_2=0x7f0801e2;
-        public static final int account_settings_message_age_21=0x7f0801e5;
-        public static final int account_settings_message_age_2_months=0x7f0801e7;
-        public static final int account_settings_message_age_3_months=0x7f0801e8;
-        public static final int account_settings_message_age_6_months=0x7f0801e9;
-        public static final int account_settings_message_age_7=0x7f0801e3;
-        public static final int account_settings_message_age_any=0x7f0801df;
-        public static final int account_settings_message_age_label=0x7f0801de;
-        public static final int account_settings_message_format_auto=0x7f0801b3;
-        public static final int account_settings_message_format_html=0x7f0801b2;
-        public static final int account_settings_message_format_label=0x7f0801b0;
-        public static final int account_settings_message_format_text=0x7f0801b1;
-        public static final int account_settings_message_read_receipt_label=0x7f0801b5;
-        public static final int account_settings_message_read_receipt_summary=0x7f0801b6;
-        public static final int account_settings_name_label=0x7f080219;
-        public static final int account_settings_notification_opens_unread_label=0x7f08019f;
-        public static final int account_settings_notification_opens_unread_summary=0x7f0801a0;
-        public static final int account_settings_notification_unread_count_label=0x7f0801a1;
-        public static final int account_settings_notification_unread_count_summary=0x7f0801a2;
-        public static final int account_settings_notify_label=0x7f080198;
-        public static final int account_settings_notify_self_label=0x7f08019d;
-        public static final int account_settings_notify_self_summary=0x7f08019e;
-        public static final int account_settings_notify_summary=0x7f08019b;
-        public static final int account_settings_notify_sync_label=0x7f080199;
-        public static final int account_settings_notify_sync_summary=0x7f08019c;
-        public static final int account_settings_outgoing_label=0x7f080216;
-        public static final int account_settings_outgoing_summary=0x7f080217;
-        public static final int account_settings_push_advanced_title=0x7f080194;
-        public static final int account_settings_quote_prefix_label=0x7f0801be;
-        public static final int account_settings_quote_style_header=0x7f0801b9;
-        public static final int account_settings_quote_style_label=0x7f0801b7;
-        public static final int account_settings_quote_style_prefix=0x7f0801b8;
-        public static final int account_settings_reading_mail=0x7f0801bb;
-        public static final int account_settings_remote_search_enabled=0x7f080342;
-        public static final int account_settings_remote_search_enabled_summary=0x7f080343;
-        public static final int account_settings_remote_search_full_text=0x7f08033b;
-        public static final int account_settings_remote_search_full_text_summary=0x7f08033c;
-        public static final int account_settings_remote_search_num_label=0x7f080339;
-        public static final int account_settings_remote_search_num_results_entries_10=0x7f080332;
-        public static final int account_settings_remote_search_num_results_entries_100=0x7f080335;
-        public static final int account_settings_remote_search_num_results_entries_1000=0x7f080338;
-        public static final int account_settings_remote_search_num_results_entries_25=0x7f080333;
-        public static final int account_settings_remote_search_num_results_entries_250=0x7f080336;
-        public static final int account_settings_remote_search_num_results_entries_50=0x7f080334;
-        public static final int account_settings_remote_search_num_results_entries_500=0x7f080337;
-        public static final int account_settings_remote_search_num_results_entries_all=0x7f080331;
-        public static final int account_settings_remote_search_num_summary=0x7f08033a;
-        public static final int account_settings_reply_after_quote_label=0x7f0801ac;
-        public static final int account_settings_reply_after_quote_summary=0x7f0801ad;
-        public static final int account_settings_ringtone=0x7f080225;
-        public static final int account_settings_search=0x7f080341;
-        public static final int account_settings_searchable_all=0x7f0802af;
-        public static final int account_settings_searchable_displayable=0x7f0802b0;
-        public static final int account_settings_searchable_label=0x7f0802ae;
-        public static final int account_settings_searchable_none=0x7f0802b1;
-        public static final int account_settings_show_pictures_always=0x7f0801a8;
-        public static final int account_settings_show_pictures_label=0x7f0801a5;
-        public static final int account_settings_show_pictures_never=0x7f0801a6;
-        public static final int account_settings_show_pictures_only_from_contacts=0x7f0801a7;
-        public static final int account_settings_signature__location_after_quoted_text=0x7f08026f;
-        public static final int account_settings_signature__location_before_quoted_text=0x7f08026e;
-        public static final int account_settings_signature__location_label=0x7f08026d;
-        public static final int account_settings_signature_label=0x7f080242;
-        public static final int account_settings_signature_use_label=0x7f080241;
-        public static final int account_settings_storage_title=0x7f0801c8;
-        public static final int account_settings_strip_signature_label=0x7f0801ae;
-        public static final int account_settings_strip_signature_summary=0x7f0801af;
-        public static final int account_settings_sync=0x7f0801bc;
-        public static final int account_settings_sync_remote_deletetions_label=0x7f080201;
-        public static final int account_settings_sync_remote_deletetions_summary=0x7f080202;
-        public static final int account_settings_title_fmt=0x7f080195;
-        public static final int account_settings_vibrate_enable=0x7f08021b;
-        public static final int account_settings_vibrate_pattern_1=0x7f08021f;
-        public static final int account_settings_vibrate_pattern_2=0x7f080220;
-        public static final int account_settings_vibrate_pattern_3=0x7f080221;
-        public static final int account_settings_vibrate_pattern_4=0x7f080222;
-        public static final int account_settings_vibrate_pattern_5=0x7f080223;
-        public static final int account_settings_vibrate_pattern_default=0x7f08021e;
-        public static final int account_settings_vibrate_pattern_label=0x7f08021d;
-        public static final int account_settings_vibrate_summary=0x7f08021c;
-        public static final int account_settings_vibrate_times=0x7f080224;
-        public static final int account_setup_account_type_imap_action=0x7f080128;
-        public static final int account_setup_account_type_instructions=0x7f080126;
-        public static final int account_setup_account_type_pop_action=0x7f080127;
-        public static final int account_setup_account_type_title=0x7f080125;
-        public static final int account_setup_account_type_webdav_action=0x7f080129;
-        public static final int account_setup_auth_type_encrypted_password=0x7f08012c;
-        public static final int account_setup_auth_type_insecure_password=0x7f08012b;
-        public static final int account_setup_auth_type_normal_password=0x7f08012a;
-        public static final int account_setup_auto_expand_folder=0x7f080151;
-        public static final int account_setup_bad_uri=0x7f080160;
-        public static final int account_setup_basics_email_hint=0x7f080118;
-        public static final int account_setup_basics_manual_setup_action=0x7f08011a;
-        public static final int account_setup_basics_password_hint=0x7f080119;
-        public static final int account_setup_basics_title=0x7f080117;
-        public static final int account_setup_check_settings_authenticate=0x7f08011f;
-        public static final int account_setup_check_settings_canceling_msg=0x7f080121;
-        public static final int account_setup_check_settings_check_incoming_msg=0x7f08011d;
-        public static final int account_setup_check_settings_check_outgoing_msg=0x7f08011e;
-        public static final int account_setup_check_settings_fetch=0x7f080120;
-        public static final int account_setup_check_settings_retr_info_msg=0x7f08011c;
-        public static final int account_setup_check_settings_title=0x7f08011b;
-        public static final int account_setup_expunge_policy_immediately=0x7f080146;
-        public static final int account_setup_expunge_policy_label=0x7f080145;
-        public static final int account_setup_expunge_policy_manual=0x7f080148;
-        public static final int account_setup_expunge_policy_on_poll=0x7f080147;
-        public static final int account_setup_failed_dlg_auth_message_fmt=0x7f08018f;
-        public static final int account_setup_failed_dlg_certificate_message_fmt=0x7f080190;
-        public static final int account_setup_failed_dlg_continue_action=0x7f080193;
-        public static final int account_setup_failed_dlg_edit_details_action=0x7f080192;
-        public static final int account_setup_failed_dlg_invalid_certificate_accept=0x7f080263;
-        public static final int account_setup_failed_dlg_invalid_certificate_reject=0x7f080264;
-        public static final int account_setup_failed_dlg_invalid_certificate_title=0x7f080262;
-        public static final int account_setup_failed_dlg_server_message_fmt=0x7f080191;
-        public static final int account_setup_failed_dlg_title=0x7f08018e;
-        public static final int account_setup_incoming_auth_type_label=0x7f080135;
-        public static final int account_setup_incoming_autodetect_namespace_label=0x7f080149;
-        public static final int account_setup_incoming_compression_label=0x7f08013d;
-        public static final int account_setup_incoming_delete_policy_delete_label=0x7f08013b;
-        public static final int account_setup_incoming_delete_policy_label=0x7f080139;
-        public static final int account_setup_incoming_delete_policy_markread_label=0x7f08013c;
-        public static final int account_setup_incoming_delete_policy_never_label=0x7f08013a;
-        public static final int account_setup_incoming_imap_path_prefix_label=0x7f08014a;
-        public static final int account_setup_incoming_imap_server_label=0x7f080131;
-        public static final int account_setup_incoming_mobile_label=0x7f08013e;
-        public static final int account_setup_incoming_other_label=0x7f080140;
+        public static final int account_settings_always_bcc_label=0x7f08023d;
+        public static final int account_settings_always_show_cc_bcc_label=0x7f0801bb;
+        public static final int account_settings_autodownload_message_size_1=0x7f0801d6;
+        public static final int account_settings_autodownload_message_size_1024=0x7f0801e0;
+        public static final int account_settings_autodownload_message_size_10240=0x7f0801e3;
+        public static final int account_settings_autodownload_message_size_128=0x7f0801dd;
+        public static final int account_settings_autodownload_message_size_16=0x7f0801da;
+        public static final int account_settings_autodownload_message_size_2=0x7f0801d7;
+        public static final int account_settings_autodownload_message_size_2048=0x7f0801e1;
+        public static final int account_settings_autodownload_message_size_256=0x7f0801de;
+        public static final int account_settings_autodownload_message_size_32=0x7f0801db;
+        public static final int account_settings_autodownload_message_size_4=0x7f0801d8;
+        public static final int account_settings_autodownload_message_size_512=0x7f0801df;
+        public static final int account_settings_autodownload_message_size_5120=0x7f0801e2;
+        public static final int account_settings_autodownload_message_size_64=0x7f0801dc;
+        public static final int account_settings_autodownload_message_size_8=0x7f0801d9;
+        public static final int account_settings_autodownload_message_size_any=0x7f0801e4;
+        public static final int account_settings_autodownload_message_size_label=0x7f0801d5;
+        public static final int account_settings_color_label=0x7f0801d0;
+        public static final int account_settings_color_summary=0x7f0801d1;
+        public static final int account_settings_composition=0x7f0801b0;
+        public static final int account_settings_composition_label=0x7f080235;
+        public static final int account_settings_composition_summary=0x7f080236;
+        public static final int account_settings_composition_title=0x7f080234;
+        public static final int account_settings_crypto=0x7f0801c6;
+        public static final int account_settings_crypto_apg_not_installed=0x7f0801cd;
+        public static final int account_settings_crypto_app=0x7f0801c7;
+        public static final int account_settings_crypto_app_none=0x7f0801c8;
+        public static final int account_settings_crypto_auto_encrypt=0x7f0801cb;
+        public static final int account_settings_crypto_auto_encrypt_summary=0x7f0801cc;
+        public static final int account_settings_crypto_auto_signature=0x7f0801c9;
+        public static final int account_settings_crypto_auto_signature_summary=0x7f0801ca;
+        public static final int account_settings_default_label=0x7f080199;
+        public static final int account_settings_default_quoted_text_shown_label=0x7f0801b1;
+        public static final int account_settings_default_quoted_text_shown_summary=0x7f0801b2;
+        public static final int account_settings_default_summary=0x7f08019a;
+        public static final int account_settings_description_label=0x7f080224;
+        public static final int account_settings_email_label=0x7f0801a3;
+        public static final int account_settings_folder_display_mode_all=0x7f0801f3;
+        public static final int account_settings_folder_display_mode_first_and_second_class=0x7f0801f5;
+        public static final int account_settings_folder_display_mode_first_class=0x7f0801f4;
+        public static final int account_settings_folder_display_mode_label=0x7f0801f2;
+        public static final int account_settings_folder_display_mode_not_second_class=0x7f0801f6;
+        public static final int account_settings_folder_notify_new_mail_mode_all=0x7f08019d;
+        public static final int account_settings_folder_notify_new_mail_mode_first_and_second_class=0x7f08019f;
+        public static final int account_settings_folder_notify_new_mail_mode_first_class=0x7f08019e;
+        public static final int account_settings_folder_notify_new_mail_mode_label=0x7f08019c;
+        public static final int account_settings_folder_notify_new_mail_mode_none=0x7f0801a1;
+        public static final int account_settings_folder_notify_new_mail_mode_not_second_class=0x7f0801a0;
+        public static final int account_settings_folder_push_mode_all=0x7f0801fe;
+        public static final int account_settings_folder_push_mode_first_and_second_class=0x7f080200;
+        public static final int account_settings_folder_push_mode_first_class=0x7f0801ff;
+        public static final int account_settings_folder_push_mode_label=0x7f0801fd;
+        public static final int account_settings_folder_push_mode_none=0x7f080202;
+        public static final int account_settings_folder_push_mode_not_second_class=0x7f080201;
+        public static final int account_settings_folder_sync_mode_all=0x7f0801f8;
+        public static final int account_settings_folder_sync_mode_first_and_second_class=0x7f0801fa;
+        public static final int account_settings_folder_sync_mode_first_class=0x7f0801f9;
+        public static final int account_settings_folder_sync_mode_label=0x7f0801f7;
+        public static final int account_settings_folder_sync_mode_none=0x7f0801fc;
+        public static final int account_settings_folder_sync_mode_not_second_class=0x7f0801fb;
+        public static final int account_settings_folder_target_mode_all=0x7f080204;
+        public static final int account_settings_folder_target_mode_first_and_second_class=0x7f080206;
+        public static final int account_settings_folder_target_mode_first_class=0x7f080205;
+        public static final int account_settings_folder_target_mode_label=0x7f080203;
+        public static final int account_settings_folder_target_mode_not_second_class=0x7f080207;
+        public static final int account_settings_folders=0x7f0801c4;
+        public static final int account_settings_general_title=0x7f0801c1;
+        public static final int account_settings_identities_label=0x7f080237;
+        public static final int account_settings_identities_summary=0x7f080238;
+        public static final int account_settings_incoming_label=0x7f080220;
+        public static final int account_settings_incoming_summary=0x7f080221;
+        public static final int account_settings_led_color_label=0x7f0801d2;
+        public static final int account_settings_led_color_summary=0x7f0801d3;
+        public static final int account_settings_led_label=0x7f080232;
+        public static final int account_settings_led_summary=0x7f080233;
+        public static final int account_settings_mail_check_frequency_label=0x7f0801ce;
+        public static final int account_settings_mail_display_count_label=0x7f0801d4;
+        public static final int account_settings_mark_message_as_read_on_view_label=0x7f0801aa;
+        public static final int account_settings_mark_message_as_read_on_view_summary=0x7f0801ab;
+        public static final int account_settings_message_age_0=0x7f0801e7;
+        public static final int account_settings_message_age_1=0x7f0801e8;
+        public static final int account_settings_message_age_14=0x7f0801eb;
+        public static final int account_settings_message_age_1_month=0x7f0801ed;
+        public static final int account_settings_message_age_1_year=0x7f0801f1;
+        public static final int account_settings_message_age_2=0x7f0801e9;
+        public static final int account_settings_message_age_21=0x7f0801ec;
+        public static final int account_settings_message_age_2_months=0x7f0801ee;
+        public static final int account_settings_message_age_3_months=0x7f0801ef;
+        public static final int account_settings_message_age_6_months=0x7f0801f0;
+        public static final int account_settings_message_age_7=0x7f0801ea;
+        public static final int account_settings_message_age_any=0x7f0801e6;
+        public static final int account_settings_message_age_label=0x7f0801e5;
+        public static final int account_settings_message_format_auto=0x7f0801ba;
+        public static final int account_settings_message_format_html=0x7f0801b9;
+        public static final int account_settings_message_format_label=0x7f0801b7;
+        public static final int account_settings_message_format_text=0x7f0801b8;
+        public static final int account_settings_message_read_receipt_label=0x7f0801bc;
+        public static final int account_settings_message_read_receipt_summary=0x7f0801bd;
+        public static final int account_settings_name_label=0x7f080225;
+        public static final int account_settings_notification_opens_unread_label=0x7f0801a8;
+        public static final int account_settings_notification_opens_unread_summary=0x7f0801a9;
+        public static final int account_settings_notification_unread_count_label=0x7f0803a4;
+        public static final int account_settings_notification_unread_count_summary=0x7f0803a5;
+        public static final int account_settings_notify_label=0x7f08019b;
+        public static final int account_settings_notify_self_label=0x7f0801a6;
+        public static final int account_settings_notify_self_summary=0x7f0801a7;
+        public static final int account_settings_notify_summary=0x7f0801a4;
+        public static final int account_settings_notify_sync_label=0x7f0801a2;
+        public static final int account_settings_notify_sync_summary=0x7f0801a5;
+        public static final int account_settings_outgoing_label=0x7f080222;
+        public static final int account_settings_outgoing_summary=0x7f080223;
+        public static final int account_settings_push_advanced_title=0x7f080197;
+        public static final int account_settings_quote_prefix_label=0x7f0801c5;
+        public static final int account_settings_quote_style_header=0x7f0801c0;
+        public static final int account_settings_quote_style_label=0x7f0801be;
+        public static final int account_settings_quote_style_prefix=0x7f0801bf;
+        public static final int account_settings_reading_mail=0x7f0801c2;
+        public static final int account_settings_remote_search_enabled=0x7f080346;
+        public static final int account_settings_remote_search_enabled_summary=0x7f080347;
+        public static final int account_settings_remote_search_full_text=0x7f08033f;
+        public static final int account_settings_remote_search_full_text_summary=0x7f080340;
+        public static final int account_settings_remote_search_num_label=0x7f08033d;
+        public static final int account_settings_remote_search_num_results_entries_10=0x7f080336;
+        public static final int account_settings_remote_search_num_results_entries_100=0x7f080339;
+        public static final int account_settings_remote_search_num_results_entries_1000=0x7f08033c;
+        public static final int account_settings_remote_search_num_results_entries_25=0x7f080337;
+        public static final int account_settings_remote_search_num_results_entries_250=0x7f08033a;
+        public static final int account_settings_remote_search_num_results_entries_50=0x7f080338;
+        public static final int account_settings_remote_search_num_results_entries_500=0x7f08033b;
+        public static final int account_settings_remote_search_num_results_entries_all=0x7f080335;
+        public static final int account_settings_remote_search_num_summary=0x7f08033e;
+        public static final int account_settings_reply_after_quote_label=0x7f0801b3;
+        public static final int account_settings_reply_after_quote_summary=0x7f0801b4;
+        public static final int account_settings_ringtone=0x7f080231;
+        public static final int account_settings_search=0x7f080345;
+        public static final int account_settings_searchable_all=0x7f0802b7;
+        public static final int account_settings_searchable_displayable=0x7f0802b8;
+        public static final int account_settings_searchable_label=0x7f0802b6;
+        public static final int account_settings_searchable_none=0x7f0802b9;
+        public static final int account_settings_show_pictures_always=0x7f0801af;
+        public static final int account_settings_show_pictures_label=0x7f0801ac;
+        public static final int account_settings_show_pictures_never=0x7f0801ad;
+        public static final int account_settings_show_pictures_only_from_contacts=0x7f0801ae;
+        public static final int account_settings_signature__location_after_quoted_text=0x7f08027b;
+        public static final int account_settings_signature__location_before_quoted_text=0x7f08027a;
+        public static final int account_settings_signature__location_label=0x7f080279;
+        public static final int account_settings_signature_label=0x7f08024e;
+        public static final int account_settings_signature_use_label=0x7f08024d;
+        public static final int account_settings_storage_title=0x7f0801cf;
+        public static final int account_settings_strip_signature_label=0x7f0801b5;
+        public static final int account_settings_strip_signature_summary=0x7f0801b6;
+        public static final int account_settings_sync=0x7f0801c3;
+        public static final int account_settings_sync_remote_deletetions_label=0x7f080208;
+        public static final int account_settings_sync_remote_deletetions_summary=0x7f080209;
+        public static final int account_settings_title_fmt=0x7f080198;
+        public static final int account_settings_vibrate_enable=0x7f080227;
+        public static final int account_settings_vibrate_pattern_1=0x7f08022b;
+        public static final int account_settings_vibrate_pattern_2=0x7f08022c;
+        public static final int account_settings_vibrate_pattern_3=0x7f08022d;
+        public static final int account_settings_vibrate_pattern_4=0x7f08022e;
+        public static final int account_settings_vibrate_pattern_5=0x7f08022f;
+        public static final int account_settings_vibrate_pattern_default=0x7f08022a;
+        public static final int account_settings_vibrate_pattern_label=0x7f080229;
+        public static final int account_settings_vibrate_summary=0x7f080228;
+        public static final int account_settings_vibrate_times=0x7f080230;
+        public static final int account_setup_account_type_imap_action=0x7f080127;
+        public static final int account_setup_account_type_instructions=0x7f080125;
+        public static final int account_setup_account_type_pop_action=0x7f080126;
+        public static final int account_setup_account_type_title=0x7f080124;
+        public static final int account_setup_account_type_webdav_action=0x7f080128;
+        public static final int account_setup_auth_type_encrypted_password=0x7f08012b;
+        public static final int account_setup_auth_type_insecure_password=0x7f08012a;
+        public static final int account_setup_auth_type_normal_password=0x7f080129;
+        public static final int account_setup_auth_type_tls_client_certificate=0x7f08012c;
+        public static final int account_setup_auto_expand_folder=0x7f080153;
+        public static final int account_setup_bad_uri=0x7f080163;
+        /**  === Client certificates specific ================================================================== 
+         */
+        public static final int account_setup_basics_client_certificate=0x7f080375;
+        public static final int account_setup_basics_email_hint=0x7f080116;
+        public static final int account_setup_basics_manual_setup_action=0x7f080119;
+        public static final int account_setup_basics_password_hint=0x7f080117;
+        public static final int account_setup_basics_show_password=0x7f080118;
+        public static final int account_setup_basics_title=0x7f080115;
+        public static final int account_setup_check_settings_authenticate=0x7f08011e;
+        public static final int account_setup_check_settings_canceling_msg=0x7f080120;
+        public static final int account_setup_check_settings_check_incoming_msg=0x7f08011c;
+        public static final int account_setup_check_settings_check_outgoing_msg=0x7f08011d;
+        public static final int account_setup_check_settings_fetch=0x7f08011f;
+        public static final int account_setup_check_settings_retr_info_msg=0x7f08011b;
+        public static final int account_setup_check_settings_title=0x7f08011a;
+        public static final int account_setup_expunge_policy_immediately=0x7f080148;
+        public static final int account_setup_expunge_policy_label=0x7f080147;
+        public static final int account_setup_expunge_policy_manual=0x7f08014a;
+        public static final int account_setup_expunge_policy_on_poll=0x7f080149;
+        public static final int account_setup_failed_dlg_auth_message_fmt=0x7f080192;
+        public static final int account_setup_failed_dlg_certificate_message_fmt=0x7f080193;
+        public static final int account_setup_failed_dlg_continue_action=0x7f080196;
+        public static final int account_setup_failed_dlg_edit_details_action=0x7f080195;
+        public static final int account_setup_failed_dlg_invalid_certificate_accept=0x7f08026f;
+        public static final int account_setup_failed_dlg_invalid_certificate_reject=0x7f080270;
+        public static final int account_setup_failed_dlg_invalid_certificate_title=0x7f08026e;
+        public static final int account_setup_failed_dlg_server_message_fmt=0x7f080194;
+        public static final int account_setup_failed_dlg_title=0x7f080191;
+        public static final int account_setup_incoming_auth_type_label=0x7f080136;
+        public static final int account_setup_incoming_autodetect_namespace_label=0x7f08014b;
+        public static final int account_setup_incoming_client_certificate_label=0x7f080130;
+        public static final int account_setup_incoming_compression_label=0x7f08013f;
+        public static final int account_setup_incoming_delete_policy_delete_label=0x7f08013d;
+        public static final int account_setup_incoming_delete_policy_label=0x7f08013b;
+        public static final int account_setup_incoming_delete_policy_markread_label=0x7f08013e;
+        public static final int account_setup_incoming_delete_policy_never_label=0x7f08013c;
+        public static final int account_setup_incoming_imap_path_prefix_label=0x7f08014c;
+        public static final int account_setup_incoming_imap_server_label=0x7f080132;
+        public static final int account_setup_incoming_invalid_setting_combo_notice=0x7f08013a;
+        public static final int account_setup_incoming_mobile_label=0x7f080140;
+        public static final int account_setup_incoming_other_label=0x7f080142;
         public static final int account_setup_incoming_password_label=0x7f08012f;
-        public static final int account_setup_incoming_pop_server_label=0x7f080130;
-        public static final int account_setup_incoming_port_label=0x7f080133;
-        public static final int account_setup_incoming_security_label=0x7f080134;
-        public static final int account_setup_incoming_security_none_label=0x7f080136;
-        public static final int account_setup_incoming_security_ssl_label=0x7f080137;
-        public static final int account_setup_incoming_security_tls_label=0x7f080138;
-        public static final int account_setup_incoming_subscribed_folders_only_label=0x7f080150;
+        public static final int account_setup_incoming_pop_server_label=0x7f080131;
+        public static final int account_setup_incoming_port_label=0x7f080134;
+        public static final int account_setup_incoming_security_label=0x7f080135;
+        public static final int account_setup_incoming_security_none_label=0x7f080137;
+        public static final int account_setup_incoming_security_ssl_label=0x7f080138;
+        public static final int account_setup_incoming_security_tls_label=0x7f080139;
+        public static final int account_setup_incoming_subscribed_folders_only_label=0x7f080152;
         public static final int account_setup_incoming_title=0x7f08012d;
         public static final int account_setup_incoming_username_label=0x7f08012e;
-        public static final int account_setup_incoming_webdav_auth_path_hint=0x7f080155;
-        public static final int account_setup_incoming_webdav_auth_path_label=0x7f080154;
-        public static final int account_setup_incoming_webdav_mailbox_path_hint=0x7f080157;
-        public static final int account_setup_incoming_webdav_mailbox_path_label=0x7f080156;
-        public static final int account_setup_incoming_webdav_path_prefix_hint=0x7f080153;
-        public static final int account_setup_incoming_webdav_path_prefix_label=0x7f080152;
-        public static final int account_setup_incoming_webdav_server_label=0x7f080132;
-        public static final int account_setup_incoming_wifi_label=0x7f08013f;
-        public static final int account_setup_names_account_name_label=0x7f080123;
-        public static final int account_setup_names_title=0x7f080122;
-        public static final int account_setup_names_user_name_label=0x7f080124;
-        public static final int account_setup_options_enable_push_label=0x7f080173;
-        public static final int account_setup_options_enable_push_summary=0x7f080174;
-        public static final int account_setup_options_mail_check_frequency_10min=0x7f080169;
-        public static final int account_setup_options_mail_check_frequency_12hour=0x7f080170;
-        public static final int account_setup_options_mail_check_frequency_15min=0x7f08016a;
-        public static final int account_setup_options_mail_check_frequency_1hour=0x7f08016c;
-        public static final int account_setup_options_mail_check_frequency_1min=0x7f080167;
-        public static final int account_setup_options_mail_check_frequency_24hour=0x7f080171;
-        public static final int account_setup_options_mail_check_frequency_2hour=0x7f08016d;
-        public static final int account_setup_options_mail_check_frequency_30min=0x7f08016b;
-        public static final int account_setup_options_mail_check_frequency_3hour=0x7f08016e;
-        public static final int account_setup_options_mail_check_frequency_5min=0x7f080168;
-        public static final int account_setup_options_mail_check_frequency_6hour=0x7f08016f;
-        public static final int account_setup_options_mail_check_frequency_label=0x7f080165;
-        public static final int account_setup_options_mail_check_frequency_never=0x7f080166;
-        public static final int account_setup_options_mail_display_count_10=0x7f080182;
-        public static final int account_setup_options_mail_display_count_100=0x7f080185;
-        public static final int account_setup_options_mail_display_count_1000=0x7f080188;
-        public static final int account_setup_options_mail_display_count_10000=0x7f08018b;
-        public static final int account_setup_options_mail_display_count_25=0x7f080183;
-        public static final int account_setup_options_mail_display_count_250=0x7f080186;
-        public static final int account_setup_options_mail_display_count_2500=0x7f080189;
-        public static final int account_setup_options_mail_display_count_50=0x7f080184;
-        public static final int account_setup_options_mail_display_count_500=0x7f080187;
-        public static final int account_setup_options_mail_display_count_5000=0x7f08018a;
-        public static final int account_setup_options_mail_display_count_all=0x7f08018c;
-        public static final int account_setup_options_mail_display_count_label=0x7f080181;
-        public static final int account_setup_options_notify_label=0x7f08017f;
-        public static final int account_setup_options_notify_sync_label=0x7f080180;
-        public static final int account_setup_options_title=0x7f080161;
-        public static final int account_setup_outgoing_authentication_label=0x7f08015f;
-        public static final int account_setup_outgoing_password_label=0x7f08015e;
-        public static final int account_setup_outgoing_port_label=0x7f08015a;
-        public static final int account_setup_outgoing_require_login_label=0x7f08015c;
-        public static final int account_setup_outgoing_security_label=0x7f08015b;
-        public static final int account_setup_outgoing_smtp_server_label=0x7f080159;
-        public static final int account_setup_outgoing_title=0x7f080158;
-        public static final int account_setup_outgoing_username_label=0x7f08015d;
-        public static final int account_setup_push_limit_10=0x7f08028f;
-        public static final int account_setup_push_limit_100=0x7f080292;
-        public static final int account_setup_push_limit_1000=0x7f080295;
-        public static final int account_setup_push_limit_25=0x7f080290;
-        public static final int account_setup_push_limit_250=0x7f080293;
-        public static final int account_setup_push_limit_50=0x7f080291;
-        public static final int account_setup_push_limit_500=0x7f080294;
-        public static final int account_setup_push_limit_label=0x7f08028e;
-        public static final int account_size_changed=0x7f080098;
+        public static final int account_setup_incoming_webdav_auth_path_hint=0x7f080157;
+        public static final int account_setup_incoming_webdav_auth_path_label=0x7f080156;
+        public static final int account_setup_incoming_webdav_mailbox_path_hint=0x7f080159;
+        public static final int account_setup_incoming_webdav_mailbox_path_label=0x7f080158;
+        public static final int account_setup_incoming_webdav_path_prefix_hint=0x7f080155;
+        public static final int account_setup_incoming_webdav_path_prefix_label=0x7f080154;
+        public static final int account_setup_incoming_webdav_server_label=0x7f080133;
+        public static final int account_setup_incoming_wifi_label=0x7f080141;
+        public static final int account_setup_names_account_name_label=0x7f080122;
+        public static final int account_setup_names_title=0x7f080121;
+        public static final int account_setup_names_user_name_label=0x7f080123;
+        public static final int account_setup_options_enable_push_label=0x7f080176;
+        public static final int account_setup_options_enable_push_summary=0x7f080177;
+        public static final int account_setup_options_mail_check_frequency_10min=0x7f08016c;
+        public static final int account_setup_options_mail_check_frequency_12hour=0x7f080173;
+        public static final int account_setup_options_mail_check_frequency_15min=0x7f08016d;
+        public static final int account_setup_options_mail_check_frequency_1hour=0x7f08016f;
+        public static final int account_setup_options_mail_check_frequency_1min=0x7f08016a;
+        public static final int account_setup_options_mail_check_frequency_24hour=0x7f080174;
+        public static final int account_setup_options_mail_check_frequency_2hour=0x7f080170;
+        public static final int account_setup_options_mail_check_frequency_30min=0x7f08016e;
+        public static final int account_setup_options_mail_check_frequency_3hour=0x7f080171;
+        public static final int account_setup_options_mail_check_frequency_5min=0x7f08016b;
+        public static final int account_setup_options_mail_check_frequency_6hour=0x7f080172;
+        public static final int account_setup_options_mail_check_frequency_label=0x7f080168;
+        public static final int account_setup_options_mail_check_frequency_never=0x7f080169;
+        public static final int account_setup_options_mail_display_count_10=0x7f080185;
+        public static final int account_setup_options_mail_display_count_100=0x7f080188;
+        public static final int account_setup_options_mail_display_count_1000=0x7f08018b;
+        public static final int account_setup_options_mail_display_count_10000=0x7f08018e;
+        public static final int account_setup_options_mail_display_count_25=0x7f080186;
+        public static final int account_setup_options_mail_display_count_250=0x7f080189;
+        public static final int account_setup_options_mail_display_count_2500=0x7f08018c;
+        public static final int account_setup_options_mail_display_count_50=0x7f080187;
+        public static final int account_setup_options_mail_display_count_500=0x7f08018a;
+        public static final int account_setup_options_mail_display_count_5000=0x7f08018d;
+        public static final int account_setup_options_mail_display_count_all=0x7f08018f;
+        public static final int account_setup_options_mail_display_count_label=0x7f080184;
+        public static final int account_setup_options_notify_label=0x7f080182;
+        public static final int account_setup_options_notify_sync_label=0x7f080183;
+        public static final int account_setup_options_title=0x7f080164;
+        public static final int account_setup_outgoing_authentication_label=0x7f080161;
+        public static final int account_setup_outgoing_invalid_setting_combo_notice=0x7f080162;
+        public static final int account_setup_outgoing_password_label=0x7f080160;
+        public static final int account_setup_outgoing_port_label=0x7f08015c;
+        public static final int account_setup_outgoing_require_login_label=0x7f08015e;
+        public static final int account_setup_outgoing_security_label=0x7f08015d;
+        public static final int account_setup_outgoing_smtp_server_label=0x7f08015b;
+        public static final int account_setup_outgoing_title=0x7f08015a;
+        public static final int account_setup_outgoing_username_label=0x7f08015f;
+        public static final int account_setup_push_limit_10=0x7f080297;
+        public static final int account_setup_push_limit_100=0x7f08029a;
+        public static final int account_setup_push_limit_1000=0x7f08029d;
+        public static final int account_setup_push_limit_25=0x7f080298;
+        public static final int account_setup_push_limit_250=0x7f08029b;
+        public static final int account_setup_push_limit_50=0x7f080299;
+        public static final int account_setup_push_limit_500=0x7f08029c;
+        public static final int account_setup_push_limit_label=0x7f080296;
+        public static final int account_size_changed=0x7f080096;
         /** NEW:
   <plurals name="settings_import_accounts">
     <item quantity="one">1 account</item>
@@ -2805,9 +2855,9 @@ NEW:
   </plurals>
 
          */
-        public static final int account_unavailable=0x7f080312;
-        public static final int accountlist_preferences=0x7f080279;
-        public static final int accounts_context_menu_title=0x7f08008b;
+        public static final int account_unavailable=0x7f080316;
+        public static final int accountlist_preferences=0x7f080285;
+        public static final int accounts_context_menu_title=0x7f080089;
         public static final int accounts_title=0x7f08003e;
         /** Welcome message
 Welcome message
@@ -2815,19 +2865,19 @@ Welcome message
 Welcome message
          */
         public static final int accounts_welcome=0x7f08002b;
-        public static final int action_remote_search=0x7f080344;
-        public static final int action_settings=0x7f080371;
+        public static final int action_remote_search=0x7f080348;
+        public static final int action_settings=0x7f08037c;
         public static final int actionbar_selected=0x7f08004e;
-        public static final int activate_account_action=0x7f080311;
+        public static final int activate_account_action=0x7f080315;
         public static final int add_account_action=0x7f080069;
         public static final int add_attachment_action=0x7f080083;
-        public static final int add_attachment_action_image=0x7f080084;
-        public static final int add_attachment_action_video=0x7f080085;
+        public static final int add_attachment_action_image=0x7f0803a2;
+        public static final int add_attachment_action_video=0x7f0803a3;
         public static final int add_cc_bcc_action=0x7f08007f;
-        public static final int additional_options_title=0x7f08037e;
+        public static final int additional_options_title=0x7f080389;
         public static final int advanced=0x7f080040;
-        public static final int animations_summary=0x7f080297;
-        public static final int animations_title=0x7f080296;
+        public static final int animations_summary=0x7f08029f;
+        public static final int animations_title=0x7f08029e;
         /**  Used in the about dialog 
 Used in the about dialog
 Used in the about dialog
@@ -2974,35 +3024,38 @@ Used in AndroidManifest.xml
 This should make it easier for forks to change the branding
 Used in AndroidManifest.xml
          */
-        public static final int app_name=0x7f080370;
+        public static final int app_name=0x7f08037b;
         public static final int app_revision_fmt=0x7f080034;
         public static final int app_revision_url=0x7f08001e;
         public static final int app_webpage_url=0x7f08001f;
-        public static final int apply=0x7f080390;
+        public static final int apply=0x7f08039b;
         public static final int archive_action=0x7f08005a;
-        public static final int archive_folder_label=0x7f08014e;
-        public static final int arrow_down=0x7f080384;
-        public static final int arrow_right=0x7f080383;
-        public static final int attachment_encryption_unsupported=0x7f0802e1;
-        public static final int attachment_save_desc=0x7f080315;
-        public static final int attachment_save_title=0x7f080314;
-        public static final int attention=0x7f08037b;
+        public static final int archive_folder_label=0x7f080150;
+        public static final int arrow_down=0x7f08038f;
+        public static final int arrow_right=0x7f08038e;
+        public static final int attachment_encryption_unsupported=0x7f0802e5;
+        public static final int attachment_save_desc=0x7f080319;
+        public static final int attachment_save_title=0x7f080318;
+        public static final int attention=0x7f080386;
+        public static final int auth_external_error=0x7f080367;
         public static final int back_action=0x7f080061;
-        public static final int background_ops_always=0x7f080289;
-        public static final int background_ops_auto_sync=0x7f08028b;
-        public static final int background_ops_auto_sync_only=0x7f08028c;
-        public static final int background_ops_enabled=0x7f08028a;
-        public static final int background_ops_label=0x7f080287;
-        public static final int background_ops_never=0x7f080288;
-        public static final int batch=0x7f080389;
-        public static final int batch_select_all=0x7f08028d;
-        /**  Used in AndroidManifest.xml 
+        public static final int background_ops_always=0x7f080293;
+        public static final int background_ops_auto_sync=0x7f0803a9;
+        public static final int background_ops_auto_sync_only=0x7f080294;
+        public static final int background_ops_enabled=0x7f0803a8;
+        public static final int background_ops_label=0x7f080291;
+        public static final int background_ops_never=0x7f080292;
+        public static final int batch=0x7f080394;
+        public static final int batch_select_all=0x7f080295;
+        /**  === App-specific strings ============================================================= 
+ This should make it easier for forks to change the branding 
+ Used in AndroidManifest.xml 
          */
         public static final int beta_app_name=0x7f080022;
-        public static final int btn_crypto_sign=0x7f0802da;
-        public static final int btn_decrypt=0x7f0802dc;
-        public static final int btn_encrypt=0x7f0802db;
-        public static final int btn_verify=0x7f0802dd;
+        public static final int btn_crypto_sign=0x7f0802de;
+        public static final int btn_decrypt=0x7f0802e0;
+        public static final int btn_encrypt=0x7f0802df;
+        public static final int btn_verify=0x7f0802e1;
         public static final int cancel_action=0x7f080052;
         public static final int changelog_full_title=0x7f080019;
         public static final int changelog_ok_button=0x7f08001b;
@@ -3011,45 +3064,50 @@ Used in AndroidManifest.xml
         public static final int changelog_version_format=0x7f08001d;
         public static final int check_mail_action=0x7f080065;
         public static final int choose_folder_title=0x7f080046;
-        public static final int choose_identity_title=0x7f080244;
-        public static final int clear_action=0x7f080163;
-        public static final int clear_local_folder_action=0x7f080088;
+        public static final int choose_identity_title=0x7f080250;
+        public static final int clear_action=0x7f080166;
+        public static final int clear_local_folder_action=0x7f080086;
         public static final int clear_pending_action=0x7f080072;
-        public static final int clearing_account=0x7f08009a;
-        public static final int close=0x7f08031b;
-        public static final int color_default=0x7f080388;
+        public static final int clearing_account=0x7f080098;
+        public static final int client_certificate_advanced_options=0x7f080379;
+        public static final int client_certificate_expired=0x7f08037a;
+        public static final int client_certificate_retrieval_failure=0x7f080378;
+        public static final int client_certificate_spinner_delete=0x7f080377;
+        public static final int client_certificate_spinner_empty=0x7f080376;
+        public static final int close=0x7f08031f;
+        public static final int color_default=0x7f080393;
         /**  Default title for color picker dialog [CHAR LIMIT=30] 
          */
-        public static final int color_picker_default_title=0x7f080394;
+        public static final int color_picker_default_title=0x7f08039f;
         /**  Content description for a color square. 
          */
-        public static final int color_swatch_description=0x7f080395;
+        public static final int color_swatch_description=0x7f0803a0;
         /**  Content description for a selected color square. 
          */
-        public static final int color_swatch_description_selected=0x7f080396;
-        public static final int compact_action=0x7f080162;
-        public static final int compacting_account=0x7f080099;
+        public static final int color_swatch_description_selected=0x7f0803a1;
+        public static final int compact_action=0x7f080165;
+        public static final int compacting_account=0x7f080097;
         public static final int compose_action=0x7f08006a;
         public static final int compose_title_compose=0x7f080042;
         public static final int compose_title_forward=0x7f080045;
         public static final int compose_title_reply=0x7f080043;
         public static final int compose_title_reply_all=0x7f080044;
-        public static final int confirm_discard_draft_message=0x7f0802e6;
-        public static final int confirm_discard_draft_message_title=0x7f0802e5;
+        public static final int confirm_discard_draft_message=0x7f0802ea;
+        public static final int confirm_discard_draft_message_title=0x7f0802e9;
         public static final int continue_action=0x7f080060;
-        public static final int continue_without_public_key_dlg_title=0x7f0802e9;
-        public static final int continue_without_public_key_instructions_fmt=0x7f0802ea;
+        public static final int continue_without_public_key_dlg_title=0x7f0802ed;
+        public static final int continue_without_public_key_instructions_fmt=0x7f0802ee;
         public static final int copy_action=0x7f080078;
-        public static final int count_search_summary=0x7f0802a1;
-        public static final int count_search_title=0x7f0802a0;
-        public static final int debug_enable_debug_logging_summary=0x7f0800b9;
-        public static final int debug_enable_debug_logging_title=0x7f0800b8;
-        public static final int debug_enable_sensitive_logging_summary=0x7f0800bb;
-        public static final int debug_enable_sensitive_logging_title=0x7f0800ba;
-        public static final int debug_logging_enabled=0x7f0802f4;
-        public static final int debug_preferences=0x7f080275;
-        public static final int debug_version_fmt=0x7f0800b7;
-        public static final int default_identity_description=0x7f080243;
+        public static final int count_search_summary=0x7f0802a9;
+        public static final int count_search_title=0x7f0802a8;
+        public static final int debug_enable_debug_logging_summary=0x7f0800b7;
+        public static final int debug_enable_debug_logging_title=0x7f0800b6;
+        public static final int debug_enable_sensitive_logging_summary=0x7f0800b9;
+        public static final int debug_enable_sensitive_logging_title=0x7f0800b8;
+        public static final int debug_logging_enabled=0x7f0802f8;
+        public static final int debug_preferences=0x7f080281;
+        public static final int debug_version_fmt=0x7f0800b5;
+        public static final int default_identity_description=0x7f08024f;
         /**  Default signature 
 Default signature
 Default signature
@@ -3079,19 +3137,19 @@ Default signature
 Default signature
          */
         public static final int default_signature=0x7f08002c;
-        public static final int default_string=0x7f08037d;
+        public static final int default_string=0x7f080388;
         public static final int delete_action=0x7f080059;
         public static final int delete_messages_desc=0x7f08003c;
         public static final int delete_messages_label=0x7f08003b;
         /**  Content Description 
          */
-        public static final int desc_list_item_icon=0x7f08038b;
+        public static final int desc_list_item_icon=0x7f080396;
         public static final int deselect_action=0x7f080056;
-        public static final int dialog_attachment_progress_title=0x7f0802f3;
+        public static final int dialog_attachment_progress_title=0x7f0802f7;
         /**  Color Picker 
          */
-        public static final int dialog_color_picker=0x7f080381;
-        public static final int dialog_confirm_delete_cancel_button=0x7f0802ef;
+        public static final int dialog_color_picker=0x7f08038c;
+        public static final int dialog_confirm_delete_cancel_button=0x7f0802f3;
         /** NEW:
   <plurals name="dialog_confirm_delete_messages">
     <item quantity="one">Do you really want to delete this message?</item>
@@ -3105,40 +3163,40 @@ NEW:
   </plurals>
 
          */
-        public static final int dialog_confirm_delete_confirm_button=0x7f0802ee;
-        public static final int dialog_confirm_delete_message=0x7f0802ed;
-        public static final int dialog_confirm_delete_title=0x7f0802ec;
-        public static final int dialog_confirm_spam_cancel_button=0x7f0802f2;
-        public static final int dialog_confirm_spam_confirm_button=0x7f0802f1;
-        public static final int dialog_confirm_spam_title=0x7f0802f0;
-        public static final int disabled=0x7f08037c;
+        public static final int dialog_confirm_delete_confirm_button=0x7f0802f2;
+        public static final int dialog_confirm_delete_message=0x7f0802f1;
+        public static final int dialog_confirm_delete_title=0x7f0802f0;
+        public static final int dialog_confirm_spam_cancel_button=0x7f0802f6;
+        public static final int dialog_confirm_spam_confirm_button=0x7f0802f5;
+        public static final int dialog_confirm_spam_title=0x7f0802f4;
+        public static final int disabled=0x7f080387;
         public static final int discard_action=0x7f080063;
-        public static final int display_preferences=0x7f080273;
+        public static final int display_preferences=0x7f08027f;
         public static final int done_action=0x7f080062;
-        public static final int drafts_folder_label=0x7f08014b;
-        public static final int drawer_close=0x7f080378;
-        public static final int drawer_open=0x7f080377;
+        public static final int drafts_folder_label=0x7f08014d;
+        public static final int drawer_close=0x7f080383;
+        public static final int drawer_open=0x7f080382;
         /**  ActionBar 
          */
-        public static final int edit=0x7f08038f;
-        public static final int edit_identity_description_hint=0x7f080238;
-        public static final int edit_identity_description_label=0x7f080237;
-        public static final int edit_identity_email_hint=0x7f08023c;
-        public static final int edit_identity_email_label=0x7f08023b;
-        public static final int edit_identity_name_hint=0x7f08023a;
-        public static final int edit_identity_name_label=0x7f080239;
-        public static final int edit_identity_reply_to_hint=0x7f08023e;
-        public static final int edit_identity_reply_to_label=0x7f08023d;
-        public static final int edit_identity_signature_hint=0x7f080240;
-        public static final int edit_identity_signature_label=0x7f08023f;
-        public static final int edit_identity_title=0x7f08022f;
-        public static final int edit_item=0x7f080372;
+        public static final int edit=0x7f08039a;
+        public static final int edit_identity_description_hint=0x7f080244;
+        public static final int edit_identity_description_label=0x7f080243;
+        public static final int edit_identity_email_hint=0x7f080248;
+        public static final int edit_identity_email_label=0x7f080247;
+        public static final int edit_identity_name_hint=0x7f080246;
+        public static final int edit_identity_name_label=0x7f080245;
+        public static final int edit_identity_reply_to_hint=0x7f08024a;
+        public static final int edit_identity_reply_to_label=0x7f080249;
+        public static final int edit_identity_signature_hint=0x7f08024c;
+        public static final int edit_identity_signature_label=0x7f08024b;
+        public static final int edit_identity_title=0x7f08023b;
+        public static final int edit_item=0x7f08037d;
         public static final int elv_item_deleted=0x7f080002;
         public static final int elv_n_items_deleted=0x7f080003;
         public static final int elv_undo=0x7f080000;
         public static final int elv_undo_all=0x7f080001;
-        public static final int empty_trash_action=0x7f080086;
-        public static final int enabled=0x7f08037a;
+        public static final int empty_trash_action=0x7f080084;
+        public static final int enabled=0x7f080385;
         /**  APG related 
 APG related
 APG related
@@ -3167,85 +3225,90 @@ APG related
 APG related
 APG related
          */
-        public static final int error_activity_not_found=0x7f0802d8;
-        public static final int error_apg_version_not_supported=0x7f0802d9;
-        public static final int error_contact_address_not_found=0x7f0800cd;
-        public static final int error_unable_to_connect=0x7f0802f7;
-        public static final int expunge_action=0x7f080087;
-        public static final int fetching_attachment_dialog_message=0x7f080362;
-        public static final int fetching_attachment_dialog_title_save=0x7f080361;
-        public static final int fetching_attachment_dialog_title_send=0x7f080360;
+        public static final int error_activity_not_found=0x7f0802dc;
+        public static final int error_apg_version_not_supported=0x7f0802dd;
+        public static final int error_contact_address_not_found=0x7f0800cb;
+        public static final int error_unable_to_connect=0x7f0802fb;
+        public static final int expunge_action=0x7f080085;
+        public static final int fetching_attachment_dialog_message=0x7f080366;
+        public static final int fetching_attachment_dialog_title_save=0x7f080365;
+        public static final int fetching_attachment_dialog_title_send=0x7f080364;
         public static final int filter_folders_action=0x7f080068;
         public static final int flag_action=0x7f080076;
-        public static final int flagged_modifier=0x7f0802a5;
-        public static final int folder_list_display_mode_all=0x7f080269;
-        public static final int folder_list_display_mode_first_and_second_class=0x7f08026b;
-        public static final int folder_list_display_mode_first_class=0x7f08026a;
-        public static final int folder_list_display_mode_label=0x7f080268;
-        public static final int folder_list_display_mode_not_second_class=0x7f08026c;
-        public static final int folder_list_filter_hint=0x7f080267;
+        public static final int flagged_modifier=0x7f0802ad;
+        public static final int folder_list_display_mode_all=0x7f080275;
+        public static final int folder_list_display_mode_first_and_second_class=0x7f080277;
+        public static final int folder_list_display_mode_first_class=0x7f080276;
+        public static final int folder_list_display_mode_label=0x7f080274;
+        public static final int folder_list_display_mode_not_second_class=0x7f080278;
+        public static final int folder_list_filter_hint=0x7f080273;
         /** NEW: Note: only partly translated
          */
-        public static final int folder_list_help_key=0x7f080266;
+        public static final int folder_list_help_key=0x7f080272;
         public static final int folder_progress=0x7f08004b;
         public static final int folder_settings_action=0x7f08006f;
-        public static final int folder_settings_folder_display_mode_first_class=0x7f080208;
-        public static final int folder_settings_folder_display_mode_label=0x7f080206;
-        public static final int folder_settings_folder_display_mode_normal=0x7f080207;
-        public static final int folder_settings_folder_display_mode_second_class=0x7f080209;
-        public static final int folder_settings_folder_push_mode_first_class=0x7f080211;
-        public static final int folder_settings_folder_push_mode_inherited=0x7f080213;
-        public static final int folder_settings_folder_push_mode_label=0x7f08020f;
-        public static final int folder_settings_folder_push_mode_normal=0x7f080210;
-        public static final int folder_settings_folder_push_mode_second_class=0x7f080212;
-        public static final int folder_settings_folder_sync_mode_first_class=0x7f08020c;
-        public static final int folder_settings_folder_sync_mode_inherited=0x7f08020e;
-        public static final int folder_settings_folder_sync_mode_label=0x7f08020a;
-        public static final int folder_settings_folder_sync_mode_normal=0x7f08020b;
-        public static final int folder_settings_folder_sync_mode_second_class=0x7f08020d;
-        public static final int folder_settings_in_top_group_label=0x7f080204;
-        public static final int folder_settings_in_top_group_summary=0x7f080205;
-        public static final int folder_settings_include_in_integrated_inbox_label=0x7f0802ac;
-        public static final int folder_settings_include_in_integrated_inbox_summary=0x7f0802ad;
-        public static final int folder_settings_title=0x7f080203;
-        public static final int folderlist_preferences=0x7f08027c;
+        public static final int folder_settings_folder_display_mode_first_class=0x7f08020f;
+        public static final int folder_settings_folder_display_mode_label=0x7f08020d;
+        public static final int folder_settings_folder_display_mode_normal=0x7f08020e;
+        public static final int folder_settings_folder_display_mode_second_class=0x7f080210;
+        public static final int folder_settings_folder_notify_mode_first_class=0x7f08021d;
+        public static final int folder_settings_folder_notify_mode_inherited=0x7f08021f;
+        public static final int folder_settings_folder_notify_mode_label=0x7f08021b;
+        public static final int folder_settings_folder_notify_mode_normal=0x7f08021c;
+        public static final int folder_settings_folder_notify_mode_second_class=0x7f08021e;
+        public static final int folder_settings_folder_push_mode_first_class=0x7f080218;
+        public static final int folder_settings_folder_push_mode_inherited=0x7f08021a;
+        public static final int folder_settings_folder_push_mode_label=0x7f080216;
+        public static final int folder_settings_folder_push_mode_normal=0x7f080217;
+        public static final int folder_settings_folder_push_mode_second_class=0x7f080219;
+        public static final int folder_settings_folder_sync_mode_first_class=0x7f080213;
+        public static final int folder_settings_folder_sync_mode_inherited=0x7f080215;
+        public static final int folder_settings_folder_sync_mode_label=0x7f080211;
+        public static final int folder_settings_folder_sync_mode_normal=0x7f080212;
+        public static final int folder_settings_folder_sync_mode_second_class=0x7f080214;
+        public static final int folder_settings_in_top_group_label=0x7f08020b;
+        public static final int folder_settings_in_top_group_summary=0x7f08020c;
+        public static final int folder_settings_include_in_integrated_inbox_label=0x7f0802b4;
+        public static final int folder_settings_include_in_integrated_inbox_summary=0x7f0802b5;
+        public static final int folder_settings_title=0x7f08020a;
+        public static final int folderlist_preferences=0x7f080288;
         public static final int folders_title=0x7f08003f;
-        public static final int font_size_account_description=0x7f0802b6;
-        public static final int font_size_account_list=0x7f0802b4;
-        public static final int font_size_account_name=0x7f0802b5;
-        public static final int font_size_default=0x7f0802cb;
-        public static final int font_size_folder_list=0x7f0802b7;
-        public static final int font_size_folder_name=0x7f0802b8;
-        public static final int font_size_folder_status=0x7f0802b9;
-        public static final int font_size_large=0x7f0802d1;
-        public static final int font_size_larger=0x7f0802d2;
-        public static final int font_size_medium=0x7f0802d0;
-        public static final int font_size_message_compose=0x7f0802c9;
-        public static final int font_size_message_compose_input=0x7f0802ca;
-        public static final int font_size_message_list=0x7f0802ba;
-        public static final int font_size_message_list_date=0x7f0802bd;
-        public static final int font_size_message_list_preview=0x7f0802be;
-        public static final int font_size_message_list_sender=0x7f0802bc;
-        public static final int font_size_message_list_subject=0x7f0802bb;
-        public static final int font_size_message_view=0x7f0802bf;
-        public static final int font_size_message_view_additional_headers=0x7f0802c3;
-        public static final int font_size_message_view_cc=0x7f0802c2;
-        public static final int font_size_message_view_content=0x7f0802c6;
-        public static final int font_size_message_view_content_dialog_title=0x7f0802c8;
-        public static final int font_size_message_view_content_summary=0x7f0802c7;
-        public static final int font_size_message_view_date=0x7f0802c5;
-        public static final int font_size_message_view_sender=0x7f0802c0;
-        public static final int font_size_message_view_subject=0x7f0802c4;
-        public static final int font_size_message_view_to=0x7f0802c1;
-        public static final int font_size_settings_description=0x7f0802b3;
-        public static final int font_size_settings_title=0x7f0802b2;
-        public static final int font_size_small=0x7f0802cf;
-        public static final int font_size_smaller=0x7f0802ce;
-        public static final int font_size_tiniest=0x7f0802cc;
-        public static final int font_size_tiny=0x7f0802cd;
+        public static final int font_size_account_description=0x7f0802be;
+        public static final int font_size_account_list=0x7f0802bc;
+        public static final int font_size_account_name=0x7f0802bd;
+        public static final int font_size_default=0x7f0802d3;
+        public static final int font_size_folder_list=0x7f0802bf;
+        public static final int font_size_folder_name=0x7f0802c0;
+        public static final int font_size_folder_status=0x7f0802c1;
+        public static final int font_size_large=0x7f0802d9;
+        public static final int font_size_larger=0x7f0802da;
+        public static final int font_size_medium=0x7f0802d8;
+        public static final int font_size_message_compose=0x7f0802d1;
+        public static final int font_size_message_compose_input=0x7f0802d2;
+        public static final int font_size_message_list=0x7f0802c2;
+        public static final int font_size_message_list_date=0x7f0802c5;
+        public static final int font_size_message_list_preview=0x7f0802c6;
+        public static final int font_size_message_list_sender=0x7f0802c4;
+        public static final int font_size_message_list_subject=0x7f0802c3;
+        public static final int font_size_message_view=0x7f0802c7;
+        public static final int font_size_message_view_additional_headers=0x7f0802cb;
+        public static final int font_size_message_view_cc=0x7f0802ca;
+        public static final int font_size_message_view_content=0x7f0802ce;
+        public static final int font_size_message_view_content_dialog_title=0x7f0802d0;
+        public static final int font_size_message_view_content_summary=0x7f0802cf;
+        public static final int font_size_message_view_date=0x7f0802cd;
+        public static final int font_size_message_view_sender=0x7f0802c8;
+        public static final int font_size_message_view_subject=0x7f0802cc;
+        public static final int font_size_message_view_to=0x7f0802c9;
+        public static final int font_size_settings_description=0x7f0802bb;
+        public static final int font_size_settings_title=0x7f0802ba;
+        public static final int font_size_small=0x7f0802d7;
+        public static final int font_size_smaller=0x7f0802d6;
+        public static final int font_size_tiniest=0x7f0802d4;
+        public static final int font_size_tiny=0x7f0802d5;
         public static final int forward_action=0x7f08005c;
-        public static final int from_same_sender=0x7f0800e7;
-        public static final int general_no_sender=0x7f08008d;
+        public static final int from_same_sender=0x7f0800e5;
+        public static final int general_no_sender=0x7f08008b;
         /**  Shown in place of the subject when a message has no subject. Showing this in parentheses is customary. 
 Shown in place of the subject when a message has no subject. Showing this in parentheses is customary.
 Shown in place of the subject when a message has no subject. Showing this in parentheses is customary.
@@ -3274,86 +3337,86 @@ Shown in place of the subject when a message has no subject. Showing this in par
 Shown in place of the subject when a message has no subject. Showing this in parentheses is customary.
 Shown in place of the subject when a message has no subject. Showing this in parentheses is customary.
          */
-        public static final int general_no_subject=0x7f08008c;
-        public static final int gestures_summary=0x7f080299;
-        public static final int gestures_title=0x7f080298;
-        public static final int global_preferences=0x7f080274;
+        public static final int general_no_subject=0x7f08008a;
+        public static final int gestures_summary=0x7f0802a1;
+        public static final int gestures_title=0x7f0802a0;
+        public static final int global_preferences=0x7f080280;
         public static final int global_settings_action=0x7f080070;
-        public static final int global_settings_background_as_unread_indicator_label=0x7f080348;
-        public static final int global_settings_background_as_unread_indicator_summary=0x7f080349;
-        public static final int global_settings_checkbox_label=0x7f0800ec;
-        public static final int global_settings_checkbox_summary=0x7f0800ed;
-        public static final int global_settings_colorize_missing_contact_pictures_label=0x7f08035b;
-        public static final int global_settings_colorize_missing_contact_pictures_summary=0x7f08035c;
-        public static final int global_settings_confirm_action_delete=0x7f080104;
-        public static final int global_settings_confirm_action_delete_notif=0x7f080107;
-        public static final int global_settings_confirm_action_delete_starred=0x7f080105;
-        public static final int global_settings_confirm_action_spam=0x7f080106;
-        public static final int global_settings_confirm_actions_summary=0x7f080103;
-        public static final int global_settings_confirm_actions_title=0x7f080102;
-        public static final int global_settings_flag_label=0x7f0800ea;
-        public static final int global_settings_flag_summary=0x7f0800eb;
-        public static final int global_settings_folderlist_wrap_folder_names_label=0x7f0800f8;
-        public static final int global_settings_folderlist_wrap_folder_names_summary=0x7f0800f9;
-        public static final int global_settings_messageview_autofit_width_label=0x7f0800fc;
-        public static final int global_settings_messageview_autofit_width_summary=0x7f0800fd;
-        public static final int global_settings_messageview_fixedwidth_label=0x7f0800fa;
-        public static final int global_settings_messageview_fixedwidth_summary=0x7f0800fb;
-        public static final int global_settings_messageview_return_to_list_label=0x7f0800fe;
-        public static final int global_settings_messageview_return_to_list_summary=0x7f0800ff;
-        public static final int global_settings_messageview_show_next_label=0x7f080100;
-        public static final int global_settings_messageview_show_next_summary=0x7f080101;
-        public static final int global_settings_messageview_visible_refile_actions_summary=0x7f08035e;
-        public static final int global_settings_messageview_visible_refile_actions_title=0x7f08035d;
-        public static final int global_settings_notification_hide_subject_always=0x7f08010d;
-        public static final int global_settings_notification_hide_subject_never=0x7f08010b;
-        public static final int global_settings_notification_hide_subject_title=0x7f08010a;
-        public static final int global_settings_notification_hide_subject_when_locked=0x7f08010c;
-        public static final int global_settings_notification_quick_delete_always=0x7f080111;
-        public static final int global_settings_notification_quick_delete_description=0x7f080112;
-        public static final int global_settings_notification_quick_delete_never=0x7f08010f;
-        public static final int global_settings_notification_quick_delete_title=0x7f08010e;
-        public static final int global_settings_notification_quick_delete_when_single_msg=0x7f080110;
-        public static final int global_settings_preview_lines_label=0x7f0800ee;
-        public static final int global_settings_privacy_hide_timezone=0x7f080109;
-        public static final int global_settings_privacy_hide_useragent=0x7f080108;
-        public static final int global_settings_registered_name_color_changed=0x7f0800f7;
-        public static final int global_settings_registered_name_color_default=0x7f0800f6;
-        public static final int global_settings_registered_name_color_label=0x7f0800f5;
-        public static final int global_settings_sender_above_subject_label=0x7f0800f1;
-        public static final int global_settings_sender_above_subject_summary=0x7f0800f2;
-        public static final int global_settings_show_contact_name_label=0x7f0800f3;
-        public static final int global_settings_show_contact_name_summary=0x7f0800f4;
-        public static final int global_settings_show_contact_picture_label=0x7f080355;
-        public static final int global_settings_show_contact_picture_summary=0x7f080356;
-        public static final int global_settings_show_correspondent_names_label=0x7f0800ef;
-        public static final int global_settings_show_correspondent_names_summary=0x7f0800f0;
-        public static final int global_settings_splitview_always=0x7f080351;
-        public static final int global_settings_splitview_mode_label=0x7f080350;
-        public static final int global_settings_splitview_never=0x7f080352;
-        public static final int global_settings_splitview_when_in_landscape=0x7f080353;
-        public static final int global_settings_threaded_view_label=0x7f08034a;
-        public static final int global_settings_threaded_view_summary=0x7f08034b;
-        public static final int hello_world=0x7f080373;
-        public static final int help=0x7f080392;
-        public static final int hex=0x7f080385;
-        public static final int hex_hint=0x7f080386;
+        public static final int global_settings_background_as_unread_indicator_label=0x7f08034c;
+        public static final int global_settings_background_as_unread_indicator_summary=0x7f08034d;
+        public static final int global_settings_checkbox_label=0x7f0800ea;
+        public static final int global_settings_checkbox_summary=0x7f0800eb;
+        public static final int global_settings_colorize_missing_contact_pictures_label=0x7f08035f;
+        public static final int global_settings_colorize_missing_contact_pictures_summary=0x7f080360;
+        public static final int global_settings_confirm_action_delete=0x7f080102;
+        public static final int global_settings_confirm_action_delete_notif=0x7f080105;
+        public static final int global_settings_confirm_action_delete_starred=0x7f080103;
+        public static final int global_settings_confirm_action_spam=0x7f080104;
+        public static final int global_settings_confirm_actions_summary=0x7f080101;
+        public static final int global_settings_confirm_actions_title=0x7f080100;
+        public static final int global_settings_flag_label=0x7f0800e8;
+        public static final int global_settings_flag_summary=0x7f0800e9;
+        public static final int global_settings_folderlist_wrap_folder_names_label=0x7f0800f6;
+        public static final int global_settings_folderlist_wrap_folder_names_summary=0x7f0800f7;
+        public static final int global_settings_messageview_autofit_width_label=0x7f0800fa;
+        public static final int global_settings_messageview_autofit_width_summary=0x7f0800fb;
+        public static final int global_settings_messageview_fixedwidth_label=0x7f0800f8;
+        public static final int global_settings_messageview_fixedwidth_summary=0x7f0800f9;
+        public static final int global_settings_messageview_return_to_list_label=0x7f0800fc;
+        public static final int global_settings_messageview_return_to_list_summary=0x7f0800fd;
+        public static final int global_settings_messageview_show_next_label=0x7f0800fe;
+        public static final int global_settings_messageview_show_next_summary=0x7f0800ff;
+        public static final int global_settings_messageview_visible_refile_actions_summary=0x7f080362;
+        public static final int global_settings_messageview_visible_refile_actions_title=0x7f080361;
+        public static final int global_settings_notification_hide_subject_always=0x7f08010b;
+        public static final int global_settings_notification_hide_subject_never=0x7f080109;
+        public static final int global_settings_notification_hide_subject_title=0x7f080108;
+        public static final int global_settings_notification_hide_subject_when_locked=0x7f08010a;
+        public static final int global_settings_notification_quick_delete_always=0x7f08010f;
+        public static final int global_settings_notification_quick_delete_description=0x7f080110;
+        public static final int global_settings_notification_quick_delete_never=0x7f08010d;
+        public static final int global_settings_notification_quick_delete_title=0x7f08010c;
+        public static final int global_settings_notification_quick_delete_when_single_msg=0x7f08010e;
+        public static final int global_settings_preview_lines_label=0x7f0800ec;
+        public static final int global_settings_privacy_hide_timezone=0x7f080107;
+        public static final int global_settings_privacy_hide_useragent=0x7f080106;
+        public static final int global_settings_registered_name_color_changed=0x7f0800f5;
+        public static final int global_settings_registered_name_color_default=0x7f0800f4;
+        public static final int global_settings_registered_name_color_label=0x7f0800f3;
+        public static final int global_settings_sender_above_subject_label=0x7f0800ef;
+        public static final int global_settings_sender_above_subject_summary=0x7f0800f0;
+        public static final int global_settings_show_contact_name_label=0x7f0800f1;
+        public static final int global_settings_show_contact_name_summary=0x7f0800f2;
+        public static final int global_settings_show_contact_picture_label=0x7f080359;
+        public static final int global_settings_show_contact_picture_summary=0x7f08035a;
+        public static final int global_settings_show_correspondent_names_label=0x7f0800ed;
+        public static final int global_settings_show_correspondent_names_summary=0x7f0800ee;
+        public static final int global_settings_splitview_always=0x7f080355;
+        public static final int global_settings_splitview_mode_label=0x7f080354;
+        public static final int global_settings_splitview_never=0x7f080356;
+        public static final int global_settings_splitview_when_in_landscape=0x7f080357;
+        public static final int global_settings_threaded_view_label=0x7f08034e;
+        public static final int global_settings_threaded_view_summary=0x7f08034f;
+        public static final int hello_world=0x7f08037e;
+        public static final int help=0x7f08039d;
+        public static final int hex=0x7f080390;
+        public static final int hex_hint=0x7f080391;
         public static final int hide_headers_action=0x7f08007b;
-        public static final int hide_special_accounts_summary=0x7f0802a3;
-        public static final int hide_special_accounts_title=0x7f0802a2;
-        public static final int identity_has_no_email=0x7f080247;
-        public static final int idle_refresh_period_12min=0x7f08017a;
-        public static final int idle_refresh_period_1min=0x7f080176;
-        public static final int idle_refresh_period_24min=0x7f08017b;
-        public static final int idle_refresh_period_2min=0x7f080177;
-        public static final int idle_refresh_period_36min=0x7f08017c;
-        public static final int idle_refresh_period_3min=0x7f080178;
-        public static final int idle_refresh_period_48min=0x7f08017d;
-        public static final int idle_refresh_period_60min=0x7f08017e;
-        public static final int idle_refresh_period_6min=0x7f080179;
-        public static final int idle_refresh_period_label=0x7f080175;
-        public static final int image_saved_as=0x7f08032f;
-        public static final int image_saving_failed=0x7f080330;
+        public static final int hide_special_accounts_summary=0x7f0802ab;
+        public static final int hide_special_accounts_title=0x7f0802aa;
+        public static final int identity_has_no_email=0x7f080253;
+        public static final int idle_refresh_period_12min=0x7f08017d;
+        public static final int idle_refresh_period_1min=0x7f080179;
+        public static final int idle_refresh_period_24min=0x7f08017e;
+        public static final int idle_refresh_period_2min=0x7f08017a;
+        public static final int idle_refresh_period_36min=0x7f08017f;
+        public static final int idle_refresh_period_3min=0x7f08017b;
+        public static final int idle_refresh_period_48min=0x7f080180;
+        public static final int idle_refresh_period_60min=0x7f080181;
+        public static final int idle_refresh_period_6min=0x7f08017c;
+        public static final int idle_refresh_period_label=0x7f080178;
+        public static final int image_saved_as=0x7f080333;
+        public static final int image_saving_failed=0x7f080334;
         /**  === App Store-specific strings ======================================================= 
 === App Store-specific strings =======================================================
 === App Store-specific strings =======================================================
@@ -3381,37 +3444,37 @@ Shown in place of the subject when a message has no subject. Showing this in par
 === App Store-specific strings =======================================================
          */
         public static final int import_dialog_error_message=0x7f080031;
-        public static final int import_dialog_error_title=0x7f08031a;
-        public static final int import_export_action=0x7f0802f8;
-        public static final int individual=0x7f08038a;
+        public static final int import_dialog_error_title=0x7f08031e;
+        public static final int import_export_action=0x7f0802fc;
+        public static final int individual=0x7f080395;
         public static final int insufficient_apg_permissions=0x7f080030;
-        public static final int integrated_inbox_detail=0x7f0802aa;
-        public static final int integrated_inbox_title=0x7f0802a9;
-        public static final int interaction_preferences=0x7f080278;
-        public static final int key_id=0x7f0802df;
-        public static final int last_refresh_time_format=0x7f080357;
-        public static final int last_refresh_time_format_with_push=0x7f080358;
-        public static final int load_more_messages_fmt=0x7f080093;
-        public static final int loading_attachment=0x7f08035f;
-        public static final int local_storage_provider_external_label=0x7f080141;
-        public static final int local_storage_provider_internal_label=0x7f080142;
-        public static final int local_storage_provider_label=0x7f080144;
-        public static final int local_storage_provider_samsunggalaxy_label=0x7f080143;
-        public static final int manage_accounts_move_down_action=0x7f080317;
-        public static final int manage_accounts_move_up_action=0x7f080316;
-        public static final int manage_accounts_moving_message=0x7f080318;
-        public static final int manage_identities_context_menu_title=0x7f08022e;
-        public static final int manage_identities_edit_action=0x7f080232;
-        public static final int manage_identities_move_down_action=0x7f080234;
-        public static final int manage_identities_move_top_action=0x7f080235;
-        public static final int manage_identities_move_up_action=0x7f080233;
-        public static final int manage_identities_remove_action=0x7f080236;
-        public static final int manage_identities_title=0x7f08022d;
-        public static final int mark_all_as_read=0x7f08035a;
+        public static final int integrated_inbox_detail=0x7f0802b2;
+        public static final int integrated_inbox_title=0x7f0802b1;
+        public static final int interaction_preferences=0x7f080284;
+        public static final int key_id=0x7f0802e3;
+        public static final int last_refresh_time_format=0x7f08035b;
+        public static final int last_refresh_time_format_with_push=0x7f08035c;
+        public static final int load_more_messages_fmt=0x7f080091;
+        public static final int loading_attachment=0x7f080363;
+        public static final int local_storage_provider_external_label=0x7f080143;
+        public static final int local_storage_provider_internal_label=0x7f080144;
+        public static final int local_storage_provider_label=0x7f080146;
+        public static final int local_storage_provider_samsunggalaxy_label=0x7f080145;
+        public static final int manage_accounts_move_down_action=0x7f08031b;
+        public static final int manage_accounts_move_up_action=0x7f08031a;
+        public static final int manage_accounts_moving_message=0x7f08031c;
+        public static final int manage_identities_context_menu_title=0x7f08023a;
+        public static final int manage_identities_edit_action=0x7f08023e;
+        public static final int manage_identities_move_down_action=0x7f080240;
+        public static final int manage_identities_move_top_action=0x7f080241;
+        public static final int manage_identities_move_up_action=0x7f08023f;
+        public static final int manage_identities_remove_action=0x7f080242;
+        public static final int manage_identities_title=0x7f080239;
+        public static final int mark_all_as_read=0x7f08035e;
         public static final int mark_as_read_action=0x7f080073;
         public static final int mark_as_unread_action=0x7f08007e;
-        public static final int measure_accounts_summary=0x7f08029f;
-        public static final int measure_accounts_title=0x7f08029e;
+        public static final int measure_accounts_summary=0x7f0802a7;
+        public static final int measure_accounts_title=0x7f0802a6;
         /**  NOTE: The following message refers to strings with id account_setup_incoming_save_all_headers_label and account_setup_incoming_title 
 NOTE: The following message refers to strings with id account_setup_incoming_save_all_headers_label and account_setup_incoming_title
 NOTE: The following message refers to strings with id account_setup_incoming_save_all_headers_label and account_setup_incoming_title
@@ -3440,12 +3503,11 @@ NOTE: The following message refers to strings with id account_setup_incoming_sav
 NOTE: The following message refers to strings with id account_setup_incoming_save_all_headers_label and account_setup_incoming_title
 NOTE: The following message refers to strings with id account_setup_incoming_save_all_headers_label and account_setup_incoming_title
          */
-        public static final int message_additional_headers_not_downloaded=0x7f0800e4;
-        public static final int message_additional_headers_retrieval_failed=0x7f0800e6;
-        public static final int message_compose_attachments_skipped_toast=0x7f0800ce;
-        public static final int message_compose_bcc_hint=0x7f0800c0;
-        /**  Note: Contains references to preferences_action and misc_preferences_attachment_title 
-Note: Contains references to preferences_action and misc_preferences_attachment_title
+        public static final int message_additional_headers_not_downloaded=0x7f0800e2;
+        public static final int message_additional_headers_retrieval_failed=0x7f0800e4;
+        public static final int message_compose_attachments_skipped_toast=0x7f0800cc;
+        public static final int message_compose_bcc_hint=0x7f0800be;
+        /** Note: Contains references to preferences_action and misc_preferences_attachment_title
 Note: Contains references to preferences_action and misc_preferences_attachment_title
 Note: Contains references to preferences_action and misc_preferences_attachment_title
 Note: Contains references to preferences_action and misc_preferences_attachment_title
@@ -3472,29 +3534,28 @@ Note: Contains references to preferences_action and misc_preferences_attachment_
 Note: Contains references to preferences_action and misc_preferences_attachment_title
 Note: Contains references to preferences_action and misc_preferences_attachment_title
          */
-        public static final int message_compose_buggy_gallery=0x7f0802d3;
-        public static final int message_compose_cc_hint=0x7f0800bf;
-        public static final int message_compose_content_hint=0x7f0800c2;
-        public static final int message_compose_description_add_bcc=0x7f0800d2;
-        public static final int message_compose_description_add_cc=0x7f0800d1;
-        public static final int message_compose_description_add_to=0x7f0800d0;
-        public static final int message_compose_description_delete_quoted_text=0x7f0800d3;
-        public static final int message_compose_description_edit_quoted_text=0x7f0800d4;
-        public static final int message_compose_error_no_recipients=0x7f0800cc;
-        public static final int message_compose_quote_header_cc=0x7f0800c9;
-        public static final int message_compose_quote_header_from=0x7f0800c7;
-        public static final int message_compose_quote_header_send_date=0x7f0800c6;
-        public static final int message_compose_quote_header_separator=0x7f0800c4;
-        public static final int message_compose_quote_header_subject=0x7f0800c5;
-        public static final int message_compose_quote_header_to=0x7f0800c8;
-        public static final int message_compose_reply_header_fmt=0x7f0800ca;
-        public static final int message_compose_reply_header_fmt_with_date=0x7f0800cb;
-        public static final int message_compose_show_quoted_text_action=0x7f0800cf;
-        public static final int message_compose_signature_hint=0x7f0800c3;
-        public static final int message_compose_subject_hint=0x7f0800c1;
-        public static final int message_compose_to_hint=0x7f0800be;
-        /**  Note: Contains references to add_attachment_action_image and add_attachment_action_video 
-Note: Contains references to add_attachment_action_image and add_attachment_action_video
+        public static final int message_compose_buggy_gallery=0x7f0803aa;
+        public static final int message_compose_cc_hint=0x7f0800bd;
+        public static final int message_compose_content_hint=0x7f0800c0;
+        public static final int message_compose_description_add_bcc=0x7f0800d0;
+        public static final int message_compose_description_add_cc=0x7f0800cf;
+        public static final int message_compose_description_add_to=0x7f0800ce;
+        public static final int message_compose_description_delete_quoted_text=0x7f0800d1;
+        public static final int message_compose_description_edit_quoted_text=0x7f0800d2;
+        public static final int message_compose_error_no_recipients=0x7f0800ca;
+        public static final int message_compose_quote_header_cc=0x7f0800c7;
+        public static final int message_compose_quote_header_from=0x7f0800c5;
+        public static final int message_compose_quote_header_send_date=0x7f0800c4;
+        public static final int message_compose_quote_header_separator=0x7f0800c2;
+        public static final int message_compose_quote_header_subject=0x7f0800c3;
+        public static final int message_compose_quote_header_to=0x7f0800c6;
+        public static final int message_compose_reply_header_fmt=0x7f0800c8;
+        public static final int message_compose_reply_header_fmt_with_date=0x7f0800c9;
+        public static final int message_compose_show_quoted_text_action=0x7f0800cd;
+        public static final int message_compose_signature_hint=0x7f0800c1;
+        public static final int message_compose_subject_hint=0x7f0800bf;
+        public static final int message_compose_to_hint=0x7f0800bc;
+        /** Note: Contains references to add_attachment_action_image and add_attachment_action_video
 Note: Contains references to add_attachment_action_image and add_attachment_action_video
 Note: Contains references to add_attachment_action_image and add_attachment_action_video
 Note: Contains references to add_attachment_action_image and add_attachment_action_video
@@ -3521,65 +3582,65 @@ Note: Contains references to add_attachment_action_image and add_attachment_acti
 Note: Contains references to add_attachment_action_image and add_attachment_action_video
 Note: Contains references to add_attachment_action_image and add_attachment_action_video
          */
-        public static final int message_compose_use_workaround=0x7f0802d4;
-        public static final int message_discarded_toast=0x7f0800e8;
+        public static final int message_compose_use_workaround=0x7f0803ab;
+        public static final int message_discarded_toast=0x7f0800e6;
         public static final int message_header_mua=0x7f080020;
         /** NEW: V, Z untranslated
 NEW: V, Z untranslated
          */
-        public static final int message_list_help_key=0x7f080265;
-        public static final int message_list_load_more_messages_action=0x7f0800bc;
-        public static final int message_list_loading=0x7f08034f;
+        public static final int message_list_help_key=0x7f080271;
+        public static final int message_list_load_more_messages_action=0x7f0800ba;
+        public static final int message_list_loading=0x7f080353;
         public static final int message_list_title=0x7f080041;
-        public static final int message_no_additional_headers_available=0x7f0800e5;
-        public static final int message_saved_toast=0x7f0800e9;
-        public static final int message_to_fmt=0x7f0800bd;
-        public static final int message_to_label=0x7f0800d6;
-        public static final int message_view_attachment_download_action=0x7f0800d9;
-        public static final int message_view_attachment_view_action=0x7f0800d8;
-        public static final int message_view_cc_label=0x7f0800d7;
-        public static final int message_view_download_remainder=0x7f0800e2;
-        public static final int message_view_downloading=0x7f0800e3;
-        public static final int message_view_empty=0x7f080354;
-        public static final int message_view_fetching_attachment_toast=0x7f0800e0;
-        public static final int message_view_from_format=0x7f0800d5;
-        public static final int message_view_no_viewer=0x7f0800e1;
-        public static final int message_view_show_attachments_action=0x7f0800de;
-        public static final int message_view_show_message_action=0x7f0800dd;
-        public static final int message_view_show_more_attachments_action=0x7f0800df;
-        public static final int message_view_show_pictures_action=0x7f0800dc;
-        public static final int message_view_status_attachment_not_saved=0x7f0800db;
-        public static final int message_view_status_attachment_saved=0x7f0800da;
+        public static final int message_no_additional_headers_available=0x7f0800e3;
+        public static final int message_saved_toast=0x7f0800e7;
+        public static final int message_to_fmt=0x7f0800bb;
+        public static final int message_to_label=0x7f0800d4;
+        public static final int message_view_attachment_download_action=0x7f0800d7;
+        public static final int message_view_attachment_view_action=0x7f0800d6;
+        public static final int message_view_cc_label=0x7f0800d5;
+        public static final int message_view_download_remainder=0x7f0800e0;
+        public static final int message_view_downloading=0x7f0800e1;
+        public static final int message_view_empty=0x7f080358;
+        public static final int message_view_fetching_attachment_toast=0x7f0800de;
+        public static final int message_view_from_format=0x7f0800d3;
+        public static final int message_view_no_viewer=0x7f0800df;
+        public static final int message_view_show_attachments_action=0x7f0800dc;
+        public static final int message_view_show_message_action=0x7f0800db;
+        public static final int message_view_show_more_attachments_action=0x7f0800dd;
+        public static final int message_view_show_pictures_action=0x7f0800da;
+        public static final int message_view_status_attachment_not_saved=0x7f0800d9;
+        public static final int message_view_status_attachment_saved=0x7f0800d8;
         public static final int message_view_theme_action_dark=0x7f08007c;
         public static final int message_view_theme_action_light=0x7f08007d;
-        public static final int messagelist_preferences=0x7f08027a;
-        public static final int messagelist_sent_cc_me_sigil=0x7f0802f6;
-        public static final int messagelist_sent_to_me_sigil=0x7f0802f5;
-        public static final int messageview_preferences=0x7f08027b;
-        public static final int misc_preferences_attachment_description=0x7f0802d7;
-        public static final int misc_preferences_attachment_title=0x7f0802d6;
-        public static final int miscellaneous_preferences=0x7f0802d5;
+        public static final int messagelist_preferences=0x7f080286;
+        public static final int messagelist_sent_cc_me_sigil=0x7f0802fa;
+        public static final int messagelist_sent_to_me_sigil=0x7f0802f9;
+        public static final int messageview_preferences=0x7f080287;
+        public static final int misc_preferences_attachment_description=0x7f0803ad;
+        public static final int misc_preferences_attachment_title=0x7f0803ac;
+        public static final int miscellaneous_preferences=0x7f0802db;
         public static final int move_action=0x7f08005d;
-        public static final int move_copy_cannot_copy_unsynced_message=0x7f08018d;
-        public static final int network_preferences=0x7f080277;
-        public static final int new_identity_action=0x7f080230;
+        public static final int move_copy_cannot_copy_unsynced_message=0x7f080190;
+        public static final int network_preferences=0x7f080283;
+        public static final int new_identity_action=0x7f08023c;
         public static final int next_action=0x7f08004f;
-        public static final int no_removable_identity=0x7f080246;
-        public static final int notification_action_delete=0x7f0800a2;
-        public static final int notification_action_mark_as_read=0x7f0800a1;
-        public static final int notification_action_reply=0x7f0800a0;
-        public static final int notification_additional_messages=0x7f08009f;
-        public static final int notification_bg_send_ticker=0x7f0800a7;
-        public static final int notification_bg_send_title=0x7f0800a8;
-        public static final int notification_bg_sync_ticker=0x7f0800a5;
-        public static final int notification_bg_sync_title=0x7f0800a6;
-        public static final int notification_bg_title_separator=0x7f0800a9;
-        public static final int notification_certificate_error_text=0x7f0800a4;
-        public static final int notification_certificate_error_title=0x7f0800a3;
-        public static final int notification_new_messages_title=0x7f08009d;
-        public static final int notification_new_one_account_fmt=0x7f08009e;
-        public static final int notification_new_title=0x7f08009c;
-        public static final int notifications_title=0x7f08021a;
+        public static final int no_removable_identity=0x7f080252;
+        public static final int notification_action_delete=0x7f0800a0;
+        public static final int notification_action_mark_as_read=0x7f08009f;
+        public static final int notification_action_reply=0x7f08009e;
+        public static final int notification_additional_messages=0x7f08009d;
+        public static final int notification_bg_send_ticker=0x7f0800a5;
+        public static final int notification_bg_send_title=0x7f0800a6;
+        public static final int notification_bg_sync_ticker=0x7f0800a3;
+        public static final int notification_bg_sync_title=0x7f0800a4;
+        public static final int notification_bg_title_separator=0x7f0800a7;
+        public static final int notification_certificate_error_text=0x7f0800a2;
+        public static final int notification_certificate_error_title=0x7f0800a1;
+        public static final int notification_new_messages_title=0x7f08009b;
+        public static final int notification_new_one_account_fmt=0x7f08009c;
+        public static final int notification_new_title=0x7f08009a;
+        public static final int notifications_title=0x7f080226;
         /**  Used to confirm acceptance of dialog boxes, warnings, errors, etc. 
 Used to confirm acceptance of dialog boxes, warnings, errors, etc.
 Used to confirm acceptance of dialog boxes, warnings, errors, etc.
@@ -3618,31 +3679,31 @@ Used to confirm acceptance of dialog boxes, warnings, errors, etc.
 === OpenPGP specific ==================================================================
 === OpenPGP specific ==================================================================
          */
-        public static final int openpgp_decrypting_verifying=0x7f080363;
-        public static final int openpgp_error=0x7f08036e;
-        public static final int openpgp_get_key=0x7f08036d;
+        public static final int openpgp_decrypting_verifying=0x7f080368;
+        public static final int openpgp_error=0x7f080373;
+        public static final int openpgp_get_key=0x7f080372;
         public static final int openpgp_install_openkeychain_via=0x7f080005;
         public static final int openpgp_list_preference_none=0x7f080004;
-        public static final int openpgp_signature_invalid=0x7f080368;
-        public static final int openpgp_signature_unknown=0x7f080367;
-        public static final int openpgp_signature_unknown_text=0x7f080369;
-        public static final int openpgp_signature_valid_certified=0x7f080365;
-        public static final int openpgp_signature_valid_uncertified=0x7f080366;
-        public static final int openpgp_successful_decryption=0x7f080364;
-        public static final int openpgp_successful_decryption_unknown_signature=0x7f08036c;
-        public static final int openpgp_successful_decryption_valid_signature_certified=0x7f08036a;
-        public static final int openpgp_successful_decryption_valid_signature_uncertified=0x7f08036b;
-        public static final int openpgp_user_id=0x7f08036f;
-        public static final int pgp_mime_unsupported=0x7f0802e0;
+        public static final int openpgp_signature_invalid=0x7f08036d;
+        public static final int openpgp_signature_unknown=0x7f08036c;
+        public static final int openpgp_signature_unknown_text=0x7f08036e;
+        public static final int openpgp_signature_valid_certified=0x7f08036a;
+        public static final int openpgp_signature_valid_uncertified=0x7f08036b;
+        public static final int openpgp_successful_decryption=0x7f080369;
+        public static final int openpgp_successful_decryption_unknown_signature=0x7f080371;
+        public static final int openpgp_successful_decryption_valid_signature_certified=0x7f08036f;
+        public static final int openpgp_successful_decryption_valid_signature_uncertified=0x7f080370;
+        public static final int openpgp_user_id=0x7f080374;
+        public static final int pgp_mime_unsupported=0x7f0802e4;
         public static final int preferences_action=0x7f08006d;
-        public static final int prefs_title=0x7f08008a;
-        public static final int preposition_for_date=0x7f080359;
-        public static final int press_color_to_apply=0x7f080382;
+        public static final int prefs_title=0x7f080088;
+        public static final int preposition_for_date=0x7f08035d;
+        public static final int press_color_to_apply=0x7f08038d;
         public static final int previous_action=0x7f080050;
-        public static final int privacy_preferences=0x7f080276;
-        public static final int provider_note_auonejp=0x7f08025f;
-        public static final int provider_note_hanmail=0x7f080261;
-        public static final int provider_note_naver=0x7f080260;
+        public static final int privacy_preferences=0x7f080282;
+        public static final int provider_note_auonejp=0x7f08026b;
+        public static final int provider_note_hanmail=0x7f08026d;
+        public static final int provider_note_naver=0x7f08026c;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
          */
         public static final int pull_to_refresh_from_bottom_pull_label=0x7f080009;
@@ -3651,13 +3712,13 @@ Used to confirm acceptance of dialog boxes, warnings, errors, etc.
         public static final int pull_to_refresh_pull_label=0x7f080006;
         public static final int pull_to_refresh_refreshing_label=0x7f080008;
         public static final int pull_to_refresh_release_label=0x7f080007;
-        public static final int pull_to_refresh_remote_search_from_local_search_pull=0x7f080345;
-        public static final int pull_to_refresh_remote_search_from_local_search_release=0x7f080346;
-        public static final int push_poll_on_connect_label=0x7f080172;
-        public static final int quiet_time=0x7f080113;
-        public static final int quiet_time_description=0x7f080114;
-        public static final int quiet_time_ends=0x7f080116;
-        public static final int quiet_time_starts=0x7f080115;
+        public static final int pull_to_refresh_remote_search_from_local_search_pull=0x7f080349;
+        public static final int pull_to_refresh_remote_search_from_local_search_release=0x7f08034a;
+        public static final int push_poll_on_connect_label=0x7f080175;
+        public static final int quiet_time=0x7f080111;
+        public static final int quiet_time_description=0x7f080112;
+        public static final int quiet_time_ends=0x7f080114;
+        public static final int quiet_time_starts=0x7f080113;
         public static final int read_attachment_desc=0x7f080038;
         public static final int read_attachment_label=0x7f080037;
         public static final int read_messages_desc=0x7f08003a;
@@ -3665,173 +3726,173 @@ Used to confirm acceptance of dialog boxes, warnings, errors, etc.
         public static final int read_receipt=0x7f080080;
         public static final int read_receipt_disabled=0x7f080082;
         public static final int read_receipt_enabled=0x7f080081;
-        public static final int recreate_action=0x7f080164;
-        public static final int recreating_account=0x7f08009b;
+        public static final int recreate_action=0x7f080167;
+        public static final int recreating_account=0x7f080099;
         public static final int refile_action=0x7f08005f;
         public static final int refresh_folders_action=0x7f080067;
-        public static final int refuse_to_save_draft_marked_encrypted_dlg_title=0x7f0802e7;
-        public static final int refuse_to_save_draft_marked_encrypted_instructions_fmt=0x7f0802e8;
+        public static final int refuse_to_save_draft_marked_encrypted_dlg_title=0x7f0802eb;
+        public static final int refuse_to_save_draft_marked_encrypted_instructions_fmt=0x7f0802ec;
         public static final int remote_control_desc=0x7f080026;
         public static final int remote_control_label=0x7f080025;
-        public static final int remote_search_downloading=0x7f08033e;
-        public static final int remote_search_downloading_limited=0x7f08033f;
-        public static final int remote_search_error=0x7f080340;
-        public static final int remote_search_sending_query=0x7f08033d;
-        public static final int remote_search_unavailable_no_network=0x7f080347;
+        public static final int remote_search_downloading=0x7f080342;
+        public static final int remote_search_downloading_limited=0x7f080343;
+        public static final int remote_search_error=0x7f080344;
+        public static final int remote_search_sending_query=0x7f080341;
+        public static final int remote_search_unavailable_no_network=0x7f08034b;
         public static final int remove_account_action=0x7f080071;
         public static final int reply_action=0x7f080057;
         public static final int reply_all_action=0x7f080058;
-        public static final int reset=0x7f080379;
-        public static final int reset_message=0x7f08037f;
+        public static final int reset=0x7f080384;
+        public static final int reset_message=0x7f08038a;
         public static final int save_draft_action=0x7f080064;
-        public static final int save_or_discard_draft_message_dlg_title=0x7f0802e3;
-        public static final int save_or_discard_draft_message_instructions_fmt=0x7f0802e4;
+        public static final int save_or_discard_draft_message_dlg_title=0x7f0802e7;
+        public static final int save_or_discard_draft_message_instructions_fmt=0x7f0802e8;
         public static final int search_action=0x7f08006b;
-        public static final int search_all_messages_detail=0x7f0802a8;
-        public static final int search_all_messages_title=0x7f0802a7;
+        public static final int search_all_messages_detail=0x7f0802b0;
+        public static final int search_all_messages_title=0x7f0802af;
         public static final int search_results=0x7f08006c;
-        public static final int search_title=0x7f0802a4;
+        public static final int search_title=0x7f0802ac;
         public static final int select_action=0x7f080055;
         public static final int select_text_action=0x7f080079;
-        public static final int select_text_now=0x7f0802eb;
-        public static final int send_aborted=0x7f0802e2;
+        public static final int select_text_now=0x7f0802ef;
+        public static final int send_aborted=0x7f0802e6;
         public static final int send_action=0x7f080053;
         public static final int send_again_action=0x7f080054;
         public static final int send_alternate_action=0x7f080074;
         public static final int send_alternate_chooser_title=0x7f080075;
-        public static final int send_as=0x7f080245;
-        public static final int send_failure_subject=0x7f0800b6;
+        public static final int send_as=0x7f080251;
+        public static final int send_failure_subject=0x7f0800b4;
         public static final int send_messages_action=0x7f080066;
-        public static final int sent_folder_label=0x7f08014c;
-        public static final int set=0x7f080387;
-        public static final int setting_language_system=0x7f080286;
-        public static final int setting_theme_dark=0x7f080271;
-        public static final int setting_theme_global=0x7f080270;
-        public static final int setting_theme_light=0x7f080272;
-        public static final int settings_attachment_default_path=0x7f080313;
-        public static final int settings_compose_theme_label=0x7f08027f;
-        public static final int settings_export_account=0x7f0802f9;
-        public static final int settings_export_all=0x7f0802fa;
-        public static final int settings_export_dialog_title=0x7f0802fc;
-        public static final int settings_export_failed_header=0x7f080309;
-        public static final int settings_export_failure=0x7f080306;
-        public static final int settings_export_success=0x7f080303;
-        public static final int settings_export_success_header=0x7f080308;
-        public static final int settings_exporting=0x7f080300;
-        public static final int settings_import=0x7f0802fd;
-        public static final int settings_import_activate_account_header=0x7f08030c;
-        public static final int settings_import_activate_account_intro=0x7f08030d;
-        public static final int settings_import_dialog_title=0x7f0802fb;
-        public static final int settings_import_failed_header=0x7f08030b;
-        public static final int settings_import_failure=0x7f080307;
-        public static final int settings_import_global_settings=0x7f0802ff;
-        public static final int settings_import_global_settings_success=0x7f080304;
-        public static final int settings_import_incoming_server=0x7f08030e;
-        public static final int settings_import_outgoing_server=0x7f08030f;
-        public static final int settings_import_scanning_file=0x7f080302;
-        public static final int settings_import_selection=0x7f0802fe;
-        public static final int settings_import_success=0x7f080305;
-        public static final int settings_import_success_header=0x7f08030a;
-        public static final int settings_import_use_incoming_server_password=0x7f080310;
-        public static final int settings_importing=0x7f080301;
-        public static final int settings_language_label=0x7f080280;
-        public static final int settings_message_theme_label=0x7f08027e;
-        public static final int settings_message_theme_selection_label=0x7f080281;
-        public static final int settings_message_theme_selection_summary_off=0x7f080282;
-        public static final int settings_message_theme_selection_summary_on=0x7f080283;
-        public static final int settings_messageview_mobile_layout_label=0x7f080284;
-        public static final int settings_messageview_mobile_layout_summary=0x7f080285;
-        public static final int settings_theme_label=0x7f08027d;
+        public static final int sent_folder_label=0x7f08014e;
+        public static final int set=0x7f080392;
+        public static final int setting_language_system=0x7f080290;
+        public static final int setting_theme_dark=0x7f08027d;
+        public static final int setting_theme_global=0x7f08027c;
+        public static final int setting_theme_light=0x7f08027e;
+        public static final int settings_attachment_default_path=0x7f080317;
+        public static final int settings_compose_theme_label=0x7f08028b;
+        public static final int settings_export_account=0x7f0802fd;
+        public static final int settings_export_all=0x7f0802fe;
+        public static final int settings_export_dialog_title=0x7f080300;
+        public static final int settings_export_failed_header=0x7f08030d;
+        public static final int settings_export_failure=0x7f08030a;
+        public static final int settings_export_success=0x7f080307;
+        public static final int settings_export_success_header=0x7f08030c;
+        public static final int settings_exporting=0x7f080304;
+        public static final int settings_import=0x7f080301;
+        public static final int settings_import_activate_account_header=0x7f080310;
+        public static final int settings_import_activate_account_intro=0x7f080311;
+        public static final int settings_import_dialog_title=0x7f0802ff;
+        public static final int settings_import_failed_header=0x7f08030f;
+        public static final int settings_import_failure=0x7f08030b;
+        public static final int settings_import_global_settings=0x7f080303;
+        public static final int settings_import_global_settings_success=0x7f080308;
+        public static final int settings_import_incoming_server=0x7f080312;
+        public static final int settings_import_outgoing_server=0x7f080313;
+        public static final int settings_import_scanning_file=0x7f080306;
+        public static final int settings_import_selection=0x7f080302;
+        public static final int settings_import_success=0x7f080309;
+        public static final int settings_import_success_header=0x7f08030e;
+        public static final int settings_import_use_incoming_server_password=0x7f080314;
+        public static final int settings_importing=0x7f080305;
+        public static final int settings_language_label=0x7f08028c;
+        public static final int settings_message_theme_label=0x7f08028a;
+        public static final int settings_message_theme_selection_label=0x7f08028d;
+        public static final int settings_message_theme_selection_summary_off=0x7f08028e;
+        public static final int settings_message_theme_selection_summary_on=0x7f08028f;
+        public static final int settings_messageview_mobile_layout_label=0x7f0803a6;
+        public static final int settings_messageview_mobile_layout_summary=0x7f0803a7;
+        public static final int settings_theme_label=0x7f080289;
         public static final int shortcuts_title=0x7f080023;
         public static final int show_headers_action=0x7f08007a;
         public static final int single_message_options_action=0x7f08005e;
-        public static final int sort_attach_first=0x7f080252;
-        public static final int sort_by=0x7f080254;
-        public static final int sort_by_arrival=0x7f080256;
-        public static final int sort_by_attach=0x7f08025b;
-        public static final int sort_by_date=0x7f080255;
-        public static final int sort_by_flag=0x7f080259;
-        public static final int sort_by_sender=0x7f080258;
-        public static final int sort_by_subject=0x7f080257;
-        public static final int sort_by_unread=0x7f08025a;
-        public static final int sort_earliest_first=0x7f080248;
-        public static final int sort_flagged_first=0x7f08024e;
-        public static final int sort_flagged_last=0x7f08024f;
-        public static final int sort_latest_first=0x7f080249;
-        public static final int sort_sender_alpha=0x7f08024c;
-        public static final int sort_sender_re_alpha=0x7f08024d;
-        public static final int sort_subject_alpha=0x7f08024a;
-        public static final int sort_subject_re_alpha=0x7f08024b;
-        public static final int sort_unattached_first=0x7f080253;
-        public static final int sort_unread_first=0x7f080250;
-        public static final int sort_unread_last=0x7f080251;
+        public static final int sort_attach_first=0x7f08025e;
+        public static final int sort_by=0x7f080260;
+        public static final int sort_by_arrival=0x7f080262;
+        public static final int sort_by_attach=0x7f080267;
+        public static final int sort_by_date=0x7f080261;
+        public static final int sort_by_flag=0x7f080265;
+        public static final int sort_by_sender=0x7f080264;
+        public static final int sort_by_subject=0x7f080263;
+        public static final int sort_by_unread=0x7f080266;
+        public static final int sort_earliest_first=0x7f080254;
+        public static final int sort_flagged_first=0x7f08025a;
+        public static final int sort_flagged_last=0x7f08025b;
+        public static final int sort_latest_first=0x7f080255;
+        public static final int sort_sender_alpha=0x7f080258;
+        public static final int sort_sender_re_alpha=0x7f080259;
+        public static final int sort_subject_alpha=0x7f080256;
+        public static final int sort_subject_re_alpha=0x7f080257;
+        public static final int sort_unattached_first=0x7f08025f;
+        public static final int sort_unread_first=0x7f08025c;
+        public static final int sort_unread_last=0x7f08025d;
         public static final int spam_action=0x7f08005b;
-        public static final int spam_folder_label=0x7f08014f;
-        public static final int special_mailbox_name_archive=0x7f0800af;
-        public static final int special_mailbox_name_archive_fmt=0x7f0800b4;
-        public static final int special_mailbox_name_drafts=0x7f0800ac;
-        public static final int special_mailbox_name_drafts_fmt=0x7f0800b1;
-        public static final int special_mailbox_name_inbox=0x7f0800aa;
-        public static final int special_mailbox_name_outbox=0x7f0800ab;
-        public static final int special_mailbox_name_sent=0x7f0800ae;
-        public static final int special_mailbox_name_sent_fmt=0x7f0800b3;
-        public static final int special_mailbox_name_spam=0x7f0800b0;
-        public static final int special_mailbox_name_spam_fmt=0x7f0800b5;
-        public static final int special_mailbox_name_trash=0x7f0800ad;
-        public static final int special_mailbox_name_trash_fmt=0x7f0800b2;
-        public static final int start_integrated_inbox_title=0x7f08029d;
-        public static final int status_invalid_id_error=0x7f080091;
-        public static final int status_loading=0x7f08008e;
+        public static final int spam_folder_label=0x7f080151;
+        public static final int special_mailbox_name_archive=0x7f0800ad;
+        public static final int special_mailbox_name_archive_fmt=0x7f0800b2;
+        public static final int special_mailbox_name_drafts=0x7f0800aa;
+        public static final int special_mailbox_name_drafts_fmt=0x7f0800af;
+        public static final int special_mailbox_name_inbox=0x7f0800a8;
+        public static final int special_mailbox_name_outbox=0x7f0800a9;
+        public static final int special_mailbox_name_sent=0x7f0800ac;
+        public static final int special_mailbox_name_sent_fmt=0x7f0800b1;
+        public static final int special_mailbox_name_spam=0x7f0800ae;
+        public static final int special_mailbox_name_spam_fmt=0x7f0800b3;
+        public static final int special_mailbox_name_trash=0x7f0800ab;
+        public static final int special_mailbox_name_trash_fmt=0x7f0800b0;
+        public static final int start_integrated_inbox_title=0x7f0802a5;
+        public static final int status_invalid_id_error=0x7f08008f;
+        public static final int status_loading=0x7f08008c;
         public static final int status_loading_account_folder=0x7f080047;
         public static final int status_loading_account_folder_headers=0x7f080048;
-        public static final int status_loading_more=0x7f08008f;
-        public static final int status_loading_more_failed=0x7f080092;
-        public static final int status_network_error=0x7f080090;
+        public static final int status_loading_more=0x7f08008d;
+        public static final int status_loading_more_failed=0x7f080090;
+        public static final int status_network_error=0x7f08008e;
         public static final int status_next_poll=0x7f08004c;
         public static final int status_processing_account=0x7f08004a;
         public static final int status_sending_account=0x7f080049;
         public static final int status_syncing_off=0x7f08004d;
-        public static final int style_title=0x7f080380;
-        public static final int tap_hint=0x7f0802ab;
-        public static final int title_activity_about=0x7f08038e;
+        public static final int style_title=0x7f08038b;
+        public static final int tap_hint=0x7f0802b3;
+        public static final int title_activity_about=0x7f080399;
         /**  titles 
          */
-        public static final int title_activity_actionview=0x7f08038d;
-        public static final int trash_folder_label=0x7f08014d;
-        public static final int undo=0x7f080391;
+        public static final int title_activity_actionview=0x7f080398;
+        public static final int trash_folder_label=0x7f08014f;
+        public static final int undo=0x7f08039c;
         public static final int unflag_action=0x7f080077;
-        public static final int unknown_crypto_signature_user_id=0x7f0802de;
-        public static final int unread_modifier=0x7f0802a6;
+        public static final int unknown_crypto_signature_user_id=0x7f0802e2;
+        public static final int unread_modifier=0x7f0802ae;
         public static final int unread_widget_label=0x7f080024;
-        public static final int unread_widget_select_account=0x7f080319;
-        public static final int upgrade_database_format=0x7f08034e;
-        public static final int upgrade_databases_title=0x7f08034c;
-        public static final int upgrade_databases_unspecified=0x7f08034d;
+        public static final int unread_widget_select_account=0x7f08031d;
+        public static final int upgrade_database_format=0x7f080352;
+        public static final int upgrade_databases_title=0x7f080350;
+        public static final int upgrade_databases_unspecified=0x7f080351;
         /**  general stuff 
          */
-        public static final int userid_label=0x7f08038c;
-        public static final int volume_navigation_list=0x7f08029c;
-        public static final int volume_navigation_message=0x7f08029b;
-        public static final int volume_navigation_title=0x7f08029a;
-        public static final int webview_contextmenu_email_clipboard_label=0x7f08032e;
-        public static final int webview_contextmenu_email_copy_action=0x7f08032d;
-        public static final int webview_contextmenu_email_save_action=0x7f08032c;
-        public static final int webview_contextmenu_email_send_action=0x7f08032b;
-        public static final int webview_contextmenu_image_clipboard_label=0x7f080326;
-        public static final int webview_contextmenu_image_copy_action=0x7f080325;
-        public static final int webview_contextmenu_image_download_action=0x7f080324;
-        public static final int webview_contextmenu_image_save_action=0x7f080323;
-        public static final int webview_contextmenu_image_title=0x7f080321;
-        public static final int webview_contextmenu_image_view_action=0x7f080322;
-        public static final int webview_contextmenu_link_clipboard_label=0x7f080320;
-        public static final int webview_contextmenu_link_copy_action=0x7f08031f;
-        public static final int webview_contextmenu_link_share_action=0x7f08031e;
-        public static final int webview_contextmenu_link_view_action=0x7f08031d;
-        public static final int webview_contextmenu_phone_call_action=0x7f080327;
-        public static final int webview_contextmenu_phone_clipboard_label=0x7f08032a;
-        public static final int webview_contextmenu_phone_copy_action=0x7f080329;
-        public static final int webview_contextmenu_phone_save_action=0x7f080328;
-        public static final int webview_empty_message=0x7f08031c;
+        public static final int userid_label=0x7f080397;
+        public static final int volume_navigation_list=0x7f0802a4;
+        public static final int volume_navigation_message=0x7f0802a3;
+        public static final int volume_navigation_title=0x7f0802a2;
+        public static final int webview_contextmenu_email_clipboard_label=0x7f080332;
+        public static final int webview_contextmenu_email_copy_action=0x7f080331;
+        public static final int webview_contextmenu_email_save_action=0x7f080330;
+        public static final int webview_contextmenu_email_send_action=0x7f08032f;
+        public static final int webview_contextmenu_image_clipboard_label=0x7f08032a;
+        public static final int webview_contextmenu_image_copy_action=0x7f080329;
+        public static final int webview_contextmenu_image_download_action=0x7f080328;
+        public static final int webview_contextmenu_image_save_action=0x7f080327;
+        public static final int webview_contextmenu_image_title=0x7f080325;
+        public static final int webview_contextmenu_image_view_action=0x7f080326;
+        public static final int webview_contextmenu_link_clipboard_label=0x7f080324;
+        public static final int webview_contextmenu_link_copy_action=0x7f080323;
+        public static final int webview_contextmenu_link_share_action=0x7f080322;
+        public static final int webview_contextmenu_link_view_action=0x7f080321;
+        public static final int webview_contextmenu_phone_call_action=0x7f08032b;
+        public static final int webview_contextmenu_phone_clipboard_label=0x7f08032e;
+        public static final int webview_contextmenu_phone_copy_action=0x7f08032d;
+        public static final int webview_contextmenu_phone_save_action=0x7f08032c;
+        public static final int webview_empty_message=0x7f080320;
         /**  Welcome message 
 Welcome message
 Welcome message
@@ -4053,6 +4114,49 @@ containing a value of this type.
           @attr name com.bernard.beaconportal.activities:wheel_size
         */
         public static final int ColorPicker_wheel_size = 0;
+        /** Attributes that can be used with a FoldableLinearLayout.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #FoldableLinearLayout_foldedLabel com.bernard.beaconportal.activities:foldedLabel}</code></td><td></td></tr>
+           <tr><td><code>{@link #FoldableLinearLayout_unFoldedLabel com.bernard.beaconportal.activities:unFoldedLabel}</code></td><td></td></tr>
+           </table>
+           @see #FoldableLinearLayout_foldedLabel
+           @see #FoldableLinearLayout_unFoldedLabel
+         */
+        public static final int[] FoldableLinearLayout = {
+            0x7f0100b7, 0x7f0100b8
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#foldedLabel}
+          attribute's value can be found in the {@link #FoldableLinearLayout} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.bernard.beaconportal.activities:foldedLabel
+        */
+        public static final int FoldableLinearLayout_foldedLabel = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#unFoldedLabel}
+          attribute's value can be found in the {@link #FoldableLinearLayout} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.bernard.beaconportal.activities:unFoldedLabel
+        */
+        public static final int FoldableLinearLayout_unFoldedLabel = 1;
         /** Attributes that can be used with a K9Styles.
            <p>Includes the following attributes:</p>
            <table>
@@ -4070,9 +4174,11 @@ containing a value of this type.
            <tr><td><code>{@link #K9Styles_iconActionAddCcBcc com.bernard.beaconportal.activities:iconActionAddCcBcc}</code></td><td></td></tr>
            <tr><td><code>{@link #K9Styles_iconActionArchive com.bernard.beaconportal.activities:iconActionArchive}</code></td><td></td></tr>
            <tr><td><code>{@link #K9Styles_iconActionCancel com.bernard.beaconportal.activities:iconActionCancel}</code></td><td></td></tr>
+           <tr><td><code>{@link #K9Styles_iconActionCollapse com.bernard.beaconportal.activities:iconActionCollapse}</code></td><td></td></tr>
            <tr><td><code>{@link #K9Styles_iconActionCompose com.bernard.beaconportal.activities:iconActionCompose}</code></td><td></td></tr>
            <tr><td><code>{@link #K9Styles_iconActionCopy com.bernard.beaconportal.activities:iconActionCopy}</code></td><td></td></tr>
            <tr><td><code>{@link #K9Styles_iconActionDelete com.bernard.beaconportal.activities:iconActionDelete}</code></td><td></td></tr>
+           <tr><td><code>{@link #K9Styles_iconActionExpand com.bernard.beaconportal.activities:iconActionExpand}</code></td><td></td></tr>
            <tr><td><code>{@link #K9Styles_iconActionFlag com.bernard.beaconportal.activities:iconActionFlag}</code></td><td></td></tr>
            <tr><td><code>{@link #K9Styles_iconActionImportExport com.bernard.beaconportal.activities:iconActionImportExport}</code></td><td></td></tr>
            <tr><td><code>{@link #K9Styles_iconActionMarkAsRead com.bernard.beaconportal.activities:iconActionMarkAsRead}</code></td><td></td></tr>
@@ -4122,9 +4228,11 @@ containing a value of this type.
            @see #K9Styles_iconActionAddCcBcc
            @see #K9Styles_iconActionArchive
            @see #K9Styles_iconActionCancel
+           @see #K9Styles_iconActionCollapse
            @see #K9Styles_iconActionCompose
            @see #K9Styles_iconActionCopy
            @see #K9Styles_iconActionDelete
+           @see #K9Styles_iconActionExpand
            @see #K9Styles_iconActionFlag
            @see #K9Styles_iconActionImportExport
            @see #K9Styles_iconActionMarkAsRead
@@ -4176,7 +4284,8 @@ containing a value of this type.
             0x7f0100a6, 0x7f0100a7, 0x7f0100a8, 0x7f0100a9,
             0x7f0100aa, 0x7f0100ab, 0x7f0100ac, 0x7f0100ad,
             0x7f0100ae, 0x7f0100af, 0x7f0100b0, 0x7f0100b1,
-            0x7f0100b2, 0x7f0100b3, 0x7f0100b4
+            0x7f0100b2, 0x7f0100b3, 0x7f0100b4, 0x7f0100b5,
+            0x7f0100b6
         };
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#backgroundColorChooseAccountHeader}
@@ -4192,7 +4301,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.bernard.beaconportal.activities:backgroundColorChooseAccountHeader
         */
-        public static final int K9Styles_backgroundColorChooseAccountHeader = 35;
+        public static final int K9Styles_backgroundColorChooseAccountHeader = 37;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#compatDividerVertical}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4202,7 +4311,7 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.bernard.beaconportal.activities:compatDividerVertical
         */
-        public static final int K9Styles_compatDividerVertical = 48;
+        public static final int K9Styles_compatDividerVertical = 50;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#compatSelectableItemBackground}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4212,7 +4321,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.bernard.beaconportal.activities:compatSelectableItemBackground
         */
-        public static final int K9Styles_compatSelectableItemBackground = 49;
+        public static final int K9Styles_compatSelectableItemBackground = 51;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#composerBackgroundColor}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4227,7 +4336,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.bernard.beaconportal.activities:composerBackgroundColor
         */
-        public static final int K9Styles_composerBackgroundColor = 47;
+        public static final int K9Styles_composerBackgroundColor = 49;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#contactPictureFallbackDefaultBackgroundColor}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4239,7 +4348,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.bernard.beaconportal.activities:contactPictureFallbackDefaultBackgroundColor
         */
-        public static final int K9Styles_contactPictureFallbackDefaultBackgroundColor = 50;
+        public static final int K9Styles_contactPictureFallbackDefaultBackgroundColor = 52;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionAbout}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4301,6 +4410,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int K9Styles_iconActionCancel = 31;
         /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionCollapse}
+          attribute's value can be found in the {@link #K9Styles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionCollapse
+        */
+        public static final int K9Styles_iconActionCollapse = 34;
+        /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionCompose}
           attribute's value can be found in the {@link #K9Styles} array.
 
@@ -4330,6 +4449,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           @attr name com.bernard.beaconportal.activities:iconActionDelete
         */
         public static final int K9Styles_iconActionDelete = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionExpand}
+          attribute's value can be found in the {@link #K9Styles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionExpand
+        */
+        public static final int K9Styles_iconActionExpand = 33;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionFlag}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4579,7 +4708,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.bernard.beaconportal.activities:messageComposeAddContactImage
         */
-        public static final int K9Styles_messageComposeAddContactImage = 46;
+        public static final int K9Styles_messageComposeAddContactImage = 48;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListActiveItemBackgroundColor}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4591,7 +4720,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.bernard.beaconportal.activities:messageListActiveItemBackgroundColor
         */
-        public static final int K9Styles_messageListActiveItemBackgroundColor = 41;
+        public static final int K9Styles_messageListActiveItemBackgroundColor = 43;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListCheckbox}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4601,7 +4730,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.bernard.beaconportal.activities:messageListCheckbox
         */
-        public static final int K9Styles_messageListCheckbox = 43;
+        public static final int K9Styles_messageListCheckbox = 45;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListDividerColor}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4613,7 +4742,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.bernard.beaconportal.activities:messageListDividerColor
         */
-        public static final int K9Styles_messageListDividerColor = 42;
+        public static final int K9Styles_messageListDividerColor = 44;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListReadItemBackgroundColor}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4625,7 +4754,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.bernard.beaconportal.activities:messageListReadItemBackgroundColor
         */
-        public static final int K9Styles_messageListReadItemBackgroundColor = 37;
+        public static final int K9Styles_messageListReadItemBackgroundColor = 39;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListSelectedBackgroundColor}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4637,7 +4766,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.bernard.beaconportal.activities:messageListSelectedBackgroundColor
         */
-        public static final int K9Styles_messageListSelectedBackgroundColor = 36;
+        public static final int K9Styles_messageListSelectedBackgroundColor = 38;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListThreadCountBackground}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4649,7 +4778,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.bernard.beaconportal.activities:messageListThreadCountBackground
         */
-        public static final int K9Styles_messageListThreadCountBackground = 40;
+        public static final int K9Styles_messageListThreadCountBackground = 42;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListThreadCountForegroundColor}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4661,7 +4790,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.bernard.beaconportal.activities:messageListThreadCountForegroundColor
         */
-        public static final int K9Styles_messageListThreadCountForegroundColor = 39;
+        public static final int K9Styles_messageListThreadCountForegroundColor = 41;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListUnreadItemBackgroundColor}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4673,7 +4802,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.bernard.beaconportal.activities:messageListUnreadItemBackgroundColor
         */
-        public static final int K9Styles_messageListUnreadItemBackgroundColor = 38;
+        public static final int K9Styles_messageListUnreadItemBackgroundColor = 40;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageViewAttachmentBackground}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4683,7 +4812,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.bernard.beaconportal.activities:messageViewAttachmentBackground
         */
-        public static final int K9Styles_messageViewAttachmentBackground = 45;
+        public static final int K9Styles_messageViewAttachmentBackground = 47;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageViewHeaderBackgroundColor}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4695,7 +4824,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.bernard.beaconportal.activities:messageViewHeaderBackgroundColor
         */
-        public static final int K9Styles_messageViewHeaderBackgroundColor = 44;
+        public static final int K9Styles_messageViewHeaderBackgroundColor = 46;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#textColorPrimaryRecipientDropdown}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4705,7 +4834,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.bernard.beaconportal.activities:textColorPrimaryRecipientDropdown
         */
-        public static final int K9Styles_textColorPrimaryRecipientDropdown = 33;
+        public static final int K9Styles_textColorPrimaryRecipientDropdown = 35;
         /**
           <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#textColorSecondaryRecipientDropdown}
           attribute's value can be found in the {@link #K9Styles} array.
@@ -4715,7 +4844,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.bernard.beaconportal.activities:textColorSecondaryRecipientDropdown
         */
-        public static final int K9Styles_textColorSecondaryRecipientDropdown = 34;
+        public static final int K9Styles_textColorSecondaryRecipientDropdown = 36;
         /** Attributes that can be used with a PagerSlidingTabStrip.
            <p>Includes the following attributes:</p>
            <table>

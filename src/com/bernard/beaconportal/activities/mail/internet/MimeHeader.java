@@ -1,13 +1,15 @@
 package com.bernard.beaconportal.activities.mail.internet;
 
-import com.bernard.beaconportal.activities.helper.Utility;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import com.bernard.beaconportal.activities.helper.Utility;
 
 public class MimeHeader {
 	private static final String[] EMPTY_STRING_ARRAY = new String[0];
@@ -153,7 +155,6 @@ public class MimeHeader {
 		mCharset = charset;
 	}
 
-	@Override
 	public MimeHeader clone() {
 		MimeHeader header = new MimeHeader();
 		header.mCharset = mCharset;

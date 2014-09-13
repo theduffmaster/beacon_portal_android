@@ -1,7 +1,18 @@
 package com.bernard.beaconportal.activities.activity.setup;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateEncodingException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
+
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DialogFragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,24 +30,20 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bernard.beaconportal.activities.*;
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.K9Activity;
 import com.bernard.beaconportal.activities.controller.MessagingController;
+import com.bernard.beaconportal.activities.fragment.ConfirmationDialogFragment;
+import com.bernard.beaconportal.activities.fragment.ConfirmationDialogFragment.ConfirmationDialogFragmentListener;
 import com.bernard.beaconportal.activities.mail.AuthenticationFailedException;
 import com.bernard.beaconportal.activities.mail.CertificateValidationException;
 import com.bernard.beaconportal.activities.mail.Store;
 import com.bernard.beaconportal.activities.mail.Transport;
 import com.bernard.beaconportal.activities.mail.filter.Hex;
 import com.bernard.beaconportal.activities.mail.store.WebDavStore;
-import com.bernard.beaconportal.activities.R;
-
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateEncodingException;
-import java.security.cert.X509Certificate;
-import java.security.NoSuchAlgorithmException;
-import java.security.MessageDigest;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * Checks the given settings to make sure that they can be used to send and
@@ -46,7 +53,7 @@ import java.util.List;
  * doesn't correctly deal with restarting while its thread is running.
  */
 public class AccountSetupCheckSettings extends K9Activity implements
-		OnClickListener {
+		OnClickListener, ConfirmationDialogFragmentListener {
 
 	public static final int ACTIVITY_REQUEST_CODE = 1;
 
@@ -84,12 +91,17 @@ public class AccountSetupCheckSettings extends K9Activity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.account_setup_check_settings);
+		mMessageView = (TextView) findViewById(R.id.message);
+		mProgressBar = (ProgressBar) findViewById(R.id.progress);
+		((Button) findViewById(R.id.cancel)).setOnClickListener(this);
 
-		int titleId = getResources().getIdentifier("action_bar_title", "id",
-				"android");
+		setMessage(R.string.account_setup_check_settings_retr_info_msg);
+		mProgressBar.setIndeterminate(true);
 
-		TextView abTitle = (TextView) findViewById(titleId);
-		abTitle.setTextColor(getResources().getColor((R.color.white)));
+		String accountUuid = getIntent().getStringExtra(EXTRA_ACCOUNT);
+		mAccount = Preferences.getPreferences(this).getAccount(accountUuid);
+		mDirection = (CheckDirection) getIntent().getSerializableExtra(
+				EXTRA_CHECK_DIRECTION);
 
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
@@ -114,18 +126,6 @@ public class AccountSetupCheckSettings extends K9Activity implements
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
-		mMessageView = (TextView) findViewById(R.id.message);
-		mProgressBar = (ProgressBar) findViewById(R.id.progress);
-		((Button) findViewById(R.id.cancel)).setOnClickListener(this);
-
-		setMessage(R.string.account_setup_check_settings_retr_info_msg);
-		mProgressBar.setIndeterminate(true);
-
-		String accountUuid = getIntent().getStringExtra(EXTRA_ACCOUNT);
-		mAccount = Preferences.getPreferences(this).getAccount(accountUuid);
-		mDirection = (CheckDirection) getIntent().getSerializableExtra(
-				EXTRA_CHECK_DIRECTION);
-
 		new Thread() {
 			@Override
 			public void run() {
@@ -146,7 +146,7 @@ public class AccountSetupCheckSettings extends K9Activity implements
 							AccountSetupCheckSettings.this, mAccount,
 							mDirection);
 
-					if (mDirection.equals(CheckDirection.INCOMING)) {
+					if (mDirection == CheckDirection.INCOMING) {
 						store = mAccount.getRemoteStore();
 
 						if (store instanceof WebDavStore) {
@@ -173,7 +173,7 @@ public class AccountSetupCheckSettings extends K9Activity implements
 						finish();
 						return;
 					}
-					if (mDirection.equals(CheckDirection.OUTGOING)) {
+					if (mDirection == CheckDirection.OUTGOING) {
 						if (!(mAccount.getRemoteStore() instanceof WebDavStore)) {
 							setMessage(R.string.account_setup_check_settings_check_outgoing_msg);
 						}
@@ -197,30 +197,33 @@ public class AccountSetupCheckSettings extends K9Activity implements
 							R.string.account_setup_failed_dlg_auth_message_fmt,
 							afe.getMessage() == null ? "" : afe.getMessage());
 				} catch (final CertificateValidationException cve) {
-					Log.e(K9.LOG_TAG, "Error while testing settings", cve);
-
-					X509Certificate[] chain = cve.getCertChain();
-					// Avoid NullPointerException in acceptKeyDialog()
-					if (chain != null) {
-						acceptKeyDialog(
-								R.string.account_setup_failed_dlg_certificate_message_fmt,
-								cve);
-					} else {
-						showErrorDialog(
-								R.string.account_setup_failed_dlg_server_message_fmt,
-								(cve.getMessage() == null ? "" : cve
-										.getMessage()));
-					}
+					handleCertificateValidationException(cve);
 				} catch (final Throwable t) {
 					Log.e(K9.LOG_TAG, "Error while testing settings", t);
 					showErrorDialog(
 							R.string.account_setup_failed_dlg_server_message_fmt,
 							(t.getMessage() == null ? "" : t.getMessage()));
-
 				}
 			}
 
 		}.start();
+	}
+
+	private void handleCertificateValidationException(
+			CertificateValidationException cve) {
+		Log.e(K9.LOG_TAG, "Error while testing settings", cve);
+
+		X509Certificate[] chain = cve.getCertChain();
+		// Avoid NullPointerException in acceptKeyDialog()
+		if (chain != null) {
+			acceptKeyDialog(
+					R.string.account_setup_failed_dlg_certificate_message_fmt,
+					cve);
+		} else {
+			showErrorDialog(
+					R.string.account_setup_failed_dlg_server_message_fmt,
+					(cve.getMessage() == null ? "" : cve.getMessage()));
+		}
 	}
 
 	@Override
@@ -232,7 +235,6 @@ public class AccountSetupCheckSettings extends K9Activity implements
 
 	private void setMessage(final int resId) {
 		mHandler.post(new Runnable() {
-			@Override
 			public void run() {
 				if (mDestroyed) {
 					return;
@@ -242,48 +244,9 @@ public class AccountSetupCheckSettings extends K9Activity implements
 		});
 	}
 
-	private void showErrorDialog(final int msgResId, final Object... args) {
-		mHandler.post(new Runnable() {
-			@Override
-			public void run() {
-				if (mDestroyed) {
-					return;
-				}
-				mProgressBar.setIndeterminate(false);
-				new AlertDialog.Builder(AccountSetupCheckSettings.this)
-						.setTitle(
-								getString(R.string.account_setup_failed_dlg_title))
-						.setMessage(getString(msgResId, args))
-						.setCancelable(true)
-						.setNegativeButton(
-								getString(R.string.account_setup_failed_dlg_continue_action),
-
-								new DialogInterface.OnClickListener() {
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-										mCanceled = false;
-										setResult(RESULT_OK);
-										finish();
-									}
-								})
-						.setPositiveButton(
-								getString(R.string.account_setup_failed_dlg_edit_details_action),
-								new DialogInterface.OnClickListener() {
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-										finish();
-									}
-								}).show();
-			}
-		});
-	}
-
 	private void acceptKeyDialog(final int msgResId,
 			final CertificateValidationException ex) {
 		mHandler.post(new Runnable() {
-			@Override
 			public void run() {
 				if (mDestroyed) {
 					return;
@@ -428,6 +391,9 @@ public class AccountSetupCheckSettings extends K9Activity implements
 					}
 				}
 
+				// TODO: refactor with DialogFragment.
+				// This is difficult because we need to pass through chain[0]
+				// for onClick()
 				new AlertDialog.Builder(AccountSetupCheckSettings.this)
 						.setTitle(
 								getString(R.string.account_setup_failed_dlg_invalid_certificate_title))
@@ -439,28 +405,14 @@ public class AccountSetupCheckSettings extends K9Activity implements
 						.setPositiveButton(
 								getString(R.string.account_setup_failed_dlg_invalid_certificate_accept),
 								new DialogInterface.OnClickListener() {
-									@Override
 									public void onClick(DialogInterface dialog,
 											int which) {
-										try {
-											mAccount.addCertificate(mDirection,
-													chain[0]);
-										} catch (CertificateException e) {
-											showErrorDialog(
-													R.string.account_setup_failed_dlg_certificate_message_fmt,
-													e.getMessage() == null ? ""
-															: e.getMessage());
-										}
-										AccountSetupCheckSettings
-												.actionCheckSettings(
-														AccountSetupCheckSettings.this,
-														mAccount, mDirection);
+										acceptCertificate(chain[0]);
 									}
 								})
 						.setNegativeButton(
 								getString(R.string.account_setup_failed_dlg_invalid_certificate_reject),
 								new DialogInterface.OnClickListener() {
-									@Override
 									public void onClick(DialogInterface dialog,
 											int which) {
 										finish();
@@ -468,6 +420,24 @@ public class AccountSetupCheckSettings extends K9Activity implements
 								}).show();
 			}
 		});
+	}
+
+	/**
+	 * Permanently accepts a certificate for the INCOMING or OUTGOING direction
+	 * by adding it to the local key store.
+	 * 
+	 * @param certificate
+	 */
+	private void acceptCertificate(X509Certificate certificate) {
+		try {
+			mAccount.addCertificate(mDirection, certificate);
+		} catch (CertificateException e) {
+			showErrorDialog(
+					R.string.account_setup_failed_dlg_certificate_message_fmt,
+					e.getMessage() == null ? "" : e.getMessage());
+		}
+		AccountSetupCheckSettings.actionCheckSettings(
+				AccountSetupCheckSettings.this, mAccount, mDirection);
 	}
 
 	@Override
@@ -481,12 +451,85 @@ public class AccountSetupCheckSettings extends K9Activity implements
 		setMessage(R.string.account_setup_check_settings_canceling_msg);
 	}
 
-	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.cancel:
 			onCancel();
 			break;
 		}
+	}
+
+	private void showErrorDialog(final int msgResId, final Object... args) {
+		mHandler.post(new Runnable() {
+			public void run() {
+				showDialogFragment(R.id.dialog_account_setup_error,
+						getString(msgResId, args));
+			}
+		});
+	}
+
+	private void showDialogFragment(int dialogId, String customMessage) {
+		if (mDestroyed) {
+			return;
+		}
+		mProgressBar.setIndeterminate(false);
+
+		DialogFragment fragment;
+		switch (dialogId) {
+		case R.id.dialog_account_setup_error: {
+			fragment = ConfirmationDialogFragment
+					.newInstance(
+							dialogId,
+							getString(R.string.account_setup_failed_dlg_title),
+							customMessage,
+							getString(R.string.account_setup_failed_dlg_edit_details_action),
+							getString(R.string.account_setup_failed_dlg_continue_action));
+			break;
+		}
+		default: {
+			throw new RuntimeException(
+					"Called showDialog(int) with unknown dialog id.");
+		}
+		}
+
+		FragmentTransaction ta = getFragmentManager().beginTransaction();
+		ta.add(fragment, getDialogTag(dialogId));
+		ta.commitAllowingStateLoss();
+
+		// TODO: commitAllowingStateLoss() is used to prevent
+		// https://code.google.com/p/android/issues/detail?id=23761
+		// but is a bad...
+		// fragment.show(ta, getDialogTag(dialogId));
+	}
+
+	private String getDialogTag(int dialogId) {
+		return String.format(Locale.US, "dialog-%d", dialogId);
+	}
+
+	@Override
+	public void doPositiveClick(int dialogId) {
+		switch (dialogId) {
+		case R.id.dialog_account_setup_error: {
+			finish();
+			break;
+		}
+		}
+	}
+
+	@Override
+	public void doNegativeClick(int dialogId) {
+		switch (dialogId) {
+		case R.id.dialog_account_setup_error: {
+			mCanceled = false;
+			setResult(RESULT_OK);
+			finish();
+			break;
+		}
+		}
+	}
+
+	@Override
+	public void dialogCancelled(int dialogId) {
+		// nothing to do here...
 	}
 }

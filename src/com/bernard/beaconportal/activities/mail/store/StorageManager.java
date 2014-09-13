@@ -338,7 +338,6 @@ public class StorageManager {
 		 */
 		protected File mApplicationDirectory;
 
-		@Override
 		public String getId() {
 			return ID;
 		}
@@ -401,7 +400,6 @@ public class StorageManager {
 
 		public static final String ID = "HtcIncredibleStorage";
 
-		@Override
 		public String getId() {
 			return ID;
 		}
@@ -441,7 +439,6 @@ public class StorageManager {
 
 		public static final String ID = "SamsungGalaxySStorage";
 
-		@Override
 		public String getId() {
 			return ID;
 		}

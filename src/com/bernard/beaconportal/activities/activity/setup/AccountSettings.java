@@ -1,7 +1,5 @@
 package com.bernard.beaconportal.activities.activity.setup;
 
-import android.app.Dialog;
-
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,13 +8,13 @@ import java.util.Map;
 import org.openintents.openpgp.util.OpenPgpListPreference;
 import org.openintents.openpgp.util.OpenPgpUtils;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.CheckBoxPreference;
@@ -27,29 +25,25 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.preference.RingtonePreference;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.BaseAccount;
+import com.bernard.beaconportal.activities.Account.FolderMode;
+import com.bernard.beaconportal.activities.Account.QuoteStyle;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.NotificationSetting;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.Account.FolderMode;
-import com.bernard.beaconportal.activities.Account.QuoteStyle;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.ChooseFolder;
 import com.bernard.beaconportal.activities.activity.ChooseIdentity;
 import com.bernard.beaconportal.activities.activity.ColorPickerDialog;
 import com.bernard.beaconportal.activities.activity.K9PreferenceActivity;
 import com.bernard.beaconportal.activities.activity.ManageIdentities;
-import com.bernard.beaconportal.activities.activity.MessageList;
 import com.bernard.beaconportal.activities.crypto.Apg;
-import com.bernard.beaconportal.activities.crypto.CryptoProvider;
 import com.bernard.beaconportal.activities.mail.Folder;
 import com.bernard.beaconportal.activities.mail.Store;
-import com.bernard.beaconportal.activities.mail.store.StorageManager;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalFolder;
+import com.bernard.beaconportal.activities.mail.store.StorageManager;
 import com.bernard.beaconportal.activities.service.MailService;
-import com.bernard.beaconportal.activities.R;
 
 public class AccountSettings extends K9PreferenceActivity {
 	private static final String EXTRA_ACCOUNT = "account";
@@ -65,7 +59,6 @@ public class AccountSettings extends K9PreferenceActivity {
 	private static final String PREFERENCE_SCREEN_COMPOSING = "composing";
 	private static final String PREFERENCE_SCREEN_INCOMING = "incoming_prefs";
 	private static final String PREFERENCE_SCREEN_PUSH_ADVANCED = "push_advanced";
-	private static final String PREFERENCE_SCREEN_NOTIFICATIONS = "notifications";
 	private static final String PREFERENCE_SCREEN_SEARCH = "search";
 
 	private static final String PREFERENCE_DESCRIPTION = "account_description";
@@ -77,6 +70,7 @@ public class AccountSettings extends K9PreferenceActivity {
 	private static final String PREFERENCE_DEFAULT = "account_default";
 	private static final String PREFERENCE_SHOW_PICTURES = "show_pictures_enum";
 	private static final String PREFERENCE_NOTIFY = "account_notify";
+	private static final String PREFERENCE_NOTIFY_NEW_MAIL_MODE = "folder_notify_new_mail_mode";
 	private static final String PREFERENCE_NOTIFY_SELF = "account_notify_self";
 	private static final String PREFERENCE_NOTIFY_SYNC = "account_notify_sync";
 	private static final String PREFERENCE_VIBRATE = "account_vibrate";
@@ -100,7 +94,6 @@ public class AccountSettings extends K9PreferenceActivity {
 	private static final String PREFERENCE_CHIP_COLOR = "chip_color";
 	private static final String PREFERENCE_LED_COLOR = "led_color";
 	private static final String PREFERENCE_NOTIFICATION_OPENS_UNREAD = "notification_opens_unread";
-	private static final String PREFERENCE_NOTIFICATION_UNREAD_COUNT = "notification_unread_count";
 	private static final String PREFERENCE_MESSAGE_AGE = "account_message_age";
 	private static final String PREFERENCE_MESSAGE_SIZE = "account_autodownload_size";
 	private static final String PREFERENCE_MESSAGE_FORMAT = "message_format";
@@ -145,6 +138,7 @@ public class AccountSettings extends K9PreferenceActivity {
 	private ListPreference mMessageSize;
 	private CheckBoxPreference mAccountDefault;
 	private CheckBoxPreference mAccountNotify;
+	private ListPreference mAccountNotifyNewMailMode;
 	private CheckBoxPreference mAccountNotifySelf;
 	private ListPreference mAccountShowPictures;
 	private CheckBoxPreference mAccountNotifySync;
@@ -165,7 +159,6 @@ public class AccountSettings extends K9PreferenceActivity {
 	private Preference mLedColor;
 	private boolean mIncomingChanged = false;
 	private CheckBoxPreference mNotificationOpensUnread;
-	private CheckBoxPreference mNotificationUnreadCount;
 	private ListPreference mMessageFormat;
 	private CheckBoxPreference mMessageReadReceipt;
 	private ListPreference mQuoteStyle;
@@ -201,14 +194,7 @@ public class AccountSettings extends K9PreferenceActivity {
 
 	public static void actionSettings(Context context, Account account) {
 		Intent i = new Intent(context, AccountSettings.class);
-		i.putExtra(EXTRA_ACCOUNT, ((BaseAccount) account).getUuid());
-		context.startActivity(i);
-	}
-
-	public static void actionSettings_Messagelist(Context context,
-			MessageList account) {
-		Intent i = new Intent(context, AccountSettings.class);
-		i.putExtra(EXTRA_ACCOUNT, ((BaseAccount) account).getUuid());
+		i.putExtra(EXTRA_ACCOUNT, account.getUuid());
 		context.startActivity(i);
 	}
 
@@ -247,12 +233,6 @@ public class AccountSettings extends K9PreferenceActivity {
 
 		}
 
-		int titleId = getResources().getIdentifier("action_bar_title", "id",
-				"android");
-
-		TextView abTitle = (TextView) findViewById(titleId);
-		abTitle.setTextColor(getResources().getColor((R.color.white)));
-
 		android.app.ActionBar bar = getActionBar();
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
@@ -267,7 +247,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mAccountDescription.setText(mAccount.getDescription());
 		mAccountDescription
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String summary = newValue.toString();
@@ -286,7 +265,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mMessageFormat.setSummary(mMessageFormat.getEntry());
 		mMessageFormat
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String summary = newValue.toString();
@@ -364,7 +342,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mCheckFrequency.setSummary(mCheckFrequency.getEntry());
 		mCheckFrequency
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String summary = newValue.toString();
@@ -380,7 +357,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mDisplayMode.setSummary(mDisplayMode.getEntry());
 		mDisplayMode
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String summary = newValue.toString();
@@ -396,7 +372,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mSyncMode.setSummary(mSyncMode.getEntry());
 		mSyncMode
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String summary = newValue.toString();
@@ -412,7 +387,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mTargetMode.setSummary(mTargetMode.getEntry());
 		mTargetMode
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String summary = newValue.toString();
@@ -432,7 +406,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mDeletePolicy.setSummary(mDeletePolicy.getEntry());
 		mDeletePolicy
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String summary = newValue.toString();
@@ -449,7 +422,6 @@ public class AccountSettings extends K9PreferenceActivity {
 			mExpungePolicy.setSummary(mExpungePolicy.getEntry());
 			mExpungePolicy
 					.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-						@Override
 						public boolean onPreferenceChange(
 								Preference preference, Object newValue) {
 							final String summary = newValue.toString();
@@ -474,7 +446,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mSearchableFolders.setSummary(mSearchableFolders.getEntry());
 		mSearchableFolders
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String summary = newValue.toString();
@@ -492,7 +463,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mDisplayCount.setSummary(mDisplayCount.getEntry());
 		mDisplayCount
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String summary = newValue.toString();
@@ -514,7 +484,6 @@ public class AccountSettings extends K9PreferenceActivity {
 			mMessageAge.setSummary(mMessageAge.getEntry());
 			mMessageAge
 					.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-						@Override
 						public boolean onPreferenceChange(
 								Preference preference, Object newValue) {
 							final String summary = newValue.toString();
@@ -533,7 +502,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mMessageSize.setSummary(mMessageSize.getEntry());
 		mMessageSize
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String summary = newValue.toString();
@@ -553,7 +521,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mAccountShowPictures.setSummary(mAccountShowPictures.getEntry());
 		mAccountShowPictures
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String summary = newValue.toString();
@@ -588,7 +555,6 @@ public class AccountSettings extends K9PreferenceActivity {
 
 			mLocalStorageProvider
 					.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-						@Override
 						public boolean onPreferenceChange(
 								Preference preference, Object newValue) {
 							mLocalStorageProvider.setSummary(providers
@@ -606,7 +572,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mRemoteSearchNumResults = (ListPreference) findPreference(PREFERENCE_REMOTE_SEARCH_NUM_RESULTS);
 		mRemoteSearchNumResults
 				.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference pref,
 							Object newVal) {
 						updateRemoteSearchLimit((String) newVal);
@@ -634,7 +599,6 @@ public class AccountSettings extends K9PreferenceActivity {
 			mIdleRefreshPeriod.setSummary(mIdleRefreshPeriod.getEntry());
 			mIdleRefreshPeriod
 					.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-						@Override
 						public boolean onPreferenceChange(
 								Preference preference, Object newValue) {
 							final String summary = newValue.toString();
@@ -652,7 +616,6 @@ public class AccountSettings extends K9PreferenceActivity {
 			mMaxPushFolders.setSummary(mMaxPushFolders.getEntry());
 			mMaxPushFolders
 					.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-						@Override
 						public boolean onPreferenceChange(
 								Preference preference, Object newValue) {
 							final String summary = newValue.toString();
@@ -669,7 +632,6 @@ public class AccountSettings extends K9PreferenceActivity {
 			mPushMode.setSummary(mPushMode.getEntry());
 			mPushMode
 					.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-						@Override
 						public boolean onPreferenceChange(
 								Preference preference, Object newValue) {
 							final String summary = newValue.toString();
@@ -682,14 +644,34 @@ public class AccountSettings extends K9PreferenceActivity {
 		} else {
 			PreferenceScreen incomingPrefs = (PreferenceScreen) findPreference(PREFERENCE_SCREEN_INCOMING);
 			incomingPrefs
-					.removePreference(findPreference(PREFERENCE_SCREEN_PUSH_ADVANCED));
+					.removePreference((PreferenceScreen) findPreference(PREFERENCE_SCREEN_PUSH_ADVANCED));
 			incomingPrefs
-					.removePreference(findPreference(PREFERENCE_PUSH_MODE));
+					.removePreference((ListPreference) findPreference(PREFERENCE_PUSH_MODE));
 			mMainScreen.removePreference(mSearchScreen);
 		}
 
 		mAccountNotify = (CheckBoxPreference) findPreference(PREFERENCE_NOTIFY);
 		mAccountNotify.setChecked(mAccount.isNotifyNewMail());
+
+		mAccountNotifyNewMailMode = (ListPreference) findPreference(PREFERENCE_NOTIFY_NEW_MAIL_MODE);
+		mAccountNotifyNewMailMode.setValue(mAccount
+				.getFolderNotifyNewMailMode().name());
+		mAccountNotifyNewMailMode.setSummary(mAccountNotifyNewMailMode
+				.getEntry());
+		mAccountNotifyNewMailMode
+				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+					public boolean onPreferenceChange(Preference preference,
+							Object newValue) {
+						final String summary = newValue.toString();
+						int index = mAccountNotifyNewMailMode
+								.findIndexOfValue(summary);
+						mAccountNotifyNewMailMode
+								.setSummary(mAccountNotifyNewMailMode
+										.getEntries()[index]);
+						mAccountNotifyNewMailMode.setValue(summary);
+						return false;
+					}
+				});
 
 		mAccountNotifySelf = (CheckBoxPreference) findPreference(PREFERENCE_NOTIFY_SELF);
 		mAccountNotifySelf.setChecked(mAccount.isNotifySelfNewMail());
@@ -719,7 +701,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mAccountVibratePattern.setSummary(mAccountVibratePattern.getEntry());
 		mAccountVibratePattern
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String summary = newValue.toString();
@@ -757,29 +738,11 @@ public class AccountSettings extends K9PreferenceActivity {
 		mNotificationOpensUnread = (CheckBoxPreference) findPreference(PREFERENCE_NOTIFICATION_OPENS_UNREAD);
 		mNotificationOpensUnread.setChecked(mAccount.goToUnreadMessageSearch());
 
-		CheckBoxPreference notificationUnreadCount = (CheckBoxPreference) findPreference(PREFERENCE_NOTIFICATION_UNREAD_COUNT);
-
-		/*
-		 * Honeycomb and newer don't show the notification number as overlay on
-		 * the notification icon in the status bar, so we hide the setting.
-		 * 
-		 * See http://code.google.com/p/android/issues/detail?id=21477
-		 */
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			PreferenceScreen notificationsPrefs = (PreferenceScreen) findPreference(PREFERENCE_SCREEN_NOTIFICATIONS);
-			notificationsPrefs.removePreference(notificationUnreadCount);
-		} else {
-			notificationUnreadCount.setChecked(mAccount
-					.isNotificationShowsUnreadCount());
-			mNotificationUnreadCount = notificationUnreadCount;
-		}
-
 		new PopulateFolderPrefsTask().execute();
 
 		mChipColor = findPreference(PREFERENCE_CHIP_COLOR);
 		mChipColor
 				.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-					@Override
 					public boolean onPreferenceClick(Preference preference) {
 						onChooseChipColor();
 						return false;
@@ -789,7 +752,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mLedColor = findPreference(PREFERENCE_LED_COLOR);
 		mLedColor
 				.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-					@Override
 					public boolean onPreferenceClick(Preference preference) {
 						onChooseLedColor();
 						return false;
@@ -798,7 +760,6 @@ public class AccountSettings extends K9PreferenceActivity {
 
 		findPreference(PREFERENCE_COMPOSITION).setOnPreferenceClickListener(
 				new Preference.OnPreferenceClickListener() {
-					@Override
 					public boolean onPreferenceClick(Preference preference) {
 						onCompositionSettings();
 						return true;
@@ -808,7 +769,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		findPreference(PREFERENCE_MANAGE_IDENTITIES)
 				.setOnPreferenceClickListener(
 						new Preference.OnPreferenceClickListener() {
-							@Override
 							public boolean onPreferenceClick(
 									Preference preference) {
 								onManageIdentities();
@@ -818,7 +778,6 @@ public class AccountSettings extends K9PreferenceActivity {
 
 		findPreference(PREFERENCE_INCOMING).setOnPreferenceClickListener(
 				new Preference.OnPreferenceClickListener() {
-					@Override
 					public boolean onPreferenceClick(Preference preference) {
 						mIncomingChanged = true;
 						onIncomingSettings();
@@ -828,7 +787,6 @@ public class AccountSettings extends K9PreferenceActivity {
 
 		findPreference(PREFERENCE_OUTGOING).setOnPreferenceClickListener(
 				new Preference.OnPreferenceClickListener() {
-					@Override
 					public boolean onPreferenceClick(Preference preference) {
 						onOutgoingSettings();
 						return true;
@@ -849,7 +807,6 @@ public class AccountSettings extends K9PreferenceActivity {
 			mCryptoApp.setSummary(mCryptoApp.getEntry());
 			mCryptoApp
 					.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-						@Override
 						public boolean onPreferenceChange(
 								Preference preference, Object newValue) {
 							String value = newValue.toString();
@@ -858,7 +815,7 @@ public class AccountSettings extends K9PreferenceActivity {
 							mCryptoApp.setValue(value);
 							handleCryptoAppDependencies();
 							if (Apg.NAME.equals(value)) {
-								CryptoProvider.createInstance(null).test(
+								Apg.createInstance(null).test(
 										AccountSettings.this);
 							}
 							return false;
@@ -919,6 +876,8 @@ public class AccountSettings extends K9PreferenceActivity {
 		mAccount.setMarkMessageAsReadOnView(mMarkMessageAsReadOnView
 				.isChecked());
 		mAccount.setNotifyNewMail(mAccountNotify.isChecked());
+		mAccount.setFolderNotifyNewMailMode(Account.FolderMode
+				.valueOf(mAccountNotifyNewMailMode.getValue()));
 		mAccount.setNotifySelfNewMail(mAccountNotifySelf.isChecked());
 		mAccount.setShowOngoing(mAccountNotifySync.isChecked());
 		mAccount.setDisplayCount(Integer.parseInt(mDisplayCount.getValue()));
@@ -937,10 +896,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		mAccount.getNotificationSetting().setLed(mAccountLed.isChecked());
 		mAccount.setGoToUnreadMessageSearch(mNotificationOpensUnread
 				.isChecked());
-		if (mNotificationUnreadCount != null) {
-			mAccount.setNotificationShowsUnreadCount(mNotificationUnreadCount
-					.isChecked());
-		}
 		mAccount.setFolderTargetMode(Account.FolderMode.valueOf(mTargetMode
 				.getValue()));
 		mAccount.setDeletePolicy(Integer.parseInt(mDeletePolicy.getValue()));
@@ -1096,7 +1051,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		case DIALOG_COLOR_PICKER_ACCOUNT: {
 			dialog = new ColorPickerDialog(this,
 					new ColorPickerDialog.OnColorChangedListener() {
-						@Override
 						public void colorChanged(int color) {
 							mAccount.setChipColor(color);
 						}
@@ -1107,7 +1061,6 @@ public class AccountSettings extends K9PreferenceActivity {
 		case DIALOG_COLOR_PICKER_LED: {
 			dialog = new ColorPickerDialog(this,
 					new ColorPickerDialog.OnColorChangedListener() {
-						@Override
 						public void colorChanged(int color) {
 							mAccount.getNotificationSetting()
 									.setLedColor(color);

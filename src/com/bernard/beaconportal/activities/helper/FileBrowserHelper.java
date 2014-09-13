@@ -168,7 +168,6 @@ public class FileBrowserHelper {
 
 		alert.setPositiveButton(c.getString(R.string.okay_action),
 				new DialogInterface.OnClickListener() {
-					@Override
 					public void onClick(DialogInterface dialog, int whichButton) {
 						String path = input.getText().toString();
 						callback.onPathEntered(path);
@@ -177,7 +176,6 @@ public class FileBrowserHelper {
 
 		alert.setNegativeButton(c.getString(R.string.cancel_action),
 				new DialogInterface.OnClickListener() {
-					@Override
 					public void onClick(DialogInterface dialog, int whichButton) {
 						callback.onCancel();
 					}

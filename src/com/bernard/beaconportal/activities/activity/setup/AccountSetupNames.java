@@ -12,18 +12,18 @@ import android.text.method.TextKeyListener;
 import android.text.method.TextKeyListener.Capitalize;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.bernard.beaconportal.activities.*;
-import com.bernard.beaconportal.activities.MainActivity.Update;
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.MainActivity;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.Accounts;
 import com.bernard.beaconportal.activities.activity.K9Activity;
 import com.bernard.beaconportal.activities.helper.Utility;
-import com.bernard.beaconportal.activities.R;
 
 public class AccountSetupNames extends K9Activity implements OnClickListener {
 	private static final String EXTRA_ACCOUNT = "account";
@@ -126,10 +126,13 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 	}
 
 	protected void onNext() {
-		
-		InputMethodManager im = (InputMethodManager) this.getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-		im.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-		
+
+		InputMethodManager im = (InputMethodManager) this
+				.getApplicationContext().getSystemService(
+						Context.INPUT_METHOD_SERVICE);
+		im.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),
+				InputMethodManager.HIDE_NOT_ALWAYS);
+
 		if (Utility.requiredFieldValid(mDescription)) {
 			mAccount.setDescription(mDescription.getText().toString());
 		}
@@ -150,8 +153,6 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 		localEditor.putString("name", name);
 
 		localEditor.commit();
-		
-		
 
 	}
 
@@ -160,7 +161,7 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.done:
 			onNext();
-			
+
 			break;
 		}
 	}

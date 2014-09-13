@@ -10,9 +10,6 @@
 
 package com.bernard.beaconportal.activities;
 
-import android.os.Build;
-import android.os.Process;
-
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -25,6 +22,9 @@ import java.security.Provider;
 import java.security.SecureRandom;
 import java.security.SecureRandomSpi;
 import java.security.Security;
+
+import android.os.Build;
+import android.os.Process;
 
 /**
  * Fixes for the output of the default PRNG having low entropy.

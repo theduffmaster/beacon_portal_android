@@ -11,8 +11,12 @@ import android.content.SharedPreferences;
 
 import com.bernard.beaconportal.activities.EmailAddressValidator;
 import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.preferences.Settings.*;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.preferences.Settings.BooleanSetting;
+import com.bernard.beaconportal.activities.preferences.Settings.InvalidSettingValueException;
+import com.bernard.beaconportal.activities.preferences.Settings.SettingsDescription;
+import com.bernard.beaconportal.activities.preferences.Settings.SettingsUpgrader;
+import com.bernard.beaconportal.activities.preferences.Settings.V;
 
 public class IdentitySettings {
 	public static final Map<String, TreeMap<Integer, SettingsDescription>> SETTINGS;

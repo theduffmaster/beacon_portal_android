@@ -38,8 +38,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.database.ContentObserver;
 import android.database.Cursor;
@@ -56,8 +56,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.text.TextUtils.TruncateAt;
+import android.text.TextWatcher;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -77,11 +77,11 @@ import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -111,8 +111,6 @@ import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.MenuListAdapter;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
-
-import com.commonsware.cwac.merge.MergeAdapter;
 import com.bernard.beaconportal.activities.activity.misc.ExtendedAsyncTask;
 import com.bernard.beaconportal.activities.activity.misc.NonConfigurationInstance;
 import com.bernard.beaconportal.activities.activity.misc.SwipeGestureDetector.OnSwipeGestureListener;
@@ -160,6 +158,7 @@ import com.bernard.beaconportal.activities.view.MessageOpenPgpView;
 import com.bernard.beaconportal.activities.view.MessageTitleView;
 import com.bernard.beaconportal.activities.view.ViewSwitcher;
 import com.bernard.beaconportal.activities.view.ViewSwitcher.OnSwitchCompleteListener;
+import com.commonsware.cwac.merge.MergeAdapter;
 
 import de.cketti.library.changelog.ChangeLog;
 
@@ -889,7 +888,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		String packageName = "com.bernard.beaconportal.activities";
 
 		counterss = "0";
-		
+
 		int versionNumber = 0;
 
 		try {
@@ -1027,16 +1026,13 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		SharedPreferences counts = getSharedPreferences("due_today",
 				Context.MODE_PRIVATE);
 
-		
-		
-		if(counts.contains("homeworkdue")){
-		counterss = counts.getString("homeworkdue", null);
-		}else{
-			
+		if (counts.contains("homeworkdue")) {
+			counterss = counts.getString("homeworkdue", null);
+		} else {
+
 			counterss = null;
 		}
-		
-		
+
 		title_Inbox = new String[] { "Inbox" };
 
 		icon_Inbox = new int[] { R.drawable.ic_action_email };
@@ -1045,26 +1041,25 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] { 
-					//"Homework Due", 
-					"Schedule", "Options",
-					"Logout" };
+			title = new String[] {
+					// "Homework Due",
+					"Schedule", "Options", "Logout" };
 
-			icon = new int[] { 
-					//R.drawable.ic_action_duehomework,
+			icon = new int[] {
+					// R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { 
-						//"",
+				count = new String[] {
+						// "",
 						"", "", "" };
 
 			} else {
 
-				count = new String[] { 
-						//counterss, 
+				count = new String[] {
+						// counterss,
 						"", "", "" };
 
 			}
@@ -1073,25 +1068,24 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { 
-						//"", 
+				count = new String[] {
+						// "",
 						"", "", "" };
 
 			} else {
 
-				count = new String[] { "", 
-						//counterss, 
+				count = new String[] { "",
+						// counterss,
 						"", "" };
 
 			}
 
-			title = new String[] { "Schedule", 
-					//"Homework Due",
-					"Options",
-					"Logout" };
+			title = new String[] { "Schedule",
+					// "Homework Due",
+					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
-					//R.drawable.ic_action_duehomework,
+					// R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
 
 		}
@@ -1354,59 +1348,55 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] { 
-					//"Homework Due",
-					"Schedule", 
-					"Options", "Logout" };
+			title = new String[] {
+					// "Homework Due",
+					"Schedule", "Options", "Logout" };
 
-			icon = new int[] { 
-					//R.drawable.ic_action_duehomework,
+			icon = new int[] {
+					// R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
-					 R.drawable.ic_action_settings,
-					R.drawable.ic_action_logout };
+					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { 
-						//"",
-						"",  "", "" };
+				count = new String[] {
+						// "",
+						"", "", "" };
 
 			} else {
 
-				count = new String[] { 
-						//counterss, 
-						"",  "", "", "" };
+				count = new String[] {
+						// counterss,
+						"", "", "", "" };
 
 			}
 
 		} else {
-			
+
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { 
-						//"", 
-						"",  "", "" };
+				count = new String[] {
+						// "",
+						"", "", "" };
 
 			} else {
 
-				count = new String[] { "", 
-						//counterss, 
-						 "", "" };
+				count = new String[] { "",
+						// counterss,
+						"", "" };
 
 			}
 
-			title = new String[] { "Schedule", 
-					//"Homework Due", 
-					
+			title = new String[] { "Schedule",
+					// "Homework Due",
+
 					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
-					//R.drawable.ic_action_duehomework,
-					 R.drawable.ic_action_settings,
-					R.drawable.ic_action_logout };
+					// R.drawable.ic_action_duehomework,
+					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
 
 		}
-
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -1663,8 +1653,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		if (v == getListView()) {
 
-			
-			
 			if (info.position > mAdapter_Accounts.getCount() + 3) {
 
 				getMenuInflater().inflate(R.menu.folder_context, menu);
@@ -1675,7 +1663,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 				menu.setHeaderTitle(folder.displayName);
 
-			} else if (info.position < mAdapter_Accounts.getCount() ) {
+			} else if (info.position < mAdapter_Accounts.getCount()) {
 
 				menu.setHeaderTitle(R.string.accounts_context_menu_title);
 
@@ -1717,7 +1705,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			}
 
-			
 		}
 	}
 
@@ -1730,20 +1717,21 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		FolderInfoHolder folder = null;
 
-
-		
 		if (mListView.getItemAtPosition(menuInfo.position) != null) {
-			
+
 			if (menuInfo.position - 1 > mAdapter_Accounts.getCount() - 3) {
 
-				if(0 < menuInfo.position- (mAdapter_Accounts.getCount() + 2)){
-					
-							folder = (FolderInfoHolder) mAdapter.getItem(menuInfo.position-(mAdapter_Accounts.getCount() + 4));
-							
-				}else{
-				folder = (FolderInfoHolder) mAdapter.getItem(menuInfo.position
-						- (mAdapter_Accounts.getCount() + 5));
-				
+				if (0 < menuInfo.position - (mAdapter_Accounts.getCount() + 2)) {
+
+					folder = (FolderInfoHolder) mAdapter
+							.getItem(menuInfo.position
+									- (mAdapter_Accounts.getCount() + 4));
+
+				} else {
+					folder = (FolderInfoHolder) mAdapter
+							.getItem(menuInfo.position
+									- (mAdapter_Accounts.getCount() + 5));
+
 				}
 
 			} else {
@@ -1761,10 +1749,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 				}
 
-			
+			}
 
-		}
-			
 		}
 
 		switch (item.getItemId()) {
@@ -1782,7 +1768,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			break;
 		case R.id.account_settings:
-			onEditAccount();
+			onEditAccount(realAccount);
 
 			break;
 		case R.id.activate:
@@ -1829,8 +1815,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		showDialog(DIALOG_REMOVE_ACCOUNT);
 	}
 
-	void onEditAccount(MessageList account) {
-		AccountSettings.actionSettings_Messagelist(this, account);
+	private void onEditAccount(Account account) {
+		AccountSettings.actionSettings(this, mAccount);
 	}
 
 	@Override
@@ -2045,8 +2031,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				System.out.println("1 Unread Messages= " + mUnreadMessageCount);
 
 			}
-
-			
 
 			@Override
 			public void listFoldersFailed(Account account, String message) {
@@ -4198,8 +4182,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				SharedPreferences.Editor localEditor2 = getSharedPreferences(
 						"return_to_main", Context.MODE_PRIVATE).edit();
 
-//				localEditor2.putString("fragment_to_start", "3");
-				
+				// localEditor2.putString("fragment_to_start", "3");
+
 				localEditor2.putString("fragment_to_start", "2");
 
 				localEditor2.commit();
@@ -4238,8 +4222,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 				Log.d("Folders", "clicked");
 
-				onOpenFolder(((FolderInfoHolder) mAdapter
-						.getItem(position - (mAdapter_Accounts.getCount() + 4))).name);
+				onOpenFolder(((FolderInfoHolder) mAdapter.getItem(position
+						- (mAdapter_Accounts.getCount() + 4))).name);
 
 				Log.d("Folder Click Listener", "clicked");
 
@@ -4290,8 +4274,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				SharedPreferences.Editor localEditor2 = getSharedPreferences(
 						"return_to_main", Context.MODE_PRIVATE).edit();
 
-//				localEditor2.putString("fragment_to_start", "3");
-				
+				// localEditor2.putString("fragment_to_start", "3");
+
 				localEditor2.putString("fragment_to_start", "2");
 
 				localEditor2.commit();
@@ -4563,15 +4547,13 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			BaseAccount allMessagesAccount = SearchAccount
 					.createAllMessagesAccount(this);
 
-//			accounts.add(unifiedInboxAccount);
-//			accounts.add(allMessagesAccount);
+			// accounts.add(unifiedInboxAccount);
+			// accounts.add(allMessagesAccount);
 		}
 
 		accounts.addAll(Arrays.asList(realAccounts));
 		AccountsAdapter adapter = new AccountsAdapter(accounts);
 
-		
-		
 		getListView().invalidate();
 
 		mergeadapter.addView(header_inbox);
@@ -4585,10 +4567,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		mergeadapter.addView(header_folders);
 
 		mergeadapter.addAdapter(mAdapter);
-		
+
 		getListView().setAdapter(mergeadapter);
-		
-		
 
 	}
 

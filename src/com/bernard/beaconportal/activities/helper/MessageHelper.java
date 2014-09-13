@@ -6,14 +6,14 @@ import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.FolderInfoHolder;
 import com.bernard.beaconportal.activities.activity.MessageInfoHolder;
 import com.bernard.beaconportal.activities.mail.Address;
 import com.bernard.beaconportal.activities.mail.Flag;
 import com.bernard.beaconportal.activities.mail.Message;
-import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Message.RecipientType;
-import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.mail.MessagingException;
 
 public class MessageHelper {
 

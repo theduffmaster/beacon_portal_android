@@ -4,12 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import com.bernard.beaconportal.activities.R;
-
-import de.timroes.android.listview.EnhancedListView;
-import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
-import de.timroes.android.listview.EnhancedListView.UndoStyle;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -22,33 +16,32 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+import de.timroes.android.listview.EnhancedListView;
+import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
+import de.timroes.android.listview.EnhancedListView.UndoStyle;
 
 public class Friday_view extends Fragment {
 
 	private String GBand, BBand, ADV1Band, ADV2Band, CBand, FBand;
 
 	private int count0, count1, count2, count3, count4, count5;
-	
+
 	private static ArrayAdapter<schedule_view> adapter;
-	
+
 	private ListView list;
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.schedule_list_view, container, false);
 	}
 
-
-	
 	private List<schedule_view> myschedule;
 
 	private static String bandString;
@@ -65,15 +58,14 @@ public class Friday_view extends Fragment {
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
-		
+
 		Calendar calendar = Calendar.getInstance();
 		int day = calendar.get(Calendar.DAY_OF_WEEK);
-		
-		if(day == 6){
-			
+
+		if (day == 6) {
+
 		}
-		
-		
+
 		SharedPreferences sharedpref = getActivity().getApplicationContext()
 				.getSharedPreferences("friday", Context.MODE_PRIVATE);
 		GBand = sharedpref.getString("g_Band", null);
@@ -82,45 +74,37 @@ public class Friday_view extends Fragment {
 		ADV2Band = sharedpref.getString("adv2_Band", null);
 		CBand = sharedpref.getString("c_Band", null);
 		FBand = sharedpref.getString("f_Band", null);
-		
-		
+
 		SharedPreferences sharedpref0 = getActivity().getApplicationContext()
 				.getSharedPreferences("friday0", Context.MODE_PRIVATE);
-		
-		count0 = sharedpref0.getInt(
-				"note_count", 1000);
-		
+
+		count0 = sharedpref0.getInt("note_count", 1000);
+
 		SharedPreferences sharedpref1 = getActivity().getApplicationContext()
 				.getSharedPreferences("friday1", Context.MODE_PRIVATE);
-		
-		count1 = sharedpref1.getInt(
-				"note_count", 1000);
-		
+
+		count1 = sharedpref1.getInt("note_count", 1000);
+
 		SharedPreferences sharedpref2 = getActivity().getApplicationContext()
 				.getSharedPreferences("friday2", Context.MODE_PRIVATE);
-		
-		count2 = sharedpref2.getInt(
-				"note_count", 1000);
-		
+
+		count2 = sharedpref2.getInt("note_count", 1000);
+
 		SharedPreferences sharedpref3 = getActivity().getApplicationContext()
 				.getSharedPreferences("friday3", Context.MODE_PRIVATE);
-		
-		count3 = sharedpref3.getInt(
-				"note_count", 1000);
-		
+
+		count3 = sharedpref3.getInt("note_count", 1000);
+
 		SharedPreferences sharedpref4 = getActivity().getApplicationContext()
 				.getSharedPreferences("friday4", Context.MODE_PRIVATE);
-		
-		count4 = sharedpref4.getInt(
-				"note_count", 1000);
-		
+
+		count4 = sharedpref4.getInt("note_count", 1000);
+
 		SharedPreferences sharedpref5 = getActivity().getApplicationContext()
 				.getSharedPreferences("friday5", Context.MODE_PRIVATE);
-		
-		count5 = sharedpref5.getInt(
-				"note_count", 1000);
-		
-		
+
+		count5 = sharedpref5.getInt("note_count", 1000);
+
 		super.onResume();
 		myschedule = new ArrayList<schedule_view>();
 		populatescheduleList();
@@ -153,10 +137,6 @@ public class Friday_view extends Fragment {
 
 	}
 
-	
-
-	
-
 	public class MyListAdapter extends ArrayAdapter<schedule_view> {
 		public MyListAdapter() {
 			super(getActivity(), R.layout.item_view, myschedule);
@@ -172,35 +152,37 @@ public class Friday_view extends Fragment {
 				holder = new ViewHolder();
 
 				schedule_view currenthomeworkdue = myschedule.get(position);
-				
+
 				holder.HomeworkDueText = (TextView) convertView
 						.findViewById(R.id.bandText);
 
 				holder.ClassesText = (TextView) convertView
 						.findViewById(R.id.textView1);
-				
+
 				holder.NotesCountText = (TextView) convertView
 						.findViewById(R.id.note_count);
-				
-				View BackGround = (View) convertView.findViewById(R.id.note_background);
-				
-				TextView Count = (TextView) convertView.findViewById(R.id.note_count);
-				
-				if( currenthomeworkdue.Note_Number() == 1000){
-					
+
+				View BackGround = (View) convertView
+						.findViewById(R.id.note_background);
+
+				TextView Count = (TextView) convertView
+						.findViewById(R.id.note_count);
+
+				if (currenthomeworkdue.Note_Number() == 1000) {
+
 					BackGround.setVisibility(View.GONE);
-					
+
 					Count.setVisibility(View.GONE);
-					
+
 				}
-				
-		if( currenthomeworkdue.Note_Number() == 0){
-	
-			BackGround.setVisibility(View.GONE);
-	
-		Count.setVisibility(View.GONE);
-	
-		}
+
+				if (currenthomeworkdue.Note_Number() == 0) {
+
+					BackGround.setVisibility(View.GONE);
+
+					Count.setVisibility(View.GONE);
+
+				}
 
 				convertView.setTag(holder);
 
@@ -213,9 +195,10 @@ public class Friday_view extends Fragment {
 			holder.HomeworkDueText.setText(currenthomeworkdue.Band());
 
 			holder.ClassesText.setText(currenthomeworkdue.Classes());
-			
-			holder.NotesCountText.setText(Integer.toString(currenthomeworkdue.Note_Number()));
-		
+
+			holder.NotesCountText.setText(Integer.toString(currenthomeworkdue
+					.Note_Number()));
+
 			return convertView;
 
 		}
@@ -227,7 +210,7 @@ public class Friday_view extends Fragment {
 		NotesDialog notesDialog = new NotesDialog();
 		notesDialog.show(fm, bandString);
 	}
-	
+
 	protected boolean onLongListItemClick(View v, int pos, long id) {
 
 		TextView band = (TextView) v.findViewById(R.id.bandText);
@@ -240,14 +223,14 @@ public class Friday_view extends Fragment {
 
 		return true;
 	}
-	
+
 	public static class NotesDialog extends DialogFragment {
 
 		private EnhancedListView mNotes;
 		private static RelativeLayout addNote;
 		private int position_mainlist;
 		private String note_removed;
-		
+
 		public NotesDialog() {
 			// Empty constructor required for DialogFragment
 		}
@@ -262,143 +245,144 @@ public class Friday_view extends Fragment {
 			mNotes = (EnhancedListView) view.findViewById(R.id.listViewNotes);
 			addNote = (RelativeLayout) view.findViewById(R.id.notesAdd);
 
-			
-			String band_position = ("friday"+(Integer.toString(position))).toString();
-			
+			String band_position = ("friday" + (Integer.toString(position)))
+					.toString();
+
 			position_mainlist = position;
-			
-			SharedPreferences sharedpref = getActivity().getApplicationContext()
-					.getSharedPreferences(band_position, Context.MODE_PRIVATE);
-			
-			int counterssss = sharedpref.getInt(
-					"note_count", 0);
+
+			SharedPreferences sharedpref = getActivity()
+					.getApplicationContext().getSharedPreferences(
+							band_position, Context.MODE_PRIVATE);
+
+			int counterssss = sharedpref.getInt("note_count", 0);
 
 			int countersssss = counterssss + 1;
 
 			final ArrayList<String> note_list = new ArrayList<String>();
-			
+
 			for (int i = 0; i < countersssss; i++) {
-			
+
 				String note_item = Integer.toString(i);
-				
-				String note = sharedpref.getString(
-						 note_item, "");
-				
+
+				String note = sharedpref.getString(note_item, "");
+
 				note_list.add(note);
-			
+
 			}
-				
+
 			final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-	                 getActivity(), 
-	                 R.layout.note_dialog_item, R.id.textView1,
-	                 note_list );
-			
+					getActivity(), R.layout.note_dialog_item, R.id.textView1,
+					note_list);
+
 			mNotes.setAdapter(arrayAdapter);
-			
+
 			mNotes.setDismissCallback(new OnDismissCallback() {
 
-				  @Override public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
+				@Override
+				public EnhancedListView.Undoable onDismiss(
+						EnhancedListView listView, final int position) {
 
-				    // Store the item for later undo
-				    
-					  final String item = (String) arrayAdapter.getItem(position);
-					  
-				    // Remove the item from the adapter
-				    arrayAdapter.remove(item);
-				    
-				    
-				    
-				    // return an Undoable
-				    return new EnhancedListView.Undoable() {
-				      // Reinsert the item to the adapter
-				      @Override public void undo() {
-				       arrayAdapter.insert(item, position);
-				      }
+					// Store the item for later undo
 
-				      // Return a string for your item
-				      
+					final String item = (String) arrayAdapter.getItem(position);
 
-				       //Delete item completely from your persistent storage
-				      @Override public void discard() {
-				        
-				    	  String band_position = ("friday"+(Integer.toString(position_mainlist))).toString();
-				    	  
-				    	  SharedPreferences.Editor localEditor = getActivity().getSharedPreferences(
-									band_position	, Context.MODE_PRIVATE).edit();
-							
-							SharedPreferences sharedpref = getActivity().getApplicationContext()
-									.getSharedPreferences(band_position, Context.MODE_PRIVATE);
-							
-							int counterssss = sharedpref.getInt(
-									"note_count", 0);
+					// Remove the item from the adapter
+					arrayAdapter.remove(item);
 
-							int countersssss = counterssss+1;
+					// return an Undoable
+					return new EnhancedListView.Undoable() {
+						// Reinsert the item to the adapter
+						@Override
+						public void undo() {
+							arrayAdapter.insert(item, position);
+						}
+
+						// Return a string for your item
+
+						// Delete item completely from your persistent storage
+						@Override
+						public void discard() {
+
+							String band_position = ("friday" + (Integer
+									.toString(position_mainlist))).toString();
+
+							SharedPreferences.Editor localEditor = getActivity()
+									.getSharedPreferences(band_position,
+											Context.MODE_PRIVATE).edit();
+
+							SharedPreferences sharedpref = getActivity()
+									.getApplicationContext()
+									.getSharedPreferences(band_position,
+											Context.MODE_PRIVATE);
+
+							int counterssss = sharedpref
+									.getInt("note_count", 0);
+
+							int countersssss = counterssss + 1;
 
 							int ii = -1;
-							
+
 							for (int i = 0; i < countersssss; i++) {
-							
+
 								String note_item = Integer.toString(i);
-								
-								String note = sharedpref.getString(
-										 note_item, "");
-								
-								if(item.equals(note)){
-									
+
+								String note = sharedpref.getString(note_item,
+										"");
+
+								if (item.equals(note)) {
+
 									System.out.println(note + " 1 " + item);
-									
+
 									String item_positions = Integer.toString(i);
-									
+
 									localEditor.remove(item_positions);
-									
+
 									localEditor.commit();
-									
-								}else{
-									
+
+								} else {
+
 									System.out.println(note + " 2 " + item);
-									
+
 									ii++;
-									
+
 									System.out.println(ii);
-									
+
 									String item_position = Integer.toString(ii);
-									
-									
+
 									localEditor.putString(item_position, note);
-									
+
 								}
-								
-								
+
 							}
-							
-							int note_counts = sharedpref.getInt("note_count", 0);
-							
-				    	  int note_minus = note_counts - 1;
-				    	  
-				    	  localEditor.putInt("note_count", note_minus);
-				    	  
-				    	  
+
+							int note_counts = sharedpref
+									.getInt("note_count", 0);
+
+							int note_minus = note_counts - 1;
+
+							localEditor.putInt("note_count", note_minus);
+
 							localEditor.commit();
-							
-				    	  getActivity().recreate();
-				    	
-				      }
-				    };
 
-				  }
+							getActivity().recreate();
 
-				});
-			
+						}
+					};
+
+				}
+
+			});
+
 			mNotes.enableSwipeToDismiss();
-			
+
 			mNotes.setUndoStyle(UndoStyle.MULTILEVEL_POPUP);
-			
+
 			mNotes.setRequireTouchBeforeDismiss(false);
-			
+
 			mNotes.setUndoHideDelay(3000);
-			
+
 			arrayAdapter.remove("");
-			
+
 			addNote.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -409,49 +393,55 @@ public class Friday_view extends Fragment {
 				}
 			});
 
-			if(bandString.equals("G Band")){
-				
-TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
-				
+			if (bandString.equals("G Band")) {
+
+				TextView band_times = (TextView) view
+						.findViewById(R.id.infotimeView);
+
 				band_times.setText("9:00-9:55");
-				
+
 			}
-			if(bandString.equals("B Band")){
-				
-TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
-				
+			if (bandString.equals("B Band")) {
+
+				TextView band_times = (TextView) view
+						.findViewById(R.id.infotimeView);
+
 				band_times.setText("10:00-10:55");
-				
+
 			}
-			if(bandString.equals("Advisory 1")){
-				
-TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
-				
+			if (bandString.equals("Advisory 1")) {
+
+				TextView band_times = (TextView) view
+						.findViewById(R.id.infotimeView);
+
 				band_times.setText("11:00-11:45");
-				
+
 			}
-			if(bandString.equals("Advisory 2")){
-				
-TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
-				
+			if (bandString.equals("Advisory 2")) {
+
+				TextView band_times = (TextView) view
+						.findViewById(R.id.infotimeView);
+
 				band_times.setText("11:45-12:30");
-				
+
 			}
-			if(bandString.equals("C Band")){
-				
-TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
-				
+			if (bandString.equals("C Band")) {
+
+				TextView band_times = (TextView) view
+						.findViewById(R.id.infotimeView);
+
 				band_times.setText("12:35-1:30");
-				
+
 			}
-			if(bandString.equals("F Band")){
-				
-TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
-				
+			if (bandString.equals("F Band")) {
+
+				TextView band_times = (TextView) view
+						.findViewById(R.id.infotimeView);
+
 				band_times.setText("1:35-2:30");
-				
+
 			}
-			
+
 			builder.setView(view);
 
 			builder.setTitle(bandString);
@@ -464,22 +454,12 @@ TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
 						}
 					});
 
-			 
-			
-			
-			
 			return builder.create();
 
 		}
 
-		
-		
-		      
-		  
-		
-		
 		private void showNoteDialog() {
-			 getDialog().dismiss();
+			getDialog().dismiss();
 			FragmentManager fm = getFragmentManager();
 			NoteDialog noteDialog = new NoteDialog();
 			noteDialog.show(fm, bandString);
@@ -490,7 +470,7 @@ TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
 			private EditText mEditText;
 
 			private int Counts;
-			
+
 			public NoteDialog() {
 				// Empty constructor required for DialogFragment
 			}
@@ -512,7 +492,7 @@ TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
 						getDialog().dismiss();
 
 						NotesDialog notes = new NotesDialog();
-						
+
 						notes.showNoteDialog();
 					}
 				});
@@ -533,45 +513,46 @@ TextView band_times = (TextView) view.findViewById(R.id.infotimeView);
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
-								
-								
-								
-								String band_position = ("friday"+(Integer.toString(position))).toString();
-								
-								SharedPreferences.Editor localEditor = getActivity().getSharedPreferences(
-										band_position	, Context.MODE_PRIVATE).edit();
-								
-								SharedPreferences sharedpref = getActivity().getApplicationContext()
-										.getSharedPreferences(band_position, Context.MODE_PRIVATE);
-								
-								
-								if(sharedpref.contains("note_count")){
-								
-								int Count = sharedpref.getInt("note_count", 0);
-								
-								Counts = Count+1;
-								
-								}else{
-									
+
+								String band_position = ("friday" + (Integer
+										.toString(position))).toString();
+
+								SharedPreferences.Editor localEditor = getActivity()
+										.getSharedPreferences(band_position,
+												Context.MODE_PRIVATE).edit();
+
+								SharedPreferences sharedpref = getActivity()
+										.getApplicationContext()
+										.getSharedPreferences(band_position,
+												Context.MODE_PRIVATE);
+
+								if (sharedpref.contains("note_count")) {
+
+									int Count = sharedpref.getInt("note_count",
+											0);
+
+									Counts = Count + 1;
+
+								} else {
+
 									Counts = 1;
-									
+
 								}
-								
-								
+
 								String Note = mEditText.getText().toString();
-								
+
 								String note_counts = Integer.toString(Counts);
-								
+
 								localEditor.putString(note_counts, Note);
-								
+
 								localEditor.putInt("note_count", Counts);
 
 								localEditor.apply();
-								
+
 								getDialog().dismiss();
-								
+
 								getActivity().recreate();
-								
+
 							}
 						});
 

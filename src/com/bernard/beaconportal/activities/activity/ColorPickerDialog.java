@@ -1,11 +1,12 @@
 package com.bernard.beaconportal.activities.activity;
 
-import com.bernard.beaconportal.activities.R;
 import android.app.AlertDialog;
-import android.content.*;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.bernard.beaconportal.activities.R;
 import com.larswerkman.colorpicker.ColorPicker;
 
 /**
