@@ -23,6 +23,7 @@ import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.mail.MessagingException;
+import com.bernard.beaconportal.activities.mail.Store;
 import com.bernard.beaconportal.activities.mail.internet.MimeUtility;
 import com.bernard.beaconportal.activities.mail.store.LocalStore;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.AttachmentInfo;
@@ -226,7 +227,7 @@ public class AttachmentProvider extends ContentProvider {
 		try {
 			final Account account = Preferences.getPreferences(getContext())
 					.getAccount(dbName);
-			attachmentInfo = LocalStore.getLocalInstance(account, K9.app)
+			attachmentInfo = Store.getLocalInstance(account, K9.app)
 					.getAttachmentInfo(id);
 		} catch (MessagingException e) {
 			Log.e(K9.LOG_TAG,
@@ -285,8 +286,8 @@ public class AttachmentProvider extends ContentProvider {
 					.getAccount(dbName);
 
 			try {
-				final LocalStore localStore = LocalStore.getLocalInstance(
-						account, K9.app);
+				final LocalStore localStore = Store.getLocalInstance(account,
+						K9.app);
 
 				AttachmentInfo attachmentInfo = localStore
 						.getAttachmentInfo(id);

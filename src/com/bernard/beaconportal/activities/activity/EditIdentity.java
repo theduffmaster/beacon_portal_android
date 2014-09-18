@@ -82,6 +82,7 @@ public class EditIdentity extends K9Activity {
 		mSignatureUse.setChecked(mIdentity.getSignatureUse());
 		mSignatureUse
 				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+					@Override
 					public void onCheckedChanged(CompoundButton buttonView,
 							boolean isChecked) {
 						if (isChecked) {

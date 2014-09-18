@@ -162,7 +162,7 @@ public class Friday_view extends Fragment {
 				holder.NotesCountText = (TextView) convertView
 						.findViewById(R.id.note_count);
 
-				View BackGround = (View) convertView
+				View BackGround = convertView
 						.findViewById(R.id.note_background);
 
 				TextView Count = (TextView) convertView
@@ -284,7 +284,7 @@ public class Friday_view extends Fragment {
 
 					// Store the item for later undo
 
-					final String item = (String) arrayAdapter.getItem(position);
+					final String item = arrayAdapter.getItem(position);
 
 					// Remove the item from the adapter
 					arrayAdapter.remove(item);
@@ -448,6 +448,7 @@ public class Friday_view extends Fragment {
 
 			builder.setNegativeButton("Cancel",
 					new DialogInterface.OnClickListener() {
+						@Override
 						public void onClick(DialogInterface dialog,
 								int whichButton) {
 							getDialog().dismiss();
@@ -503,6 +504,7 @@ public class Friday_view extends Fragment {
 
 				builder.setNegativeButton("Cancel",
 						new DialogInterface.OnClickListener() {
+							@Override
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
 								getDialog().dismiss();
@@ -511,6 +513,7 @@ public class Friday_view extends Fragment {
 
 				builder.setPositiveButton("Add",
 						new DialogInterface.OnClickListener() {
+							@Override
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
 

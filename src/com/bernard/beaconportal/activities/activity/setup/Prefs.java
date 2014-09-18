@@ -213,6 +213,7 @@ public class Prefs extends K9PreferenceActivity {
 
 		findPreference(PREFERENCE_FONT_SIZE).setOnPreferenceClickListener(
 				new Preference.OnPreferenceClickListener() {
+					@Override
 					public boolean onPreferenceClick(Preference preference) {
 						onFontSizeSettings();
 						return true;
@@ -317,6 +318,7 @@ public class Prefs extends K9PreferenceActivity {
 		}
 		mChangeContactNameColor
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final Boolean checked = (Boolean) newValue;
@@ -353,6 +355,7 @@ public class Prefs extends K9PreferenceActivity {
 		mQuietTimeStarts.setSummary(K9.getQuietTimeStarts());
 		mQuietTimeStarts
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String time = (String) newValue;
@@ -366,6 +369,7 @@ public class Prefs extends K9PreferenceActivity {
 		mQuietTimeEnds.setDefaultValue(K9.getQuietTimeEnds());
 		mQuietTimeEnds
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						final String time = (String) newValue;
@@ -584,6 +588,7 @@ public class Prefs extends K9PreferenceActivity {
 	private void onChooseContactNameColor() {
 		new ColorPickerDialog(this,
 				new ColorPickerDialog.OnColorChangedListener() {
+					@Override
 					public void colorChanged(int color) {
 						K9.setContactNameColor(color);
 					}

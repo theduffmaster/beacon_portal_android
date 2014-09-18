@@ -106,6 +106,7 @@ public class FolderList extends K9ListActivity {
 
 		public void refreshTitle() {
 			runOnUiThread(new Runnable() {
+				@Override
 				public void run() {
 					mActionBarTitle.setText(getString(R.string.folders_title));
 
@@ -130,6 +131,7 @@ public class FolderList extends K9ListActivity {
 
 		public void newFolders(final List<FolderInfoHolder> newFolders) {
 			runOnUiThread(new Runnable() {
+				@Override
 				public void run() {
 					mAdapter.mFolders.clear();
 					mAdapter.mFolders.addAll(newFolders);
@@ -141,6 +143,7 @@ public class FolderList extends K9ListActivity {
 
 		public void workingAccount(final int res) {
 			runOnUiThread(new Runnable() {
+				@Override
 				public void run() {
 					String toastText = getString(res, mAccount.getDescription());
 					Toast toast = Toast.makeText(getApplication(), toastText,
@@ -152,6 +155,7 @@ public class FolderList extends K9ListActivity {
 
 		public void accountSizeChanged(final long oldSize, final long newSize) {
 			runOnUiThread(new Runnable() {
+				@Override
 				public void run() {
 					String toastText = getString(
 							R.string.account_size_changed,
@@ -168,6 +172,7 @@ public class FolderList extends K9ListActivity {
 
 		public void folderLoading(final String folder, final boolean loading) {
 			runOnUiThread(new Runnable() {
+				@Override
 				public void run() {
 					FolderInfoHolder folderHolder = mAdapter.getFolder(folder);
 
@@ -187,6 +192,7 @@ public class FolderList extends K9ListActivity {
 			}
 
 			runOnUiThread(new Runnable() {
+				@Override
 				public void run() {
 					if (progress) {
 						mRefreshMenuItem.setActionView(mActionBarProgressView);
@@ -200,6 +206,7 @@ public class FolderList extends K9ListActivity {
 
 		public void dataChanged() {
 			runOnUiThread(new Runnable() {
+				@Override
 				public void run() {
 					mAdapter.notifyDataSetChanged();
 				}
@@ -282,6 +289,7 @@ public class FolderList extends K9ListActivity {
 		mListView.setFastScrollEnabled(true);
 		mListView.setScrollingCacheEnabled(false);
 		mListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				onOpenFolder(((FolderInfoHolder) mAdapter.getItem(position)).name);
@@ -744,14 +752,17 @@ public class FolderList extends K9ListActivity {
 			return getItem((int) position);
 		}
 
+		@Override
 		public Object getItem(int position) {
 			return mFilteredFolders.get(position);
 		}
 
+		@Override
 		public long getItemId(int position) {
 			return mFilteredFolders.get(position).folder.getName().hashCode();
 		}
 
+		@Override
 		public int getCount() {
 			return mFilteredFolders.size();
 		}
@@ -1048,6 +1059,7 @@ public class FolderList extends K9ListActivity {
 			return null;
 		}
 
+		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (position <= getCount()) {
 				return getItemView(position, convertView, parent);
@@ -1079,13 +1091,13 @@ public class FolderList extends K9ListActivity {
 						.findViewById(R.id.new_message_count);
 				holder.flaggedMessageCount = (TextView) view
 						.findViewById(R.id.flagged_message_count);
-				holder.newMessageCountWrapper = (View) view
+				holder.newMessageCountWrapper = view
 						.findViewById(R.id.new_message_count_wrapper);
-				holder.flaggedMessageCountWrapper = (View) view
+				holder.flaggedMessageCountWrapper = view
 						.findViewById(R.id.flagged_message_count_wrapper);
-				holder.newMessageCountIcon = (View) view
+				holder.newMessageCountIcon = view
 						.findViewById(R.id.new_message_count_icon);
-				holder.flaggedMessageCountIcon = (View) view
+				holder.flaggedMessageCountIcon = view
 						.findViewById(R.id.flagged_message_count_icon);
 
 				holder.folderStatus = (TextView) view
@@ -1193,6 +1205,7 @@ public class FolderList extends K9ListActivity {
 			}
 
 			holder.activeIcons.setOnClickListener(new OnClickListener() {
+				@Override
 				public void onClick(View v) {
 					Toast toast = Toast.makeText(getApplication(),
 							getString(R.string.tap_hint), Toast.LENGTH_SHORT);
@@ -1265,6 +1278,7 @@ public class FolderList extends K9ListActivity {
 			this.mFilter = filter;
 		}
 
+		@Override
 		public Filter getFilter() {
 			return mFilter;
 		}

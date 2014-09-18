@@ -46,6 +46,7 @@ import com.bernard.beaconportal.activities.mail.Flag;
 import com.bernard.beaconportal.activities.mail.Folder;
 import com.bernard.beaconportal.activities.mail.Message;
 import com.bernard.beaconportal.activities.mail.MessagingException;
+import com.bernard.beaconportal.activities.mail.Store;
 import com.bernard.beaconportal.activities.mail.store.LocalStore;
 import com.bernard.beaconportal.activities.search.SearchAccount;
 
@@ -408,9 +409,9 @@ public class MessageProvider extends ContentProvider {
 				if (extractors.containsKey(field)) {
 					continue;
 				}
-				if (MessageColumns._ID.equals(field)) {
+				if (BaseColumns._ID.equals(field)) {
 					extractors.put(field, new IdExtractor());
-				} else if (MessageColumns._COUNT.equals(field)) {
+				} else if (BaseColumns._COUNT.equals(field)) {
 					extractors.put(field,
 							new CountExtractor<MessageInfoHolder>(count));
 				} else if (MessageColumns.SUBJECT.equals(field)) {
@@ -1128,8 +1129,8 @@ public class MessageProvider extends ContentProvider {
 		// get localstore parameter
 		Message msg = null;
 		try {
-			Folder lf = LocalStore.getLocalInstance(myAccount, K9.app)
-					.getFolder(folderName);
+			Folder lf = Store.getLocalInstance(myAccount, K9.app).getFolder(
+					folderName);
 			int msgCount = lf.getMessageCount();
 			if (K9.DEBUG) {
 				Log.d(K9.LOG_TAG, "folder msg count = " + msgCount);

@@ -3,8 +3,8 @@
     
 
 	package="com.bernard.beaconportal.activities"
-    android:versionCode="13"
-    android:versionName="1.07"
+    android:versionCode="16"
+    android:versionName="1.08"
     >
 	
 	<uses-permission android:name="android.permission.BLUETOOTH" />
@@ -78,7 +78,7 @@
             android:theme="@style/CustomActionBarTheme"
             
             android:windowSoftInputMode="stateAlwaysHidden">
-            >
+            
             
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -131,7 +131,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -473,7 +473,7 @@ otherwise it would make K-9 start at the wrong time
         <receiver
             android:name=".provider.UnreadWidgetProvider"
             android:label="@string/unread_widget_label"
-            android:icon="@drawable/icon">
+            android:icon="@drawable/ic_launcher">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

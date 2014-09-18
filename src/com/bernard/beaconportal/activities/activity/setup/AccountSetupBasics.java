@@ -336,7 +336,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 
 	public void showDatePicker() {
 		// Initializiation
-		LayoutInflater inflater = (LayoutInflater) getLayoutInflater();
+		LayoutInflater inflater = getLayoutInflater();
 		final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 		View customView = inflater.inflate(R.layout.bdaypicker, null);
 		dialogBuilder.setView(customView);
@@ -431,6 +431,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 		// Initialize datepicker in dialog atepicker
 		datePicker.init(year, month, day,
 				new DatePicker.OnDateChangedListener() {
+					@Override
 					public void onDateChanged(DatePicker view, int year,
 							int monthOfYear, int dayOfMonth) {
 						Calendar choosenDate = Calendar.getInstance();
@@ -439,7 +440,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 								.format(choosenDate.getTime()));
 
 						dateTextView.setTextColor(Color.parseColor("#58585b"));
-						((Button) dialog.getButton(AlertDialog.BUTTON_POSITIVE))
+						dialog.getButton(DialogInterface.BUTTON_POSITIVE)
 								.setEnabled(true);
 					}
 

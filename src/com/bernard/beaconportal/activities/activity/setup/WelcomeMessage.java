@@ -32,6 +32,11 @@ public class WelcomeMessage extends K9Activity implements OnClickListener {
 		super.onCreate(icicle);
 		setContentView(R.layout.welcome_message);
 
+		Intent Intent = new Intent(WelcomeMessage.this,
+				AccountSetupBasics.class);
+
+		WelcomeMessage.this.startActivity(Intent);
+
 		TextView welcome = (TextView) findViewById(R.id.welcome_message);
 		welcome.setText(HtmlConverter
 				.htmlToSpanned(getString(R.string.accounts_welcome)));

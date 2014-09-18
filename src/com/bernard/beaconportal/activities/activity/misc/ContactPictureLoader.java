@@ -206,8 +206,9 @@ public class ContactPictureLoader {
 		paint.setARGB(255, 255, 255, 255);
 		paint.setTextSize(mPictureSizeInPx * 3 / 4);
 		if (currentapiVersion >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+			// if buildversion is JellyBean or above,
+			// set font in contact pictures to Roboto Light
 			paint.setTypeface(tf);
-
 		}
 		// just scale this down a bit
 		Rect rect = new Rect();

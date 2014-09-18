@@ -98,7 +98,9 @@ public class MainActivity extends SherlockFragmentActivity {
 	Fragment fragment2 = new FragmentsHomeworkDue();
 	Fragment fragment3 = new FragmentSettings();
 	private CharSequence mDrawerTitle;
+	private CharSequence mDrawerTitleCheck;
 	private CharSequence mTitle;
+	private String KEY_STATE_TITLE;
 
 	private int starts = 0;
 
@@ -266,8 +268,14 @@ public class MainActivity extends SherlockFragmentActivity {
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
+		mDrawerTitleCheck = getTitle();
+		
+		if (!mDrawerTitleCheck.equals("Beacon Portal")) {
+		
 		mTitle = mDrawerTitle = getTitle();
 
+		}
+		
 		SharedPreferences Today_Homework = getApplicationContext()
 				.getSharedPreferences("due_today", Context.MODE_PRIVATE);
 
@@ -408,7 +416,9 @@ public class MainActivity extends SherlockFragmentActivity {
 			public void onDrawerOpened(View drawerView) {
 				// TODO Auto-generated method stub
 
-				getSupportActionBar().setTitle(mDrawerTitle);
+				if (mDrawerTitle != null && !mDrawerTitle.equals("Beacon Portal")) {
+					getSupportActionBar().setTitle(mDrawerTitle);
+				}
 				super.onDrawerOpened(drawerView);
 			}
 		};
@@ -425,6 +435,9 @@ public class MainActivity extends SherlockFragmentActivity {
 				int countss = Integer.parseInt(count);
 
 				if (savedInstanceState == null) {
+					
+					
+					
 					selectItem(countss);
 
 				}
@@ -434,6 +447,9 @@ public class MainActivity extends SherlockFragmentActivity {
 			} else {
 
 				if (savedInstanceState == null) {
+					
+					
+					
 					selectItem(0);
 				}
 
@@ -442,11 +458,18 @@ public class MainActivity extends SherlockFragmentActivity {
 		} else {
 
 			if (savedInstanceState == null) {
+				
+				
+				
 				selectItem(0);
 			}
 
 		}
 
+		if (savedInstanceState!=null) {
+		    setTitle(savedInstanceState.getCharSequence(KEY_STATE_TITLE));
+		}
+		
 		SharedPreferences sharedprefer = getSharedPreferences(
 				"first_run_starts", Context.MODE_PRIVATE);
 
@@ -518,6 +541,16 @@ public class MainActivity extends SherlockFragmentActivity {
 			}
 		}
 
+		mDrawerTitleCheck = getTitle();
+		
+		if (!mDrawerTitleCheck.equals("Beacon Portal")) {
+		
+		mTitle = mDrawerTitle = getTitle();
+		
+		getSupportActionBar().setTitle(mDrawerTitle);
+
+		}
+		
 		SharedPreferences Today_Homework = getApplicationContext()
 				.getSharedPreferences("due_today", Context.MODE_PRIVATE);
 
@@ -591,6 +624,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	}
 
+	
+	
 	public void inbox() {
 
 		Intent intent = new Intent(MainActivity.this, Accounts.class);
@@ -1007,16 +1042,33 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 
+		
 		mDrawerToggle.onConfigurationChanged(newConfig);
-	}
+		
+		}
+		
+	
 
 	@Override
 	public void setTitle(CharSequence title) {
+		
 		mTitle = title;
+	
+		
+		
 		getSupportActionBar().setTitle(mTitle);
-
+		
+		
+		
 	}
 
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+	    super.onSaveInstanceState(outState);
+	    CharSequence title = mDrawerLayout.isDrawerOpen(mDrawerLinear) ? mDrawerTitle:mTitle;
+	    outState.putCharSequence(KEY_STATE_TITLE, title);
+	}
+	
 	@Override
 	protected void onPause() {
 		super.onPause();
