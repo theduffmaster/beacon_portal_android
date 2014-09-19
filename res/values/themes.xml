@@ -53,8 +53,6 @@
         <item name="compatDividerVertical">?attr/messageListDividerColor</item>
         <item name="compatSelectableItemBackground">@android:color/transparent</item>
         <item name="contactPictureFallbackDefaultBackgroundColor">#ffababab</item>
-         <item name="android:textColor">#58585b</item>
-    	  <item name="android:textColorPrimary">#58585b</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 

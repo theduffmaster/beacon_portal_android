@@ -16,11 +16,11 @@
 
 package com.bernard.beaconportal.activities;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.os.Handler;
 import android.util.Log;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * This class used to "throttle" a flow of events.

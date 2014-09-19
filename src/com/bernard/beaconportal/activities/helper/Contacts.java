@@ -1,18 +1,18 @@
 package com.bernard.beaconportal.activities.helper;
 
-import java.util.ArrayList;
-
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.mail.Address;
+
+import java.util.ArrayList;
 
 /**
  * Helper class to access the contacts stored on the device.

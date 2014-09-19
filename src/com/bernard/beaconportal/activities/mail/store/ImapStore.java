@@ -24,7 +24,9 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CodingErrorAction;
 import java.security.GeneralSecurityException;
+import java.security.SecureRandom;
 import java.security.Security;
+import java.security.cert.CertificateException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,7 +49,9 @@ import java.util.regex.Pattern;
 import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
 
+import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
+import javax.net.ssl.TrustManager;
 
 import org.apache.commons.io.IOUtils;
 
@@ -60,7 +64,6 @@ import android.util.Log;
 import com.beetstra.jutf7.CharsetProvider;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.controller.MessageRetrievalListener;
 import com.bernard.beaconportal.activities.helper.StringUtils;
 import com.bernard.beaconportal.activities.helper.Utility;
@@ -95,7 +98,9 @@ import com.bernard.beaconportal.activities.mail.store.ImapResponseParser.ImapLis
 import com.bernard.beaconportal.activities.mail.store.ImapResponseParser.ImapResponse;
 import com.bernard.beaconportal.activities.mail.store.imap.ImapUtility;
 import com.bernard.beaconportal.activities.mail.transport.imap.ImapSettings;
+import com.bernard.beaconportal.activities.net.ssl.TrustManagerFactory;
 import com.bernard.beaconportal.activities.net.ssl.TrustedSocketFactory;
+import com.bernard.beaconportal.activities.R;
 import com.jcraft.jzlib.JZlib;
 import com.jcraft.jzlib.ZOutputStream;
 
@@ -120,7 +125,6 @@ public class ImapStore extends Store {
 	private static final String CAPABILITY_IDLE = "IDLE";
 	private static final String CAPABILITY_AUTH_CRAM_MD5 = "AUTH=CRAM-MD5";
 	private static final String CAPABILITY_AUTH_PLAIN = "AUTH=PLAIN";
-	private static final String CAPABILITY_AUTH_EXTERNAL = "AUTH=EXTERNAL";
 	private static final String CAPABILITY_LOGINDISABLED = "LOGINDISABLED";
 	private static final String COMMAND_IDLE = "IDLE";
 	private static final String CAPABILITY_NAMESPACE = "NAMESPACE";
@@ -156,7 +160,6 @@ public class ImapStore extends Store {
 		AuthType authenticationType = null;
 		String username = null;
 		String password = null;
-		String clientCertificateAlias = null;
 		String pathPrefix = null;
 		boolean autoDetectNamespace = true;
 
@@ -210,16 +213,10 @@ public class ImapStore extends Store {
 					authenticationType = AuthType.PLAIN;
 					username = URLDecoder.decode(userInfoParts[0], "UTF-8");
 					password = URLDecoder.decode(userInfoParts[1], "UTF-8");
-				} else if (userInfoParts.length == 3) {
+				} else {
 					authenticationType = AuthType.valueOf(userInfoParts[0]);
 					username = URLDecoder.decode(userInfoParts[1], "UTF-8");
-
-					if (AuthType.EXTERNAL == authenticationType) {
-						clientCertificateAlias = URLDecoder.decode(
-								userInfoParts[2], "UTF-8");
-					} else {
-						password = URLDecoder.decode(userInfoParts[2], "UTF-8");
-					}
+					password = URLDecoder.decode(userInfoParts[2], "UTF-8");
 				}
 			} catch (UnsupportedEncodingException enc) {
 				// This shouldn't happen since the encoding is hardcoded to
@@ -248,8 +245,8 @@ public class ImapStore extends Store {
 		}
 
 		return new ImapStoreSettings(host, port, connectionSecurity,
-				authenticationType, username, password, clientCertificateAlias,
-				autoDetectNamespace, pathPrefix);
+				authenticationType, username, password, autoDetectNamespace,
+				pathPrefix);
 	}
 
 	/**
@@ -268,13 +265,10 @@ public class ImapStore extends Store {
 	public static String createUri(ServerSettings server) {
 		String userEnc;
 		String passwordEnc;
-		String clientCertificateAliasEnc;
 		try {
 			userEnc = URLEncoder.encode(server.username, "UTF-8");
 			passwordEnc = (server.password != null) ? URLEncoder.encode(
 					server.password, "UTF-8") : "";
-			clientCertificateAliasEnc = (server.clientCertificateAlias != null) ? URLEncoder
-					.encode(server.clientCertificateAlias, "UTF-8") : "";
 		} catch (UnsupportedEncodingException e) {
 			throw new IllegalArgumentException(
 					"Could not encode username or password", e);
@@ -295,13 +289,8 @@ public class ImapStore extends Store {
 		}
 
 		AuthType authType = server.authenticationType;
-		String userInfo;
-		if (authType == AuthType.EXTERNAL) {
-			userInfo = authType.name() + ":" + userEnc + ":"
-					+ clientCertificateAliasEnc;
-		} else {
-			userInfo = authType.name() + ":" + userEnc + ":" + passwordEnc;
-		}
+
+		String userInfo = authType.name() + ":" + userEnc + ":" + passwordEnc;
 		try {
 			Map<String, String> extra = server.getExtra();
 			String path = null;
@@ -337,11 +326,9 @@ public class ImapStore extends Store {
 		protected ImapStoreSettings(String host, int port,
 				ConnectionSecurity connectionSecurity,
 				AuthType authenticationType, String username, String password,
-				String clientCertificateAlias, boolean autodetectNamespace,
-				String pathPrefix) {
+				boolean autodetectNamespace, String pathPrefix) {
 			super(STORE_TYPE, host, port, connectionSecurity,
-					authenticationType, username, password,
-					clientCertificateAlias);
+					authenticationType, username, password);
 			this.autoDetectNamespace = autodetectNamespace;
 			this.pathPrefix = pathPrefix;
 		}
@@ -359,7 +346,7 @@ public class ImapStore extends Store {
 		public ServerSettings newPassword(String newPassword) {
 			return new ImapStoreSettings(host, port, connectionSecurity,
 					authenticationType, username, newPassword,
-					clientCertificateAlias, autoDetectNamespace, pathPrefix);
+					autoDetectNamespace, pathPrefix);
 		}
 	}
 
@@ -367,7 +354,6 @@ public class ImapStore extends Store {
 	private int mPort;
 	private String mUsername;
 	private String mPassword;
-	private String mClientCertificateAlias;
 	private ConnectionSecurity mConnectionSecurity;
 	private AuthType mAuthType;
 	private volatile String mPathPrefix;
@@ -404,11 +390,6 @@ public class ImapStore extends Store {
 		@Override
 		public String getPassword() {
 			return mPassword;
-		}
-
-		@Override
-		public String getClientCertificateAlias() {
-			return mClientCertificateAlias;
 		}
 
 		@Override
@@ -484,7 +465,6 @@ public class ImapStore extends Store {
 		mAuthType = settings.authenticationType;
 		mUsername = settings.username;
 		mPassword = settings.password;
-		mClientCertificateAlias = settings.clientCertificateAlias;
 
 		// Make extra sure mPathPrefix is null if "auto-detect namespace" is
 		// configured
@@ -2683,9 +2663,15 @@ public class ImapStore extends Store {
 								addresses[i], mSettings.getPort());
 
 						if (connectionSecurity == ConnectionSecurity.SSL_TLS_REQUIRED) {
-							mSocket = TrustedSocketFactory.createSocket(
-									mSettings.getHost(), mSettings.getPort(),
-									mSettings.getClientCertificateAlias());
+							SSLContext sslContext = SSLContext
+									.getInstance("TLS");
+							sslContext.init(null,
+									new TrustManager[] { TrustManagerFactory
+											.get(mSettings.getHost(),
+													mSettings.getPort()) },
+									new SecureRandom());
+							mSocket = TrustedSocketFactory
+									.createSocket(sslContext);
 						} else {
 							mSocket = new Socket();
 						}
@@ -2740,9 +2726,15 @@ public class ImapStore extends Store {
 						// STARTTLS
 						executeSimpleCommand("STARTTLS");
 
-						mSocket = TrustedSocketFactory.createSocket(mSocket,
-								mSettings.getHost(), mSettings.getPort(),
-								mSettings.getClientCertificateAlias());
+						SSLContext sslContext = SSLContext.getInstance("TLS");
+						sslContext.init(null,
+								new TrustManager[] { TrustManagerFactory.get(
+										mSettings.getHost(),
+										mSettings.getPort()) },
+								new SecureRandom());
+						mSocket = TrustedSocketFactory.createSocket(sslContext,
+								mSocket, mSettings.getHost(),
+								mSettings.getPort(), true);
 						mSocket.setSoTimeout(Store.SOCKET_READ_TIMEOUT);
 						mIn = new PeekableInputStream(new BufferedInputStream(
 								mSocket.getInputStream(), 1024));
@@ -2770,7 +2762,8 @@ public class ImapStore extends Store {
 						 * "STARTTLS (if available)" setting.
 						 */
 						throw new CertificateValidationException(
-								"STARTTLS connection security not available");
+								"STARTTLS connection security not available",
+								new CertificateException());
 					}
 				}
 
@@ -2792,17 +2785,6 @@ public class ImapStore extends Store {
 					} else {
 						throw new MessagingException(
 								"Server doesn't support unencrypted passwords using AUTH=PLAIN and LOGIN is disabled.");
-					}
-					break;
-
-				case EXTERNAL:
-					if (hasCapability(CAPABILITY_AUTH_EXTERNAL)) {
-						saslAuthExternal();
-					} else {
-						// Provide notification to user of a problem
-						// authenticating using client certificates
-						throw new CertificateValidationException(
-								K9.app.getString(R.string.auth_external_error));
 					}
 					break;
 
@@ -3020,24 +3002,6 @@ public class ImapStore extends Store {
 				receiveCapabilities(readStatusResponse(tag, command, null));
 			} catch (MessagingException e) {
 				throw new AuthenticationFailedException(e.getMessage());
-			}
-		}
-
-		private void saslAuthExternal() throws IOException, MessagingException {
-			try {
-				receiveCapabilities(executeSimpleCommand(
-						String.format("AUTHENTICATE EXTERNAL %s",
-								Utility.base64Encode(mSettings.getUsername())),
-						false));
-			} catch (ImapException e) {
-				/*
-				 * Provide notification to the user of a problem authenticating
-				 * using client certificates. We don't use an
-				 * AuthenticationFailedException because that would trigger a
-				 * "Username or password incorrect" notification in
-				 * AccountSetupCheckSettings.
-				 */
-				throw new CertificateValidationException(e.getMessage());
 			}
 		}
 

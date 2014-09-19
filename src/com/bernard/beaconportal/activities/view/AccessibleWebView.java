@@ -16,8 +16,6 @@
 
 package com.bernard.beaconportal.activities.view;
 
-import java.util.Set;
-
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
@@ -29,6 +27,8 @@ import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.activity.AccessibleEmailContentActivity;
 import com.bernard.beaconportal.activities.controller.MessagingListener;
+
+import java.util.Set;
 
 public class AccessibleWebView extends TextView {
 	private Context mContext;

@@ -1,20 +1,12 @@
 package com.bernard.beaconportal.activities.helper;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
@@ -25,6 +17,17 @@ import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.mail.filter.Base64;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Utility {
 	/**
@@ -729,6 +732,20 @@ public class Utility {
 		}
 
 		return null;
+	}
+
+	@SuppressLint("NewApi")
+	public static String[] copyOf(String[] original, int newLength) {
+		if (Build.VERSION.SDK_INT >= 9) {
+			return Arrays.copyOf(original, newLength);
+		}
+
+		String[] newArray = new String[newLength];
+		int copyLength = (original.length >= newLength) ? newLength
+				: original.length;
+		System.arraycopy(original, 0, newArray, 0, copyLength);
+
+		return newArray;
 	}
 
 	/**

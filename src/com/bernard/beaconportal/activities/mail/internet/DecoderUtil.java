@@ -1,5 +1,11 @@
 package com.bernard.beaconportal.activities.mail.internet;
 
+import android.util.Log;
+
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.mail.Message;
+import com.bernard.beaconportal.activities.mail.MessagingException;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -7,12 +13,6 @@ import java.io.UnsupportedEncodingException;
 import org.apache.james.mime4j.codec.Base64InputStream;
 import org.apache.james.mime4j.codec.QuotedPrintableInputStream;
 import org.apache.james.mime4j.util.CharsetUtil;
-
-import android.util.Log;
-
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.mail.Message;
-import com.bernard.beaconportal.activities.mail.MessagingException;
 
 /**
  * Static methods for decoding strings, byte arrays and encoded words.

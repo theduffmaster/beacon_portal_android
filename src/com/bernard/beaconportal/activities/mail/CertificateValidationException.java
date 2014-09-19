@@ -4,10 +4,6 @@ import java.security.cert.CertPathValidatorException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
-import javax.net.ssl.SSLHandshakeException;
-
-import android.security.KeyChainException;
-
 public class CertificateValidationException extends MessagingException {
 	public static final long serialVersionUID = -1;
 	private X509Certificate[] mCertChain;
@@ -15,11 +11,7 @@ public class CertificateValidationException extends MessagingException {
 
 	public CertificateValidationException(String message) {
 		super(message);
-		/*
-		 * Instances created without a Throwable parameter as a cause are
-		 * presumed to need user attention.
-		 */
-		mNeedsUserAttention = true;
+		scanForCause();
 	}
 
 	public CertificateValidationException(final String message,
@@ -31,59 +23,16 @@ public class CertificateValidationException extends MessagingException {
 	private void scanForCause() {
 		Throwable throwable = getCause();
 
-		/*
-		 * User attention is required if the server certificate was deemed
-		 * invalid or if there was a problem with a client certificate.
-		 * 
-		 * A CertificateException is known to be thrown by the default
-		 * X509TrustManager.checkServerTrusted() if the server certificate
-		 * doesn't validate. The cause of the CertificateException will be a
-		 * CertPathValidatorException. However, it's unlikely those exceptions
-		 * will be encountered here, because they are caught in
-		 * SecureX509TrustManager.checkServerTrusted(), which throws a
-		 * CertificateChainException instead (an extension of
-		 * CertificateException).
-		 * 
-		 * A CertificateChainException will likely result in (or, be the cause
-		 * of) an SSLHandshakeException (an extension of SSLException).
-		 * 
-		 * The various mail protocol handlers (IMAP, POP3, ...) will catch an
-		 * SSLException and throw a CertificateValidationException (this class)
-		 * with the SSLException as the cause. (They may also throw a
-		 * CertificateValidationException when STARTTLS is not available, just
-		 * for the purpose of triggering a user notification.)
-		 * 
-		 * SSLHandshakeException is also known to occur if the *client*
-		 * certificate was not accepted by the server (unknown CA, certificate
-		 * expired, etc.). In this case, the SSLHandshakeException will not have
-		 * a CertificateChainException as a cause.
-		 * 
-		 * KeyChainException is known to occur if the device has no client
-		 * certificate that's associated with the alias stored in the server
-		 * settings.
-		 */
+		/* user attention is required if the certificate was deemed invalid */
 		while (throwable != null
 				&& !(throwable instanceof CertPathValidatorException)
-				&& !(throwable instanceof CertificateException)
-				&& !(throwable instanceof KeyChainException)
-				&& !(throwable instanceof SSLHandshakeException)) {
+				&& !(throwable instanceof CertificateException)) {
 			throwable = throwable.getCause();
 		}
 
 		if (throwable != null) {
 			mNeedsUserAttention = true;
-
-			// See if there is a server certificate chain attached to the
-			// SSLHandshakeException
-			if (throwable instanceof SSLHandshakeException) {
-				while (throwable != null
-						&& !(throwable instanceof CertificateChainException)) {
-					throwable = throwable.getCause();
-				}
-			}
-
-			if (throwable != null
-					&& throwable instanceof CertificateChainException) {
+			if (throwable instanceof CertificateChainException) {
 				mCertChain = ((CertificateChainException) throwable)
 						.getCertChain();
 			}

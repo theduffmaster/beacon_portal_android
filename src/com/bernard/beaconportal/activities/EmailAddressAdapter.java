@@ -16,14 +16,15 @@
 
 package com.bernard.beaconportal.activities;
 
+import com.bernard.beaconportal.activities.helper.Contacts;
+import com.bernard.beaconportal.activities.mail.Address;
+import com.bernard.beaconportal.activities.R;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.view.View;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
-
-import com.bernard.beaconportal.activities.helper.Contacts;
-import com.bernard.beaconportal.activities.mail.Address;
 
 public class EmailAddressAdapter extends ResourceCursorAdapter {
 	private final Contacts mContacts;

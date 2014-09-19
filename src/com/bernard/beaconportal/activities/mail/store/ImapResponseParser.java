@@ -1,17 +1,17 @@
 package com.bernard.beaconportal.activities.mail.store;
 
+import android.text.TextUtils;
+
+import com.bernard.beaconportal.activities.mail.MessagingException;
+import com.bernard.beaconportal.activities.mail.filter.FixedLengthInputStream;
+import com.bernard.beaconportal.activities.mail.filter.PeekableInputStream;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-
-import android.text.TextUtils;
-
-import com.bernard.beaconportal.activities.mail.MessagingException;
-import com.bernard.beaconportal.activities.mail.filter.FixedLengthInputStream;
-import com.bernard.beaconportal.activities.mail.filter.PeekableInputStream;
 
 public class ImapResponseParser {
 	private static final SimpleDateFormat mDateTimeFormat = new SimpleDateFormat(

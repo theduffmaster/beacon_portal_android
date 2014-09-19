@@ -3,6 +3,8 @@ package com.bernard.beaconportal.activities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bernard.beaconportal.activities.R;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

@@ -1,7 +1,5 @@
 package com.bernard.beaconportal.activities.activity;
 
-import java.util.StringTokenizer;
-
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -15,6 +13,8 @@ import com.bernard.beaconportal.activities.mail.Flag;
 import com.bernard.beaconportal.activities.mail.Folder;
 import com.bernard.beaconportal.activities.mail.Message;
 import com.bernard.beaconportal.activities.mail.MessagingException;
+
+import java.util.StringTokenizer;
 
 public class MessageReference implements Parcelable {
 	public String accountUuid;

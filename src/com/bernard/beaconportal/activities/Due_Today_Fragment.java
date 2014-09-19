@@ -43,6 +43,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
+import com.bernard.beaconportal.activities.R;
 
 public class Due_Today_Fragment extends Fragment {
 

@@ -6,8 +6,8 @@ import android.os.Parcelable;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.BaseAccount;
-import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.search.SearchAccount;
+import com.bernard.beaconportal.activities.R;
 
 public class LauncherShortcuts extends AccountList {
 	@Override

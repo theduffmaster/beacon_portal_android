@@ -8,9 +8,9 @@ import android.text.format.DateUtils;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.AccountStats;
-import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.controller.MessagingListener;
 import com.bernard.beaconportal.activities.service.MailService;
+import com.bernard.beaconportal.activities.R;
 
 public class ActivityListener extends MessagingListener {
 	private Account mAccount = null;

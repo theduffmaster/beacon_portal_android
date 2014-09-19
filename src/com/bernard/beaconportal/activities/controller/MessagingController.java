@@ -16,14 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.PriorityBlockingQueue;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -50,22 +43,22 @@ import android.util.Log;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.AccountStats;
 import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.NotificationSetting;
+import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.K9.Intents;
 import com.bernard.beaconportal.activities.K9.NotificationHideSubject;
 import com.bernard.beaconportal.activities.K9.NotificationQuickDelete;
-import com.bernard.beaconportal.activities.NotificationSetting;
-import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.Accounts;
 import com.bernard.beaconportal.activities.activity.FolderList;
 import com.bernard.beaconportal.activities.activity.MessageList;
 import com.bernard.beaconportal.activities.activity.MessageReference;
 import com.bernard.beaconportal.activities.activity.NotificationDeleteConfirmation;
-import com.bernard.beaconportal.activities.activity.setup.AccountSetupCheckSettings.CheckDirection;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupIncoming;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupOutgoing;
+import com.bernard.beaconportal.activities.activity.setup.AccountSetupCheckSettings.CheckDirection;
 import com.bernard.beaconportal.activities.cache.EmailProviderCache;
 import com.bernard.beaconportal.activities.helper.Contacts;
+import com.bernard.beaconportal.activities.helper.NotificationBuilder;
 import com.bernard.beaconportal.activities.helper.power.TracingPowerManager;
 import com.bernard.beaconportal.activities.helper.power.TracingPowerManager.TracingWakeLock;
 import com.bernard.beaconportal.activities.mail.Address;
@@ -73,25 +66,25 @@ import com.bernard.beaconportal.activities.mail.CertificateValidationException;
 import com.bernard.beaconportal.activities.mail.FetchProfile;
 import com.bernard.beaconportal.activities.mail.Flag;
 import com.bernard.beaconportal.activities.mail.Folder;
-import com.bernard.beaconportal.activities.mail.Folder.FolderType;
 import com.bernard.beaconportal.activities.mail.Message;
-import com.bernard.beaconportal.activities.mail.Message.RecipientType;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Part;
 import com.bernard.beaconportal.activities.mail.PushReceiver;
 import com.bernard.beaconportal.activities.mail.Pusher;
 import com.bernard.beaconportal.activities.mail.Store;
 import com.bernard.beaconportal.activities.mail.Transport;
+import com.bernard.beaconportal.activities.mail.Folder.FolderType;
+import com.bernard.beaconportal.activities.mail.Message.RecipientType;
 import com.bernard.beaconportal.activities.mail.internet.MimeMessage;
 import com.bernard.beaconportal.activities.mail.internet.MimeUtility;
 import com.bernard.beaconportal.activities.mail.internet.TextBody;
 import com.bernard.beaconportal.activities.mail.store.LocalStore;
-import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalFolder;
-import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalMessage;
-import com.bernard.beaconportal.activities.mail.store.LocalStore.PendingCommand;
 import com.bernard.beaconportal.activities.mail.store.Pop3Store;
 import com.bernard.beaconportal.activities.mail.store.UnavailableAccountException;
 import com.bernard.beaconportal.activities.mail.store.UnavailableStorageException;
+import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalFolder;
+import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalMessage;
+import com.bernard.beaconportal.activities.mail.store.LocalStore.PendingCommand;
 import com.bernard.beaconportal.activities.provider.EmailProvider;
 import com.bernard.beaconportal.activities.provider.EmailProvider.StatsColumns;
 import com.bernard.beaconportal.activities.search.ConditionsTreeNode;
@@ -100,6 +93,7 @@ import com.bernard.beaconportal.activities.search.SearchAccount;
 import com.bernard.beaconportal.activities.search.SearchSpecification;
 import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
 import com.bernard.beaconportal.activities.service.NotificationActionService;
+import com.bernard.beaconportal.activities.R;
 
 /**
  * Starts a long running (application) Thread that will run through commands
@@ -2984,7 +2978,7 @@ public class MessagingController implements Runnable {
 				R.string.notification_certificate_error_title,
 				account.getDescription());
 
-		final NotificationCompat.Builder builder = new NotificationCompat.Builder(
+		final NotificationCompat.Builder builder = new NotificationBuilder(
 				context);
 		builder.setSmallIcon(R.drawable.ic_notify_new_mail);
 		builder.setWhen(System.currentTimeMillis());
@@ -3009,7 +3003,7 @@ public class MessagingController implements Runnable {
 		final NotificationManager nm = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 
-		if (direction == CheckDirection.INCOMING) {
+		if (direction.equals(CheckDirection.INCOMING)) {
 			nm.cancel(null, K9.CERTIFICATE_EXCEPTION_NOTIFICATION_INCOMING
 					+ account.getAccountNumber());
 		} else {
@@ -3718,7 +3712,7 @@ public class MessagingController implements Runnable {
 		NotificationManager notifMgr = (NotificationManager) mApplication
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 
-		NotificationCompat.Builder builder = new NotificationCompat.Builder(
+		NotificationCompat.Builder builder = new NotificationBuilder(
 				mApplication);
 		builder.setSmallIcon(R.drawable.ic_notify_check_mail);
 		builder.setWhen(System.currentTimeMillis());
@@ -3775,7 +3769,7 @@ public class MessagingController implements Runnable {
 		NotificationManager notifMgr = (NotificationManager) mApplication
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 
-		NotificationCompat.Builder builder = new NotificationCompat.Builder(
+		NotificationCompat.Builder builder = new NotificationBuilder(
 				mApplication);
 		builder.setSmallIcon(R.drawable.ic_notify_new_mail);
 		builder.setWhen(System.currentTimeMillis());
@@ -3816,7 +3810,7 @@ public class MessagingController implements Runnable {
 		final NotificationManager notifMgr = (NotificationManager) mApplication
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 
-		NotificationCompat.Builder builder = new NotificationCompat.Builder(
+		NotificationCompat.Builder builder = new NotificationBuilder(
 				mApplication);
 		builder.setSmallIcon(R.drawable.ic_notify_check_mail);
 		builder.setWhen(System.currentTimeMillis());
@@ -4076,8 +4070,22 @@ public class MessagingController implements Runnable {
 			@Override
 			public void run() {
 				try {
+					
+					try {
+					 
 					AccountStats stats = account.getStats(context);
+					
 					listener.accountStatusChanged(account, stats);
+					
+					} catch (NullPointerException e) { 
+
+						AccountStats stats = account.getStats(context);
+						
+						listener.accountStatusChanged(account, stats);
+						
+					}
+					
+					
 				} catch (MessagingException me) {
 					Log.e(K9.LOG_TAG, "Count not get unread count for account "
 							+ account.getDescription(), me);
@@ -5154,21 +5162,6 @@ public class MessagingController implements Runnable {
 			return false;
 		}
 
-		Account.FolderMode aDisplayMode = account.getFolderDisplayMode();
-		Account.FolderMode aNotifyMode = account.getFolderNotifyNewMailMode();
-		Folder.FolderClass fDisplayClass = localFolder.getDisplayClass();
-		Folder.FolderClass fNotifyClass = localFolder.getNotifyClass();
-
-		if (modeMismatch(aDisplayMode, fDisplayClass)) {
-			// Never notify a folder that isn't displayed
-			return false;
-		}
-
-		if (modeMismatch(aNotifyMode, fNotifyClass)) {
-			// Do not notify folders in the wrong class
-			return false;
-		}
-
 		// If the account is a POP3 account and the message is older than the
 		// oldest message we've
 		// previously seen, then don't notify about it.
@@ -5339,6 +5332,13 @@ public class MessagingController implements Runnable {
 		return summary;
 	}
 
+	private static final boolean platformShowsNumberInNotification() {
+		// Honeycomb and newer don't show the number as overlay on the
+		// notification icon.
+		// However, the number will appear in the detailed notification view.
+		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
+	}
+
 	public static final boolean platformSupportsExtendedNotifications() {
 		// supported in Jellybean
 		// TODO: use constant once target SDK is set to >= 16
@@ -5412,8 +5412,7 @@ public class MessagingController implements Runnable {
 		NotificationManager notifMgr = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 
-		NotificationCompat.Builder builder = new NotificationCompat.Builder(
-				context);
+		NotificationCompat.Builder builder = new NotificationBuilder(context);
 		builder.setSmallIcon(R.drawable.ic_notify_new_mail);
 		builder.setWhen(System.currentTimeMillis());
 		if (!updateSilently) {
@@ -5423,7 +5422,10 @@ public class MessagingController implements Runnable {
 		final int newMessages = data.getNewMessageCount();
 		final int unreadCount = data.unreadBeforeNotification + newMessages;
 
-		builder.setNumber(unreadCount);
+		if (account.isNotificationShowsUnreadCount()
+				|| platformShowsNumberInNotification()) {
+			builder.setNumber(unreadCount);
+		}
 
 		String accountDescr = (account.getDescription() != null) ? account
 				.getDescription() : account.getEmail();

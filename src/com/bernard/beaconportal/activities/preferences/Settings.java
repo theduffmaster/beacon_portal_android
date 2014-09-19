@@ -4,10 +4,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.Map.Entry;
 
 import android.util.Log;
 
@@ -35,7 +35,7 @@ public class Settings {
 	 * 
 	 * @see SettingsExporter
 	 */
-	public static final int VERSION = 35;
+	public static final int VERSION = 32;
 
 	public static Map<String, Object> validate(int version,
 			Map<String, TreeMap<Integer, SettingsDescription>> settings,

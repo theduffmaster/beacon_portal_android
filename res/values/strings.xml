@@ -1,8 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- === App-specific strings ============================================================= -->
 
-    <!-- This should make it easier for forks to change the branding -->
+
 
     <!-- Used in AndroidManifest.xml -->
     
@@ -56,7 +54,7 @@ Please submit bug reports, contribute new features and ask questions at
 
 
     <!-- Default signature -->
-    <string name="default_signature">-- \nSent from my Android device with K-9 Mail. Please excuse my brevity.</string>
+    <string name="default_signature">-- \nSent from my Android device with the Beacon Portal app.</string>
 
 
     <!-- General strings that include the app name -->
@@ -170,6 +168,8 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="read_receipt_enabled">Will request read receipt</string>
     <string name="read_receipt_disabled">Will not request read receipt</string>
     <string name="add_attachment_action">Add attachment</string>
+    <string name="add_attachment_action_image">Add attachment (Image)</string>
+    <string name="add_attachment_action_video">Add attachment (Video)</string>
     <string name="empty_trash_action">Empty Trash</string>
     <string name="expunge_action">Expunge</string>
     <string name="clear_local_folder_action">Clear local messages</string>
@@ -350,7 +350,6 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="account_setup_basics_title">Set up a new account</string>
     <string name="account_setup_basics_email_hint">Email address</string>
     <string name="account_setup_basics_password_hint">Password</string>
-    <string name="account_setup_basics_show_password">Show password</string>
     <string name="account_setup_basics_manual_setup_action">Manual setup</string>
 
     <string name="account_setup_check_settings_title"/>
@@ -374,12 +373,10 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="account_setup_auth_type_normal_password">Normal password</string>
     <string name="account_setup_auth_type_insecure_password">Password, transmitted insecurely</string>
     <string name="account_setup_auth_type_encrypted_password">Encrypted password</string>
-    <string name="account_setup_auth_type_tls_client_certificate">Client certificate</string>
 
     <string name="account_setup_incoming_title">Incoming server settings</string>
     <string name="account_setup_incoming_username_label">Username</string>
     <string name="account_setup_incoming_password_label">Password</string>
-    <string name="account_setup_incoming_client_certificate_label">Client certificate</string>
     <string name="account_setup_incoming_pop_server_label">POP3 server</string>
     <string name="account_setup_incoming_imap_server_label">IMAP server</string>
     <string name="account_setup_incoming_webdav_server_label">Exchange server</string>
@@ -389,7 +386,6 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="account_setup_incoming_security_none_label">None</string>
     <string name="account_setup_incoming_security_ssl_label">SSL/TLS</string>
     <string name="account_setup_incoming_security_tls_label">STARTTLS</string>
-    <string name="account_setup_incoming_invalid_setting_combo_notice">\"<xliff:g id="setting_1_label">%1$s</xliff:g> = <xliff:g id="setting_1_value">%2$s</xliff:g>\" is not valid with \"<xliff:g id="setting_2_label">%3$s</xliff:g> = <xliff:g id="setting_2_value">%4$s</xliff:g>\"</string>
 
     <string name="account_setup_incoming_delete_policy_label">When I delete a message</string>
     <string name="account_setup_incoming_delete_policy_never_label">Do not delete on server</string>
@@ -439,7 +435,6 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="account_setup_outgoing_username_label">Username</string>
     <string name="account_setup_outgoing_password_label">Password</string>
     <string name="account_setup_outgoing_authentication_label">Authentication</string>
-    <string name="account_setup_outgoing_invalid_setting_combo_notice">\"<xliff:g id="setting_1_label">%1$s</xliff:g> = <xliff:g id="setting_1_value">%2$s</xliff:g>\" is not valid with \"<xliff:g id="setting_2_label">%3$s</xliff:g> = <xliff:g id="setting_2_value">%4$s</xliff:g>\"</string>
 
     <string name="account_setup_bad_uri">Invalid setup: <xliff:g id="err_mess">%s</xliff:g></string>
 
@@ -507,14 +502,6 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="account_settings_default_label">Default account</string>
     <string name="account_settings_default_summary">Send mail from this account by default</string>
     <string name="account_settings_notify_label">New mail notifications</string>
-
-    <string name="account_settings_folder_notify_new_mail_mode_label">Notifications folders</string>
-    <string name="account_settings_folder_notify_new_mail_mode_all">All</string>
-    <string name="account_settings_folder_notify_new_mail_mode_first_class">Only 1st Class folders</string>
-    <string name="account_settings_folder_notify_new_mail_mode_first_and_second_class">1st and 2nd Class folders</string>
-    <string name="account_settings_folder_notify_new_mail_mode_not_second_class">All except 2nd Class folders</string>
-    <string name="account_settings_folder_notify_new_mail_mode_none">None</string>
-
     <string name="account_settings_notify_sync_label">Sync notifications</string>
     <string name="account_settings_email_label">Your email address</string>
     <string name="account_settings_notify_summary">Notify in status bar when mail arrives</string>
@@ -523,6 +510,8 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="account_settings_notify_self_summary">Show a notification for messages I sent</string>
     <string name="account_settings_notification_opens_unread_label">Notification opens unread messages</string>
     <string name="account_settings_notification_opens_unread_summary">Searches for unread messages when Notification is opened</string>
+    <string name="account_settings_notification_unread_count_label">Show unread count</string>
+    <string name="account_settings_notification_unread_count_summary">Show the number of unread messages in the notification bar.</string>
     <string name="account_settings_mark_message_as_read_on_view_label">Mark as read when opened</string>
     <string name="account_settings_mark_message_as_read_on_view_summary">Mark a message as read when it is opened for viewing</string>
 
@@ -664,12 +653,6 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="folder_settings_folder_push_mode_second_class">2nd Class</string>
     <string name="folder_settings_folder_push_mode_inherited">Same as sync class</string>
 
-    <string name="folder_settings_folder_notify_mode_label">Folder notification class</string>
-    <string name="folder_settings_folder_notify_mode_normal">None</string>
-    <string name="folder_settings_folder_notify_mode_first_class">1st Class</string>
-    <string name="folder_settings_folder_notify_mode_second_class">2nd Class</string>
-    <string name="folder_settings_folder_notify_mode_inherited">Same as push class</string>
-
     <string name="account_settings_incoming_label">Incoming server</string>
     <string name="account_settings_incoming_summary">Configure the incoming mail server</string>
     <string name="account_settings_outgoing_label">Outgoing server</string>
@@ -807,12 +790,16 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="settings_message_theme_selection_summary_off">Select the message view theme while viewing the message</string>
     <string name="settings_message_theme_selection_summary_on">Use a fixed message view theme</string>
 
+    <string name="settings_messageview_mobile_layout_label">Condensed layout</string>
+    <string name="settings_messageview_mobile_layout_summary">Reformat HTML messages for smaller screens</string>
 
     <string name="setting_language_system">System default</string>
 
     <string name="background_ops_label">Background sync</string>
     <string name="background_ops_never">Never</string>
     <string name="background_ops_always">Always</string>
+    <string name="background_ops_enabled">When \'Background data\' is checked</string>
+    <string name="background_ops_auto_sync">When \'Background data\' &amp; \'Auto-sync\' are checked</string>
     <string name="background_ops_auto_sync_only">When \'Auto-sync\' is checked</string>
 
     <string name="batch_select_all">Select all</string>
@@ -906,7 +893,15 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="font_size_large">Large</string>
     <string name="font_size_larger">Larger</string>
 
+    <!-- Note: Contains references to preferences_action and misc_preferences_attachment_title -->
+    <string name="message_compose_buggy_gallery">Check \"Settings\" -&gt; \"Use Gallery bug work-around\" to be able to attach images or videos using Gallery 3D.</string>
+
+    <!-- Note: Contains references to add_attachment_action_image and add_attachment_action_video -->
+    <string name="message_compose_use_workaround">Use \"Add attachment (Image)\" or \"Add attachment (Video)\" to attach images or videos with Gallery 3D.</string>
+
     <string name="miscellaneous_preferences">Miscellaneous</string>
+    <string name="misc_preferences_attachment_title">Use Gallery bug work-around</string>
+    <string name="misc_preferences_attachment_description">Show buttons to add image/video attachments (to work around a Gallery 3D bug)</string>
 
     <!-- APG related -->
     <string name="error_activity_not_found">No suitable application for this action found.</string>
@@ -1105,8 +1100,6 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="fetching_attachment_dialog_title_send">Sending message</string>
     <string name="fetching_attachment_dialog_title_save">Saving draft</string>
     <string name="fetching_attachment_dialog_message">Fetching attachment…</string>
-
-    <string name="auth_external_error">Unable to authenticate.  The server does not advertise the SASL EXTERNAL capability.  This could be due to a problem with the client certificate (expired, unknown certificate authority) or some other configuration problem.</string>
     
     <!-- === OpenPGP specific ================================================================== -->
     <string name="openpgp_decrypting_verifying">Decrypting/Verifying…</string>
@@ -1122,14 +1115,6 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="openpgp_get_key">Lookup missing key</string>
     <string name="openpgp_error">OpenPGP Error:</string>
     <string name="openpgp_user_id">User Id</string>
-
-    <!-- === Client certificates specific ================================================================== -->
-    <string name="account_setup_basics_client_certificate">Use client certificate</string>
-    <string name="client_certificate_spinner_empty">No client certificate</string>
-    <string name="client_certificate_spinner_delete">Remove client certificate selection</string>
-    <string name="client_certificate_retrieval_failure">"Failed to retrieve client certificate for alias \"<xliff:g id="alias">%s</xliff:g>\""</string>
-    <string name="client_certificate_advanced_options">Advanced options</string>
-    <string name="client_certificate_expired">"Client certificate \"<xliff:g id="certificate_alias">%1$s</xliff:g>\" has expired or is not yet valid (<xliff:g id="exception_message">%2$s</xliff:g>)"</string>
 
 
     

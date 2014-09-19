@@ -18,7 +18,7 @@ public class schedule_view {
 		return band;
 
 	}
-
+	
 	public int Note_Number() {
 		return note_number;
 

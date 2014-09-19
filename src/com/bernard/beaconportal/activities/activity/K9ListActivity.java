@@ -1,6 +1,10 @@
 package com.bernard.beaconportal.activities.activity;
 
 import android.app.ListActivity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -17,8 +21,10 @@ public class K9ListActivity extends ListActivity implements K9ActivityMagic {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+
 		mBase = K9ActivityCommon.newInstance(this);
 		super.onCreate(savedInstanceState);
+
 	}
 
 	@Override

@@ -14,24 +14,14 @@ import android.content.SharedPreferences;
 import android.os.Environment;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.Account.SortType;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.Account.SortType;
 import com.bernard.beaconportal.activities.K9.NotificationHideSubject;
 import com.bernard.beaconportal.activities.K9.SplitViewMode;
 import com.bernard.beaconportal.activities.K9.Theme;
+import com.bernard.beaconportal.activities.preferences.Settings.*;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.preferences.Settings.BooleanSetting;
-import com.bernard.beaconportal.activities.preferences.Settings.ColorSetting;
-import com.bernard.beaconportal.activities.preferences.Settings.EnumSetting;
-import com.bernard.beaconportal.activities.preferences.Settings.FontSizeSetting;
-import com.bernard.beaconportal.activities.preferences.Settings.IntegerRangeSetting;
-import com.bernard.beaconportal.activities.preferences.Settings.InvalidSettingValueException;
-import com.bernard.beaconportal.activities.preferences.Settings.PseudoEnumSetting;
-import com.bernard.beaconportal.activities.preferences.Settings.SettingsDescription;
-import com.bernard.beaconportal.activities.preferences.Settings.SettingsUpgrader;
-import com.bernard.beaconportal.activities.preferences.Settings.V;
-import com.bernard.beaconportal.activities.preferences.Settings.WebFontSizeSetting;
 
 public class GlobalSettings {
 	public static final Map<String, TreeMap<Integer, SettingsDescription>> SETTINGS;
@@ -52,7 +42,7 @@ public class GlobalSettings {
 						.toString()))));
 		s.put("backgroundOperations", Settings.versions(new V(1,
 				new EnumSetting<K9.BACKGROUND_OPS>(K9.BACKGROUND_OPS.class,
-						K9.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC))));
+						K9.BACKGROUND_OPS.WHEN_CHECKED))));
 		s.put("changeRegisteredNameColor",
 				Settings.versions(new V(1, new BooleanSetting(false))));
 		s.put("confirmDelete",
@@ -122,6 +112,8 @@ public class GlobalSettings {
 				Settings.versions(new V(1, new BooleanSetting(false))));
 		s.put("messageViewShowNext",
 				Settings.versions(new V(1, new BooleanSetting(false))));
+		s.put("mobileOptimizedLayout",
+				Settings.versions(new V(1, new BooleanSetting(false))));
 		s.put("quietTimeEnabled",
 				Settings.versions(new V(1, new BooleanSetting(false))));
 		s.put("quietTimeEnds",
@@ -146,6 +138,8 @@ public class GlobalSettings {
 		s.put("messageViewTheme", Settings.versions(new V(16, new ThemeSetting(
 				K9.Theme.LIGHT)), new V(24, new SubThemeSetting(
 				K9.Theme.USE_GLOBAL))));
+		s.put("useGalleryBugWorkaround",
+				Settings.versions(new V(1, new GalleryBugWorkaroundSetting())));
 		s.put("useVolumeKeysForListNavigation",
 				Settings.versions(new V(1, new BooleanSetting(false))));
 		s.put("useVolumeKeysForNavigation",
@@ -316,6 +310,27 @@ public class GlobalSettings {
 				return 100;
 			}
 			}
+		}
+	}
+
+	/**
+	 * The gallery bug work-around setting.
+	 * 
+	 * <p>
+	 * The default value varies depending on whether you have a version of
+	 * Gallery 3D installed that contains the bug we work around.
+	 * </p>
+	 * 
+	 * @see K9#isGalleryBuggy()
+	 */
+	public static class GalleryBugWorkaroundSetting extends BooleanSetting {
+		public GalleryBugWorkaroundSetting() {
+			super(false);
+		}
+
+		@Override
+		public Object getDefaultValue() {
+			return K9.isGalleryBuggy();
 		}
 	}
 

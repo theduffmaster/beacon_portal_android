@@ -26,14 +26,14 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.Account.FolderMode;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.Account.FolderMode;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.controller.MessagingListener;
 import com.bernard.beaconportal.activities.mail.Folder;
 import com.bernard.beaconportal.activities.mail.MessagingException;
+import com.bernard.beaconportal.activities.R;
 
 public class ChooseFolder extends K9ListActivity {
 	public static final String EXTRA_ACCOUNT = "com.bernard.beaconportal.activities.ChooseFolder_account";
@@ -76,6 +76,12 @@ public class ChooseFolder extends K9ListActivity {
 
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.list_content_simple);
+
+		int titleId = getResources().getIdentifier("action_bar_title", "id",
+				"android");
+
+		TextView abTitle = (TextView) findViewById(titleId);
+		abTitle.setTextColor(getResources().getColor((R.color.white)));
 
 		getListView().setFastScrollEnabled(true);
 		getListView().setItemsCanFocus(false);
@@ -234,18 +240,23 @@ public class ChooseFolder extends K9ListActivity {
 		switch (item.getItemId()) {
 		case R.id.display_1st_class: {
 			setDisplayMode(FolderMode.FIRST_CLASS);
+			Log.d("clicked", "all");
 			return true;
 		}
 		case R.id.display_1st_and_2nd_class: {
 			setDisplayMode(FolderMode.FIRST_AND_SECOND_CLASS);
+			Log.d("clicked", "all");
 			return true;
 		}
 		case R.id.display_not_second_class: {
 			setDisplayMode(FolderMode.NOT_SECOND_CLASS);
+			Log.d("clicked", "all");
 			return true;
 		}
 		case R.id.display_all: {
 			setDisplayMode(FolderMode.ALL);
+			Log.d("clicked", "all");
+
 			return true;
 		}
 		case R.id.list_folders: {

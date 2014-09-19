@@ -43,6 +43,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
+import com.bernard.beaconportal.activities.R;
 
 public class Due_Tommorow_Fragment extends Fragment {
 	private List<homeworkdue> myhomeworkdue;

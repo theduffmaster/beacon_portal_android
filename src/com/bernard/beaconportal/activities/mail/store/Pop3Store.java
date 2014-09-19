@@ -1,57 +1,39 @@
 package com.bernard.beaconportal.activities.mail.store;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.security.GeneralSecurityException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-
-import javax.net.ssl.SSLException;
-
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.controller.MessageRetrievalListener;
 import com.bernard.beaconportal.activities.helper.Utility;
-import com.bernard.beaconportal.activities.mail.AuthType;
-import com.bernard.beaconportal.activities.mail.Authentication;
-import com.bernard.beaconportal.activities.mail.AuthenticationFailedException;
-import com.bernard.beaconportal.activities.mail.CertificateValidationException;
-import com.bernard.beaconportal.activities.mail.ConnectionSecurity;
-import com.bernard.beaconportal.activities.mail.FetchProfile;
-import com.bernard.beaconportal.activities.mail.Flag;
-import com.bernard.beaconportal.activities.mail.Folder;
-import com.bernard.beaconportal.activities.mail.Message;
-import com.bernard.beaconportal.activities.mail.MessagingException;
-import com.bernard.beaconportal.activities.mail.ServerSettings;
-import com.bernard.beaconportal.activities.mail.Store;
+import com.bernard.beaconportal.activities.mail.*;
 import com.bernard.beaconportal.activities.mail.filter.Base64;
 import com.bernard.beaconportal.activities.mail.filter.Hex;
 import com.bernard.beaconportal.activities.mail.internet.MimeMessage;
+import com.bernard.beaconportal.activities.net.ssl.TrustManagerFactory;
 import com.bernard.beaconportal.activities.net.ssl.TrustedSocketFactory;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.TrustManager;
+
+import java.io.*;
+import java.net.*;
+import java.security.GeneralSecurityException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 public class Pop3Store extends Store {
 	public static final String STORE_TYPE = "POP3";
@@ -75,7 +57,6 @@ public class Pop3Store extends Store {
 	private static final String SASL_CAPABILITY = "SASL";
 	private static final String AUTH_PLAIN_CAPABILITY = "PLAIN";
 	private static final String AUTH_CRAM_MD5_CAPABILITY = "CRAM-MD5";
-	private static final String AUTH_EXTERNAL_CAPABILITY = "EXTERNAL";
 
 	/**
 	 * Decodes a Pop3Store URI.
@@ -85,9 +66,9 @@ public class Pop3Store extends Store {
 	 * </p>
 	 * 
 	 * <pre>
-	 * pop3://auth:user:password@server:port ConnectionSecurity.NONE
-	 * pop3+tls+://auth:user:password@server:port ConnectionSecurity.STARTTLS_REQUIRED
-	 * pop3+ssl+://auth:user:password@server:port ConnectionSecurity.SSL_TLS_REQUIRED
+	 * pop3://user:password@server:port ConnectionSecurity.NONE
+	 * pop3+tls+://user:password@server:port ConnectionSecurity.STARTTLS_REQUIRED
+	 * pop3+ssl+://user:password@server:port ConnectionSecurity.SSL_TLS_REQUIRED
 	 * </pre>
 	 */
 	public static ServerSettings decodeUri(String uri) {
@@ -96,7 +77,6 @@ public class Pop3Store extends Store {
 		ConnectionSecurity connectionSecurity;
 		String username = null;
 		String password = null;
-		String clientCertificateAlias = null;
 
 		URI pop3Uri;
 		try {
@@ -151,13 +131,8 @@ public class Pop3Store extends Store {
 				}
 				username = URLDecoder.decode(userInfoParts[userIndex], "UTF-8");
 				if (userInfoParts.length > passwordIndex) {
-					if (authType == AuthType.EXTERNAL) {
-						clientCertificateAlias = URLDecoder.decode(
-								userInfoParts[passwordIndex], "UTF-8");
-					} else {
-						password = URLDecoder.decode(
-								userInfoParts[passwordIndex], "UTF-8");
-					}
+					password = URLDecoder.decode(userInfoParts[passwordIndex],
+							"UTF-8");
 				}
 			} catch (UnsupportedEncodingException enc) {
 				// This shouldn't happen since the encoding is hardcoded to
@@ -168,7 +143,7 @@ public class Pop3Store extends Store {
 		}
 
 		return new ServerSettings(STORE_TYPE, host, port, connectionSecurity,
-				authType, username, password, clientCertificateAlias);
+				authType, username, password);
 	}
 
 	/**
@@ -187,13 +162,10 @@ public class Pop3Store extends Store {
 	public static String createUri(ServerSettings server) {
 		String userEnc;
 		String passwordEnc;
-		String clientCertificateAliasEnc;
 		try {
 			userEnc = URLEncoder.encode(server.username, "UTF-8");
 			passwordEnc = (server.password != null) ? URLEncoder.encode(
 					server.password, "UTF-8") : "";
-			clientCertificateAliasEnc = (server.clientCertificateAlias != null) ? URLEncoder
-					.encode(server.clientCertificateAlias, "UTF-8") : "";
 		} catch (UnsupportedEncodingException e) {
 			throw new IllegalArgumentException(
 					"Could not encode username or password", e);
@@ -213,15 +185,8 @@ public class Pop3Store extends Store {
 			break;
 		}
 
-		AuthType authType = server.authenticationType;
-		String userInfo;
-		if (AuthType.EXTERNAL == authType) {
-			userInfo = authType.name() + ":" + userEnc + ":"
-					+ clientCertificateAliasEnc;
-		} else {
-			userInfo = authType.name() + ":" + userEnc + ":" + passwordEnc;
-		}
-
+		String userInfo = server.authenticationType.name() + ":" + userEnc
+				+ ":" + passwordEnc;
 		try {
 			return new URI(scheme, userInfo, server.host, server.port, null,
 					null, null).toString();
@@ -234,7 +199,6 @@ public class Pop3Store extends Store {
 	private int mPort;
 	private String mUsername;
 	private String mPassword;
-	private String mClientCertificateAlias;
 	private AuthType mAuthType;
 	private ConnectionSecurity mConnectionSecurity;
 	private HashMap<String, Folder> mFolders = new HashMap<String, Folder>();
@@ -265,7 +229,6 @@ public class Pop3Store extends Store {
 
 		mUsername = settings.username;
 		mPassword = settings.password;
-		mClientCertificateAlias = settings.clientCertificateAlias;
 		mAuthType = settings.authenticationType;
 	}
 
@@ -346,8 +309,11 @@ public class Pop3Store extends Store {
 				SocketAddress socketAddress = new InetSocketAddress(mHost,
 						mPort);
 				if (mConnectionSecurity == ConnectionSecurity.SSL_TLS_REQUIRED) {
-					mSocket = TrustedSocketFactory.createSocket(mHost, mPort,
-							mClientCertificateAlias);
+					SSLContext sslContext = SSLContext.getInstance("TLS");
+					sslContext.init(null,
+							new TrustManager[] { TrustManagerFactory.get(mHost,
+									mPort) }, new SecureRandom());
+					mSocket = TrustedSocketFactory.createSocket(sslContext);
 				} else {
 					mSocket = new Socket();
 				}
@@ -369,8 +335,12 @@ public class Pop3Store extends Store {
 					if (mCapabilities.stls) {
 						executeSimpleCommand(STLS_COMMAND);
 
-						mSocket = TrustedSocketFactory.createSocket(mSocket,
-								mHost, mPort, mClientCertificateAlias);
+						SSLContext sslContext = SSLContext.getInstance("TLS");
+						sslContext.init(null,
+								new TrustManager[] { TrustManagerFactory.get(
+										mHost, mPort) }, new SecureRandom());
+						mSocket = TrustedSocketFactory.createSocket(sslContext,
+								mSocket, mHost, mPort, true);
 						mSocket.setSoTimeout(Store.SOCKET_READ_TIMEOUT);
 						mIn = new BufferedInputStream(mSocket.getInputStream(),
 								1024);
@@ -390,7 +360,8 @@ public class Pop3Store extends Store {
 						 * "STARTTLS (if available)" setting.
 						 */
 						throw new CertificateValidationException(
-								"STARTTLS connection security not available");
+								"STARTTLS connection security not available",
+								new CertificateException());
 					}
 				}
 
@@ -408,17 +379,6 @@ public class Pop3Store extends Store {
 						authCramMD5();
 					} else {
 						authAPOP(serverGreeting);
-					}
-					break;
-
-				case EXTERNAL:
-					if (mCapabilities.external) {
-						authExternal();
-					} else {
-						// Provide notification to user of a problem
-						// authenticating using client certificates
-						throw new CertificateValidationException(
-								K9.app.getString(R.string.auth_external_error));
 					}
 					break;
 
@@ -507,25 +467,6 @@ public class Pop3Store extends Store {
 			} catch (Pop3ErrorResponse e) {
 				throw new AuthenticationFailedException(
 						"POP3 CRAM-MD5 authentication failed: "
-								+ e.getMessage(), e);
-			}
-		}
-
-		private void authExternal() throws MessagingException {
-			try {
-				executeSimpleCommand(
-						String.format("AUTH EXTERNAL %s",
-								Utility.base64Encode(mUsername)), false);
-			} catch (Pop3ErrorResponse e) {
-				/*
-				 * Provide notification to the user of a problem authenticating
-				 * using client certificates. We don't use an
-				 * AuthenticationFailedException because that would trigger a
-				 * "Username or password incorrect" notification in
-				 * AccountSetupCheckSettings.
-				 */
-				throw new CertificateValidationException(
-						"POP3 client certificate authentication failed: "
 								+ e.getMessage(), e);
 			}
 		}
@@ -1161,8 +1102,6 @@ public class Pop3Store extends Store {
 						capabilities.authPlain = true;
 					} else if (response.equals(AUTH_CRAM_MD5_CAPABILITY)) {
 						capabilities.cramMD5 = true;
-					} else if (response.equals(AUTH_EXTERNAL_CAPABILITY)) {
-						capabilities.external = true;
 					}
 				}
 			} catch (MessagingException e) {
@@ -1320,13 +1259,12 @@ public class Pop3Store extends Store {
 		public boolean stls;
 		public boolean top;
 		public boolean uidl;
-		public boolean external;
 
 		@Override
 		public String toString() {
-			return String
-					.format("CRAM-MD5 %b, PLAIN %b, STLS %b, TOP %b, UIDL %b, EXTERNAL %b",
-							cramMD5, authPlain, stls, top, uidl, external);
+			return String.format(
+					"CRAM-MD5 %b, PLAIN %b, STLS %b, TOP %b, UIDL %b", cramMD5,
+					authPlain, stls, top, uidl);
 		}
 	}
 

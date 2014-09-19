@@ -1,8 +1,5 @@
 package com.bernard.beaconportal.activities.controller;
 
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
@@ -16,6 +13,9 @@ import com.bernard.beaconportal.activities.mail.PushReceiver;
 import com.bernard.beaconportal.activities.mail.store.LocalStore;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalFolder;
 import com.bernard.beaconportal.activities.service.SleepService;
+
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 public class MessagingControllerPushReceiver implements PushReceiver {
 	final Account account;

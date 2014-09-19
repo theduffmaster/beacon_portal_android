@@ -430,10 +430,10 @@ public class SettingsImporter {
 		putString(editor, accountKeyPrefix + Account.STORE_URI_KEY,
 				Utility.base64Encode(storeUri));
 
-		// Mark account as disabled if the AuthType isn't EXTERNAL and the
-		// settings file didn't contain a password
-		boolean createAccountDisabled = AuthType.EXTERNAL != incoming.authenticationType
-				&& (incoming.password == null || incoming.password.isEmpty());
+		// Mark account as disabled if the settings file didn't contain a
+		// password
+		boolean createAccountDisabled = (incoming.password == null || incoming.password
+				.isEmpty());
 
 		if (account.outgoing == null
 				&& !WebDavStore.STORE_TYPE.equals(account.incoming.type)) {
@@ -450,21 +450,11 @@ public class SettingsImporter {
 			putString(editor, accountKeyPrefix + Account.TRANSPORT_URI_KEY,
 					Utility.base64Encode(transportUri));
 
-			/*
-			 * Mark account as disabled if the settings file contained a
-			 * username but no password. However, no password is required for
-			 * the outgoing server for WebDAV accounts, because incoming and
-			 * outgoing servers are identical for this account type. Nor is a
-			 * password required if the AuthType is EXTERNAL.
-			 */
-			boolean outgoingPasswordNeeded = AuthType.EXTERNAL != outgoing.authenticationType
-					&& !WebDavStore.STORE_TYPE.equals(outgoing.type)
-					&& outgoing.username != null
-					&& !outgoing.username.isEmpty()
-					&& (outgoing.password == null || outgoing.password
-							.isEmpty());
-			createAccountDisabled = outgoingPasswordNeeded
-					|| createAccountDisabled;
+			// Mark account as disabled if the settings file didn't contain a
+			// password
+			if (outgoing.password == null || outgoing.password.isEmpty()) {
+				createAccountDisabled = true;
+			}
 		}
 
 		// Write key to mark account as disabled if necessary
@@ -1101,9 +1091,6 @@ public class SettingsImporter {
 					server.authenticationType = AuthType.valueOf(text);
 				} else if (SettingsExporter.USERNAME_ELEMENT.equals(element)) {
 					server.username = getText(xpp);
-				} else if (SettingsExporter.CLIENT_CERTIFICATE_ALIAS_ELEMENT
-						.equals(element)) {
-					server.clientCertificateAlias = getText(xpp);
 				} else if (SettingsExporter.PASSWORD_ELEMENT.equals(element)) {
 					server.password = getText(xpp);
 				} else if (SettingsExporter.EXTRA_ELEMENT.equals(element)) {
@@ -1221,8 +1208,7 @@ public class SettingsImporter {
 		public ImportedServerSettings(ImportedServer server) {
 			super(server.type, server.host, convertPort(server.port),
 					convertConnectionSecurity(server.connectionSecurity),
-					server.authenticationType, server.username,
-					server.password, server.clientCertificateAlias);
+					server.authenticationType, server.username, server.password);
 			mImportedServer = server;
 		}
 
@@ -1288,7 +1274,6 @@ public class SettingsImporter {
 		public AuthType authenticationType;
 		public String username;
 		public String password;
-		public String clientCertificateAlias;
 		public ImportedSettings extras;
 	}
 

@@ -3,9 +3,9 @@ package com.bernard.beaconportal.activities.search;
 import android.content.Context;
 
 import com.bernard.beaconportal.activities.BaseAccount;
-import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Attribute;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Searchfield;
+import com.bernard.beaconportal.activities.R;
 
 /**
  * This class is basically a wrapper around a LocalSearch. It allows to expose

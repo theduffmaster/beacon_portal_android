@@ -1,5 +1,11 @@
 package com.bernard.beaconportal.activities.mail.store;
 
+import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.conn.scheme.LayeredSocketFactory;
+import org.apache.http.params.HttpParams;
+
+import com.bernard.beaconportal.activities.net.ssl.TrustManagerFactory;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -12,12 +18,6 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
-
-import org.apache.http.conn.ConnectTimeoutException;
-import org.apache.http.conn.scheme.LayeredSocketFactory;
-import org.apache.http.params.HttpParams;
-
-import com.bernard.beaconportal.activities.net.ssl.TrustManagerFactory;
 
 /*
  * TODO: find out what's going on here and document it.

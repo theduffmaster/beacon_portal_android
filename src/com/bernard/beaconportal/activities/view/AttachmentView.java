@@ -29,7 +29,6 @@ import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.controller.MessagingListener;
 import com.bernard.beaconportal.activities.helper.MediaScannerNotifier;
@@ -42,6 +41,7 @@ import com.bernard.beaconportal.activities.mail.internet.MimeHeader;
 import com.bernard.beaconportal.activities.mail.internet.MimeUtility;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalAttachmentBodyPart;
 import com.bernard.beaconportal.activities.provider.AttachmentProvider;
+import com.bernard.beaconportal.activities.R;
 
 public class AttachmentView extends FrameLayout implements OnClickListener,
 		OnLongClickListener {

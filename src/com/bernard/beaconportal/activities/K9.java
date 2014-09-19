@@ -15,7 +15,9 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Debug;
 import android.os.Environment;
@@ -41,6 +43,7 @@ import com.bernard.beaconportal.activities.service.BootReceiver;
 import com.bernard.beaconportal.activities.service.MailService;
 import com.bernard.beaconportal.activities.service.ShutdownReceiver;
 import com.bernard.beaconportal.activities.service.StorageGoneReceiver;
+import com.bernard.beaconportal.activities.R;
 
 public class K9 extends Application {
 	/**
@@ -102,7 +105,7 @@ public class K9 extends Application {
 	private static boolean sInitialized = false;
 
 	public enum BACKGROUND_OPS {
-		ALWAYS, NEVER, WHEN_CHECKED_AUTO_SYNC
+		WHEN_CHECKED, ALWAYS, NEVER, WHEN_CHECKED_AUTO_SYNC
 	}
 
 	private static String language = "";
@@ -113,7 +116,7 @@ public class K9 extends Application {
 
 	private static final FontSizes fontSizes = new FontSizes();
 
-	private static BACKGROUND_OPS backgroundOps = BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC;
+	private static BACKGROUND_OPS backgroundOps = BACKGROUND_OPS.WHEN_CHECKED;
 	/**
 	 * Some log messages can be sent to a file, so that the logs can be read
 	 * using unprivileged access (eg. Terminal Emulator) on the phone, without
@@ -241,6 +244,7 @@ public class K9 extends Application {
 	private static boolean mMeasureAccounts = true;
 	private static boolean mCountSearchMessages = true;
 	private static boolean mHideSpecialAccounts = false;
+	private static boolean mMobileOptimizedLayout = false;
 	private static boolean mAutofitWidth;
 	private static boolean mQuietTimeEnabled = false;
 	private static String mQuietTimeStarts = null;
@@ -249,6 +253,9 @@ public class K9 extends Application {
 	private static boolean mWrapFolderNames = false;
 	private static boolean mHideUserAgent = false;
 	private static boolean mHideTimeZone = false;
+
+	private static boolean useGalleryBugWorkaround = false;
+	private static boolean galleryBuggy;
 
 	private static SortType mSortType;
 	private static HashMap<SortType, Boolean> mSortAscending = new HashMap<SortType, Boolean>();
@@ -305,7 +312,7 @@ public class K9 extends Application {
 	 * number is set on each new folder and can be incremented with
 	 * "Load more messages..." by the VISIBLE_LIMIT_INCREMENT
 	 */
-	public static int DEFAULT_VISIBLE_LIMIT = 25;
+	public static int DEFAULT_VISIBLE_LIMIT = 0;
 
 	/**
 	 * The maximum size of an attachment we're willing to download (either View
@@ -361,8 +368,8 @@ public class K9 extends Application {
 	public static class Intents {
 
 		public static class EmailReceived {
-			public static final String ACTION_EMAIL_RECEIVED = "com.bernard.beaconportal.activities.intent.action.EMAIL_RECEIVED";
-			public static final String ACTION_EMAIL_DELETED = "com.bernard.beaconportal.activities.intent.action.EMAIL_DELETED";
+			public static final String ACTION_EMAIL_RECEIVED = "com.bernard.beaconportal.activities.k9.intent.action.EMAIL_RECEIVED";
+			public static final String ACTION_EMAIL_DELETED = "com.bernard.beaconportal.activities.action.EMAIL_DELETED";
 			public static final String ACTION_REFRESH_OBSERVER = "com.bernard.beaconportal.activities.intent.action.REFRESH_OBSERVER";
 			public static final String EXTRA_ACCOUNT = "com.bernard.beaconportal.activities.intent.extra.ACCOUNT";
 			public static final String EXTRA_FOLDER = "com.bernard.beaconportal.activities.intent.extra.FOLDER";
@@ -490,13 +497,14 @@ public class K9 extends Application {
 	public static void save(SharedPreferences.Editor editor) {
 		editor.putBoolean("enableDebugLogging", K9.DEBUG);
 		editor.putBoolean("enableSensitiveLogging", K9.DEBUG_SENSITIVE);
-		editor.putString("backgroundOperations", K9.backgroundOps.name());
+		editor.putString("backgroundOperations", K9.backgroundOps.toString());
 		editor.putBoolean("animations", mAnimations);
 		editor.putBoolean("gesturesEnabled", mGesturesEnabled);
 		editor.putBoolean("useVolumeKeysForNavigation",
 				mUseVolumeKeysForNavigation);
 		editor.putBoolean("useVolumeKeysForListNavigation",
 				mUseVolumeKeysForListNavigation);
+		editor.putBoolean("mobileOptimizedLayout", mMobileOptimizedLayout);
 		editor.putBoolean("autofitWidth", mAutofitWidth);
 		editor.putBoolean("quietTimeEnabled", mQuietTimeEnabled);
 		editor.putString("quietTimeStarts", mQuietTimeStarts);
@@ -529,6 +537,7 @@ public class K9 extends Application {
 		editor.putInt("messageViewTheme", messageViewTheme.ordinal());
 		editor.putInt("messageComposeTheme", composerTheme.ordinal());
 		editor.putBoolean("fixedMessageViewTheme", useFixedMessageTheme);
+		editor.putBoolean("useGalleryBugWorkaround", useGalleryBugWorkaround);
 
 		editor.putBoolean("confirmDelete", mConfirmDelete);
 		editor.putBoolean("confirmDeleteStarred", mConfirmDeleteStarred);
@@ -576,6 +585,8 @@ public class K9 extends Application {
 
 		super.onCreate();
 		app = this;
+
+		galleryBuggy = checkForBuggyGallery();
 
 		sIsDebuggable = ((getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
 
@@ -718,6 +729,8 @@ public class K9 extends Application {
 
 				});
 
+		Log.d("notify observers", "called");
+
 		notifyObservers();
 	}
 
@@ -778,6 +791,8 @@ public class K9 extends Application {
 		mMessageListStars = sprefs.getBoolean("messageListStars", true);
 		mMessageListPreviewLines = sprefs.getInt("messageListPreviewLines", 2);
 
+		mMobileOptimizedLayout = sprefs.getBoolean("mobileOptimizedLayout",
+				false);
 		mAutofitWidth = sprefs.getBoolean("autofitWidth", true);
 
 		mQuietTimeEnabled = sprefs.getBoolean("quietTimeEnabled", false);
@@ -799,6 +814,9 @@ public class K9 extends Application {
 		mWrapFolderNames = sprefs.getBoolean("wrapFolderNames", false);
 		mHideUserAgent = sprefs.getBoolean("hideUserAgent", false);
 		mHideTimeZone = sprefs.getBoolean("hideTimeZone", false);
+
+		useGalleryBugWorkaround = sprefs.getBoolean("useGalleryBugWorkaround",
+				K9.isGalleryBuggy());
 
 		mConfirmDelete = sprefs.getBoolean("confirmDelete", false);
 		mConfirmDeleteStarred = sprefs
@@ -855,10 +873,9 @@ public class K9 extends Application {
 
 		try {
 			setBackgroundOps(BACKGROUND_OPS.valueOf(sprefs.getString(
-					"backgroundOperations",
-					BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC.name())));
+					"backgroundOperations", "WHEN_CHECKED")));
 		} catch (Exception e) {
-			setBackgroundOps(BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC);
+			setBackgroundOps(BACKGROUND_OPS.WHEN_CHECKED);
 		}
 
 		sColorizeMissingContactPictures = sprefs.getBoolean(
@@ -916,6 +933,8 @@ public class K9 extends Application {
 				}
 			}
 
+			Log.d("sInitialized =", "true");
+
 			sInitialized = true;
 			observers.clear();
 		}
@@ -932,6 +951,7 @@ public class K9 extends Application {
 		synchronized (observers) {
 			if (sInitialized) {
 				component.initializeComponent(K9.app);
+
 			} else if (!observers.contains(component)) {
 				observers.add(component);
 			}
@@ -1048,6 +1068,14 @@ public class K9 extends Application {
 
 	public static void setUseVolumeKeysForListNavigation(boolean enabled) {
 		mUseVolumeKeysForListNavigation = enabled;
+	}
+
+	public static boolean mobileOptimizedLayout() {
+		return mMobileOptimizedLayout;
+	}
+
+	public static void setMobileOptimizedLayout(boolean mobileOptimizedLayout) {
+		mMobileOptimizedLayout = mobileOptimizedLayout;
 	}
 
 	public static boolean autofitWidth() {
@@ -1256,6 +1284,19 @@ public class K9 extends Application {
 		mHideSpecialAccounts = hideSpecialAccounts;
 	}
 
+	public static boolean useGalleryBugWorkaround() {
+		return useGalleryBugWorkaround;
+	}
+
+	public static void setUseGalleryBugWorkaround(
+			boolean useGalleryBugWorkaround) {
+		K9.useGalleryBugWorkaround = useGalleryBugWorkaround;
+	}
+
+	public static boolean isGalleryBuggy() {
+		return galleryBuggy;
+	}
+
 	public static boolean confirmDelete() {
 		return mConfirmDelete;
 	}
@@ -1304,6 +1345,26 @@ public class K9 extends Application {
 	public static void setNotificationQuickDeleteBehaviour(
 			final NotificationQuickDelete mode) {
 		sNotificationQuickDelete = mode;
+	}
+
+	/**
+	 * Check if this system contains a buggy Gallery 3D package.
+	 * 
+	 * We have to work around the fact that those Gallery versions won't show
+	 * any images or videos when the pick intent is used with a MIME type other
+	 * than image/* or video/*. See issue 1186.
+	 * 
+	 * @return true, if a buggy Gallery 3D package was found. False, otherwise.
+	 */
+	private boolean checkForBuggyGallery() {
+		try {
+			PackageInfo pi = getPackageManager().getPackageInfo(
+					"com.cooliris.media", 0);
+
+			return (pi.versionCode == 30682);
+		} catch (NameNotFoundException e) {
+			return false;
+		}
 	}
 
 	public static boolean wrapFolderNames() {

@@ -1,13 +1,5 @@
 package com.bernard.beaconportal.activities.provider;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
@@ -26,8 +18,11 @@ import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Store;
 import com.bernard.beaconportal.activities.mail.internet.MimeUtility;
 import com.bernard.beaconportal.activities.mail.store.LocalStore;
-import com.bernard.beaconportal.activities.mail.store.LocalStore.AttachmentInfo;
 import com.bernard.beaconportal.activities.mail.store.StorageManager;
+import com.bernard.beaconportal.activities.mail.store.LocalStore.AttachmentInfo;
+
+import java.io.*;
+import java.util.List;
 
 /**
  * A simple ContentProvider that allows file access to attachments.

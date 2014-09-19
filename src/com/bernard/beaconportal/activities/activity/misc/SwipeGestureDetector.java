@@ -1,9 +1,9 @@
 package com.bernard.beaconportal.activities.activity.misc;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.GestureDetector.SimpleOnGestureListener;
-import android.view.MotionEvent;
 
 public class SwipeGestureDetector extends SimpleOnGestureListener {
 	public static final int BEZEL_SWIPE_THRESHOLD = 20;

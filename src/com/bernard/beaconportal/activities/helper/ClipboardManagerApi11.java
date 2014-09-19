@@ -2,8 +2,8 @@ package com.bernard.beaconportal.activities.helper;
 
 import android.annotation.TargetApi;
 import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.ClipboardManager;
 
 /**
  * Access the system clipboard using the new {@link ClipboardManager} introduced

@@ -10,11 +10,7 @@ import java.util.TreeMap;
 import android.content.SharedPreferences;
 
 import com.bernard.beaconportal.activities.mail.Folder.FolderClass;
-import com.bernard.beaconportal.activities.preferences.Settings.BooleanSetting;
-import com.bernard.beaconportal.activities.preferences.Settings.EnumSetting;
-import com.bernard.beaconportal.activities.preferences.Settings.SettingsDescription;
-import com.bernard.beaconportal.activities.preferences.Settings.SettingsUpgrader;
-import com.bernard.beaconportal.activities.preferences.Settings.V;
+import com.bernard.beaconportal.activities.preferences.Settings.*;
 
 public class FolderSettings {
 	public static final Map<String, TreeMap<Integer, SettingsDescription>> SETTINGS;
@@ -31,9 +27,6 @@ public class FolderSettings {
 		s.put("displayMode", Settings.versions(new V(1,
 				new EnumSetting<FolderClass>(FolderClass.class,
 						FolderClass.NO_CLASS))));
-		s.put("notifyMode", Settings.versions(new V(34,
-				new EnumSetting<FolderClass>(FolderClass.class,
-						FolderClass.INHERITED))));
 		s.put("syncMode", Settings.versions(new V(1,
 				new EnumSetting<FolderClass>(FolderClass.class,
 						FolderClass.INHERITED))));

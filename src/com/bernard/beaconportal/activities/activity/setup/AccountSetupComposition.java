@@ -8,16 +8,17 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.K9Activity;
+import com.bernard.beaconportal.activities.R;
 
 public class AccountSetupComposition extends K9Activity {
 
@@ -50,6 +51,35 @@ public class AccountSetupComposition extends K9Activity {
 		mAccount = Preferences.getPreferences(this).getAccount(accountUuid);
 
 		setContentView(R.layout.account_setup_composition);
+
+		int titleId = getResources().getIdentifier("action_bar_title", "id",
+				"android");
+
+		TextView abTitle = (TextView) findViewById(titleId);
+		abTitle.setTextColor(getResources().getColor((R.color.white)));
+
+		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
+				Context.MODE_PRIVATE);
+
+		if (!sharedpref.contains("actionbar_color")) {
+
+			getActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor("#03a9f4")));
+
+		} else {
+
+			String actionbar_colors = sharedpref.getString("actionbar_color",
+					null);
+
+			getActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+		}
+
+		android.app.ActionBar bar = getActionBar();
+
+		bar.setIcon(new ColorDrawable(getResources().getColor(
+				android.R.color.transparent)));
 
 		/*
 		 * If we're being reloaded we override the original account with the one
@@ -112,30 +142,6 @@ public class AccountSetupComposition extends K9Activity {
 		} else {
 			mAccountSignatureLayout.setVisibility(View.GONE);
 		}
-
-		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
-				Context.MODE_PRIVATE);
-
-		if (!sharedpref.contains("actionbar_color")) {
-
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#03a9f4")));
-
-		} else {
-
-			String actionbar_colors = sharedpref.getString("actionbar_color",
-					null);
-
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-		}
-
-		android.app.ActionBar bar = getActionBar();
-
-		bar.setIcon(new ColorDrawable(getResources().getColor(
-				android.R.color.transparent)));
-
 	}
 
 	private void saveSettings() {

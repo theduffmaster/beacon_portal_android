@@ -17,12 +17,12 @@
 
 package com.bernard.beaconportal.activities.mail.store.imap;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.K9;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utility methods for use with IMAP.

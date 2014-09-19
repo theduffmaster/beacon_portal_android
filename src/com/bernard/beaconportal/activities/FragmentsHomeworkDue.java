@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.astuetz.PagerSlidingTabStrip;
+import com.bernard.beaconportal.activities.R;
 
 public class FragmentsHomeworkDue extends SherlockFragment {
 

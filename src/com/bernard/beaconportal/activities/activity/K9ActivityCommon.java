@@ -2,6 +2,11 @@ package com.bernard.beaconportal.activities.activity;
 
 import java.util.Locale;
 
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.activity.misc.SwipeGestureDetector;
+import com.bernard.beaconportal.activities.activity.misc.SwipeGestureDetector.OnSwipeGestureListener;
+import com.bernard.beaconportal.activities.helper.StringUtils;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -9,11 +14,6 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.activity.misc.SwipeGestureDetector;
-import com.bernard.beaconportal.activities.activity.misc.SwipeGestureDetector.OnSwipeGestureListener;
-import com.bernard.beaconportal.activities.helper.StringUtils;
 
 /**
  * This class implements functionality common to most activities used in K-9

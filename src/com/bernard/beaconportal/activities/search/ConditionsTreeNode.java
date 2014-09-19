@@ -3,8 +3,8 @@ package com.bernard.beaconportal.activities.search;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.Stack;
+import java.util.Set;
 
 import android.database.Cursor;
 import android.os.Parcel;

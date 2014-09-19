@@ -1,24 +1,21 @@
 package com.bernard.beaconportal.activities.activity;
 
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.mail.Store;
+import com.bernard.beaconportal.activities.service.DatabaseUpgradeService;
+import com.bernard.beaconportal.activities.R;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.widget.TextView;
-
-import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.controller.MessagingController;
-import com.bernard.beaconportal.activities.mail.Store;
-import com.bernard.beaconportal.activities.service.DatabaseUpgradeService;
 
 /**
  * This activity triggers a database upgrade if necessary and displays the
@@ -128,29 +125,6 @@ public class UpgradeDatabases extends K9Activity {
 		decodeExtras();
 
 		setupBroadcastReceiver();
-		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
-				Context.MODE_PRIVATE);
-
-		if (!sharedpref.contains("actionbar_color")) {
-
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#03a9f4")));
-
-		} else {
-
-			String actionbar_colors = sharedpref.getString("actionbar_color",
-					null);
-
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-		}
-
-		android.app.ActionBar bar = getActionBar();
-
-		bar.setIcon(new ColorDrawable(getResources().getColor(
-				android.R.color.transparent)));
-
 	}
 
 	/**

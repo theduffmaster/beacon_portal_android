@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -22,7 +23,9 @@ import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.BaseAccount;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.search.SearchAccount;
 import com.bernard.beaconportal.activities.R;
 
 /**
@@ -38,6 +41,8 @@ public abstract class AccountList extends K9ListActivity implements
 		OnItemClickListener {
 	private FontSizes mFontSizes = K9.getFontSizes();
 
+	
+
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
@@ -45,6 +50,10 @@ public abstract class AccountList extends K9ListActivity implements
 		setResult(RESULT_CANCELED);
 
 		setContentView(R.layout.account_list);
+
+		ListView listView = getListView();
+		listView.setOnItemClickListener(this);
+		listView.setItemsCanFocus(false);
 
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
@@ -69,9 +78,8 @@ public abstract class AccountList extends K9ListActivity implements
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
-		ListView listView = getListView();
-		listView.setOnItemClickListener(this);
-		listView.setItemsCanFocus(false);
+		bar.setDisplayHomeAsUpEnabled(true);
+
 	}
 
 	/**
@@ -100,15 +108,15 @@ public abstract class AccountList extends K9ListActivity implements
 	public void populateListView(Account[] realAccounts) {
 		List<BaseAccount> accounts = new ArrayList<BaseAccount>();
 
-		// if (displaySpecialAccounts() && !K9.isHideSpecialAccounts()) {
-		// BaseAccount unifiedInboxAccount =
-		// SearchAccount.createUnifiedInboxAccount(this);
-		// BaseAccount allMessagesAccount =
-		// SearchAccount.createAllMessagesAccount(this);
-		//
-		// accounts.add(unifiedInboxAccount);
-		// accounts.add(allMessagesAccount);
-		// }
+		if (displaySpecialAccounts() && !K9.isHideSpecialAccounts()) {
+			BaseAccount unifiedInboxAccount = SearchAccount
+					.createUnifiedInboxAccount(this);
+			BaseAccount allMessagesAccount = SearchAccount
+					.createAllMessagesAccount(this);
+
+			accounts.add(unifiedInboxAccount);
+			accounts.add(allMessagesAccount);
+		}
 
 		accounts.addAll(Arrays.asList(realAccounts));
 		AccountsAdapter adapter = new AccountsAdapter(accounts);
@@ -218,4 +226,22 @@ public abstract class AccountList extends K9ListActivity implements
 			populateListView(accounts);
 		}
 	}
+
+	@Override
+	public boolean onOptionsItemSelected(android.view.MenuItem item) {
+		int itemId = item.getItemId();
+		switch (itemId) {
+		case android.R.id.home: {
+
+			Intent i = new Intent(this, MainActivity.class);
+			startActivity(i);
+
+			return true;
+		}
+
+		}
+		return true;
+
+	}
+
 }

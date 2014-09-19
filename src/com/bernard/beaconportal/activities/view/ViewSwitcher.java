@@ -1,12 +1,12 @@
 package com.bernard.beaconportal.activities.view;
 
+import com.bernard.beaconportal.activities.K9;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.ViewAnimator;
-
-import com.bernard.beaconportal.activities.K9;
 
 /**
  * A {@link ViewAnimator} that animates between two child views using different

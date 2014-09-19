@@ -3,6 +3,9 @@ package com.bernard.beaconportal.activities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bernard.beaconportal.activities.R;
+import com.commonsware.cwac.merge.MergeAdapter;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,12 +26,11 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.commonsware.cwac.merge.MergeAdapter;
 
 public class FragmentSettings extends Fragment {
 
@@ -40,7 +42,7 @@ public class FragmentSettings extends Fragment {
 			background_colorcheck;
 
 	private MergeAdapter merge;
-
+	
 	static class ViewHolder {
 
 		public TextView TitleText;
@@ -49,17 +51,17 @@ public class FragmentSettings extends Fragment {
 	}
 
 	private CheckBox refresh;
-
+	
 	private CheckBox refresh_edit;
 
 	private TextView text1;
-
+	
 	private View view;
-
+	
 	private View relative_views;
 
 	private RelativeLayout relativelayout;
-
+	
 	public static final String KEY_HOMEWORK = "homework";
 	public static final String KEY_DESC = "desc";
 
@@ -68,12 +70,13 @@ public class FragmentSettings extends Fragment {
 			Bundle savedInstanceState) {
 
 		view = inflater.inflate(R.layout.settings, container, false);
-
-		relative_views = View.inflate(getActivity(), R.layout.settings_layouts,
-				null);
+		
+		
+		
+		relative_views = View.inflate(getActivity(), R.layout.settings_layouts, null);
 
 		merge = new MergeAdapter();
-
+		
 		addListenerOnChkWindows();
 
 		relativelayout = (RelativeLayout) relative_views
@@ -165,10 +168,9 @@ public class FragmentSettings extends Fragment {
 		});
 
 		refresh = (CheckBox) relative_views.findViewById(R.id.checkBox1);
-
-		refresh_edit = (CheckBox) relative_views
-				.findViewById(R.id.checkBoxEdit);
-
+		
+		refresh_edit = (CheckBox) relative_views.findViewById(R.id.checkBoxEdit);
+		
 		SharedPreferences pref = getActivity().getSharedPreferences("CheckBox",
 				Context.MODE_PRIVATE);
 
@@ -179,10 +181,12 @@ public class FragmentSettings extends Fragment {
 			if (checkbox.contains("true")) {
 				refresh.setChecked(true);
 
+				
+
 			}
 
-			SharedPreferences prefer = getActivity().getSharedPreferences(
-					"CheckBox_edit", Context.MODE_PRIVATE);
+			SharedPreferences prefer = getActivity().getSharedPreferences("CheckBox_edit",
+					Context.MODE_PRIVATE);
 
 			String checkbox_edit = prefer.getString("checked", null);
 
@@ -191,12 +195,14 @@ public class FragmentSettings extends Fragment {
 				if (checkbox_edit.contains("true")) {
 					refresh_edit.setChecked(true);
 
-				}
+					
 
-			}
+				}
 
 		}
 
+		}
+		
 		return view;
 
 	}
@@ -212,7 +218,7 @@ public class FragmentSettings extends Fragment {
 		super.onResume();
 
 		addListenerOnChkWindows();
-
+		
 		addListenerOnChkButton();
 
 		SharedPreferences sharedpref = getActivity().getSharedPreferences(
@@ -251,28 +257,25 @@ public class FragmentSettings extends Fragment {
 	}
 
 	public void setListViewHeightBasedOnChildren(ListView listView) {
-		ListAdapter listAdapter = listView.getAdapter();
-		if (listAdapter == null) {
-			return;
-		}
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
 
-		int totalHeight = listView.getPaddingTop()
-				+ listView.getPaddingBottom();
-		for (int i = 0; i < listAdapter.getCount(); i++) {
-			View listItem = listAdapter.getView(i, null, listView);
-			if (listItem instanceof ViewGroup)
-				listItem.setLayoutParams(new LayoutParams(
-						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-			listItem.measure(0, 0);
-			totalHeight += listItem.getMeasuredHeight();
-		}
+        int totalHeight = listView.getPaddingTop() + listView.getPaddingBottom();
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            if (listItem instanceof ViewGroup)
+                listItem.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
 
-		ViewGroup.LayoutParams params = listView.getLayoutParams();
-		params.height = totalHeight
-				+ (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-		listView.setLayoutParams(params);
-	}
-
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }
+	
 	public void refreshColors() {
 
 		Fragment frg = new FragmentSettings();
@@ -331,12 +334,14 @@ public class FragmentSettings extends Fragment {
 		ArrayAdapter<Settings> adapter = new MyListAdapter();
 		ListView list = (ListView) getView()
 				.findViewById(R.id.listViewSettings);
-		// list.setAdapter(adapter);
-
+		//list.setAdapter(adapter);
+		
+		
+		
 		merge.addAdapter(adapter);
-
+		
 		merge.addView(relative_views);
-
+		
 		list.setAdapter(merge);
 
 	}
@@ -419,8 +424,7 @@ public class FragmentSettings extends Fragment {
 
 	public void addListenerOnChkButton() {
 
-		CheckBox floating = (CheckBox) relative_views
-				.findViewById(R.id.checkBoxEdit);
+		CheckBox floating = (CheckBox) relative_views.findViewById(R.id.checkBoxEdit);
 
 		floating.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -429,24 +433,24 @@ public class FragmentSettings extends Fragment {
 					boolean isChecked) {
 
 				SharedPreferences.Editor editor = getActivity()
-						.getSharedPreferences("CheckBox_edit",
-								Context.MODE_PRIVATE).edit();
+						.getSharedPreferences("CheckBox_edit", Context.MODE_PRIVATE)
+						.edit();
 
 				if ((buttonView.isChecked())) {
 
 					editor.putString("checked", "true");
 					editor.commit();
-				} else {
+				}else {
 
 					editor.putString("checked", "false");
 					editor.commit();
 
-				}
+				} 
 
 			}
 
 		});
 
 	}
-
+	
 }

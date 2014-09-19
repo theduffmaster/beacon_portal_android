@@ -9,8 +9,6 @@ import org.apache.james.mime4j.util.MimeUtil;
 
 import com.bernard.beaconportal.activities.mail.CompositeBody;
 import com.bernard.beaconportal.activities.mail.MessagingException;
-import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalAttachmentBody;
-import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalAttachmentMessageBody;
 
 /**
  * A {@link BinaryTempFileBody} extension containing a body of type

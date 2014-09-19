@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.TypedValue;
 
 import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.misc.ContactPictureLoader;
+import com.bernard.beaconportal.activities.R;
 
 public class ContactPicture {
 

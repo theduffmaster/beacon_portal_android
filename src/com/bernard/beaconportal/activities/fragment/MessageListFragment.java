@@ -2,7 +2,6 @@ package com.bernard.beaconportal.activities.fragment;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
@@ -15,16 +14,11 @@ import java.util.Set;
 import java.util.concurrent.Future;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.app.Fragment;
-import android.app.LoaderManager;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.Loader;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -35,7 +29,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.app.DialogFragment;
+import android.app.LoaderManager;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.CursorLoader;
+import android.content.Loader;
 import android.support.v4.content.LocalBroadcastManager;
+import android.widget.CursorAdapter;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -59,18 +59,16 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CheckBox;
-import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.Account.SortType;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.Account.SortType;
 import com.bernard.beaconportal.activities.activity.ActivityListener;
 import com.bernard.beaconportal.activities.activity.ChooseFolder;
 import com.bernard.beaconportal.activities.activity.FolderInfoHolder;
@@ -98,9 +96,10 @@ import com.bernard.beaconportal.activities.provider.EmailProvider.ThreadColumns;
 import com.bernard.beaconportal.activities.search.ConditionsTreeNode;
 import com.bernard.beaconportal.activities.search.LocalSearch;
 import com.bernard.beaconportal.activities.search.SearchSpecification;
+import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
 import com.bernard.beaconportal.activities.search.SearchSpecification.SearchCondition;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Searchfield;
-import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
+import com.bernard.beaconportal.activities.R;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -142,7 +141,7 @@ public class MessageListFragment extends Fragment implements
 	private static final int FOLDER_NAME_COLUMN = 17;
 	private static final int THREAD_COUNT_COLUMN = 18;
 
-	private static final String[] PROJECTION = Arrays.copyOf(
+	private static final String[] PROJECTION = Utility.copyOf(
 			THREADED_PROJECTION, THREAD_COUNT_COLUMN);
 
 	public static MessageListFragment newInstance(LocalSearch search,
@@ -846,6 +845,8 @@ public class MessageListFragment extends Fragment implements
 
 		initializeLayout();
 		mListView.setVerticalFadingEdgeEnabled(false);
+
+		// mListView.setBackgroundColor(Color.WHITE);
 
 		return view;
 	}
@@ -1910,7 +1911,6 @@ public class MessageListFragment extends Fragment implements
 
 			MessageViewHolder holder = new MessageViewHolder();
 			holder.date = (TextView) view.findViewById(R.id.date);
-			holder.chip = view.findViewById(R.id.chip);
 
 			if (mPreviewLines == 0 && mContactsPictureLoader == null) {
 				view.findViewById(R.id.preview).setVisibility(View.GONE);
@@ -2035,8 +2035,6 @@ public class MessageListFragment extends Fragment implements
 
 			long uniqueId = cursor.getLong(mUniqueIdColumn);
 			boolean selected = mSelected.contains(uniqueId);
-
-			holder.chip.setBackgroundColor(account.getChipColor());
 
 			if (mCheckboxes) {
 				holder.selected.setChecked(selected);
@@ -2196,7 +2194,7 @@ public class MessageListFragment extends Fragment implements
 		public TextView from;
 		public TextView time;
 		public TextView date;
-		public View chip;
+
 		public TextView threadCount;
 		public CheckBox flagged;
 		public CheckBox selected;
@@ -2205,6 +2203,9 @@ public class MessageListFragment extends Fragment implements
 
 		@Override
 		public void onClick(View view) {
+
+			Log.d("clicked_folder9", "clicked");
+
 			if (position != -1) {
 
 				switch (view.getId()) {

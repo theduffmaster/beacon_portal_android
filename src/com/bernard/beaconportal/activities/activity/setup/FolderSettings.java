@@ -12,19 +12,17 @@ import android.preference.Preference;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.*;
 import com.bernard.beaconportal.activities.activity.FolderInfoHolder;
 import com.bernard.beaconportal.activities.activity.K9PreferenceActivity;
 import com.bernard.beaconportal.activities.mail.Folder;
-import com.bernard.beaconportal.activities.mail.Folder.FolderClass;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Store;
+import com.bernard.beaconportal.activities.mail.Folder.FolderClass;
 import com.bernard.beaconportal.activities.mail.store.LocalStore;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalFolder;
 import com.bernard.beaconportal.activities.service.MailService;
+import com.bernard.beaconportal.activities.R;
 
 public class FolderSettings extends K9PreferenceActivity {
 

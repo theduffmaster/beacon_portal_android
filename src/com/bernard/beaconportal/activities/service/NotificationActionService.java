@@ -2,11 +2,6 @@ package com.bernard.beaconportal.activities.service;
 
 import java.util.ArrayList;
 
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
-
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
@@ -15,6 +10,11 @@ import com.bernard.beaconportal.activities.activity.MessageReference;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.mail.Flag;
 import com.bernard.beaconportal.activities.mail.Message;
+
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 
 public class NotificationActionService extends CoreService {
 	private final static String REPLY_ACTION = "com.bernard.beaconportal.activities.service.NotificationActionService.REPLY_ACTION";

@@ -22,9 +22,9 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -68,7 +68,6 @@ import com.bernard.beaconportal.activities.BaseAccount;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.misc.ExtendedAsyncTask;
 import com.bernard.beaconportal.activities.activity.misc.NonConfigurationInstance;
 import com.bernard.beaconportal.activities.activity.setup.AccountSettings;
@@ -77,7 +76,6 @@ import com.bernard.beaconportal.activities.activity.setup.Prefs;
 import com.bernard.beaconportal.activities.activity.setup.WelcomeMessage;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.helper.SizeFormatter;
-import com.bernard.beaconportal.activities.mail.AuthType;
 import com.bernard.beaconportal.activities.mail.ServerSettings;
 import com.bernard.beaconportal.activities.mail.Store;
 import com.bernard.beaconportal.activities.mail.Transport;
@@ -95,7 +93,8 @@ import com.bernard.beaconportal.activities.search.LocalSearch;
 import com.bernard.beaconportal.activities.search.SearchAccount;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Attribute;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Searchfield;
-import com.bernard.beaconportal.activities.view.ColorChip;
+
+import com.bernard.beaconportal.activities.R;
 
 import de.cketti.library.changelog.ChangeLog;
 
@@ -129,7 +128,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 	private int mUnreadMessageCount = 0;
 
 	private AccountsHandler mHandler = new AccountsHandler();
-	private AccountsAdapter mAdapter;
+	public static AccountsAdapter mAdapter;
 	private SearchAccount mAllMessagesAccount = null;
 	private SearchAccount mUnifiedInboxAccount = null;
 	private FontSizes mFontSizes = K9.getFontSizes();
@@ -151,7 +150,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 
 	private static final int ACTIVITY_REQUEST_PICK_SETTINGS_FILE = 1;
 
-	class AccountsHandler extends Handler {
+	public class AccountsHandler extends Handler {
 		private void setViewTitle() {
 			mActionBarTitle.setText(getString(R.string.accounts_title));
 
@@ -463,6 +462,27 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		listView.setScrollingCacheEnabled(false);
 		registerForContextMenu(listView);
 
+		if (icicle != null && icicle.containsKey(SELECTED_CONTEXT_ACCOUNT)) {
+			String accountUuid = icicle.getString("selectedContextAccount");
+			mSelectedContextAccount = Preferences.getPreferences(this)
+					.getAccount(accountUuid);
+		}
+
+		restoreAccountStats(icicle);
+		mHandler.setViewTitle();
+
+		// Handle activity restarts because of a configuration change (e.g.
+		// rotating the screen)
+		mNonConfigurationInstance = (NonConfigurationInstance) getLastNonConfigurationInstance();
+		if (mNonConfigurationInstance != null) {
+			mNonConfigurationInstance.restore(this);
+		}
+
+		ChangeLog cl = new ChangeLog(this);
+		if (cl.isFirstRun()) {
+			cl.getLogDialog().show();
+		}
+
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
 
@@ -486,26 +506,6 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
-		if (icicle != null && icicle.containsKey(SELECTED_CONTEXT_ACCOUNT)) {
-			String accountUuid = icicle.getString("selectedContextAccount");
-			mSelectedContextAccount = Preferences.getPreferences(this)
-					.getAccount(accountUuid);
-		}
-
-		restoreAccountStats(icicle);
-		mHandler.setViewTitle();
-
-		// Handle activity restarts because of a configuration change (e.g.
-		// rotating the screen)
-		mNonConfigurationInstance = (NonConfigurationInstance) getLastNonConfigurationInstance();
-		if (mNonConfigurationInstance != null) {
-			mNonConfigurationInstance.restore(this);
-		}
-
-		ChangeLog cl = new ChangeLog(this);
-		if (cl.isFirstRun()) {
-			cl.getLogDialog().show();
-		}
 	}
 
 	private void initializeActionBar() {
@@ -533,7 +533,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 	}
 
 	@SuppressWarnings("unchecked")
-	private void restoreAccountStats(Bundle icicle) {
+	void restoreAccountStats(Bundle icicle) {
 		if (icicle != null) {
 			Map<String, AccountStats> oldStats = (Map<String, AccountStats>) icicle
 					.get(ACCOUNT_STATS);
@@ -643,7 +643,8 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 
 			newAccounts = new ArrayList<BaseAccount>(accounts.length
 					+ SPECIAL_ACCOUNTS_COUNT);
-
+			newAccounts.add(mUnifiedInboxAccount);
+			newAccounts.add(mAllMessagesAccount);
 		} else {
 			newAccounts = new ArrayList<BaseAccount>(accounts.length);
 		}
@@ -702,12 +703,12 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 
 	}
 
-	private void onClearCommands(Account account) {
+	void onClearCommands(Account account) {
 		MessagingController.getInstance(getApplication()).clearAllPending(
 				account);
 	}
 
-	private void onEmptyTrash(Account account) {
+	void onEmptyTrash(Account account) {
 		MessagingController.getInstance(getApplication()).emptyTrash(account,
 				null);
 	}
@@ -730,7 +731,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 	 *            the account to open ({@link SearchAccount} or {@link Account})
 	 * @return false if unsuccessfull
 	 */
-	private boolean onOpenAccount(BaseAccount account) {
+	boolean onOpenAccount(BaseAccount account) {
 		if (account instanceof SearchAccount) {
 			SearchAccount searchAccount = (SearchAccount) account;
 			MessageList.actionDisplaySearch(this,
@@ -764,7 +765,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		return true;
 	}
 
-	private void onActivateAccount(Account account) {
+	void onActivateAccount(Account account) {
 		List<Account> disabledAccounts = new ArrayList<Account>();
 		disabledAccounts.add(account);
 		promptForServerPasswords(disabledAccounts);
@@ -829,10 +830,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		public boolean retain() {
 			if (mDialog != null) {
 				// Retain entered passwords and checkbox state
-				if (mIncomingPasswordView != null) {
-					mIncomingPassword = mIncomingPasswordView.getText()
-							.toString();
-				}
+				mIncomingPassword = mIncomingPasswordView.getText().toString();
 				if (mOutgoingPasswordView != null) {
 					mOutgoingPassword = mOutgoingPasswordView.getText()
 							.toString();
@@ -862,22 +860,12 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 			ServerSettings outgoing = Transport.decodeTransportUri(mAccount
 					.getTransportUri());
 
-			/*
-			 * Don't ask for the password to the outgoing server for WebDAV
-			 * accounts, because incoming and outgoing servers are identical for
-			 * this account type. Also don't ask when the username is missing.
-			 * Also don't ask when the AuthType is EXTERNAL.
-			 */
-			boolean configureOutgoingServer = AuthType.EXTERNAL != outgoing.authenticationType
-					&& !WebDavStore.STORE_TYPE.equals(outgoing.type)
-					&& outgoing.username != null
-					&& !outgoing.username.isEmpty()
-					&& (outgoing.password == null || outgoing.password
-							.isEmpty());
-
-			boolean configureIncomingServer = AuthType.EXTERNAL != incoming.authenticationType
-					&& (incoming.password == null || incoming.password
-							.isEmpty());
+			// Don't ask for the password to the outgoing server for WebDAV
+			// accounts, because
+			// incoming and outgoing servers are identical for this account
+			// type.
+			boolean configureOutgoingServer = !WebDavStore.STORE_TYPE
+					.equals(outgoing.type);
 
 			// Create a ScrollView that will be used as container for the whole
 			// layout
@@ -893,11 +881,8 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 					new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							String incomingPassword = null;
-							if (mIncomingPasswordView != null) {
-								incomingPassword = mIncomingPasswordView
-										.getText().toString();
-							}
+							String incomingPassword = mIncomingPasswordView
+									.getText().toString();
 							String outgoingPassword = null;
 							if (mOutgoingPasswordView != null) {
 								outgoingPassword = (mUseIncomingView
@@ -937,27 +922,20 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 					.findViewById(R.id.password_prompt_intro);
 			String serverPasswords = activity.getResources().getQuantityString(
 					R.plurals.settings_import_server_passwords,
-					(configureIncomingServer && configureOutgoingServer) ? 2
-							: 1);
+					(configureOutgoingServer) ? 2 : 1);
 			intro.setText(activity.getString(
 					R.string.settings_import_activate_account_intro,
 					mAccount.getDescription(), serverPasswords));
 
-			if (configureIncomingServer) {
-				// Display the hostname of the incoming server
-				TextView incomingText = (TextView) layout
-						.findViewById(R.id.password_prompt_incoming_server);
-				incomingText.setText(activity
-						.getString(R.string.settings_import_incoming_server,
-								incoming.host));
+			// Display the hostname of the incoming server
+			TextView incomingText = (TextView) layout
+					.findViewById(R.id.password_prompt_incoming_server);
+			incomingText.setText(activity.getString(
+					R.string.settings_import_incoming_server, incoming.host));
 
-				mIncomingPasswordView = (EditText) layout
-						.findViewById(R.id.incoming_server_password);
-				mIncomingPasswordView.addTextChangedListener(this);
-			} else {
-				layout.findViewById(R.id.incoming_server_prompt).setVisibility(
-						View.GONE);
-			}
+			mIncomingPasswordView = (EditText) layout
+					.findViewById(R.id.incoming_server_password);
+			mIncomingPasswordView.addTextChangedListener(this);
 
 			if (configureOutgoingServer) {
 				// Display the hostname of the outgoing server
@@ -973,31 +951,23 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 
 				mUseIncomingView = (CheckBox) layout
 						.findViewById(R.id.use_incoming_server_password);
-
-				if (configureIncomingServer) {
-					mUseIncomingView.setChecked(true);
-					mUseIncomingView
-							.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-								@Override
-								public void onCheckedChanged(
-										CompoundButton buttonView,
-										boolean isChecked) {
-									if (isChecked) {
-										mOutgoingPasswordView.setText(null);
-										mOutgoingPasswordView.setEnabled(false);
-									} else {
-										mOutgoingPasswordView
-												.setText(mIncomingPasswordView
-														.getText());
-										mOutgoingPasswordView.setEnabled(true);
-									}
+				mUseIncomingView.setChecked(true);
+				mUseIncomingView
+						.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+							@Override
+							public void onCheckedChanged(
+									CompoundButton buttonView, boolean isChecked) {
+								if (isChecked) {
+									mOutgoingPasswordView.setText(null);
+									mOutgoingPasswordView.setEnabled(false);
+								} else {
+									mOutgoingPasswordView
+											.setText(mIncomingPasswordView
+													.getText());
+									mOutgoingPasswordView.setEnabled(true);
 								}
-							});
-				} else {
-					mUseIncomingView.setChecked(false);
-					mUseIncomingView.setVisibility(View.GONE);
-					mOutgoingPasswordView.setEnabled(true);
-				}
+							}
+						});
 			} else {
 				layout.findViewById(R.id.outgoing_server_prompt).setVisibility(
 						View.GONE);
@@ -1013,24 +983,16 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 			// the dialog was
 			// retained during a configuration change).
 			if (restore) {
-				if (configureIncomingServer) {
-					mIncomingPasswordView.setText(mIncomingPassword);
-				}
+				mIncomingPasswordView.setText(mIncomingPassword);
 				if (configureOutgoingServer) {
 					mOutgoingPasswordView.setText(mOutgoingPassword);
 					mUseIncomingView.setChecked(mUseIncoming);
 				}
 			} else {
-				if (configureIncomingServer) {
-					// Trigger afterTextChanged() being called
-					// Work around this bug:
-					// https://code.google.com/p/android/issues/detail?id=6360
-					mIncomingPasswordView.setText(mIncomingPasswordView
-							.getText());
-				} else {
-					mOutgoingPasswordView.setText(mOutgoingPasswordView
-							.getText());
-				}
+				// Trigger afterTextChanged() being called
+				// Work around this bug:
+				// https://code.google.com/p/android/issues/detail?id=6360
+				mIncomingPasswordView.setText(mIncomingPasswordView.getText());
 			}
 		}
 
@@ -1038,23 +1000,19 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		public void afterTextChanged(Editable arg0) {
 			boolean enable = false;
 			// Is the password box for the incoming server password empty?
-			if (mIncomingPasswordView != null) {
-				if (mIncomingPasswordView.getText().length() > 0) {
-					// Do we need to check the outgoing server password box?
-					if (mOutgoingPasswordView == null) {
-						enable = true;
-					}
-					// If the checkbox to use the incoming server password is
-					// checked we need to make
-					// sure that the password box for the outgoing server isn't
-					// empty.
-					else if (mUseIncomingView.isChecked()
-							|| mOutgoingPasswordView.getText().length() > 0) {
-						enable = true;
-					}
+			if (mIncomingPasswordView.getText().length() > 0) {
+				// Do we need to check the outgoing server password box?
+				if (mOutgoingPasswordView == null) {
+					enable = true;
 				}
-			} else {
-				enable = mOutgoingPasswordView.getText().length() > 0;
+				// If the checkbox to use the incoming server password is
+				// checked we need to make
+				// sure that the password box for the outgoing server isn't
+				// empty.
+				else if (mUseIncomingView.isChecked()
+						|| mOutgoingPasswordView.getText().length() > 0) {
+					enable = true;
+				}
 			}
 
 			// Disable "OK" button if the user hasn't specified all necessary
@@ -1112,15 +1070,13 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		@Override
 		protected Void doInBackground(Void... params) {
 			try {
-				if (mIncomingPassword != null) {
-					// Set incoming server password
-					String storeUri = mAccount.getStoreUri();
-					ServerSettings incoming = Store.decodeStoreUri(storeUri);
-					ServerSettings newIncoming = incoming
-							.newPassword(mIncomingPassword);
-					String newStoreUri = Store.createStoreUri(newIncoming);
-					mAccount.setStoreUri(newStoreUri);
-				}
+				// Set incoming server password
+				String storeUri = mAccount.getStoreUri();
+				ServerSettings incoming = Store.decodeStoreUri(storeUri);
+				ServerSettings newIncoming = incoming
+						.newPassword(mIncomingPassword);
+				String newStoreUri = Store.createStoreUri(newIncoming);
+				mAccount.setStoreUri(newStoreUri);
 
 				if (mOutgoingPassword != null) {
 					// Set outgoing server password
@@ -1169,12 +1125,12 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		}
 	}
 
-	private void onDeleteAccount(Account account) {
+	public void onDeleteAccount(Account account) {
 		mSelectedContextAccount = account;
 		showDialog(DIALOG_REMOVE_ACCOUNT);
 	}
 
-	private void onEditAccount(Account account) {
+	void onEditAccount(Account account) {
 		AccountSettings.actionSettings(this, account);
 	}
 
@@ -1366,16 +1322,16 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		return true;
 	}
 
-	private void onClear(Account account) {
+	void onClear(Account account) {
 		showDialog(DIALOG_CLEAR_ACCOUNT);
 
 	}
 
-	private void onRecreate(Account account) {
+	void onRecreate(Account account) {
 		showDialog(DIALOG_RECREATE_ACCOUNT);
 	}
 
-	private void onMove(final Account account, final boolean up) {
+	void onMove(final Account account, final boolean up) {
 		MoveAccountAsyncTask asyncTask = new MoveAccountAsyncTask(this,
 				account, up);
 		setNonConfigurationInstance(asyncTask);
@@ -1546,6 +1502,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		menu.setHeaderTitle(R.string.accounts_context_menu_title);
 
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+
 		BaseAccount account = mAdapter.getItem(info.position);
 
 		if ((account instanceof Account) && !((Account) account).isEnabled()) {
@@ -1613,7 +1570,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		asyncTask.execute();
 	}
 
-	private void showSimpleDialog(int headerRes, int messageRes, Object... args) {
+	void showSimpleDialog(int headerRes, int messageRes, Object... args) {
 		SimpleDialog dialog = new SimpleDialog(headerRes, messageRes, args);
 		dialog.show(this);
 		setNonConfigurationInstance(dialog);
@@ -1701,8 +1658,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 	 * @param filename
 	 *            The name of the settings file that was imported.
 	 */
-	private void showAccountsImportedDialog(ImportResults importResults,
-			String filename) {
+	void showAccountsImportedDialog(ImportResults importResults, String filename) {
 		AccountsImportedDialog dialog = new AccountsImportedDialog(
 				importResults, filename);
 		dialog.show(this);
@@ -1765,8 +1721,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 	 * @param uri
 	 *            The (content) URI of the settings file.
 	 */
-	private void showImportSelectionDialog(ImportContents importContents,
-			Uri uri) {
+	void showImportSelectionDialog(ImportContents importContents, Uri uri) {
 		ImportSelectionDialog dialog = new ImportSelectionDialog(
 				importContents, uri);
 		dialog.show(this);
@@ -1920,7 +1875,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		mNonConfigurationInstance = inst;
 	}
 
-	class AccountsAdapter extends ArrayAdapter<BaseAccount> {
+	public class AccountsAdapter extends ArrayAdapter<BaseAccount> {
 		public AccountsAdapter(BaseAccount[] accounts) {
 			super(Accounts.this, 0, accounts);
 		}
@@ -1956,7 +1911,6 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 				holder.activeIcons = (RelativeLayout) view
 						.findViewById(R.id.active_icons);
 
-				holder.chip = view.findViewById(R.id.chip);
 				holder.folders = (ImageButton) view.findViewById(R.id.folders);
 				holder.accountsItemLayout = (LinearLayout) view
 						.findViewById(R.id.accounts_item_layout);
@@ -2023,22 +1977,8 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 			if (account instanceof Account) {
 				Account realAccount = (Account) account;
 
-				holder.chip.setBackgroundColor(realAccount.getChipColor());
-
-				holder.flaggedMessageCountIcon
-						.setBackgroundDrawable(realAccount.generateColorChip(
-								false, false, false, false, true).drawable());
-				holder.newMessageCountIcon.setBackgroundDrawable(realAccount
-						.generateColorChip(false, false, false, false, false)
-						.drawable());
-
 			} else {
-				holder.chip.setBackgroundColor(0xff999999);
-				holder.newMessageCountIcon.setBackgroundDrawable(new ColorChip(
-						0xff999999, false, ColorChip.CIRCULAR).drawable());
-				holder.flaggedMessageCountIcon
-						.setBackgroundDrawable(new ColorChip(0xff999999, false,
-								ColorChip.STAR).drawable());
+
 			}
 
 			mFontSizes.setViewTextSize(holder.description,
@@ -2053,6 +1993,9 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 				holder.folders.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
+
+						Log.d("clicked_folder1", "clicked");
+
 						FolderList.actionHandleAccount(Accounts.this,
 								(Account) account);
 
@@ -2067,6 +2010,8 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 			String searchTitle = getString(R.string.search_title,
 					account.getDescription(),
 					getString(R.string.flagged_modifier));
+
+			Log.d("clicked_folder2", "clicked");
 
 			LocalSearch search;
 			if (account instanceof SearchAccount) {
@@ -2101,7 +2046,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 			public View newMessageCountWrapper;
 			public View flaggedMessageCountWrapper;
 			public RelativeLayout activeIcons;
-			public View chip;
+
 			public ImageButton folders;
 			public LinearLayout accountsItemLayout;
 		}
@@ -2118,6 +2063,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		@Override
 		public void onClick(View v) {
 			MessageList.actionDisplaySearch(Accounts.this, search, true, false);
+			Log.d("clicked_folder3", "clicked");
 		}
 
 	}
@@ -2288,7 +2234,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		}
 	}
 
-	private static class ListImportContentsAsyncTask extends
+	static class ListImportContentsAsyncTask extends
 			ExtendedAsyncTask<Void, Void, Boolean> {
 		private Uri mUri;
 		private ImportContents mImportContents;

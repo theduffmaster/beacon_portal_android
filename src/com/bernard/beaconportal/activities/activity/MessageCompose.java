@@ -7,8 +7,10 @@ import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -16,16 +18,6 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.apache.james.mime4j.codec.EncoderUtil;
-import org.apache.james.mime4j.util.MimeUtil;
-import org.htmlcleaner.CleanerProperties;
-import org.htmlcleaner.HtmlCleaner;
-import org.htmlcleaner.SimpleHtmlSerializer;
-import org.htmlcleaner.TagNode;
-import org.openintents.openpgp.OpenPgpError;
-import org.openintents.openpgp.util.OpenPgpApi;
-import org.openintents.openpgp.util.OpenPgpServiceConnection;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -38,9 +30,9 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.IntentSender.SendIntentException;
 import android.content.Loader;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -80,15 +72,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.Account.MessageFormat;
-import com.bernard.beaconportal.activities.Account.QuoteStyle;
 import com.bernard.beaconportal.activities.EmailAddressAdapter;
 import com.bernard.beaconportal.activities.EmailAddressValidator;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.Identity;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.Account.MessageFormat;
+import com.bernard.beaconportal.activities.Account.QuoteStyle;
 import com.bernard.beaconportal.activities.activity.loader.AttachmentContentLoader;
 import com.bernard.beaconportal.activities.activity.loader.AttachmentInfoLoader;
 import com.bernard.beaconportal.activities.activity.misc.Attachment;
@@ -108,10 +99,10 @@ import com.bernard.beaconportal.activities.mail.Address;
 import com.bernard.beaconportal.activities.mail.Body;
 import com.bernard.beaconportal.activities.mail.Flag;
 import com.bernard.beaconportal.activities.mail.Message;
-import com.bernard.beaconportal.activities.mail.Message.RecipientType;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Multipart;
 import com.bernard.beaconportal.activities.mail.Part;
+import com.bernard.beaconportal.activities.mail.Message.RecipientType;
 import com.bernard.beaconportal.activities.mail.internet.MimeBodyPart;
 import com.bernard.beaconportal.activities.mail.internet.MimeHeader;
 import com.bernard.beaconportal.activities.mail.internet.MimeMessage;
@@ -123,6 +114,17 @@ import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalAttachment
 import com.bernard.beaconportal.activities.mail.store.LocalStore.TempFileBody;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.TempFileMessageBody;
 import com.bernard.beaconportal.activities.view.MessageWebView;
+import com.bernard.beaconportal.activities.R;
+
+import org.apache.james.mime4j.codec.EncoderUtil;
+import org.apache.james.mime4j.util.MimeUtil;
+import org.htmlcleaner.CleanerProperties;
+import org.htmlcleaner.HtmlCleaner;
+import org.htmlcleaner.SimpleHtmlSerializer;
+import org.htmlcleaner.TagNode;
+import org.openintents.openpgp.OpenPgpError;
+import org.openintents.openpgp.util.OpenPgpApi;
+import org.openintents.openpgp.util.OpenPgpServiceConnection;
 
 public class MessageCompose extends K9Activity implements OnClickListener,
 		ProgressDialogFragment.CancelListener {
@@ -513,24 +515,11 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		}
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
-		if (K9.getK9ComposerThemeSetting() != K9.Theme.USE_GLOBAL) {
-			// theme the whole content according to the theme (except the action
-			// bar)
-			mThemeContext = new ContextThemeWrapper(this,
-					K9.getK9ThemeResourceId(K9.getK9ComposerTheme()));
-			View v = ((LayoutInflater) mThemeContext
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-					.inflate(R.layout.message_compose, null);
-			TypedValue outValue = new TypedValue();
-			// background color needs to be forced
-			mThemeContext.getTheme().resolveAttribute(
-					R.attr.messageViewHeaderBackgroundColor, outValue, true);
-			v.setBackgroundColor(outValue.data);
-			setContentView(v);
-		} else {
-			setContentView(R.layout.message_compose);
-			mThemeContext = this;
-		}
+		int titleId = getResources().getIdentifier("action_bar_title", "id",
+				"android");
+
+		TextView abTitle = (TextView) findViewById(titleId);
+		abTitle.setTextColor(getResources().getColor((R.color.white)));
 
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
@@ -554,6 +543,25 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
+
+		if (K9.getK9ComposerThemeSetting() != K9.Theme.USE_GLOBAL) {
+			// theme the whole content according to the theme (except the action
+			// bar)
+			mThemeContext = new ContextThemeWrapper(this,
+					K9.getK9ThemeResourceId(K9.getK9ComposerTheme()));
+			View v = ((LayoutInflater) mThemeContext
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+					.inflate(R.layout.message_compose, null);
+			TypedValue outValue = new TypedValue();
+			// background color needs to be forced
+			mThemeContext.getTheme().resolveAttribute(
+					R.attr.messageViewHeaderBackgroundColor, outValue, true);
+			v.setBackgroundColor(outValue.data);
+			setContentView(v);
+		} else {
+			setContentView(R.layout.message_compose);
+			mThemeContext = this;
+		}
 
 		final Intent intent = getIntent();
 
@@ -583,7 +591,6 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			mDraftNeedsSaving = false;
 			finish();
 			return;
-
 		}
 
 		mContacts = Contacts.getInstance(MessageCompose.this);
@@ -2230,6 +2237,18 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 	 * Android take over.
 	 */
 	private void onAddAttachment() {
+		if (K9.isGalleryBuggy()) {
+			if (K9.useGalleryBugWorkaround()) {
+				Toast.makeText(MessageCompose.this,
+						getString(R.string.message_compose_use_workaround),
+						Toast.LENGTH_LONG).show();
+			} else {
+				Toast.makeText(MessageCompose.this,
+						getString(R.string.message_compose_buggy_gallery),
+						Toast.LENGTH_LONG).show();
+			}
+		}
+
 		onAddAttachment2("*/*");
 	}
 
@@ -2748,6 +2767,12 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		case R.id.add_attachment:
 			onAddAttachment();
 			break;
+		case R.id.add_attachment_image:
+			onAddAttachment2("image/*");
+			break;
+		case R.id.add_attachment_video:
+			onAddAttachment2("video/*");
+			break;
 		case R.id.read_receipt:
 			onReadReceipt();
 		default:
@@ -2767,6 +2792,16 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		if (!mAccount.hasDraftsFolder()) {
 			menu.findItem(R.id.save).setEnabled(false);
 		}
+
+		/*
+		 * Show the menu items "Add attachment (Image)" and
+		 * "Add attachment (Video)" if the work-around for the Gallery bug is
+		 * enabled (see Issue 1186).
+		 */
+		menu.findItem(R.id.add_attachment_image).setVisible(
+				K9.useGalleryBugWorkaround());
+		menu.findItem(R.id.add_attachment_video).setVisible(
+				K9.useGalleryBugWorkaround());
 
 		return true;
 	}
@@ -4066,7 +4101,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 
 		public List<String> getQueryParameters(String key) {
 			final List<String> params = new ArrayList<String>();
-			for (String paramName : uri.getQueryParameterNames()) {
+			for (String paramName : getQueryParameterNames()) {
 				if (paramName.equalsIgnoreCase(key)) {
 					params.addAll(uri.getQueryParameters(paramName));
 				}
@@ -4074,6 +4109,25 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			return params;
 		}
 
+		@TargetApi(11)
+		private Set<String> getQueryParameterNames() {
+			if (Build.VERSION.SDK_INT >= 11) {
+				return uri.getQueryParameterNames();
+			}
+
+			return getQueryParameterNamesPreSdk11();
+		}
+
+		private Set<String> getQueryParameterNamesPreSdk11() {
+			if (mParamNames == null) {
+				String query = uri.getQuery();
+				Set<String> paramNames = new HashSet<String>();
+				Collections.addAll(paramNames, query.split("(=[^&]*(&|$))|&"));
+				mParamNames = paramNames;
+			}
+
+			return mParamNames;
+		}
 	}
 
 	private class SendMessageTask extends AsyncTask<Void, Void, Void> {

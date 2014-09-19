@@ -12,13 +12,12 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.Spinner;
+import android.widget.TextView;
 
-import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.*;
 import com.bernard.beaconportal.activities.activity.K9Activity;
 import com.bernard.beaconportal.activities.mail.Store;
+import com.bernard.beaconportal.activities.R;
 
 public class AccountSetupOptions extends K9Activity implements OnClickListener {
 	private static final String EXTRA_ACCOUNT = "account";
@@ -48,13 +47,11 @@ public class AccountSetupOptions extends K9Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.account_setup_options);
 
-		mCheckFrequencyView = (Spinner) findViewById(R.id.account_check_frequency);
-		mDisplayCountView = (Spinner) findViewById(R.id.account_display_count);
-		mNotifyView = (CheckBox) findViewById(R.id.account_notify);
-		mNotifySyncView = (CheckBox) findViewById(R.id.account_notify_sync);
-		mPushEnable = (CheckBox) findViewById(R.id.account_enable_push);
+		int titleId = getResources().getIdentifier("action_bar_title", "id",
+				"android");
 
-		findViewById(R.id.next).setOnClickListener(this);
+		TextView abTitle = (TextView) findViewById(titleId);
+		abTitle.setTextColor(getResources().getColor((R.color.white)));
 
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
@@ -78,6 +75,14 @@ public class AccountSetupOptions extends K9Activity implements OnClickListener {
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
+
+		mCheckFrequencyView = (Spinner) findViewById(R.id.account_check_frequency);
+		mDisplayCountView = (Spinner) findViewById(R.id.account_display_count);
+		mNotifyView = (CheckBox) findViewById(R.id.account_notify);
+		mNotifySyncView = (CheckBox) findViewById(R.id.account_notify_sync);
+		mPushEnable = (CheckBox) findViewById(R.id.account_enable_push);
+
+		findViewById(R.id.next).setOnClickListener(this);
 
 		SpinnerOption checkFrequencies[] = {
 				new SpinnerOption(

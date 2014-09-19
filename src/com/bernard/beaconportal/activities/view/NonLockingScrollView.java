@@ -16,8 +16,7 @@
 
 package com.bernard.beaconportal.activities.view;
 
-import java.util.ArrayList;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -27,6 +26,8 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.webkit.WebView;
 import android.widget.ScrollView;
+
+import java.util.ArrayList;
 
 /**
  * A {@link ScrollView} that will never lock scrolling in a particular
@@ -133,7 +134,7 @@ public class NonLockingScrollView extends ScrollView {
 	private final Rect sHitFrame = new Rect();
 
 	private boolean isEventOverChild(MotionEvent ev, ArrayList<View> children) {
-		final int actionIndex = ev.getActionIndex();
+		final int actionIndex = getActionIndex(ev);
 		final float x = ev.getX(actionIndex) + getScrollX();
 		final float y = ev.getY(actionIndex) + getScrollY();
 
@@ -149,6 +150,12 @@ public class NonLockingScrollView extends ScrollView {
 			}
 		}
 		return false;
+	}
+
+	@SuppressLint("InlinedApi")
+	private static int getActionIndex(MotionEvent ev) {
+		// Equivalent to MotionEvent.getActionIndex() which is in API 8+
+		return ((ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT);
 	}
 
 	private static boolean canViewReceivePointerEvents(View child) {

@@ -16,6 +16,8 @@
 
 package com.bernard.beaconportal.activities;
 
+import com.bernard.beaconportal.activities.R;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -237,7 +239,7 @@ public class CopyOfColorPickerDialog1 extends Dialog implements
 				.getSharedPreferences("return_to_main", Context.MODE_PRIVATE)
 				.edit();
 
-		// localEditor1.putString("fragment_to_start", "3");
+//		localEditor1.putString("fragment_to_start", "3");
 		localEditor1.putString("fragment_to_start", "2");
 
 		localEditor1.commit();

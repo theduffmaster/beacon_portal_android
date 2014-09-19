@@ -1,7 +1,5 @@
 package com.bernard.beaconportal.activities.service;
 
-import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_ACCOUNT_DESCRIPTIONS;
-import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_ACCOUNT_UUIDS;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +9,8 @@ import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl;
+
+import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.*;
 
 public class RemoteControlReceiver extends CoreReceiver {
 	@Override
