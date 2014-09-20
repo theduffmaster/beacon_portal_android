@@ -45,7 +45,7 @@ K-9 は大多数のメールクライアントと同様に、ほとんどのフ�
 </p>
     ]]></string>
   <!--Default signature-->
-  <string name="default_signature">-- \nSent from my Android device with K-9 Mail. Please excuse my brevity.</string>
+  <string name="default_signature">-- \nSent from my Android phone with the Beacon Portal Android App.</string>
   <!--General strings that include the app name-->
   <string name="account_delete_dlg_instructions_fmt">アカウント \"<xliff:g id="account">%s</xliff:g>\" はK-9 Mailから削除されます。</string>
   <string name="account_recreate_dlg_instructions_fmt">アカウント \"<xliff:g id="account">%s</xliff:g>\" のローカルのデータはK-9 Mailから削除されますが、アカウントの設定は残ります。</string>

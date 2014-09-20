@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Collections;
 import java.util.Locale;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
@@ -18,6 +19,9 @@ import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -27,6 +31,7 @@ import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.activity.ChooseFolder;
+import com.bernard.beaconportal.activities.activity.MessageList;
 import com.bernard.beaconportal.activities.activity.MessageReference;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.controller.MessagingListener;
@@ -191,6 +196,9 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 		mController = MessagingController.getInstance(getActivity()
 				.getApplication());
 		mInitialized = true;
+		
+		MessageList.mDrawerToggle.setDrawerIndicatorEnabled(false);
+	   
 	}
 
 	@Override
@@ -240,8 +248,8 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 				.getMessageHeaderView());
 
 		// mMessageView.setBackgroundColor(Color.WHITE);
-
-		return view;
+		
+				return view;
 	}
 
 	@Override
@@ -950,5 +958,19 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 
 	public LayoutInflater getFragmentLayoutInflater() {
 		return mLayoutInflater;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {   
+	    // Get item selected and deal with it
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	            //called when the up affordance/carat in actionbar is pressed
+	            getActivity().onBackPressed();
+	         
+	            
+	       
+	    }
+		return true;
 	}
 }

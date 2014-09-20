@@ -63,6 +63,7 @@ import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -266,14 +267,14 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	private TextView mActionBarUnread;
 	private android.view.Menu mMenu;
 
-	DrawerLayout mDrawerLayout;
+	public static DrawerLayout mDrawerLayout;
 	LinearLayout mDrawerLinear;
 
 	TextView mWelcomePerson;
 	ListView mDrawerList;
 	ListView mDrawerList_Inbox;
 
-	ActionBarDrawerToggle mDrawerToggle;
+	public static ActionBarDrawerToggle mDrawerToggle;
 	MenuListAdapter mMenuAdapter;
 	MenuListAdapter mMenuAdapter_Inbox;
 	String actionbar_colors, background_colorsString;
@@ -1176,6 +1177,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
+	
+		
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
 				R.drawable.ic_drawer, R.string.drawer_open,
 				R.string.drawer_close) {
@@ -1190,7 +1193,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			public void onDrawerOpened(View drawerView) {
 				// TODO Auto-generated method stub
 
-				getActionBar().setTitle(mDrawerTitle);
+				
 				super.onDrawerOpened(drawerView);
 			}
 		};
@@ -1199,6 +1202,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 	}
 
+	
+	
 	private StorageManager.StorageListener storageListener = new StorageManager.StorageListener() {
 
 		@Override
@@ -1216,15 +1221,23 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 
+		
+		
 		mDrawerToggle.syncState();
-	}
+		
+		}
+	
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 
+		
+		
 		mDrawerToggle.onConfigurationChanged(newConfig);
-	}
+		
+		}
+	
 
 	@Override
 	public void onResume() {
@@ -1515,6 +1528,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 	}
 
+	
+	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// Shortcuts that work no matter what is selected
@@ -2997,9 +3012,13 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		if (mDisplayMode == DisplayMode.MESSAGE_VIEW
 				&& mMessageListWasDisplayed) {
 			showMessageList();
+			 
 		} else {
 			super.onBackPressed();
 		}
+		mDrawerToggle.setDrawerIndicatorEnabled(true);
+		
+		mDrawerLayout.closeDrawer(Gravity.START);
 	}
 
 	/**

@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences.Editor;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -34,7 +35,9 @@ import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Loader;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.DrawerLayout;
 import android.widget.CursorAdapter;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -72,6 +75,7 @@ import com.bernard.beaconportal.activities.Account.SortType;
 import com.bernard.beaconportal.activities.activity.ActivityListener;
 import com.bernard.beaconportal.activities.activity.ChooseFolder;
 import com.bernard.beaconportal.activities.activity.FolderInfoHolder;
+import com.bernard.beaconportal.activities.activity.MessageList;
 import com.bernard.beaconportal.activities.activity.MessageReference;
 import com.bernard.beaconportal.activities.activity.misc.ContactPictureLoader;
 import com.bernard.beaconportal.activities.cache.EmailProviderCache;
@@ -431,6 +435,10 @@ public class MessageListFragment extends Fragment implements
 
 	private boolean mIsThreadDisplay;
 
+	public ActionBarDrawerToggle mDrawerToggle;
+	
+	public static DrawerLayout mDrawerLayout;
+	
 	private Context mContext;
 
 	private final ActivityListener mListener = new MessageListActivityListener();
@@ -830,6 +838,27 @@ public class MessageListFragment extends Fragment implements
 		createCacheBroadcastReceiver(appContext);
 
 		mInitialized = true;
+		
+		MessageList.mDrawerToggle.setDrawerIndicatorEnabled(true);
+		
+		
+	}
+	
+
+protected void onPostCreate(Bundle savedInstanceState) {
+	
+
+	mDrawerToggle.syncState();
+	
+	}
+
+
+@Override
+public void onConfigurationChanged(Configuration newConfig) {
+	
+
+	mDrawerToggle.onConfigurationChanged(newConfig);
+	
 	}
 
 	@Override
@@ -850,6 +879,8 @@ public class MessageListFragment extends Fragment implements
 
 		return view;
 	}
+	
+
 
 	@Override
 	public void onDestroyView() {
@@ -1418,6 +1449,8 @@ public class MessageListFragment extends Fragment implements
 		mController.expunge(account, folderName, null);
 	}
 
+	
+	
 	private void showDialog(int dialogId) {
 		DialogFragment fragment;
 		switch (dialogId) {

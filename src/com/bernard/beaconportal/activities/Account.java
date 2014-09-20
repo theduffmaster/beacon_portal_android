@@ -1116,11 +1116,11 @@ public class Account implements BaseAccount {
 	}
 
 	public synchronized void setDisplayCount(int displayCount) {
-		if (displayCount != -1) {
-			this.mDisplayCount = displayCount;
-		} else {
+//		if (displayCount != -1) {
+//			this.mDisplayCount = displayCount;
+//		} else {
 			this.mDisplayCount = K9.DEFAULT_VISIBLE_LIMIT;
-		}
+//		}
 		resetVisibleLimits();
 	}
 
