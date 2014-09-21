@@ -3,7 +3,7 @@
     
 
 	package="com.bernard.beaconportal.activities"
-    android:versionCode="21"
+    android:versionCode="24"
     android:versionName="1.09"
     >
 	

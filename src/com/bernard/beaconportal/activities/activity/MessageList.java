@@ -1744,8 +1744,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 				} else {
 					folder = (FolderInfoHolder) mAdapter
-							.getItem(menuInfo.position
-									- (mAdapter_Accounts.getCount() + 5));
+							.getItem(menuInfo.position);
 
 				}
 
@@ -1776,13 +1775,16 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			checkMail(folder);
 			break;
 		case R.id.folder_settings:
+			mDrawerLayout.closeDrawer(Gravity.START);
 			FolderSettings.actionSettings(this, mAccount, folder.name);
+			
 			break;
 		case R.id.delete_account:
 			onDeleteAccount(realAccount);
 
 			break;
 		case R.id.account_settings:
+			mDrawerLayout.closeDrawer(Gravity.START);
 			onEditAccount(realAccount);
 
 			break;
@@ -2678,7 +2680,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			FragmentTransaction ft = fragmentManager.beginTransaction();
 			mMessageListFragment = MessageListFragment.newInstance(mSearch,
 					false, (K9.isThreadedViewEnabled() && !mNoThreading));
-			ft.remove(mMessageListFragment);
+			//ft.remove(mMessageListFragment);
 			ft.commit();
 
 			Log.d("removed fragment?", "yes");
