@@ -1752,7 +1752,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 				folder = (FolderInfoHolder) mAdapter.getItem(menuInfo.position);
 
-				if (menuInfo != null) {
+				if (menuInfo != null && mListView.getItemAtPosition(menuInfo.position) != null) {
 
 					mSelectedContextAccount = (BaseAccount) getListView()
 							.getItemAtPosition(menuInfo.position);
