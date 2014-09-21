@@ -269,13 +269,13 @@ public class MainActivity extends SherlockFragmentActivity {
 				android.R.color.transparent)));
 
 		mDrawerTitleCheck = getTitle();
-		
+
 		if (!mDrawerTitleCheck.equals("Beacon Portal")) {
-		
-		mTitle = mDrawerTitle = getTitle();
+
+			mTitle = mDrawerTitle = getTitle();
 
 		}
-		
+
 		SharedPreferences Today_Homework = getApplicationContext()
 				.getSharedPreferences("due_today", Context.MODE_PRIVATE);
 
@@ -416,7 +416,8 @@ public class MainActivity extends SherlockFragmentActivity {
 			public void onDrawerOpened(View drawerView) {
 				// TODO Auto-generated method stub
 
-				if (mDrawerTitle != null && !mDrawerTitle.equals("Beacon Portal")) {
+				if (mDrawerTitle != null
+						&& !mDrawerTitle.equals("Beacon Portal")) {
 					getSupportActionBar().setTitle(mDrawerTitle);
 				}
 				super.onDrawerOpened(drawerView);
@@ -435,9 +436,7 @@ public class MainActivity extends SherlockFragmentActivity {
 				int countss = Integer.parseInt(count);
 
 				if (savedInstanceState == null) {
-					
-					
-					
+
 					selectItem(countss);
 
 				}
@@ -447,9 +446,7 @@ public class MainActivity extends SherlockFragmentActivity {
 			} else {
 
 				if (savedInstanceState == null) {
-					
-					
-					
+
 					selectItem(0);
 				}
 
@@ -458,18 +455,16 @@ public class MainActivity extends SherlockFragmentActivity {
 		} else {
 
 			if (savedInstanceState == null) {
-				
-				
-				
+
 				selectItem(0);
 			}
 
 		}
 
-		if (savedInstanceState!=null) {
-		    setTitle(savedInstanceState.getCharSequence(KEY_STATE_TITLE));
+		if (savedInstanceState != null) {
+			setTitle(savedInstanceState.getCharSequence(KEY_STATE_TITLE));
 		}
-		
+
 		SharedPreferences sharedprefer = getSharedPreferences(
 				"first_run_starts", Context.MODE_PRIVATE);
 
@@ -542,15 +537,15 @@ public class MainActivity extends SherlockFragmentActivity {
 		}
 
 		mDrawerTitleCheck = getTitle();
-		
+
 		if (!mDrawerTitleCheck.equals("Beacon Portal")) {
-		
-		mTitle = mDrawerTitle = getTitle();
-		
-		getSupportActionBar().setTitle(mDrawerTitle);
+
+			mTitle = mDrawerTitle = getTitle();
+
+			getSupportActionBar().setTitle(mDrawerTitle);
 
 		}
-		
+
 		SharedPreferences Today_Homework = getApplicationContext()
 				.getSharedPreferences("due_today", Context.MODE_PRIVATE);
 
@@ -561,6 +556,31 @@ public class MainActivity extends SherlockFragmentActivity {
 		} else {
 
 			counterss = "";
+
+		}
+
+		SharedPreferences counts = getSharedPreferences("return_to_main",
+				Context.MODE_PRIVATE);
+
+		if (counts.contains("fragment_to_start")) {
+			String count = counts.getString("fragment_to_start", null);
+
+			if (count != null) {
+				int countss = Integer.parseInt(count);
+
+				selectItem(countss);
+
+				counts.edit().remove("fragment_to_start").commit();
+
+			} else {
+
+				selectItem(0);
+
+			}
+
+		} else {
+
+			selectItem(0);
 
 		}
 
@@ -624,8 +644,6 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	}
 
-	
-	
 	public void inbox() {
 
 		Intent intent = new Intent(MainActivity.this, Accounts.class);
@@ -865,7 +883,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		}
 	}
 
-	private void selectItem(int position) {
+	void selectItem(int position) {
 
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
@@ -1042,33 +1060,27 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 
-		
 		mDrawerToggle.onConfigurationChanged(newConfig);
-		
-		}
-		
-	
+
+	}
 
 	@Override
 	public void setTitle(CharSequence title) {
-		
+
 		mTitle = title;
-	
-		
-		
+
 		getSupportActionBar().setTitle(mTitle);
-		
-		
-		
+
 	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-	    super.onSaveInstanceState(outState);
-	    CharSequence title = mDrawerLayout.isDrawerOpen(mDrawerLinear) ? mDrawerTitle:mTitle;
-	    outState.putCharSequence(KEY_STATE_TITLE, title);
+		super.onSaveInstanceState(outState);
+		CharSequence title = mDrawerLayout.isDrawerOpen(mDrawerLinear) ? mDrawerTitle
+				: mTitle;
+		outState.putCharSequence(KEY_STATE_TITLE, title);
 	}
-	
+
 	@Override
 	protected void onPause() {
 		super.onPause();
