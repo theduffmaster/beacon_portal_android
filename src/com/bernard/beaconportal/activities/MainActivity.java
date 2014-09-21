@@ -517,6 +517,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		Log.d("onResume", "yes");
 
+		
+		
 		SharedPreferences pref = getSharedPreferences("CheckBox",
 				Context.MODE_PRIVATE);
 
@@ -556,31 +558,6 @@ public class MainActivity extends SherlockFragmentActivity {
 		} else {
 
 			counterss = "";
-
-		}
-
-		SharedPreferences counts = getSharedPreferences("return_to_main",
-				Context.MODE_PRIVATE);
-
-		if (counts.contains("fragment_to_start")) {
-			String count = counts.getString("fragment_to_start", null);
-
-			if (count != null) {
-				int countss = Integer.parseInt(count);
-
-				selectItem(countss);
-
-				counts.edit().remove("fragment_to_start").commit();
-
-			} else {
-
-				selectItem(0);
-
-			}
-
-		} else {
-
-			selectItem(0);
 
 		}
 

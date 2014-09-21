@@ -3021,6 +3021,15 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		mDrawerToggle.setDrawerIndicatorEnabled(true);
 		
 		mDrawerLayout.closeDrawer(Gravity.START);
+		
+		SharedPreferences.Editor localEditor1 = getSharedPreferences(
+				"return_to_main", Context.MODE_PRIVATE).edit();
+
+		localEditor1.putString("fragment_to_start", "0");
+
+		localEditor1.commit();
+		to_main();
+		
 	}
 
 	/**
