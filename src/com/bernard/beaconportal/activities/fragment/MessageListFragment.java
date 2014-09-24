@@ -3847,4 +3847,7 @@ public void onConfigurationChanged(Configuration newConfig) {
 	private boolean isPullToRefreshAllowed() {
 		return (isRemoteSearchAllowed() || isCheckMailAllowed());
 	}
+
+
+
 }

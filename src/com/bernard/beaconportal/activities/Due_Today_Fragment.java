@@ -10,10 +10,14 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
@@ -343,15 +347,62 @@ public class Due_Today_Fragment extends Fragment {
 
 		@Override
 		protected Void doInBackground(String... urls) {
+			SharedPreferences bDay = getActivity().getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE);
+
+		   String day1 =  Integer.toString(bDay.getInt("Day", 0));
+
+		   String year1 =  Integer.toString(bDay.getInt("Year", 0));
+
+		   String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
+			
+			SharedPreferences userName = getActivity().getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE);
+
+			String day = day1.replaceFirst("^0+(?!$)", "");
+			
+			String month = month1.replaceFirst("^0+(?!$)", "");
+			
+			String year = year1.replaceFirst("^0+(?!$)", "");
+			
+			String birthday = month + "/" + day + "/" + year;
+			
+			System.out.println("Birthday = " + birthday);
+			
+			String user = userName.getString("username", "");
+
+			//String user = (username).split("@")[0]; 
+			
+			System.out.println("Username = " + user);
+			
+			
 			try {
 
-				HttpClient httpClient = new DefaultHttpClient();
+//				HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
-				HttpGet httpGet = new HttpGet(
-						"http://www.beaconschool.org/~markovic/lincoln.php");
-				HttpResponse response = httpClient.execute(httpGet,
-						localContext);
-				String result = "";
+//				HttpGet httpGet = new HttpGet(
+//						"http://www2.beaconschool.org/~markovic/lincoln.php");
+				
+				HttpClient httpclient = new DefaultHttpClient();
+			    HttpPost httppost = new HttpPost("http://www2.beaconschool.org/~markovic/lincoln.php");
+			    
+			    try {
+			        // Add your data
+			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			        nameValuePairs.add(new BasicNameValuePair("username", user));
+			        nameValuePairs.add(new BasicNameValuePair("birthday", birthday));
+			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+			        // Execute HTTP Post Request
+			        response = httpclient.execute(httppost, localContext);
+			        
+			        Log.d("Http Response:", response.toString());
+			        
+			    } catch (ClientProtocolException e) {
+			        // TODO Auto-generated catch block
+			    } catch (IOException e) {
+			        // TODO Auto-generated catch block
+			    }
 
 				try {
 					Log.d("receiver", "animation stopped and downloaded file");
@@ -384,13 +435,6 @@ public class Due_Today_Fragment extends Fragment {
 
 					e.printStackTrace();
 				}
-
-			} catch (ClientProtocolException e1) {
-
-				e1.printStackTrace();
-			} catch (IOException e1) {
-
-				e1.printStackTrace();
 
 			} finally {
 
@@ -455,21 +499,53 @@ public class Due_Today_Fragment extends Fragment {
 
 			String Description1 = Todays_Homework.getString("due_today7", null);
 
-			Band = Band1.trim();
+			if(Band1 != null){
+				
+				Band = Band1.trim();
 
-			Number = Number1.trim();
+				}
+				
+				if(Number1 != null){
+				
+					Number = Number1.trim();
+				
+				}
+				
+				if(Class1 != null){
+				
+				Class = Class1.trim();
 
-			Class = Class1.trim();
+				}
+				
+				if(Teacher1 != null){
+				
+				Teacher = Teacher1.trim();
 
-			Teacher = Teacher1.trim();
+				}
+				
+				if(Title1 != null){
+				
+				Title = Title1.trim();
 
-			Title = Title1.trim();
+				}
+				
+				if(Date1 != null){
+				
+				Date = Date1.trim();
 
-			Date = Date1.trim();
+				}
+				
+				if(Type1 != null){
+				
+				Type = Type1.trim();
 
-			Type = Type1.trim();
+				}
+				
+				if(Description1 != null){
+				
+				Description = Description1.trim();
 
-			Description = Description1.trim();
+				}
 
 			if (!Type.isEmpty()) {
 

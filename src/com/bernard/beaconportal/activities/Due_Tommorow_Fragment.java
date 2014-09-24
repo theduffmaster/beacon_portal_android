@@ -336,7 +336,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 				HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
 				HttpGet httpGet = new HttpGet(
-						"http://www.beaconschool.org/~markovic/lincoln.php");
+						"http://www2.beaconschool.org/~markovic/lincoln.php");
 				HttpResponse response = httpClient.execute(httpGet,
 						localContext);
 				String result = "";
@@ -441,25 +441,56 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			String Type1 = Todays_Homework.getString("due_tommorow6", null);
 
-			String Description1 = Todays_Homework.getString("due_tommorow7",
-					null);
+			String Description1 = Todays_Homework.getString("due_tommorow7", null);
 
+			if(Band1 != null){
+			
 			Band = Band1.trim();
 
-			Number = Number1.trim();
-
+			}
+			
+			if(Number1 != null){
+			
+				Number = Number1.trim();
+			
+			}
+			
+			if(Class1 != null){
+			
 			Class = Class1.trim();
 
+			}
+			
+			if(Teacher1 != null){
+			
 			Teacher = Teacher1.trim();
 
+			}
+			
+			if(Title1 != null){
+			
 			Title = Title1.trim();
 
+			}
+			
+			if(Date1 != null){
+			
 			Date = Date1.trim();
 
+			}
+			
+			if(Type1 != null){
+			
 			Type = Type1.trim();
 
+			}
+			
+			if(Description1 != null){
+			
 			Description = Description1.trim();
 
+			}
+			
 			if (!Type.isEmpty()) {
 
 				due_tommorow_list.add(new Due_Today_List(Band, Number, Class,

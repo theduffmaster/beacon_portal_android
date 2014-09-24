@@ -11,10 +11,14 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
@@ -102,6 +106,8 @@ public class MainActivity extends SherlockFragmentActivity {
 	private CharSequence mTitle;
 	private String KEY_STATE_TITLE;
 
+	private HttpResponse response;
+	
 	private int starts = 0;
 
 	private String checkbox_edit;
@@ -300,11 +306,11 @@ public class MainActivity extends SherlockFragmentActivity {
 		if (Show_View.equals("Homework Due")) {
 
 			title = new String[] {
-					// "Homework Due",
+					"Homework Due",
 					"Schedule", "Unread Mail", "Options", "Logout" };
 
 			icon = new int[] {
-					// R.drawable.ic_action_duehomework,
+					R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_email, R.drawable.ic_action_settings,
 					R.drawable.ic_action_logout };
@@ -312,13 +318,13 @@ public class MainActivity extends SherlockFragmentActivity {
 			if (counterss == null && counterss.isEmpty()) {
 
 				count = new String[] {
-						// "",
+						"",
 						"", K9count, "", "" };
 
 			} else {
 
 				count = new String[] {
-						// counterss,
+						counterss,
 						"", K9count, "", "", "" };
 
 			}
@@ -328,23 +334,23 @@ public class MainActivity extends SherlockFragmentActivity {
 			if (counterss == null && counterss.isEmpty()) {
 
 				count = new String[] {
-						// "",
+						"",
 						"", K9count, "", "" };
 
 			} else {
 
 				count = new String[] { "",
-						// counterss,
+						counterss,
 						K9count, "", "" };
 
 			}
 
 			title = new String[] { "Schedule",
-					// "Homework Due",
+					"Homework Due",
 					"Unread Mail", "Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
-					// R.drawable.ic_action_duehomework,
+					R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_email, R.drawable.ic_action_settings,
 					R.drawable.ic_action_logout };
 
@@ -508,7 +514,7 @@ public class MainActivity extends SherlockFragmentActivity {
 			}
 
 		}
-
+	
 	}
 
 	@Override
@@ -660,6 +666,17 @@ public class MainActivity extends SherlockFragmentActivity {
 			while (!sharedpreferss.contains("last shared preference")) {
 
 				System.out.println("Internet is not working, still looping");
+				
+				SharedPreferences.Editor localEditor = getSharedPreferences(
+						"first_inbox", Context.MODE_PRIVATE).edit();
+
+				localEditor.putString("first_inbox", "ran for the first time");
+
+				Intent intent1 = new Intent(MainActivity.this, Accounts.class);
+
+				startActivity(intent1);
+
+				localEditor.commit();
 
 				if (AppStatus.getInstance(getApplicationContext()).isOnline(
 						getApplicationContext())) {
@@ -684,14 +701,65 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		@Override
 		protected Void doInBackground(String... urls) {
+			
+			SharedPreferences bDay = getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE);
+
+		   String day1 =  Integer.toString(bDay.getInt("Day", 0));
+
+		   String year1 =  Integer.toString(bDay.getInt("Year", 0));
+
+		   String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
+			
+			SharedPreferences userName = getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE);
+
+			String day = day1.replaceFirst("^0+(?!$)", "");
+			
+			String month = month1.replaceFirst("^0+(?!$)", "");
+			
+			String year = year1.replaceFirst("^0+(?!$)", "");
+			
+			String birthday = month + "/" + day + "/" + year;
+			
+			System.out.println("Birthday = " + birthday);
+			
+			String username = userName.getString("username", "");
+
+			String user = (username).split("@")[0]; 
+			
+			System.out.println("Username = " + user);
+			
+			
 			try {
 
-				HttpClient httpClient = new DefaultHttpClient();
+//				HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
-				HttpGet httpGet = new HttpGet(
-						"http://www.beaconschool.org/~markovic/lincoln.php");
-				HttpResponse response = httpClient.execute(httpGet,
-						localContext);
+//				HttpGet httpGet = new HttpGet(
+//						"http://www2.beaconschool.org/~markovic/lincoln.php");
+				
+				HttpClient httpclient = new DefaultHttpClient();
+			    HttpPost httppost = new HttpPost("http://www2.beaconschool.org/~markovic/lincoln.php");
+			    
+			    try {
+			        // Add your data
+			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			        nameValuePairs.add(new BasicNameValuePair("username", user));
+			        nameValuePairs.add(new BasicNameValuePair("birthday", birthday));
+			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+			        // Execute HTTP Post Request
+			        response = httpclient.execute(httppost);
+			        
+			        System.out.println("Response = " + response);
+			        
+			    } catch (ClientProtocolException e) {
+			        // TODO Auto-generated catch block
+			    } catch (IOException e) {
+			        // TODO Auto-generated catch block
+			    }
+				
+				
 				String result = "";
 
 				try {
@@ -719,13 +787,7 @@ public class MainActivity extends SherlockFragmentActivity {
 					e.printStackTrace();
 				}
 
-			} catch (ClientProtocolException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-
+			
 			} finally {
 
 			}
@@ -867,22 +929,22 @@ public class MainActivity extends SherlockFragmentActivity {
 		if (Show_View.equals("Homework Due")) {
 
 			switch (position) {
-			// case 0:
-			// ft.replace(R.id.content_frame, fragment2);
-			// break;
-			case 0:
+			 case 0:
+			 ft.replace(R.id.content_frame, fragment2);
+			 break;
+			case 1:
 				ft.replace(R.id.content_frame, fragment1);
 				break;
-			case 1:
+			case 2:
 
 				inbox();
 
 				break;
-			case 2:
+			case 3:
 				ft.replace(R.id.content_frame, fragment3);
 				break;
 
-			case 3:
+			case 4:
 
 				alert_logout();
 
@@ -895,46 +957,46 @@ public class MainActivity extends SherlockFragmentActivity {
 			case 0:
 				ft.replace(R.id.content_frame, fragment1);
 				break;
-			// case 1:
-			//
-			// SharedPreferences sharedprefers = getSharedPreferences(
-			// "due_tommorow_counter", Context.MODE_PRIVATE);
-			//
-			// if (!sharedprefers.contains("last shared preference")) {
-			//
-			// try {
-			// Thread.sleep(1000);
-			// } catch (InterruptedException e) {
-			// // TODO Auto-generated catch block
-			// e.printStackTrace();
-			// }
-			//
-			// }
-			// if (!sharedprefers.contains("last shared preference")) {
-			//
-			// Toast.makeText(this, "Please Connect to the Internet!",
-			// 8000).show();
-			// Log.d("Home",
-			// "############################You are not online!!!!");
-			//
-			// } else {
-			//
-			// ft.replace(R.id.content_frame, fragment2);
-			//
-			// }
-			//
-			// break;
+			 case 1:
+			
+			 SharedPreferences sharedprefers = getSharedPreferences(
+			 "due_tommorow_counter", Context.MODE_PRIVATE);
+			
+			 if (!sharedprefers.contains("last shared preference")) {
+			
+			 try {
+			 Thread.sleep(1000);
+			 } catch (InterruptedException e) {
+			 // TODO Auto-generated catch block
+			 e.printStackTrace();
+			 }
+			
+			 }
+			 if (!sharedprefers.contains("last shared preference")) {
+			
+			 Toast.makeText(this, "Please Connect to the Internet!",
+			 8000).show();
+			 Log.d("Home",
+			 "############################You are not online!!!!");
+			
+			 } else {
+			
+			 ft.replace(R.id.content_frame, fragment2);
+			
+			 }
+			
+			 break;
 
-			case 1:
+			case 2:
 
 				inbox();
 
 				break;
-			case 2:
+			case 3:
 				ft.replace(R.id.content_frame, fragment3);
 				break;
 
-			case 3:
+			case 4:
 
 				alert_logout();
 
@@ -1234,12 +1296,15 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		@Override
 		protected Void doInBackground(String... urls) {
+			
+			
+			
 			try {
-
+				
 				HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
 				HttpGet httpGet = new HttpGet(
-						"http://www.beaconschool.org/~markovic/lincoln.php");
+						"http://www2.beaconschool.org/~markovic/lincoln.php");
 				HttpResponse response = httpClient.execute(httpGet,
 						localContext);
 				String result = "";
@@ -1426,7 +1491,7 @@ public class MainActivity extends SherlockFragmentActivity {
 				HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
 				HttpGet httpGet = new HttpGet(
-						"http://www.beaconschool.org/~markovic/lincoln.php");
+						"http://www2.beaconschool.org/~markovic/lincoln.php");
 				HttpResponse response = httpClient.execute(httpGet,
 						localContext);
 				String result = "";

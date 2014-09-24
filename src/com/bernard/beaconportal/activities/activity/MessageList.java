@@ -1043,24 +1043,24 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		if (Show_View.equals("Homework Due")) {
 
 			title = new String[] {
-					// "Homework Due",
+					"Homework Due",
 					"Schedule", "Options", "Logout" };
 
 			icon = new int[] {
-					// R.drawable.ic_action_duehomework,
+					R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
 
 			if (counterss == null && counterss.isEmpty()) {
 
 				count = new String[] {
-						// "",
+						"",
 						"", "", "" };
 
 			} else {
 
 				count = new String[] {
-						// counterss,
+						counterss,
 						"", "", "" };
 
 			}
@@ -1070,23 +1070,23 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			if (counterss == null && counterss.isEmpty()) {
 
 				count = new String[] {
-						// "",
+						"",
 						"", "", "" };
 
 			} else {
 
 				count = new String[] { "",
-						// counterss,
+						counterss,
 						"", "" };
 
 			}
 
 			title = new String[] { "Schedule",
-					// "Homework Due",
+					"Homework Due",
 					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
-					// R.drawable.ic_action_duehomework,
+					R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
 
 		}
@@ -1362,24 +1362,24 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		if (Show_View.equals("Homework Due")) {
 
 			title = new String[] {
-					// "Homework Due",
+					"Homework Due",
 					"Schedule", "Options", "Logout" };
 
 			icon = new int[] {
-					// R.drawable.ic_action_duehomework,
+					R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
 
 			if (counterss == null && counterss.isEmpty()) {
 
 				count = new String[] {
-						// "",
+						"",
 						"", "", "" };
 
 			} else {
 
 				count = new String[] {
-						// counterss,
+						counterss,
 						"", "", "", "" };
 
 			}
@@ -1389,24 +1389,24 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			if (counterss == null && counterss.isEmpty()) {
 
 				count = new String[] {
-						// "",
+						"",
 						"", "", "" };
 
 			} else {
 
 				count = new String[] { "",
-						// counterss,
+						counterss,
 						"", "" };
 
 			}
 
 			title = new String[] { "Schedule",
-					// "Homework Due",
+					"Homework Due",
 
 					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
-					// R.drawable.ic_action_duehomework,
+					R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
 
 		}
@@ -3028,7 +3028,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		localEditor1.putString("fragment_to_start", "0");
 
 		localEditor1.commit();
-		to_main();
+		
 		
 	}
 
@@ -4212,9 +4212,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				SharedPreferences.Editor localEditor2 = getSharedPreferences(
 						"return_to_main", Context.MODE_PRIVATE).edit();
 
-				// localEditor2.putString("fragment_to_start", "3");
-
-				localEditor2.putString("fragment_to_start", "2");
+				localEditor2.putString("fragment_to_start", "3");
 
 				localEditor2.commit();
 				to_main();
@@ -4304,9 +4302,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				SharedPreferences.Editor localEditor2 = getSharedPreferences(
 						"return_to_main", Context.MODE_PRIVATE).edit();
 
-				// localEditor2.putString("fragment_to_start", "3");
-
-				localEditor2.putString("fragment_to_start", "2");
+				localEditor2.putString("fragment_to_start", "3");
 
 				localEditor2.commit();
 				to_main();
