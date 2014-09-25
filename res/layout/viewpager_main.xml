@@ -18,7 +18,7 @@
     />
 
     
-   <com.bernard.beaconportal.activities.ScrollLock
+   <android.support.v4.view.ViewPager
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/viewPager"
         android:layout_width="match_parent"

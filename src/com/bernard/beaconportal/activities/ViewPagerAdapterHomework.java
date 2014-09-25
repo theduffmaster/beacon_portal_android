@@ -4,8 +4,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+
+
+
 public class ViewPagerAdapterHomework extends FragmentPagerAdapter {
 
+	
+	
+	
 	final int PAGE_COUNT = 2;
 	private String titles[] = new String[] { "Homework Due Tommorow",
 			"Homework Due Today" };
@@ -20,10 +26,16 @@ public class ViewPagerAdapterHomework extends FragmentPagerAdapter {
 
 		case 0:
 			Due_Tommorow_Fragment activity_main = new Due_Tommorow_Fragment();
+			
+			
+			
 			return activity_main;
 
 		case 1:
 			Due_Today_Fragment acitivty_main1 = new Due_Today_Fragment();
+			
+			
+			
 			return acitivty_main1;
 		}
 		return null;

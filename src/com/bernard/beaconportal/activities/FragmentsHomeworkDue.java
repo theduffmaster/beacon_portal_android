@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -20,6 +21,8 @@ import com.bernard.beaconportal.activities.R;
 public class FragmentsHomeworkDue extends SherlockFragment {
 
 	private String background_colors;
+	
+	private Context context;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,14 +49,16 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 
 		}
 
-		com.bernard.beaconportal.activities.ScrollLock pager = (com.bernard.beaconportal.activities.ScrollLock ) view.findViewById(R.id.viewPager);
+		final ViewPager pager = (ViewPager) view.findViewById(R.id.viewPager);
 
+		
 		RelativeLayout layout = (RelativeLayout) view
 				.findViewById(R.id.homeworkdue_container);
 
 		layout.setBackgroundColor(Color.parseColor(background_colors));
 
 		pager.setAdapter(new ViewPagerAdapterHomework(getChildFragmentManager()));
+		
 		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view
 				.findViewById(R.id.pagerTabStrip);
 		tabs.setViewPager(pager);

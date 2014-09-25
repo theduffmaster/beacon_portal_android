@@ -586,9 +586,23 @@ public class Due_Today_Fragment extends Fragment {
 				Description = Description1.trim();
 
 				}
+				
+				SharedPreferences description_check = getActivity()
+		  				.getApplicationContext().getSharedPreferences(
+		  						"descriptioncheck", Context.MODE_PRIVATE);
 
-			if (!Type.isEmpty()) {
+		  		String descriptionCheck = description_check.getString(
+		  				"description", "");
+		  		
+			if (!Type.isEmpty() && !Description.equals(descriptionCheck)) {
 
+				SharedPreferences.Editor checkeditor = getActivity()
+	  					.getApplicationContext().getSharedPreferences(
+	  							"descriptioncheck", Context.MODE_PRIVATE).edit();
+  				
+				checkeditor.putString("description", Description);
+  				
+				checkeditor.commit();
 				due_today_list.add(new Due_Today_List(Band, Number, Class,
 						Teacher, Title, Date, Type, Description));
 
@@ -627,7 +641,161 @@ public class Due_Today_Fragment extends Fragment {
 		list = (EnhancedListView) getView().findViewById(R.id.listView1);
 		list.setAdapter(adapter);
 
+		list.setDismissCallback(new OnDismissCallback() {
+
+			  public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
+
+				  Log.d("shared clear1", "yes");
+				  
+				  final Due_Today_List item = (Due_Today_List) adapter.getItem(position);
+			    // Store the item for later undo
+				  
+				  final Due_Today_List currenthomeworkdue = due_today_list.get(position);
+				  
+			    // Remove the item from the adapter
+				  adapter.remove(adapter.getItem(position));
+				  
+String Description_Check = currenthomeworkdue.getDescription();
+		    	  
+		    	  SharedPreferences Tommorow_Homework_Counter = getActivity()
+		  				.getApplicationContext().getSharedPreferences(
+		  						"due_today_counter", Context.MODE_PRIVATE);
+
+		  		int counterssss = Tommorow_Homework_Counter.getInt(
+		  				"last shared preference", 0);
+
+		  		int countersssss = counterssss + 1;
+		  		
+		  		for (int i = 0; i < countersssss; i++) {
+
+		  			due_today_shared = "due_today" + Integer.toString(i);
+
+		  			SharedPreferences Tommorows_Homework = getActivity()
+		  					.getApplicationContext().getSharedPreferences(
+		  							due_today_shared, Context.MODE_PRIVATE);
+
+		  			String Band1 = Tommorows_Homework.getString("due_today0", null);
+
+		  			String Number1 = Tommorows_Homework.getString("due_today1", null);
+
+		  			String Class1 = Tommorows_Homework.getString("due_today2", null);
+
+		  			String Teacher1 = Tommorows_Homework.getString("due_today3", null);
+
+		  			String Title1 = Tommorows_Homework.getString("due_today4", null);
+
+		  			String Date1 = Tommorows_Homework.getString("due_today5", null);
+
+		  			String Type1 = Tommorows_Homework.getString("due_today6", null);
+
+		  			String Description1 = Tommorows_Homework.getString("due_today7", null);
+
+		  			if(Band1 != null){
+		  				
+		  				Band = Band1.trim();
+
+		  				}
+		  				
+		  				if(Number1 != null){
+		  				
+		  					Number = Number1.trim();
+		  				
+		  				}
+		  				
+		  				if(Class1 != null){
+		  				
+		  				Class = Class1.trim();
+
+		  				}
+		  				
+		  				if(Teacher1 != null){
+		  				
+		  				Teacher = Teacher1.trim();
+
+		  				}
+		  				
+		  				if(Title1 != null){
+		  				
+		  				Title = Title1.trim();
+
+		  				}
+		  				
+		  				if(Date1 != null){
+		  				
+		  				Date = Date1.trim();
+
+		  				}
+		  				
+		  				if(Type1 != null){
+		  				
+		  				Type = Type1.trim();
+
+		  				}
+		  				
+		  				if(Description1 != null){
+		  				
+		  				Description = Description1.trim();
+
+		  				}
+
+		  				Log.d("shared clear", "no");
+		  				
+		  			if (Description_Check.equals(Description)) {
+
+		  				Log.d("shared clear", "yes");
+		  				
+		  				SharedPreferences.Editor localeditor = getActivity()
+			  					.getApplicationContext().getSharedPreferences(
+			  							due_today_shared, Context.MODE_PRIVATE).edit();
+		  				
+		  				localeditor.clear();
+		  				
+		  				localeditor.commit();
+		  				
+
+		  			}
+
+		  		}
+				  
+			    // return an Undoable
+			    return new EnhancedListView.Undoable() {
+			      // Reinsert the item to the adapter
+			      @Override public void undo() {
+			        
+			    	  adapter.insert(item, position);
+			      
+			  	
+		    	  
+		      }
+			      
+			      
+
+			      // Return a string for your item
+			          
+
+			      // Delete item completely from your persistent storage
+			      @Override public void discard() {
+			        
+			    
+			    };
+
+			  };
+
+			  }
+			  
+			});
+		
+		
+		list.setUndoStyle(UndoStyle.MULTILEVEL_POPUP);
+		
+		list.setRequireTouchBeforeDismiss(false);
+		
+		list.enableSwipeToDismiss();
+	
+	
 	}
+		
+	
 	
 
 	public class Due_TodayAdapter extends ArrayAdapter<Due_Today_List> {
