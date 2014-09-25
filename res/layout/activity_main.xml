@@ -6,7 +6,7 @@
     android:background="#ffffff"
     android:id="@+id/swipe" >
 
-    <ListView
+    <de.timroes.android.listview.EnhancedListView
         android:id="@+id/listView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,5 +19,5 @@
 		android:dividerHeight="0dp"
          >
 
-    </ListView>
+    </de.timroes.android.listview.EnhancedListView>
 </android.support.v4.widget.SwipeRefreshLayout>

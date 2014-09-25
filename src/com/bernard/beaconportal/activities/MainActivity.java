@@ -146,6 +146,86 @@ public class MainActivity extends SherlockFragmentActivity {
 		im.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),
 				InputMethodManager.HIDE_NOT_ALWAYS);
 
+		SharedPreferences sharedprefer = getSharedPreferences(
+				"first_run_starts", Context.MODE_PRIVATE);
+
+		if (sharedprefer.contains("first_run_starts")) {
+
+			SharedPreferences Today_Homework = getApplicationContext()
+					.getSharedPreferences("due_today", Context.MODE_PRIVATE);
+
+			if (Today_Homework.contains("duetoday_content")) {
+
+				parse_due_today_string();
+
+			} else {
+
+				counterss = "0";
+
+			}
+			
+			SharedPreferences sharedprefers = getSharedPreferences("first_run",
+					Context.MODE_PRIVATE);
+
+			if (sharedprefers.contains("first_run")) {
+
+			} else {
+
+				SharedPreferences.Editor localEditor = getSharedPreferences(
+						"first_run", Context.MODE_PRIVATE).edit();
+
+				localEditor.putString("first_run", "ran for the first time");
+
+				localEditor.commit();
+
+				new Update().execute();
+
+			}
+			
+
+			
+
+			SharedPreferences sharedpreferences = getSharedPreferences(
+					"first_run_starter", Context.MODE_PRIVATE);
+
+			SharedPreferences sharedprefererence = getSharedPreferences(
+					"Login_info", Context.MODE_PRIVATE);
+
+			if (sharedpreferences.contains("first_run_starts")) {
+
+			} else {
+
+				if (sharedprefererence.contains("name")) {
+
+					SharedPreferences.Editor localEditors = getSharedPreferences(
+							"first_run_starter", Context.MODE_PRIVATE).edit();
+
+					localEditors.putString("first_run_starts", "yes");
+
+					localEditors.commit();
+
+					alert_help();
+
+				}
+
+			}
+			
+		} else {
+
+			
+			SharedPreferences.Editor localEditors = getSharedPreferences(
+					"first_run_starts", Context.MODE_PRIVATE).edit();
+
+			localEditors.putString("first_run_starts", "yes");
+
+			localEditors.commit();
+			
+			Intent intent = new Intent(this, AccountSetupBasics.class);
+			startActivity(intent);
+
+
+		}
+		
 		Log.d(TAG, "onCreate()");
 
 		String packageName = "com.bernard.beaconportal.activities";
@@ -201,30 +281,12 @@ public class MainActivity extends SherlockFragmentActivity {
 		}
 
 		doRefresh();
-
+		
 		int countssssss = getUnreadK9Count(this);
 
 		K9count = Integer.toString(countssssss);
 
 		System.out.println("k9 Unread Count = " + countssssss);
-
-		SharedPreferences sharedprefers = getSharedPreferences("first_run",
-				Context.MODE_PRIVATE);
-
-		if (sharedprefers.contains("first_run")) {
-
-		} else {
-
-			SharedPreferences.Editor localEditor = getSharedPreferences(
-					"first_run", Context.MODE_PRIVATE).edit();
-
-			localEditor.putString("first_run", "ran for the first time");
-
-			localEditor.commit();
-
-			new Update().execute();
-
-		}
 
 		SharedPreferences pref = getSharedPreferences("CheckBox",
 				Context.MODE_PRIVATE);
@@ -281,19 +343,8 @@ public class MainActivity extends SherlockFragmentActivity {
 			mTitle = mDrawerTitle = getTitle();
 
 		}
-
-		SharedPreferences Today_Homework = getApplicationContext()
-				.getSharedPreferences("due_today", Context.MODE_PRIVATE);
-
-		if (Today_Homework.contains("duetoday_content")) {
-
-			parse_due_today_string();
-
-		} else {
-
-			counterss = "0";
-
-		}
+		
+		counterss = "0";
 
 		SharedPreferences.Editor localEditor = getSharedPreferences(
 				"due_today", Context.MODE_PRIVATE).edit();
@@ -471,49 +522,6 @@ public class MainActivity extends SherlockFragmentActivity {
 			setTitle(savedInstanceState.getCharSequence(KEY_STATE_TITLE));
 		}
 
-		SharedPreferences sharedprefer = getSharedPreferences(
-				"first_run_starts", Context.MODE_PRIVATE);
-
-		if (sharedprefer.contains("first_run_starts")) {
-
-		} else {
-
-			SharedPreferences.Editor localEditors = getSharedPreferences(
-					"first_run_starts", Context.MODE_PRIVATE).edit();
-
-			localEditors.putString("first_run_starts", "yes");
-
-			localEditors.commit();
-
-			Intent intent = new Intent(this, AccountSetupBasics.class);
-			startActivity(intent);
-
-		}
-
-		SharedPreferences sharedpreferences = getSharedPreferences(
-				"first_run_starter", Context.MODE_PRIVATE);
-
-		SharedPreferences sharedprefererence = getSharedPreferences(
-				"Login_info", Context.MODE_PRIVATE);
-
-		if (sharedpreferences.contains("first_run_starts")) {
-
-		} else {
-
-			if (sharedprefererence.contains("name")) {
-
-				SharedPreferences.Editor localEditors = getSharedPreferences(
-						"first_run_starter", Context.MODE_PRIVATE).edit();
-
-				localEditors.putString("first_run_starts", "yes");
-
-				localEditors.commit();
-
-				alert_help();
-
-			}
-
-		}
 	
 	}
 
@@ -522,8 +530,6 @@ public class MainActivity extends SherlockFragmentActivity {
 		super.onResume();
 
 		Log.d("onResume", "yes");
-
-		
 		
 		SharedPreferences pref = getSharedPreferences("CheckBox",
 				Context.MODE_PRIVATE);
@@ -724,9 +730,9 @@ public class MainActivity extends SherlockFragmentActivity {
 			
 			System.out.println("Birthday = " + birthday);
 			
-			String username = userName.getString("username", "");
+			String user = userName.getString("username", "");
 
-			String user = (username).split("@")[0]; 
+			//String user = (username).split("@")[0]; 
 			
 			System.out.println("Username = " + user);
 			
@@ -751,24 +757,22 @@ public class MainActivity extends SherlockFragmentActivity {
 			        // Execute HTTP Post Request
 			        response = httpclient.execute(httppost);
 			        
-			        System.out.println("Response = " + response);
+			        Log.d("Http Response:", response.toString());
 			        
 			    } catch (ClientProtocolException e) {
 			        // TODO Auto-generated catch block
 			    } catch (IOException e) {
 			        // TODO Auto-generated catch block
 			    }
-				
-				
-				String result = "";
 
+				
 				try {
 					Log.d("receiver", "animation stopped and downloaded file");
 
-					String duetoday_html = new Scanner(response.getEntity()
+					String duetoday = new Scanner(response.getEntity()
 							.getContent(), "UTF-8").useDelimiter("\\A").next();
 
-					String duetoday = Html.fromHtml(duetoday_html).toString();
+//					String duetoday = Html.fromHtml(duetoday_html).toString();
 
 					SharedPreferences.Editor localEditor = getSharedPreferences(
 							"due_today", Context.MODE_PRIVATE).edit();
@@ -1296,26 +1300,70 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		@Override
 		protected Void doInBackground(String... urls) {
+			SharedPreferences bDay = getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE);
+
+		   String day1 =  Integer.toString(bDay.getInt("Day", 0));
+
+		   String year1 =  Integer.toString(bDay.getInt("Year", 0));
+
+		   String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
 			
+			SharedPreferences userName = getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE);
+
+			String day = day1.replaceFirst("^0+(?!$)", "");
+			
+			String month = month1.replaceFirst("^0+(?!$)", "");
+			
+			String year = year1.replaceFirst("^0+(?!$)", "");
+			
+			String birthday = month + "/" + day + "/" + year;
+			
+			System.out.println("Birthday = " + birthday);
+			
+			String user = userName.getString("username", "");
+
+			//String user = (username).split("@")[0]; 
+			
+			System.out.println("Username = " + user);
 			
 			
 			try {
-				
-				HttpClient httpClient = new DefaultHttpClient();
+
+//				HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
-				HttpGet httpGet = new HttpGet(
-						"http://www2.beaconschool.org/~markovic/lincoln.php");
-				HttpResponse response = httpClient.execute(httpGet,
-						localContext);
-				String result = "";
+//				HttpGet httpGet = new HttpGet(
+//						"http://www2.beaconschool.org/~markovic/lincoln.php");
+				
+				HttpClient httpclient = new DefaultHttpClient();
+			    HttpPost httppost = new HttpPost("http://www2.beaconschool.org/~markovic/lincoln.php");
+			    
+			    try {
+			        // Add your data
+			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			        nameValuePairs.add(new BasicNameValuePair("username", user));
+			        nameValuePairs.add(new BasicNameValuePair("birthday", birthday));
+			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+			        // Execute HTTP Post Request
+			        response = httpclient.execute(httppost);
+			        
+			        Log.d("Http Response:", response.toString());
+			        
+			    } catch (ClientProtocolException e) {
+			        // TODO Auto-generated catch block
+			    } catch (IOException e) {
+			        // TODO Auto-generated catch block
+			    }
 
 				try {
 					Log.d("receiver", "animation stopped and downloaded file");
 
-					String duetoday_html = new Scanner(response.getEntity()
+					String duetoday = new Scanner(response.getEntity()
 							.getContent(), "UTF-8").useDelimiter("\\A").next();
 
-					String duetoday = Html.fromHtml(duetoday_html).toString();
+//					String duetoday = Html.fromHtml(duetoday_html).toString();
 
 					SharedPreferences.Editor localEditor = getSharedPreferences(
 							"due_today", Context.MODE_PRIVATE).edit();
@@ -1335,13 +1383,6 @@ public class MainActivity extends SherlockFragmentActivity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
-			} catch (ClientProtocolException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 
 			} finally {
 
@@ -1364,7 +1405,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		SharedPreferences Today_Homework = getApplicationContext()
 				.getSharedPreferences("due_tommorow", Context.MODE_PRIVATE);
 
-		String due_tommorow = Today_Homework.getString("duetoday_content", "");
+		String due_tommorow = Today_Homework.getString("duetommorow_content", "");
 
 		due_tommorow = due_tommorow.replaceAll("^\"|\"$", "");
 
@@ -1486,28 +1527,77 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		@Override
 		protected Void doInBackground(String... urls) {
+			SharedPreferences bDay = getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE);
+
+		   String day1 =  Integer.toString(bDay.getInt("Day", 0));
+
+		   String year1 =  Integer.toString(bDay.getInt("Year", 0));
+
+		   String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
+			
+			SharedPreferences userName = getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE);
+
+			String day = day1.replaceFirst("^0+(?!$)", "");
+			
+			String month = month1.replaceFirst("^0+(?!$)", "");
+			
+			String year = year1.replaceFirst("^0+(?!$)", "");
+			
+			String birthday = month + "/" + day + "/" + year;
+			
+			System.out.println("Birthday = " + birthday);
+			
+			String user = userName.getString("username", "");
+
+			//String user = (username).split("@")[0]; 
+			
+			System.out.println("Username = " + user);
+			
+			
 			try {
 
-				HttpClient httpClient = new DefaultHttpClient();
+//				HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
-				HttpGet httpGet = new HttpGet(
-						"http://www2.beaconschool.org/~markovic/lincoln.php");
-				HttpResponse response = httpClient.execute(httpGet,
-						localContext);
-				String result = "";
+//				HttpGet httpGet = new HttpGet(
+//						"http://www2.beaconschool.org/~markovic/lincoln.php");
+				
+				HttpClient httpclient = new DefaultHttpClient();
+			    HttpPost httppost = new HttpPost("http://www2.beaconschool.org/~markovic/lincoln.php");
+			    
+			    try {
+			        // Add your data
+			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			        nameValuePairs.add(new BasicNameValuePair("username", user));
+			        nameValuePairs.add(new BasicNameValuePair("birthday", birthday));
+			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+			        // Execute HTTP Post Request
+			        response = httpclient.execute(httppost);
+			        
+			        Log.d("Http Response:", response.toString());
+			        
+			    } catch (ClientProtocolException e) {
+			        // TODO Auto-generated catch block
+			    } catch (IOException e) {
+			        // TODO Auto-generated catch block
+			    }
+
+				
 
 				try {
 					Log.d("receiver", "animation stopped and downloaded file");
 
-					String duetoday_html = new Scanner(response.getEntity()
+					String duetommorow = new Scanner(response.getEntity()
 							.getContent(), "UTF-8").useDelimiter("\\A").next();
 
-					String duetoday = Html.fromHtml(duetoday_html).toString();
+//					String duetoday = Html.fromHtml(duetoday_html).toString();
 
 					SharedPreferences.Editor localEditor = getSharedPreferences(
 							"due_tommorow", Context.MODE_PRIVATE).edit();
 
-					localEditor.putString("duetoday_content", duetoday);
+					localEditor.putString("duetommorow_content", duetommorow);
 
 					localEditor.apply();
 
@@ -1522,13 +1612,6 @@ public class MainActivity extends SherlockFragmentActivity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
-			} catch (ClientProtocolException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 
 			} finally {
 

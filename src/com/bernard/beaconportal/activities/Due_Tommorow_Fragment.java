@@ -10,14 +10,19 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
 import android.app.Activity;
+import android.app.LauncherActivity.ListItem;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,6 +36,7 @@ import android.text.Html;
 import android.text.TextUtils.TruncateAt;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -44,6 +50,10 @@ import android.widget.Toast;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.bernard.beaconportal.activities.R;
+
+import de.timroes.android.listview.EnhancedListView;
+import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
+import de.timroes.android.listview.EnhancedListView.UndoStyle;
 
 public class Due_Tommorow_Fragment extends Fragment {
 	private List<homeworkdue> myhomeworkdue;
@@ -101,8 +111,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 				android.R.color.holo_orange_light,
 				android.R.color.holo_blue_light);
 
-		ListView lView = (ListView) swipe.findViewById(R.id.listView1);
-
+		EnhancedListView lView = (EnhancedListView) swipe.findViewById(R.id.listView1);
+		
 		lView.setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
 			public void onScrollStateChanged(AbsListView absListView, int i) {
@@ -158,9 +168,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 						if (AppStatus.getInstance(getActivity()).isOnline(
 								getActivity())) {
 
-							Toast.makeText(getActivity(), "Refreshing", 2000)
-									.show();
-
 							new Update().execute();
 
 						} else {
@@ -178,10 +185,48 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 				});
 
+		lView.setDismissCallback(new OnDismissCallback() {
+
+			  public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
+
+				  final Due_Today_List item = (Due_Today_List) adapter.getItem(position);
+			    // Store the item for later undo
+				  
+			    // Remove the item from the adapter
+				  adapter.remove(adapter.getItem(position));
+			    // return an Undoable
+			    return new EnhancedListView.Undoable() {
+			      // Reinsert the item to the adapter
+			      @Override public void undo() {
+			        adapter.insert(item, position);
+			      }
+
+			      // Return a string for your item
+			      @Override public String getTitle() {
+			        return "Deleted '"; // Plz, use the resource system :)
+			      }	      
+
+			      // Delete item completely from your persistent storage
+			      @Override public void discard() {
+			        
+			      }
+			    };
+
+			  }
+
+			});
+		
+		
+		lView.setUndoStyle(UndoStyle.MULTILEVEL_POPUP);
+		
+		lView.enableSwipeToDismiss();
+		
 		return swipe;
 
 	}
 
+	
+	
 	@Override
 	public void onResume() {
 
@@ -201,21 +246,19 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 	public void parse_due_tommorow_string() {
 
-		SharedPreferences Today_Homework = getActivity()
+		SharedPreferences Tommorow_Homework = getActivity()
 				.getApplicationContext().getSharedPreferences("due_tommorow",
 						Context.MODE_PRIVATE);
 
-		String due_tommorow = Today_Homework.getString("duetoday_content", "");
+		String Due_Tommorow = Tommorow_Homework.getString("duetommorow_content", "");
 
-		due_tommorow = due_tommorow.replaceAll("^\"|\"$", "");
+		Due_Tommorow = Due_Tommorow.replaceAll("^\"|\"$", "");
 
-		due_tommorow = due_tommorow.substring(3);
+		Due_Tommorow = Due_Tommorow.substring(3);
 
-		Log.d("homework due today", due_tommorow);
+		Log.d("homework due tommorow", Due_Tommorow);
 
-		StringBuilder DescriptionAll = new StringBuilder();
-
-		InputStream is = new ByteArrayInputStream(due_tommorow.getBytes());
+		InputStream is = new ByteArrayInputStream(Due_Tommorow.getBytes());
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
@@ -230,11 +273,9 @@ public class Due_Tommorow_Fragment extends Fragment {
 			StringBuilder strb = new StringBuilder();
 
 			while ((value = reader.read()) != -1) {
-				// Convert int to a character
 
 				char c = (char) value;
 
-				// Searching for the separator
 				if (c == ',') {
 					if (state == 1) {
 						state = 2;
@@ -269,8 +310,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 								.getSharedPreferences(due_tommorow_shared,
 										Context.MODE_PRIVATE).edit();
 
-						localEditor
-								.putString(due_tommorow_shared_content, strr);
+						localEditor.putString(due_tommorow_shared_content, strr);
 
 						localEditor.apply();
 
@@ -292,7 +332,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 			}
 
 			String strr = strb.toString().replaceAll("^\"|\"$", "");
-
+			
 			System.out.println("shared_pref_final= " + strr);
 
 			due_tommorow_shared_content = "due_tommorow7";
@@ -316,7 +356,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 			strb.setLength(0);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -331,29 +371,76 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		@Override
 		protected Void doInBackground(String... urls) {
+			SharedPreferences bDay = getActivity().getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE);
+
+		   String day1 =  Integer.toString(bDay.getInt("Day", 0));
+
+		   String year1 =  Integer.toString(bDay.getInt("Year", 0));
+
+		   String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
+			
+			SharedPreferences userName = getActivity().getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE);
+
+			String day = day1.replaceFirst("^0+(?!$)", "");
+			
+			String month = month1.replaceFirst("^0+(?!$)", "");
+			
+			String year = year1.replaceFirst("^0+(?!$)", "");
+			
+			String birthday = month + "/" + day + "/" + year;
+			
+			System.out.println("Birthday = " + birthday);
+			
+			String user = userName.getString("username", "");
+
+			//String user = (username).split("@")[0]; 
+			
+			System.out.println("Username = " + user);
+			
+			
 			try {
 
-				HttpClient httpClient = new DefaultHttpClient();
+//				HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
-				HttpGet httpGet = new HttpGet(
-						"http://www2.beaconschool.org/~markovic/lincoln.php");
-				HttpResponse response = httpClient.execute(httpGet,
-						localContext);
-				String result = "";
+//				HttpGet httpGet = new HttpGet(
+//						"http://www2.beaconschool.org/~markovic/lincoln.php");
+				
+				HttpClient httpclient = new DefaultHttpClient();
+			    HttpPost httppost = new HttpPost("http://www2.beaconschool.org/~markovic/lincoln.php");
+			    
+			    try {
+			        // Add your data
+			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			        nameValuePairs.add(new BasicNameValuePair("username", user));
+			        nameValuePairs.add(new BasicNameValuePair("birthday", birthday));
+			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+			        // Execute HTTP Post Request
+			        response = httpclient.execute(httppost);
+			        
+			        Log.d("Http Response:", response.toString());
+			        
+			    } catch (ClientProtocolException e) {
+			        // TODO Auto-generated catch block
+			    } catch (IOException e) {
+			        // TODO Auto-generated catch block
+			    }
 
 				try {
 					Log.d("receiver", "animation stopped and downloaded file");
 
-					String duetoday_html = new Scanner(response.getEntity()
+					String duetommorow = new Scanner(response.getEntity()
 							.getContent(), "UTF-8").useDelimiter("\\A").next();
 
-					String duetoday = Html.fromHtml(duetoday_html).toString();
+					//String duetommorow = Html.fromHtml(duetommorow_html).toString();
 
 					SharedPreferences.Editor localEditor = getActivity()
 							.getSharedPreferences("due_tommorow",
 									Context.MODE_PRIVATE).edit();
 
-					localEditor.putString("duetoday_content", duetoday);
+					localEditor.putString("duetommorow_content", duetommorow);
 
 					localEditor.apply();
 
@@ -366,19 +453,12 @@ public class Due_Tommorow_Fragment extends Fragment {
 					parse_due_tommorow_content();
 
 				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
+
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+
 					e.printStackTrace();
 				}
-
-			} catch (ClientProtocolException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 
 			} finally {
 
@@ -410,11 +490,11 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 	public void parse_due_tommorow_content() {
 
-		SharedPreferences Today_Homework_Counter = getActivity()
+		SharedPreferences Tommorow_Homework_Counter = getActivity()
 				.getApplicationContext().getSharedPreferences(
 						"due_tommorow_counter", Context.MODE_PRIVATE);
 
-		int counterssss = Today_Homework_Counter.getInt(
+		int counterssss = Tommorow_Homework_Counter.getInt(
 				"last shared preference", 0);
 
 		int countersssss = counterssss + 1;
@@ -423,74 +503,74 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			due_tommorow_shared = "due_tommorow" + Integer.toString(i);
 
-			SharedPreferences Todays_Homework = getActivity()
+			SharedPreferences Tommorows_Homework = getActivity()
 					.getApplicationContext().getSharedPreferences(
 							due_tommorow_shared, Context.MODE_PRIVATE);
 
-			String Band1 = Todays_Homework.getString("due_tommorow0", null);
+			String Band1 = Tommorows_Homework.getString("due_tommorow0", null);
 
-			String Number1 = Todays_Homework.getString("due_tommorow1", null);
+			String Number1 = Tommorows_Homework.getString("due_tommorow1", null);
 
-			String Class1 = Todays_Homework.getString("due_tommorow2", null);
+			String Class1 = Tommorows_Homework.getString("due_tommorow2", null);
 
-			String Teacher1 = Todays_Homework.getString("due_tommorow3", null);
+			String Teacher1 = Tommorows_Homework.getString("due_tommorow3", null);
 
-			String Title1 = Todays_Homework.getString("due_tommorow4", null);
+			String Title1 = Tommorows_Homework.getString("due_tommorow4", null);
 
-			String Date1 = Todays_Homework.getString("due_tommorow5", null);
+			String Date1 = Tommorows_Homework.getString("due_tommorow5", null);
 
-			String Type1 = Todays_Homework.getString("due_tommorow6", null);
+			String Type1 = Tommorows_Homework.getString("due_tommorow6", null);
 
-			String Description1 = Todays_Homework.getString("due_tommorow7", null);
+			String Description1 = Tommorows_Homework.getString("due_tommorow7", null);
 
 			if(Band1 != null){
-			
-			Band = Band1.trim();
+				
+				Band = Band1.trim();
 
-			}
-			
-			if(Number1 != null){
-			
-				Number = Number1.trim();
-			
-			}
-			
-			if(Class1 != null){
-			
-			Class = Class1.trim();
+				}
+				
+				if(Number1 != null){
+				
+					Number = Number1.trim();
+				
+				}
+				
+				if(Class1 != null){
+				
+				Class = Class1.trim();
 
-			}
-			
-			if(Teacher1 != null){
-			
-			Teacher = Teacher1.trim();
+				}
+				
+				if(Teacher1 != null){
+				
+				Teacher = Teacher1.trim();
 
-			}
-			
-			if(Title1 != null){
-			
-			Title = Title1.trim();
+				}
+				
+				if(Title1 != null){
+				
+				Title = Title1.trim();
 
-			}
-			
-			if(Date1 != null){
-			
-			Date = Date1.trim();
+				}
+				
+				if(Date1 != null){
+				
+				Date = Date1.trim();
 
-			}
-			
-			if(Type1 != null){
-			
-			Type = Type1.trim();
+				}
+				
+				if(Type1 != null){
+				
+				Type = Type1.trim();
 
-			}
-			
-			if(Description1 != null){
-			
-			Description = Description1.trim();
+				}
+				
+				if(Description1 != null){
+				
+				Description = Description1.trim();
 
-			}
-			
+				}
+
 			if (!Type.isEmpty()) {
 
 				due_tommorow_list.add(new Due_Today_List(Band, Number, Class,
@@ -531,9 +611,11 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 	private void populateListView() {
 		adapter = new due_tommorowAdapter();
-		ListView list = (ListView) getView().findViewById(R.id.listView1);
+		EnhancedListView list = (EnhancedListView) getView().findViewById(R.id.listView1);
 		list.setAdapter(adapter);
 
+
+	
 	}
 
 	public class due_tommorowAdapter extends ArrayAdapter<Due_Today_List> {
@@ -587,6 +669,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 			Description = Description.trim();
 
 			Description = Description.replaceAll("[\\n\\t]", "");
+			
+			Description = Html.fromHtml(Description).toString();
 
 			if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UU")) {

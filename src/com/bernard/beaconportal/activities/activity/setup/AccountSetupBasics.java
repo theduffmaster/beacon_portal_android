@@ -102,9 +102,6 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
-		// getActionBar().setTitle((Html.fromHtml("<font color=\"#FFFFFF\">" +
-		// "Login" + "</font>")));
-
 		int titleId = getResources().getIdentifier("action_bar_title", "id",
 				"android");
 
@@ -424,6 +421,8 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 						localEditor.putInt("Month", month);
 
 						localEditor.apply();
+						
+						
 
 						dialog.dismiss();
 					}

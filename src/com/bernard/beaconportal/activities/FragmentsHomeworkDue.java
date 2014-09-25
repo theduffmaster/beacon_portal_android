@@ -46,7 +46,7 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 
 		}
 
-		ViewPager pager = (ViewPager) view.findViewById(R.id.viewPager);
+		com.bernard.beaconportal.activities.ScrollLock pager = (com.bernard.beaconportal.activities.ScrollLock ) view.findViewById(R.id.viewPager);
 
 		RelativeLayout layout = (RelativeLayout) view
 				.findViewById(R.id.homeworkdue_container);

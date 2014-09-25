@@ -35,6 +35,7 @@ import android.text.Html;
 import android.text.TextUtils.TruncateAt;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -49,6 +50,10 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.bernard.beaconportal.activities.R;
 
+import de.timroes.android.listview.EnhancedListView;
+import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
+import de.timroes.android.listview.EnhancedListView.UndoStyle;
+
 public class Due_Today_Fragment extends Fragment {
 
 	private List<Due_Today_List> due_today_list;
@@ -57,6 +62,8 @@ public class Due_Today_Fragment extends Fragment {
 
 	private View swipe;
 
+	private EnhancedListView list;
+	
 	private int count;
 
 	private int shared;
@@ -104,7 +111,7 @@ public class Due_Today_Fragment extends Fragment {
 				android.R.color.holo_blue_light,
 				android.R.color.holo_orange_light);
 
-		ListView lView = (ListView) swipe.findViewById(R.id.listView1);
+		EnhancedListView lView = (EnhancedListView) swipe.findViewById(R.id.listView1);
 
 		lView.setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
@@ -161,9 +168,6 @@ public class Due_Today_Fragment extends Fragment {
 						if (AppStatus.getInstance(getActivity()).isOnline(
 								getActivity())) {
 
-							Toast.makeText(getActivity(), "Refreshing", 2000)
-									.show();
-
 							new Update().execute();
 
 						} else {
@@ -181,6 +185,42 @@ public class Due_Today_Fragment extends Fragment {
 
 				});
 
+		lView.setDismissCallback(new OnDismissCallback() {
+
+			  public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
+
+				  final Due_Today_List item = (Due_Today_List) adapter.getItem(position);
+				  
+			    // Store the item for later undo
+				  
+			    // Remove the item from the adapter
+				  adapter.remove(adapter.getItem(position));
+			    // return an Undoable
+			    return new EnhancedListView.Undoable() {
+			      // Reinsert the item to the adapter
+			      @Override public void undo() {
+			        adapter.insert(item, position);
+			      }
+
+			      // Return a string for your item
+			      @Override public String getTitle() {
+			        return "Deleted '"; // Plz, use the resource system :)
+			      }
+
+			      // Delete item completely from your persistent storage
+			      @Override public void discard() {
+			        
+			      }
+			    };
+
+			  }
+
+			});
+		
+		lView.setUndoStyle(UndoStyle.MULTILEVEL_POPUP);
+		
+		lView.enableSwipeToDismiss();
+		
 		return swipe;
 
 	}
@@ -394,7 +434,7 @@ public class Due_Today_Fragment extends Fragment {
 			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 			        // Execute HTTP Post Request
-			        response = httpclient.execute(httppost, localContext);
+			        response = httpclient.execute(httppost);
 			        
 			        Log.d("Http Response:", response.toString());
 			        
@@ -407,10 +447,10 @@ public class Due_Today_Fragment extends Fragment {
 				try {
 					Log.d("receiver", "animation stopped and downloaded file");
 
-					String duetoday_html = new Scanner(response.getEntity()
+					String duetoday = new Scanner(response.getEntity()
 							.getContent(), "UTF-8").useDelimiter("\\A").next();
 
-					String duetoday = Html.fromHtml(duetoday_html).toString();
+					//String duetoday = Html.fromHtml(duetoday_html).toString();
 
 					SharedPreferences.Editor localEditor = getActivity()
 							.getSharedPreferences("due_today",
@@ -584,10 +624,11 @@ public class Due_Today_Fragment extends Fragment {
 
 	private void populateListView() {
 		adapter = new Due_TodayAdapter();
-		ListView list = (ListView) getView().findViewById(R.id.listView1);
+		list = (EnhancedListView) getView().findViewById(R.id.listView1);
 		list.setAdapter(adapter);
 
 	}
+	
 
 	public class Due_TodayAdapter extends ArrayAdapter<Due_Today_List> {
 		public Due_TodayAdapter() {
@@ -636,6 +677,8 @@ public class Due_Today_Fragment extends Fragment {
 			Description = currenthomeworkdue.getDescription().toString();
 
 			Description = Description.replaceAll("[\\n\\t]", "");
+			
+			Description = Html.fromHtml(Description).toString();
 
 			if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UU")) {
