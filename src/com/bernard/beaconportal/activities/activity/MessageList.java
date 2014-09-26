@@ -4187,7 +4187,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				SharedPreferences.Editor localEditor = getSharedPreferences(
 						"return_to_main", Context.MODE_PRIVATE).edit();
 
-				localEditor.putString("fragment_to_start", "0");
+				localEditor.putString("fragment_to_start", "1");
 
 				localEditor.commit();
 
@@ -4200,7 +4200,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				SharedPreferences.Editor localEditor1 = getSharedPreferences(
 						"return_to_main", Context.MODE_PRIVATE).edit();
 
-				localEditor1.putString("fragment_to_start", "1");
+				localEditor1.putString("fragment_to_start", "0");
 
 				localEditor1.commit();
 				to_main();

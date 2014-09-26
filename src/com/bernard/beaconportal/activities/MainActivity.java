@@ -1450,10 +1450,10 @@ public class MainActivity extends SherlockFragmentActivity {
 
 						}
 
-						due_tommorow_shared = "due_tommorow"
+						due_tommorow_shared = "due_tommorow_main"
 								+ Integer.toString(shared1);
 
-						due_tommorow_shared_content = "due_tommorow"
+						due_tommorow_shared_content = "due_tommorow_main"
 								+ Integer.toString(shared_add1);
 
 						String strr = strb.toString().replaceAll("^\"|\"$", "");
@@ -1490,7 +1490,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			System.out.println("shared_pref_final= " + strr);
 
-			due_tommorow_shared_content = "due_tommorow7";
+			due_tommorow_shared_content = "due_tommorow_main7";
 
 			SharedPreferences.Editor localEditor = getSharedPreferences(
 					due_tommorow_shared, Context.MODE_PRIVATE).edit();
@@ -1534,26 +1534,26 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		for (int i = 0; i < countersssss; i++) {
 
-			due_tommorow_shared = "due_tommorow" + Integer.toString(i);
+			due_tommorow_shared = "due_tommorow_main" + Integer.toString(i);
 
 			SharedPreferences Tommorows_Homework = getSharedPreferences(
 							due_tommorow_shared, Context.MODE_PRIVATE);
 
-			String Band1 = Tommorows_Homework.getString("due_tommorow0", null);
+			String Band1 = Tommorows_Homework.getString("due_tommorow_main0", null);
 
-			String Number1 = Tommorows_Homework.getString("due_tommorow1", null);
+			String Number1 = Tommorows_Homework.getString("due_tommorow_main1", null);
 
-			String Class1 = Tommorows_Homework.getString("due_tommorow2", null);
+			String Class1 = Tommorows_Homework.getString("due_tommorow_main2", null);
 
-			String Teacher1 = Tommorows_Homework.getString("due_tommorow3", null);
+			String Teacher1 = Tommorows_Homework.getString("due_tommorow_main3", null);
 
-			String Title1 = Tommorows_Homework.getString("due_tommorow4", null);
+			String Title1 = Tommorows_Homework.getString("due_tommorow_main4", null);
 
-			String Date1 = Tommorows_Homework.getString("due_tommorow5", null);
+			String Date1 = Tommorows_Homework.getString("due_tommorow_main5", null);
 
-			String Type1 = Tommorows_Homework.getString("due_tommorow6", null);
+			String Type1 = Tommorows_Homework.getString("due_tommorow_main6", null);
 
-			String Description1 = Tommorows_Homework.getString("due_tommorow7", null);
+			String Description1 = Tommorows_Homework.getString("due_tommorow_main7", null);
 
 			if(Band1 != null){
 				

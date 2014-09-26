@@ -702,7 +702,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 		  				
 		  			if (Description_Check.equals(Description)) {
 
-		  				Log.d("shared clear", "yes");
+		  				Log.d("shared clear", due_tommorow_shared);
 		  				
 		  				SharedPreferences.Editor localeditor = getActivity()
 			  					.getApplicationContext().getSharedPreferences(
@@ -739,7 +739,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 			      public void discard() {
 			        
 			    
-			    	  
 			    };
 
 			  };
