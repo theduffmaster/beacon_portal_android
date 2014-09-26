@@ -615,7 +615,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 			    // Remove the item from the adapter
 				  adapter.remove(adapter.getItem(position));
 				  
-  String Description_Check = currenthomeworkdue.getDescription();
+				  String Description_Check = currenthomeworkdue.getDescription();
 		    	  
 		    	  SharedPreferences Tommorow_Homework_Counter = getActivity()
 		  				.getApplicationContext().getSharedPreferences(
@@ -711,46 +711,35 @@ public class Due_Tommorow_Fragment extends Fragment {
 		  				localeditor.clear();
 		  				
 		  				localeditor.commit();
-		  				
-//		  				SharedPreferences Counter = getActivity()
-//				  				.getApplicationContext().getSharedPreferences(
-//				  						"due_tommorow_counter", Context.MODE_PRIVATE);
-//
-//				  		int counterssssss = Counter.getInt(
-//				  				"last shared preference", 0);
-//		  				
-//		  				SharedPreferences.Editor counteditor = getActivity()
-//			  					.getApplicationContext().getSharedPreferences(
-//			  							"due_tommorow_counter", Context.MODE_PRIVATE).edit();
-//		  				
-//		  				counteditor.putInt("last shared preference", counterssssss-1);
-//		  				
-//		  				counteditor.commit();
 
 		  			}
 
 		  		}
 				  
-			    // return an Undoable
-			    return new EnhancedListView.Undoable() {
-			      // Reinsert the item to the adapter
-			      @Override public void undo() {
-			        
-			    	  adapter.insert(item, position);
+		  	// return an Undoable
+			    
+		  		
+		  		return new EnhancedListView.Undoable() {
 			      
-			  	
-		    	  
-		      }
+			    	
+			    	// Reinsert the item to the adapter
 			      
+			    	@Override 
+			    	public void undo() {
+			       
+			    		System.out.println("undid");
+				    	
+			    		
+			    		adapter.insert(item, position);
 			      
+			      }
 
-			      // Return a string for your item
-			          
-
-			      // Delete item completely from your persistent storage
-			      @Override public void discard() {
+			       //Delete item completely from your persistent storage
+			      @Override 
+			      public void discard() {
 			        
 			    
+			    	  
 			    };
 
 			  };

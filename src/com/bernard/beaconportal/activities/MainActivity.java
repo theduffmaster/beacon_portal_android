@@ -90,7 +90,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	TextView mWelcome;
 	ListView mDrawerList;
 	ActionBarDrawerToggle mDrawerToggle;
-	MenuListAdapter mMenuAdapter;
+	private MenuListAdapter mMenuAdapter;
 	String actionbar_colors, background_colorsString;
 	private String Show_View;
 	String[] title;
@@ -116,6 +116,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	private int shared1;
 
+	private int number;
+	
 	private int countersss1;
 
 	private int mUnreadMessageCount = 0;
@@ -152,11 +154,13 @@ public class MainActivity extends SherlockFragmentActivity {
 		if (sharedprefer.contains("first_run_starts")) {
 
 			SharedPreferences Today_Homework = getApplicationContext()
-					.getSharedPreferences("due_today", Context.MODE_PRIVATE);
+					.getSharedPreferences("due_tommorow", Context.MODE_PRIVATE);
 
-			if (Today_Homework.contains("duetoday_content")) {
+			if (Today_Homework.contains("duetommorow_content")) {
 
-				parse_due_today_string();
+				counterss = "0";
+				
+				parse_due_tommorow_string();
 
 			} else {
 
@@ -182,9 +186,6 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			}
 			
-
-			
-
 			SharedPreferences sharedpreferences = getSharedPreferences(
 					"first_run_starter", Context.MODE_PRIVATE);
 
@@ -229,8 +230,6 @@ public class MainActivity extends SherlockFragmentActivity {
 		Log.d(TAG, "onCreate()");
 
 		String packageName = "com.bernard.beaconportal.activities";
-
-		counterss = "0";
 
 		int versionNumber = 0;
 
@@ -343,8 +342,6 @@ public class MainActivity extends SherlockFragmentActivity {
 			mTitle = mDrawerTitle = getTitle();
 
 		}
-		
-		counterss = "0";
 
 		SharedPreferences.Editor localEditor = getSharedPreferences(
 				"due_today", Context.MODE_PRIVATE).edit();
@@ -1510,6 +1507,8 @@ public class MainActivity extends SherlockFragmentActivity {
 			localEditor1.apply();
 
 			strb.setLength(0);
+			
+			parse_due_tommorow_content();
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -1521,6 +1520,122 @@ public class MainActivity extends SherlockFragmentActivity {
 		}
 	}
 
+	public void parse_due_tommorow_content() {
+
+		SharedPreferences Tommorow_Homework_Counter = getSharedPreferences(
+						"due_tommorow_counter", Context.MODE_PRIVATE);
+
+		int counterssss = Tommorow_Homework_Counter.getInt(
+				"last shared preference", 0);
+
+		int countersssss = counterssss + 1;
+		
+		number = 0;
+
+		for (int i = 0; i < countersssss; i++) {
+
+			due_tommorow_shared = "due_tommorow" + Integer.toString(i);
+
+			SharedPreferences Tommorows_Homework = getSharedPreferences(
+							due_tommorow_shared, Context.MODE_PRIVATE);
+
+			String Band1 = Tommorows_Homework.getString("due_tommorow0", null);
+
+			String Number1 = Tommorows_Homework.getString("due_tommorow1", null);
+
+			String Class1 = Tommorows_Homework.getString("due_tommorow2", null);
+
+			String Teacher1 = Tommorows_Homework.getString("due_tommorow3", null);
+
+			String Title1 = Tommorows_Homework.getString("due_tommorow4", null);
+
+			String Date1 = Tommorows_Homework.getString("due_tommorow5", null);
+
+			String Type1 = Tommorows_Homework.getString("due_tommorow6", null);
+
+			String Description1 = Tommorows_Homework.getString("due_tommorow7", null);
+
+			if(Band1 != null){
+				
+				Band = Band1.trim();
+
+				}
+				
+				if(Number1 != null){
+				
+					Number = Number1.trim();
+				
+				}
+				
+				if(Class1 != null){
+				
+				Class = Class1.trim();
+
+				}
+				
+				if(Teacher1 != null){
+				
+				Teacher = Teacher1.trim();
+
+				}
+				
+				if(Title1 != null){
+				
+				Title = Title1.trim();
+
+				}
+				
+				if(Date1 != null){
+				
+				Date = Date1.trim();
+
+				}
+				
+				if(Type1 != null){
+				
+				Type = Type1.trim();
+
+				}
+				
+				if(Description1 != null){
+				
+				Description = Description1.trim();
+
+				}
+				
+				
+				
+				SharedPreferences description_check = getSharedPreferences(
+		  						"descriptioncheck", Context.MODE_PRIVATE);
+
+		  		String descriptionCheck = description_check.getString(
+		  				"description", "");
+		  		
+			if (!Type.isEmpty() && !Description.equals(descriptionCheck)) {
+
+				SharedPreferences.Editor checkeditor = getSharedPreferences(
+	  							"descriptioncheck", Context.MODE_PRIVATE).edit();
+  				
+				checkeditor.putString("description", Description);
+  				
+				checkeditor.commit();
+				
+				number++;
+				
+				System.out.println("Number= "+number++);
+				
+			}
+			
+		}
+		
+		int number_final = (int)(((double)number/(double)2));
+		
+		counterss = Integer.toString(number_final);
+		
+		Log.d("Counterss", counterss);
+	
+	}
+	
 	public class Update_due_tommorow extends AsyncTask<String, Void, Void> {
 
 		private final HttpClient Client = new DefaultHttpClient();

@@ -39,7 +39,7 @@ public class Friday_view extends Fragment {
 	
 	private static ArrayAdapter<schedule_view> adapter;
 	
-	private ListView list;
+	private static ListView list;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -305,8 +305,6 @@ public class Friday_view extends Fragment {
 					  
 				    // Remove the item from the adapter
 				    arrayAdapter.remove(item);
-				    
-				    
 				    
 				    // return an Undoable
 				    return new EnhancedListView.Undoable() {
