@@ -239,13 +239,12 @@ public class CopyOfColorPickerDialog1 extends Dialog implements
 				.getSharedPreferences("return_to_main", Context.MODE_PRIVATE)
 				.edit();
 
-		// localEditor1.putString("fragment_to_start", "3");
-		localEditor1.putString("fragment_to_start", "2");
+		localEditor1.putString("fragment_to_start", "3");
 
 		localEditor1.commit();
 
 		Intent i = new Intent(getContext(), MainActivity.class);
-		i.putExtra("toOpen", "fragment 1");
+		
 		getContext().startActivity(i);
 
 		dismiss();

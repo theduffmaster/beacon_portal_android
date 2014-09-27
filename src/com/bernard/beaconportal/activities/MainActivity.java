@@ -143,7 +143,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		InputMethodManager im = (InputMethodManager) this
 				.getApplicationContext().getSystemService(
 						Context.INPUT_METHOD_SERVICE);
@@ -466,6 +466,13 @@ public class MainActivity extends SherlockFragmentActivity {
 			alert_help();
 			
 			}
+	
+		SharedPreferences.Editor localEditor1 = 
+				getSharedPreferences("return_to_main", Context.MODE_PRIVATE)
+				.edit();
+		
+		localEditor1.clear();
+	
 	}
 
 	@Override
@@ -479,6 +486,50 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		String checkbox = pref.getString("checked", null);
 
+
+		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
+				Context.MODE_PRIVATE);
+
+		if (!sharedpref.contains("actionbar_color")) {
+
+			getSupportActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor("#03a9f4")));
+
+		} else {
+
+			actionbar_colors = sharedpref.getString("actionbar_color", null);
+
+			getSupportActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+		}
+
+		if (!sharedpref.contains("actionbar_color")) {
+
+			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor("#03a9f4")));
+
+			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor("#03a9f4")));
+
+		} else {
+
+			actionbar_colors = sharedpref.getString("actionbar_color", null);
+
+			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor(actionbar_colors)));
+
+			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor(actionbar_colors)));
+
+		}
+
+		
+		ActionBar bar = getSupportActionBar();
+
+		bar.setIcon(new ColorDrawable(getResources().getColor(
+				android.R.color.transparent)));
+		
 		if (checkbox != null) {
 			if (checkbox.contains("true")) {
 				try {
