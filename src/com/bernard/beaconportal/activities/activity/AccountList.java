@@ -41,8 +41,6 @@ public abstract class AccountList extends K9ListActivity implements
 		OnItemClickListener {
 	private FontSizes mFontSizes = K9.getFontSizes();
 
-	
-
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);

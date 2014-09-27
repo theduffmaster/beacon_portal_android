@@ -196,9 +196,9 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 		mController = MessagingController.getInstance(getActivity()
 				.getApplication());
 		mInitialized = true;
-		
+
 		MessageList.mDrawerToggle.setDrawerIndicatorEnabled(false);
-	   
+
 	}
 
 	@Override
@@ -248,8 +248,8 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 				.getMessageHeaderView());
 
 		// mMessageView.setBackgroundColor(Color.WHITE);
-		
-				return view;
+
+		return view;
 	}
 
 	@Override
@@ -961,16 +961,14 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {   
-	    // Get item selected and deal with it
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            //called when the up affordance/carat in actionbar is pressed
-	            getActivity().onBackPressed();
-	         
-	            
-	       
-	    }
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Get item selected and deal with it
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// called when the up affordance/carat in actionbar is pressed
+			getActivity().onBackPressed();
+
+		}
 		return true;
 	}
 }

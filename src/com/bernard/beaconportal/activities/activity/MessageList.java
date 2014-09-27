@@ -1042,26 +1042,20 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] {
-					"Homework Due",
-					"Schedule", "Options", "Logout" };
+			title = new String[] { "Homework Due", "Schedule", "Options",
+					"Logout" };
 
-			icon = new int[] {
-					R.drawable.ic_action_duehomework,
+			icon = new int[] { R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] {
-						"",
-						"", "", "" };
+				count = new String[] { "", "", "", "" };
 
 			} else {
 
-				count = new String[] {
-						counterss,
-						"", "", "" };
+				count = new String[] { counterss, "", "", "" };
 
 			}
 
@@ -1069,21 +1063,16 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] {
-						"",
-						"", "", "" };
+				count = new String[] { "", "", "", "" };
 
 			} else {
 
-				count = new String[] { "",
-						counterss,
-						"", "" };
+				count = new String[] { "", counterss, "", "" };
 
 			}
 
-			title = new String[] { "Schedule",
-					"Homework Due",
-					"Options", "Logout" };
+			title = new String[] { "Schedule", "Homework Due", "Options",
+					"Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_duehomework,
@@ -1177,8 +1166,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
-	
-		
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
 				R.drawable.ic_drawer, R.string.drawer_open,
 				R.string.drawer_close) {
@@ -1193,7 +1180,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			public void onDrawerOpened(View drawerView) {
 				// TODO Auto-generated method stub
 
-				
 				super.onDrawerOpened(drawerView);
 			}
 		};
@@ -1202,8 +1188,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 	}
 
-	
-	
 	private StorageManager.StorageListener storageListener = new StorageManager.StorageListener() {
 
 		@Override
@@ -1221,23 +1205,17 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 
-		
-		
 		mDrawerToggle.syncState();
-		
-		}
-	
+
+	}
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 
-		
-		
 		mDrawerToggle.onConfigurationChanged(newConfig);
-		
-		}
-	
+
+	}
 
 	@Override
 	public void onResume() {
@@ -1361,26 +1339,20 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] {
-					"Homework Due",
-					"Schedule", "Options", "Logout" };
+			title = new String[] { "Homework Due", "Schedule", "Options",
+					"Logout" };
 
-			icon = new int[] {
-					R.drawable.ic_action_duehomework,
+			icon = new int[] { R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] {
-						"",
-						"", "", "" };
+				count = new String[] { "", "", "", "" };
 
 			} else {
 
-				count = new String[] {
-						counterss,
-						"", "", "", "" };
+				count = new String[] { counterss, "", "", "", "" };
 
 			}
 
@@ -1388,22 +1360,17 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] {
-						"",
-						"", "", "" };
+				count = new String[] { "", "", "", "" };
 
 			} else {
 
-				count = new String[] { "",
-						counterss,
-						"", "" };
+				count = new String[] { "", counterss, "", "" };
 
 			}
 
-			title = new String[] { "Schedule",
-					"Homework Due",
+			title = new String[] { "Schedule", "Homework Due",
 
-					"Options", "Logout" };
+			"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_duehomework,
@@ -1528,8 +1495,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 	}
 
-	
-	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// Shortcuts that work no matter what is selected
@@ -1752,7 +1717,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 				folder = (FolderInfoHolder) mAdapter.getItem(menuInfo.position);
 
-				if (menuInfo != null && mListView.getItemAtPosition(menuInfo.position) != null) {
+				if (menuInfo != null
+						&& mListView.getItemAtPosition(menuInfo.position) != null) {
 
 					mSelectedContextAccount = (BaseAccount) getListView()
 							.getItemAtPosition(menuInfo.position);
@@ -1777,7 +1743,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		case R.id.folder_settings:
 			mDrawerLayout.closeDrawer(Gravity.START);
 			FolderSettings.actionSettings(this, mAccount, folder.name);
-			
+
 			break;
 		case R.id.delete_account:
 			onDeleteAccount(realAccount);
@@ -2680,7 +2646,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			FragmentTransaction ft = fragmentManager.beginTransaction();
 			mMessageListFragment = MessageListFragment.newInstance(mSearch,
 					false, (K9.isThreadedViewEnabled() && !mNoThreading));
-			//ft.remove(mMessageListFragment);
+			// ft.remove(mMessageListFragment);
 			ft.commit();
 
 			Log.d("removed fragment?", "yes");
@@ -3014,22 +2980,21 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		if (mDisplayMode == DisplayMode.MESSAGE_VIEW
 				&& mMessageListWasDisplayed) {
 			showMessageList();
-			 
+
 		} else {
 			super.onBackPressed();
 		}
 		mDrawerToggle.setDrawerIndicatorEnabled(true);
-		
+
 		mDrawerLayout.closeDrawer(Gravity.START);
-		
+
 		SharedPreferences.Editor localEditor1 = getSharedPreferences(
 				"return_to_main", Context.MODE_PRIVATE).edit();
 
 		localEditor1.putString("fragment_to_start", "0");
 
 		localEditor1.commit();
-		
-		
+
 	}
 
 	/**

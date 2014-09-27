@@ -67,11 +67,13 @@ import com.bernard.beaconportal.activities.AccountStats;
 import com.bernard.beaconportal.activities.BaseAccount;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.activity.misc.ExtendedAsyncTask;
 import com.bernard.beaconportal.activities.activity.misc.NonConfigurationInstance;
 import com.bernard.beaconportal.activities.activity.setup.AccountSettings;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupBasics;
+import com.bernard.beaconportal.activities.activity.setup.AccountSetupNames;
 import com.bernard.beaconportal.activities.activity.setup.Prefs;
 import com.bernard.beaconportal.activities.activity.setup.WelcomeMessage;
 import com.bernard.beaconportal.activities.controller.MessagingController;
@@ -419,6 +421,14 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 
+		//on first run messagelist is run so emails can load in the background, then that redirects to accounts, 
+		//which now we redirect to MainActivity, since when there's an error accounts is loaded
+			
+		Intent intents = new Intent(Accounts.this, MainActivity.class);
+
+		startActivity(intents);
+
+		
 		if (!K9.isHideSpecialAccounts()) {
 			createSpecialAccounts();
 		}

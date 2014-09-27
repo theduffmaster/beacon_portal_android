@@ -35,11 +35,11 @@ import com.faizmalkani.floatingactionbutton.Fab;
 public class FragmentsView extends SherlockFragment {
 
 	private String background_colors;
-	
+
 	private Fab mFab;
-	
+
 	private int current_minutes;
-	
+
 	private String checkbox_edit;
 
 	@Override
@@ -47,8 +47,6 @@ public class FragmentsView extends SherlockFragment {
 			Bundle savedInstanceState) {
 		setHasOptionsMenu(true);
 
-		
-		
 		View view = inflater.inflate(R.layout.viewpager_schedule, container,
 				false);
 
@@ -70,8 +68,6 @@ public class FragmentsView extends SherlockFragment {
 					.getString("background_color", null);
 
 		}
-		
-		
 
 		ViewPager pager = (ViewPager) view.findViewById(R.id.viewPager1);
 
@@ -117,90 +113,85 @@ public class FragmentsView extends SherlockFragment {
 
 		}
 
-		
-		
 		mFab = (Fab) view.findViewById(R.id.fabbutton);
-		
-		SharedPreferences sharedpref = getActivity().getSharedPreferences("actionbar_color",
-				Context.MODE_PRIVATE);
+
+		SharedPreferences sharedpref = getActivity().getSharedPreferences(
+				"actionbar_color", Context.MODE_PRIVATE);
 
 		if (!sharedpref.contains("actionbar_color")) {
 
-					mFab.setFabColor(
-							Color.parseColor("#03a9f4"));
-					
+			mFab.setFabColor(Color.parseColor("#03a9f4"));
+
 		} else {
 
 			String actionbar_colors = sharedpref.getString("actionbar_color",
 					null);
 
-			mFab.setFabColor(
-					Color.parseColor(actionbar_colors));
+			mFab.setFabColor(Color.parseColor(actionbar_colors));
 
 		}
 
-		mFab.setFabDrawable(getResources().getDrawable(R.drawable.ic_action_edit));
-		
+		mFab.setFabDrawable(getResources().getDrawable(
+				R.drawable.ic_action_edit));
+
 		mFab.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				
+
 				alert_dialog();
-				
+
 			}
-            
-                
-        });
-		
-		SharedPreferences prefer = getActivity().getSharedPreferences("CheckBox_edit",
-				Context.MODE_PRIVATE);
+
+		});
+
+		SharedPreferences prefer = getActivity().getSharedPreferences(
+				"CheckBox_edit", Context.MODE_PRIVATE);
 
 		checkbox_edit = prefer.getString("checked", null);
-		
+
 		if (checkbox_edit != null) {
 			if (checkbox_edit.contains("true")) {
-				
+
 				mFab.setVisibility(View.GONE);
 			}
 		}
-		
-		
-//		Calendar now = Calendar.getInstance();
-//		int day = now.get(Calendar.DAY_OF_WEEK);
-//		
-//		
-//		tabs.setOnPageChangeListener(new OnPageChangeListener() {
-//		    public void onPageScrollStateChanged(int state) {}
-//
-//			@Override
-//			public void onPageScrolled(int arg0, float arg1, int arg2) {
-//				
-//				Calendar now = Calendar.getInstance();
-//				
-//				int hour = now.get(Calendar.HOUR_OF_DAY);
-//				int minute = now.get(Calendar.MINUTE);
-//				
-//				current_minutes = ((hour * 60) + minute);
-//				
-//				System.out.println("total_minutes= " + current_minutes);
-//				
-//			}
-//
-//			@Override
-//			public void onPageSelected(int arg0) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		    
-//		});
-//		
-//		
-//		
-//		if(day == 4){
-//			
-//		}
-		
+
+		// Calendar now = Calendar.getInstance();
+		// int day = now.get(Calendar.DAY_OF_WEEK);
+		//
+		//
+		// tabs.setOnPageChangeListener(new OnPageChangeListener() {
+		// public void onPageScrollStateChanged(int state) {}
+		//
+		// @Override
+		// public void onPageScrolled(int arg0, float arg1, int arg2) {
+		//
+		// Calendar now = Calendar.getInstance();
+		//
+		// int hour = now.get(Calendar.HOUR_OF_DAY);
+		// int minute = now.get(Calendar.MINUTE);
+		//
+		// current_minutes = ((hour * 60) + minute);
+		//
+		// System.out.println("total_minutes= " + current_minutes);
+		//
+		// }
+		//
+		// @Override
+		// public void onPageSelected(int arg0) {
+		// // TODO Auto-generated method stub
+		//
+		// }
+		//
+		// });
+		//
+		//
+		//
+		// if(day == 4){
+		//
+		// }
+
 		return view;
 	}
 
@@ -221,17 +212,16 @@ public class FragmentsView extends SherlockFragment {
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		
+
 		if (checkbox_edit != null) {
 			if (checkbox_edit.contains("true")) {
-				
+
 				inflater.inflate(R.menu.android_edit, menu);
 			}
 		}
-		
+
 		inflater.inflate(R.menu.android_help, menu);
-		
-		
+
 	}
 
 	@Override
@@ -245,17 +235,16 @@ public class FragmentsView extends SherlockFragment {
 
 			return true;
 
-		case R.id.edit:	
-			
+		case R.id.edit:
+
 			if (checkbox_edit != null) {
 				if (checkbox_edit.contains("true")) {
-					
+
 					alert_dialog();
-					
+
 				}
 			}
-			
-		
+
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -300,7 +289,7 @@ public class FragmentsView extends SherlockFragment {
 								startActivityForResult(myIntent, 0);
 								break;
 							case 1:
-								
+
 								Intent anIntent = new Intent(((Dialog) dialog)
 										.getContext(), FragmentsEdit.class);
 								startActivityForResult(anIntent, 0);

@@ -76,7 +76,7 @@
         
         <activity android:name=".MainActivity" 
             android:theme="@style/CustomActionBarTheme"
-            
+            android:launchMode="singleTop"
             android:windowSoftInputMode="stateAlwaysHidden">
             >
             

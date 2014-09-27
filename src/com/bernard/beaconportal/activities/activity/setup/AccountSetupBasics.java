@@ -421,8 +421,6 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 						localEditor.putInt("Month", month);
 
 						localEditor.apply();
-						
-						
 
 						dialog.dismiss();
 					}

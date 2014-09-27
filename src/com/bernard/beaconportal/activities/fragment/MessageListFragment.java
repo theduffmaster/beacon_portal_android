@@ -436,9 +436,9 @@ public class MessageListFragment extends Fragment implements
 	private boolean mIsThreadDisplay;
 
 	public ActionBarDrawerToggle mDrawerToggle;
-	
+
 	public static DrawerLayout mDrawerLayout;
-	
+
 	private Context mContext;
 
 	private final ActivityListener mListener = new MessageListActivityListener();
@@ -838,27 +838,22 @@ public class MessageListFragment extends Fragment implements
 		createCacheBroadcastReceiver(appContext);
 
 		mInitialized = true;
-		
+
 		MessageList.mDrawerToggle.setDrawerIndicatorEnabled(true);
-		
-		
-	}
-	
 
-protected void onPostCreate(Bundle savedInstanceState) {
-	
-
-	mDrawerToggle.syncState();
-	
 	}
 
+	protected void onPostCreate(Bundle savedInstanceState) {
 
-@Override
-public void onConfigurationChanged(Configuration newConfig) {
-	
+		mDrawerToggle.syncState();
 
-	mDrawerToggle.onConfigurationChanged(newConfig);
-	
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+
+		mDrawerToggle.onConfigurationChanged(newConfig);
+
 	}
 
 	@Override
@@ -879,8 +874,6 @@ public void onConfigurationChanged(Configuration newConfig) {
 
 		return view;
 	}
-	
-
 
 	@Override
 	public void onDestroyView() {
@@ -1449,8 +1442,6 @@ public void onConfigurationChanged(Configuration newConfig) {
 		mController.expunge(account, folderName, null);
 	}
 
-	
-	
 	private void showDialog(int dialogId) {
 		DialogFragment fragment;
 		switch (dialogId) {
@@ -3847,7 +3838,5 @@ public void onConfigurationChanged(Configuration newConfig) {
 	private boolean isPullToRefreshAllowed() {
 		return (isRemoteSearchAllowed() || isCheckMailAllowed());
 	}
-
-
 
 }

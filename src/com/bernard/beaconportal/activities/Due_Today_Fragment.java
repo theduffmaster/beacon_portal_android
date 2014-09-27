@@ -63,7 +63,7 @@ public class Due_Today_Fragment extends Fragment {
 	private View swipe;
 
 	private EnhancedListView list;
-	
+
 	private int count;
 
 	private int shared;
@@ -111,7 +111,8 @@ public class Due_Today_Fragment extends Fragment {
 				android.R.color.holo_blue_light,
 				android.R.color.holo_orange_light);
 
-		EnhancedListView lView = (EnhancedListView) swipe.findViewById(R.id.listView1);
+		EnhancedListView lView = (EnhancedListView) swipe
+				.findViewById(R.id.listView1);
 
 		lView.setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
@@ -187,40 +188,45 @@ public class Due_Today_Fragment extends Fragment {
 
 		lView.setDismissCallback(new OnDismissCallback() {
 
-			  public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
+			public EnhancedListView.Undoable onDismiss(
+					EnhancedListView listView, final int position) {
 
-				  final Due_Today_List item = (Due_Today_List) adapter.getItem(position);
-				  
-			    // Store the item for later undo
-				  
-			    // Remove the item from the adapter
-				  adapter.remove(adapter.getItem(position));
-			    // return an Undoable
-			    return new EnhancedListView.Undoable() {
-			      // Reinsert the item to the adapter
-			      @Override public void undo() {
-			        adapter.insert(item, position);
-			      }
+				final Due_Today_List item = (Due_Today_List) adapter
+						.getItem(position);
 
-			      // Return a string for your item
-			      @Override public String getTitle() {
-			        return "Deleted '"; // Plz, use the resource system :)
-			      }
+				// Store the item for later undo
 
-			      // Delete item completely from your persistent storage
-			      @Override public void discard() {
-			        
-			      }
-			    };
+				// Remove the item from the adapter
+				adapter.remove(adapter.getItem(position));
+				// return an Undoable
+				return new EnhancedListView.Undoable() {
+					// Reinsert the item to the adapter
+					@Override
+					public void undo() {
+						adapter.insert(item, position);
+					}
 
-			  }
+					// Return a string for your item
+					@Override
+					public String getTitle() {
+						return "Deleted '"; // Plz, use the resource system :)
+					}
 
-			});
-		
+					// Delete item completely from your persistent storage
+					@Override
+					public void discard() {
+
+					}
+				};
+
+			}
+
+		});
+
 		lView.setUndoStyle(UndoStyle.MULTILEVEL_POPUP);
-		
+
 		lView.enableSwipeToDismiss();
-		
+
 		return swipe;
 
 	}
@@ -266,7 +272,7 @@ public class Due_Today_Fragment extends Fragment {
 				.getApplicationContext().getSharedPreferences("due_today",
 						Context.MODE_PRIVATE);
 
-		String Due_Today = Today_Homework.getString("duetoday_content", "");
+		String Due_Today = Today_Homework.getString("homework_content", "");
 
 		Due_Today = Due_Today.replaceAll("^\"|\"$", "");
 
@@ -390,73 +396,77 @@ public class Due_Today_Fragment extends Fragment {
 			SharedPreferences bDay = getActivity().getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE);
 
-		   String day1 =  Integer.toString(bDay.getInt("Day", 0));
+			String day1 = Integer.toString(bDay.getInt("Day", 0));
 
-		   String year1 =  Integer.toString(bDay.getInt("Year", 0));
+			String year1 = Integer.toString(bDay.getInt("Year", 0));
 
-		   String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
-			
+			String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
+
 			SharedPreferences userName = getActivity().getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE);
 
 			String day = day1.replaceFirst("^0+(?!$)", "");
-			
+
 			String month = month1.replaceFirst("^0+(?!$)", "");
-			
+
 			String year = year1.replaceFirst("^0+(?!$)", "");
-			
+
 			String birthday = month + "/" + day + "/" + year;
-			
+
 			System.out.println("Birthday = " + birthday);
-			
+
 			String user = userName.getString("username", "");
 
-			//String user = (username).split("@")[0]; 
-			
+			// String user = (username).split("@")[0];
+
 			System.out.println("Username = " + user);
-			
-			
+
 			try {
 
-//				HttpClient httpClient = new DefaultHttpClient();
+				// HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
-//				HttpGet httpGet = new HttpGet(
-//						"http://www2.beaconschool.org/~markovic/lincoln.php");
-				
-				HttpClient httpclient = new DefaultHttpClient();
-			    HttpPost httppost = new HttpPost("http://www2.beaconschool.org/~markovic/lincoln.php");
-			    
-			    try {
-			        // Add your data
-			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-			        nameValuePairs.add(new BasicNameValuePair("username", user));
-			        nameValuePairs.add(new BasicNameValuePair("birthday", birthday));
-			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+				// HttpGet httpGet = new HttpGet(
+				// "http://www2.beaconschool.org/~markovic/lincoln.php");
 
-			        // Execute HTTP Post Request
-			        response = httpclient.execute(httppost);
-			        
-			        Log.d("Http Response:", response.toString());
-			        
-			    } catch (ClientProtocolException e) {
-			        // TODO Auto-generated catch block
-			    } catch (IOException e) {
-			        // TODO Auto-generated catch block
-			    }
+				HttpClient httpclient = new DefaultHttpClient();
+				HttpPost httppost = new HttpPost(
+						"http://www2.beaconschool.org/~markovic/lincoln.php");
+
+				try {
+					// Add your data
+					List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
+							2);
+					nameValuePairs
+							.add(new BasicNameValuePair("username", user));
+					nameValuePairs.add(new BasicNameValuePair("birthday",
+							birthday));
+					httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+					// Execute HTTP Post Request
+					response = httpclient.execute(httppost);
+
+					Log.d("Http Response:", response.toString());
+
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+				}
 
 				try {
 					Log.d("receiver", "animation stopped and downloaded file");
 
-					String duetoday = new Scanner(response.getEntity()
+					String homework = new Scanner(response.getEntity()
 							.getContent(), "UTF-8").useDelimiter("\\A").next();
 
-					//String duetoday = Html.fromHtml(duetoday_html).toString();
+					// String homework =
+					// Html.fromHtml(homework_html).toString();
 
 					SharedPreferences.Editor localEditor = getActivity()
 							.getSharedPreferences("due_today",
 									Context.MODE_PRIVATE).edit();
 
-					localEditor.putString("duetoday_content", duetoday);
+					localEditor.putString("homework_content", homework);
 
 					localEditor.apply();
 
@@ -539,69 +549,70 @@ public class Due_Today_Fragment extends Fragment {
 
 			String Description1 = Todays_Homework.getString("due_today7", null);
 
-			if(Band1 != null){
-				
+			if (Band1 != null) {
+
 				Band = Band1.trim();
 
-				}
-				
-				if(Number1 != null){
-				
-					Number = Number1.trim();
-				
-				}
-				
-				if(Class1 != null){
-				
+			}
+
+			if (Number1 != null) {
+
+				Number = Number1.trim();
+
+			}
+
+			if (Class1 != null) {
+
 				Class = Class1.trim();
 
-				}
-				
-				if(Teacher1 != null){
-				
+			}
+
+			if (Teacher1 != null) {
+
 				Teacher = Teacher1.trim();
 
-				}
-				
-				if(Title1 != null){
-				
+			}
+
+			if (Title1 != null) {
+
 				Title = Title1.trim();
 
-				}
-				
-				if(Date1 != null){
-				
+			}
+
+			if (Date1 != null) {
+
 				Date = Date1.trim();
 
-				}
-				
-				if(Type1 != null){
-				
+			}
+
+			if (Type1 != null) {
+
 				Type = Type1.trim();
 
-				}
-				
-				if(Description1 != null){
-				
+			}
+
+			if (Description1 != null) {
+
 				Description = Description1.trim();
 
-				}
-				
-				SharedPreferences description_check = getActivity()
-		  				.getApplicationContext().getSharedPreferences(
-		  						"descriptioncheck", Context.MODE_PRIVATE);
+			}
 
-		  		String descriptionCheck = description_check.getString(
-		  				"description", "");
-		  		
+			SharedPreferences description_check = getActivity()
+					.getApplicationContext().getSharedPreferences(
+							"descriptioncheck", Context.MODE_PRIVATE);
+
+			String descriptionCheck = description_check.getString(
+					"description", "");
+
 			if (!Type.isEmpty() && !Description.equals(descriptionCheck)) {
 
 				SharedPreferences.Editor checkeditor = getActivity()
-	  					.getApplicationContext().getSharedPreferences(
-	  							"descriptioncheck", Context.MODE_PRIVATE).edit();
-  				
+						.getApplicationContext()
+						.getSharedPreferences("descriptioncheck",
+								Context.MODE_PRIVATE).edit();
+
 				checkeditor.putString("description", Description);
-  				
+
 				checkeditor.commit();
 				due_today_list.add(new Due_Today_List(Band, Number, Class,
 						Teacher, Title, Date, Type, Description));
@@ -643,160 +654,162 @@ public class Due_Today_Fragment extends Fragment {
 
 		list.setDismissCallback(new OnDismissCallback() {
 
-			  public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
+			public EnhancedListView.Undoable onDismiss(
+					EnhancedListView listView, final int position) {
 
-				  Log.d("shared clear1", "yes");
-				  
-				  final Due_Today_List item = (Due_Today_List) adapter.getItem(position);
-			    // Store the item for later undo
-				  
-				  final Due_Today_List currenthomeworkdue = due_today_list.get(position);
-				  
-			    // Remove the item from the adapter
-				  adapter.remove(adapter.getItem(position));
-				  
-String Description_Check = currenthomeworkdue.getDescription();
-		    	  
-		    	  SharedPreferences Tommorow_Homework_Counter = getActivity()
-		  				.getApplicationContext().getSharedPreferences(
-		  						"due_today_counter", Context.MODE_PRIVATE);
+				Log.d("shared clear1", "yes");
 
-		  		int counterssss = Tommorow_Homework_Counter.getInt(
-		  				"last shared preference", 0);
+				final Due_Today_List item = (Due_Today_List) adapter
+						.getItem(position);
+				// Store the item for later undo
 
-		  		int countersssss = counterssss + 1;
-		  		
-		  		for (int i = 0; i < countersssss; i++) {
+				final Due_Today_List currenthomeworkdue = due_today_list
+						.get(position);
 
-		  			due_today_shared = "due_today" + Integer.toString(i);
+				// Remove the item from the adapter
+				adapter.remove(adapter.getItem(position));
 
-		  			SharedPreferences Tommorows_Homework = getActivity()
-		  					.getApplicationContext().getSharedPreferences(
-		  							due_today_shared, Context.MODE_PRIVATE);
+				String Description_Check = currenthomeworkdue.getDescription();
 
-		  			String Band1 = Tommorows_Homework.getString("due_today0", null);
+				SharedPreferences Tommorow_Homework_Counter = getActivity()
+						.getApplicationContext().getSharedPreferences(
+								"due_today_counter", Context.MODE_PRIVATE);
 
-		  			String Number1 = Tommorows_Homework.getString("due_today1", null);
+				int counterssss = Tommorow_Homework_Counter.getInt(
+						"last shared preference", 0);
 
-		  			String Class1 = Tommorows_Homework.getString("due_today2", null);
+				int countersssss = counterssss + 1;
 
-		  			String Teacher1 = Tommorows_Homework.getString("due_today3", null);
+				for (int i = 0; i < countersssss; i++) {
 
-		  			String Title1 = Tommorows_Homework.getString("due_today4", null);
+					due_today_shared = "due_today" + Integer.toString(i);
 
-		  			String Date1 = Tommorows_Homework.getString("due_today5", null);
+					SharedPreferences Tommorows_Homework = getActivity()
+							.getApplicationContext().getSharedPreferences(
+									due_today_shared, Context.MODE_PRIVATE);
 
-		  			String Type1 = Tommorows_Homework.getString("due_today6", null);
+					String Band1 = Tommorows_Homework.getString("due_today0",
+							null);
 
-		  			String Description1 = Tommorows_Homework.getString("due_today7", null);
+					String Number1 = Tommorows_Homework.getString("due_today1",
+							null);
 
-		  			if(Band1 != null){
-		  				
-		  				Band = Band1.trim();
+					String Class1 = Tommorows_Homework.getString("due_today2",
+							null);
 
-		  				}
-		  				
-		  				if(Number1 != null){
-		  				
-		  					Number = Number1.trim();
-		  				
-		  				}
-		  				
-		  				if(Class1 != null){
-		  				
-		  				Class = Class1.trim();
+					String Teacher1 = Tommorows_Homework.getString(
+							"due_today3", null);
 
-		  				}
-		  				
-		  				if(Teacher1 != null){
-		  				
-		  				Teacher = Teacher1.trim();
+					String Title1 = Tommorows_Homework.getString("due_today4",
+							null);
 
-		  				}
-		  				
-		  				if(Title1 != null){
-		  				
-		  				Title = Title1.trim();
+					String Date1 = Tommorows_Homework.getString("due_today5",
+							null);
 
-		  				}
-		  				
-		  				if(Date1 != null){
-		  				
-		  				Date = Date1.trim();
+					String Type1 = Tommorows_Homework.getString("due_today6",
+							null);
 
-		  				}
-		  				
-		  				if(Type1 != null){
-		  				
-		  				Type = Type1.trim();
+					String Description1 = Tommorows_Homework.getString(
+							"due_today7", null);
 
-		  				}
-		  				
-		  				if(Description1 != null){
-		  				
-		  				Description = Description1.trim();
+					if (Band1 != null) {
 
-		  				}
+						Band = Band1.trim();
 
-		  				Log.d("shared clear", "no");
-		  				
-		  			if (Description_Check.equals(Description)) {
+					}
 
-		  				Log.d("shared clear", "yes");
-		  				
-		  				SharedPreferences.Editor localeditor = getActivity()
-			  					.getApplicationContext().getSharedPreferences(
-			  							due_today_shared, Context.MODE_PRIVATE).edit();
-		  				
-		  				localeditor.clear();
-		  				
-		  				localeditor.commit();
-		  				
+					if (Number1 != null) {
 
-		  			}
+						Number = Number1.trim();
 
-		  		}
-				  
-			    // return an Undoable
-			    return new EnhancedListView.Undoable() {
-			      // Reinsert the item to the adapter
-			      @Override public void undo() {
-			        
-			    	  adapter.insert(item, position);
-			      
-			  	
-		    	  
-		      }
-			      
-			      
+					}
 
-			      // Return a string for your item
-			          
+					if (Class1 != null) {
 
-			      // Delete item completely from your persistent storage
-			      @Override public void discard() {
-			        
-			    
-			    };
+						Class = Class1.trim();
 
-			  };
+					}
 
-			  }
-			  
-			});
-		
-		
+					if (Teacher1 != null) {
+
+						Teacher = Teacher1.trim();
+
+					}
+
+					if (Title1 != null) {
+
+						Title = Title1.trim();
+
+					}
+
+					if (Date1 != null) {
+
+						Date = Date1.trim();
+
+					}
+
+					if (Type1 != null) {
+
+						Type = Type1.trim();
+
+					}
+
+					if (Description1 != null) {
+
+						Description = Description1.trim();
+
+					}
+
+					Log.d("shared clear", "no");
+
+					if (Description_Check.equals(Description)) {
+
+						Log.d("shared clear", "yes");
+
+						SharedPreferences.Editor localeditor = getActivity()
+								.getApplicationContext()
+								.getSharedPreferences(due_today_shared,
+										Context.MODE_PRIVATE).edit();
+
+						localeditor.clear();
+
+						localeditor.commit();
+
+					}
+
+				}
+
+				// return an Undoable
+				return new EnhancedListView.Undoable() {
+					// Reinsert the item to the adapter
+					@Override
+					public void undo() {
+
+						adapter.insert(item, position);
+
+					}
+
+					// Return a string for your item
+
+					// Delete item completely from your persistent storage
+					@Override
+					public void discard() {
+
+					};
+
+				};
+
+			}
+
+		});
+
 		list.setUndoStyle(UndoStyle.MULTILEVEL_POPUP);
-		
+
 		list.setRequireTouchBeforeDismiss(false);
-		
+
 		list.enableSwipeToDismiss();
-	
-	
+
 	}
-		
-	
-	
 
 	public class Due_TodayAdapter extends ArrayAdapter<Due_Today_List> {
 		public Due_TodayAdapter() {
@@ -845,7 +858,7 @@ String Description_Check = currenthomeworkdue.getDescription();
 			Description = currenthomeworkdue.getDescription().toString();
 
 			Description = Description.replaceAll("[\\n\\t]", "");
-			
+
 			Description = Html.fromHtml(Description).toString();
 
 			if (currenthomeworkdue.Band.substring(0,

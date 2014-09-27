@@ -4070,22 +4070,21 @@ public class MessagingController implements Runnable {
 			@Override
 			public void run() {
 				try {
-					
+
 					try {
-					 
-					AccountStats stats = account.getStats(context);
-					
-					listener.accountStatusChanged(account, stats);
-					
-					} catch (NullPointerException e) { 
 
 						AccountStats stats = account.getStats(context);
-						
+
 						listener.accountStatusChanged(account, stats);
-						
+
+					} catch (NullPointerException e) {
+
+						AccountStats stats = account.getStats(context);
+
+						listener.accountStatusChanged(account, stats);
+
 					}
-					
-					
+
 				} catch (MessagingException me) {
 					Log.e(K9.LOG_TAG, "Count not get unread count for account "
 							+ account.getDescription(), me);

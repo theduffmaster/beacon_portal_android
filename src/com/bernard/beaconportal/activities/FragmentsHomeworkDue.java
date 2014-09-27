@@ -21,7 +21,7 @@ import com.bernard.beaconportal.activities.R;
 public class FragmentsHomeworkDue extends SherlockFragment {
 
 	private String background_colors;
-	
+
 	private Context context;
 
 	@Override
@@ -51,14 +51,13 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 
 		final ViewPager pager = (ViewPager) view.findViewById(R.id.viewPager);
 
-		
 		RelativeLayout layout = (RelativeLayout) view
 				.findViewById(R.id.homeworkdue_container);
 
 		layout.setBackgroundColor(Color.parseColor(background_colors));
 
 		pager.setAdapter(new ViewPagerAdapterHomework(getChildFragmentManager()));
-		
+
 		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view
 				.findViewById(R.id.pagerTabStrip);
 		tabs.setViewPager(pager);

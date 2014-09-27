@@ -9,17 +9,16 @@ import android.view.View;
 import android.widget.ListView;
 
 public class ScrollLock extends ViewPager {
-  public ScrollLock(Context context, AttributeSet attrs) {
-    super(context, attrs);
-  }
+	public ScrollLock(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
 
-  @Override
-  protected boolean canScroll(View v, boolean checkV, int dx, int x,
-                              int y) {
-    if (v instanceof ListView) {
-      return(false);
-    }
+	@Override
+	protected boolean canScroll(View v, boolean checkV, int dx, int x, int y) {
+		if (v instanceof ListView) {
+			return (false);
+		}
 
-    return(super.canScroll(v, checkV, dx, x, y));
-  }
+		return (super.canScroll(v, checkV, dx, x, y));
+	}
 }

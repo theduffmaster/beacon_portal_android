@@ -329,7 +329,6 @@ public class FolderList extends K9ListActivity {
 
 		context = this;
 
-		
 	}
 
 	private void initializeActionBar() {

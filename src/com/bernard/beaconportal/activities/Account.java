@@ -52,9 +52,9 @@ import com.larswerkman.colorpicker.ColorPicker;
  * account is defined by a UUID.
  */
 public class Account implements BaseAccount {
-	
+
 	protected Context context;
-	
+
 	/**
 	 * Default value for the inbox folder (never changes for POP3 and IMAP)
 	 */
@@ -1116,11 +1116,11 @@ public class Account implements BaseAccount {
 	}
 
 	public synchronized void setDisplayCount(int displayCount) {
-//		if (displayCount != -1) {
-//			this.mDisplayCount = displayCount;
-//		} else {
-			this.mDisplayCount = K9.DEFAULT_VISIBLE_LIMIT;
-//		}
+		// if (displayCount != -1) {
+		// this.mDisplayCount = displayCount;
+		// } else {
+		this.mDisplayCount = K9.DEFAULT_VISIBLE_LIMIT;
+		// }
 		resetVisibleLimits();
 	}
 
