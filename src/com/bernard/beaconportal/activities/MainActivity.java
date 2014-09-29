@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
@@ -49,6 +51,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Html;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -86,6 +89,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	private AlertDialog alertDialog;
 
+	private int check;
+	
 	DrawerLayout mDrawerLayout;
 	LinearLayout mDrawerLinear;
 	TextView mWelcomePerson;
@@ -165,7 +170,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			parse_count();
 
-			new Update().execute();
+			new Internet_check_reload().execute();
 
 		} else {
 
@@ -269,11 +274,29 @@ public class MainActivity extends SherlockFragmentActivity {
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
 
+		SharedPreferences name = getSharedPreferences("Login_info",
+				Context.MODE_PRIVATE);
+
+		String person = name.getString("name", "");
+
+		mWelcomePerson = (TextView) findViewById(R.id.Person);
+
+		mWelcomePerson.setText(person);
+
+		mWelcome = (TextView) findViewById(R.id.Welcome);
+		
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getSupportActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#03a9f4")));
 
+
+			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor("#03a9f4")));
+
+			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor("#03a9f4")));
+			
 		} else {
 
 			actionbar_colors = sharedpref.getString("actionbar_color", null);
@@ -281,6 +304,14 @@ public class MainActivity extends SherlockFragmentActivity {
 			getSupportActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor(actionbar_colors)));
 
+			actionbar_colors = sharedpref.getString("actionbar_color", null);
+
+			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor(actionbar_colors)));
+
+			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor(actionbar_colors)));
+			
 		}
 
 		ActionBar bar = getSupportActionBar();
@@ -351,37 +382,6 @@ public class MainActivity extends SherlockFragmentActivity {
 		mDrawerLinear = (LinearLayout) findViewById(R.id.left_drawer);
 
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-		SharedPreferences name = getSharedPreferences("Login_info",
-				Context.MODE_PRIVATE);
-
-		String person = name.getString("name", "");
-
-		mWelcomePerson = (TextView) findViewById(R.id.Person);
-
-		mWelcomePerson.setText(person);
-
-		mWelcome = (TextView) findViewById(R.id.Welcome);
-
-		if (!sharedpref.contains("actionbar_color")) {
-
-			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
-
-			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
-
-		} else {
-
-			actionbar_colors = sharedpref.getString("actionbar_color", null);
-
-			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor(actionbar_colors)));
-
-			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor(actionbar_colors)));
-
-		}
 
 		mDrawerList = (ListView) findViewById(R.id.listview_drawer);
 
@@ -472,6 +472,8 @@ public class MainActivity extends SherlockFragmentActivity {
 				.edit();
 		
 		localEditor1.clear();
+		
+		localEditor1.commit();
 	
 	}
 
@@ -486,15 +488,31 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		String checkbox = pref.getString("checked", null);
 
-
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
 
+		SharedPreferences name = getSharedPreferences("Login_info",
+				Context.MODE_PRIVATE);
+
+		String person = name.getString("name", "");
+
+		mWelcomePerson = (TextView) findViewById(R.id.Person);
+
+		mWelcomePerson.setText(person);
+
+		mWelcome = (TextView) findViewById(R.id.Welcome);
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getSupportActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#03a9f4")));
 
+
+			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor("#03a9f4")));
+
+			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor("#03a9f4")));
+			
 		} else {
 
 			actionbar_colors = sharedpref.getString("actionbar_color", null);
@@ -502,18 +520,6 @@ public class MainActivity extends SherlockFragmentActivity {
 			getSupportActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor(actionbar_colors)));
 
-		}
-
-		if (!sharedpref.contains("actionbar_color")) {
-
-			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
-
-			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
-
-		} else {
-
 			actionbar_colors = sharedpref.getString("actionbar_color", null);
 
 			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
@@ -521,7 +527,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
 					.parseColor(actionbar_colors)));
-
+			
 		}
 
 		
@@ -611,7 +617,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		K9count = Integer.toString(countssssss);
 
 		System.out.println("k9 Unread Count = " + countssssss);
-
+		
 	}
 
 	public void inbox() {
@@ -647,39 +653,24 @@ public class MainActivity extends SherlockFragmentActivity {
 		@Override
 		protected Void doInBackground(String... params) {
 
-			SharedPreferences sharedpreferss = getSharedPreferences(
-					"due_tommorow_counter", Context.MODE_PRIVATE);
-
-			while (!sharedpreferss.contains("last shared preference")) {
-
-				System.out.println("Internet is not working, still looping");
-
-				SharedPreferences.Editor localEditor = getSharedPreferences(
-						"first_inbox", Context.MODE_PRIVATE).edit();
-
-				localEditor.putString("first_inbox", "ran for the first time");
-
-				Intent intent1 = new Intent(MainActivity.this, Accounts.class);
-
-				startActivity(intent1);
-
-				localEditor.commit();
+			check = 0;
+			
+			while (check != 1) {
 
 				if (AppStatus.getInstance(getApplicationContext()).isOnline(
 						getApplicationContext())) {
 
 					new Update().execute();
 
-					System.out.println("INTERNET WORKED!");
+					System.out.println("INTERNET WORKED!, UPDATING CONTENT");
 
+					check = 1;
+					
 					break;
-
 				}
-
 			}
 			return null;
 		}
-
 	}
 
 	public class Update extends AsyncTask<String, Void, Void> {
@@ -756,10 +747,16 @@ public class MainActivity extends SherlockFragmentActivity {
 					// String homework =
 					// Html.fromHtml(homework_html).toString();
 
+					SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd hh:mm a");
+					Calendar cal = Calendar.getInstance();
+					String downloaded = dateFormat.format(cal.getTime());
+					
 					SharedPreferences.Editor localEditor = getSharedPreferences(
 							"homework", Context.MODE_PRIVATE).edit();
 
 					localEditor.putString("homework_content", homework);
+					
+					localEditor.putString("download_date", downloaded);
 
 					localEditor.apply();
 
@@ -771,7 +768,10 @@ public class MainActivity extends SherlockFragmentActivity {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}catch (NullPointerException e) {
+					
+					e.printStackTrace();
+			}
 
 			} finally {
 

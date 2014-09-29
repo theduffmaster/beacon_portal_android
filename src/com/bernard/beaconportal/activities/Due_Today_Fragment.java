@@ -5,7 +5,9 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
@@ -49,6 +51,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.Due_Tommorow_Fragment.Update;
 
 import de.timroes.android.listview.EnhancedListView;
 import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
@@ -106,6 +109,8 @@ public class Due_Today_Fragment extends Fragment {
 
 		swipeLayout.setEnabled(false);
 
+		new Download().execute();
+		
 		swipeLayout.setColorSchemeResources(android.R.color.holo_blue_light,
 				android.R.color.holo_orange_light,
 				android.R.color.holo_blue_light,
@@ -173,13 +178,33 @@ public class Due_Today_Fragment extends Fragment {
 
 						} else {
 
+							SharedPreferences downloaded_date = getActivity()
+									.getSharedPreferences("homework",
+											Context.MODE_PRIVATE);
+							
+							String download_date = "No internet connection, refreshing homework using homework downloaded at " + downloaded_date.getString("download_date", "");
+							
+							String downloaded = "refreshed homework using homework downloaded at " + downloaded_date.getString("download_date", "");
+							
 							Toast.makeText(getActivity(),
-									"No Internet Connection", 8000).show();
+									download_date , Toast.LENGTH_LONG).show();
+							
+							due_today_list.clear();
+
+							parse_due_today_string();
+
+							parse_due_today_content();
+							
+							adapter.notifyDataSetChanged();
+							
+							swipeLayout.setRefreshing(false);
+							
+							Toast.makeText(getActivity(),
+									downloaded , Toast.LENGTH_LONG).show();
+							
 							Log.d("Home",
 									"############################You are not online!!!!");
-
-							swipeLayout.setRefreshing(false);
-
+							
 						}
 
 					}
@@ -236,12 +261,6 @@ public class Due_Today_Fragment extends Fragment {
 
 		super.onResume();
 
-		SharedPreferences Today_Homework_Counter = getActivity()
-				.getApplicationContext().getSharedPreferences(
-						"due_today_counter", Context.MODE_PRIVATE);
-
-		if (Today_Homework_Counter.contains("last shared preference")) {
-
 			read_due_today_list = new ArrayList<String>();
 
 			due_today_list = new ArrayList<Due_Today_List>();
@@ -251,18 +270,7 @@ public class Due_Today_Fragment extends Fragment {
 			populateListView();
 
 			registerClickCallback();
-
-		}
-
-		String counter = Integer.toString(count);
-
-		SharedPreferences.Editor localEditor = getActivity()
-				.getSharedPreferences("due_today_counter", Context.MODE_PRIVATE)
-				.edit();
-
-		localEditor.putString("due_today_counter", counter);
-
-		localEditor.apply();
+			
 
 	}
 
@@ -387,6 +395,114 @@ public class Due_Today_Fragment extends Fragment {
 		}
 	}
 
+	public class Download extends AsyncTask<String, Void, Void> {
+
+		@Override
+		protected Void doInBackground(String... urls) {
+			SharedPreferences bDay = getActivity().getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE);
+
+			String day1 = Integer.toString(bDay.getInt("Day", 0));
+
+			String year1 = Integer.toString(bDay.getInt("Year", 0));
+
+			String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
+
+			SharedPreferences userName = getActivity().getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE);
+
+			String day = day1.replaceFirst("^0+(?!$)", "");
+
+			String month = month1.replaceFirst("^0+(?!$)", "");
+
+			String year = year1.replaceFirst("^0+(?!$)", "");
+
+			String birthday = month + "/" + day + "/" + year;
+
+			System.out.println("Birthday = " + birthday);
+
+			String user = userName.getString("username", "");
+
+			// String user = (username).split("@")[0];
+
+			System.out.println("Username = " + user);
+
+			try {
+
+				// HttpClient httpClient = new DefaultHttpClient();
+				HttpContext localContext = new BasicHttpContext();
+				// HttpGet httpGet = new HttpGet(
+				// "http://www2.beaconschool.org/~markovic/lincoln.php");
+
+				HttpClient httpclient = new DefaultHttpClient();
+				HttpPost httppost = new HttpPost(
+						"http://www2.beaconschool.org/~markovic/lincoln.php");
+
+				try {
+					// Add your data
+					List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
+							2);
+					nameValuePairs
+							.add(new BasicNameValuePair("username", user));
+					nameValuePairs.add(new BasicNameValuePair("birthday",
+							birthday));
+					httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+					// Execute HTTP Post Request
+					response = httpclient.execute(httppost);
+
+					Log.d("Http Response:", response.toString());
+
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+				}
+
+				try {
+					Log.d("receiver", "animation stopped and downloaded file");
+
+					String homework = new Scanner(response.getEntity()
+							.getContent(), "UTF-8").useDelimiter("\\A").next();
+
+					// String homework =
+					// Html.fromHtml(duetommorow_html).toString();
+
+					SharedPreferences.Editor localEditor = getActivity()
+							.getSharedPreferences("homework",
+									Context.MODE_PRIVATE).edit();
+
+					SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd hh:mm a");
+					Calendar cal = Calendar.getInstance();
+					String downloaded = dateFormat.format(cal.getTime());
+
+					localEditor.putString("homework_content", homework);
+					
+					localEditor.putString("download_date", downloaded);
+
+					localEditor.apply();
+
+
+				} catch (IllegalStateException e) {
+
+					e.printStackTrace();
+				} catch (IOException e) {
+
+					e.printStackTrace();
+				}catch (NullPointerException e) {
+					e.printStackTrace();
+			}
+
+			} finally {
+
+			}
+			return null;
+
+		}
+
+
+	}
+	
 	public class Update extends AsyncTask<String, Void, Void> {
 
 		private final HttpClient Client = new DefaultHttpClient();
@@ -465,8 +581,14 @@ public class Due_Today_Fragment extends Fragment {
 					SharedPreferences.Editor localEditor = getActivity()
 							.getSharedPreferences("due_today",
 									Context.MODE_PRIVATE).edit();
+					
+					SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd hh:mm a");
+					Calendar cal = Calendar.getInstance();
+					String downloaded = dateFormat.format(cal.getTime());
 
 					localEditor.putString("homework_content", homework);
+					
+					localEditor.putString("download_date", downloaded);
 
 					localEditor.apply();
 
@@ -484,7 +606,9 @@ public class Due_Today_Fragment extends Fragment {
 				} catch (IOException e) {
 
 					e.printStackTrace();
-				}
+				}catch (NullPointerException e) {
+					e.printStackTrace();	
+			}
 
 			} finally {
 
