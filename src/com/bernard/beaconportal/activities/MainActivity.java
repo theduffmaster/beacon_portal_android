@@ -6,8 +6,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import org.apache.http.HttpResponse;
@@ -49,6 +52,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Html;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -84,19 +88,23 @@ public class MainActivity extends SherlockFragmentActivity {
 	BroadcastReceiver receiver = null;
 	IntentFilter filter = null;
 
+	private AlertDialog alertDialog;
+
+	private int check;
+	
 	DrawerLayout mDrawerLayout;
 	LinearLayout mDrawerLinear;
 	TextView mWelcomePerson;
 	TextView mWelcome;
 	ListView mDrawerList;
 	ActionBarDrawerToggle mDrawerToggle;
-	MenuListAdapter mMenuAdapter;
+	private MenuListAdapter mMenuAdapter;
 	String actionbar_colors, background_colorsString;
 	private String Show_View;
 	String[] title;
 	String[] count;
 	int[] icon;
-	private String counterss;
+	public static String counterss;
 	private int counters;
 	Fragment fragment1 = new FragmentsView();
 	Fragment fragment2 = new FragmentsHomeworkDue();
@@ -107,7 +115,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	private String KEY_STATE_TITLE;
 
 	private HttpResponse response;
-	
+
 	private int starts = 0;
 
 	private String checkbox_edit;
@@ -115,6 +123,8 @@ public class MainActivity extends SherlockFragmentActivity {
 	private BaseAccount mSelectedContextAccount;
 
 	private int shared1;
+
+	private int number;
 
 	private int countersss1;
 
@@ -139,98 +149,46 @@ public class MainActivity extends SherlockFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		InputMethodManager im = (InputMethodManager) this
 				.getApplicationContext().getSystemService(
 						Context.INPUT_METHOD_SERVICE);
 		im.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),
 				InputMethodManager.HIDE_NOT_ALWAYS);
 
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			counterss = extras.getString("homework_count");
+		}
+
 		SharedPreferences sharedprefer = getSharedPreferences(
 				"first_run_starts", Context.MODE_PRIVATE);
 
-		if (sharedprefer.contains("first_run_starts")) {
+		SharedPreferences sharedprefererence = getSharedPreferences(
+				"Login_info", Context.MODE_PRIVATE);
 
-			SharedPreferences Today_Homework = getApplicationContext()
-					.getSharedPreferences("due_today", Context.MODE_PRIVATE);
+		if (sharedprefererence.contains("name")) {
 
-			if (Today_Homework.contains("duetoday_content")) {
+			parse_count();
 
-				parse_due_today_string();
+			new Internet_check_reload().execute();
 
-			} else {
-
-				counterss = "0";
-
-			}
-			
-			SharedPreferences sharedprefers = getSharedPreferences("first_run",
-					Context.MODE_PRIVATE);
-
-			if (sharedprefers.contains("first_run")) {
-
-			} else {
-
-				SharedPreferences.Editor localEditor = getSharedPreferences(
-						"first_run", Context.MODE_PRIVATE).edit();
-
-				localEditor.putString("first_run", "ran for the first time");
-
-				localEditor.commit();
-
-				new Update().execute();
-
-			}
-			
-
-			
-
-			SharedPreferences sharedpreferences = getSharedPreferences(
-					"first_run_starter", Context.MODE_PRIVATE);
-
-			SharedPreferences sharedprefererence = getSharedPreferences(
-					"Login_info", Context.MODE_PRIVATE);
-
-			if (sharedpreferences.contains("first_run_starts")) {
-
-			} else {
-
-				if (sharedprefererence.contains("name")) {
-
-					SharedPreferences.Editor localEditors = getSharedPreferences(
-							"first_run_starter", Context.MODE_PRIVATE).edit();
-
-					localEditors.putString("first_run_starts", "yes");
-
-					localEditors.commit();
-
-					alert_help();
-
-				}
-
-			}
-			
 		} else {
 
-			
-			SharedPreferences.Editor localEditors = getSharedPreferences(
-					"first_run_starts", Context.MODE_PRIVATE).edit();
-
-			localEditors.putString("first_run_starts", "yes");
-
-			localEditors.commit();
-			
 			Intent intent = new Intent(this, AccountSetupBasics.class);
 			startActivity(intent);
 
+		}
+
+		if (counterss == null) {
+
+			counterss = "0";
 
 		}
-		
+
 		Log.d(TAG, "onCreate()");
 
 		String packageName = "com.bernard.beaconportal.activities";
-
-		counterss = "0";
 
 		int versionNumber = 0;
 
@@ -281,7 +239,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		}
 
 		doRefresh();
-		
+
 		int countssssss = getUnreadK9Count(this);
 
 		K9count = Integer.toString(countssssss);
@@ -317,11 +275,29 @@ public class MainActivity extends SherlockFragmentActivity {
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
 
+		SharedPreferences name = getSharedPreferences("Login_info",
+				Context.MODE_PRIVATE);
+
+		String person = name.getString("name", "");
+
+		mWelcomePerson = (TextView) findViewById(R.id.Person);
+
+		mWelcomePerson.setText(person);
+
+		mWelcome = (TextView) findViewById(R.id.Welcome);
+		
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getSupportActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#03a9f4")));
+					new ColorDrawable(Color.parseColor("#298ccd")));
 
+
+			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor("#298ccd")));
+
+			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor("#298ccd")));
+			
 		} else {
 
 			actionbar_colors = sharedpref.getString("actionbar_color", null);
@@ -329,6 +305,14 @@ public class MainActivity extends SherlockFragmentActivity {
 			getSupportActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor(actionbar_colors)));
 
+			actionbar_colors = sharedpref.getString("actionbar_color", null);
+
+			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor(actionbar_colors)));
+
+			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor(actionbar_colors)));
+			
 		}
 
 		ActionBar bar = getSupportActionBar();
@@ -343,8 +327,6 @@ public class MainActivity extends SherlockFragmentActivity {
 			mTitle = mDrawerTitle = getTitle();
 
 		}
-		
-		counterss = "0";
 
 		SharedPreferences.Editor localEditor = getSharedPreferences(
 				"due_today", Context.MODE_PRIVATE).edit();
@@ -356,27 +338,21 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] {
-					"Homework Due",
-					"Schedule", "Unread Mail", "Options", "Logout" };
+			title = new String[] { "Homework Due", "Schedule", "Unread Mail",
+					"Options", "Logout" };
 
-			icon = new int[] {
-					R.drawable.ic_action_duehomework,
+			icon = new int[] { R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_email, R.drawable.ic_action_settings,
 					R.drawable.ic_action_logout };
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] {
-						"",
-						"", K9count, "", "" };
+				count = new String[] { "", "", K9count, "", "" };
 
 			} else {
 
-				count = new String[] {
-						counterss,
-						"", K9count, "", "", "" };
+				count = new String[] { counterss, "", K9count, "", "", "" };
 
 			}
 
@@ -384,21 +360,16 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] {
-						"",
-						"", K9count, "", "" };
+				count = new String[] { "", "", K9count, "", "" };
 
 			} else {
 
-				count = new String[] { "",
-						counterss,
-						K9count, "", "" };
+				count = new String[] { "", counterss, K9count, "", "" };
 
 			}
 
-			title = new String[] { "Schedule",
-					"Homework Due",
-					"Unread Mail", "Options", "Logout" };
+			title = new String[] { "Schedule", "Homework Due", "Unread Mail",
+					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_duehomework,
@@ -412,37 +383,6 @@ public class MainActivity extends SherlockFragmentActivity {
 		mDrawerLinear = (LinearLayout) findViewById(R.id.left_drawer);
 
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-		SharedPreferences name = getSharedPreferences("Login_info",
-				Context.MODE_PRIVATE);
-
-		String person = name.getString("name", "");
-
-		mWelcomePerson = (TextView) findViewById(R.id.Person);
-
-		mWelcomePerson.setText(person);
-
-		mWelcome = (TextView) findViewById(R.id.Welcome);
-
-		if (!sharedpref.contains("actionbar_color")) {
-
-			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
-
-			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
-
-		} else {
-
-			actionbar_colors = sharedpref.getString("actionbar_color", null);
-
-			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor(actionbar_colors)));
-
-			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor(actionbar_colors)));
-
-		}
 
 		mDrawerList = (ListView) findViewById(R.id.listview_drawer);
 
@@ -522,6 +462,19 @@ public class MainActivity extends SherlockFragmentActivity {
 			setTitle(savedInstanceState.getCharSequence(KEY_STATE_TITLE));
 		}
 
+		if(!sharedprefer.contains("help_check")){	
+			
+			alert_help();
+			
+			}
+	
+		SharedPreferences.Editor localEditor1 = 
+				getSharedPreferences("return_to_main", Context.MODE_PRIVATE)
+				.edit();
+		
+		localEditor1.clear();
+		
+		localEditor1.commit();
 	
 	}
 
@@ -530,12 +483,60 @@ public class MainActivity extends SherlockFragmentActivity {
 		super.onResume();
 
 		Log.d("onResume", "yes");
-		
+
 		SharedPreferences pref = getSharedPreferences("CheckBox",
 				Context.MODE_PRIVATE);
 
 		String checkbox = pref.getString("checked", null);
 
+		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
+				Context.MODE_PRIVATE);
+
+		SharedPreferences name = getSharedPreferences("Login_info",
+				Context.MODE_PRIVATE);
+
+		String person = name.getString("name", "");
+
+		mWelcomePerson = (TextView) findViewById(R.id.Person);
+
+		mWelcomePerson.setText(person);
+
+		mWelcome = (TextView) findViewById(R.id.Welcome);
+		if (!sharedpref.contains("actionbar_color")) {
+
+			getSupportActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor("#298ccd")));
+
+
+			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor("#298ccd")));
+
+			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor("#298ccd")));
+			
+		} else {
+
+			actionbar_colors = sharedpref.getString("actionbar_color", null);
+
+			getSupportActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+			actionbar_colors = sharedpref.getString("actionbar_color", null);
+
+			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor(actionbar_colors)));
+
+			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor(actionbar_colors)));
+			
+		}
+
+		
+		ActionBar bar = getSupportActionBar();
+
+		bar.setIcon(new ColorDrawable(getResources().getColor(
+				android.R.color.transparent)));
+		
 		if (checkbox != null) {
 			if (checkbox.contains("true")) {
 				try {
@@ -557,19 +558,6 @@ public class MainActivity extends SherlockFragmentActivity {
 			mTitle = mDrawerTitle = getTitle();
 
 			getSupportActionBar().setTitle(mDrawerTitle);
-
-		}
-
-		SharedPreferences Today_Homework = getApplicationContext()
-				.getSharedPreferences("due_today", Context.MODE_PRIVATE);
-
-		if (Today_Homework.contains("duetoday_content")) {
-
-			parse_due_today_string();
-
-		} else {
-
-			counterss = "";
 
 		}
 
@@ -630,7 +618,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		K9count = Integer.toString(countssssss);
 
 		System.out.println("k9 Unread Count = " + countssssss);
-
+		
 	}
 
 	public void inbox() {
@@ -666,118 +654,110 @@ public class MainActivity extends SherlockFragmentActivity {
 		@Override
 		protected Void doInBackground(String... params) {
 
-			SharedPreferences sharedpreferss = getSharedPreferences(
-					"due_tommorow_counter", Context.MODE_PRIVATE);
-
-			while (!sharedpreferss.contains("last shared preference")) {
-
-				System.out.println("Internet is not working, still looping");
-				
-				SharedPreferences.Editor localEditor = getSharedPreferences(
-						"first_inbox", Context.MODE_PRIVATE).edit();
-
-				localEditor.putString("first_inbox", "ran for the first time");
-
-				Intent intent1 = new Intent(MainActivity.this, Accounts.class);
-
-				startActivity(intent1);
-
-				localEditor.commit();
+			check = 0;
+			
+			while (check != 1) {
 
 				if (AppStatus.getInstance(getApplicationContext()).isOnline(
 						getApplicationContext())) {
 
-					new Update_due_today().execute();
+					new Update().execute();
 
-					System.out.println("INTERNET WORKED!");
+					System.out.println("INTERNET WORKED!, UPDATING CONTENT");
 
+					check = 1;
+					
 					break;
-
 				}
-
 			}
 			return null;
 		}
-
 	}
 
 	public class Update extends AsyncTask<String, Void, Void> {
 
-		private final HttpClient Client = new DefaultHttpClient();
-
 		@Override
 		protected Void doInBackground(String... urls) {
-			
-			SharedPreferences bDay = getSharedPreferences(
-					"Login_Info", Context.MODE_PRIVATE);
 
-		   String day1 =  Integer.toString(bDay.getInt("Day", 0));
+			SharedPreferences bDay = getSharedPreferences("Login_Info",
+					Context.MODE_PRIVATE);
 
-		   String year1 =  Integer.toString(bDay.getInt("Year", 0));
+			String day1 = Integer.toString(bDay.getInt("Day", 0));
 
-		   String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
-			
-			SharedPreferences userName = getSharedPreferences(
-					"Login_Info", Context.MODE_PRIVATE);
+			String year1 = Integer.toString(bDay.getInt("Year", 0));
+
+			String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
+
+			SharedPreferences userName = getSharedPreferences("Login_Info",
+					Context.MODE_PRIVATE);
 
 			String day = day1.replaceFirst("^0+(?!$)", "");
-			
+
 			String month = month1.replaceFirst("^0+(?!$)", "");
-			
+
 			String year = year1.replaceFirst("^0+(?!$)", "");
-			
+
 			String birthday = month + "/" + day + "/" + year;
-			
+
 			System.out.println("Birthday = " + birthday);
-			
+
 			String user = userName.getString("username", "");
 
-			//String user = (username).split("@")[0]; 
-			
+			// String user = (username).split("@")[0];
+
 			System.out.println("Username = " + user);
-			
-			
+
 			try {
 
-//				HttpClient httpClient = new DefaultHttpClient();
+				// HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
-//				HttpGet httpGet = new HttpGet(
-//						"http://www2.beaconschool.org/~markovic/lincoln.php");
-				
+				// HttpGet httpGet = new HttpGet(
+				// "http://www.beaconschool.org/~markovic/lincoln.php");
+
 				HttpClient httpclient = new DefaultHttpClient();
-			    HttpPost httppost = new HttpPost("http://www2.beaconschool.org/~markovic/lincoln.php");
-			    
-			    try {
-			        // Add your data
-			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-			        nameValuePairs.add(new BasicNameValuePair("username", user));
-			        nameValuePairs.add(new BasicNameValuePair("birthday", birthday));
-			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+				HttpPost httppost = new HttpPost(
+						"http://www.beaconschool.org/~markovic/lincoln.php");
 
-			        // Execute HTTP Post Request
-			        response = httpclient.execute(httppost);
-			        
-			        Log.d("Http Response:", response.toString());
-			        
-			    } catch (ClientProtocolException e) {
-			        // TODO Auto-generated catch block
-			    } catch (IOException e) {
-			        // TODO Auto-generated catch block
-			    }
+				try {
+					// Add your data
+					List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
+							2);
+					nameValuePairs
+							.add(new BasicNameValuePair("username", user));
+					nameValuePairs.add(new BasicNameValuePair("birthday",
+							birthday));
+					httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-				
+					// Execute HTTP Post Request
+					response = httpclient.execute(httppost);
+
+					Log.d("Http Response:", response.toString());
+
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+				}
+
 				try {
 					Log.d("receiver", "animation stopped and downloaded file");
 
-					String duetoday = new Scanner(response.getEntity()
+					String homework = new Scanner(response.getEntity()
 							.getContent(), "UTF-8").useDelimiter("\\A").next();
 
-//					String duetoday = Html.fromHtml(duetoday_html).toString();
+					// String homework =
+					// Html.fromHtml(homework_html).toString();
 
+					SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd hh:mm a");
+					Calendar cal = Calendar.getInstance();
+					String downloaded = dateFormat.format(cal.getTime());
+					
 					SharedPreferences.Editor localEditor = getSharedPreferences(
-							"due_today", Context.MODE_PRIVATE).edit();
+							"homework", Context.MODE_PRIVATE).edit();
 
-					localEditor.putString("duetoday_content", duetoday);
+					localEditor.putString("homework_content", homework);
+					
+					localEditor.putString("download_date", downloaded);
 
 					localEditor.apply();
 
@@ -789,9 +769,15 @@ public class MainActivity extends SherlockFragmentActivity {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}catch (NullPointerException e) {
+					
+					e.printStackTrace();
+			}
+			catch (NoSuchElementException e) {
+				
+				e.printStackTrace();
+			}
 
-			
 			} finally {
 
 			}
@@ -802,50 +788,23 @@ public class MainActivity extends SherlockFragmentActivity {
 		@Override
 		protected void onPostExecute(Void result) {
 
-			try {
-				check_download();
-			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			Intent intent = getIntent();
-			overridePendingTransition(0, 0);
-			intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-			finish();
-
-			overridePendingTransition(0, 0);
-			startActivity(intent);
 		}
 
 	}
 
-	public void reload() {
+	public void parse_count() {
 
-		Intent intent = getIntent();
-		overridePendingTransition(0, 0);
-		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-		finish();
+		SharedPreferences Tommorow_Homework = getApplicationContext()
+				.getSharedPreferences("homework", Context.MODE_PRIVATE);
 
-		overridePendingTransition(0, 0);
-		startActivity(intent);
-	}
-
-	public void parse_due_today_string() {
-
-		SharedPreferences Today_Homework = getApplicationContext()
-				.getSharedPreferences("due_today", Context.MODE_PRIVATE);
-
-		String Due_Today = Today_Homework.getString("duetoday_content", "");
+		String Due_Tommorow = Html.fromHtml(
+				Tommorow_Homework.getString("homework_content", "")).toString();
 
 		ArrayList<String> description = new ArrayList<String>();
 
 		StringBuilder DescriptionAll = new StringBuilder();
 
-		InputStream is = new ByteArrayInputStream(Due_Today.getBytes());
+		InputStream is = new ByteArrayInputStream(Due_Tommorow.getBytes());
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
@@ -853,8 +812,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			int i = 0;
 
-			while ((Due_Today = reader.readLine()) != null) {
-				String[] part = Due_Today.split("\",\"", -1);
+			while ((Due_Tommorow = reader.readLine()) != null) {
+				String[] part = Due_Tommorow.split("\",\"", -1);
 				int noOfItems = part.length;
 				int counter = 0;
 
@@ -879,15 +838,11 @@ public class MainActivity extends SherlockFragmentActivity {
 
 				if (Type != null && !Type.isEmpty()) {
 
-					counters = ++i;
-
-					counterss = Integer.toString(counters);
-
-					Log.i("Counter", "Number of children: " + counters);
+					++i;
 
 				}
 
-				Log.d("Type", Type);
+				counterss = Integer.toString(i);
 
 			}
 
@@ -933,9 +888,9 @@ public class MainActivity extends SherlockFragmentActivity {
 		if (Show_View.equals("Homework Due")) {
 
 			switch (position) {
-			 case 0:
-			 ft.replace(R.id.content_frame, fragment2);
-			 break;
+			case 0:
+				ft.replace(R.id.content_frame, fragment2);
+				break;
 			case 1:
 				ft.replace(R.id.content_frame, fragment1);
 				break;
@@ -961,35 +916,11 @@ public class MainActivity extends SherlockFragmentActivity {
 			case 0:
 				ft.replace(R.id.content_frame, fragment1);
 				break;
-			 case 1:
-			
-			 SharedPreferences sharedprefers = getSharedPreferences(
-			 "due_tommorow_counter", Context.MODE_PRIVATE);
-			
-			 if (!sharedprefers.contains("last shared preference")) {
-			
-			 try {
-			 Thread.sleep(1000);
-			 } catch (InterruptedException e) {
-			 // TODO Auto-generated catch block
-			 e.printStackTrace();
-			 }
-			
-			 }
-			 if (!sharedprefers.contains("last shared preference")) {
-			
-			 Toast.makeText(this, "Please Connect to the Internet!",
-			 8000).show();
-			 Log.d("Home",
-			 "############################You are not online!!!!");
-			
-			 } else {
-			
-			 ft.replace(R.id.content_frame, fragment2);
-			
-			 }
-			
-			 break;
+			case 1:
+
+				ft.replace(R.id.content_frame, fragment2);
+
+				break;
 
 			case 2:
 
@@ -1071,7 +1002,7 @@ public class MainActivity extends SherlockFragmentActivity {
 				if (!s.equals("lib")) {
 					deleteDir(new File(appDir, s));
 					Log.i("TAG",
-							"**************** File /data/data/APP_PACKAGE/" + s
+							"**************** File /data/data/com.bernard.beaconportal/" + s
 									+ " DELETED *******************");
 				}
 			}
@@ -1128,6 +1059,12 @@ public class MainActivity extends SherlockFragmentActivity {
 	protected void onPause() {
 		super.onPause();
 
+		if(alertDialog != null){
+		
+		alertDialog.dismiss();
+
+		}
+		
 		LocalBroadcastManager.getInstance(this).unregisterReceiver(
 				mMessageReceiver);
 
@@ -1166,7 +1103,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		if (AppStatus.getInstance(this).isOnline(this)) {
 
-			new Update_due_today().execute();
+			new Update().execute();
 
 		} else {
 
@@ -1177,12 +1114,12 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	}
 
-	public void parse_due_today_string_content() {
+	public void parse_due_today_string() {
 
 		SharedPreferences Today_Homework = getApplicationContext()
 				.getSharedPreferences("due_today", Context.MODE_PRIVATE);
 
-		String Due_Today = Today_Homework.getString("duetoday_content", "");
+		String Due_Today = Today_Homework.getString("homework", "");
 
 		Due_Today = Due_Today.replaceAll("^\"|\"$", "");
 
@@ -1294,118 +1231,12 @@ public class MainActivity extends SherlockFragmentActivity {
 		}
 	}
 
-	public class Update_due_today extends AsyncTask<String, Void, Void> {
-
-		private final HttpClient Client = new DefaultHttpClient();
-
-		@Override
-		protected Void doInBackground(String... urls) {
-			SharedPreferences bDay = getSharedPreferences(
-					"Login_Info", Context.MODE_PRIVATE);
-
-		   String day1 =  Integer.toString(bDay.getInt("Day", 0));
-
-		   String year1 =  Integer.toString(bDay.getInt("Year", 0));
-
-		   String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
-			
-			SharedPreferences userName = getSharedPreferences(
-					"Login_Info", Context.MODE_PRIVATE);
-
-			String day = day1.replaceFirst("^0+(?!$)", "");
-			
-			String month = month1.replaceFirst("^0+(?!$)", "");
-			
-			String year = year1.replaceFirst("^0+(?!$)", "");
-			
-			String birthday = month + "/" + day + "/" + year;
-			
-			System.out.println("Birthday = " + birthday);
-			
-			String user = userName.getString("username", "");
-
-			//String user = (username).split("@")[0]; 
-			
-			System.out.println("Username = " + user);
-			
-			
-			try {
-
-//				HttpClient httpClient = new DefaultHttpClient();
-				HttpContext localContext = new BasicHttpContext();
-//				HttpGet httpGet = new HttpGet(
-//						"http://www2.beaconschool.org/~markovic/lincoln.php");
-				
-				HttpClient httpclient = new DefaultHttpClient();
-			    HttpPost httppost = new HttpPost("http://www2.beaconschool.org/~markovic/lincoln.php");
-			    
-			    try {
-			        // Add your data
-			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-			        nameValuePairs.add(new BasicNameValuePair("username", user));
-			        nameValuePairs.add(new BasicNameValuePair("birthday", birthday));
-			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-			        // Execute HTTP Post Request
-			        response = httpclient.execute(httppost);
-			        
-			        Log.d("Http Response:", response.toString());
-			        
-			    } catch (ClientProtocolException e) {
-			        // TODO Auto-generated catch block
-			    } catch (IOException e) {
-			        // TODO Auto-generated catch block
-			    }
-
-				try {
-					Log.d("receiver", "animation stopped and downloaded file");
-
-					String duetoday = new Scanner(response.getEntity()
-							.getContent(), "UTF-8").useDelimiter("\\A").next();
-
-//					String duetoday = Html.fromHtml(duetoday_html).toString();
-
-					SharedPreferences.Editor localEditor = getSharedPreferences(
-							"due_today", Context.MODE_PRIVATE).edit();
-
-					localEditor.putString("duetoday_content", duetoday);
-
-					localEditor.apply();
-
-					Log.d("receiver", "information given to shared preferences");
-
-					parse_due_today_string_content();
-
-				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			} finally {
-
-			}
-			return null;
-
-		}
-
-		@Override
-		protected void onPostExecute(Void result) {
-
-			new Update_due_tommorow().execute();
-
-		}
-
-	}
-
 	public void parse_due_tommorow_string() {
 
 		SharedPreferences Today_Homework = getApplicationContext()
-				.getSharedPreferences("due_tommorow", Context.MODE_PRIVATE);
+				.getSharedPreferences("homework", Context.MODE_PRIVATE);
 
-		String due_tommorow = Today_Homework.getString("duetommorow_content", "");
+		String due_tommorow = Today_Homework.getString("homework_content", "");
 
 		due_tommorow = due_tommorow.replaceAll("^\"|\"$", "");
 
@@ -1520,107 +1351,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		}
 	}
-
-	public class Update_due_tommorow extends AsyncTask<String, Void, Void> {
-
-		private final HttpClient Client = new DefaultHttpClient();
-
-		@Override
-		protected Void doInBackground(String... urls) {
-			SharedPreferences bDay = getSharedPreferences(
-					"Login_Info", Context.MODE_PRIVATE);
-
-		   String day1 =  Integer.toString(bDay.getInt("Day", 0));
-
-		   String year1 =  Integer.toString(bDay.getInt("Year", 0));
-
-		   String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
-			
-			SharedPreferences userName = getSharedPreferences(
-					"Login_Info", Context.MODE_PRIVATE);
-
-			String day = day1.replaceFirst("^0+(?!$)", "");
-			
-			String month = month1.replaceFirst("^0+(?!$)", "");
-			
-			String year = year1.replaceFirst("^0+(?!$)", "");
-			
-			String birthday = month + "/" + day + "/" + year;
-			
-			System.out.println("Birthday = " + birthday);
-			
-			String user = userName.getString("username", "");
-
-			//String user = (username).split("@")[0]; 
-			
-			System.out.println("Username = " + user);
-			
-			
-			try {
-
-//				HttpClient httpClient = new DefaultHttpClient();
-				HttpContext localContext = new BasicHttpContext();
-//				HttpGet httpGet = new HttpGet(
-//						"http://www2.beaconschool.org/~markovic/lincoln.php");
-				
-				HttpClient httpclient = new DefaultHttpClient();
-			    HttpPost httppost = new HttpPost("http://www2.beaconschool.org/~markovic/lincoln.php");
-			    
-			    try {
-			        // Add your data
-			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-			        nameValuePairs.add(new BasicNameValuePair("username", user));
-			        nameValuePairs.add(new BasicNameValuePair("birthday", birthday));
-			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-			        // Execute HTTP Post Request
-			        response = httpclient.execute(httppost);
-			        
-			        Log.d("Http Response:", response.toString());
-			        
-			    } catch (ClientProtocolException e) {
-			        // TODO Auto-generated catch block
-			    } catch (IOException e) {
-			        // TODO Auto-generated catch block
-			    }
-
-				
-
-				try {
-					Log.d("receiver", "animation stopped and downloaded file");
-
-					String duetommorow = new Scanner(response.getEntity()
-							.getContent(), "UTF-8").useDelimiter("\\A").next();
-
-//					String duetoday = Html.fromHtml(duetoday_html).toString();
-
-					SharedPreferences.Editor localEditor = getSharedPreferences(
-							"due_tommorow", Context.MODE_PRIVATE).edit();
-
-					localEditor.putString("duetommorow_content", duetommorow);
-
-					localEditor.apply();
-
-					Log.d("receiver", "information given to shared preferences");
-
-					parse_due_tommorow_string();
-
-				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			} finally {
-
-			}
-			return null;
-		}
-
-	}
-
+	
 	protected void onUpdateData(int reason) {
 		Log.d(TAG, "onUpdateData(" + reason + ")");
 		doRefresh();
@@ -1758,10 +1489,19 @@ public class MainActivity extends SherlockFragmentActivity {
 						@Override
 						public void onClick(DialogInterface dialog, int id) {
 
+					SharedPreferences.Editor localEditors = getSharedPreferences(
+								"first_run_starts", Context.MODE_PRIVATE).edit();
+							
+							localEditors.putString("help_check", "checked");
+
+							localEditors.commit();
+							
+							MainActivity.this.recreate();
+
 						}
 					});
 
-			AlertDialog alertDialog = builder.create();
+			alertDialog = builder.create();
 
 			alertDialog.show();
 
