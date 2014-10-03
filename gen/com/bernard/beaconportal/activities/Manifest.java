@@ -8,10 +8,10 @@
 package com.bernard.beaconportal.activities;
 
 public final class Manifest {
-	public static final class permission {
-		public static final String DELETE_MESSAGES = "com.bernard.beaconportal.activities.permission.DELETE_MESSAGES";
-		public static final String READ_ATTACHMENT = "com.bernard.beaconportal.activities.permission.READ_ATTACHMENT";
-		public static final String READ_MESSAGES = "com.bernard.beaconportal.activities.permission.READ_MESSAGES";
-		public static final String REMOTE_CONTROL = "com.bernard.beaconportal.activities.permission.REMOTE_CONTROL";
-	}
+    public static final class permission {
+        public static final String DELETE_MESSAGES="com.bernard.beaconportal.activities.permission.DELETE_MESSAGES";
+        public static final String READ_ATTACHMENT="com.bernard.beaconportal.activities.permission.READ_ATTACHMENT";
+        public static final String READ_MESSAGES="com.bernard.beaconportal.activities.permission.READ_MESSAGES";
+        public static final String REMOTE_CONTROL="com.bernard.beaconportal.activities.permission.REMOTE_CONTROL";
+    }
 }
