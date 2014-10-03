@@ -56,7 +56,7 @@ public class EmailAddressList extends K9ListActivity implements
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#298ccd")));
+					new ColorDrawable(Color.parseColor("#03a9f4")));
 
 		} else {
 

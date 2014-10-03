@@ -97,7 +97,7 @@ public class AccountSetupCheckSettings extends K9Activity implements
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#298ccd")));
+					new ColorDrawable(Color.parseColor("#03a9f4")));
 
 		} else {
 
