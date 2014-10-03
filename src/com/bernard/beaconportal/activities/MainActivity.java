@@ -289,14 +289,14 @@ public class MainActivity extends SherlockFragmentActivity {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getSupportActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#03a9f4")));
+					new ColorDrawable(Color.parseColor("#298ccd")));
 
 
 			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
+					.parseColor("#298ccd")));
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
+					.parseColor("#298ccd")));
 			
 		} else {
 
@@ -505,14 +505,14 @@ public class MainActivity extends SherlockFragmentActivity {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getSupportActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#03a9f4")));
+					new ColorDrawable(Color.parseColor("#298ccd")));
 
 
 			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
+					.parseColor("#298ccd")));
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
+					.parseColor("#298ccd")));
 			
 		} else {
 

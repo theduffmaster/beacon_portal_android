@@ -228,7 +228,7 @@ public class FragmentSettings extends Fragment {
 
 		if (!sharedpref.contains("actionbar_color")) {
 
-			actionbar_colors = "#03a9f4";
+			actionbar_colors = "#298ccd";
 
 		} else {
 

@@ -127,7 +127,7 @@ public class FragmentsView extends SherlockFragment {
 		if (!sharedpref.contains("actionbar_color")) {
 
 					mFab.setFabColor(
-							Color.parseColor("#03a9f4"));
+							Color.parseColor("#298ccd"));
 					
 		} else {
 

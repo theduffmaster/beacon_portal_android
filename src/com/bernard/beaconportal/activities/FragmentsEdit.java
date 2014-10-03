@@ -59,7 +59,7 @@ public class FragmentsEdit extends FragmentActivity {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#03a9f4")));
+					new ColorDrawable(Color.parseColor("#298ccd")));
 
 		} else {
 
