@@ -3,6 +3,7 @@ package com.bernard.beaconportal.activities;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class ViewPagerAdapterHomework extends FragmentPagerAdapter {
 

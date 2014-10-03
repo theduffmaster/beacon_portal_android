@@ -18,6 +18,8 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.astuetz.PagerSlidingTabStrip;
 import com.bernard.beaconportal.activities.R;
 
+import de.timroes.android.listview.EnhancedListView;
+
 public class FragmentsHomeworkDue extends SherlockFragment {
 
 	private String background_colors;
@@ -49,7 +51,8 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 
 		}
 
-		final ViewPager pager = (ViewPager) view.findViewById(R.id.viewPager);
+		final com.bernard.beaconportal.activities.ScrollLock pager = (com.bernard.beaconportal.activities.ScrollLock) view
+				.findViewById(R.id.viewPager);
 
 		RelativeLayout layout = (RelativeLayout) view
 				.findViewById(R.id.homeworkdue_container);
@@ -61,6 +64,44 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view
 				.findViewById(R.id.pagerTabStrip);
 		tabs.setViewPager(pager);
+
+		// View v = inflater.inflate(R.layout.activity_main, container, false);
+		//
+		// final EnhancedListView enhancedListView = (EnhancedListView)
+		// v.findViewById(R.id.listView1);
+		//
+		// pager.setOnTouchListener(new OnSwipeTouchListener(getActivity()) {
+		// @Override
+		// public void onSwipeLeft() {
+		// if (pager.getCurrentItem() == 0) {
+		// enhancedListView.enableSwipeToDismiss();
+		//
+		// pager.setPagingEnabled(false);
+		//
+		// }else{
+		//
+		// pager.setCurrentItem(1);
+		//
+		// enhancedListView.disableSwipeToDismiss();
+		//
+		// }
+		// }
+		// public void onSwipeRight() {
+		//
+		// if (pager.getCurrentItem() == 1) {
+		// enhancedListView.enableSwipeToDismiss();
+		//
+		// pager.setPagingEnabled(false);
+		//
+		// }else{
+		//
+		// pager.setCurrentItem(0);
+		//
+		// enhancedListView.disableSwipeToDismiss();
+		//
+		// }
+		// }
+		// });
 
 		return view;
 	}

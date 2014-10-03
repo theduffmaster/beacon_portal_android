@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import org.apache.http.HttpResponse;
@@ -90,7 +91,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	private AlertDialog alertDialog;
 
 	private int check;
-	
+
 	DrawerLayout mDrawerLayout;
 	LinearLayout mDrawerLinear;
 	TextView mWelcomePerson;
@@ -148,7 +149,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		InputMethodManager im = (InputMethodManager) this
 				.getApplicationContext().getSystemService(
 						Context.INPUT_METHOD_SERVICE);
@@ -284,19 +285,18 @@ public class MainActivity extends SherlockFragmentActivity {
 		mWelcomePerson.setText(person);
 
 		mWelcome = (TextView) findViewById(R.id.Welcome);
-		
+
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getSupportActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#03a9f4")));
-
+					new ColorDrawable(Color.parseColor("#298ccd")));
 
 			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
+					.parseColor("#298ccd")));
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
-			
+					.parseColor("#298ccd")));
+
 		} else {
 
 			actionbar_colors = sharedpref.getString("actionbar_color", null);
@@ -311,7 +311,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
 					.parseColor(actionbar_colors)));
-			
+
 		}
 
 		ActionBar bar = getSupportActionBar();
@@ -461,20 +461,19 @@ public class MainActivity extends SherlockFragmentActivity {
 			setTitle(savedInstanceState.getCharSequence(KEY_STATE_TITLE));
 		}
 
-		if(!sharedprefer.contains("help_check")){	
-			
+		if (!sharedprefer.contains("help_check")) {
+
 			alert_help();
-			
-			}
-	
-		SharedPreferences.Editor localEditor1 = 
-				getSharedPreferences("return_to_main", Context.MODE_PRIVATE)
-				.edit();
-		
+
+		}
+
+		SharedPreferences.Editor localEditor1 = getSharedPreferences(
+				"return_to_main", Context.MODE_PRIVATE).edit();
+
 		localEditor1.clear();
-		
+
 		localEditor1.commit();
-	
+
 	}
 
 	@Override
@@ -504,15 +503,14 @@ public class MainActivity extends SherlockFragmentActivity {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getSupportActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#03a9f4")));
-
+					new ColorDrawable(Color.parseColor("#298ccd")));
 
 			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
+					.parseColor("#298ccd")));
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#03a9f4")));
-			
+					.parseColor("#298ccd")));
+
 		} else {
 
 			actionbar_colors = sharedpref.getString("actionbar_color", null);
@@ -527,15 +525,14 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
 					.parseColor(actionbar_colors)));
-			
+
 		}
 
-		
 		ActionBar bar = getSupportActionBar();
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
-		
+
 		if (checkbox != null) {
 			if (checkbox.contains("true")) {
 				try {
@@ -617,7 +614,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		K9count = Integer.toString(countssssss);
 
 		System.out.println("k9 Unread Count = " + countssssss);
-		
+
 	}
 
 	public void inbox() {
@@ -654,7 +651,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		protected Void doInBackground(String... params) {
 
 			check = 0;
-			
+
 			while (check != 1) {
 
 				if (AppStatus.getInstance(getApplicationContext()).isOnline(
@@ -665,7 +662,7 @@ public class MainActivity extends SherlockFragmentActivity {
 					System.out.println("INTERNET WORKED!, UPDATING CONTENT");
 
 					check = 1;
-					
+
 					break;
 				}
 			}
@@ -711,11 +708,11 @@ public class MainActivity extends SherlockFragmentActivity {
 				// HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
 				// HttpGet httpGet = new HttpGet(
-				// "http://www2.beaconschool.org/~markovic/lincoln.php");
+				// "http://www.beaconschool.org/~markovic/lincoln.php");
 
 				HttpClient httpclient = new DefaultHttpClient();
 				HttpPost httppost = new HttpPost(
-						"http://www2.beaconschool.org/~markovic/lincoln.php");
+						"http://www.beaconschool.org/~markovic/lincoln.php");
 
 				try {
 					// Add your data
@@ -747,15 +744,16 @@ public class MainActivity extends SherlockFragmentActivity {
 					// String homework =
 					// Html.fromHtml(homework_html).toString();
 
-					SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd hh:mm a");
+					SimpleDateFormat dateFormat = new SimpleDateFormat(
+							"MM/dd hh:mm a");
 					Calendar cal = Calendar.getInstance();
 					String downloaded = dateFormat.format(cal.getTime());
-					
+
 					SharedPreferences.Editor localEditor = getSharedPreferences(
 							"homework", Context.MODE_PRIVATE).edit();
 
 					localEditor.putString("homework_content", homework);
-					
+
 					localEditor.putString("download_date", downloaded);
 
 					localEditor.apply();
@@ -768,10 +766,13 @@ public class MainActivity extends SherlockFragmentActivity {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}catch (NullPointerException e) {
-					
+				} catch (NullPointerException e) {
+
 					e.printStackTrace();
-			}
+				} catch (NoSuchElementException e) {
+
+					e.printStackTrace();
+				}
 
 			} finally {
 
@@ -997,8 +998,8 @@ public class MainActivity extends SherlockFragmentActivity {
 				if (!s.equals("lib")) {
 					deleteDir(new File(appDir, s));
 					Log.i("TAG",
-							"**************** File /data/data/com.bernard.beaconportal/" + s
-									+ " DELETED *******************");
+							"**************** File /data/data/com.bernard.beaconportal/"
+									+ s + " DELETED *******************");
 				}
 			}
 		}
@@ -1054,12 +1055,12 @@ public class MainActivity extends SherlockFragmentActivity {
 	protected void onPause() {
 		super.onPause();
 
-		if(alertDialog != null){
-		
-		alertDialog.dismiss();
+		if (alertDialog != null) {
+
+			alertDialog.dismiss();
 
 		}
-		
+
 		LocalBroadcastManager.getInstance(this).unregisterReceiver(
 				mMessageReceiver);
 
@@ -1346,7 +1347,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		}
 	}
-	
+
 	protected void onUpdateData(int reason) {
 		Log.d(TAG, "onUpdateData(" + reason + ")");
 		doRefresh();
@@ -1484,13 +1485,14 @@ public class MainActivity extends SherlockFragmentActivity {
 						@Override
 						public void onClick(DialogInterface dialog, int id) {
 
-					SharedPreferences.Editor localEditors = getSharedPreferences(
-								"first_run_starts", Context.MODE_PRIVATE).edit();
-							
+							SharedPreferences.Editor localEditors = getSharedPreferences(
+									"first_run_starts", Context.MODE_PRIVATE)
+									.edit();
+
 							localEditors.putString("help_check", "checked");
 
 							localEditors.commit();
-							
+
 							MainActivity.this.recreate();
 
 						}

@@ -421,14 +421,15 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 
-		//on first run messagelist is run so emails can load in the background, then that redirects to accounts, 
-		//which now we redirect to MainActivity, since when there's an error accounts is loaded
-			
+		// on first run messagelist is run so emails can load in the background,
+		// then that redirects to accounts,
+		// which now we redirect to MainActivity, since when there's an error
+		// accounts is loaded
+
 		Intent intents = new Intent(Accounts.this, MainActivity.class);
 
 		startActivity(intents);
 
-		
 		if (!K9.isHideSpecialAccounts()) {
 			createSpecialAccounts();
 		}
@@ -499,7 +500,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#03a9f4")));
+					new ColorDrawable(Color.parseColor("#298ccd")));
 
 		} else {
 

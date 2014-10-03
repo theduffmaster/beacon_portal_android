@@ -14,6 +14,7 @@ public final class R {
 		public static final int changelog_title = 0x7f08001a;
 		public static final int changelog_version_format = 0x7f08001d;
 	}
+
 	public static final class xml {
 		public static final int changelog = 0x7f050001;
 		public static final int changelog_master = 0x7f050002;

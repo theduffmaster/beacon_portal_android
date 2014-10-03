@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import org.apache.http.HttpResponse;
@@ -57,6 +58,7 @@ import com.bernard.beaconportal.activities.Due_Today_Fragment.Update;
 
 import de.timroes.android.listview.EnhancedListView;
 import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
+import de.timroes.android.listview.EnhancedListView.SwipeDirection;
 import de.timroes.android.listview.EnhancedListView.UndoStyle;
 
 public class Due_Tommorow_Fragment extends Fragment {
@@ -107,11 +109,11 @@ public class Due_Tommorow_Fragment extends Fragment {
 			Bundle savedInstanceState) {
 
 		new Download().execute();
-		
+
 		View swipe = inflater.inflate(R.layout.activity_main, container, false);
 
 		swipeLayout = (SwipeRefreshLayout) swipe.findViewById(R.id.swipe);
-		
+
 		swipeLayout.setEnabled(false);
 
 		swipeLayout.setColorSchemeResources(android.R.color.holo_orange_light,
@@ -183,30 +185,34 @@ public class Due_Tommorow_Fragment extends Fragment {
 							SharedPreferences downloaded_date = getActivity()
 									.getSharedPreferences("homework",
 											Context.MODE_PRIVATE);
-							
-							String download_date = "No internet connection, refreshing homework using homework downloaded at " + downloaded_date.getString("download_date", "");
-							
-							String downloaded = "refreshed homework using homework downloaded at " + downloaded_date.getString("download_date", "");
-							
-							Toast.makeText(getActivity(),
-									download_date , Toast.LENGTH_LONG).show();
-							
+
+							String download_date = "No internet connection, refreshing homework using homework downloaded at "
+									+ downloaded_date.getString(
+											"download_date", "");
+
+							String downloaded = "refreshed homework using homework downloaded at "
+									+ downloaded_date.getString(
+											"download_date", "");
+
+							Toast.makeText(getActivity(), download_date,
+									Toast.LENGTH_LONG).show();
+
 							due_tommorow_list.clear();
 
 							parse_due_tommorow_string();
 
 							parse_due_tommorow_content();
-							
+
 							adapter.notifyDataSetChanged();
-							
+
 							swipeLayout.setRefreshing(false);
-							
-							Toast.makeText(getActivity(),
-									downloaded , Toast.LENGTH_LONG).show();
-							
+
+							Toast.makeText(getActivity(), downloaded,
+									Toast.LENGTH_LONG).show();
+
 							Log.d("Home",
 									"############################You are not online!!!!");
-							
+
 						}
 
 					}
@@ -232,6 +238,162 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		registerClickCallback();
 
+		lView.setDismissCallback(new de.timroes.android.listview.EnhancedListView.OnDismissCallback() {
+
+			@Override
+			public EnhancedListView.Undoable onDismiss(
+					EnhancedListView listView, final int position) {
+
+				final Due_Today_List item = (Due_Today_List) adapter
+						.getItem(position);
+				// Store the item for later undo
+
+				final Due_Today_List currenthomeworkdue = due_tommorow_list
+						.get(position);
+
+				// Remove the item from the adapter
+				adapter.remove(adapter.getItem(position));
+
+				return new EnhancedListView.Undoable() {
+					@Override
+					public void undo() {
+
+						Log.d("undo", "yes");
+
+						adapter.insert(item, position);
+
+					}
+
+					@Override
+					public void discard() {
+
+						String Description_Check = currenthomeworkdue
+								.getDescription();
+
+						SharedPreferences Tommorow_Homework_Counter = getActivity()
+								.getApplicationContext().getSharedPreferences(
+										"due_tommorow_counter",
+										Context.MODE_PRIVATE);
+
+						int counterssss = Tommorow_Homework_Counter.getInt(
+								"last shared preference", 0);
+
+						int countersssss = counterssss + 1;
+
+						for (int i = 0; i < countersssss; i++) {
+
+							due_tommorow_shared = "due_tommorow"
+									+ Integer.toString(i);
+
+							SharedPreferences Tommorows_Homework = getActivity()
+									.getApplicationContext()
+									.getSharedPreferences(due_tommorow_shared,
+											Context.MODE_PRIVATE);
+
+							String Band1 = Tommorows_Homework.getString(
+									"due_tommorow0", null);
+
+							String Number1 = Tommorows_Homework.getString(
+									"due_tommorow1", null);
+
+							String Class1 = Tommorows_Homework.getString(
+									"due_tommorow2", null);
+
+							String Teacher1 = Tommorows_Homework.getString(
+									"due_tommorow3", null);
+
+							String Title1 = Tommorows_Homework.getString(
+									"due_tommorow4", null);
+
+							String Date1 = Tommorows_Homework.getString(
+									"due_tommorow5", null);
+
+							String Type1 = Tommorows_Homework.getString(
+									"due_tommorow6", null);
+
+							String Description1 = Tommorows_Homework.getString(
+									"due_tommorow7", null);
+
+							if (Band1 != null) {
+
+								Band = Band1.trim();
+
+							}
+
+							if (Number1 != null) {
+
+								Number = Number1.trim();
+
+							}
+
+							if (Class1 != null) {
+
+								Class = Class1.trim();
+
+							}
+
+							if (Teacher1 != null) {
+
+								Teacher = Teacher1.trim();
+
+							}
+
+							if (Title1 != null) {
+
+								Title = Title1.trim();
+
+							}
+
+							if (Date1 != null) {
+
+								Date = Date1.trim();
+
+							}
+
+							if (Type1 != null) {
+
+								Type = Type1.trim();
+
+							}
+
+							if (Description1 != null) {
+
+								Description = Description1.trim();
+
+							}
+
+							Log.d("shared clear", "no");
+
+							if (Description_Check.equals(Description)) {
+
+								Log.d("shared clear", due_tommorow_shared);
+
+								SharedPreferences.Editor localeditor = getActivity()
+										.getApplicationContext()
+										.getSharedPreferences(
+												due_tommorow_shared,
+												Context.MODE_PRIVATE).edit();
+
+								localeditor.clear();
+
+								localeditor.commit();
+
+							}
+
+						}
+
+					}
+
+				};
+			}
+		});
+
+		EnhancedListView.UndoStyle style = EnhancedListView.UndoStyle.MULTILEVEL_POPUP;
+		lView.setUndoStyle(style);
+		lView.enableSwipeToDismiss();
+		EnhancedListView.SwipeDirection direction = EnhancedListView.SwipeDirection.END;
+		lView.setSwipeDirection(direction);
+
 	}
 
 	public void parse_due_tommorow_string() {
@@ -240,8 +402,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 				.getApplicationContext().getSharedPreferences("homework",
 						Context.MODE_PRIVATE);
 
-		String Due_Tommorow = Tommorow_Homework.getString(
-				"homework_content", "");
+		String Due_Tommorow = Tommorow_Homework.getString("homework_content",
+				"");
 
 		Due_Tommorow = Due_Tommorow.replaceAll("^\"|\"$", "");
 
@@ -394,11 +556,11 @@ public class Due_Tommorow_Fragment extends Fragment {
 				// HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
 				// HttpGet httpGet = new HttpGet(
-				// "http://www2.beaconschool.org/~markovic/lincoln.php");
+				// "http://www.beaconschool.org/~markovic/lincoln.php");
 
 				HttpClient httpclient = new DefaultHttpClient();
 				HttpPost httppost = new HttpPost(
-						"http://www2.beaconschool.org/~markovic/lincoln.php");
+						"http://www.beaconschool.org/~markovic/lincoln.php");
 
 				try {
 					// Add your data
@@ -434,16 +596,16 @@ public class Due_Tommorow_Fragment extends Fragment {
 							.getSharedPreferences("homework",
 									Context.MODE_PRIVATE).edit();
 
-					SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd hh:mm a");
+					SimpleDateFormat dateFormat = new SimpleDateFormat(
+							"MM/dd hh:mm a");
 					Calendar cal = Calendar.getInstance();
 					String downloaded = dateFormat.format(cal.getTime());
 
 					localEditor.putString("homework_content", homework);
-					
+
 					localEditor.putString("download_date", downloaded);
 
 					localEditor.apply();
-
 
 				} catch (IllegalStateException e) {
 
@@ -451,9 +613,12 @@ public class Due_Tommorow_Fragment extends Fragment {
 				} catch (IOException e) {
 
 					e.printStackTrace();
-				}catch (NullPointerException e) {
-					e.printStackTrace();	
-			}
+				} catch (NullPointerException e) {
+					e.printStackTrace();
+				} catch (NoSuchElementException e) {
+
+					e.printStackTrace();
+				}
 
 			} finally {
 
@@ -462,9 +627,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		}
 
-
 	}
-	
+
 	public class Update extends AsyncTask<String, Void, Void> {
 
 		private final HttpClient Client = new DefaultHttpClient();
@@ -504,11 +668,11 @@ public class Due_Tommorow_Fragment extends Fragment {
 				// HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
 				// HttpGet httpGet = new HttpGet(
-				// "http://www2.beaconschool.org/~markovic/lincoln.php");
+				// "http://www.beaconschool.org/~markovic/lincoln.php");
 
 				HttpClient httpclient = new DefaultHttpClient();
 				HttpPost httppost = new HttpPost(
-						"http://www2.beaconschool.org/~markovic/lincoln.php");
+						"http://www.beaconschool.org/~markovic/lincoln.php");
 
 				try {
 					// Add your data
@@ -544,16 +708,17 @@ public class Due_Tommorow_Fragment extends Fragment {
 							.getSharedPreferences("homework",
 									Context.MODE_PRIVATE).edit();
 
-					SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd hh:mm a");
+					SimpleDateFormat dateFormat = new SimpleDateFormat(
+							"MM/dd hh:mm a");
 					Calendar cal = Calendar.getInstance();
 					String downloaded = dateFormat.format(cal.getTime());
 
 					localEditor.putString("homework_content", homework);
-					
+
 					localEditor.putString("download_date", downloaded);
 
 					localEditor.apply();
-					
+
 					localEditor.putString("homework_content", homework);
 
 					localEditor.apply();
@@ -572,9 +737,43 @@ public class Due_Tommorow_Fragment extends Fragment {
 				} catch (IOException e) {
 
 					e.printStackTrace();
-				}catch (NullPointerException e) {
+				} catch (NullPointerException e) {
+
+					due_tommorow_list.clear();
+
+					parse_due_tommorow_string();
+
+					parse_due_tommorow_content();
+
+					SharedPreferences.Editor localEditor = getActivity()
+							.getSharedPreferences("homework",
+									Context.MODE_PRIVATE).edit();
+
+					localEditor.putString("download_error", "yes");
+
+					localEditor.apply();
+
 					e.printStackTrace();
-			}
+				}
+
+				catch (NoSuchElementException e) {
+
+					due_tommorow_list.clear();
+
+					parse_due_tommorow_string();
+
+					parse_due_tommorow_content();
+
+					SharedPreferences.Editor localEditor = getActivity()
+							.getSharedPreferences("homework",
+									Context.MODE_PRIVATE).edit();
+
+					localEditor.putString("download_error", "yes");
+
+					localEditor.apply();
+
+					e.printStackTrace();
+				}
 
 			} finally {
 
@@ -599,6 +798,33 @@ public class Due_Tommorow_Fragment extends Fragment {
 					intent);
 
 			Toast.makeText(getActivity(), "Refresh Finished", 4000).show();
+
+			SharedPreferences download_error = getActivity()
+					.getSharedPreferences("homework", Context.MODE_PRIVATE);
+
+			String error = download_error.getString("download_error", "no");
+
+			String download_date = "Download error, refreshed homework using homework downloaded at "
+					+ download_error.getString("download_date", "");
+
+			if (error.equals("yes")) {
+
+				SharedPreferences.Editor localEditor = getActivity()
+						.getSharedPreferences("homework", Context.MODE_PRIVATE)
+						.edit();
+
+				Toast.makeText(getActivity(), download_date, Toast.LENGTH_LONG)
+						.show();
+
+				localEditor.putString("download_error", "no");
+
+				localEditor.commit();
+
+			}
+
+			adapter.notifyDataSetChanged();
+
+			swipeLayout.setRefreshing(false);
 
 		}
 
@@ -901,12 +1127,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 			}
 
 		});
-
-		list.setUndoStyle(UndoStyle.MULTILEVEL_POPUP);
-
-		list.setRequireTouchBeforeDismiss(false);
-
-		list.enableSwipeToDismiss();
 
 	}
 

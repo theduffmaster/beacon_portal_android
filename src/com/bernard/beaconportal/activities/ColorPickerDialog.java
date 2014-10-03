@@ -245,11 +245,11 @@ public class ColorPickerDialog extends Dialog implements
 		localEditor1.commit();
 
 		Intent i = new Intent(getContext(), MainActivity.class);
-		
+
 		getContext().startActivity(i);
 
 		dismiss();
-		
+
 		Log.d("put color", "now restarting");
 
 	}

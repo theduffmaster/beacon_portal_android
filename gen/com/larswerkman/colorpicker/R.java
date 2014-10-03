@@ -11,6 +11,7 @@ public final class R {
 		public static final int pointer_size = 0x7f01000c;
 		public static final int wheel_size = 0x7f01000b;
 	}
+
 	public static final class styleable {
 		public static final int[] ColorPicker = { 0x7f01000b, 0x7f01000c };
 		public static final int ColorPicker_pointer_size = 1;

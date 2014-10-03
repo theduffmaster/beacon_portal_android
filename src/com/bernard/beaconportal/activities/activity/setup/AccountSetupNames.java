@@ -104,7 +104,7 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 	private String KEY_STATE_TITLE;
 
 	ProgressDialog LoginDialog;
-	
+
 	private HttpResponse response;
 
 	private int starts = 0;
@@ -155,7 +155,7 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.account_setup_names);
-		
+
 		int titleId = getResources().getIdentifier("action_bar_title", "id",
 				"android");
 
@@ -168,7 +168,7 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#03a9f4")));
+					new ColorDrawable(Color.parseColor("#298ccd")));
 
 		} else {
 
@@ -313,11 +313,11 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 				// HttpClient httpClient = new DefaultHttpClient();
 				HttpContext localContext = new BasicHttpContext();
 				// HttpGet httpGet = new HttpGet(
-				// "http://www2.beaconschool.org/~markovic/lincoln.php");
+				// "http://www.beaconschool.org/~markovic/lincoln.php");
 
 				HttpClient httpclient = new DefaultHttpClient();
 				HttpPost httppost = new HttpPost(
-						"http://www2.beaconschool.org/~markovic/lincoln.php");
+						"http://www.beaconschool.org/~markovic/lincoln.php");
 
 				try {
 					// Add your data
@@ -359,9 +359,9 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 					Log.d("receiver", "information given to shared preferences");
 
 					parse_due_tommorow_string();
-					
+
 					parse_due_today_string();
-					
+
 				} catch (IllegalStateException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -626,5 +626,5 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 
 		}
 	}
-	
+
 }
