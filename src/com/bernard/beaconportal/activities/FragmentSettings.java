@@ -1,12 +1,17 @@
 package com.bernard.beaconportal.activities;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.bernard.beaconportal.activities.R;
 import com.commonsware.cwac.merge.MergeAdapter;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,11 +31,16 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.TimePicker.OnTimeChangedListener;
+import android.widget.Toast;
 
 public class FragmentSettings extends Fragment {
 
@@ -54,6 +64,11 @@ public class FragmentSettings extends Fragment {
 
 	private CheckBox refresh_edit;
 
+	final static int RQS_1 = 1;
+	
+	private int hour;
+	private int minute;
+	private String time;
 	private TextView text1;
 
 	private View view;
@@ -61,6 +76,8 @@ public class FragmentSettings extends Fragment {
 	private View relative_views;
 
 	private RelativeLayout relativelayout;
+	
+	private RelativeLayout relativerefresh;
 
 	public static final String KEY_HOMEWORK = "homework";
 	public static final String KEY_DESC = "desc";
@@ -76,11 +93,31 @@ public class FragmentSettings extends Fragment {
 
 		merge = new MergeAdapter();
 
-		addListenerOnChkWindows();
+		relativerefresh = (RelativeLayout) relative_views
+				.findViewById(R.id.relative_Layout_Settings_Refresh);
 
 		relativelayout = (RelativeLayout) relative_views
 				.findViewById(R.id.Relative_Layout_Settings);
 
+		relativerefresh.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+			
+					showDatePicker();
+					
+				}
+
+		});
+			
+		SharedPreferences refresh_time = getActivity().getSharedPreferences(
+				"Alarm", Context.MODE_PRIVATE);
+		
+		time = refresh_time.getString("Time", "3:00pm");
+	
+	TextView dateSubText = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Refresh);
+	
+	dateSubText.setText("Homework will refresh at "+ time);
+		
 		relativelayout.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -166,22 +203,8 @@ public class FragmentSettings extends Fragment {
 
 		});
 
-		refresh = (CheckBox) relative_views.findViewById(R.id.checkBox1);
-
 		refresh_edit = (CheckBox) relative_views
 				.findViewById(R.id.checkBoxEdit);
-
-		SharedPreferences pref = getActivity().getSharedPreferences("CheckBox",
-				Context.MODE_PRIVATE);
-
-		String checkbox = pref.getString("checked", null);
-
-		if (checkbox != null) {
-
-			if (checkbox.contains("true")) {
-				refresh.setChecked(true);
-
-			}
 
 			SharedPreferences prefer = getActivity().getSharedPreferences(
 					"CheckBox_edit", Context.MODE_PRIVATE);
@@ -197,8 +220,8 @@ public class FragmentSettings extends Fragment {
 
 			}
 
-		}
 
+			
 		return view;
 
 	}
@@ -212,8 +235,6 @@ public class FragmentSettings extends Fragment {
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-
-		addListenerOnChkWindows();
 
 		addListenerOnChkButton();
 
@@ -388,36 +409,7 @@ public class FragmentSettings extends Fragment {
 
 	}
 
-	public void addListenerOnChkWindows() {
-
-		refresh = (CheckBox) relative_views.findViewById(R.id.checkBox1);
-
-		refresh.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-
-				SharedPreferences.Editor editor = getActivity()
-						.getSharedPreferences("CheckBox", Context.MODE_PRIVATE)
-						.edit();
-
-				if ((buttonView.isChecked())) {
-
-					editor.putString("checked", "true");
-					editor.commit();
-				} else {
-
-					editor.putString("checked", "false");
-					editor.commit();
-
-				}
-
-			}
-
-		});
-
-	}
+	
 
 	public void addListenerOnChkButton() {
 
@@ -451,4 +443,183 @@ public class FragmentSettings extends Fragment {
 
 	}
 
+	public void showDatePicker() {
+		// Initializiation
+		LayoutInflater inflater = (LayoutInflater) getActivity().getLayoutInflater();
+		final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+		View customView = inflater.inflate(R.layout.download_alarm_dialog, null);
+		dialogBuilder.setView(customView);
+				// View settings
+		dialogBuilder.setTitle("Set Homework Refresh Time");
+		
+		final TimePicker timePicker = (TimePicker) customView.findViewById(R.id.timePicker1);
+		
+		Calendar choosenDate = Calendar.getInstance();
+		hour = choosenDate.get(Calendar.HOUR_OF_DAY);
+		minute = choosenDate.get(Calendar.MINUTE);
+		
+		SharedPreferences refresh_time = getActivity().getSharedPreferences(
+				"Alarm", Context.MODE_PRIVATE);
+		
+		try {
+
+			hour = refresh_time.getInt("Hour", 3);
+			
+			minute = refresh_time.getInt("Minute", 0);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// Buttons
+		dialogBuilder.setNegativeButton("Cancel Updates",
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						cancelAlarm();
+						
+						Toast.makeText(getActivity().getApplicationContext(), "Homework will no longer update automatically", 
+								   Toast.LENGTH_LONG).show();
+						
+						SharedPreferences.Editor localEditor = getActivity().getSharedPreferences(
+								"Alarm", Context.MODE_PRIVATE).edit();
+						
+						localEditor.putString("Time", "Homework will not be refreshed automatically");
+						
+						localEditor.apply();
+						
+						TextView dateSubText = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Refresh);
+						
+						dateSubText.setText("Homework will not be refreshed automatically");
+						
+					}
+				});
+		dialogBuilder.setNeutralButton("Cancel",
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						dialog.dismiss();
+					}
+				});
+		dialogBuilder.setPositiveButton("Set Time",
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+					
+						
+						SharedPreferences.Editor localEditor = getActivity().getSharedPreferences(
+								"Alarm", Context.MODE_PRIVATE).edit();
+						
+						hour = timePicker.getCurrentHour();
+						
+						minute = timePicker.getCurrentMinute();
+						
+						localEditor.putInt("Hour", hour);
+
+						localEditor.putInt("Minute", minute);
+
+						if(hour>11){
+							if(minute<10){
+							
+								time = Integer.toString(hour-12)+":"+"0"+Integer.toString(minute)+"pm";
+							
+							}else{
+								
+								time = Integer.toString(hour-12)+":"+Integer.toString(minute)+"pm";
+								
+							}
+							
+						}
+						
+						if(hour<=11){
+							
+							if(minute<10){
+								
+								time = Integer.toString(hour)+":"+"0"+Integer.toString(minute)+"am";
+							
+							}else{
+								
+								time = Integer.toString(hour)+":"+Integer.toString(minute)+"am";
+								
+							}
+							
+						}
+						
+						TextView dateSubText = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Refresh);
+						
+						dateSubText.setText("Homework will refresh at "+ time);
+						
+						localEditor.putString("Time", time);
+						
+						localEditor.apply();
+						
+						Toast.makeText(getActivity().getApplicationContext(), "Homework set to refresh at " + time, 
+								   Toast.LENGTH_LONG).show();
+						
+						Calendar calNow = Calendar.getInstance();
+					    Calendar calSet = (Calendar) calNow.clone();
+
+					    calSet.set(Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
+					    calSet.set(Calendar.MINUTE, timePicker.getCurrentMinute());
+					    calSet.set(Calendar.SECOND, 0);
+					    calSet.set(Calendar.MILLISECOND, 0);
+					    
+					    setAlarm(calSet);
+						
+					}
+				});
+		final AlertDialog dialog = dialogBuilder.create();
+		// Initialize datepicker in dialog atepicker
+		timePicker.setCurrentHour(hour);
+		timePicker.setCurrentMinute(minute);
+				new OnTimeChangedListener() {
+					
+					@Override
+					public void onTimeChanged(TimePicker view, int hourOfDay,
+							int minuteNow) {
+						
+						hour = hourOfDay;
+						minute = minuteNow;
+						
+						
+					}
+
+				};
+
+		dialog.show();
+	}
+	
+	private void setAlarm(Calendar targetCal){
+		
+		Intent intent = new Intent(getActivity().getBaseContext(), DailyHomeworkDownload.class);
+		  
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity().getBaseContext(), RQS_1, intent, 0);
+		
+		AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
+			alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis(), pendingIntent);
+
+		  
+		   alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, 
+		     targetCal.getTimeInMillis(), 
+		     TimeUnit.HOURS.toMillis(24),
+		     pendingIntent);
+		   
+		   System.out.println(targetCal);
+		
+	}
+	
+	private void cancelAlarm(){
+
+		Intent intent = new Intent(getActivity().getBaseContext(), DailyHomeworkDownload.class);
+		 
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity().getBaseContext(), RQS_1, intent, 0);
+		
+		AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
+		  alarmManager.cancel(pendingIntent);
+
+		 }
+	
 }

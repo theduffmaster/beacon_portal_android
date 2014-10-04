@@ -345,14 +345,6 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 				.findViewById(R.id.dialog_dateview);
 		final SimpleDateFormat dateViewFormatter = new SimpleDateFormat(
 				"MM/dd/yyyy");
-		final SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-		// Minimum date
-		Calendar minDate = Calendar.getInstance();
-		try {
-			minDate.setTime(formatter.parse("1.1.1920"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
 
 		// View settings
 		dialogBuilder.setTitle("Please Enter Your Date of Birth");
@@ -384,36 +376,14 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						Calendar choosen = Calendar.getInstance();
-
+					
 						int year = datePicker.getYear();
 						int month = datePicker.getMonth();
 						int day = datePicker.getDayOfMonth();
 
-						String email = mEmailView.getText().toString();
-						String[] emailParts = splitEmail(email);
-						String domain = emailParts[1];
-						mProvider = findProviderForDomain(domain);
-						if (mProvider == null) {
-							/*
-							 * We don't have default settings for this account,
-							 * start the manual setup process.
-							 */
-							onManualSetup();
-							return;
-						}
-
-						if (mProvider.note != null) {
-							showDialog(DIALOG_NOTE);
-						} else {
-							finishAutoSetup();
-						}
-
 						SharedPreferences.Editor localEditor = getSharedPreferences(
 								"Login_Info", Context.MODE_PRIVATE).edit();
-
-						localEditor.putString("email", email);
-
+						
 						localEditor.putInt("Day", day);
 
 						localEditor.putInt("Year", year);
@@ -423,6 +393,8 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 						localEditor.apply();
 
 						dialog.dismiss();
+						
+						bday_check_dialog();
 					}
 				});
 		final AlertDialog dialog = dialogBuilder.create();
@@ -446,6 +418,80 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 		dialog.show();
 	}
 
+	private void bday_check_dialog() {
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+			SharedPreferences bDay = getSharedPreferences("Login_Info",
+					Context.MODE_PRIVATE);
+
+			String day1 = Integer.toString(bDay.getInt("Day", 0));
+
+			String year1 = Integer.toString(bDay.getInt("Year", 0));
+
+			String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
+
+			SharedPreferences userName = getSharedPreferences("Login_Info",
+					Context.MODE_PRIVATE);
+
+			String day = day1.replaceFirst("^0+(?!$)", "");
+
+			String month = month1.replaceFirst("^0+(?!$)", "");
+
+			String year = year1.replaceFirst("^0+(?!$)", "");
+
+			String birthday = month + "/" + day + "/" + year;
+			
+			builder.setTitle("Are You Sure " + birthday + " Is Your Actual Birthday?");
+			
+			builder.setMessage("If this isn't your real birthday, you won't be able to receive homework through the app. We need your birthday so we can tell if you are really you. So are you sure " + birthday + " is your actual birthday?");
+			
+			builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		              
+		        	   showDatePicker();
+		        	   
+		           }
+		       });
+		builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		             
+		        		String email = mEmailView.getText().toString();
+						String[] emailParts = splitEmail(email);
+						String domain = emailParts[1];
+						mProvider = findProviderForDomain(domain);
+						if (mProvider == null) {
+							/*
+							 * We don't have default settings for this account,
+							 * start the manual setup process.
+							 */
+							onManualSetup();
+							return;
+						}
+
+						if (mProvider.note != null) {
+							showDialog(DIALOG_NOTE);
+						} else {
+							finishAutoSetup();
+						}
+
+						SharedPreferences.Editor localEditor = getSharedPreferences(
+								"Login_Info", Context.MODE_PRIVATE).edit();
+
+						localEditor.putString("email", email);
+						
+						localEditor.apply();
+		        	   
+		           }
+		       });
+
+			AlertDialog alertDialog = builder.create();
+
+			alertDialog.show();
+
+		}
+	}
+	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {

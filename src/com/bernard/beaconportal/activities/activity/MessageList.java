@@ -105,7 +105,7 @@ import com.bernard.beaconportal.activities.Due_Today_List;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.FragmentSettings;
 import com.bernard.beaconportal.activities.FragmentsHomeworkDue;
-import com.bernard.beaconportal.activities.FragmentsView;
+import com.bernard.beaconportal.activities.FragmentsSchedule;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.K9.SplitViewMode;
 import com.bernard.beaconportal.activities.MainActivity;
@@ -287,7 +287,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	int[] icon_Inbox;
 	private String counterss;
 	private int counters;
-	Fragment fragment1 = new FragmentsView();
+	Fragment fragment1 = new FragmentsSchedule();
 	Fragment fragment2 = new FragmentsHomeworkDue();
 	Fragment fragment3 = new FragmentSettings();
 	private CharSequence mDrawerTitle;

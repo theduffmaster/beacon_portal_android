@@ -20,7 +20,8 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+	<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    
     <uses-permission android:name="org.thialfihar.android.apg.permission.READ_KEY_DETAILS" />
 
     <permission android:name="com.bernard.beaconportal.activities.permission.READ_ATTACHMENT"
@@ -165,7 +166,14 @@
             android:name=".activity.setup.AccountSetupBasics"
             android:label="@string/account_setup_basics_title"
             android:configChanges="locale"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize"
+            >
+        </activity>
+        <activity
+            android:name=".activity.setup.LoadingLayout"
+            android:label="Preparing For First Run"
+            
             >
         </activity>
         <activity
@@ -471,7 +479,7 @@ otherwise it would make K-9 start at the wrong time
             android:authorities="com.bernard.beaconportal.activities.provider.email"
             android:exported="false"
             />
-
+		<receiver android:name=".DailyHomeworkDownload"/> 
         <receiver
             android:name=".provider.UnreadWidgetProvider"
             android:label="@string/unread_widget_label"
@@ -496,6 +504,5 @@ otherwise it would make K-9 start at the wrong time
             android:name=".service.DatabaseUpgradeService"
             android:exported="false">
         </service>
-       </application>
-        
+    </application>    
 </manifest>
