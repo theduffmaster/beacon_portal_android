@@ -23,8 +23,6 @@
 	        <!-- Header area -->
 	        <include layout="@layout/message_view_header"/>
 	
-	      
-	        
 	        <!-- Content area -->
 	        <com.bernard.beaconportal.activities.view.MessageWebView
 	            android:id="@+id/message_content"
@@ -33,8 +31,6 @@
 	            
 	            />
 	
-	      
-	        
 	        <com.bernard.beaconportal.activities.view.AccessibleWebView
 	            android:id="@+id/accessible_message_content"
 	            android:layout_height="wrap_content"

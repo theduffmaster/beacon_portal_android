@@ -218,7 +218,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 					}
 
 				});
-
+		
 		return swipe;
 
 	}

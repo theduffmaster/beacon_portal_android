@@ -39,10 +39,10 @@ import android.widget.LinearLayout;
  */
 public class ColorPickerPreference extends Preference implements
 		Preference.OnPreferenceClickListener,
-		ColorPickerDialog.OnColorChangedListener {
+		ColorPickerDialogTabs.OnColorChangedListener {
 
 	View mView;
-	ColorPickerDialog mDialog;
+	ColorPickerDialogTabs mDialog;
 	LinearLayout widgetFrameView;
 	private int mValue = Color.BLACK;
 	private float mDensity = 0;
@@ -168,7 +168,7 @@ public class ColorPickerPreference extends Preference implements
 	}
 
 	protected void showDialog(Bundle state) {
-		mDialog = new ColorPickerDialog(getContext(), mValue);
+		mDialog = new ColorPickerDialogTabs(getContext(), mValue);
 		mDialog.setOnColorChangedListener(this);
 		if (mAlphaSliderEnabled) {
 			mDialog.setAlphaSliderVisible(true);

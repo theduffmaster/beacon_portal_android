@@ -4216,7 +4216,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				Log.d("Folders", "clicked");
 
 				onOpenFolder(((FolderInfoHolder) mAdapter.getItem(position
-						- (mAdapter_Accounts.getCount() + 4))).name);
+						- (mAdapter_Accounts.getCount() + 5))).name);
 
 				Log.d("Folder Click Listener", "clicked");
 
@@ -4306,7 +4306,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				Log.d("Folders", "clicked");
 
 				onOpenFolder(((FolderInfoHolder) mAdapter.getItem(position
-						- (mAdapter_Accounts.getCount() + 4))).name);
+						- (mAdapter_Accounts.getCount() + 5))).name);
 
 				Log.d("Folder Click Listener", "clicked");
 

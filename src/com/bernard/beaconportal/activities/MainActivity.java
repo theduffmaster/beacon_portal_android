@@ -337,7 +337,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] { "Homework Due", "Schedule", "Unread Mail",
+			title = new String[] { "Homework Due", "Schedule", "Mail",
 					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_duehomework,
@@ -367,7 +367,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			}
 
-			title = new String[] { "Schedule", "Homework Due", "Unread Mail",
+			title = new String[] { "Schedule", "Homework Due", "Mail",
 					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -64,7 +65,7 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view
 				.findViewById(R.id.pagerTabStrip);
 		tabs.setViewPager(pager);
-
+		
 		// View v = inflater.inflate(R.layout.activity_main, container, false);
 		//
 		// final EnhancedListView enhancedListView = (EnhancedListView)

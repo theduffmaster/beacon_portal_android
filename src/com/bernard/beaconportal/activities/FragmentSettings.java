@@ -322,7 +322,7 @@ public class FragmentSettings extends Fragment {
 
 					FragmentManager setcolor1 = getActivity()
 							.getSupportFragmentManager();
-					ColorPickerDialog colorpickerDialog = new ColorPickerDialog(
+					ColorPickerDialogTabs colorpickerDialog = new ColorPickerDialogTabs(
 							getActivity(), position);
 					colorpickerDialog.show();
 				}
@@ -330,7 +330,7 @@ public class FragmentSettings extends Fragment {
 				if (clickedhomeworkdue.getTitle().equals("Set ActionBar Color")) {
 					FragmentManager setcolor1 = getActivity()
 							.getSupportFragmentManager();
-					CopyOfColorPickerDialog1 colorpickerDialog = new CopyOfColorPickerDialog1(
+					CopyOfColorPickerDialogActionBar colorpickerDialog = new CopyOfColorPickerDialogActionBar(
 							getActivity(), position);
 					colorpickerDialog.show();
 

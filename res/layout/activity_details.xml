@@ -8,6 +8,7 @@
     android:background="#ffffff"
      >
 
+
     
     <TextView
         android:id="@+id/textdate"
@@ -31,21 +32,18 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ffffff" />
     
-
-    
  <ScrollView 
      android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        
      >
-      
-    <WebView
+       <com.bernard.beaconportal.activities.view.MessageWebView
         android:id="@+id/textdescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="Description"
         android:textAppearance="?android:attr/textAppearanceMedium" />
- </ScrollView>
-    
-    
+
+    </ScrollView>
 </LinearLayout>
