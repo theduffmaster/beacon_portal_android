@@ -37,6 +37,8 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.text.TextUtils.TruncateAt;
+import android.text.format.DateUtils;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -72,6 +74,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 	private int count;
 
+	private String date;
+	
 	private int shared;
 
 	private int countersss;
@@ -393,7 +397,17 @@ public class Due_Tommorow_Fragment extends Fragment {
 		lView.enableSwipeToDismiss();
 		EnhancedListView.SwipeDirection direction = EnhancedListView.SwipeDirection.END;
 		lView.setSwipeDirection(direction);
-
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Calendar c = Calendar.getInstance();
+		
+		c.add(Calendar.DATE, 1);
+		
+		date = sdf.format(c.getTime());  
+		
+		System.out.println(date);
+		
 	}
 
 	public void parse_due_tommorow_string() {
@@ -619,6 +633,9 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 					e.printStackTrace();
 				}
+				catch (RuntimeException e) {
+					e.printStackTrace();
+				}
 
 			} finally {
 
@@ -757,6 +774,25 @@ public class Due_Tommorow_Fragment extends Fragment {
 				}
 
 				catch (NoSuchElementException e) {
+
+					due_tommorow_list.clear();
+
+					parse_due_tommorow_string();
+
+					parse_due_tommorow_content();
+
+					SharedPreferences.Editor localEditor = getActivity()
+							.getSharedPreferences("homework",
+									Context.MODE_PRIVATE).edit();
+
+					localEditor.putString("download_error", "yes");
+
+					localEditor.apply();
+
+					e.printStackTrace();
+				}
+				
+				catch (RuntimeException e) {
 
 					due_tommorow_list.clear();
 
@@ -921,8 +957,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 			String descriptionCheck = description_check.getString(
 					"description", "");
 
-			if (Type != null && !Type.isEmpty()
-					&& !Description.equals(descriptionCheck)) {
+			if (Type != null && Description != null && !Type.isEmpty()
+					&& !Description.equals(descriptionCheck) && Date.equals(date)) {
 
 				SharedPreferences.Editor checkeditor = getActivity()
 						.getApplicationContext()

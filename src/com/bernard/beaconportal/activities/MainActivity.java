@@ -773,6 +773,9 @@ public class MainActivity extends SherlockFragmentActivity {
 
 					e.printStackTrace();
 				}
+				catch (RuntimeException e) {
+					e.printStackTrace();
+				}
 
 			} finally {
 

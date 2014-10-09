@@ -36,6 +36,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.text.TextUtils.TruncateAt;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -70,6 +71,8 @@ public class Due_Today_Fragment extends Fragment {
 	private EnhancedListView list;
 
 	private int count;
+	
+	private String date;
 
 	private int shared;
 
@@ -398,6 +401,14 @@ public class Due_Today_Fragment extends Fragment {
 		populateListView();
 
 		registerClickCallback();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Calendar c = Calendar.getInstance();
+		
+		date = sdf.format(c.getTime());  
+		
+		System.out.println(date);
 
 	}
 
@@ -622,6 +633,9 @@ public class Due_Today_Fragment extends Fragment {
 
 					e.printStackTrace();
 				}
+				catch (RuntimeException e) {
+					e.printStackTrace();
+				}
 			} finally {
 
 			}
@@ -772,6 +786,23 @@ public class Due_Today_Fragment extends Fragment {
 					e.printStackTrace();
 
 				}
+				catch (RuntimeException e) {
+					due_today_list.clear();
+
+					parse_due_today_string();
+
+					parse_due_today_content();
+
+					SharedPreferences.Editor localEditor = getActivity()
+							.getSharedPreferences("homework",
+									Context.MODE_PRIVATE).edit();
+
+					localEditor.putString("download_error", "yes");
+
+					localEditor.apply();
+
+					e.printStackTrace();
+				}
 
 			} finally {
 
@@ -912,8 +943,8 @@ public class Due_Today_Fragment extends Fragment {
 			String descriptionCheck = description_check.getString(
 					"description", "");
 
-			if (Type != null && Description != null & !Type.isEmpty()
-					&& !Description.equals(descriptionCheck)) {
+			if (Type != null && Description != null && !Type.isEmpty()
+					&& !Description.equals(descriptionCheck) && Date.equals(date)) {
 
 				SharedPreferences.Editor checkeditor = getActivity()
 						.getApplicationContext()

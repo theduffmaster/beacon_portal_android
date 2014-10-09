@@ -270,7 +270,17 @@ public class LoadingLayout extends Activity{
 
 						e.printStackTrace();
 					}
+				catch (RuntimeException e) {
+					SharedPreferences.Editor localEditor =
+							getSharedPreferences("homework",
+									Context.MODE_PRIVATE).edit();
 
+					localEditor.putString("download_error", "yes");
+
+					localEditor.apply();
+
+					e.printStackTrace();
+				}
 				} finally {
 
 				}

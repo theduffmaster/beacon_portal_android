@@ -5,7 +5,9 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -222,10 +224,23 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 					SharedPreferences.Editor localEditor = context.getSharedPreferences(
 							"homework", Context.MODE_PRIVATE).edit();
+					SimpleDateFormat dateFormat = new SimpleDateFormat(
+							"MM/dd hh:mm a");
+					Calendar cal = Calendar.getInstance();
+					String downloaded = dateFormat.format(cal.getTime());
 
 					localEditor.putString("homework_content", homework);
 
+					localEditor.putString("download_date", downloaded);
+
 					localEditor.apply();
+					
+					SharedPreferences.Editor log = context.getSharedPreferences(
+							"AlarmDownload", Context.MODE_PRIVATE).edit();
+					
+					log.putString("date", downloaded);
+					
+					log.apply();
 
 					Log.d("receiver", "information given to shared preferences");
 
@@ -274,6 +289,23 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					e.printStackTrace();
 				}
 
+				catch (RuntimeException e) {
+					parse_due_tommorow_string();
+
+					parse_due_today_string();
+
+					SharedPreferences.Editor localEditor = context
+							.getSharedPreferences("homework",
+									Context.MODE_PRIVATE).edit();
+
+					localEditor.putString("download_error", "yes");
+
+					localEditor.apply();
+
+					e.printStackTrace();
+					
+				}
+				
 			} finally {
 
 			}

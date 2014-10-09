@@ -60,7 +60,7 @@ public class FragmentSettings extends Fragment {
 		public View View_Color;
 	}
 
-	private CheckBox refresh;
+	private CheckBox refresh_swipe;
 
 	private CheckBox refresh_edit;
 
@@ -176,10 +176,13 @@ public class FragmentSettings extends Fragment {
 
 										}
 
-										Intent i = new Intent(getActivity(),
-												MainActivity.class);
-										i.putExtra("toOpen", "fragment 1");
-										getActivity().startActivity(i);
+										 Intent intent = getActivity().getIntent();
+										    getActivity().overridePendingTransition(0, 0);
+										    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+										    getActivity().finish();
+
+										    getActivity().overridePendingTransition(0, 0);
+										    startActivity(intent);
 
 									}
 								})
@@ -210,16 +213,55 @@ public class FragmentSettings extends Fragment {
 					"CheckBox_edit", Context.MODE_PRIVATE);
 
 			String checkbox_edit = prefer.getString("checked", null);
+			
+			String subTitleEdit = prefer.getString("subTitle", null);
 
 			if (checkbox_edit != null) {
 
 				if (checkbox_edit.contains("true")) {
 					refresh_edit.setChecked(true);
-
+					
+					if(subTitleEdit != null){
+						TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Edit);
+						SubTitle.setText(subTitleEdit);
+						}
 				}
 
 			}
 
+			refresh_swipe = (CheckBox) relative_views
+					.findViewById(R.id.checkBoxSwipe);
+
+				SharedPreferences preferer = getActivity().getSharedPreferences(
+						"CheckBox_swipe", Context.MODE_PRIVATE);
+
+				String checkbox_swipe = preferer.getString("checked", null);
+
+				String subTitleSwipe = preferer.getString("subTitle", null);
+				
+				if (checkbox_swipe != null) {
+
+					if (checkbox_swipe.contains("false")) {
+						refresh_swipe.setChecked(false);
+						
+						TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Swipe);
+						SubTitle.setText(subTitleSwipe);
+
+					}else{
+						
+						refresh_swipe.setChecked(true);
+						
+						if(subTitleSwipe != null){
+						TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Swipe);
+						SubTitle.setText(subTitleSwipe);
+						}
+					}
+
+				}else{
+					
+					refresh_swipe.setChecked(true);
+					
+				}
 
 			
 		return view;
@@ -235,8 +277,10 @@ public class FragmentSettings extends Fragment {
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-
+		
 		addListenerOnChkButton();
+		
+		addListenerOnChkButtonSwipe();
 
 		SharedPreferences sharedpref = getActivity().getSharedPreferences(
 				"actionbar_color", Context.MODE_PRIVATE);
@@ -271,6 +315,63 @@ public class FragmentSettings extends Fragment {
 
 		registerClickCallback();
 
+		refresh_edit = (CheckBox) relative_views
+				.findViewById(R.id.checkBoxEdit);
+
+			SharedPreferences prefer = getActivity().getSharedPreferences(
+					"CheckBox_edit", Context.MODE_PRIVATE);
+
+			String checkbox_edit = prefer.getString("checked", null);
+			
+			String subTitleEdit = prefer.getString("subTitle", null);
+
+			if (checkbox_edit != null) {
+
+				if (checkbox_edit.contains("true")) {
+					refresh_edit.setChecked(true);
+					
+					if(subTitleEdit != null){
+						TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Edit);
+						SubTitle.setText(subTitleEdit);
+						}
+
+				}
+
+			}
+
+			refresh_swipe = (CheckBox) relative_views
+					.findViewById(R.id.checkBoxSwipe);
+
+				SharedPreferences preferer = getActivity().getSharedPreferences(
+						"CheckBox_swipe", Context.MODE_PRIVATE);
+
+				String checkbox_swipe = preferer.getString("checked", null);
+
+				String subTitleSwipe = preferer.getString("subTitle", null);
+				
+				if (checkbox_swipe != null) {
+
+					if (checkbox_swipe.contains("false")) {
+						refresh_swipe.setChecked(false);
+						
+						TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Swipe);
+						SubTitle.setText(subTitleSwipe);
+
+					}else{
+						
+						refresh_swipe.setChecked(true);
+						
+						if(subTitleSwipe != null){
+						TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Swipe);
+						SubTitle.setText(subTitleSwipe);
+						}
+					}
+
+				}else{
+					
+					refresh_swipe.setChecked(true);
+					
+				}
 	}
 
 	public void setListViewHeightBasedOnChildren(ListView listView) {
@@ -424,25 +525,82 @@ public class FragmentSettings extends Fragment {
 
 				SharedPreferences.Editor editor = getActivity()
 						.getSharedPreferences("CheckBox_edit",
-								Context.MODE_PRIVATE).edit();
-
+							Context.MODE_PRIVATE).edit();
+			
 				if ((buttonView.isChecked())) {
 
+					String subTitle = "Edit Button moved to ActionBar";
+					
 					editor.putString("checked", "true");
+					editor.putString("subTitle", subTitle);
 					editor.commit();
+					
+					TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Edit);
+					SubTitle.setText(subTitle);
+					
 				} else {
 
+					String subTitle = "Edit Button not in ActionBar";
+					
 					editor.putString("checked", "false");
+					editor.putString("subTitle", subTitle);
 					editor.commit();
+					
+					TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Edit);
+					SubTitle.setText(subTitle);
 
 				}
 
 			}
 
 		});
-
 	}
 
+	public void addListenerOnChkButtonSwipe() {
+
+		CheckBox floating = (CheckBox) relative_views
+				.findViewById(R.id.checkBoxSwipe);
+
+		floating.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+
+				SharedPreferences.Editor editor = getActivity()
+						.getSharedPreferences("CheckBox_swipe",
+								Context.MODE_PRIVATE).edit();
+
+				if ((buttonView.isChecked())) {
+
+					String subTitle = "Homework Items are Swipeable";
+					
+					editor.putString("checked", "true");
+					editor.putString("subTitle", subTitle);
+					editor.commit();
+					
+					TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Swipe);
+					SubTitle.setText(subTitle);
+					
+				} else {
+
+					String subTitle = "Homework Items are Not Swipeable";
+					
+					editor.putString("checked", "false");
+					editor.putString("subTitle", subTitle);
+					editor.commit();
+					
+					TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Swipe);
+					SubTitle.setText(subTitle);
+
+				}
+
+			}
+
+		});
+	
+	}
+		
 	public void showDatePicker() {
 		// Initializiation
 		LayoutInflater inflater = (LayoutInflater) getActivity().getLayoutInflater();
