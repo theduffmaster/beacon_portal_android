@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -422,7 +423,7 @@ public class Due_Today_Fragment extends Fragment {
 
 		Due_Today = Due_Today.replaceAll("^\"|\"$", "");
 
-		Due_Today = Due_Today.substring(3);
+		Due_Today = Due_Today.substring(7);
 
 		Log.d("homework due today", Due_Today);
 
@@ -456,14 +457,81 @@ public class Due_Today_Fragment extends Fragment {
 				else if (c == '"') {
 					if (state == 2) {
 
-						System.out.println("shared_add= " + shared_add);
+//						if (shared_add == 8) {
+//							shared_add = 0;
+//							shared++;
+//
+//						}
+						
+						System.out.println("shared_add= " + shared_add + " " + strb);
 
-						if (shared_add == 8) {
-							shared_add = 0;
-							shared++;
+							String strrr = strb.toString().replaceAll("^\"|\"$", "");
+						
 
-						}
+							if (strrr.length() < 3 && isStringNumeric(strrr))
+									{	
+										shared_add = 0;
+										shared++;
 
+										Log.d("restart", "yes");
+										
+										due_today_shared = "due_today"
+												+ Integer.toString(shared);
+										
+										SharedPreferences Band = getActivity()
+												.getApplicationContext().getSharedPreferences(
+													"last band", Context.MODE_PRIVATE);
+										
+												String band = Band.getString("last string", "ZZZZZZ");
+												
+												SharedPreferences.Editor localEditor = getActivity()
+														.getSharedPreferences(due_today_shared,
+																Context.MODE_PRIVATE).edit();
+
+												localEditor.putString("due_today0", band);
+
+												localEditor.apply();
+												
+												shared_add++;
+									}
+							
+							
+							if(shared_add > 8){
+							
+								SharedPreferences Band = getActivity()
+										.getApplicationContext().getSharedPreferences(
+											"last band", Context.MODE_PRIVATE);
+								
+								SharedPreferences Description = getActivity()
+										.getSharedPreferences(due_today_shared,
+												Context.MODE_PRIVATE);
+								
+										String last = Band.getString("last string", "ZZZZZZ");
+										
+										String description = Description.getString("due_today7", "");
+										
+										String fixed = description + last;
+										
+										Log.d("fixed", fixed);
+										
+										SharedPreferences.Editor localEditor = getActivity()
+												.getSharedPreferences(due_today_shared,
+														Context.MODE_PRIVATE).edit();
+										
+										localEditor.putString("due_today7", fixed);
+										
+										localEditor.apply();
+								
+							}
+							
+							SharedPreferences.Editor localEditors = getActivity()
+									.getSharedPreferences("last band",
+										Context.MODE_PRIVATE).edit();
+							
+							localEditors.putString("last string", strrr);
+							
+							localEditors.apply();
+							
 						due_today_shared = "due_today"
 								+ Integer.toString(shared);
 
@@ -488,7 +556,9 @@ public class Due_Today_Fragment extends Fragment {
 						state = 0;
 						countersss++;
 						shared_add++;
-
+					
+						
+						
 					} else {
 						state = 1;
 						strb.append(c);
@@ -496,7 +566,7 @@ public class Due_Today_Fragment extends Fragment {
 				} else {
 					strb.append(c);
 				}
-
+				
 			}
 
 			String strr = strb.toString().replaceAll("^\"|\"$", "");
@@ -533,6 +603,31 @@ public class Due_Today_Fragment extends Fragment {
 		}
 	}
 
+	public static boolean isStringNumeric( String str )
+	{
+	    DecimalFormatSymbols currentLocaleSymbols = DecimalFormatSymbols.getInstance();
+	    char localeMinusSign = currentLocaleSymbols.getMinusSign();
+
+	    if ( !Character.isDigit( str.charAt( 0 ) ) && str.charAt( 0 ) != localeMinusSign ) return false;
+
+	    boolean isDecimalSeparatorFound = false;
+	    char localeDecimalSeparator = currentLocaleSymbols.getDecimalSeparator();
+
+	    for ( char c : str.substring( 1 ).toCharArray() )
+	    {
+	        if ( !Character.isDigit( c ) )
+	        {
+	            if ( c == localeDecimalSeparator && !isDecimalSeparatorFound )
+	            {
+	                isDecimalSeparatorFound = true;
+	                continue;
+	            }
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+		
 	public class Download extends AsyncTask<String, Void, Void> {
 
 		@Override
@@ -935,6 +1030,24 @@ public class Due_Today_Fragment extends Fragment {
 				Description = Description1.trim();
 
 			}
+			
+			
+			Log.d("Band", Band);
+			
+			Log.d("Number", Number);
+			
+			Log.d("Class", Class);
+			
+			Log.d("Teacher", Teacher);
+			
+			Log.d("Title", Title);
+			
+			Log.d("Date", Date);
+			
+			Log.d("Type", Type);
+			
+			Log.d("Description", Description);
+			
 
 			SharedPreferences description_check = getActivity()
 					.getApplicationContext().getSharedPreferences(
@@ -944,7 +1057,9 @@ public class Due_Today_Fragment extends Fragment {
 					"description", "");
 
 			if (Type != null && Description != null && !Type.isEmpty()
-					&& !Description.equals(descriptionCheck) && Date.equals(date)) {
+					&& !Description.equals(descriptionCheck) && Description.length() > 5
+					//&& Date.equals(date)
+					) {
 
 				SharedPreferences.Editor checkeditor = getActivity()
 						.getApplicationContext()

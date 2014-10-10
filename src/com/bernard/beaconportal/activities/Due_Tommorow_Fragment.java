@@ -885,21 +885,21 @@ public class Due_Tommorow_Fragment extends Fragment {
 					.getApplicationContext().getSharedPreferences(
 							due_tommorow_shared, Context.MODE_PRIVATE);
 
-			String Band1 = Todays_Homework.getString("due_tommorow0", null);
+			String Description1 = Todays_Homework.getString("due_tommorow0", null);
 
-			String Number1 = Todays_Homework.getString("due_tommorow1", null);
+			String Band1 = Todays_Homework.getString("due_tommorow1", null);
 
-			String Class1 = Todays_Homework.getString("due_tommorow2", null);
+			String Number1 = Todays_Homework.getString("due_tommorow2", null);
 
-			String Teacher1 = Todays_Homework.getString("due_tommorow3", null);
+			String Class1 = Todays_Homework.getString("due_tommorow3", null);
 
-			String Title1 = Todays_Homework.getString("due_tommorow4", null);
+			String Teacher1 = Todays_Homework.getString("due_tommorow4", null);
 
-			String Date1 = Todays_Homework.getString("due_tommorow5", null);
+			String Title1 = Todays_Homework.getString("due_tommorow5", null);
 
-			String Type1 = Todays_Homework.getString("due_tommorow6", null);
+			String Date1 = Todays_Homework.getString("due_tommorow6", null);
 
-			String Description1 = Todays_Homework.getString("due_tommorow7",
+			String Type1 = Todays_Homework.getString("due_tommorow7",
 					null);
 
 			if (Band1 != null) {
@@ -949,6 +949,22 @@ public class Due_Tommorow_Fragment extends Fragment {
 				Description = Description1.trim();
 
 			}
+			
+			Log.d("Description", Description);
+			
+			Log.d("Band", Band);
+			
+			Log.d("Number", Number);
+			
+			Log.d("Class", Class);
+			
+			Log.d("Teacher", Teacher);
+			
+			Log.d("Title", Title);
+			
+			Log.d("Date", Date);
+			
+			Log.d("Type", Type);
 
 			SharedPreferences description_check = getActivity()
 					.getApplicationContext().getSharedPreferences(
@@ -957,7 +973,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 			String descriptionCheck = description_check.getString(
 					"description", "");
 
-			if (Type != null && Description != null && !Type.isEmpty()
+			if (Type != null && Description != null && Description.length() > 5 
 					&& !Description.equals(descriptionCheck) && Date.equals(date)) {
 
 				SharedPreferences.Editor checkeditor = getActivity()
