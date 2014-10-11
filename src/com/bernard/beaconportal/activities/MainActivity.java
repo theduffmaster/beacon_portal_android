@@ -54,10 +54,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -171,11 +174,30 @@ public class MainActivity extends SherlockFragmentActivity {
 			counterss = extras.getString("homework_count");
 		}
 
+		SharedPreferences rerun = getSharedPreferences(
+				"homework_rerun", Context.MODE_PRIVATE);
+		
 		SharedPreferences sharedprefer = getSharedPreferences(
 				"first_run_starts", Context.MODE_PRIVATE);
 
 		SharedPreferences sharedprefererence = getSharedPreferences(
 				"Login_info", Context.MODE_PRIVATE);
+		
+		if (rerun.contains("first_rerun")){
+			
+		}else{
+			
+			SharedPreferences.Editor rerunEditor = getSharedPreferences(
+					"homework_rerun", Context.MODE_PRIVATE).edit();
+			
+			rerunEditor.putString("first_rerun", "reran");
+			
+			rerunEditor.apply();
+			
+			showDatePicker();
+			
+		}
+			
 
 		if (sharedprefererence.contains("name")) {
 
@@ -1570,4 +1592,140 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	}
 
+	public void showDatePicker() {
+		// Initializiation
+		LayoutInflater inflater = (LayoutInflater) getLayoutInflater();
+		final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+		View customView = inflater.inflate(R.layout.bdaypicker, null);
+		dialogBuilder.setView(customView);
+		Calendar now = Calendar.getInstance();
+		final DatePicker datePicker = (DatePicker) customView
+				.findViewById(R.id.dialog_datepicker);
+		final TextView dateTextView = (TextView) customView
+				.findViewById(R.id.dialog_dateview);
+		final SimpleDateFormat dateViewFormatter = new SimpleDateFormat(
+				"MM/dd/yyyy");
+
+		// View settings
+		dialogBuilder.setTitle("Please Enter Your Date of Birth");
+		Calendar choosenDate = Calendar.getInstance();
+		int year = choosenDate.get(Calendar.YEAR);
+		int month = choosenDate.get(Calendar.MONTH);
+		int day = choosenDate.get(Calendar.DAY_OF_MONTH);
+		try {
+
+			year = 2000;
+			month = 0;
+			day = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Calendar dateToDisplay = Calendar.getInstance();
+		dateToDisplay.set(year, month, day);
+		dateTextView.setText(dateViewFormatter.format(dateToDisplay.getTime()));
+		// Buttons
+		dialogBuilder.setNegativeButton("Go Back",
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						dialog.dismiss();
+					}
+				});
+		dialogBuilder.setPositiveButton("Login",
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+					
+						int year = datePicker.getYear();
+						int month = datePicker.getMonth();
+						int day = datePicker.getDayOfMonth();
+
+						SharedPreferences.Editor localEditor = getSharedPreferences(
+								"Login_Info", Context.MODE_PRIVATE).edit();
+						
+						localEditor.putInt("Day", day);
+
+						localEditor.putInt("Year", year);
+
+						localEditor.putInt("Month", month);
+
+						localEditor.apply();
+
+						dialog.dismiss();
+						
+						bday_check_dialog();
+					}
+				});
+		final AlertDialog dialog = dialogBuilder.create();
+		// Initialize datepicker in dialog atepicker
+		datePicker.init(year, month, day,
+				new DatePicker.OnDateChangedListener() {
+					public void onDateChanged(DatePicker view, int year,
+							int monthOfYear, int dayOfMonth) {
+						Calendar choosenDate = Calendar.getInstance();
+						choosenDate.set(year, monthOfYear, dayOfMonth);
+						dateTextView.setText(dateViewFormatter
+								.format(choosenDate.getTime()));
+
+						dateTextView.setTextColor(Color.parseColor("#58585b"));
+						((Button) dialog.getButton(AlertDialog.BUTTON_POSITIVE))
+								.setEnabled(true);
+					}
+
+				});
+
+		dialog.show();
+	}
+
+	private void bday_check_dialog() {
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+			SharedPreferences bDay = getSharedPreferences("Login_Info",
+					Context.MODE_PRIVATE);
+
+			String day1 = Integer.toString(bDay.getInt("Day", 0));
+
+			String year1 = Integer.toString(bDay.getInt("Year", 0));
+
+			String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
+
+			SharedPreferences userName = getSharedPreferences("Login_Info",
+					Context.MODE_PRIVATE);
+
+			String day = day1.replaceFirst("^0+(?!$)", "");
+
+			String month = month1.replaceFirst("^0+(?!$)", "");
+
+			String year = year1.replaceFirst("^0+(?!$)", "");
+
+			String birthday = month + "/" + day + "/" + year;
+			
+			builder.setTitle("Are You Sure " + birthday + " Is Your Actual Birthday?");
+			
+			builder.setMessage("If this isn't your real birthday, you won't be able to receive homework through the app. We need your birthday so we can tell if you are really you. So are you sure " + birthday + " is your actual birthday?");
+			
+			builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		              
+		        	   showDatePicker();
+		        	   
+		           }
+		       });
+		builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		             
+
+		        	   
+		           }
+		       });
+
+			AlertDialog alertDialog = builder.create();
+
+			alertDialog.show();
+
+		}
+	}
+	
 }

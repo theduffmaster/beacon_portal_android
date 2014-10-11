@@ -1,12 +1,14 @@
 package com.bernard.beaconportal.activities;
 
+import java.util.Calendar;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class ViewPagerAdapterHomework extends FragmentPagerAdapter {
-
+	
 	final int PAGE_COUNT = 2;
 	private String titles[] = new String[] { "Homework Due Tommorow",
 			"Homework Due Today" };
@@ -41,5 +43,4 @@ public class ViewPagerAdapterHomework extends FragmentPagerAdapter {
 	public int getCount() {
 		return PAGE_COUNT;
 	}
-
-}
+}	

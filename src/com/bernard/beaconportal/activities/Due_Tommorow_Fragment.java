@@ -115,6 +115,47 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		new Download().execute();
 
+		Calendar calendar = Calendar.getInstance();
+	     
+		int i = calendar.get(Calendar.DAY_OF_WEEK);
+		
+		if(i == 6){
+		
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+			Calendar c = Calendar.getInstance();
+		
+			c.add(Calendar.DATE, 3);
+		
+			date = sdf.format(c.getTime());  
+			
+			System.out.println("friday");
+		
+		}else if(i == 7){
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar c = Calendar.getInstance();
+			
+			c.add(Calendar.DATE, 2);
+			
+			date = sdf.format(c.getTime()); 
+			
+			System.out.println("saturday");
+		
+		}else{
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar c = Calendar.getInstance();
+			
+			c.add(Calendar.DATE, 1);
+			
+			date = sdf.format(c.getTime());  	
+		}
+		
+		System.out.println(date);
+		
 		View swipe = inflater.inflate(R.layout.activity_main, container, false);
 
 		swipeLayout = (SwipeRefreshLayout) swipe.findViewById(R.id.swipe);
@@ -224,15 +265,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 				});
 		
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		Calendar c = Calendar.getInstance();
-		
-		c.add(Calendar.DATE, 1);
-		
-		date = sdf.format(c.getTime());  
-		
-		System.out.println(date);
+
+		lView.setEmptyView(swipe.findViewById(R.id.scrollView1));
 		
 		return swipe;
 
@@ -243,6 +277,42 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		super.onResume();
 
+		Calendar calendar = Calendar.getInstance();
+	     
+		int i = calendar.get(Calendar.DAY_OF_WEEK);
+		
+		if(i == 6){
+		
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+			Calendar c = Calendar.getInstance();
+		
+			c.add(Calendar.DATE, 3);
+		
+			date = sdf.format(c.getTime());  
+		
+		}else if(i == 7){
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar c = Calendar.getInstance();
+			
+			c.add(Calendar.DATE, 3);
+			
+			date = sdf.format(c.getTime()); 
+		
+		}else{
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar c = Calendar.getInstance();
+			
+			c.add(Calendar.DATE, 1);
+			
+			date = sdf.format(c.getTime());  	
+		}
+		
+		
 		read_due_tommorow_list = new ArrayList<String>();
 
 		due_tommorow_list = new ArrayList<Due_Today_List>();
@@ -408,16 +478,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 		lView.enableSwipeToDismiss();
 		EnhancedListView.SwipeDirection direction = EnhancedListView.SwipeDirection.END;
 		lView.setSwipeDirection(direction);
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		Calendar c = Calendar.getInstance();
-		
-		c.add(Calendar.DATE, 1);
-		
-		date = sdf.format(c.getTime());  
-		
-		System.out.println(date);
 		
 	}
 

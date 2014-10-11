@@ -32,8 +32,8 @@ public final class R {
 		public static final int elv_undo_btn_bg_pressed = 0x7f0200b0;
 	}
 	public static final class id {
-		public static final int text = 0x7f0a00bb;
-		public static final int undo = 0x7f0a00bc;
+		public static final int text = 0x7f0a00bd;
+		public static final int undo = 0x7f0a00be;
 	}
 	public static final class layout {
 		public static final int elv_undo_popup = 0x7f030036;

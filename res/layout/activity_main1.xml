@@ -1,12 +1,17 @@
-<android.support.v4.widget.SwipeRefreshLayout 
+<android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff"
     android:id="@+id/swipe" >
-
-    <ListView
+    
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
+    
+    <de.timroes.android.listview.EnhancedListView
         android:id="@+id/listView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +19,26 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-         android:background="#ffffff">
+         android:background="#ffffff"
+         android:divider="@null"
+		android:dividerHeight="0dp"
+         >
 
-    </ListView>
+    </de.timroes.android.listview.EnhancedListView>
+    
+         <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Woohoo! No assignments due! (I would check the portal website though just in case, this app isn't perfect you know)..."
+        android:textAppearance="?android:attr/textAppearanceMedium" 
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/black_text"
+        />
+         
+         </LinearLayout>
+    
 </android.support.v4.widget.SwipeRefreshLayout>

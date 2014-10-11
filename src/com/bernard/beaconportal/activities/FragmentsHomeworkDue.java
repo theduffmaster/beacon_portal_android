@@ -1,6 +1,9 @@
 package com.bernard.beaconportal.activities;
 
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -60,8 +63,41 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 
 		layout.setBackgroundColor(Color.parseColor(background_colors));
 
-		pager.setAdapter(new ViewPagerAdapterHomework(getChildFragmentManager()));
+		Calendar calendar = Calendar.getInstance();
+	     
+		int i = calendar.get(Calendar.DAY_OF_WEEK);
+		
+		if(i == 6 || i== 7 || i==1){
 
+			String currHour = new SimpleDateFormat("kk").format(new Date());
+			
+			if(Integer.parseInt(currHour) > 14){
+				
+				pager.setAdapter(new ViewPagerAdapterHomeworkAfterThreeWeekend(getChildFragmentManager()));
+				
+			}else{
+			
+				pager.setAdapter(new ViewPagerAdapterHomeworkWeekend(getChildFragmentManager()));
+
+			}		
+			
+		}else{
+
+			String currHour = new SimpleDateFormat("kk").format(new Date());
+			
+			if(Integer.parseInt(currHour) > 14){
+				
+				pager.setAdapter(new ViewPagerAdapterHomeworkAfterThree(getChildFragmentManager()));
+				
+			}else{
+			
+				pager.setAdapter(new ViewPagerAdapterHomework(getChildFragmentManager()));
+
+			}
+
+		}
+		
+		
 		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view
 				.findViewById(R.id.pagerTabStrip);
 		tabs.setViewPager(pager);

@@ -231,6 +231,8 @@ public class Due_Today_Fragment extends Fragment {
 		
 		System.out.println(date);
 		
+		lView.setEmptyView(swipe.findViewById(R.id.scrollView1));
+		
 		return swipe;
 
 	}
@@ -409,13 +411,7 @@ public class Due_Today_Fragment extends Fragment {
 		lView.setUndoStyle(style);
 		lView.enableSwipeToDismiss();
 		EnhancedListView.SwipeDirection direction = EnhancedListView.SwipeDirection.START;
-		lView.setSwipeDirection(direction);
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		Calendar c = Calendar.getInstance();
-		
-		date = sdf.format(c.getTime());  
+		lView.setSwipeDirection(direction); 
 		
 		System.out.println(date);
 

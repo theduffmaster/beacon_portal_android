@@ -541,7 +541,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 	public void parse_due_today_string() {
 
-		SharedPreferences Today_Homework = context.getSharedPreferences("due_today",Context.MODE_PRIVATE);
+		SharedPreferences Today_Homework = context.getSharedPreferences("homework",Context.MODE_PRIVATE);
 
 		String Due_Today = Today_Homework.getString("homework_content", "");
 
