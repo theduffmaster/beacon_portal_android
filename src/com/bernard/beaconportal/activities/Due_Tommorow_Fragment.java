@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -222,6 +223,16 @@ public class Due_Tommorow_Fragment extends Fragment {
 					}
 
 				});
+		
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Calendar c = Calendar.getInstance();
+		
+		c.add(Calendar.DATE, 1);
+		
+		date = sdf.format(c.getTime());  
+		
+		System.out.println(date);
 		
 		return swipe;
 
@@ -454,15 +465,76 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 				else if (c == '"') {
 					if (state == 2) {
+						
+						System.out.println("shared_add= " + shared_add + " " + strb);
 
-						System.out.println("shared_add= " + shared_add);
+							String strrr = strb.toString().replaceAll("^\"|\"$", "");
+						
 
-						if (shared_add == 8) {
-							shared_add = 0;
-							shared++;
+							if (strrr.length() < 3 && isStringNumeric(strrr))
+									{	
+										shared_add = 0;
+										shared++;
 
-						}
+										Log.d("restart", "yes");
+										
+										due_tommorow_shared = "due_tommorow"
+												+ Integer.toString(shared);
+										
+										SharedPreferences Band = getActivity()
+												.getApplicationContext().getSharedPreferences(
+													"last band tommorow", Context.MODE_PRIVATE);
+										
+												String band = Band.getString("last string", "ZZZZZZ");
+												
+												SharedPreferences.Editor localEditor = getActivity()
+														.getSharedPreferences(due_tommorow_shared,
+																Context.MODE_PRIVATE).edit();
 
+												localEditor.putString("due_tommorow0", band);
+
+												localEditor.apply();
+												
+												shared_add++;
+									}
+							
+							
+							if(shared_add > 8){
+							
+								SharedPreferences Band = getActivity()
+										.getApplicationContext().getSharedPreferences(
+											"last band tommorow", Context.MODE_PRIVATE);
+								
+								SharedPreferences Description = getActivity()
+										.getSharedPreferences(due_tommorow_shared,
+												Context.MODE_PRIVATE);
+								
+										String last = Band.getString("last string", "ZZZZZZ");
+										
+										String description = Description.getString("due_tommorow7", "");
+										
+										String fixed = description + last;
+										
+										Log.d("fixed", fixed);
+										
+										SharedPreferences.Editor localEditor = getActivity()
+												.getSharedPreferences(due_tommorow_shared,
+														Context.MODE_PRIVATE).edit();
+										
+										localEditor.putString("due_tommorow7", fixed);
+										
+										localEditor.apply();
+								
+							}
+							
+							SharedPreferences.Editor localEditors = getActivity()
+									.getSharedPreferences("last band tommorow",
+										Context.MODE_PRIVATE).edit();
+							
+							localEditors.putString("last string", strrr);
+							
+							localEditors.apply();
+							
 						due_tommorow_shared = "due_tommorow"
 								+ Integer.toString(shared);
 
@@ -477,8 +549,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 								.getSharedPreferences(due_tommorow_shared,
 										Context.MODE_PRIVATE).edit();
 
-						localEditor
-								.putString(due_tommorow_shared_content, strr);
+						localEditor.putString(due_tommorow_shared_content, strr);
 
 						localEditor.apply();
 
@@ -488,7 +559,9 @@ public class Due_Tommorow_Fragment extends Fragment {
 						state = 0;
 						countersss++;
 						shared_add++;
-
+					
+						
+						
 					} else {
 						state = 1;
 						strb.append(c);
@@ -496,7 +569,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 				} else {
 					strb.append(c);
 				}
-
+				
 			}
 
 			String strr = strb.toString().replaceAll("^\"|\"$", "");
@@ -531,6 +604,31 @@ public class Due_Tommorow_Fragment extends Fragment {
 		finally {
 
 		}
+	}
+
+	public static boolean isStringNumeric( String str )
+	{
+	    DecimalFormatSymbols currentLocaleSymbols = DecimalFormatSymbols.getInstance();
+	    char localeMinusSign = currentLocaleSymbols.getMinusSign();
+
+	    if ( !Character.isDigit( str.charAt( 0 ) ) && str.charAt( 0 ) != localeMinusSign ) return false;
+
+	    boolean isDecimalSeparatorFound = false;
+	    char localeDecimalSeparator = currentLocaleSymbols.getDecimalSeparator();
+
+	    for ( char c : str.substring( 1 ).toCharArray() )
+	    {
+	        if ( !Character.isDigit( c ) )
+	        {
+	            if ( c == localeDecimalSeparator && !isDecimalSeparatorFound )
+	            {
+	                isDecimalSeparatorFound = true;
+	                continue;
+	            }
+	            return false;
+	        }
+	    }
+	    return true;
 	}
 
 	public class Download extends AsyncTask<String, Void, Void> {
@@ -885,22 +983,21 @@ public class Due_Tommorow_Fragment extends Fragment {
 					.getApplicationContext().getSharedPreferences(
 							due_tommorow_shared, Context.MODE_PRIVATE);
 
-			String Description1 = Todays_Homework.getString("due_tommorow0", null);
+			String Band1 = Todays_Homework.getString("due_tommorow0", null);
 
-			String Band1 = Todays_Homework.getString("due_tommorow1", null);
+			String Number1 = Todays_Homework.getString("due_tommorow1", null);
 
-			String Number1 = Todays_Homework.getString("due_tommorow2", null);
+			String Class1 = Todays_Homework.getString("due_tommorow2", null);
 
-			String Class1 = Todays_Homework.getString("due_tommorow3", null);
+			String Teacher1 = Todays_Homework.getString("due_tommorow3", null);
 
-			String Teacher1 = Todays_Homework.getString("due_tommorow4", null);
+			String Title1 = Todays_Homework.getString("due_tommorow4", null);
 
-			String Title1 = Todays_Homework.getString("due_tommorow5", null);
+			String Date1 = Todays_Homework.getString("due_tommorow5", null);
 
-			String Date1 = Todays_Homework.getString("due_tommorow6", null);
+			String Type1 = Todays_Homework.getString("due_tommorow6", null);
 
-			String Type1 = Todays_Homework.getString("due_tommorow7",
-					null);
+			String Description1 = Todays_Homework.getString("due_tommorow7", null);
 
 			if (Band1 != null) {
 
@@ -950,22 +1047,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			}
 			
-			Log.d("Description", Description);
-			
-			Log.d("Band", Band);
-			
-			Log.d("Number", Number);
-			
-			Log.d("Class", Class);
-			
-			Log.d("Teacher", Teacher);
-			
-			Log.d("Title", Title);
-			
-			Log.d("Date", Date);
-			
-			Log.d("Type", Type);
-
 			SharedPreferences description_check = getActivity()
 					.getApplicationContext().getSharedPreferences(
 							"descriptioncheck", Context.MODE_PRIVATE);
@@ -974,7 +1055,10 @@ public class Due_Tommorow_Fragment extends Fragment {
 					"description", "");
 
 			if (Type != null && Description != null && Description.length() > 5 
-					&& !Description.equals(descriptionCheck) && Date.equals(date)) {
+					&& !Description.equals(descriptionCheck) 
+					&& Date.equals(date)
+					) 
+			{
 
 				SharedPreferences.Editor checkeditor = getActivity()
 						.getApplicationContext()
@@ -994,7 +1078,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 	}
 
 	private void registerClickCallback() {
-		ListView list = (ListView) getView().findViewById(R.id.listView1);
+		EnhancedListView list = (EnhancedListView) getView().findViewById(R.id.listView1);
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override

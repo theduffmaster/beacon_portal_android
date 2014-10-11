@@ -631,7 +631,7 @@ public class FragmentSettings extends Fragment {
 		}
 		
 		// Buttons
-		dialogBuilder.setNegativeButton("Cancel Updates",
+		dialogBuilder.setNegativeButton("Stop Updates",
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {

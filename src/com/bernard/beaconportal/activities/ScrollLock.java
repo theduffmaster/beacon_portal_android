@@ -40,6 +40,7 @@ public class ScrollLock extends ViewPager {
 	                //get the ListView of current Fragment
 	            	SwipeRefreshLayout swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe);
 	            	
+	            	
 	            	EnhancedListView enhancedListView = (EnhancedListView) getChildAt(getCurrentItem()).findViewById(R.id.listView1);
 	                //If the user is in first page and tries to swipe left, enable the ListView swipe
 	                if (getCurrentItem() == 0 && dx > 0) {
@@ -66,7 +67,7 @@ public class ScrollLock extends ViewPager {
 	                //If the user is in second page and tries to swipe right, enable the ListView swipe
 	                else if (getCurrentItem() == 1 && dx < 0) {
 	                	enhancedListView.enableSwipeToDismiss();
-	                	swipeLayout.setEnabled(false);
+	                    swipeLayout.setEnabled(false);
 	                    
 	                    SharedPreferences preferer = pager_context.getSharedPreferences(
 	            				"CheckBox_swipe", Context.MODE_PRIVATE);
@@ -80,12 +81,13 @@ public class ScrollLock extends ViewPager {
 	            				enhancedListView.disableSwipeToDismiss();
 
 	            			}
+
 	            		}
-	            		
+	                    
 	                    return true;
 	                } 
 	                //Block the ListView swipe there by enabling the parent ViewPager swiping
-	                else {
+	                	else {
 	                    enhancedListView.disableSwipeToDismiss();
 	                    
 	                    swipeLayout.setEnabled(true);

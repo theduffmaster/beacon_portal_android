@@ -52,7 +52,7 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 
 		}
 
-		final com.bernard.beaconportal.activities.ScrollLock pager = (com.bernard.beaconportal.activities.ScrollLock) view
+		ScrollLock pager = (ScrollLock) view
 				.findViewById(R.id.viewPager);
 
 		RelativeLayout layout = (RelativeLayout) view
@@ -66,44 +66,6 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 				.findViewById(R.id.pagerTabStrip);
 		tabs.setViewPager(pager);
 		
-		// View v = inflater.inflate(R.layout.activity_main, container, false);
-		//
-		// final EnhancedListView enhancedListView = (EnhancedListView)
-		// v.findViewById(R.id.listView1);
-		//
-		// pager.setOnTouchListener(new OnSwipeTouchListener(getActivity()) {
-		// @Override
-		// public void onSwipeLeft() {
-		// if (pager.getCurrentItem() == 0) {
-		// enhancedListView.enableSwipeToDismiss();
-		//
-		// pager.setPagingEnabled(false);
-		//
-		// }else{
-		//
-		// pager.setCurrentItem(1);
-		//
-		// enhancedListView.disableSwipeToDismiss();
-		//
-		// }
-		// }
-		// public void onSwipeRight() {
-		//
-		// if (pager.getCurrentItem() == 1) {
-		// enhancedListView.enableSwipeToDismiss();
-		//
-		// pager.setPagingEnabled(false);
-		//
-		// }else{
-		//
-		// pager.setCurrentItem(0);
-		//
-		// enhancedListView.disableSwipeToDismiss();
-		//
-		// }
-		// }
-		// });
-
 		return view;
 	}
 

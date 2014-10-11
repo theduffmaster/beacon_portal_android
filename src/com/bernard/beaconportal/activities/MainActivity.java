@@ -121,6 +121,8 @@ public class MainActivity extends SherlockFragmentActivity {
 	private String checkbox_edit;
 
 	private BaseAccount mSelectedContextAccount;
+	
+	private String date;
 
 	private int shared1;
 
@@ -150,6 +152,14 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar c = Calendar.getInstance();
+			
+			c.add(Calendar.DATE, 1);
+			
+			date = sdf.format(c.getTime());
+		
 		InputMethodManager im = (InputMethodManager) this
 				.getApplicationContext().getSystemService(
 						Context.INPUT_METHOD_SERVICE);
@@ -473,6 +483,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		localEditor1.clear();
 
 		localEditor1.commit();
+	
 
 	}
 
@@ -480,8 +491,14 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void onResume() {
 		super.onResume();
 
-		Log.d("onResume", "yes");
-
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar c = Calendar.getInstance();
+			
+			c.add(Calendar.DATE, 1);
+			
+			date = sdf.format(c.getTime());
+		
 		SharedPreferences pref = getSharedPreferences("CheckBox",
 				Context.MODE_PRIVATE);
 
@@ -528,6 +545,49 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		}
 
+		if (Show_View.equals("Homework Due")) {
+
+			title = new String[] { "Homework Due", "Schedule", "Mail",
+					"Options", "Logout" };
+
+			icon = new int[] { R.drawable.ic_action_duehomework,
+					R.drawable.ic_action_go_to_today,
+					R.drawable.ic_action_email, R.drawable.ic_action_settings,
+					R.drawable.ic_action_logout };
+
+			if (counterss == null && counterss.isEmpty()) {
+
+				count = new String[] { "", "", K9count, "", "" };
+
+			} else {
+
+				count = new String[] { counterss, "", K9count, "", "", "" };
+
+			}
+
+		} else {
+
+			if (counterss == null && counterss.isEmpty()) {
+
+				count = new String[] { "", "", K9count, "", "" };
+
+			} else {
+
+				count = new String[] { "", counterss, K9count, "", "" };
+
+			}
+
+			title = new String[] { "Schedule", "Homework Due", "Mail",
+					"Options", "Logout" };
+
+			icon = new int[] { R.drawable.ic_action_go_to_today,
+					R.drawable.ic_action_duehomework,
+					R.drawable.ic_action_email, R.drawable.ic_action_settings,
+					R.drawable.ic_action_logout };
+
+		}
+		
+		
 		ActionBar bar = getSupportActionBar();
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
@@ -614,7 +674,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		K9count = Integer.toString(countssssss);
 
 		System.out.println("k9 Unread Count = " + countssssss);
-
+		
 	}
 
 	public void inbox() {
@@ -811,6 +871,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			int i = 0;
 
+
 			while ((Due_Tommorow = reader.readLine()) != null) {
 				String[] part = Due_Tommorow.split("\",\"", -1);
 				int noOfItems = part.length;
@@ -834,8 +895,8 @@ public class MainActivity extends SherlockFragmentActivity {
 				counter++;
 				Data = counter < noOfItems ? part[counter] : "";
 				counter++;
-
-				if (Type != null && !Type.isEmpty()) {
+				
+				if (Type != null && !Type.isEmpty() && Date.equals(date)) {
 
 					++i;
 

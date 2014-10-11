@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -324,30 +325,30 @@ public class LoadingLayout extends Activity{
 
 	public void parse_due_tommorow_string() {
 
-		SharedPreferences Today_Homework = getApplicationContext()
-				.getSharedPreferences("homework", Context.MODE_PRIVATE);
+		SharedPreferences Tommorow_Homework = 
+				getSharedPreferences("homework",
+						Context.MODE_PRIVATE);
 
-		String due_tommorow = Today_Homework.getString("homework_content", "");
+		String Due_Tommorow = Tommorow_Homework.getString("homework_content",
+				"");
 
-		due_tommorow = due_tommorow.replaceAll("^\"|\"$", "");
+		Due_Tommorow = Due_Tommorow.replaceAll("^\"|\"$", "");
 
-		due_tommorow = due_tommorow.substring(3);
+		Due_Tommorow = Due_Tommorow.substring(3);
 
-		Log.d("homework due today", due_tommorow);
+		Log.d("homework due tommorow", Due_Tommorow);
 
-		StringBuilder DescriptionAll = new StringBuilder();
-
-		InputStream is = new ByteArrayInputStream(due_tommorow.getBytes());
+		InputStream is = new ByteArrayInputStream(Due_Tommorow.getBytes());
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
 		try {
 
 			int value = 0;
-			countersss1 = 0;
+			countersss = 0;
 			int state = 0;
-			shared1 = 0;
-			int shared_add1 = 0;
+			shared = 0;
+			int shared_add = 0;
 			String str = "";
 			StringBuilder strb = new StringBuilder();
 
@@ -366,41 +367,103 @@ public class LoadingLayout extends Activity{
 
 				else if (c == '"') {
 					if (state == 2) {
+						
+						System.out.println("shared_add= " + shared_add + " " + strb);
 
-						System.out.println("shared_add= " + shared_add1);
+							String strrr = strb.toString().replaceAll("^\"|\"$", "");
+						
 
-						if (shared_add1 == 8) {
-							shared_add1 = 0;
-							shared1++;
+							if (strrr.length() < 3 && isStringNumeric(strrr))
+									{	
+										shared_add = 0;
+										shared++;
 
-						}
+										Log.d("restart", "yes");
+										
+										due_tommorow_shared = "due_tommorow"
+												+ Integer.toString(shared);
+										
+										SharedPreferences Band = 
+												getApplicationContext().getSharedPreferences(
+													"last band tommorow", Context.MODE_PRIVATE);
+										
+												String band = Band.getString("last string", "ZZZZZZ");
+												
+												SharedPreferences.Editor localEditor = 
+														getSharedPreferences(due_tommorow_shared,
+																Context.MODE_PRIVATE).edit();
 
+												localEditor.putString("due_tommorow0", band);
+
+												localEditor.apply();
+												
+												shared_add++;
+									}
+							
+							
+							if(shared_add > 8){
+							
+								SharedPreferences Band = 
+										getSharedPreferences(
+											"last band tommorow", Context.MODE_PRIVATE);
+								
+								SharedPreferences Description = 
+										getSharedPreferences(due_tommorow_shared,
+												Context.MODE_PRIVATE);
+								
+										String last = Band.getString("last string", "ZZZZZZ");
+										
+										String description = Description.getString("due_tommorow7", "");
+										
+										String fixed = description + last;
+										
+										Log.d("fixed", fixed);
+										
+										SharedPreferences.Editor localEditor =
+												getSharedPreferences(due_tommorow_shared,
+														Context.MODE_PRIVATE).edit();
+										
+										localEditor.putString("due_tommorow7", fixed);
+										
+										localEditor.apply();
+								
+							}
+							
+							SharedPreferences.Editor localEditors = 
+									getSharedPreferences("last band tommorow",
+										Context.MODE_PRIVATE).edit();
+							
+							localEditors.putString("last string", strrr);
+							
+							localEditors.apply();
+							
 						due_tommorow_shared = "due_tommorow"
-								+ Integer.toString(shared1);
+								+ Integer.toString(shared);
 
 						due_tommorow_shared_content = "due_tommorow"
-								+ Integer.toString(shared_add1);
+								+ Integer.toString(shared_add);
 
 						String strr = strb.toString().replaceAll("^\"|\"$", "");
 
 						System.out.println("shared_pref= " + strr);
 
-						SharedPreferences.Editor localEditor = getSharedPreferences(
-								due_tommorow_shared, Context.MODE_PRIVATE)
-								.edit();
+						SharedPreferences.Editor localEditor = 
+								getSharedPreferences(due_tommorow_shared,
+										Context.MODE_PRIVATE).edit();
 
-						localEditor
-								.putString(due_tommorow_shared_content, strr);
+						localEditor.putString(due_tommorow_shared_content, strr);
 
 						localEditor.apply();
 
-						System.out.println("shared= " + shared1);
+						System.out.println("shared= " + shared);
 
 						strb.setLength(0);
 						state = 0;
-						countersss1++;
-						shared_add1++;
-
+						countersss++;
+						shared_add++;
+					
+						
+						
 					} else {
 						state = 1;
 						strb.append(c);
@@ -408,33 +471,35 @@ public class LoadingLayout extends Activity{
 				} else {
 					strb.append(c);
 				}
-
+				
 			}
 
 			String strr = strb.toString().replaceAll("^\"|\"$", "");
 
-			System.out.println("tommorow shared= " + strr);
+			System.out.println("shared_pref_final= " + strr);
 
 			due_tommorow_shared_content = "due_tommorow7";
 
-			SharedPreferences.Editor localEditor = getSharedPreferences(
-					due_tommorow_shared, Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor = 
+					getSharedPreferences(due_tommorow_shared,
+							Context.MODE_PRIVATE).edit();
 
 			localEditor.putString(due_tommorow_shared_content, strr);
 
 			localEditor.apply();
 
-			SharedPreferences.Editor localEditor1 = getSharedPreferences(
-					"due_tommorow_counter", Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor1 =
+					getSharedPreferences("due_tommorow_counter",
+							Context.MODE_PRIVATE).edit();
 
-			localEditor1.putInt("last shared preference", shared1);
+			localEditor1.putInt("last shared preference", shared);
 
 			localEditor1.apply();
 
 			strb.setLength(0);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -445,14 +510,13 @@ public class LoadingLayout extends Activity{
 
 	public void parse_due_today_string() {
 
-		SharedPreferences Today_Homework = getApplicationContext()
-				.getSharedPreferences("homework", Context.MODE_PRIVATE);
+		SharedPreferences Today_Homework = getSharedPreferences("homework",Context.MODE_PRIVATE);
 
 		String Due_Today = Today_Homework.getString("homework_content", "");
 
 		Due_Today = Due_Today.replaceAll("^\"|\"$", "");
 
-		Due_Today = Due_Today.substring(3);
+		Due_Today = Due_Today.substring(7);
 
 		Log.d("homework due today", Due_Today);
 
@@ -485,15 +549,73 @@ public class LoadingLayout extends Activity{
 
 				else if (c == '"') {
 					if (state == 2) {
+						
+						System.out.println("shared_add= " + shared_add + " " + strb);
 
-						System.out.println("shared_add= " + shared_add);
+							String strrr = strb.toString().replaceAll("^\"|\"$", "");
+						
 
-						if (shared_add == 8) {
-							shared_add = 0;
-							shared++;
+							if (strrr.length() < 3 && isStringNumeric(strrr))
+									{	
+										shared_add = 0;
+										shared++;
 
-						}
+										Log.d("restart", "yes");
+										
+										due_today_shared = "due_today"
+												+ Integer.toString(shared);
+										
+										SharedPreferences Band = 
+												getSharedPreferences("last band today", Context.MODE_PRIVATE);
+										
+												String band = Band.getString("last string", "ZZZZZZ");
+												
+												SharedPreferences.Editor localEditor = 
+														getSharedPreferences(due_today_shared,
+																Context.MODE_PRIVATE).edit();
 
+												localEditor.putString("due_today0", band);
+
+												localEditor.apply();
+												
+												shared_add++;
+									}
+							
+							
+							if(shared_add > 8){
+							
+								SharedPreferences Band = getSharedPreferences("last band today", Context.MODE_PRIVATE);
+								
+								SharedPreferences Description = 
+										getSharedPreferences(due_today_shared,
+												Context.MODE_PRIVATE);
+								
+										String last = Band.getString("last string", "ZZZZZZ");
+										
+										String description = Description.getString("due_today7", "");
+										
+										String fixed = description + last;
+										
+										Log.d("fixed", fixed);
+										
+										SharedPreferences.Editor localEditor = 
+												getSharedPreferences(due_today_shared,
+														Context.MODE_PRIVATE).edit();
+										
+										localEditor.putString("due_today7", fixed);
+										
+										localEditor.apply();
+								
+							}
+							
+							SharedPreferences.Editor localEditors = 
+									getSharedPreferences("last band today",
+										Context.MODE_PRIVATE).edit();
+							
+							localEditors.putString("last string", strrr);
+							
+							localEditors.apply();
+							
 						due_today_shared = "due_today"
 								+ Integer.toString(shared);
 
@@ -504,8 +626,9 @@ public class LoadingLayout extends Activity{
 
 						System.out.println("shared_pref= " + strr);
 
-						SharedPreferences.Editor localEditor = getSharedPreferences(
-								due_today_shared, Context.MODE_PRIVATE).edit();
+						SharedPreferences.Editor localEditor = 
+								getSharedPreferences(due_today_shared,
+										Context.MODE_PRIVATE).edit();
 
 						localEditor.putString(due_today_shared_content, strr);
 
@@ -517,7 +640,9 @@ public class LoadingLayout extends Activity{
 						state = 0;
 						countersss++;
 						shared_add++;
-
+					
+						
+						
 					} else {
 						state = 1;
 						strb.append(c);
@@ -525,7 +650,7 @@ public class LoadingLayout extends Activity{
 				} else {
 					strb.append(c);
 				}
-
+				
 			}
 
 			String strr = strb.toString().replaceAll("^\"|\"$", "");
@@ -534,15 +659,17 @@ public class LoadingLayout extends Activity{
 
 			due_today_shared_content = "due_today7";
 
-			SharedPreferences.Editor localEditor = getSharedPreferences(
-					due_today_shared, Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor = 
+					getSharedPreferences(due_today_shared,
+							Context.MODE_PRIVATE).edit();
 
 			localEditor.putString(due_today_shared_content, strr);
 
 			localEditor.apply();
 
-			SharedPreferences.Editor localEditor1 = getSharedPreferences(
-					"due_today_counter", Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor1 = 
+					getSharedPreferences("due_today_counter",
+							Context.MODE_PRIVATE).edit();
 
 			localEditor1.putInt("last shared preference", shared);
 
@@ -551,7 +678,7 @@ public class LoadingLayout extends Activity{
 			strb.setLength(0);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -559,5 +686,29 @@ public class LoadingLayout extends Activity{
 
 		}
 	}
-	
+
+	public static boolean isStringNumeric( String str )
+	{
+	    DecimalFormatSymbols currentLocaleSymbols = DecimalFormatSymbols.getInstance();
+	    char localeMinusSign = currentLocaleSymbols.getMinusSign();
+
+	    if ( !Character.isDigit( str.charAt( 0 ) ) && str.charAt( 0 ) != localeMinusSign ) return false;
+
+	    boolean isDecimalSeparatorFound = false;
+	    char localeDecimalSeparator = currentLocaleSymbols.getDecimalSeparator();
+
+	    for ( char c : str.substring( 1 ).toCharArray() )
+	    {
+	        if ( !Character.isDigit( c ) )
+	        {
+	            if ( c == localeDecimalSeparator && !isDecimalSeparatorFound )
+	            {
+	                isDecimalSeparatorFound = true;
+	                continue;
+	            }
+	            return false;
+	        }
+	    }
+	    return true;
+	}
 }

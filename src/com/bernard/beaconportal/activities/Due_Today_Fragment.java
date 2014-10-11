@@ -111,20 +111,20 @@ public class Due_Today_Fragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
+                new Download().execute();
+
 		View swipe = inflater.inflate(R.layout.activity_main, container, false);
 
 		swipeLayout = (SwipeRefreshLayout) swipe.findViewById(R.id.swipe);
 
 		swipeLayout.setEnabled(false);
 
-		new Download().execute();
-
 		swipeLayout.setColorSchemeResources(android.R.color.holo_blue_light,
 				android.R.color.holo_orange_light,
 				android.R.color.holo_blue_light,
 				android.R.color.holo_orange_light);
 
-		EnhancedListView lView = (EnhancedListView) swipe
+			lView = (EnhancedListView) swipe
 				.findViewById(R.id.listView1);
 
 		lView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -223,7 +223,34 @@ public class Due_Today_Fragment extends Fragment {
 
 				});
 
-		lView.setDismissCallback(new OnDismissCallback() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Calendar c = Calendar.getInstance();
+		
+		date = sdf.format(c.getTime());  
+		
+		System.out.println(date);
+		
+		return swipe;
+
+	}
+
+	@Override
+	public void onResume() {
+
+		super.onResume();
+
+		read_due_today_list = new ArrayList<String>();
+
+		due_today_list = new ArrayList<Due_Today_List>();
+
+		parse_due_today_content();
+
+		populateListView();
+
+		registerClickCallback();
+		
+		lView.setDismissCallback(new de.timroes.android.listview.EnhancedListView.OnDismissCallback() {
 
 			public EnhancedListView.Undoable onDismiss(
 					EnhancedListView listView, final int position) {
@@ -381,27 +408,8 @@ public class Due_Today_Fragment extends Fragment {
 		EnhancedListView.UndoStyle style = EnhancedListView.UndoStyle.MULTILEVEL_POPUP;
 		lView.setUndoStyle(style);
 		lView.enableSwipeToDismiss();
-		EnhancedListView.SwipeDirection direction = EnhancedListView.SwipeDirection.END;
+		EnhancedListView.SwipeDirection direction = EnhancedListView.SwipeDirection.START;
 		lView.setSwipeDirection(direction);
-
-		return swipe;
-
-	}
-
-	@Override
-	public void onResume() {
-
-		super.onResume();
-
-		read_due_today_list = new ArrayList<String>();
-
-		due_today_list = new ArrayList<Due_Today_List>();
-
-		parse_due_today_content();
-
-		populateListView();
-
-		registerClickCallback();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -416,7 +424,7 @@ public class Due_Today_Fragment extends Fragment {
 	public void parse_due_today_string() {
 
 		SharedPreferences Today_Homework = getActivity()
-				.getApplicationContext().getSharedPreferences("due_today",
+				.getApplicationContext().getSharedPreferences("homework",
 						Context.MODE_PRIVATE);
 
 		String Due_Today = Today_Homework.getString("homework_content", "");
@@ -456,12 +464,6 @@ public class Due_Today_Fragment extends Fragment {
 
 				else if (c == '"') {
 					if (state == 2) {
-
-//						if (shared_add == 8) {
-//							shared_add = 0;
-//							shared++;
-//
-//						}
 						
 						System.out.println("shared_add= " + shared_add + " " + strb);
 
@@ -480,7 +482,7 @@ public class Due_Today_Fragment extends Fragment {
 										
 										SharedPreferences Band = getActivity()
 												.getApplicationContext().getSharedPreferences(
-													"last band", Context.MODE_PRIVATE);
+													"last band today", Context.MODE_PRIVATE);
 										
 												String band = Band.getString("last string", "ZZZZZZ");
 												
@@ -500,7 +502,7 @@ public class Due_Today_Fragment extends Fragment {
 							
 								SharedPreferences Band = getActivity()
 										.getApplicationContext().getSharedPreferences(
-											"last band", Context.MODE_PRIVATE);
+											"last band today", Context.MODE_PRIVATE);
 								
 								SharedPreferences Description = getActivity()
 										.getSharedPreferences(due_today_shared,
@@ -525,7 +527,7 @@ public class Due_Today_Fragment extends Fragment {
 							}
 							
 							SharedPreferences.Editor localEditors = getActivity()
-									.getSharedPreferences("last band",
+									.getSharedPreferences("last band today",
 										Context.MODE_PRIVATE).edit();
 							
 							localEditors.putString("last string", strrr);
@@ -1031,23 +1033,6 @@ public class Due_Today_Fragment extends Fragment {
 
 			}
 			
-			
-			Log.d("Band", Band);
-			
-			Log.d("Number", Number);
-			
-			Log.d("Class", Class);
-			
-			Log.d("Teacher", Teacher);
-			
-			Log.d("Title", Title);
-			
-			Log.d("Date", Date);
-			
-			Log.d("Type", Type);
-			
-			Log.d("Description", Description);
-			
 
 			SharedPreferences description_check = getActivity()
 					.getApplicationContext().getSharedPreferences(
@@ -1058,7 +1043,7 @@ public class Due_Today_Fragment extends Fragment {
 
 			if (Type != null && Description != null && !Type.isEmpty()
 					&& !Description.equals(descriptionCheck) && Description.length() > 5
-					//&& Date.equals(date)
+					&& Date.equals(date)
 					) {
 
 				SharedPreferences.Editor checkeditor = getActivity()
@@ -1079,7 +1064,7 @@ public class Due_Today_Fragment extends Fragment {
 	}
 
 	private void registerClickCallback() {
-		ListView list = (ListView) getView().findViewById(R.id.listView1);
+		EnhancedListView list = (EnhancedListView) getView().findViewById(R.id.listView1);
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
