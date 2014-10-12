@@ -48,6 +48,7 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -112,6 +113,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	Fragment fragment1 = new FragmentsSchedule();
 	Fragment fragment2 = new FragmentsHomeworkDue();
 	Fragment fragment3 = new FragmentSettings();
+	Fragment fragment4 = new FragmentsResource();
 	private CharSequence mDrawerTitle;
 	private CharSequence mDrawerTitleCheck;
 	private CharSequence mTitle;
@@ -369,21 +371,23 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] { "Homework Due", "Schedule", "Mail",
+			title = new String[] { "Homework Due", "Schedule", "Mail", "Resources",
 					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
-					R.drawable.ic_action_email, R.drawable.ic_action_settings,
+					R.drawable.ic_action_email, 
+					R.drawable.ic_action_resources,
+					R.drawable.ic_action_settings,
 					R.drawable.ic_action_logout };
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { "", "", K9count, "", "" };
+				count = new String[] { "", "", K9count, "", "", "" };
 
 			} else {
 
-				count = new String[] { counterss, "", K9count, "", "", "" };
+				count = new String[] { counterss, "", K9count, "", "", "", "" };
 
 			}
 
@@ -391,20 +395,22 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { "", "", K9count, "", "" };
+				count = new String[] { "", "", K9count, "", "", "" };
 
 			} else {
 
-				count = new String[] { "", counterss, K9count, "", "" };
+				count = new String[] { "", counterss, K9count, "", "", "" };
 
 			}
 
-			title = new String[] { "Schedule", "Homework Due", "Mail",
+			title = new String[] { "Schedule", "Homework Due", "Mail", "Resources",
 					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_duehomework,
-					R.drawable.ic_action_email, R.drawable.ic_action_settings,
+					R.drawable.ic_action_email, 
+					R.drawable.ic_action_resources,
+					R.drawable.ic_action_settings,
 					R.drawable.ic_action_logout };
 
 		}
@@ -569,7 +575,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] { "Homework Due", "Schedule", "Mail",
+			title = new String[] { "Homework Due", "Schedule", "Mail", "Resources",
 					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_duehomework,
@@ -599,7 +605,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			}
 
-			title = new String[] { "Schedule", "Homework Due", "Mail",
+			title = new String[] { "Schedule", "Homework Due", "Mail", "Resources",
 					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
@@ -982,13 +988,14 @@ public class MainActivity extends SherlockFragmentActivity {
 
 				break;
 			case 3:
+				ft.replace(R.id.content_frame, fragment4);
+				break;
+			case 4:
 				ft.replace(R.id.content_frame, fragment3);
 				break;
 
-			case 4:
-
+			case 5:
 				alert_logout();
-
 				break;
 			}
 
@@ -1005,18 +1012,17 @@ public class MainActivity extends SherlockFragmentActivity {
 				break;
 
 			case 2:
-
 				inbox();
-
 				break;
 			case 3:
+				ft.replace(R.id.content_frame, fragment4);
+				break;
+			case 4:
 				ft.replace(R.id.content_frame, fragment3);
 				break;
 
-			case 4:
-
+			case 5:
 				alert_logout();
-
 				break;
 			}
 		}
