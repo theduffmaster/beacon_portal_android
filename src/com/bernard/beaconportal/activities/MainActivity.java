@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -26,7 +27,9 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -95,6 +98,8 @@ public class MainActivity extends SherlockFragmentActivity {
 	private AlertDialog alertDialog;
 
 	private int check;
+	
+	final static int RQS_1 = 1;
 
 	DrawerLayout mDrawerLayout;
 	LinearLayout mDrawerLinear;
@@ -274,6 +279,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		doRefresh();
 
+		setAlarm();
+		
 		int countssssss = getUnreadK9Count(this);
 
 		K9count = Integer.toString(countssssss);
@@ -520,13 +527,70 @@ public class MainActivity extends SherlockFragmentActivity {
 		super.onResume();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			
-			Calendar c = Calendar.getInstance();
-			
-			c.add(Calendar.DATE, 1);
-			
-			date = sdf.format(c.getTime());
 		
+		Calendar c = Calendar.getInstance();
+		
+		c.add(Calendar.DATE, 1);
+		
+		date = sdf.format(c.getTime());
+	
+	InputMethodManager im = (InputMethodManager) this
+			.getApplicationContext().getSystemService(
+					Context.INPUT_METHOD_SERVICE);
+	im.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),
+			InputMethodManager.HIDE_NOT_ALWAYS);
+
+	Bundle extras = getIntent().getExtras();
+	if (extras != null) {
+		counterss = extras.getString("homework_count");
+	}
+
+	SharedPreferences rerun = getSharedPreferences(
+			"homework_rerun", Context.MODE_PRIVATE);
+	
+	SharedPreferences sharedprefer = getSharedPreferences(
+			"first_run_starts", Context.MODE_PRIVATE);
+
+	SharedPreferences sharedprefererence = getSharedPreferences(
+			"Login_info", Context.MODE_PRIVATE);
+	
+	if (rerun.contains("first_rerun")){
+		
+	}else{
+		
+		SharedPreferences.Editor rerunEditor = getSharedPreferences(
+				"homework_rerun", Context.MODE_PRIVATE).edit();
+		
+		rerunEditor.putString("first_rerun", "reran");
+		
+		rerunEditor.apply();
+		
+		showDatePicker();
+		
+	}
+		
+
+	if (sharedprefererence.contains("name")) {
+
+		parse_count();
+
+		new Internet_check_reload().execute();
+
+	} else {
+
+		Intent intent = new Intent(this, AccountSetupBasics.class);
+		startActivity(intent);
+
+	}
+
+	if (counterss == null) {
+
+		counterss = "0";
+
+	}
+		
+		setAlarm();
+	
 		SharedPreferences pref = getSharedPreferences("CheckBox",
 				Context.MODE_PRIVATE);
 
@@ -1732,6 +1796,34 @@ public class MainActivity extends SherlockFragmentActivity {
 			alertDialog.show();
 
 		}
+	}
+	
+private void setAlarm(){
+		
+		Intent intent = new Intent(getBaseContext(), MidnightHomeworkDownload.class);
+		  
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(), RQS_1, intent, 0);
+		
+		Calendar calNow = Calendar.getInstance();
+	    Calendar targetCal = (Calendar) calNow.clone();
+
+	    targetCal.set(Calendar.HOUR_OF_DAY, 0);
+	    targetCal.set(Calendar.MINUTE, 0);
+	    targetCal.set(Calendar.SECOND, 0);
+	    targetCal.set(Calendar.MILLISECOND, 0);
+
+		
+		AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+			alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis(), pendingIntent);
+
+		  
+		   alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, 
+		     targetCal.getTimeInMillis(), 
+		     TimeUnit.HOURS.toMillis(24),
+		     pendingIntent);
+		   
+		   System.out.println(targetCal);
+		
 	}
 	
 }

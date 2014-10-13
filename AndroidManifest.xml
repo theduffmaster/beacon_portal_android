@@ -480,6 +480,7 @@ otherwise it would make K-9 start at the wrong time
             android:exported="false"
             />
 		<receiver android:name=".DailyHomeworkDownload"/> 
+		<receiver android:name=".MidnightHomeworkDownload"/> 
         <receiver
             android:name=".provider.UnreadWidgetProvider"
             android:label="@string/unread_widget_label"

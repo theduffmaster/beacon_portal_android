@@ -29,12 +29,14 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 	private String background_colors;
 
 	private Context context;
+	
+	private View view;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View view = inflater.inflate(R.layout.viewpager_main, container, false);
+		view = inflater.inflate(R.layout.viewpager_main, container, false);
 
 		SharedPreferences sharedprefer = getActivity().getSharedPreferences(
 				"background_color", Context.MODE_PRIVATE);
@@ -103,6 +105,54 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 		tabs.setViewPager(pager);
 		
 		return view;
+	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		
+		ScrollLock pager = (ScrollLock) view
+				.findViewById(R.id.viewPager);
+
+		RelativeLayout layout = (RelativeLayout) view
+				.findViewById(R.id.homeworkdue_container);
+
+		layout.setBackgroundColor(Color.parseColor(background_colors));
+
+		Calendar calendar = Calendar.getInstance();
+	     
+		int i = calendar.get(Calendar.DAY_OF_WEEK);
+		
+		if(i == 6 || i== 7 || i==1){
+
+			String currHour = new SimpleDateFormat("kk").format(new Date());
+			
+			if(Integer.parseInt(currHour) > 14){
+				
+				pager.setAdapter(new ViewPagerAdapterHomeworkAfterThreeWeekend(getChildFragmentManager()));
+				
+			}else{
+			
+				pager.setAdapter(new ViewPagerAdapterHomeworkWeekend(getChildFragmentManager()));
+
+			}		
+			
+		}else{
+
+			String currHour = new SimpleDateFormat("kk").format(new Date());
+			
+			if(Integer.parseInt(currHour) > 14){
+				
+				pager.setAdapter(new ViewPagerAdapterHomeworkAfterThree(getChildFragmentManager()));
+				
+			}else{
+			
+				pager.setAdapter(new ViewPagerAdapterHomework(getChildFragmentManager()));
+
+			}
+
+		}
+		
 	}
 
 	@Override
