@@ -140,7 +140,7 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context receive_context, Intent intent) {
 
-		Log.d("Beacon Portal", "alarm activated");
+		Log.d("Beacon Portal", "alarm activated midnight");
 		
 		context = receive_context;
 		

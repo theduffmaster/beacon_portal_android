@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,6 +21,9 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.astuetz.PagerSlidingTabStrip;
 import com.bernard.beaconportal.activities.R;
 
@@ -38,6 +43,9 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 
 		view = inflater.inflate(R.layout.viewpager_main, container, false);
 
+		setHasOptionsMenu(true);
+		setRetainInstance(true);
+		
 		SharedPreferences sharedprefer = getActivity().getSharedPreferences(
 				"background_color", Context.MODE_PRIVATE);
 
@@ -68,12 +76,13 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 		Calendar calendar = Calendar.getInstance();
 	     
 		int i = calendar.get(Calendar.DAY_OF_WEEK);
+	
 		
 		if(i == 6 || i== 7 || i==1){
 
 			String currHour = new SimpleDateFormat("kk").format(new Date());
 			
-			if(Integer.parseInt(currHour) > 14){
+			if(Integer.parseInt(currHour) > 14 && Integer.parseInt(currHour) < 24){
 				
 				pager.setAdapter(new ViewPagerAdapterHomeworkAfterThreeWeekend(getChildFragmentManager()));
 				
@@ -87,7 +96,7 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 
 			String currHour = new SimpleDateFormat("kk").format(new Date());
 			
-			if(Integer.parseInt(currHour) > 14){
+			if(Integer.parseInt(currHour) > 14 && Integer.parseInt(currHour) < 24){
 				
 				pager.setAdapter(new ViewPagerAdapterHomeworkAfterThree(getChildFragmentManager()));
 				
@@ -123,11 +132,12 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 	     
 		int i = calendar.get(Calendar.DAY_OF_WEEK);
 		
+
 		if(i == 6 || i== 7 || i==1){
 
 			String currHour = new SimpleDateFormat("kk").format(new Date());
 			
-			if(Integer.parseInt(currHour) > 14){
+			if( 14 < Integer.parseInt(currHour) && Integer.parseInt(currHour) < 24) {
 				
 				pager.setAdapter(new ViewPagerAdapterHomeworkAfterThreeWeekend(getChildFragmentManager()));
 				
@@ -141,7 +151,7 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 
 			String currHour = new SimpleDateFormat("kk").format(new Date());
 			
-			if(Integer.parseInt(currHour) > 14){
+			if(Integer.parseInt(currHour) > 14 && Integer.parseInt(currHour) < 24){
 				
 				pager.setAdapter(new ViewPagerAdapterHomeworkAfterThree(getChildFragmentManager()));
 				
@@ -150,6 +160,16 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 				pager.setAdapter(new ViewPagerAdapterHomework(getChildFragmentManager()));
 
 			}
+
+		}
+		
+		SharedPreferences sharedprefer = getActivity().getSharedPreferences(
+				"first_run_starts", Context.MODE_PRIVATE)
+				;
+		
+		if (!sharedprefer.contains("help_check_homeworkdue")) {
+
+			alert_help();
 
 		}
 		
@@ -171,4 +191,54 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 
 	}
 
+	private void alert_help() {
+
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			builder.setMessage("Swipe down to refresh, and keep track of the homework you've done by swiping it away. You can turn off swipeable homework items in options. The number in the navigation drawer is the amount of homework you have due tommorow.").setTitle("About");
+
+			builder.setPositiveButton("OK",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int id) {
+
+							SharedPreferences.Editor localEditors = getActivity().getSharedPreferences(
+									"first_run_starts", Context.MODE_PRIVATE)
+									.edit();
+
+							localEditors.putString("help_check_homeworkdue", "checked");
+
+							localEditors.commit();
+
+						}
+					});
+
+			AlertDialog alertDialog = builder.create();
+
+			alertDialog.show();
+
+		}
+
+	}
+	
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// TODO Auto-generated method stub
+
+		inflater.inflate(R.menu.android_help, menu);
+	}
+
+	public boolean onOptionsItemSelected(MenuItem paramMenuItem) {
+		switch (paramMenuItem.getItemId()) {
+		case R.id.help:
+
+			alert_help();
+			
+			return true;
+
+		}
+		return true;
+
+	}
+
 }
+	

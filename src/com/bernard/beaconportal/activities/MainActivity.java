@@ -224,6 +224,24 @@ public class MainActivity extends SherlockFragmentActivity {
 			counterss = "0";
 
 		}
+		
+		SharedPreferences alarm = getSharedPreferences(
+				"alarm_check", Context.MODE_PRIVATE);
+		
+		if (alarm.contains("alarm")){
+			
+		}else{
+			
+			SharedPreferences.Editor alarmEditor = getSharedPreferences(
+					"alarm_check", Context.MODE_PRIVATE).edit();
+			
+			alarmEditor.putString("alarm", "ran");
+			
+			alarmEditor.apply();
+			
+			setAlarm();
+			
+		}
 
 		Log.d(TAG, "onCreate()");
 
@@ -278,8 +296,6 @@ public class MainActivity extends SherlockFragmentActivity {
 		}
 
 		doRefresh();
-
-		setAlarm();
 		
 		int countssssss = getUnreadK9Count(this);
 
@@ -588,8 +604,6 @@ public class MainActivity extends SherlockFragmentActivity {
 		counterss = "0";
 
 	}
-		
-		setAlarm();
 	
 		SharedPreferences pref = getSharedPreferences("CheckBox",
 				Context.MODE_PRIVATE);
@@ -1822,7 +1836,7 @@ private void setAlarm(){
 		     TimeUnit.HOURS.toMillis(24),
 		     pendingIntent);
 		   
-		   System.out.println(targetCal);
+		   System.out.println("midnight");
 		
 	}
 	

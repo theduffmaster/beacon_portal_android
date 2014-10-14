@@ -30,6 +30,7 @@ import android.app.LauncherActivity.ListItem;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -114,6 +115,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 			Bundle savedInstanceState) {
 
 		new Download().execute();
+		
 
 		Calendar calendar = Calendar.getInstance();
 	     
@@ -1629,23 +1631,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 			holder.TypeText.setText(currenthomeworkdue.getType().trim());
 
 			return convertView;
-
-		}
-
-		public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-			// TODO Auto-generated method stub
-
-			inflater.inflate(R.menu.android_refresh, menu);
-		}
-
-		public boolean onOptionsItemSelected(android.view.MenuItem paramMenuItem) {
-			switch (paramMenuItem.getItemId()) {
-			case R.id.apply:
-
-				return true;
-
-			}
-			return true;
 
 		}
 
