@@ -66,11 +66,8 @@ import de.timroes.android.listview.EnhancedListView.SwipeDirection;
 import de.timroes.android.listview.EnhancedListView.UndoStyle;
 
 public class Due_Tommorow_Fragment extends Fragment {
-	private List<homeworkdue> myhomeworkdue;
 
 	private List<Due_Today_List> due_tommorow_list;
-
-	private List<String> read_due_tommorow_list;
 
 	private View swipe;
 
@@ -116,49 +113,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		new Download().execute();
 		
-
-		Calendar calendar = Calendar.getInstance();
-	     
-		int i = calendar.get(Calendar.DAY_OF_WEEK);
-		
-		if(i == 6){
-		
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-			Calendar c = Calendar.getInstance();
-		
-			c.add(Calendar.DATE, 3);
-		
-			date = sdf.format(c.getTime());  
-			
-			System.out.println("friday");
-		
-		}else if(i == 7){
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			
-			Calendar c = Calendar.getInstance();
-			
-			c.add(Calendar.DATE, 2);
-			
-			date = sdf.format(c.getTime()); 
-			
-			System.out.println("saturday");
-		
-		}else{
-
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			
-			Calendar c = Calendar.getInstance();
-			
-			c.add(Calendar.DATE, 1);
-			
-			date = sdf.format(c.getTime());  	
-		}
-		
-		System.out.println(date);
-		
-		View swipe = inflater.inflate(R.layout.activity_main, container, false);
+		swipe = inflater.inflate(R.layout.activity_main, container, false);
 
 		swipeLayout = (SwipeRefreshLayout) swipe.findViewById(R.id.swipe);
 
@@ -170,7 +125,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 				android.R.color.holo_blue_light);
 
 		lView = (EnhancedListView) swipe.findViewById(R.id.listView1);
-
+		
 		lView.setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
 			public void onScrollStateChanged(AbsListView absListView, int i) {
@@ -278,44 +233,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 	public void onResume() {
 
 		super.onResume();
-
-		Calendar calendar = Calendar.getInstance();
-	     
-		int i = calendar.get(Calendar.DAY_OF_WEEK);
-		
-		if(i == 6){
-		
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-			Calendar c = Calendar.getInstance();
-		
-			c.add(Calendar.DATE, 3);
-		
-			date = sdf.format(c.getTime());  
-		
-		}else if(i == 7){
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			
-			Calendar c = Calendar.getInstance();
-			
-			c.add(Calendar.DATE, 3);
-			
-			date = sdf.format(c.getTime()); 
-		
-		}else{
-
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			
-			Calendar c = Calendar.getInstance();
-			
-			c.add(Calendar.DATE, 1);
-			
-			date = sdf.format(c.getTime());  	
-		}
-		
-		
-		read_due_tommorow_list = new ArrayList<String>();
 
 		due_tommorow_list = new ArrayList<Due_Today_List>();
 
@@ -493,8 +410,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 				"");
 
 		Due_Tommorow = Due_Tommorow.replaceAll("^\"|\"$", "");
-
-		Due_Tommorow = Due_Tommorow.substring(3);
+		
+		Due_Tommorow = Due_Tommorow.substring(Due_Tommorow.indexOf("\",") + 2);
 
 		Log.d("homework due tommorow", Due_Tommorow);
 
@@ -536,6 +453,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 							if (strrr.length() < 3 && isStringNumeric(strrr))
 									{	
 										shared_add = 0;
+										
 										shared++;
 
 										Log.d("restart", "yes");
@@ -652,11 +570,85 @@ public class Due_Tommorow_Fragment extends Fragment {
 					.getSharedPreferences("due_tommorow_counter",
 							Context.MODE_PRIVATE).edit();
 
-			localEditor1.putInt("last shared preference", shared);
+			localEditor1.putInt("last shared preference", shared+1);
 
 			localEditor1.apply();
 
 			strb.setLength(0);
+			
+			SharedPreferences.Editor localEditors = getActivity()
+					.getSharedPreferences("last band tommorow",
+						Context.MODE_PRIVATE).edit();
+			
+			localEditors.clear();
+			
+			localEditors.apply();
+			
+			Calendar calendar = Calendar.getInstance();
+		     
+			int day = calendar.get(Calendar.DAY_OF_WEEK);
+			
+			if(day == 6){
+			
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+				Calendar c = Calendar.getInstance();
+			
+				c.add(Calendar.DATE, 3);
+			
+				date = sdf.format(c.getTime());  
+				
+				System.out.println("friday");
+			
+			}else if(day == 7){
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				
+				Calendar c = Calendar.getInstance();
+				
+				c.add(Calendar.DATE, 2);
+				
+				date = sdf.format(c.getTime()); 
+				
+				System.out.println("saturday");
+			
+			}else{
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				
+				Calendar c = Calendar.getInstance();
+				
+				c.add(Calendar.DATE, 1);
+				
+				date = sdf.format(c.getTime());  	
+				
+				
+			}
+			
+			due_tommorow_shared = "due_tommorow"
+					+ Integer.toString(shared + 1);
+			
+			SharedPreferences.Editor dummy_item = getActivity()
+					.getSharedPreferences(due_tommorow_shared,
+							Context.MODE_PRIVATE).edit();
+
+			dummy_item.putString("due_tommorow0", "ZZZZZ");
+			
+			dummy_item.putString("due_tommorow1", "2");
+			
+			dummy_item.putString("due_tommorow2", "Test");
+			
+			dummy_item.putString("due_tommorow3", "Teacher");
+			
+			dummy_item.putString("due_tommorow4", "Title");
+			
+			dummy_item.putString("due_tommorow5", date);
+			
+			dummy_item.putString("due_tommorow6", "Type");
+			
+			dummy_item.putString("due_tommorow7", "Description");
+
+			dummy_item.apply();
 
 		} catch (IOException e) {
 
@@ -985,8 +977,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			Log.d("sender", "Broadcasting message");
 
-			adapter.notifyDataSetChanged();
-
 			Intent intent = new Intent("up_navigation");
 
 			intent.putExtra("message", "This is my message!");
@@ -1027,7 +1017,50 @@ public class Due_Tommorow_Fragment extends Fragment {
 	}
 
 	public void parse_due_tommorow_content() {
+		
+		Calendar calendar = Calendar.getInstance();
+	     
+		int day = calendar.get(Calendar.DAY_OF_WEEK);
+		
+		if(day == 6){
+		
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+			Calendar c = Calendar.getInstance();
+		
+			c.add(Calendar.DATE, 3);
+		
+			date = sdf.format(c.getTime());  
+			
+			System.out.println("friday");
+		
+		}else if(day == 7){
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar c = Calendar.getInstance();
+			
+			c.add(Calendar.DATE, 2);
+			
+			date = sdf.format(c.getTime()); 
+			
+			System.out.println("saturday");
+		
+		}else{
 
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar c = Calendar.getInstance();
+			
+			c.add(Calendar.DATE, 1);
+			
+			date = sdf.format(c.getTime());  	
+			
+			
+		}
+		
+		System.out.println(date);
+		
 		SharedPreferences Today_Homework_Counter = getActivity()
 				.getApplicationContext().getSharedPreferences(
 						"due_tommorow_counter", Context.MODE_PRIVATE);
@@ -1036,6 +1069,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 				"last shared preference", 0);
 
 		int countersssss = counterssss + 1;
+		
+		int dummy_check = 0;
 
 		for (int i = 0; i < countersssss; i++) {
 
@@ -1064,48 +1099,64 @@ public class Due_Tommorow_Fragment extends Fragment {
 			if (Band1 != null) {
 
 				Band = Band1.trim();
+				
+				Log.d("Band" + i, Band);
 
 			}
 
 			if (Number1 != null) {
 
 				Number = Number1.trim();
+				
+				Log.d("Number"+ i, Number);
 
 			}
 
 			if (Class1 != null) {
 
 				Class = Class1.trim();
+				
+				Log.d("Class"+ i, Class);
 
 			}
 
 			if (Teacher1 != null) {
 
 				Teacher = Teacher1.trim();
+				
+				Log.d("Teacher"+ i, Teacher);
 
 			}
 
 			if (Title1 != null) {
 
 				Title = Title1.trim();
+				
+				Log.d("Title"+ i, Title);
 
 			}
 
 			if (Date1 != null) {
 
 				Date = Date1.trim();
+				
+				Log.d("Date"+ i, Date);
 
 			}
 
 			if (Type1 != null) {
 
 				Type = Type1.trim();
+				
+				Log.d("Type"+ i, Type);
 
 			}
 
 			if (Description1 != null) {
 
 				Description = Description1.trim();
+				
+				Log.d("Description"+ i, Description);
 
 			}
 			
@@ -1116,12 +1167,77 @@ public class Due_Tommorow_Fragment extends Fragment {
 			String descriptionCheck = description_check.getString(
 					"description", "");
 
-			if (Type != null && Description != null && Description.length() > 5 
+			if (Type != null && Description != null  
 					&& !Description.equals(descriptionCheck) 
-					&& Date.equals(date)
+					&& Date.contentEquals(date)
 					) 
 			{
 
+				
+				if (Band1 != null) {
+
+					Band = Band1.trim();
+					
+					Log.d("Band Passed" + i, Band);
+
+				}
+
+				if (Number1 != null) {
+
+					Number = Number1.trim();
+					
+					Log.d("Number Passed"+ i, Number);
+
+				}
+
+				if (Class1 != null) {
+
+					Class = Class1.trim();
+					
+					Log.d("Class Passed"+ i, Class);
+
+				}
+
+				if (Teacher1 != null) {
+
+					Teacher = Teacher1.trim();
+					
+					Log.d("Teacher Passed"+ i, Teacher);
+
+				}
+
+				if (Title1 != null) {
+
+					Title = Title1.trim();
+					
+					Log.d("Title Passed"+ i, Title);
+
+				}
+
+				if (Date1 != null) {
+
+					Date = Date1.trim();
+					
+					Log.d("Date Passed"+ i, Date);
+
+				}
+
+				if (Type1 != null) {
+
+					Type = Type1.trim();
+					
+					Log.d("Type Passed"+ i, Type);
+
+				}
+
+				if (Description1 != null) {
+
+					Description = Description1.trim();
+					
+					Log.d("Description Passed"+ i, Description);
+
+				}
+				
 				SharedPreferences.Editor checkeditor = getActivity()
 						.getApplicationContext()
 						.getSharedPreferences("descriptioncheck",
@@ -1130,17 +1246,21 @@ public class Due_Tommorow_Fragment extends Fragment {
 				checkeditor.putString("description", Description);
 
 				checkeditor.commit();
+				
+				if(!"Type".equals(Type)){
 				due_tommorow_list.add(new Due_Today_List(Band, Number, Class,
 						Teacher, Title, Date, Type, Description));
-
+				}
+				
 			}
 
 		}
-
+		
+		
 	}
 
 	private void registerClickCallback() {
-		EnhancedListView list = (EnhancedListView) getView().findViewById(R.id.listView1);
+		EnhancedListView list = (EnhancedListView) swipe.findViewById(R.id.listView1);
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
@@ -1167,8 +1287,9 @@ public class Due_Tommorow_Fragment extends Fragment {
 	}
 
 	private void populateListView() {
+		
 		adapter = new due_tommorowAdapter();
-		EnhancedListView list = (EnhancedListView) getView().findViewById(
+		EnhancedListView list = (EnhancedListView) swipe.findViewById(
 				R.id.listView1);
 		list.setAdapter(adapter);
 
@@ -1364,7 +1485,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 			else {
 				holder = (ViewHolder) convertView.getTag();
 			}
-
+			
 			Due_Today_List currenthomeworkdue = due_tommorow_list.get(position);
 
 			Teacher = currenthomeworkdue.getTeacher().substring(0, 1)

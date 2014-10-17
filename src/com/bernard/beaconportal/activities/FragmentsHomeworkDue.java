@@ -44,7 +44,6 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 		view = inflater.inflate(R.layout.viewpager_main, container, false);
 
 		setHasOptionsMenu(true);
-		setRetainInstance(true);
 		
 		SharedPreferences sharedprefer = getActivity().getSharedPreferences(
 				"background_color", Context.MODE_PRIVATE);
@@ -79,18 +78,8 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 	
 		
 		if(i == 6 || i== 7 || i==1){
-
-			String currHour = new SimpleDateFormat("kk").format(new Date());
-			
-			if(Integer.parseInt(currHour) > 14 && Integer.parseInt(currHour) < 24){
-				
-				pager.setAdapter(new ViewPagerAdapterHomeworkAfterThreeWeekend(getChildFragmentManager()));
-				
-			}else{
-			
-				pager.setAdapter(new ViewPagerAdapterHomeworkWeekend(getChildFragmentManager()));
-
-			}		
+		
+				pager.setAdapter(new ViewPagerAdapterHomeworkWeekend(getChildFragmentManager()));	
 			
 		}else{
 

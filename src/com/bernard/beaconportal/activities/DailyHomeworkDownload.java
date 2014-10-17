@@ -24,6 +24,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -136,18 +137,27 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 	
 	private Context context;
 	
+	private Activity activityContext;
+	
+	
+	public DailyHomeworkDownload() {
+	      super();
+	    }  
 	
 	@Override
 	public void onReceive(Context receive_context, Intent intent) {
 
+		this.activityContext = (Activity)activityContext;
+		
 		Log.d("Beacon Portal", "alarm activated daily");
 		
 		context = receive_context;
 		
 		new Update().execute();
-
+		
 			
 	}
+	
 
 	public class Update extends AsyncTask<String, Void, Void> {
 
@@ -347,11 +357,17 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 				localEditor.putString("download_error", "no");
 
 				localEditor.commit();
+				
+				
 
 			}
 
+			Intent intents = new Intent(context, MainActivity.class);
+			intents.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startActivity(intents);
+			
 		}
-
+		
 	}
 
 	public void parse_due_tommorow_string() {

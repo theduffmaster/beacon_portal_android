@@ -32,6 +32,8 @@ public class FragmentsResource extends SherlockListFragment {
 	
 	private ListView listView;
 	
+	private View footer;
+	
 	String[] title;
 	
 	int[] IconID;
@@ -52,7 +54,7 @@ public class FragmentsResource extends SherlockListFragment {
 	public void onStart(){
 		super.onStart();
 		
-		 View footer = getActivity().getLayoutInflater().inflate(R.layout.resources_footer,
+		footer = getActivity().getLayoutInflater().inflate(R.layout.resources_footer,
 	             null);
 			 
 	 getListView().addFooterView(footer); 
@@ -124,4 +126,11 @@ public class FragmentsResource extends SherlockListFragment {
 		
 	}
 	
+	@Override
+	public void onStop(){
+		super.onStop();
+	
+		getListView().removeFooterView(footer);
+		
+	}
 }

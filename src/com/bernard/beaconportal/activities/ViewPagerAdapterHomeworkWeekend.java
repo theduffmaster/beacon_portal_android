@@ -2,12 +2,13 @@ package com.bernard.beaconportal.activities;
 
 import java.util.Calendar;
 
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-public class ViewPagerAdapterHomeworkWeekend extends FragmentPagerAdapter {
+public class ViewPagerAdapterHomeworkWeekend extends FragmentStatePagerAdapter {
 	
 	final int PAGE_COUNT = 2;
 	private String titles[] = new String[] { "Homework Due Monday",
@@ -43,4 +44,10 @@ public class ViewPagerAdapterHomeworkWeekend extends FragmentPagerAdapter {
 	public int getCount() {
 		return PAGE_COUNT;
 	}
+
+	@Override
+	public void restoreState(Parcelable arg0, ClassLoader arg1) {
+	   //do nothing here! no call to super.restoreState(arg0, arg1);
+	}
+
 }	

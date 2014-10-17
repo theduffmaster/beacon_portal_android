@@ -785,6 +785,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	public void inbox() {
 
+		System.out.println("inbox");
+		
 		Intent intent = new Intent(MainActivity.this, Accounts.class);
 
 		startActivity(intent);
@@ -959,6 +961,47 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	public void parse_count() {
 
+		Calendar calendar = Calendar.getInstance();
+	     
+		int day = calendar.get(Calendar.DAY_OF_WEEK);
+		
+		if(day == 6){
+		
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+			Calendar c = Calendar.getInstance();
+		
+			c.add(Calendar.DATE, 3);
+		
+			date = sdf.format(c.getTime());  
+			
+			System.out.println("friday");
+		
+		}else if(day == 7){
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar c = Calendar.getInstance();
+			
+			c.add(Calendar.DATE, 2);
+			
+			date = sdf.format(c.getTime()); 
+			
+			System.out.println("saturday");
+		
+		}else{
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar c = Calendar.getInstance();
+			
+			c.add(Calendar.DATE, 1);
+			
+			date = sdf.format(c.getTime());  	
+			
+			
+		}
+		
 		SharedPreferences Tommorow_Homework = getApplicationContext()
 				.getSharedPreferences("homework", Context.MODE_PRIVATE);
 
@@ -1001,6 +1044,8 @@ public class MainActivity extends SherlockFragmentActivity {
 				counter++;
 				Data = counter < noOfItems ? part[counter] : "";
 				counter++;
+				
+				
 				
 				if (Type != null && !Type.isEmpty() && Date.equals(date)) {
 
@@ -1535,6 +1580,8 @@ public class MainActivity extends SherlockFragmentActivity {
 			unregisterReceiver(receiver);
 			receiver = null;
 		}
+	
+	
 	}
 
 	protected void doRefresh() {

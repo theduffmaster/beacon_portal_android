@@ -38,10 +38,15 @@ public class Monday_view extends Fragment {
 	private static String bandString;
 
 	private static int position;
+	
+	private ListView list;
+	
+	private View footer;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
 		return inflater.inflate(R.layout.schedule_list_view, container, false);
 	}
 
@@ -130,7 +135,17 @@ public class Monday_view extends Fragment {
 
 	private void populateListView() {
 		ArrayAdapter<schedule_view> adapter = new MyListAdapter();
-		ListView list = (ListView) getView().findViewById(R.id.listView2);
+		list = (ListView) getView().findViewById(R.id.listView2);
+		
+		footer = getActivity().getLayoutInflater().inflate(R.layout.homeworkday_footer,
+	             null);
+			 
+		TextView footer_text = (TextView) footer.findViewById(R.id.textView1);
+		
+		footer_text.setText("Homework Due Monday");
+		
+		list.addFooterView(footer); 
+		
 		list.setAdapter(adapter);
 		list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 			@Override
@@ -576,4 +591,12 @@ public class Monday_view extends Fragment {
 
 	}
 
+	@Override
+	public void onStop(){
+		super.onStop();
+	
+		list.removeFooterView(footer);
+		
+	}
+	
 }

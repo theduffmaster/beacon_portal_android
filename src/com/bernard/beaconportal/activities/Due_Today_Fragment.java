@@ -590,6 +590,31 @@ public class Due_Today_Fragment extends Fragment {
 			localEditor1.apply();
 
 			strb.setLength(0);
+			
+			due_today_shared = "due_tommorow"
+					+ Integer.toString(shared + 1);
+			
+			SharedPreferences.Editor dummy_item = getActivity()
+					.getSharedPreferences(due_today_shared,
+							Context.MODE_PRIVATE).edit();
+
+			dummy_item.putString("due_today0", "ZZZZZ");
+			
+			dummy_item.putString("due_today1", "2");
+			
+			dummy_item.putString("due_today2", "Test");
+			
+			dummy_item.putString("due_today3", "Teacher");
+			
+			dummy_item.putString("due_today4", "Title");
+			
+			dummy_item.putString("due_today5", date);
+			
+			dummy_item.putString("due_today6", "Type");
+			
+			dummy_item.putString("due_today7", "Description");
+
+			dummy_item.apply();
 
 		} catch (IOException e) {
 
@@ -1050,9 +1075,11 @@ public class Due_Today_Fragment extends Fragment {
 				checkeditor.putString("description", Description);
 
 				checkeditor.commit();
+				
+				if(!"Type".equals(Type)){
 				due_today_list.add(new Due_Today_List(Band, Number, Class,
 						Teacher, Title, Date, Type, Description));
-
+				}
 			}
 
 		}

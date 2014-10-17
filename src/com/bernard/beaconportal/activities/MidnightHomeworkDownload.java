@@ -24,6 +24,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -347,9 +348,14 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 				localEditor.putString("download_error", "no");
 
 				localEditor.commit();
+			
 
 			}
 
+			Intent intents = new Intent(context, MainActivity.class);
+			intents.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startActivity(intents);
+			
 		}
 
 	}
