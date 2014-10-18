@@ -2,8 +2,6 @@ package com.bernard.beaconportal.activities.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.text.Html;
 import android.util.AttributeSet;
 import android.widget.TextView;
 

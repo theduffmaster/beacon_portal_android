@@ -56,8 +56,8 @@ import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.MenuListAdapter;
 import com.bernard.beaconportal.activities.R;
 
-public class LoadingLayout extends Activity{
-	
+public class LoadingLayout extends Activity {
+
 	private static final String EXTRA_ACCOUNT = "account";
 
 	private String Data, Band, Number, Class, Teacher, Title, Date, Type,
@@ -142,14 +142,14 @@ public class LoadingLayout extends Activity{
 	private Account mAccount;
 
 	private Button mDoneButton;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loading_layout);
-		
+
 		new Update().execute();
-		
+
 	}
 
 	public class Update extends AsyncTask<String, Void, Void> {
@@ -239,42 +239,17 @@ public class LoadingLayout extends Activity{
 
 					parse_due_today_string();
 
-					} catch (IllegalStateException e) {
-						// TODO Auto-generated catch block
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
-					
-					}catch (NullPointerException e) {
-						
-						SharedPreferences.Editor localEditor =
-								getSharedPreferences("homework",
-										Context.MODE_PRIVATE).edit();
 
-						localEditor.putString("download_error", "yes");
+				} catch (NullPointerException e) {
 
-						localEditor.apply();
-
-						e.printStackTrace();
-					}
-
-					catch (NoSuchElementException e) {
-
-						SharedPreferences.Editor localEditor =
-								getSharedPreferences("homework",
-										Context.MODE_PRIVATE).edit();
-
-						localEditor.putString("download_error", "yes");
-
-						localEditor.apply();
-
-						e.printStackTrace();
-					}
-				catch (RuntimeException e) {
-					SharedPreferences.Editor localEditor =
-							getSharedPreferences("homework",
-									Context.MODE_PRIVATE).edit();
+					SharedPreferences.Editor localEditor = getSharedPreferences(
+							"homework", Context.MODE_PRIVATE).edit();
 
 					localEditor.putString("download_error", "yes");
 
@@ -282,40 +257,59 @@ public class LoadingLayout extends Activity{
 
 					e.printStackTrace();
 				}
-				} finally {
 
+				catch (NoSuchElementException e) {
+
+					SharedPreferences.Editor localEditor = getSharedPreferences(
+							"homework", Context.MODE_PRIVATE).edit();
+
+					localEditor.putString("download_error", "yes");
+
+					localEditor.apply();
+
+					e.printStackTrace();
+				} catch (RuntimeException e) {
+					SharedPreferences.Editor localEditor = getSharedPreferences(
+							"homework", Context.MODE_PRIVATE).edit();
+
+					localEditor.putString("download_error", "yes");
+
+					localEditor.apply();
+
+					e.printStackTrace();
 				}
-				return null;
+			} finally {
+
+			}
+			return null;
+
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+
+			SharedPreferences download_error = getSharedPreferences("homework",
+					Context.MODE_PRIVATE);
+
+			String error = download_error.getString("download_error", "no");
+
+			String download_errors = "Error while downloading homework, there  could be no internet connection or portal's down";
+
+			if (error.equals("yes")) {
+
+				SharedPreferences.Editor localEditor = getSharedPreferences(
+						"homework", Context.MODE_PRIVATE).edit();
+
+				Toast.makeText(LoadingLayout.this, download_errors,
+						Toast.LENGTH_LONG).show();
+
+				localEditor.putString("download_error", "no");
+
+				localEditor.commit();
 
 			}
 
-			@Override
-			protected void onPostExecute(Void result) {
-
-				SharedPreferences download_error = 
-						getSharedPreferences("homework", Context.MODE_PRIVATE);
-
-				String error = download_error.getString("download_error", "no");
-
-				String download_errors = "Error while downloading homework, there  could be no internet connection or portal's down";
-					
-				if (error.equals("yes")) {
-
-					SharedPreferences.Editor localEditor = 
-							getSharedPreferences("homework", Context.MODE_PRIVATE)
-							.edit();
-
-					Toast.makeText(LoadingLayout.this, download_errors, Toast.LENGTH_LONG)
-							.show();
-
-					localEditor.putString("download_error", "no");
-
-					localEditor.commit();
-
-				}
-
-			Intent intent = new Intent(LoadingLayout.this,
-					MainActivity.class);
+			Intent intent = new Intent(LoadingLayout.this, MainActivity.class);
 
 			startActivity(intent);
 
@@ -325,9 +319,8 @@ public class LoadingLayout extends Activity{
 
 	public void parse_due_tommorow_string() {
 
-		SharedPreferences Tommorow_Homework = 
-				getSharedPreferences("homework",
-						Context.MODE_PRIVATE);
+		SharedPreferences Tommorow_Homework = getSharedPreferences("homework",
+				Context.MODE_PRIVATE);
 
 		String Due_Tommorow = Tommorow_Homework.getString("homework_content",
 				"");
@@ -367,76 +360,76 @@ public class LoadingLayout extends Activity{
 
 				else if (c == '"') {
 					if (state == 2) {
-						
-						System.out.println("shared_add= " + shared_add + " " + strb);
 
-							String strrr = strb.toString().replaceAll("^\"|\"$", "");
-						
+						System.out.println("shared_add= " + shared_add + " "
+								+ strb);
 
-							if (strrr.length() < 3 && isStringNumeric(strrr))
-									{	
-										shared_add = 0;
-										shared++;
+						String strrr = strb.toString()
+								.replaceAll("^\"|\"$", "");
 
-										Log.d("restart", "yes");
-										
-										due_tommorow_shared = "due_tommorow"
-												+ Integer.toString(shared);
-										
-										SharedPreferences Band = 
-												getApplicationContext().getSharedPreferences(
-													"last band tommorow", Context.MODE_PRIVATE);
-										
-												String band = Band.getString("last string", "ZZZZZZ");
-												
-												SharedPreferences.Editor localEditor = 
-														getSharedPreferences(due_tommorow_shared,
-																Context.MODE_PRIVATE).edit();
+						if (strrr.length() < 3 && isStringNumeric(strrr)) {
+							shared_add = 0;
+							shared++;
 
-												localEditor.putString("due_tommorow0", band);
+							Log.d("restart", "yes");
 
-												localEditor.apply();
-												
-												shared_add++;
-									}
-							
-							
-							if(shared_add > 8){
-							
-								SharedPreferences Band = 
-										getSharedPreferences(
-											"last band tommorow", Context.MODE_PRIVATE);
-								
-								SharedPreferences Description = 
-										getSharedPreferences(due_tommorow_shared,
-												Context.MODE_PRIVATE);
-								
-										String last = Band.getString("last string", "ZZZZZZ");
-										
-										String description = Description.getString("due_tommorow7", "");
-										
-										String fixed = description + last;
-										
-										Log.d("fixed", fixed);
-										
-										SharedPreferences.Editor localEditor =
-												getSharedPreferences(due_tommorow_shared,
-														Context.MODE_PRIVATE).edit();
-										
-										localEditor.putString("due_tommorow7", fixed);
-										
-										localEditor.apply();
-								
-							}
-							
-							SharedPreferences.Editor localEditors = 
-									getSharedPreferences("last band tommorow",
-										Context.MODE_PRIVATE).edit();
-							
-							localEditors.putString("last string", strrr);
-							
-							localEditors.apply();
-							
+							due_tommorow_shared = "due_tommorow"
+									+ Integer.toString(shared);
+
+							SharedPreferences Band = getApplicationContext()
+									.getSharedPreferences("last band tommorow",
+											Context.MODE_PRIVATE);
+
+							String band = Band.getString("last string",
+									"ZZZZZZ");
+
+							SharedPreferences.Editor localEditor = getSharedPreferences(
+									due_tommorow_shared, Context.MODE_PRIVATE)
+									.edit();
+
+							localEditor.putString("due_tommorow0", band);
+
+							localEditor.apply();
+
+							shared_add++;
+						}
+
+						if (shared_add > 8) {
+
+							SharedPreferences Band = getSharedPreferences(
+									"last band tommorow", Context.MODE_PRIVATE);
+
+							SharedPreferences Description = getSharedPreferences(
+									due_tommorow_shared, Context.MODE_PRIVATE);
+
+							String last = Band.getString("last string",
+									"ZZZZZZ");
+
+							String description = Description.getString(
+									"due_tommorow7", "");
+
+							String fixed = description + last;
+
+							Log.d("fixed", fixed);
+
+							SharedPreferences.Editor localEditor = getSharedPreferences(
+									due_tommorow_shared, Context.MODE_PRIVATE)
+									.edit();
+
+							localEditor.putString("due_tommorow7", fixed);
+
+							localEditor.apply();
+
+						}
+
+						SharedPreferences.Editor localEditors = getSharedPreferences(
+								"last band tommorow", Context.MODE_PRIVATE)
+								.edit();
+
+						localEditors.putString("last string", strrr);
+
+						localEditors.apply();
+
 						due_tommorow_shared = "due_tommorow"
 								+ Integer.toString(shared);
 
@@ -447,11 +440,12 @@ public class LoadingLayout extends Activity{
 
 						System.out.println("shared_pref= " + strr);
 
-						SharedPreferences.Editor localEditor = 
-								getSharedPreferences(due_tommorow_shared,
-										Context.MODE_PRIVATE).edit();
+						SharedPreferences.Editor localEditor = getSharedPreferences(
+								due_tommorow_shared, Context.MODE_PRIVATE)
+								.edit();
 
-						localEditor.putString(due_tommorow_shared_content, strr);
+						localEditor
+								.putString(due_tommorow_shared_content, strr);
 
 						localEditor.apply();
 
@@ -461,9 +455,7 @@ public class LoadingLayout extends Activity{
 						state = 0;
 						countersss++;
 						shared_add++;
-					
-						
-						
+
 					} else {
 						state = 1;
 						strb.append(c);
@@ -471,7 +463,7 @@ public class LoadingLayout extends Activity{
 				} else {
 					strb.append(c);
 				}
-				
+
 			}
 
 			String strr = strb.toString().replaceAll("^\"|\"$", "");
@@ -480,17 +472,15 @@ public class LoadingLayout extends Activity{
 
 			due_tommorow_shared_content = "due_tommorow7";
 
-			SharedPreferences.Editor localEditor = 
-					getSharedPreferences(due_tommorow_shared,
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor = getSharedPreferences(
+					due_tommorow_shared, Context.MODE_PRIVATE).edit();
 
 			localEditor.putString(due_tommorow_shared_content, strr);
 
 			localEditor.apply();
 
-			SharedPreferences.Editor localEditor1 =
-					getSharedPreferences("due_tommorow_counter",
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor1 = getSharedPreferences(
+					"due_tommorow_counter", Context.MODE_PRIVATE).edit();
 
 			localEditor1.putInt("last shared preference", shared);
 
@@ -510,7 +500,8 @@ public class LoadingLayout extends Activity{
 
 	public void parse_due_today_string() {
 
-		SharedPreferences Today_Homework = getSharedPreferences("homework",Context.MODE_PRIVATE);
+		SharedPreferences Today_Homework = getSharedPreferences("homework",
+				Context.MODE_PRIVATE);
 
 		String Due_Today = Today_Homework.getString("homework_content", "");
 
@@ -549,73 +540,74 @@ public class LoadingLayout extends Activity{
 
 				else if (c == '"') {
 					if (state == 2) {
-						
-						System.out.println("shared_add= " + shared_add + " " + strb);
 
-							String strrr = strb.toString().replaceAll("^\"|\"$", "");
-						
+						System.out.println("shared_add= " + shared_add + " "
+								+ strb);
 
-							if (strrr.length() < 3 && isStringNumeric(strrr))
-									{	
-										shared_add = 0;
-										shared++;
+						String strrr = strb.toString()
+								.replaceAll("^\"|\"$", "");
 
-										Log.d("restart", "yes");
-										
-										due_today_shared = "due_today"
-												+ Integer.toString(shared);
-										
-										SharedPreferences Band = 
-												getSharedPreferences("last band today", Context.MODE_PRIVATE);
-										
-												String band = Band.getString("last string", "ZZZZZZ");
-												
-												SharedPreferences.Editor localEditor = 
-														getSharedPreferences(due_today_shared,
-																Context.MODE_PRIVATE).edit();
+						if (strrr.length() < 3 && isStringNumeric(strrr)) {
+							shared_add = 0;
+							shared++;
 
-												localEditor.putString("due_today0", band);
+							Log.d("restart", "yes");
 
-												localEditor.apply();
-												
-												shared_add++;
-									}
-							
-							
-							if(shared_add > 8){
-							
-								SharedPreferences Band = getSharedPreferences("last band today", Context.MODE_PRIVATE);
-								
-								SharedPreferences Description = 
-										getSharedPreferences(due_today_shared,
-												Context.MODE_PRIVATE);
-								
-										String last = Band.getString("last string", "ZZZZZZ");
-										
-										String description = Description.getString("due_today7", "");
-										
-										String fixed = description + last;
-										
-										Log.d("fixed", fixed);
-										
-										SharedPreferences.Editor localEditor = 
-												getSharedPreferences(due_today_shared,
-														Context.MODE_PRIVATE).edit();
-										
-										localEditor.putString("due_today7", fixed);
-										
-										localEditor.apply();
-								
-							}
-							
-							SharedPreferences.Editor localEditors = 
-									getSharedPreferences("last band today",
-										Context.MODE_PRIVATE).edit();
-							
-							localEditors.putString("last string", strrr);
-							
-							localEditors.apply();
-							
+							due_today_shared = "due_today"
+									+ Integer.toString(shared);
+
+							SharedPreferences Band = getSharedPreferences(
+									"last band today", Context.MODE_PRIVATE);
+
+							String band = Band.getString("last string",
+									"ZZZZZZ");
+
+							SharedPreferences.Editor localEditor = getSharedPreferences(
+									due_today_shared, Context.MODE_PRIVATE)
+									.edit();
+
+							localEditor.putString("due_today0", band);
+
+							localEditor.apply();
+
+							shared_add++;
+						}
+
+						if (shared_add > 8) {
+
+							SharedPreferences Band = getSharedPreferences(
+									"last band today", Context.MODE_PRIVATE);
+
+							SharedPreferences Description = getSharedPreferences(
+									due_today_shared, Context.MODE_PRIVATE);
+
+							String last = Band.getString("last string",
+									"ZZZZZZ");
+
+							String description = Description.getString(
+									"due_today7", "");
+
+							String fixed = description + last;
+
+							Log.d("fixed", fixed);
+
+							SharedPreferences.Editor localEditor = getSharedPreferences(
+									due_today_shared, Context.MODE_PRIVATE)
+									.edit();
+
+							localEditor.putString("due_today7", fixed);
+
+							localEditor.apply();
+
+						}
+
+						SharedPreferences.Editor localEditors = getSharedPreferences(
+								"last band today", Context.MODE_PRIVATE).edit();
+
+						localEditors.putString("last string", strrr);
+
+						localEditors.apply();
+
 						due_today_shared = "due_today"
 								+ Integer.toString(shared);
 
@@ -626,9 +618,8 @@ public class LoadingLayout extends Activity{
 
 						System.out.println("shared_pref= " + strr);
 
-						SharedPreferences.Editor localEditor = 
-								getSharedPreferences(due_today_shared,
-										Context.MODE_PRIVATE).edit();
+						SharedPreferences.Editor localEditor = getSharedPreferences(
+								due_today_shared, Context.MODE_PRIVATE).edit();
 
 						localEditor.putString(due_today_shared_content, strr);
 
@@ -640,9 +631,7 @@ public class LoadingLayout extends Activity{
 						state = 0;
 						countersss++;
 						shared_add++;
-					
-						
-						
+
 					} else {
 						state = 1;
 						strb.append(c);
@@ -650,7 +639,7 @@ public class LoadingLayout extends Activity{
 				} else {
 					strb.append(c);
 				}
-				
+
 			}
 
 			String strr = strb.toString().replaceAll("^\"|\"$", "");
@@ -659,17 +648,15 @@ public class LoadingLayout extends Activity{
 
 			due_today_shared_content = "due_today7";
 
-			SharedPreferences.Editor localEditor = 
-					getSharedPreferences(due_today_shared,
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor = getSharedPreferences(
+					due_today_shared, Context.MODE_PRIVATE).edit();
 
 			localEditor.putString(due_today_shared_content, strr);
 
 			localEditor.apply();
 
-			SharedPreferences.Editor localEditor1 = 
-					getSharedPreferences("due_today_counter",
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor1 = getSharedPreferences(
+					"due_today_counter", Context.MODE_PRIVATE).edit();
 
 			localEditor1.putInt("last shared preference", shared);
 
@@ -687,28 +674,28 @@ public class LoadingLayout extends Activity{
 		}
 	}
 
-	public static boolean isStringNumeric( String str )
-	{
-	    DecimalFormatSymbols currentLocaleSymbols = DecimalFormatSymbols.getInstance();
-	    char localeMinusSign = currentLocaleSymbols.getMinusSign();
+	public static boolean isStringNumeric(String str) {
+		DecimalFormatSymbols currentLocaleSymbols = DecimalFormatSymbols
+				.getInstance();
+		char localeMinusSign = currentLocaleSymbols.getMinusSign();
 
-	    if ( !Character.isDigit( str.charAt( 0 ) ) && str.charAt( 0 ) != localeMinusSign ) return false;
+		if (!Character.isDigit(str.charAt(0))
+				&& str.charAt(0) != localeMinusSign)
+			return false;
 
-	    boolean isDecimalSeparatorFound = false;
-	    char localeDecimalSeparator = currentLocaleSymbols.getDecimalSeparator();
+		boolean isDecimalSeparatorFound = false;
+		char localeDecimalSeparator = currentLocaleSymbols
+				.getDecimalSeparator();
 
-	    for ( char c : str.substring( 1 ).toCharArray() )
-	    {
-	        if ( !Character.isDigit( c ) )
-	        {
-	            if ( c == localeDecimalSeparator && !isDecimalSeparatorFound )
-	            {
-	                isDecimalSeparatorFound = true;
-	                continue;
-	            }
-	            return false;
-	        }
-	    }
-	    return true;
+		for (char c : str.substring(1).toCharArray()) {
+			if (!Character.isDigit(c)) {
+				if (c == localeDecimalSeparator && !isDecimalSeparatorFound) {
+					isDecimalSeparatorFound = true;
+					continue;
+				}
+				return false;
+			}
+		}
+		return true;
 	}
 }

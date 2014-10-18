@@ -1,12 +1,9 @@
 package com.bernard.beaconportal.activities;
 
-import de.timroes.android.listview.EnhancedListView;
 import android.content.Context;
 import com.bernard.beaconportal.activities.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ListView;
 
 public class ViewpagerNoSwiping extends ViewPager {
 

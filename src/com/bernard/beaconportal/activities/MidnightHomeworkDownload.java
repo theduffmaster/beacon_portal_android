@@ -24,7 +24,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -34,7 +33,6 @@ import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
@@ -134,20 +132,20 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 	private Account mAccount;
 
 	private Button mDoneButton;
-	
+
 	private Context context;
-	
+
+	private String date;
 	
 	@Override
 	public void onReceive(Context receive_context, Intent intent) {
 
 		Log.d("Beacon Portal", "alarm activated midnight");
-		
+
 		context = receive_context;
-		
+
 		new Update().execute();
 
-			
 	}
 
 	public class Update extends AsyncTask<String, Void, Void> {
@@ -164,8 +162,8 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 
 			String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
 
-			SharedPreferences userName = context.getSharedPreferences("Login_Info",
-					Context.MODE_PRIVATE);
+			SharedPreferences userName = context.getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE);
 
 			String day = day1.replaceFirst("^0+(?!$)", "");
 
@@ -224,8 +222,9 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 					// String homework =
 					// Html.fromHtml(homework_html).toString();
 
-					SharedPreferences.Editor localEditor = context.getSharedPreferences(
-							"homework", Context.MODE_PRIVATE).edit();
+					SharedPreferences.Editor localEditor = context
+							.getSharedPreferences("homework",
+									Context.MODE_PRIVATE).edit();
 					SimpleDateFormat dateFormat = new SimpleDateFormat(
 							"MM/dd hh:mm a");
 					Calendar cal = Calendar.getInstance();
@@ -236,12 +235,13 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 					localEditor.putString("download_date", downloaded);
 
 					localEditor.apply();
-					
-					SharedPreferences.Editor log = context.getSharedPreferences(
-							"AlarmDownload", Context.MODE_PRIVATE).edit();
-					
+
+					SharedPreferences.Editor log = context
+							.getSharedPreferences("AlarmDownload",
+									Context.MODE_PRIVATE).edit();
+
 					log.putString("date", downloaded);
-					
+
 					log.apply();
 
 					Log.d("receiver", "information given to shared preferences");
@@ -256,8 +256,7 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
-				catch (NullPointerException e) {
+				} catch (NullPointerException e) {
 
 					parse_due_tommorow_string();
 
@@ -305,9 +304,9 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 					localEditor.apply();
 
 					e.printStackTrace();
-					
+
 				}
-				
+
 			} finally {
 
 			}
@@ -323,13 +322,12 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 			Intent intent = new Intent("up_navigation");
 
 			intent.putExtra("message", "This is my message!");
-			LocalBroadcastManager.getInstance(context).sendBroadcast(
-					intent);
+			LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
 			Toast.makeText(context, "Refresh Finished", 4000).show();
 
-			SharedPreferences download_error = context
-					.getSharedPreferences("homework", Context.MODE_PRIVATE);
+			SharedPreferences download_error = context.getSharedPreferences(
+					"homework", Context.MODE_PRIVATE);
 
 			String error = download_error.getString("download_error", "no");
 
@@ -348,23 +346,22 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 				localEditor.putString("download_error", "no");
 
 				localEditor.commit();
-			
 
 			}
 
 			Intent intents = new Intent(context, MainActivity.class);
-			intents.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+			intents.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
+					| Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(intents);
-			
+
 		}
 
 	}
 
 	public void parse_due_tommorow_string() {
 
-		SharedPreferences Tommorow_Homework = 
-				context.getSharedPreferences("homework",
-						Context.MODE_PRIVATE);
+		SharedPreferences Tommorow_Homework = context.getSharedPreferences(
+				"homework", Context.MODE_PRIVATE);
 
 		String Due_Tommorow = Tommorow_Homework.getString("homework_content",
 				"");
@@ -404,76 +401,79 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 
 				else if (c == '"') {
 					if (state == 2) {
-						
-						System.out.println("shared_add= " + shared_add + " " + strb);
 
-							String strrr = strb.toString().replaceAll("^\"|\"$", "");
-						
+						System.out.println("shared_add= " + shared_add + " "
+								+ strb);
 
-							if (strrr.length() < 3 && isStringNumeric(strrr))
-									{	
-										shared_add = 0;
-										shared++;
+						String strrr = strb.toString()
+								.replaceAll("^\"|\"$", "");
 
-										Log.d("restart", "yes");
-										
-										due_tommorow_shared = "due_tommorow"
-												+ Integer.toString(shared);
-										
-										SharedPreferences Band = 
-												context.getApplicationContext().getSharedPreferences(
-													"last band tommorow", Context.MODE_PRIVATE);
-										
-												String band = Band.getString("last string", "ZZZZZZ");
-												
-												SharedPreferences.Editor localEditor = 
-														context.getSharedPreferences(due_tommorow_shared,
-																Context.MODE_PRIVATE).edit();
+						if (strrr.length() < 3 && isStringNumeric(strrr)) {
+							shared_add = 0;
+							shared++;
 
-												localEditor.putString("due_tommorow0", band);
+							Log.d("restart", "yes");
 
-												localEditor.apply();
-												
-												shared_add++;
-									}
-							
-							
-							if(shared_add > 8){
-							
-								SharedPreferences Band = 
-										context.getSharedPreferences(
-											"last band tommorow", Context.MODE_PRIVATE);
-								
-								SharedPreferences Description = 
-										context.getSharedPreferences(due_tommorow_shared,
-												Context.MODE_PRIVATE);
-								
-										String last = Band.getString("last string", "ZZZZZZ");
-										
-										String description = Description.getString("due_tommorow7", "");
-										
-										String fixed = description + last;
-										
-										Log.d("fixed", fixed);
-										
-										SharedPreferences.Editor localEditor =
-												context.getSharedPreferences(due_tommorow_shared,
-														Context.MODE_PRIVATE).edit();
-										
-										localEditor.putString("due_tommorow7", fixed);
-										
-										localEditor.apply();
-								
-							}
-							
-							SharedPreferences.Editor localEditors = 
-									context.getSharedPreferences("last band tommorow",
+							due_tommorow_shared = "due_tommorow"
+									+ Integer.toString(shared);
+
+							SharedPreferences Band = context
+									.getApplicationContext()
+									.getSharedPreferences("last band tommorow",
+											Context.MODE_PRIVATE);
+
+							String band = Band.getString("last string",
+									"ZZZZZZ");
+
+							SharedPreferences.Editor localEditor = context
+									.getSharedPreferences(due_tommorow_shared,
+											Context.MODE_PRIVATE).edit();
+
+							localEditor.putString("due_tommorow0", band);
+
+							localEditor.apply();
+
+							shared_add++;
+						}
+
+						if (shared_add > 8) {
+
+							SharedPreferences Band = context
+									.getSharedPreferences("last band tommorow",
+											Context.MODE_PRIVATE);
+
+							SharedPreferences Description = context
+									.getSharedPreferences(due_tommorow_shared,
+											Context.MODE_PRIVATE);
+
+							String last = Band.getString("last string",
+									"ZZZZZZ");
+
+							String description = Description.getString(
+									"due_tommorow7", "");
+
+							String fixed = description + last;
+
+							Log.d("fixed", fixed);
+
+							SharedPreferences.Editor localEditor = context
+									.getSharedPreferences(due_tommorow_shared,
+											Context.MODE_PRIVATE).edit();
+
+							localEditor.putString("due_tommorow7", fixed);
+
+							localEditor.apply();
+
+						}
+
+						SharedPreferences.Editor localEditors = context
+								.getSharedPreferences("last band tommorow",
 										Context.MODE_PRIVATE).edit();
-							
-							localEditors.putString("last string", strrr);
-							
-							localEditors.apply();
-							
+
+						localEditors.putString("last string", strrr);
+
+						localEditors.apply();
+
 						due_tommorow_shared = "due_tommorow"
 								+ Integer.toString(shared);
 
@@ -484,11 +484,12 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 
 						System.out.println("shared_pref= " + strr);
 
-						SharedPreferences.Editor localEditor = 
-								context.getSharedPreferences(due_tommorow_shared,
+						SharedPreferences.Editor localEditor = context
+								.getSharedPreferences(due_tommorow_shared,
 										Context.MODE_PRIVATE).edit();
 
-						localEditor.putString(due_tommorow_shared_content, strr);
+						localEditor
+								.putString(due_tommorow_shared_content, strr);
 
 						localEditor.apply();
 
@@ -498,9 +499,7 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 						state = 0;
 						countersss++;
 						shared_add++;
-					
-						
-						
+
 					} else {
 						state = 1;
 						strb.append(c);
@@ -508,7 +507,7 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 				} else {
 					strb.append(c);
 				}
-				
+
 			}
 
 			String strr = strb.toString().replaceAll("^\"|\"$", "");
@@ -517,16 +516,16 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 
 			due_tommorow_shared_content = "due_tommorow7";
 
-			SharedPreferences.Editor localEditor = 
-					context.getSharedPreferences(due_tommorow_shared,
+			SharedPreferences.Editor localEditor = context
+					.getSharedPreferences(due_tommorow_shared,
 							Context.MODE_PRIVATE).edit();
 
 			localEditor.putString(due_tommorow_shared_content, strr);
 
 			localEditor.apply();
 
-			SharedPreferences.Editor localEditor1 =
-					context.getSharedPreferences("due_tommorow_counter",
+			SharedPreferences.Editor localEditor1 = context
+					.getSharedPreferences("due_tommorow_counter",
 							Context.MODE_PRIVATE).edit();
 
 			localEditor1.putInt("last shared preference", shared);
@@ -534,6 +533,79 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 			localEditor1.apply();
 
 			strb.setLength(0);
+			
+			SharedPreferences.Editor localEditors = 
+					context.getSharedPreferences("last band tommorow",
+							Context.MODE_PRIVATE).edit();
+
+			localEditors.clear();
+
+			localEditors.apply();
+
+			Calendar calendar = Calendar.getInstance();
+
+			int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+			if (day == 6) {
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+				Calendar c = Calendar.getInstance();
+
+				c.add(Calendar.DATE, 3);
+
+				date = sdf.format(c.getTime());
+
+				System.out.println("friday");
+
+			} else if (day == 7) {
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+				Calendar c = Calendar.getInstance();
+
+				c.add(Calendar.DATE, 2);
+
+				date = sdf.format(c.getTime());
+
+				System.out.println("saturday");
+
+			} else {
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+				Calendar c = Calendar.getInstance();
+
+				c.add(Calendar.DATE, 1);
+
+				date = sdf.format(c.getTime());
+
+			}
+
+			due_tommorow_shared = "due_tommorow" + Integer.toString(shared + 1);
+
+			SharedPreferences.Editor dummy_item = 
+					context.getSharedPreferences(due_tommorow_shared,
+							Context.MODE_PRIVATE).edit();
+
+			dummy_item.putString("due_tommorow0", "ZZZZZ");
+
+			dummy_item.putString("due_tommorow1", "2");
+
+			dummy_item.putString("due_tommorow2", "Test");
+
+			dummy_item.putString("due_tommorow3", "Teacher");
+
+			dummy_item.putString("due_tommorow4", "Title");
+
+			dummy_item.putString("due_tommorow5", date);
+
+			dummy_item.putString("due_tommorow6", "Type");
+
+			dummy_item.putString("due_tommorow7", "Description");
+
+			dummy_item.apply();
+
 
 		} catch (IOException e) {
 
@@ -547,7 +619,8 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 
 	public void parse_due_today_string() {
 
-		SharedPreferences Today_Homework = context.getSharedPreferences("homework",Context.MODE_PRIVATE);
+		SharedPreferences Today_Homework = context.getSharedPreferences(
+				"homework", Context.MODE_PRIVATE);
 
 		String Due_Today = Today_Homework.getString("homework_content", "");
 
@@ -586,73 +659,78 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 
 				else if (c == '"') {
 					if (state == 2) {
-						
-						System.out.println("shared_add= " + shared_add + " " + strb);
 
-							String strrr = strb.toString().replaceAll("^\"|\"$", "");
-						
+						System.out.println("shared_add= " + shared_add + " "
+								+ strb);
 
-							if (strrr.length() < 3 && isStringNumeric(strrr))
-									{	
-										shared_add = 0;
-										shared++;
+						String strrr = strb.toString()
+								.replaceAll("^\"|\"$", "");
 
-										Log.d("restart", "yes");
-										
-										due_today_shared = "due_today"
-												+ Integer.toString(shared);
-										
-										SharedPreferences Band = 
-												context.getSharedPreferences("last band today", Context.MODE_PRIVATE);
-										
-												String band = Band.getString("last string", "ZZZZZZ");
-												
-												SharedPreferences.Editor localEditor = 
-														context.getSharedPreferences(due_today_shared,
-																Context.MODE_PRIVATE).edit();
+						if (strrr.length() < 3 && isStringNumeric(strrr)) {
+							shared_add = 0;
+							shared++;
 
-												localEditor.putString("due_today0", band);
+							Log.d("restart", "yes");
 
-												localEditor.apply();
-												
-												shared_add++;
-									}
-							
-							
-							if(shared_add > 8){
-							
-								SharedPreferences Band = context.getSharedPreferences("last band today", Context.MODE_PRIVATE);
-								
-								SharedPreferences Description = 
-										context.getSharedPreferences(due_today_shared,
-												Context.MODE_PRIVATE);
-								
-										String last = Band.getString("last string", "ZZZZZZ");
-										
-										String description = Description.getString("due_today7", "");
-										
-										String fixed = description + last;
-										
-										Log.d("fixed", fixed);
-										
-										SharedPreferences.Editor localEditor = 
-												context.getSharedPreferences(due_today_shared,
-														Context.MODE_PRIVATE).edit();
-										
-										localEditor.putString("due_today7", fixed);
-										
-										localEditor.apply();
-								
-							}
-							
-							SharedPreferences.Editor localEditors = 
-									context.getSharedPreferences("last band today",
+							due_today_shared = "due_today"
+									+ Integer.toString(shared);
+
+							SharedPreferences Band = context
+									.getSharedPreferences("last band today",
+											Context.MODE_PRIVATE);
+
+							String band = Band.getString("last string",
+									"ZZZZZZ");
+
+							SharedPreferences.Editor localEditor = context
+									.getSharedPreferences(due_today_shared,
+											Context.MODE_PRIVATE).edit();
+
+							localEditor.putString("due_today0", band);
+
+							localEditor.apply();
+
+							shared_add++;
+						}
+
+						if (shared_add > 8) {
+
+							SharedPreferences Band = context
+									.getSharedPreferences("last band today",
+											Context.MODE_PRIVATE);
+
+							SharedPreferences Description = context
+									.getSharedPreferences(due_today_shared,
+											Context.MODE_PRIVATE);
+
+							String last = Band.getString("last string",
+									"ZZZZZZ");
+
+							String description = Description.getString(
+									"due_today7", "");
+
+							String fixed = description + last;
+
+							Log.d("fixed", fixed);
+
+							SharedPreferences.Editor localEditor = context
+									.getSharedPreferences(due_today_shared,
+											Context.MODE_PRIVATE).edit();
+
+							localEditor.putString("due_today7", fixed);
+
+							localEditor.apply();
+
+						}
+
+						SharedPreferences.Editor localEditors = context
+								.getSharedPreferences("last band today",
 										Context.MODE_PRIVATE).edit();
-							
-							localEditors.putString("last string", strrr);
-							
-							localEditors.apply();
-							
+
+						localEditors.putString("last string", strrr);
+
+						localEditors.apply();
+
 						due_today_shared = "due_today"
 								+ Integer.toString(shared);
 
@@ -663,8 +741,8 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 
 						System.out.println("shared_pref= " + strr);
 
-						SharedPreferences.Editor localEditor = 
-								context.getSharedPreferences(due_today_shared,
+						SharedPreferences.Editor localEditor = context
+								.getSharedPreferences(due_today_shared,
 										Context.MODE_PRIVATE).edit();
 
 						localEditor.putString(due_today_shared_content, strr);
@@ -677,9 +755,7 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 						state = 0;
 						countersss++;
 						shared_add++;
-					
-						
-						
+
 					} else {
 						state = 1;
 						strb.append(c);
@@ -687,7 +763,7 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 				} else {
 					strb.append(c);
 				}
-				
+
 			}
 
 			String strr = strb.toString().replaceAll("^\"|\"$", "");
@@ -696,16 +772,16 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 
 			due_today_shared_content = "due_today7";
 
-			SharedPreferences.Editor localEditor = 
-					context.getSharedPreferences(due_today_shared,
+			SharedPreferences.Editor localEditor = context
+					.getSharedPreferences(due_today_shared,
 							Context.MODE_PRIVATE).edit();
 
 			localEditor.putString(due_today_shared_content, strr);
 
 			localEditor.apply();
 
-			SharedPreferences.Editor localEditor1 = 
-					context.getSharedPreferences("due_today_counter",
+			SharedPreferences.Editor localEditor1 = context
+					.getSharedPreferences("due_today_counter",
 							Context.MODE_PRIVATE).edit();
 
 			localEditor1.putInt("last shared preference", shared);
@@ -713,6 +789,36 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 			localEditor1.apply();
 
 			strb.setLength(0);
+			
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+				Calendar c = Calendar.getInstance();
+
+				date = sdf.format(c.getTime());
+
+			due_today_shared = "due_tommorow" + Integer.toString(shared + 1);
+
+			SharedPreferences.Editor dummy_item =
+					context.getSharedPreferences(due_today_shared,
+							Context.MODE_PRIVATE).edit();
+
+			dummy_item.putString("due_today0", "ZZZZZ");
+
+			dummy_item.putString("due_today1", "2");
+
+			dummy_item.putString("due_today2", "Test");
+
+			dummy_item.putString("due_today3", "Teacher");
+
+			dummy_item.putString("due_today4", "Title");
+
+			dummy_item.putString("due_today5", date);
+
+			dummy_item.putString("due_today6", "Type");
+
+			dummy_item.putString("due_today7", "Description");
+
+			dummy_item.apply();
 
 		} catch (IOException e) {
 
@@ -724,29 +830,29 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 		}
 	}
 
-	public static boolean isStringNumeric( String str )
-	{
-	    DecimalFormatSymbols currentLocaleSymbols = DecimalFormatSymbols.getInstance();
-	    char localeMinusSign = currentLocaleSymbols.getMinusSign();
+	public static boolean isStringNumeric(String str) {
+		DecimalFormatSymbols currentLocaleSymbols = DecimalFormatSymbols
+				.getInstance();
+		char localeMinusSign = currentLocaleSymbols.getMinusSign();
 
-	    if ( !Character.isDigit( str.charAt( 0 ) ) && str.charAt( 0 ) != localeMinusSign ) return false;
+		if (!Character.isDigit(str.charAt(0))
+				&& str.charAt(0) != localeMinusSign)
+			return false;
 
-	    boolean isDecimalSeparatorFound = false;
-	    char localeDecimalSeparator = currentLocaleSymbols.getDecimalSeparator();
+		boolean isDecimalSeparatorFound = false;
+		char localeDecimalSeparator = currentLocaleSymbols
+				.getDecimalSeparator();
 
-	    for ( char c : str.substring( 1 ).toCharArray() )
-	    {
-	        if ( !Character.isDigit( c ) )
-	        {
-	            if ( c == localeDecimalSeparator && !isDecimalSeparatorFound )
-	            {
-	                isDecimalSeparatorFound = true;
-	                continue;
-	            }
-	            return false;
-	        }
-	    }
-	    return true;
+		for (char c : str.substring(1).toCharArray()) {
+			if (!Character.isDigit(c)) {
+				if (c == localeDecimalSeparator && !isDecimalSeparatorFound) {
+					isDecimalSeparatorFound = true;
+					continue;
+				}
+				return false;
+			}
+		}
+		return true;
 	}
-	
+
 }

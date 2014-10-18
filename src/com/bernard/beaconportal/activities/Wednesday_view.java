@@ -1,11 +1,10 @@
 package com.bernard.beaconportal.activities;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.Monday_view.MyListAdapter;
 
 import de.timroes.android.listview.EnhancedListView;
 import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
@@ -23,6 +22,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -40,10 +40,12 @@ public class Wednesday_view extends Fragment {
 
 	private static int position;
 
+	private static ArrayAdapter<schedule_view> adapter;
+	
 	private int current_minutes;
-	
+
 	private ListView list;
-	
+
 	private View footer;
 
 	@Override
@@ -132,19 +134,29 @@ public class Wednesday_view extends Fragment {
 	}
 
 	private void populateListView() {
-		ArrayAdapter<schedule_view> adapter = new MyListAdapter();
+		adapter = new MyListAdapter();
 		list = (ListView) getView().findViewById(R.id.listView2);
+
+		footer = getActivity().getLayoutInflater().inflate(
+				R.layout.homeworkday_footer, null);
+
+		  footer.setOnClickListener(new OnClickListener(){
+		        @Override
+		        public void onClick(View v) {
+		            
+		        	showDialog();
+		        	
+		        }
+		    });
 		
-		footer = getActivity().getLayoutInflater().inflate(R.layout.homeworkday_footer,
-	             null);
-			 
 		TextView footer_text = (TextView) footer.findViewById(R.id.textView1);
-		
+
 		footer_text.setText("Homework Due Wednesday");
-		
-		list.addFooterView(footer); 
-		
+
+		list.addFooterView(footer);
+
 		list.setAdapter(adapter);
+
 		list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> av, View v, int pos,
@@ -152,6 +164,19 @@ public class Wednesday_view extends Fragment {
 				return onLongListItemClick(v, pos, id);
 			}
 		});
+
+	}
+	
+	public void showDialog(){
+	    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+	    View view = getActivity().getLayoutInflater().inflate(R.layout.wednesday_fragment, null);
+	    builder.setView(view)
+	            .setTitle("Homework Due Wednesday")
+	            .setNegativeButton("Dismiss", null);
+
+	    AlertDialog dialog = builder.create();
+	    dialog.show();
 	}
 
 	public class MyListAdapter extends ArrayAdapter<schedule_view> {
@@ -179,7 +204,7 @@ public class Wednesday_view extends Fragment {
 				holder.NotesCountText = (TextView) convertView
 						.findViewById(R.id.note_count);
 
-				View BackGround = (View) convertView
+				View BackGround = convertView
 						.findViewById(R.id.note_background);
 
 				TextView Count = (TextView) convertView
@@ -299,7 +324,7 @@ public class Wednesday_view extends Fragment {
 
 					// Store the item for later undo
 
-					final String item = (String) arrayAdapter.getItem(position);
+					final String item = arrayAdapter.getItem(position);
 
 					// Remove the item from the adapter
 					arrayAdapter.remove(item);
@@ -471,6 +496,7 @@ public class Wednesday_view extends Fragment {
 
 			builder.setNegativeButton("Cancel",
 					new DialogInterface.OnClickListener() {
+						@Override
 						public void onClick(DialogInterface dialog,
 								int whichButton) {
 							getDialog().dismiss();
@@ -526,6 +552,7 @@ public class Wednesday_view extends Fragment {
 
 				builder.setNegativeButton("Cancel",
 						new DialogInterface.OnClickListener() {
+							@Override
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
 								getDialog().dismiss();
@@ -534,6 +561,7 @@ public class Wednesday_view extends Fragment {
 
 				builder.setPositiveButton("Add",
 						new DialogInterface.OnClickListener() {
+							@Override
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
 
@@ -588,11 +616,11 @@ public class Wednesday_view extends Fragment {
 	}
 
 	@Override
-	public void onStop(){
-		super.onStop();
-	
+	public void onPause() {
+		super.onPause();
+
 		list.removeFooterView(footer);
-		
+
 	}
-	
+
 }

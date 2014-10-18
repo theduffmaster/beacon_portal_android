@@ -12,11 +12,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,7 +27,6 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.astuetz.PagerSlidingTabStrip;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.MainActivity.Update;
 import com.faizmalkani.floatingactionbutton.Fab;
 
 public class FragmentsSchedule extends SherlockFragment {
@@ -278,7 +275,7 @@ public class FragmentsSchedule extends SherlockFragment {
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
 			builder.setTitle("Edit Schedule Items Using...");
-			
+
 			builder.setItems(R.array.edit_mode,
 					new DialogInterface.OnClickListener() {
 						@Override

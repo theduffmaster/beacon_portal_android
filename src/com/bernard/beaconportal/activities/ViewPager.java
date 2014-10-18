@@ -125,6 +125,7 @@ public class ViewPager extends ViewGroup {
 	};
 
 	private static final Interpolator sInterpolator = new Interpolator() {
+		@Override
 		public float getInterpolation(float t) {
 			t -= 1.0f;
 			return t * t * t * t * t + 1.0f;
@@ -246,6 +247,7 @@ public class ViewPager extends ViewGroup {
 	public static final int SCROLL_STATE_SETTLING = 2;
 
 	private final Runnable mEndScrollRunnable = new Runnable() {
+		@Override
 		public void run() {
 			setScrollState(SCROLL_STATE_IDLE);
 			populate();
@@ -889,7 +891,7 @@ public class ViewPager extends ViewGroup {
 			duration = 4 * Math.round(1000 * Math.abs(distance / velocity));
 		} else {
 			final float pageWidth = width * mAdapter.getPageWidth(mCurItem);
-			final float pageDelta = (float) Math.abs(dx)
+			final float pageDelta = Math.abs(dx)
 					/ (pageWidth + mPageMargin);
 			duration = (int) ((pageDelta + 1) * 100);
 		}
@@ -1083,7 +1085,7 @@ public class ViewPager extends ViewGroup {
 						mAdapter.destroyItem(this, pos, ii.object);
 						if (DEBUG) {
 							Log.i(TAG, "populate() - destroyItem() with pos: "
-									+ pos + " view: " + ((View) ii.object));
+									+ pos + " view: " + (ii.object));
 						}
 						itemIndex--;
 						curIndex--;
@@ -1119,7 +1121,7 @@ public class ViewPager extends ViewGroup {
 								Log.i(TAG,
 										"populate() - destroyItem() with pos: "
 												+ pos + " view: "
-												+ ((View) ii.object));
+												+ (ii.object));
 							}
 							ii = itemIndex < mItems.size() ? mItems
 									.get(itemIndex) : null;
@@ -1505,15 +1507,15 @@ public class ViewPager extends ViewGroup {
 
 					int widthSize = childWidthSize;
 					int heightSize = childHeightSize;
-					if (lp.width != LayoutParams.WRAP_CONTENT) {
+					if (lp.width != android.view.ViewGroup.LayoutParams.WRAP_CONTENT) {
 						widthMode = MeasureSpec.EXACTLY;
-						if (lp.width != LayoutParams.FILL_PARENT) {
+						if (lp.width != android.view.ViewGroup.LayoutParams.FILL_PARENT) {
 							widthSize = lp.width;
 						}
 					}
-					if (lp.height != LayoutParams.WRAP_CONTENT) {
+					if (lp.height != android.view.ViewGroup.LayoutParams.WRAP_CONTENT) {
 						heightMode = MeasureSpec.EXACTLY;
-						if (lp.height != LayoutParams.FILL_PARENT) {
+						if (lp.height != android.view.ViewGroup.LayoutParams.FILL_PARENT) {
 							heightSize = lp.height;
 						}
 					}
@@ -1699,7 +1701,7 @@ public class ViewPager extends ViewGroup {
 								(int) (childWidth * lp.widthFactor),
 								MeasureSpec.EXACTLY);
 						final int heightSpec = MeasureSpec.makeMeasureSpec(
-								(int) (height - paddingTop - paddingBottom),
+								height - paddingTop - paddingBottom,
 								MeasureSpec.EXACTLY);
 						child.measure(widthSpec, heightSpec);
 					}
@@ -2610,6 +2612,7 @@ public class ViewPager extends ViewGroup {
 		}
 	}
 
+	@Override
 	public boolean canScrollHorizontally(int direction) {
 		if (mAdapter == null) {
 			return false;

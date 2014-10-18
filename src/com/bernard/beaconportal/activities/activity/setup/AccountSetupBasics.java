@@ -2,9 +2,7 @@ package com.bernard.beaconportal.activities.activity.setup;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,7 +12,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,10 +33,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -334,7 +329,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 
 	public void showDatePicker() {
 		// Initializiation
-		LayoutInflater inflater = (LayoutInflater) getLayoutInflater();
+		LayoutInflater inflater = getLayoutInflater();
 		final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 		View customView = inflater.inflate(R.layout.bdaypicker, null);
 		dialogBuilder.setView(customView);
@@ -376,14 +371,14 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-					
+
 						int year = datePicker.getYear();
 						int month = datePicker.getMonth();
 						int day = datePicker.getDayOfMonth();
 
 						SharedPreferences.Editor localEditor = getSharedPreferences(
 								"Login_Info", Context.MODE_PRIVATE).edit();
-						
+
 						localEditor.putInt("Day", day);
 
 						localEditor.putInt("Year", year);
@@ -393,7 +388,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 						localEditor.apply();
 
 						dialog.dismiss();
-						
+
 						bday_check_dialog();
 					}
 				});
@@ -401,6 +396,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 		// Initialize datepicker in dialog atepicker
 		datePicker.init(year, month, day,
 				new DatePicker.OnDateChangedListener() {
+					@Override
 					public void onDateChanged(DatePicker view, int year,
 							int monthOfYear, int dayOfMonth) {
 						Calendar choosenDate = Calendar.getInstance();
@@ -409,7 +405,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 								.format(choosenDate.getTime()));
 
 						dateTextView.setTextColor(Color.parseColor("#58585b"));
-						((Button) dialog.getButton(AlertDialog.BUTTON_POSITIVE))
+						dialog.getButton(DialogInterface.BUTTON_POSITIVE)
 								.setEnabled(true);
 					}
 
@@ -441,49 +437,55 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 			String year = year1.replaceFirst("^0+(?!$)", "");
 
 			String birthday = month + "/" + day + "/" + year;
-			
-			builder.setTitle("Are You Sure " + birthday + " Is Your Actual Birthday?");
-			
-			builder.setMessage("If this isn't your real birthday, you won't be able to receive homework through the app. We need your birthday so we can tell if you are really you. So are you sure " + birthday + " is your actual birthday?");
-			
-			builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-		              
-		        	   showDatePicker();
-		        	   
-		           }
-		       });
-		builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-		             
-		        		String email = mEmailView.getText().toString();
-						String[] emailParts = splitEmail(email);
-						String domain = emailParts[1];
-						mProvider = findProviderForDomain(domain);
-						if (mProvider == null) {
-							/*
-							 * We don't have default settings for this account,
-							 * start the manual setup process.
-							 */
-							onManualSetup();
-							return;
+
+			builder.setTitle("Are You Sure " + birthday
+					+ " Is Your Actual Birthday?");
+
+			builder.setMessage("If this isn't your real birthday, you won't be able to receive homework through the app. We need your birthday so we can tell if you are really you. So are you sure "
+					+ birthday + " is your actual birthday?");
+
+			builder.setPositiveButton("No",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int id) {
+
+							showDatePicker();
+
 						}
+					});
+			builder.setNegativeButton("Yes",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int id) {
 
-						if (mProvider.note != null) {
-							showDialog(DIALOG_NOTE);
-						} else {
-							finishAutoSetup();
+							String email = mEmailView.getText().toString();
+							String[] emailParts = splitEmail(email);
+							String domain = emailParts[1];
+							mProvider = findProviderForDomain(domain);
+							if (mProvider == null) {
+								/*
+								 * We don't have default settings for this
+								 * account, start the manual setup process.
+								 */
+								onManualSetup();
+								return;
+							}
+
+							if (mProvider.note != null) {
+								showDialog(DIALOG_NOTE);
+							} else {
+								finishAutoSetup();
+							}
+
+							SharedPreferences.Editor localEditor = getSharedPreferences(
+									"Login_Info", Context.MODE_PRIVATE).edit();
+
+							localEditor.putString("email", email);
+
+							localEditor.apply();
+
 						}
-
-						SharedPreferences.Editor localEditor = getSharedPreferences(
-								"Login_Info", Context.MODE_PRIVATE).edit();
-
-						localEditor.putString("email", email);
-						
-						localEditor.apply();
-		        	   
-		           }
-		       });
+					});
 
 			AlertDialog alertDialog = builder.create();
 
@@ -491,7 +493,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 
 		}
 	}
-	
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {

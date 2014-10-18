@@ -1,6 +1,5 @@
 package com.bernard.beaconportal.activities;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -31,9 +30,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -65,7 +61,7 @@ public class FragmentSettings extends Fragment {
 	private CheckBox refresh_edit;
 
 	final static int RQS_1 = 1;
-	
+
 	private int hour;
 	private int minute;
 	private String time;
@@ -76,7 +72,7 @@ public class FragmentSettings extends Fragment {
 	private View relative_views;
 
 	private RelativeLayout relativelayout;
-	
+
 	private RelativeLayout relativerefresh;
 
 	public static final String KEY_HOMEWORK = "homework";
@@ -100,24 +96,25 @@ public class FragmentSettings extends Fragment {
 				.findViewById(R.id.Relative_Layout_Settings);
 
 		relativerefresh.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-			
-					showDatePicker();
-					
-				}
+			@Override
+			public void onClick(View v) {
+
+				showDatePicker();
+
+			}
 
 		});
-			
+
 		SharedPreferences refresh_time = getActivity().getSharedPreferences(
 				"Alarm", Context.MODE_PRIVATE);
-		
+
 		time = refresh_time.getString("Time", "3:00pm");
-	
-	TextView dateSubText = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Refresh);
-	
-	dateSubText.setText("Homework will refresh at "+ time);
-		
+
+		TextView dateSubText = (TextView) relative_views
+				.findViewById(R.id.textViewSubTitle_Refresh);
+
+		dateSubText.setText("Homework will refresh at " + time);
+
 		relativelayout.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -176,13 +173,16 @@ public class FragmentSettings extends Fragment {
 
 										}
 
-										 Intent intent = getActivity().getIntent();
-										    getActivity().overridePendingTransition(0, 0);
-										    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-										    getActivity().finish();
+										Intent intent = getActivity()
+												.getIntent();
+										getActivity()
+												.overridePendingTransition(0, 0);
+										intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+										getActivity().finish();
 
-										    getActivity().overridePendingTransition(0, 0);
-										    startActivity(intent);
+										getActivity()
+												.overridePendingTransition(0, 0);
+										startActivity(intent);
 
 									}
 								})
@@ -209,61 +209,63 @@ public class FragmentSettings extends Fragment {
 		refresh_edit = (CheckBox) relative_views
 				.findViewById(R.id.checkBoxEdit);
 
-			SharedPreferences prefer = getActivity().getSharedPreferences(
-					"CheckBox_edit", Context.MODE_PRIVATE);
+		SharedPreferences prefer = getActivity().getSharedPreferences(
+				"CheckBox_edit", Context.MODE_PRIVATE);
 
-			String checkbox_edit = prefer.getString("checked", null);
-			
-			String subTitleEdit = prefer.getString("subTitle", null);
+		String checkbox_edit = prefer.getString("checked", null);
 
-			if (checkbox_edit != null) {
+		String subTitleEdit = prefer.getString("subTitle", null);
 
-				if (checkbox_edit.contains("true")) {
-					refresh_edit.setChecked(true);
-					
-					if(subTitleEdit != null){
-						TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Edit);
-						SubTitle.setText(subTitleEdit);
-						}
+		if (checkbox_edit != null) {
+
+			if (checkbox_edit.contains("true")) {
+				refresh_edit.setChecked(true);
+
+				if (subTitleEdit != null) {
+					TextView SubTitle = (TextView) relative_views
+							.findViewById(R.id.textViewSubTitle_Edit);
+					SubTitle.setText(subTitleEdit);
 				}
-
 			}
 
-			refresh_swipe = (CheckBox) relative_views
-					.findViewById(R.id.checkBoxSwipe);
+		}
 
-				SharedPreferences preferer = getActivity().getSharedPreferences(
-						"CheckBox_swipe", Context.MODE_PRIVATE);
+		refresh_swipe = (CheckBox) relative_views
+				.findViewById(R.id.checkBoxSwipe);
 
-				String checkbox_swipe = preferer.getString("checked", null);
+		SharedPreferences preferer = getActivity().getSharedPreferences(
+				"CheckBox_swipe", Context.MODE_PRIVATE);
 
-				String subTitleSwipe = preferer.getString("subTitle", null);
-				
-				if (checkbox_swipe != null) {
+		String checkbox_swipe = preferer.getString("checked", null);
 
-					if (checkbox_swipe.contains("false")) {
-						refresh_swipe.setChecked(false);
-						
-						TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Swipe);
-						SubTitle.setText(subTitleSwipe);
+		String subTitleSwipe = preferer.getString("subTitle", null);
 
-					}else{
-						
-						refresh_swipe.setChecked(true);
-						
-						if(subTitleSwipe != null){
-						TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Swipe);
-						SubTitle.setText(subTitleSwipe);
-						}
-					}
+		if (checkbox_swipe != null) {
 
-				}else{
-					
-					refresh_swipe.setChecked(true);
-					
+			if (checkbox_swipe.contains("false")) {
+				refresh_swipe.setChecked(false);
+
+				TextView SubTitle = (TextView) relative_views
+						.findViewById(R.id.textViewSubTitle_Swipe);
+				SubTitle.setText(subTitleSwipe);
+
+			} else {
+
+				refresh_swipe.setChecked(true);
+
+				if (subTitleSwipe != null) {
+					TextView SubTitle = (TextView) relative_views
+							.findViewById(R.id.textViewSubTitle_Swipe);
+					SubTitle.setText(subTitleSwipe);
 				}
+			}
 
-			
+		} else {
+
+			refresh_swipe.setChecked(true);
+
+		}
+
 		return view;
 
 	}
@@ -277,9 +279,9 @@ public class FragmentSettings extends Fragment {
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		
+
 		addListenerOnChkButton();
-		
+
 		addListenerOnChkButtonSwipe();
 
 		SharedPreferences sharedpref = getActivity().getSharedPreferences(
@@ -318,60 +320,63 @@ public class FragmentSettings extends Fragment {
 		refresh_edit = (CheckBox) relative_views
 				.findViewById(R.id.checkBoxEdit);
 
-			SharedPreferences prefer = getActivity().getSharedPreferences(
-					"CheckBox_edit", Context.MODE_PRIVATE);
+		SharedPreferences prefer = getActivity().getSharedPreferences(
+				"CheckBox_edit", Context.MODE_PRIVATE);
 
-			String checkbox_edit = prefer.getString("checked", null);
-			
-			String subTitleEdit = prefer.getString("subTitle", null);
+		String checkbox_edit = prefer.getString("checked", null);
 
-			if (checkbox_edit != null) {
+		String subTitleEdit = prefer.getString("subTitle", null);
 
-				if (checkbox_edit.contains("true")) {
-					refresh_edit.setChecked(true);
-					
-					if(subTitleEdit != null){
-						TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Edit);
-						SubTitle.setText(subTitleEdit);
-						}
+		if (checkbox_edit != null) {
 
+			if (checkbox_edit.contains("true")) {
+				refresh_edit.setChecked(true);
+
+				if (subTitleEdit != null) {
+					TextView SubTitle = (TextView) relative_views
+							.findViewById(R.id.textViewSubTitle_Edit);
+					SubTitle.setText(subTitleEdit);
 				}
 
 			}
 
-			refresh_swipe = (CheckBox) relative_views
-					.findViewById(R.id.checkBoxSwipe);
+		}
 
-				SharedPreferences preferer = getActivity().getSharedPreferences(
-						"CheckBox_swipe", Context.MODE_PRIVATE);
+		refresh_swipe = (CheckBox) relative_views
+				.findViewById(R.id.checkBoxSwipe);
 
-				String checkbox_swipe = preferer.getString("checked", null);
+		SharedPreferences preferer = getActivity().getSharedPreferences(
+				"CheckBox_swipe", Context.MODE_PRIVATE);
 
-				String subTitleSwipe = preferer.getString("subTitle", null);
-				
-				if (checkbox_swipe != null) {
+		String checkbox_swipe = preferer.getString("checked", null);
 
-					if (checkbox_swipe.contains("false")) {
-						refresh_swipe.setChecked(false);
-						
-						TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Swipe);
-						SubTitle.setText(subTitleSwipe);
+		String subTitleSwipe = preferer.getString("subTitle", null);
 
-					}else{
-						
-						refresh_swipe.setChecked(true);
-						
-						if(subTitleSwipe != null){
-						TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Swipe);
-						SubTitle.setText(subTitleSwipe);
-						}
-					}
+		if (checkbox_swipe != null) {
 
-				}else{
-					
-					refresh_swipe.setChecked(true);
-					
+			if (checkbox_swipe.contains("false")) {
+				refresh_swipe.setChecked(false);
+
+				TextView SubTitle = (TextView) relative_views
+						.findViewById(R.id.textViewSubTitle_Swipe);
+				SubTitle.setText(subTitleSwipe);
+
+			} else {
+
+				refresh_swipe.setChecked(true);
+
+				if (subTitleSwipe != null) {
+					TextView SubTitle = (TextView) relative_views
+							.findViewById(R.id.textViewSubTitle_Swipe);
+					SubTitle.setText(subTitleSwipe);
 				}
+			}
+
+		} else {
+
+			refresh_swipe.setChecked(true);
+
+		}
 	}
 
 	public void setListViewHeightBasedOnChildren(ListView listView) {
@@ -510,8 +515,6 @@ public class FragmentSettings extends Fragment {
 
 	}
 
-	
-
 	public void addListenerOnChkButton() {
 
 		CheckBox floating = (CheckBox) relative_views
@@ -525,28 +528,30 @@ public class FragmentSettings extends Fragment {
 
 				SharedPreferences.Editor editor = getActivity()
 						.getSharedPreferences("CheckBox_edit",
-							Context.MODE_PRIVATE).edit();
-			
+								Context.MODE_PRIVATE).edit();
+
 				if ((buttonView.isChecked())) {
 
 					String subTitle = "Edit Button moved to ActionBar";
-					
+
 					editor.putString("checked", "true");
 					editor.putString("subTitle", subTitle);
 					editor.commit();
-					
-					TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Edit);
+
+					TextView SubTitle = (TextView) relative_views
+							.findViewById(R.id.textViewSubTitle_Edit);
 					SubTitle.setText(subTitle);
-					
+
 				} else {
 
 					String subTitle = "Edit Button not in ActionBar";
-					
+
 					editor.putString("checked", "false");
 					editor.putString("subTitle", subTitle);
 					editor.commit();
-					
-					TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Edit);
+
+					TextView SubTitle = (TextView) relative_views
+							.findViewById(R.id.textViewSubTitle_Edit);
 					SubTitle.setText(subTitle);
 
 				}
@@ -574,23 +579,25 @@ public class FragmentSettings extends Fragment {
 				if ((buttonView.isChecked())) {
 
 					String subTitle = "Homework Items are Swipeable";
-					
+
 					editor.putString("checked", "true");
 					editor.putString("subTitle", subTitle);
 					editor.commit();
-					
-					TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Swipe);
+
+					TextView SubTitle = (TextView) relative_views
+							.findViewById(R.id.textViewSubTitle_Swipe);
 					SubTitle.setText(subTitle);
-					
+
 				} else {
 
 					String subTitle = "Homework Items are Not Swipeable";
-					
+
 					editor.putString("checked", "false");
 					editor.putString("subTitle", subTitle);
 					editor.commit();
-					
-					TextView SubTitle = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Swipe);
+
+					TextView SubTitle = (TextView) relative_views
+							.findViewById(R.id.textViewSubTitle_Swipe);
 					SubTitle.setText(subTitle);
 
 				}
@@ -598,38 +605,41 @@ public class FragmentSettings extends Fragment {
 			}
 
 		});
-	
+
 	}
-		
+
 	public void showDatePicker() {
 		// Initializiation
-		LayoutInflater inflater = (LayoutInflater) getActivity().getLayoutInflater();
-		final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
-		View customView = inflater.inflate(R.layout.download_alarm_dialog, null);
+		LayoutInflater inflater = getActivity()
+				.getLayoutInflater();
+		final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(
+				getActivity());
+		View customView = inflater
+				.inflate(R.layout.download_alarm_dialog, null);
 		dialogBuilder.setView(customView);
-				// View settings
+		// View settings
 		dialogBuilder.setTitle("Set Homework Refresh Time");
-		
-		final TimePicker timePicker = (TimePicker) customView.findViewById(R.id.timePicker1);
-		
+
+		final TimePicker timePicker = (TimePicker) customView
+				.findViewById(R.id.timePicker1);
+
 		Calendar choosenDate = Calendar.getInstance();
 		hour = choosenDate.get(Calendar.HOUR_OF_DAY);
 		minute = choosenDate.get(Calendar.MINUTE);
-		
+
 		SharedPreferences refresh_time = getActivity().getSharedPreferences(
 				"Alarm", Context.MODE_PRIVATE);
-		
+
 		try {
 
 			hour = refresh_time.getInt("Hour", 3);
-			
+
 			minute = refresh_time.getInt("Minute", 0);
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		// Buttons
 		dialogBuilder.setNegativeButton("Stop Updates",
 				new DialogInterface.OnClickListener() {
@@ -637,21 +647,26 @@ public class FragmentSettings extends Fragment {
 					public void onClick(DialogInterface dialog, int which) {
 
 						cancelAlarm();
-						
-						Toast.makeText(getActivity().getApplicationContext(), "Homework will no longer update automatically", 
-								   Toast.LENGTH_LONG).show();
-						
-						SharedPreferences.Editor localEditor = getActivity().getSharedPreferences(
-								"Alarm", Context.MODE_PRIVATE).edit();
-						
-						localEditor.putString("Time", "Homework will not be refreshed automatically");
-						
+
+						Toast.makeText(getActivity().getApplicationContext(),
+								"Homework will no longer update automatically",
+								Toast.LENGTH_LONG).show();
+
+						SharedPreferences.Editor localEditor = getActivity()
+								.getSharedPreferences("Alarm",
+										Context.MODE_PRIVATE).edit();
+
+						localEditor.putString("Time",
+								"Homework will not be refreshed automatically");
+
 						localEditor.apply();
-						
-						TextView dateSubText = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Refresh);
-						
-						dateSubText.setText("Homework will not be refreshed automatically");
-						
+
+						TextView dateSubText = (TextView) relative_views
+								.findViewById(R.id.textViewSubTitle_Refresh);
+
+						dateSubText
+								.setText("Homework will not be refreshed automatically");
+
 					}
 				});
 		dialogBuilder.setNeutralButton("Cancel",
@@ -666,118 +681,130 @@ public class FragmentSettings extends Fragment {
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-					
-						
-						SharedPreferences.Editor localEditor = getActivity().getSharedPreferences(
-								"Alarm", Context.MODE_PRIVATE).edit();
-						
+
+						SharedPreferences.Editor localEditor = getActivity()
+								.getSharedPreferences("Alarm",
+										Context.MODE_PRIVATE).edit();
+
 						hour = timePicker.getCurrentHour();
-						
+
 						minute = timePicker.getCurrentMinute();
-						
+
 						localEditor.putInt("Hour", hour);
 
 						localEditor.putInt("Minute", minute);
 
-						if(hour>11){
-							if(minute<10){
-							
-								time = Integer.toString(hour-12)+":"+"0"+Integer.toString(minute)+"pm";
-							
-							}else{
-								
-								time = Integer.toString(hour-12)+":"+Integer.toString(minute)+"pm";
-								
-							}
-							
-						}
-						
-						if(hour<=11){
-							
-							if(minute<10){
-								
-								time = Integer.toString(hour)+":"+"0"+Integer.toString(minute)+"am";
-							
-							}else{
-								
-								time = Integer.toString(hour)+":"+Integer.toString(minute)+"am";
-								
-							}
-							
-						}
-						
-						TextView dateSubText = (TextView) relative_views.findViewById(R.id.textViewSubTitle_Refresh);
-						
-						dateSubText.setText("Homework will refresh at "+ time);
-						
-						localEditor.putString("Time", time);
-						
-						localEditor.apply();
-						
-						Toast.makeText(getActivity().getApplicationContext(), "Homework set to refresh at " + time, 
-								   Toast.LENGTH_LONG).show();
-						
-						Calendar calNow = Calendar.getInstance();
-					    Calendar calSet = (Calendar) calNow.clone();
+						if (hour > 11) {
+							if (minute < 10) {
 
-					    calSet.set(Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
-					    calSet.set(Calendar.MINUTE, timePicker.getCurrentMinute());
-					    calSet.set(Calendar.SECOND, 0);
-					    calSet.set(Calendar.MILLISECOND, 0);
-					    
-					    setAlarm(calSet);
-						
+								time = Integer.toString(hour - 12) + ":" + "0"
+										+ Integer.toString(minute) + "pm";
+
+							} else {
+
+								time = Integer.toString(hour - 12) + ":"
+										+ Integer.toString(minute) + "pm";
+
+							}
+
+						}
+
+						if (hour <= 11) {
+
+							if (minute < 10) {
+
+								time = Integer.toString(hour) + ":" + "0"
+										+ Integer.toString(minute) + "am";
+
+							} else {
+
+								time = Integer.toString(hour) + ":"
+										+ Integer.toString(minute) + "am";
+
+							}
+
+						}
+
+						TextView dateSubText = (TextView) relative_views
+								.findViewById(R.id.textViewSubTitle_Refresh);
+
+						dateSubText.setText("Homework will refresh at " + time);
+
+						localEditor.putString("Time", time);
+
+						localEditor.apply();
+
+						Toast.makeText(getActivity().getApplicationContext(),
+								"Homework set to refresh at " + time,
+								Toast.LENGTH_LONG).show();
+
+						Calendar calNow = Calendar.getInstance();
+						Calendar calSet = (Calendar) calNow.clone();
+
+						calSet.set(Calendar.HOUR_OF_DAY,
+								timePicker.getCurrentHour());
+						calSet.set(Calendar.MINUTE,
+								timePicker.getCurrentMinute());
+						calSet.set(Calendar.SECOND, 0);
+						calSet.set(Calendar.MILLISECOND, 0);
+
+						setAlarm(calSet);
+
 					}
 				});
 		final AlertDialog dialog = dialogBuilder.create();
 		// Initialize datepicker in dialog atepicker
 		timePicker.setCurrentHour(hour);
 		timePicker.setCurrentMinute(minute);
-				new OnTimeChangedListener() {
-					
-					@Override
-					public void onTimeChanged(TimePicker view, int hourOfDay,
-							int minuteNow) {
-						
-						hour = hourOfDay;
-						minute = minuteNow;
-						
-						
-					}
+		new OnTimeChangedListener() {
 
-				};
+			@Override
+			public void onTimeChanged(TimePicker view, int hourOfDay,
+					int minuteNow) {
+
+				hour = hourOfDay;
+				minute = minuteNow;
+
+			}
+
+		};
 
 		dialog.show();
 	}
-	
-	private void setAlarm(Calendar targetCal){
-		
-		Intent intent = new Intent(getActivity().getBaseContext(), DailyHomeworkDownload.class);
-		  
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity().getBaseContext(), RQS_1, intent, 0);
-		
-		AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
-			alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis(), pendingIntent);
 
-		  
-		   alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, 
-		     targetCal.getTimeInMillis(), 
-		     TimeUnit.HOURS.toMillis(24),
-		     pendingIntent);
-		   
-		   System.out.println(targetCal);
-		
+	private void setAlarm(Calendar targetCal) {
+
+		Intent intent = new Intent(getActivity().getBaseContext(),
+				DailyHomeworkDownload.class);
+
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity()
+				.getBaseContext(), RQS_1, intent, 0);
+
+		AlarmManager alarmManager = (AlarmManager) getActivity()
+				.getSystemService(Context.ALARM_SERVICE);
+		alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis(),
+				pendingIntent);
+
+		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+				targetCal.getTimeInMillis(), TimeUnit.HOURS.toMillis(24),
+				pendingIntent);
+
+		System.out.println(targetCal);
+
 	}
-	
-	private void cancelAlarm(){
 
-		Intent intent = new Intent(getActivity().getBaseContext(), DailyHomeworkDownload.class);
-		 
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity().getBaseContext(), RQS_1, intent, 0);
-		
-		AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
-		  alarmManager.cancel(pendingIntent);
+	private void cancelAlarm() {
 
-		 }
-	
+		Intent intent = new Intent(getActivity().getBaseContext(),
+				DailyHomeworkDownload.class);
+
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity()
+				.getBaseContext(), RQS_1, intent, 0);
+
+		AlarmManager alarmManager = (AlarmManager) getActivity()
+				.getSystemService(Context.ALARM_SERVICE);
+		alarmManager.cancel(pendingIntent);
+
+	}
+
 }

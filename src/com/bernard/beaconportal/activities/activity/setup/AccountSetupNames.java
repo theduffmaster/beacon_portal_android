@@ -1,26 +1,7 @@
 package com.bernard.beaconportal.activities.activity.setup;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
-
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
-
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -31,21 +12,16 @@ import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.TextKeyListener;
 import android.text.method.TextKeyListener.Capitalize;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -53,10 +29,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bernard.beaconportal.activities.*;
-import com.bernard.beaconportal.activities.MainActivity.Update;
 import com.bernard.beaconportal.activities.activity.Accounts;
 import com.bernard.beaconportal.activities.activity.K9Activity;
 import com.bernard.beaconportal.activities.helper.Utility;
@@ -239,7 +212,6 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 
 	protected void onNext() {
 
-		
 		InputMethodManager im = (InputMethodManager) this
 				.getApplicationContext().getSystemService(
 						Context.INPUT_METHOD_SERVICE);
@@ -261,10 +233,8 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 		localEditor.putString("name", name);
 
 		localEditor.commit();
-		
 
-		Intent intent = new Intent(AccountSetupNames.this,
-				LoadingLayout.class);
+		Intent intent = new Intent(AccountSetupNames.this, LoadingLayout.class);
 
 		startActivity(intent);
 	}

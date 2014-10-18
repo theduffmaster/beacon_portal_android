@@ -18,7 +18,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -33,29 +32,23 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.text.TextUtils.TruncateAt;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.Due_Tommorow_Fragment.Update;
-
 import de.timroes.android.listview.EnhancedListView;
 import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
 import de.timroes.android.listview.EnhancedListView.SwipeDirection;
@@ -72,7 +65,7 @@ public class Due_Today_Fragment extends Fragment {
 	private EnhancedListView list;
 
 	private int count;
-	
+
 	private String date;
 
 	private int shared;
@@ -111,7 +104,7 @@ public class Due_Today_Fragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-                new Download().execute();
+		new Download().execute();
 
 		View swipe = inflater.inflate(R.layout.activity_main, container, false);
 
@@ -124,8 +117,7 @@ public class Due_Today_Fragment extends Fragment {
 				android.R.color.holo_blue_light,
 				android.R.color.holo_orange_light);
 
-			lView = (EnhancedListView) swipe
-				.findViewById(R.id.listView1);
+		lView = (EnhancedListView) swipe.findViewById(R.id.listView1);
 
 		lView.setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
@@ -224,15 +216,15 @@ public class Due_Today_Fragment extends Fragment {
 				});
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
+
 		Calendar c = Calendar.getInstance();
-		
-		date = sdf.format(c.getTime());  
-		
+
+		date = sdf.format(c.getTime());
+
 		System.out.println(date);
-		
+
 		lView.setEmptyView(swipe.findViewById(R.id.scrollView1));
-		
+
 		return swipe;
 
 	}
@@ -251,15 +243,16 @@ public class Due_Today_Fragment extends Fragment {
 		populateListView();
 
 		registerClickCallback();
-		
+
 		lView.setDismissCallback(new de.timroes.android.listview.EnhancedListView.OnDismissCallback() {
 
+			@Override
 			public EnhancedListView.Undoable onDismiss(
 					EnhancedListView listView, final int position) {
 
 				Log.d("shared clear1", "yes");
 
-				final Due_Today_List item = (Due_Today_List) adapter
+				final Due_Today_List item = adapter
 						.getItem(position);
 				// Store the item for later undo
 
@@ -411,8 +404,8 @@ public class Due_Today_Fragment extends Fragment {
 		lView.setUndoStyle(style);
 		lView.enableSwipeToDismiss();
 		EnhancedListView.SwipeDirection direction = EnhancedListView.SwipeDirection.START;
-		lView.setSwipeDirection(direction); 
-		
+		lView.setSwipeDirection(direction);
+
 		System.out.println(date);
 
 	}
@@ -460,76 +453,80 @@ public class Due_Today_Fragment extends Fragment {
 
 				else if (c == '"') {
 					if (state == 2) {
-						
-						System.out.println("shared_add= " + shared_add + " " + strb);
 
-							String strrr = strb.toString().replaceAll("^\"|\"$", "");
-						
+						System.out.println("shared_add= " + shared_add + " "
+								+ strb);
 
-							if (strrr.length() < 3 && isStringNumeric(strrr))
-									{	
-										shared_add = 0;
-										shared++;
+						String strrr = strb.toString()
+								.replaceAll("^\"|\"$", "");
 
-										Log.d("restart", "yes");
-										
-										due_today_shared = "due_today"
-												+ Integer.toString(shared);
-										
-										SharedPreferences Band = getActivity()
-												.getApplicationContext().getSharedPreferences(
-													"last band today", Context.MODE_PRIVATE);
-										
-												String band = Band.getString("last string", "ZZZZZZ");
-												
-												SharedPreferences.Editor localEditor = getActivity()
-														.getSharedPreferences(due_today_shared,
-																Context.MODE_PRIVATE).edit();
+						if (strrr.length() < 3 && isStringNumeric(strrr)) {
+							shared_add = 0;
+							shared++;
 
-												localEditor.putString("due_today0", band);
+							Log.d("restart", "yes");
 
-												localEditor.apply();
-												
-												shared_add++;
-									}
-							
-							
-							if(shared_add > 8){
-							
-								SharedPreferences Band = getActivity()
-										.getApplicationContext().getSharedPreferences(
-											"last band today", Context.MODE_PRIVATE);
-								
-								SharedPreferences Description = getActivity()
-										.getSharedPreferences(due_today_shared,
-												Context.MODE_PRIVATE);
-								
-										String last = Band.getString("last string", "ZZZZZZ");
-										
-										String description = Description.getString("due_today7", "");
-										
-										String fixed = description + last;
-										
-										Log.d("fixed", fixed);
-										
-										SharedPreferences.Editor localEditor = getActivity()
-												.getSharedPreferences(due_today_shared,
-														Context.MODE_PRIVATE).edit();
-										
-										localEditor.putString("due_today7", fixed);
-										
-										localEditor.apply();
-								
-							}
-							
-							SharedPreferences.Editor localEditors = getActivity()
+							due_today_shared = "due_today"
+									+ Integer.toString(shared);
+
+							SharedPreferences Band = getActivity()
+									.getApplicationContext()
 									.getSharedPreferences("last band today",
+											Context.MODE_PRIVATE);
+
+							String band = Band.getString("last string",
+									"ZZZZZZ");
+
+							SharedPreferences.Editor localEditor = getActivity()
+									.getSharedPreferences(due_today_shared,
+											Context.MODE_PRIVATE).edit();
+
+							localEditor.putString("due_today0", band);
+
+							localEditor.apply();
+
+							shared_add++;
+						}
+
+						if (shared_add > 8) {
+
+							SharedPreferences Band = getActivity()
+									.getApplicationContext()
+									.getSharedPreferences("last band today",
+											Context.MODE_PRIVATE);
+
+							SharedPreferences Description = getActivity()
+									.getSharedPreferences(due_today_shared,
+											Context.MODE_PRIVATE);
+
+							String last = Band.getString("last string",
+									"ZZZZZZ");
+
+							String description = Description.getString(
+									"due_today7", "");
+
+							String fixed = description + last;
+
+							Log.d("fixed", fixed);
+
+							SharedPreferences.Editor localEditor = getActivity()
+									.getSharedPreferences(due_today_shared,
+											Context.MODE_PRIVATE).edit();
+
+							localEditor.putString("due_today7", fixed);
+
+							localEditor.apply();
+
+						}
+
+						SharedPreferences.Editor localEditors = getActivity()
+								.getSharedPreferences("last band today",
 										Context.MODE_PRIVATE).edit();
-							
-							localEditors.putString("last string", strrr);
-							
-							localEditors.apply();
-							
+
+						localEditors.putString("last string", strrr);
+
+						localEditors.apply();
+
 						due_today_shared = "due_today"
 								+ Integer.toString(shared);
 
@@ -554,9 +551,7 @@ public class Due_Today_Fragment extends Fragment {
 						state = 0;
 						countersss++;
 						shared_add++;
-					
-						
-						
+
 					} else {
 						state = 1;
 						strb.append(c);
@@ -564,7 +559,7 @@ public class Due_Today_Fragment extends Fragment {
 				} else {
 					strb.append(c);
 				}
-				
+
 			}
 
 			String strr = strb.toString().replaceAll("^\"|\"$", "");
@@ -590,28 +585,27 @@ public class Due_Today_Fragment extends Fragment {
 			localEditor1.apply();
 
 			strb.setLength(0);
-			
-			due_today_shared = "due_tommorow"
-					+ Integer.toString(shared + 1);
-			
+
+			due_today_shared = "due_tommorow" + Integer.toString(shared + 1);
+
 			SharedPreferences.Editor dummy_item = getActivity()
 					.getSharedPreferences(due_today_shared,
 							Context.MODE_PRIVATE).edit();
 
 			dummy_item.putString("due_today0", "ZZZZZ");
-			
+
 			dummy_item.putString("due_today1", "2");
-			
+
 			dummy_item.putString("due_today2", "Test");
-			
+
 			dummy_item.putString("due_today3", "Teacher");
-			
+
 			dummy_item.putString("due_today4", "Title");
-			
+
 			dummy_item.putString("due_today5", date);
-			
+
 			dummy_item.putString("due_today6", "Type");
-			
+
 			dummy_item.putString("due_today7", "Description");
 
 			dummy_item.apply();
@@ -626,31 +620,31 @@ public class Due_Today_Fragment extends Fragment {
 		}
 	}
 
-	public static boolean isStringNumeric( String str )
-	{
-	    DecimalFormatSymbols currentLocaleSymbols = DecimalFormatSymbols.getInstance();
-	    char localeMinusSign = currentLocaleSymbols.getMinusSign();
+	public static boolean isStringNumeric(String str) {
+		DecimalFormatSymbols currentLocaleSymbols = DecimalFormatSymbols
+				.getInstance();
+		char localeMinusSign = currentLocaleSymbols.getMinusSign();
 
-	    if ( !Character.isDigit( str.charAt( 0 ) ) && str.charAt( 0 ) != localeMinusSign ) return false;
+		if (!Character.isDigit(str.charAt(0))
+				&& str.charAt(0) != localeMinusSign)
+			return false;
 
-	    boolean isDecimalSeparatorFound = false;
-	    char localeDecimalSeparator = currentLocaleSymbols.getDecimalSeparator();
+		boolean isDecimalSeparatorFound = false;
+		char localeDecimalSeparator = currentLocaleSymbols
+				.getDecimalSeparator();
 
-	    for ( char c : str.substring( 1 ).toCharArray() )
-	    {
-	        if ( !Character.isDigit( c ) )
-	        {
-	            if ( c == localeDecimalSeparator && !isDecimalSeparatorFound )
-	            {
-	                isDecimalSeparatorFound = true;
-	                continue;
-	            }
-	            return false;
-	        }
-	    }
-	    return true;
+		for (char c : str.substring(1).toCharArray()) {
+			if (!Character.isDigit(c)) {
+				if (c == localeDecimalSeparator && !isDecimalSeparatorFound) {
+					isDecimalSeparatorFound = true;
+					continue;
+				}
+				return false;
+			}
+		}
+		return true;
 	}
-		
+
 	public class Download extends AsyncTask<String, Void, Void> {
 
 		@Override
@@ -750,8 +744,7 @@ public class Due_Today_Fragment extends Fragment {
 				} catch (NoSuchElementException e) {
 
 					e.printStackTrace();
-				}
-				catch (RuntimeException e) {
+				} catch (RuntimeException e) {
 					e.printStackTrace();
 				}
 			} finally {
@@ -903,8 +896,7 @@ public class Due_Today_Fragment extends Fragment {
 
 					e.printStackTrace();
 
-				}
-				catch (RuntimeException e) {
+				} catch (RuntimeException e) {
 					due_today_list.clear();
 
 					parse_due_today_string();
@@ -1053,7 +1045,6 @@ public class Due_Today_Fragment extends Fragment {
 				Description = Description1.trim();
 
 			}
-			
 
 			SharedPreferences description_check = getActivity()
 					.getApplicationContext().getSharedPreferences(
@@ -1063,9 +1054,8 @@ public class Due_Today_Fragment extends Fragment {
 					"description", "");
 
 			if (Type != null && Description != null && !Type.isEmpty()
-					&& !Description.equals(descriptionCheck) && Description.length() > 5
-					&& Date.equals(date)
-					) {
+					&& !Description.equals(descriptionCheck)
+					&& Description.length() > 5 && Date.equals(date)) {
 
 				SharedPreferences.Editor checkeditor = getActivity()
 						.getApplicationContext()
@@ -1075,10 +1065,10 @@ public class Due_Today_Fragment extends Fragment {
 				checkeditor.putString("description", Description);
 
 				checkeditor.commit();
-				
-				if(!"Type".equals(Type)){
-				due_today_list.add(new Due_Today_List(Band, Number, Class,
-						Teacher, Title, Date, Type, Description));
+
+				if (!"Type".equals(Type)) {
+					due_today_list.add(new Due_Today_List(Band, Number, Class,
+							Teacher, Title, Date, Type, Description));
 				}
 			}
 
@@ -1087,7 +1077,8 @@ public class Due_Today_Fragment extends Fragment {
 	}
 
 	private void registerClickCallback() {
-		EnhancedListView list = (EnhancedListView) getView().findViewById(R.id.listView1);
+		EnhancedListView list = (EnhancedListView) getView().findViewById(
+				R.id.listView1);
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
@@ -1117,12 +1108,13 @@ public class Due_Today_Fragment extends Fragment {
 
 		list.setDismissCallback(new OnDismissCallback() {
 
+			@Override
 			public EnhancedListView.Undoable onDismiss(
 					EnhancedListView listView, final int position) {
 
 				Log.d("shared clear1", "yes");
 
-				final Due_Today_List item = (Due_Today_List) adapter
+				final Due_Today_List item = adapter
 						.getItem(position);
 				// Store the item for later undo
 

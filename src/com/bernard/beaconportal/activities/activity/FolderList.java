@@ -45,7 +45,6 @@ import com.bernard.beaconportal.activities.AccountStats;
 import com.bernard.beaconportal.activities.BaseAccount;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.Account.FolderMode;
 import com.bernard.beaconportal.activities.activity.setup.AccountSettings;
@@ -65,8 +64,6 @@ import com.bernard.beaconportal.activities.search.SearchSpecification.Attribute;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Searchfield;
 import com.bernard.beaconportal.activities.service.MailService;
 import com.bernard.beaconportal.activities.R;
-
-import de.cketti.library.changelog.ChangeLog;
 
 /**
  * FolderList is the primary user interface for the program. This Activity shows

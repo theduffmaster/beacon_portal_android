@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.Monday_view.MyListAdapter;
 
 import de.timroes.android.listview.EnhancedListView;
 import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
@@ -22,6 +23,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -41,8 +43,10 @@ public class Thursday_view extends Fragment {
 
 	private ListView list;
 	
+	private static ArrayAdapter<schedule_view> adapter;
+
 	private View footer;
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -134,19 +138,29 @@ public class Thursday_view extends Fragment {
 	}
 
 	private void populateListView() {
-		ArrayAdapter<schedule_view> adapter = new MyListAdapter();
+		adapter = new MyListAdapter();
 		list = (ListView) getView().findViewById(R.id.listView2);
+
+		footer = getActivity().getLayoutInflater().inflate(
+				R.layout.homeworkday_footer, null);
+
+		  footer.setOnClickListener(new OnClickListener(){
+		        @Override
+		        public void onClick(View v) {
+		            
+		        	showDialog();
+		        	
+		        }
+		    });
 		
-		footer = getActivity().getLayoutInflater().inflate(R.layout.homeworkday_footer,
-	             null);
-			 
 		TextView footer_text = (TextView) footer.findViewById(R.id.textView1);
-		
+
 		footer_text.setText("Homework Due Thursday");
-		
-		list.addFooterView(footer); 
-		
+
+		list.addFooterView(footer);
+
 		list.setAdapter(adapter);
+
 		list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> av, View v, int pos,
@@ -154,6 +168,19 @@ public class Thursday_view extends Fragment {
 				return onLongListItemClick(v, pos, id);
 			}
 		});
+
+	}
+	
+	public void showDialog(){
+	    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+	    View view = getActivity().getLayoutInflater().inflate(R.layout.thursday_fragment, null);
+	    builder.setView(view)
+	            .setTitle("Homework Due Thursday")
+	            .setNegativeButton("Dismiss", null);
+
+	    AlertDialog dialog = builder.create();
+	    dialog.show();
 	}
 
 	public class MyListAdapter extends ArrayAdapter<schedule_view> {
@@ -180,7 +207,7 @@ public class Thursday_view extends Fragment {
 
 				holder.NotesCountText = (TextView) convertView
 						.findViewById(R.id.note_count);
-				View BackGround = (View) convertView
+				View BackGround = convertView
 						.findViewById(R.id.note_background);
 
 				TextView Count = (TextView) convertView
@@ -301,7 +328,7 @@ public class Thursday_view extends Fragment {
 
 					// Store the item for later undo
 
-					final String item = (String) arrayAdapter.getItem(position);
+					final String item = arrayAdapter.getItem(position);
 
 					// Remove the item from the adapter
 					arrayAdapter.remove(item);
@@ -473,6 +500,7 @@ public class Thursday_view extends Fragment {
 
 			builder.setNegativeButton("Cancel",
 					new DialogInterface.OnClickListener() {
+						@Override
 						public void onClick(DialogInterface dialog,
 								int whichButton) {
 							getDialog().dismiss();
@@ -528,6 +556,7 @@ public class Thursday_view extends Fragment {
 
 				builder.setNegativeButton("Cancel",
 						new DialogInterface.OnClickListener() {
+							@Override
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
 								getDialog().dismiss();
@@ -536,6 +565,7 @@ public class Thursday_view extends Fragment {
 
 				builder.setPositiveButton("Add",
 						new DialogInterface.OnClickListener() {
+							@Override
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
 
@@ -590,11 +620,11 @@ public class Thursday_view extends Fragment {
 	}
 
 	@Override
-	public void onStop(){
-		super.onStop();
-	
+	public void onPause() {
+		super.onPause();
+
 		list.removeFooterView(footer);
-		
+
 	}
 
 }

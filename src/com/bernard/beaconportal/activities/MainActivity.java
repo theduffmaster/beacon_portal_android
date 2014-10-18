@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,7 +20,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -51,12 +51,10 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ListFragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Html;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,7 +78,8 @@ import com.bernard.beaconportal.activities.activity.setup.AccountSetupBasics;
 public class MainActivity extends SherlockFragmentActivity {
 	private String Data, Band, Number, Class, Teacher, Title, Date, Type,
 			Description, DescriptionAll, DescriptionCheck, due_today_shared,
-			due_today_shared_content;
+			due_today_shared_content, due_schedule_shared,
+			due_schedule_shared_content;
 
 	private static final String TAG = "K9MailExtension";
 
@@ -98,7 +97,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	private AlertDialog alertDialog;
 
 	private int check;
-	
+
 	final static int RQS_1 = 1;
 
 	DrawerLayout mDrawerLayout;
@@ -131,7 +130,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	private String checkbox_edit;
 
 	private BaseAccount mSelectedContextAccount;
-	
+
 	private String date;
 
 	private int shared1;
@@ -163,13 +162,13 @@ public class MainActivity extends SherlockFragmentActivity {
 		super.onCreate(savedInstanceState);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			
-			Calendar c = Calendar.getInstance();
-			
-			c.add(Calendar.DATE, 1);
-			
-			date = sdf.format(c.getTime());
-		
+
+		Calendar c = Calendar.getInstance();
+
+		c.add(Calendar.DATE, 1);
+
+		date = sdf.format(c.getTime());
+
 		InputMethodManager im = (InputMethodManager) this
 				.getApplicationContext().getSystemService(
 						Context.INPUT_METHOD_SERVICE);
@@ -181,36 +180,57 @@ public class MainActivity extends SherlockFragmentActivity {
 			counterss = extras.getString("homework_count");
 		}
 
-		SharedPreferences rerun = getSharedPreferences(
-				"homework_rerun", Context.MODE_PRIVATE);
-		
+		SharedPreferences rerun = getSharedPreferences("homework_rerun",
+				Context.MODE_PRIVATE);
+
 		SharedPreferences sharedprefer = getSharedPreferences(
 				"first_run_starts", Context.MODE_PRIVATE);
 
 		SharedPreferences sharedprefererence = getSharedPreferences(
 				"Login_info", Context.MODE_PRIVATE);
-		
-		if (rerun.contains("first_rerun")){
-			
-		}else{
-			
+
+		if (rerun.contains("first_rerun")) {
+
+		} else {
+
 			SharedPreferences.Editor rerunEditor = getSharedPreferences(
 					"homework_rerun", Context.MODE_PRIVATE).edit();
-			
+
 			rerunEditor.putString("first_rerun", "reran");
-			
+
 			rerunEditor.apply();
-			
+
 			showDatePicker();
-			
+
 		}
-			
 
 		if (sharedprefererence.contains("name")) {
 
 			parse_count();
 
 			new Internet_check_reload().execute();
+			
+			SharedPreferences alarm = getSharedPreferences("alarm_check",
+					Context.MODE_PRIVATE);
+
+			if (alarm.contains("alarm") && alarm.contains("alarm_check")) {
+
+			} else {
+
+				SharedPreferences.Editor alarmEditor = getSharedPreferences(
+						"alarm_check", Context.MODE_PRIVATE).edit();
+
+				alarmEditor.putString("alarm", "ran");
+				
+				alarmEditor.putString("alarm_check", "ran");
+
+				alarmEditor.apply();
+
+				setAlarm();
+
+				setAlarmCustom();
+				
+			}
 
 		} else {
 
@@ -223,24 +243,6 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			counterss = "0";
 
-		}
-		
-		SharedPreferences alarm = getSharedPreferences(
-				"alarm_check", Context.MODE_PRIVATE);
-		
-		if (alarm.contains("alarm")){
-			
-		}else{
-			
-			SharedPreferences.Editor alarmEditor = getSharedPreferences(
-					"alarm_check", Context.MODE_PRIVATE).edit();
-			
-			alarmEditor.putString("alarm", "ran");
-			
-			alarmEditor.apply();
-			
-			setAlarm();
-			
 		}
 
 		Log.d(TAG, "onCreate()");
@@ -296,7 +298,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		}
 
 		doRefresh();
-		
+
 		int countssssss = getUnreadK9Count(this);
 
 		K9count = Integer.toString(countssssss);
@@ -394,15 +396,13 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] { "Homework Due", "Schedule", "Mail", "Resources",
-					"Options", "Logout" };
+			title = new String[] { "Homework Due", "Schedule", "Mail",
+					"Resources", "Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
-					R.drawable.ic_action_email, 
-					R.drawable.ic_action_resources,
-					R.drawable.ic_action_settings,
-					R.drawable.ic_action_logout };
+					R.drawable.ic_action_email, R.drawable.ic_action_resources,
+					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
 
 			if (counterss == null && counterss.isEmpty()) {
 
@@ -426,15 +426,13 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			}
 
-			title = new String[] { "Schedule", "Homework Due", "Mail", "Resources",
-					"Options", "Logout" };
+			title = new String[] { "Schedule", "Homework Due", "Mail",
+					"Resources", "Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_duehomework,
-					R.drawable.ic_action_email, 
-					R.drawable.ic_action_resources,
-					R.drawable.ic_action_settings,
-					R.drawable.ic_action_logout };
+					R.drawable.ic_action_email, R.drawable.ic_action_resources,
+					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
 
 		}
 
@@ -534,7 +532,6 @@ public class MainActivity extends SherlockFragmentActivity {
 		localEditor1.clear();
 
 		localEditor1.commit();
-	
 
 	}
 
@@ -543,68 +540,67 @@ public class MainActivity extends SherlockFragmentActivity {
 		super.onResume();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
+
 		Calendar c = Calendar.getInstance();
-		
+
 		c.add(Calendar.DATE, 1);
-		
+
 		date = sdf.format(c.getTime());
-	
-	InputMethodManager im = (InputMethodManager) this
-			.getApplicationContext().getSystemService(
-					Context.INPUT_METHOD_SERVICE);
-	im.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),
-			InputMethodManager.HIDE_NOT_ALWAYS);
 
-	Bundle extras = getIntent().getExtras();
-	if (extras != null) {
-		counterss = extras.getString("homework_count");
-	}
+		InputMethodManager im = (InputMethodManager) this
+				.getApplicationContext().getSystemService(
+						Context.INPUT_METHOD_SERVICE);
+		im.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),
+				InputMethodManager.HIDE_NOT_ALWAYS);
 
-	SharedPreferences rerun = getSharedPreferences(
-			"homework_rerun", Context.MODE_PRIVATE);
-	
-	SharedPreferences sharedprefer = getSharedPreferences(
-			"first_run_starts", Context.MODE_PRIVATE);
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			counterss = extras.getString("homework_count");
+		}
 
-	SharedPreferences sharedprefererence = getSharedPreferences(
-			"Login_info", Context.MODE_PRIVATE);
-	
-	if (rerun.contains("first_rerun")){
-		
-	}else{
-		
-		SharedPreferences.Editor rerunEditor = getSharedPreferences(
-				"homework_rerun", Context.MODE_PRIVATE).edit();
-		
-		rerunEditor.putString("first_rerun", "reran");
-		
-		rerunEditor.apply();
-		
-		showDatePicker();
-		
-	}
-		
+		SharedPreferences rerun = getSharedPreferences("homework_rerun",
+				Context.MODE_PRIVATE);
 
-	if (sharedprefererence.contains("name")) {
+		SharedPreferences sharedprefer = getSharedPreferences(
+				"first_run_starts", Context.MODE_PRIVATE);
 
-		parse_count();
+		SharedPreferences sharedprefererence = getSharedPreferences(
+				"Login_info", Context.MODE_PRIVATE);
 
-		new Internet_check_reload().execute();
+		if (rerun.contains("first_rerun")) {
 
-	} else {
+		} else {
 
-		Intent intent = new Intent(this, AccountSetupBasics.class);
-		startActivity(intent);
+			SharedPreferences.Editor rerunEditor = getSharedPreferences(
+					"homework_rerun", Context.MODE_PRIVATE).edit();
 
-	}
+			rerunEditor.putString("first_rerun", "reran");
 
-	if (counterss == null) {
+			rerunEditor.apply();
 
-		counterss = "0";
+			showDatePicker();
 
-	}
-	
+		}
+
+		if (sharedprefererence.contains("name")) {
+
+			parse_count();
+
+			new Internet_check_reload().execute();
+
+		} else {
+
+			Intent intent = new Intent(this, AccountSetupBasics.class);
+			startActivity(intent);
+
+		}
+
+		if (counterss == null) {
+
+			counterss = "0";
+
+		}
+
 		SharedPreferences pref = getSharedPreferences("CheckBox",
 				Context.MODE_PRIVATE);
 
@@ -653,8 +649,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] { "Homework Due", "Schedule", "Mail", "Resources",
-					"Options", "Logout" };
+			title = new String[] { "Homework Due", "Schedule", "Mail",
+					"Resources", "Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
@@ -683,8 +679,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			}
 
-			title = new String[] { "Schedule", "Homework Due", "Mail", "Resources",
-					"Options", "Logout" };
+			title = new String[] { "Schedule", "Homework Due", "Mail",
+					"Resources", "Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_duehomework,
@@ -692,8 +688,7 @@ public class MainActivity extends SherlockFragmentActivity {
 					R.drawable.ic_action_logout };
 
 		}
-		
-		
+
 		ActionBar bar = getSupportActionBar();
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
@@ -780,13 +775,13 @@ public class MainActivity extends SherlockFragmentActivity {
 		K9count = Integer.toString(countssssss);
 
 		System.out.println("k9 Unread Count = " + countssssss);
-		
+
 	}
 
 	public void inbox() {
 
 		System.out.println("inbox");
-		
+
 		Intent intent = new Intent(MainActivity.this, Accounts.class);
 
 		startActivity(intent);
@@ -925,6 +920,8 @@ public class MainActivity extends SherlockFragmentActivity {
 					localEditor.putString("download_date", downloaded);
 
 					localEditor.apply();
+					
+					parse_shedule_homework();
 
 					Log.d("receiver", "information given to shared preferences");
 
@@ -940,8 +937,7 @@ public class MainActivity extends SherlockFragmentActivity {
 				} catch (NoSuchElementException e) {
 
 					e.printStackTrace();
-				}
-				catch (RuntimeException e) {
+				} catch (RuntimeException e) {
 					e.printStackTrace();
 				}
 
@@ -962,46 +958,45 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void parse_count() {
 
 		Calendar calendar = Calendar.getInstance();
-	     
+
 		int day = calendar.get(Calendar.DAY_OF_WEEK);
-		
-		if(day == 6){
-		
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-			Calendar c = Calendar.getInstance();
-		
-			c.add(Calendar.DATE, 3);
-		
-			date = sdf.format(c.getTime());  
-			
-			System.out.println("friday");
-		
-		}else if(day == 7){
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			
-			Calendar c = Calendar.getInstance();
-			
-			c.add(Calendar.DATE, 2);
-			
-			date = sdf.format(c.getTime()); 
-			
-			System.out.println("saturday");
-		
-		}else{
+
+		if (day == 6) {
 
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			
+
 			Calendar c = Calendar.getInstance();
-			
+
+			c.add(Calendar.DATE, 3);
+
+			date = sdf.format(c.getTime());
+
+			System.out.println("friday");
+
+		} else if (day == 7) {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Calendar c = Calendar.getInstance();
+
+			c.add(Calendar.DATE, 2);
+
+			date = sdf.format(c.getTime());
+
+			System.out.println("saturday");
+
+		} else {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Calendar c = Calendar.getInstance();
+
 			c.add(Calendar.DATE, 1);
-			
-			date = sdf.format(c.getTime());  	
-			
-			
+
+			date = sdf.format(c.getTime());
+
 		}
-		
+
 		SharedPreferences Tommorow_Homework = getApplicationContext()
 				.getSharedPreferences("homework", Context.MODE_PRIVATE);
 
@@ -1019,7 +1014,6 @@ public class MainActivity extends SherlockFragmentActivity {
 		try {
 
 			int i = 0;
-
 
 			while ((Due_Tommorow = reader.readLine()) != null) {
 				String[] part = Due_Tommorow.split("\",\"", -1);
@@ -1044,9 +1038,7 @@ public class MainActivity extends SherlockFragmentActivity {
 				counter++;
 				Data = counter < noOfItems ? part[counter] : "";
 				counter++;
-				
-				
-				
+
 				if (Type != null && !Type.isEmpty() && Date.equals(date)) {
 
 					++i;
@@ -1325,16 +1317,458 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	}
 
+	public void parse_due_tommorow_string() {
+
+		SharedPreferences Tommorow_Homework = getSharedPreferences(
+				"homework", Context.MODE_PRIVATE);
+
+		String Due_Tommorow = Tommorow_Homework.getString("homework_content",
+				"");
+
+		Due_Tommorow = Due_Tommorow.replaceAll("^\"|\"$", "");
+
+		Due_Tommorow = Due_Tommorow.substring(3);
+
+		Log.d("homework due tommorow", Due_Tommorow);
+
+		InputStream is = new ByteArrayInputStream(Due_Tommorow.getBytes());
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+		try {
+
+			int value = 0;
+			countersss = 0;
+			int state = 0;
+			shared = 0;
+			int shared_add = 0;
+			String str = "";
+			StringBuilder strb = new StringBuilder();
+
+			while ((value = reader.read()) != -1) {
+
+				char c = (char) value;
+
+				if (c == ',') {
+					if (state == 1) {
+						state = 2;
+					} else {
+						state = 0;
+						strb.append(c);
+					}
+				}
+
+				else if (c == '"') {
+					if (state == 2) {
+
+						System.out.println("shared_add= " + shared_add + " "
+								+ strb);
+
+						String strrr = strb.toString()
+								.replaceAll("^\"|\"$", "");
+
+						if (strrr.length() < 3 && isStringNumeric(strrr)) {
+							shared_add = 0;
+							shared++;
+
+							Log.d("restart", "yes");
+
+							due_tommorow_shared = "due_tommorow"
+									+ Integer.toString(shared);
+
+							SharedPreferences Band = 
+									getApplicationContext()
+									.getSharedPreferences("last band tommorow",
+											Context.MODE_PRIVATE);
+
+							String band = Band.getString("last string",
+									"ZZZZZZ");
+
+							SharedPreferences.Editor localEditor = 
+									getSharedPreferences(due_tommorow_shared,
+											Context.MODE_PRIVATE).edit();
+
+							localEditor.putString("due_tommorow0", band);
+
+							localEditor.apply();
+
+							shared_add++;
+						}
+
+						if (shared_add > 8) {
+
+							SharedPreferences Band = 
+									getSharedPreferences("last band tommorow",
+											Context.MODE_PRIVATE);
+
+							SharedPreferences Description = 
+									getSharedPreferences(due_tommorow_shared,
+											Context.MODE_PRIVATE);
+
+							String last = Band.getString("last string",
+									"ZZZZZZ");
+
+							String description = Description.getString(
+									"due_tommorow7", "");
+
+							String fixed = description + last;
+
+							Log.d("fixed", fixed);
+
+							SharedPreferences.Editor localEditor = 
+									getSharedPreferences(due_tommorow_shared,
+											Context.MODE_PRIVATE).edit();
+
+							localEditor.putString("due_tommorow7", fixed);
+
+							localEditor.apply();
+
+						}
+
+						SharedPreferences.Editor localEditors = 
+								getSharedPreferences("last band tommorow",
+										Context.MODE_PRIVATE).edit();
+
+						localEditors.putString("last string", strrr);
+
+						localEditors.apply();
+
+						due_tommorow_shared = "due_tommorow"
+								+ Integer.toString(shared);
+
+						due_tommorow_shared_content = "due_tommorow"
+								+ Integer.toString(shared_add);
+
+						String strr = strb.toString().replaceAll("^\"|\"$", "");
+
+						System.out.println("shared_pref= " + strr);
+
+						SharedPreferences.Editor localEditor = 
+								getSharedPreferences(due_tommorow_shared,
+										Context.MODE_PRIVATE).edit();
+
+						localEditor
+								.putString(due_tommorow_shared_content, strr);
+
+						localEditor.apply();
+
+						System.out.println("shared= " + shared);
+
+						strb.setLength(0);
+						state = 0;
+						countersss++;
+						shared_add++;
+
+					} else {
+						state = 1;
+						strb.append(c);
+					}
+				} else {
+					strb.append(c);
+				}
+
+			}
+
+			String strr = strb.toString().replaceAll("^\"|\"$", "");
+
+			System.out.println("shared_pref_final= " + strr);
+
+			due_tommorow_shared_content = "due_tommorow7";
+
+			SharedPreferences.Editor localEditor = 
+					getSharedPreferences(due_tommorow_shared,
+							Context.MODE_PRIVATE).edit();
+
+			localEditor.putString(due_tommorow_shared_content, strr);
+
+			localEditor.apply();
+
+			SharedPreferences.Editor localEditor1 = 
+					getSharedPreferences("due_tommorow_counter",
+							Context.MODE_PRIVATE).edit();
+
+			localEditor1.putInt("last shared preference", shared);
+
+			localEditor1.apply();
+
+			strb.setLength(0);
+			
+			SharedPreferences.Editor localEditors = 
+					getSharedPreferences("last band tommorow",
+							Context.MODE_PRIVATE).edit();
+
+			localEditors.clear();
+
+			localEditors.apply();
+
+			Calendar calendar = Calendar.getInstance();
+
+			int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+			if (day == 6) {
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+				Calendar c = Calendar.getInstance();
+
+				c.add(Calendar.DATE, 3);
+
+				date = sdf.format(c.getTime());
+
+				System.out.println("friday");
+
+			} else if (day == 7) {
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+				Calendar c = Calendar.getInstance();
+
+				c.add(Calendar.DATE, 2);
+
+				date = sdf.format(c.getTime());
+
+				System.out.println("saturday");
+
+			} else {
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+				Calendar c = Calendar.getInstance();
+
+				c.add(Calendar.DATE, 1);
+
+				date = sdf.format(c.getTime());
+
+			}
+
+			due_tommorow_shared = "due_tommorow" + Integer.toString(shared + 1);
+
+			SharedPreferences.Editor dummy_item = 
+					getSharedPreferences(due_tommorow_shared,
+							Context.MODE_PRIVATE).edit();
+
+			dummy_item.putString("due_tommorow0", "ZZZZZ");
+
+			dummy_item.putString("due_tommorow1", "2");
+
+			dummy_item.putString("due_tommorow2", "Test");
+
+			dummy_item.putString("due_tommorow3", "Teacher");
+
+			dummy_item.putString("due_tommorow4", "Title");
+
+			dummy_item.putString("due_tommorow5", date);
+
+			dummy_item.putString("due_tommorow6", "Type");
+
+			dummy_item.putString("due_tommorow7", "Description");
+
+			dummy_item.apply();
+
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		finally {
+
+		}
+	}
+
+	public void parse_shedule_homework() {
+
+		SharedPreferences schedule_Homework = getSharedPreferences(
+				"homework", Context.MODE_PRIVATE);
+
+		String Due_schedule = schedule_Homework.getString("homework_content", "");
+
+		Due_schedule = Due_schedule.replaceAll("^\"|\"$", "");
+
+		Due_schedule = Due_schedule.substring(7);
+
+		Log.d("homework due schedule", Due_schedule);
+
+		InputStream is = new ByteArrayInputStream(Due_schedule.getBytes());
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+		try {
+
+			int value = 0;
+			countersss = 0;
+			int state = 0;
+			shared = 0;
+			int shared_add = 0;
+			String str = "";
+			StringBuilder strb = new StringBuilder();
+
+			while ((value = reader.read()) != -1) {
+
+				char c = (char) value;
+
+				if (c == ',') {
+					if (state == 1) {
+						state = 2;
+					} else {
+						state = 0;
+						strb.append(c);
+					}
+				}
+
+				else if (c == '"') {
+					if (state == 2) {
+
+						System.out.println("shared_add= " + shared_add + " "
+								+ strb);
+
+						String strrr = strb.toString()
+								.replaceAll("^\"|\"$", "");
+
+						if (strrr.length() < 3 && isStringNumeric(strrr)) {
+							shared_add = 0;
+							shared++;
+
+							Log.d("restart", "yes");
+
+							due_schedule_shared = "due_schedule"
+									+ Integer.toString(shared);
+
+							SharedPreferences Band = 
+									getSharedPreferences("last band schedule",
+											Context.MODE_PRIVATE);
+
+							String band = Band.getString("last string",
+									"ZZZZZZ");
+
+							SharedPreferences.Editor localEditor = 
+									getSharedPreferences(due_schedule_shared,
+											Context.MODE_PRIVATE).edit();
+
+							localEditor.putString("due_schedule0", band);
+
+							localEditor.apply();
+
+							shared_add++;
+						}
+
+						if (shared_add > 8) {
+
+							SharedPreferences Band = 
+									getSharedPreferences("last band schedule",
+											Context.MODE_PRIVATE);
+
+							SharedPreferences Description = 
+									getSharedPreferences(due_schedule_shared,
+											Context.MODE_PRIVATE);
+
+							String last = Band.getString("last string",
+									"ZZZZZZ");
+
+							String description = Description.getString(
+									"due_schedule7", "");
+
+							String fixed = description + last;
+
+							Log.d("fixed", fixed);
+
+							SharedPreferences.Editor localEditor = 
+									getSharedPreferences(due_schedule_shared,
+											Context.MODE_PRIVATE).edit();
+
+							localEditor.putString("due_schedule7", fixed);
+
+							localEditor.apply();
+
+						}
+
+						SharedPreferences.Editor localEditors = 
+								getSharedPreferences("last band schedule",
+										Context.MODE_PRIVATE).edit();
+
+						localEditors.putString("last string", strrr);
+
+						localEditors.apply();
+
+						due_schedule_shared = "due_schedule"
+								+ Integer.toString(shared);
+
+						due_schedule_shared_content = "due_schedule"
+								+ Integer.toString(shared_add);
+
+						String strr = strb.toString().replaceAll("^\"|\"$", "");
+
+						System.out.println("shared_pref= " + strr);
+
+						SharedPreferences.Editor localEditor = 
+								getSharedPreferences(due_schedule_shared,
+										Context.MODE_PRIVATE).edit();
+
+						localEditor.putString(due_schedule_shared_content, strr);
+
+						localEditor.apply();
+
+						System.out.println("shared= " + shared);
+
+						strb.setLength(0);
+						state = 0;
+						countersss++;
+						shared_add++;
+
+					} else {
+						state = 1;
+						strb.append(c);
+					}
+				} else {
+					strb.append(c);
+				}
+
+			}
+
+			String strr = strb.toString().replaceAll("^\"|\"$", "");
+
+			System.out.println("shared_pref_final= " + strr);
+
+			due_schedule_shared_content = "due_schedule7";
+
+			SharedPreferences.Editor localEditor = 
+					getSharedPreferences(due_schedule_shared,
+							Context.MODE_PRIVATE).edit();
+
+			localEditor.putString(due_schedule_shared_content, strr);
+
+			localEditor.apply();
+
+			SharedPreferences.Editor localEditor1 = 
+					getSharedPreferences("due_schedule_counter",
+							Context.MODE_PRIVATE).edit();
+
+			localEditor1.putInt("last shared preference", shared);
+
+			localEditor1.apply();
+
+			strb.setLength(0);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		finally {
+
+		}
+	}
+	
 	public void parse_due_today_string() {
 
-		SharedPreferences Today_Homework = getApplicationContext()
-				.getSharedPreferences("due_today", Context.MODE_PRIVATE);
+		SharedPreferences Today_Homework = getSharedPreferences(
+				"homework", Context.MODE_PRIVATE);
 
-		String Due_Today = Today_Homework.getString("homework", "");
+		String Due_Today = Today_Homework.getString("homework_content", "");
 
 		Due_Today = Due_Today.replaceAll("^\"|\"$", "");
 
-		Due_Today = Due_Today.substring(3);
+		Due_Today = Due_Today.substring(7);
 
 		Log.d("homework due today", Due_Today);
 
@@ -1368,13 +1802,76 @@ public class MainActivity extends SherlockFragmentActivity {
 				else if (c == '"') {
 					if (state == 2) {
 
-						System.out.println("shared_add= " + shared_add);
+						System.out.println("shared_add= " + shared_add + " "
+								+ strb);
 
-						if (shared_add == 8) {
+						String strrr = strb.toString()
+								.replaceAll("^\"|\"$", "");
+
+						if (strrr.length() < 3 && isStringNumeric(strrr)) {
 							shared_add = 0;
 							shared++;
 
+							Log.d("restart", "yes");
+
+							due_today_shared = "due_today"
+									+ Integer.toString(shared);
+
+							SharedPreferences Band = 
+									getSharedPreferences("last band today",
+											Context.MODE_PRIVATE);
+
+							String band = Band.getString("last string",
+									"ZZZZZZ");
+
+							SharedPreferences.Editor localEditor = 
+									getSharedPreferences(due_today_shared,
+											Context.MODE_PRIVATE).edit();
+
+							localEditor.putString("due_today0", band);
+
+							localEditor.apply();
+
+							shared_add++;
 						}
+
+						if (shared_add > 8) {
+
+							SharedPreferences Band = 
+									getSharedPreferences("last band today",
+											Context.MODE_PRIVATE);
+
+							SharedPreferences Description = 
+									getSharedPreferences(due_today_shared,
+											Context.MODE_PRIVATE);
+
+							String last = Band.getString("last string",
+									"ZZZZZZ");
+
+							String description = Description.getString(
+									"due_today7", "");
+
+							String fixed = description + last;
+
+							Log.d("fixed", fixed);
+
+							SharedPreferences.Editor localEditor = 
+									getSharedPreferences(due_today_shared,
+											Context.MODE_PRIVATE).edit();
+
+							localEditor.putString("due_today7", fixed);
+
+							localEditor.apply();
+
+						}
+
+						SharedPreferences.Editor localEditors = 
+								getSharedPreferences("last band today",
+										Context.MODE_PRIVATE).edit();
+
+						localEditors.putString("last string", strrr);
+
+						localEditors.apply();
 
 						due_today_shared = "due_today"
 								+ Integer.toString(shared);
@@ -1386,8 +1883,9 @@ public class MainActivity extends SherlockFragmentActivity {
 
 						System.out.println("shared_pref= " + strr);
 
-						SharedPreferences.Editor localEditor = getSharedPreferences(
-								due_today_shared, Context.MODE_PRIVATE).edit();
+						SharedPreferences.Editor localEditor = 
+								getSharedPreferences(due_today_shared,
+										Context.MODE_PRIVATE).edit();
 
 						localEditor.putString(due_today_shared_content, strr);
 
@@ -1416,24 +1914,56 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			due_today_shared_content = "due_today7";
 
-			SharedPreferences.Editor localEditor = getSharedPreferences(
-					due_today_shared, Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor = 
+					getSharedPreferences(due_today_shared,
+							Context.MODE_PRIVATE).edit();
 
 			localEditor.putString(due_today_shared_content, strr);
 
 			localEditor.apply();
 
-			SharedPreferences.Editor localEditor1 = getSharedPreferences(
-					"due_today_counter", Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor1 = 
+					getSharedPreferences("due_today_counter",
+							Context.MODE_PRIVATE).edit();
 
 			localEditor1.putInt("last shared preference", shared);
 
 			localEditor1.apply();
 
 			strb.setLength(0);
+			
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+				Calendar c = Calendar.getInstance();
+
+				date = sdf.format(c.getTime());
+
+			due_today_shared = "due_tommorow" + Integer.toString(shared + 1);
+
+			SharedPreferences.Editor dummy_item =
+					getSharedPreferences(due_today_shared,
+							Context.MODE_PRIVATE).edit();
+
+			dummy_item.putString("due_today0", "ZZZZZ");
+
+			dummy_item.putString("due_today1", "2");
+
+			dummy_item.putString("due_today2", "Test");
+
+			dummy_item.putString("due_today3", "Teacher");
+
+			dummy_item.putString("due_today4", "Title");
+
+			dummy_item.putString("due_today5", date);
+
+			dummy_item.putString("due_today6", "Type");
+
+			dummy_item.putString("due_today7", "Description");
+
+			dummy_item.apply();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -1442,125 +1972,29 @@ public class MainActivity extends SherlockFragmentActivity {
 		}
 	}
 
-	public void parse_due_tommorow_string() {
+	public static boolean isStringNumeric(String str) {
+		DecimalFormatSymbols currentLocaleSymbols = DecimalFormatSymbols
+				.getInstance();
+		char localeMinusSign = currentLocaleSymbols.getMinusSign();
 
-		SharedPreferences Today_Homework = getApplicationContext()
-				.getSharedPreferences("homework", Context.MODE_PRIVATE);
+		if (!Character.isDigit(str.charAt(0))
+				&& str.charAt(0) != localeMinusSign)
+			return false;
 
-		String due_tommorow = Today_Homework.getString("homework_content", "");
+		boolean isDecimalSeparatorFound = false;
+		char localeDecimalSeparator = currentLocaleSymbols
+				.getDecimalSeparator();
 
-		due_tommorow = due_tommorow.replaceAll("^\"|\"$", "");
-
-		due_tommorow = due_tommorow.substring(3);
-
-		Log.d("homework due today", due_tommorow);
-
-		StringBuilder DescriptionAll = new StringBuilder();
-
-		InputStream is = new ByteArrayInputStream(due_tommorow.getBytes());
-
-		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-
-		try {
-
-			int value = 0;
-			countersss1 = 0;
-			int state = 0;
-			shared1 = 0;
-			int shared_add1 = 0;
-			String str = "";
-			StringBuilder strb = new StringBuilder();
-
-			while ((value = reader.read()) != -1) {
-
-				char c = (char) value;
-
-				if (c == ',') {
-					if (state == 1) {
-						state = 2;
-					} else {
-						state = 0;
-						strb.append(c);
-					}
+		for (char c : str.substring(1).toCharArray()) {
+			if (!Character.isDigit(c)) {
+				if (c == localeDecimalSeparator && !isDecimalSeparatorFound) {
+					isDecimalSeparatorFound = true;
+					continue;
 				}
-
-				else if (c == '"') {
-					if (state == 2) {
-
-						System.out.println("shared_add= " + shared_add1);
-
-						if (shared_add1 == 8) {
-							shared_add1 = 0;
-							shared1++;
-
-						}
-
-						due_tommorow_shared = "due_tommorow"
-								+ Integer.toString(shared1);
-
-						due_tommorow_shared_content = "due_tommorow"
-								+ Integer.toString(shared_add1);
-
-						String strr = strb.toString().replaceAll("^\"|\"$", "");
-
-						System.out.println("shared_pref= " + strr);
-
-						SharedPreferences.Editor localEditor = getSharedPreferences(
-								due_tommorow_shared, Context.MODE_PRIVATE)
-								.edit();
-
-						localEditor
-								.putString(due_tommorow_shared_content, strr);
-
-						localEditor.apply();
-
-						System.out.println("shared= " + shared1);
-
-						strb.setLength(0);
-						state = 0;
-						countersss1++;
-						shared_add1++;
-
-					} else {
-						state = 1;
-						strb.append(c);
-					}
-				} else {
-					strb.append(c);
-				}
-
+				return false;
 			}
-
-			String strr = strb.toString().replaceAll("^\"|\"$", "");
-
-			System.out.println("shared_pref_final= " + strr);
-
-			due_tommorow_shared_content = "due_tommorow7";
-
-			SharedPreferences.Editor localEditor = getSharedPreferences(
-					due_tommorow_shared, Context.MODE_PRIVATE).edit();
-
-			localEditor.putString(due_tommorow_shared_content, strr);
-
-			localEditor.apply();
-
-			SharedPreferences.Editor localEditor1 = getSharedPreferences(
-					"due_tommorow_counter", Context.MODE_PRIVATE).edit();
-
-			localEditor1.putInt("last shared preference", shared1);
-
-			localEditor1.apply();
-
-			strb.setLength(0);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-
-		finally {
-
-		}
+		return true;
 	}
 
 	protected void onUpdateData(int reason) {
@@ -1580,8 +2014,7 @@ public class MainActivity extends SherlockFragmentActivity {
 			unregisterReceiver(receiver);
 			receiver = null;
 		}
-	
-	
+
 	}
 
 	protected void doRefresh() {
@@ -1725,7 +2158,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	public void showDatePicker() {
 		// Initializiation
-		LayoutInflater inflater = (LayoutInflater) getLayoutInflater();
+		LayoutInflater inflater = getLayoutInflater();
 		final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 		View customView = inflater.inflate(R.layout.bdaypicker, null);
 		dialogBuilder.setView(customView);
@@ -1767,14 +2200,14 @@ public class MainActivity extends SherlockFragmentActivity {
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-					
+
 						int year = datePicker.getYear();
 						int month = datePicker.getMonth();
 						int day = datePicker.getDayOfMonth();
 
 						SharedPreferences.Editor localEditor = getSharedPreferences(
 								"Login_Info", Context.MODE_PRIVATE).edit();
-						
+
 						localEditor.putInt("Day", day);
 
 						localEditor.putInt("Year", year);
@@ -1784,7 +2217,7 @@ public class MainActivity extends SherlockFragmentActivity {
 						localEditor.apply();
 
 						dialog.dismiss();
-						
+
 						bday_check_dialog();
 					}
 				});
@@ -1792,6 +2225,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		// Initialize datepicker in dialog atepicker
 		datePicker.init(year, month, day,
 				new DatePicker.OnDateChangedListener() {
+					@Override
 					public void onDateChanged(DatePicker view, int year,
 							int monthOfYear, int dayOfMonth) {
 						Calendar choosenDate = Calendar.getInstance();
@@ -1800,7 +2234,7 @@ public class MainActivity extends SherlockFragmentActivity {
 								.format(choosenDate.getTime()));
 
 						dateTextView.setTextColor(Color.parseColor("#58585b"));
-						((Button) dialog.getButton(AlertDialog.BUTTON_POSITIVE))
+						dialog.getButton(DialogInterface.BUTTON_POSITIVE)
 								.setEnabled(true);
 					}
 
@@ -1832,25 +2266,29 @@ public class MainActivity extends SherlockFragmentActivity {
 			String year = year1.replaceFirst("^0+(?!$)", "");
 
 			String birthday = month + "/" + day + "/" + year;
-			
-			builder.setTitle("Are You Sure " + birthday + " Is Your Actual Birthday?");
-			
-			builder.setMessage("If this isn't your real birthday, you won't be able to receive homework through the app. We need your birthday so we can tell if you are really you. So are you sure " + birthday + " is your actual birthday?");
-			
-			builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-		              
-		        	   showDatePicker();
-		        	   
-		           }
-		       });
-		builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-		             
 
-		        	   
-		           }
-		       });
+			builder.setTitle("Are You Sure " + birthday
+					+ " Is Your Actual Birthday?");
+
+			builder.setMessage("If this isn't your real birthday, you won't be able to receive homework through the app. We need your birthday so we can tell if you are really you. So are you sure "
+					+ birthday + " is your actual birthday?");
+
+			builder.setPositiveButton("No",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int id) {
+
+							showDatePicker();
+
+						}
+					});
+			builder.setNegativeButton("Yes",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int id) {
+
+						}
+					});
 
 			AlertDialog alertDialog = builder.create();
 
@@ -1858,33 +2296,61 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		}
 	}
-	
-private void setAlarm(){
-		
-		Intent intent = new Intent(getBaseContext(), MidnightHomeworkDownload.class);
-		  
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(), RQS_1, intent, 0);
-		
+
+	private void setAlarm() {
+
+		Intent intent = new Intent(getBaseContext(),
+				MidnightHomeworkDownload.class);
+
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(
+				getBaseContext(), RQS_1, intent, 0);
+
 		Calendar calNow = Calendar.getInstance();
-	    Calendar targetCal = (Calendar) calNow.clone();
+		Calendar targetCal = (Calendar) calNow.clone();
 
-	    targetCal.set(Calendar.HOUR_OF_DAY, 0);
-	    targetCal.set(Calendar.MINUTE, 0);
-	    targetCal.set(Calendar.SECOND, 0);
-	    targetCal.set(Calendar.MILLISECOND, 0);
+		targetCal.set(Calendar.HOUR_OF_DAY, 0);
+		targetCal.set(Calendar.MINUTE, 0);
+		targetCal.set(Calendar.SECOND, 0);
+		targetCal.set(Calendar.MILLISECOND, 0);
 
-		
-		AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-			alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis(), pendingIntent);
+		AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis(),
+				pendingIntent);
 
-		  
-		   alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, 
-		     targetCal.getTimeInMillis(), 
-		     TimeUnit.HOURS.toMillis(24),
-		     pendingIntent);
-		   
-		   System.out.println("midnight");
-		
+		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+				targetCal.getTimeInMillis(), TimeUnit.HOURS.toMillis(24),
+				pendingIntent);
+
+		System.out.println("midnight");
+
 	}
 	
+	private void setAlarmCustom() {
+
+		Intent intent = new Intent(getBaseContext(),
+				MidnightHomeworkDownload.class);
+
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(
+				getBaseContext(), RQS_1, intent, 0);
+
+		Calendar calNow = Calendar.getInstance();
+		Calendar targetCal = (Calendar) calNow.clone();
+
+		targetCal.set(Calendar.HOUR_OF_DAY, 15);
+		targetCal.set(Calendar.MINUTE, 0);
+		targetCal.set(Calendar.SECOND, 0);
+		targetCal.set(Calendar.MILLISECOND, 0);
+
+		AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis(),
+				pendingIntent);
+
+		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+				targetCal.getTimeInMillis(), TimeUnit.HOURS.toMillis(24),
+				pendingIntent);
+
+		System.out.println("three");
+
+	}
+
 }

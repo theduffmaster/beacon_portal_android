@@ -73,7 +73,6 @@ import com.bernard.beaconportal.activities.activity.misc.ExtendedAsyncTask;
 import com.bernard.beaconportal.activities.activity.misc.NonConfigurationInstance;
 import com.bernard.beaconportal.activities.activity.setup.AccountSettings;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupBasics;
-import com.bernard.beaconportal.activities.activity.setup.AccountSetupNames;
 import com.bernard.beaconportal.activities.activity.setup.Prefs;
 import com.bernard.beaconportal.activities.activity.setup.WelcomeMessage;
 import com.bernard.beaconportal.activities.controller.MessagingController;

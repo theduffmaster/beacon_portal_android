@@ -1042,8 +1042,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] { "Homework Due", "Schedule", "Resources", "Options",
-					"Logout" };
+			title = new String[] { "Homework Due", "Schedule", "Resources",
+					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
@@ -1072,8 +1072,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			}
 
-			title = new String[] { "Schedule", "Homework Due", "Resources", "Options",
-					"Logout" };
+			title = new String[] { "Schedule", "Homework Due", "Resources",
+					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_duehomework,
@@ -1341,8 +1341,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		if (Show_View.equals("Homework Due")) {
 
-			title = new String[] { "Homework Due", "Schedule", "Resources", "Options",
-					"Logout" };
+			title = new String[] { "Homework Due", "Schedule", "Resources",
+					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_duehomework,
 					R.drawable.ic_action_go_to_today,
@@ -1371,8 +1371,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			}
 
-			title = new String[] { "Schedule", "Homework Due", "Resources", "Options",
-					"Logout" };
+			title = new String[] { "Schedule", "Homework Due", "Resources",
+					"Options", "Logout" };
 
 			icon = new int[] { R.drawable.ic_action_go_to_today,
 					R.drawable.ic_action_duehomework,
@@ -4187,7 +4187,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				to_main();
 
 			}
-			
+
 			if (clicked.contains("Options")) {
 
 				SharedPreferences.Editor localEditor2 = getSharedPreferences(
@@ -4290,7 +4290,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				to_main();
 
 			}
-			
+
 			if (clicked.contains("Options")) {
 
 				SharedPreferences.Editor localEditor2 = getSharedPreferences(
