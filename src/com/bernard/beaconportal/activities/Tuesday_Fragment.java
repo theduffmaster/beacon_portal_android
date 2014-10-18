@@ -47,6 +47,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +55,6 @@ import com.bernard.beaconportal.activities.R;
 
 public class Tuesday_Fragment extends Fragment {
 	private List<Due_Today_List> due_schedule_list;
-
 	private View swipe;
 
 	private int count;
@@ -63,13 +63,15 @@ public class Tuesday_Fragment extends Fragment {
 
 	private int shared;
 	
-	private java.util.Date dt1;
-	
 	private String finalDay;
 
 	private int countersss;
+	
+	private java.util.Date dt1;
 
 	public static ListView lView;
+	
+	private ProgressBar progress;
 
 	private ArrayAdapter<Due_Today_List> adapter;
 
@@ -102,8 +104,10 @@ public class Tuesday_Fragment extends Fragment {
 		swipe = inflater.inflate(R.layout.day_homework_fragment, container, false);
 
 		lView = (ListView) swipe.findViewById(R.id.listView1);
+		
+		progress = (ProgressBar) swipe.findViewById(R.id.progress);
 
-		lView.setEmptyView(swipe.findViewById(R.id.scrollView1));
+		lView.setVisibility(View.GONE);
 
 		return swipe;
 
@@ -121,6 +125,10 @@ public class Tuesday_Fragment extends Fragment {
 		populateListView();
 
 		registerClickCallback();
+		
+		progress.setVisibility(View.GONE);
+		
+		lView.setVisibility(View.VISIBLE);
 
 	}
 
