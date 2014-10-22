@@ -8,10 +8,8 @@
     >
 
     <fragment
-        android:layout_toRightOf="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/email"
         class="com.bernard.beaconportal.activities.Monday_Fragment"
         android:layout_centerHorizontal="true"/>
 
