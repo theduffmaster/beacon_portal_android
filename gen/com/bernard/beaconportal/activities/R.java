@@ -1256,17 +1256,17 @@ containing a value of this type.
         public static final int abs__primary_text_disable_only_holo_light=0x7f06001e;
         public static final int abs__primary_text_holo_dark=0x7f06001f;
         public static final int abs__primary_text_holo_light=0x7f060020;
-        public static final int background_tab_pressed=0x7f060006;
+        public static final int background_tab_pressed=0x7f060000;
         public static final int black_text=0x7f060015;
         public static final int black_text_secondairy=0x7f060016;
         public static final int counter_text_bg=0x7f060011;
         public static final int counter_text_color=0x7f060012;
-        public static final int elv_btn_focused=0x7f060001;
-        public static final int elv_btn_normal=0x7f060002;
-        public static final int elv_btn_pressed=0x7f060000;
-        public static final int elv_popup_bg_color=0x7f060003;
-        public static final int elv_popup_text_color=0x7f060005;
-        public static final int elv_separator_color=0x7f060004;
+        public static final int elv_btn_focused=0x7f060002;
+        public static final int elv_btn_normal=0x7f060003;
+        public static final int elv_btn_pressed=0x7f060001;
+        public static final int elv_popup_bg_color=0x7f060004;
+        public static final int elv_popup_text_color=0x7f060006;
+        public static final int elv_separator_color=0x7f060005;
         public static final int grey_text=0x7f060017;
         public static final int list_background=0x7f06000e;
         public static final int list_background_pressed=0x7f06000f;
@@ -1770,8 +1770,8 @@ containing a value of this type.
         public static final int abs__action_bar_subtitle=0x7f0a0021;
         public static final int abs__action_bar_title=0x7f0a0020;
         public static final int abs__action_context_bar=0x7f0a0031;
-        public static final int abs__action_menu_divider=0x7f0a0018;
-        public static final int abs__action_menu_presenter=0x7f0a0019;
+        public static final int abs__action_menu_divider=0x7f0a0005;
+        public static final int abs__action_menu_presenter=0x7f0a0006;
         public static final int abs__action_mode_bar=0x7f0a0035;
         public static final int abs__action_mode_bar_stub=0x7f0a0034;
         public static final int abs__action_mode_close_button=0x7f0a0024;
@@ -1780,13 +1780,13 @@ containing a value of this type.
         public static final int abs__content=0x7f0a0032;
         public static final int abs__default_activity_button=0x7f0a0028;
         public static final int abs__expand_activities_button=0x7f0a0026;
-        public static final int abs__home=0x7f0a0016;
+        public static final int abs__home=0x7f0a0003;
         public static final int abs__icon=0x7f0a002a;
         public static final int abs__image=0x7f0a0027;
         public static final int abs__imageButton=0x7f0a0022;
         public static final int abs__list_item=0x7f0a0029;
-        public static final int abs__progress_circular=0x7f0a001a;
-        public static final int abs__progress_horizontal=0x7f0a001b;
+        public static final int abs__progress_circular=0x7f0a0007;
+        public static final int abs__progress_horizontal=0x7f0a0008;
         public static final int abs__radio=0x7f0a002d;
         public static final int abs__search_badge=0x7f0a0038;
         public static final int abs__search_bar=0x7f0a0037;
@@ -1803,7 +1803,7 @@ containing a value of this type.
         public static final int abs__submit_area=0x7f0a003f;
         public static final int abs__textButton=0x7f0a0023;
         public static final int abs__title=0x7f0a002b;
-        public static final int abs__up=0x7f0a0017;
+        public static final int abs__up=0x7f0a0004;
         public static final int accessible_message_content=0x7f0a00ec;
         public static final int account_always_bcc=0x7f0a004c;
         public static final int account_auth_type=0x7f0a0058;
@@ -1906,7 +1906,7 @@ containing a value of this type.
         public static final int bcc=0x7f0a00fa;
         public static final int bcc_wrapper=0x7f0a00f9;
         public static final int black_panel=0x7f0a00a5;
-        public static final int both=0x7f0a0003;
+        public static final int both=0x7f0a000d;
         public static final int btn_decrypt=0x7f0a0123;
         public static final int cancel=0x7f0a01ae;
         public static final int cb_crypto_signature=0x7f0a00fd;
@@ -1946,14 +1946,14 @@ containing a value of this type.
         public static final int delete_account=0x7f0a01b7;
         public static final int description=0x7f0a007c;
         public static final int deselect=0x7f0a01ee;
-        public static final int dialog_attachment_progress=0x7f0a001f;
-        public static final int dialog_confirm_delete=0x7f0a001d;
-        public static final int dialog_confirm_spam=0x7f0a001e;
+        public static final int dialog_attachment_progress=0x7f0a000c;
+        public static final int dialog_confirm_delete=0x7f0a000a;
+        public static final int dialog_confirm_spam=0x7f0a000b;
         public static final int dialog_datepicker=0x7f0a009b;
         public static final int dialog_dateview=0x7f0a009a;
         public static final int dialog_info=0x7f0a009c;
-        public static final int disableHome=0x7f0a0015;
-        public static final int disabled=0x7f0a0000;
+        public static final int disableHome=0x7f0a001a;
+        public static final int disabled=0x7f0a000e;
         public static final int discard=0x7f0a01df;
         public static final int display_1st_and_2nd_class=0x7f0a01cf;
         public static final int display_1st_class=0x7f0a01ce;
@@ -2030,7 +2030,7 @@ containing a value of this type.
         public static final int flagged_message_count=0x7f0a0076;
         public static final int flagged_message_count_icon=0x7f0a0075;
         public static final int flagged_message_count_wrapper=0x7f0a0074;
-        public static final int flip=0x7f0a0008;
+        public static final int flip=0x7f0a0014;
         public static final int folder_button_wrapper=0x7f0a007e;
         public static final int folder_list_item_layout=0x7f0a00bf;
         public static final int folder_name=0x7f0a00c0;
@@ -2041,13 +2041,13 @@ containing a value of this type.
         public static final int forwarded=0x7f0a0127;
         public static final int from=0x7f0a0128;
         public static final int green_panel=0x7f0a00a8;
-        public static final int gridview=0x7f0a0009;
+        public static final int gridview=0x7f0a0000;
         public static final int header_container=0x7f0a0124;
         public static final int help=0x7f0a01c6;
         public static final int hex=0x7f0a00a1;
         public static final int hidden_attachments=0x7f0a00f0;
         public static final int hide_headers=0x7f0a0200;
-        public static final int homeAsUp=0x7f0a0012;
+        public static final int homeAsUp=0x7f0a001b;
         public static final int homeworkdue_container=0x7f0a0195;
         public static final int ic_crypto_signature=0x7f0a0121;
         public static final int ic_crypto_signature_status=0x7f0a0122;
@@ -2078,7 +2078,7 @@ containing a value of this type.
         public static final int left_drawer=0x7f0a00b3;
         public static final int left_drawer_scrollview=0x7f0a0174;
         public static final int linked_container=0x7f0a019b;
-        public static final int listMode=0x7f0a000e;
+        public static final int listMode=0x7f0a0017;
         public static final int listView1=0x7f0a0096;
         public static final int listView2=0x7f0a015a;
         public static final int listViewNotes=0x7f0a0150;
@@ -2089,7 +2089,7 @@ containing a value of this type.
         public static final int listview_inbox=0x7f0a0080;
         public static final int lower_signature=0x7f0a010a;
         public static final int main_text=0x7f0a011a;
-        public static final int manualOnly=0x7f0a0004;
+        public static final int manualOnly=0x7f0a000f;
         public static final int manual_setup=0x7f0a01b1;
         public static final int mark_all_as_read=0x7f0a0209;
         public static final int mark_as_read=0x7f0a01e4;
@@ -2114,7 +2114,7 @@ containing a value of this type.
         public static final int new_message_count_wrapper=0x7f0a0077;
         public static final int next=0x7f0a0048;
         public static final int next_message=0x7f0a01f5;
-        public static final int normal=0x7f0a000d;
+        public static final int normal=0x7f0a0018;
         public static final int note_background=0x7f0a0158;
         public static final int note_count=0x7f0a0159;
         public static final int notesAdd=0x7f0a014b;
@@ -2140,10 +2140,10 @@ containing a value of this type.
         public static final int progress=0x7f0a004a;
         public static final int progressBar=0x7f0a010d;
         public static final int progressBar1=0x7f0a00e9;
-        public static final int pullDownFromTop=0x7f0a0005;
-        public static final int pullFromEnd=0x7f0a0002;
-        public static final int pullFromStart=0x7f0a0001;
-        public static final int pullUpFromBottom=0x7f0a0006;
+        public static final int pullDownFromTop=0x7f0a0010;
+        public static final int pullFromEnd=0x7f0a0011;
+        public static final int pullFromStart=0x7f0a0012;
+        public static final int pullUpFromBottom=0x7f0a0013;
         public static final int pull_to_refresh_image=0x7f0a0152;
         public static final int pull_to_refresh_progress=0x7f0a0153;
         public static final int pull_to_refresh_sub_text=0x7f0a0155;
@@ -2169,11 +2169,11 @@ containing a value of this type.
         public static final int reply=0x7f0a01f0;
         public static final int reply_all=0x7f0a01ef;
         public static final int reply_to=0x7f0a00b9;
-        public static final int rotate=0x7f0a0007;
+        public static final int rotate=0x7f0a0015;
         public static final int same_sender=0x7f0a01f3;
         public static final int save=0x7f0a01de;
         public static final int scrollView1=0x7f0a0097;
-        public static final int scrollview=0x7f0a000b;
+        public static final int scrollview=0x7f0a0002;
         public static final int scrollview1=0x7f0a00d5;
         public static final int search=0x7f0a01bc;
         public static final int search_remote=0x7f0a01f6;
@@ -2196,9 +2196,9 @@ containing a value of this type.
         public static final int set_sort_unread=0x7f0a0207;
         public static final int settings=0x7f0a01d4;
         public static final int share=0x7f0a01f8;
-        public static final int showCustom=0x7f0a0014;
-        public static final int showHome=0x7f0a0011;
-        public static final int showTitle=0x7f0a0013;
+        public static final int showCustom=0x7f0a001c;
+        public static final int showHome=0x7f0a001d;
+        public static final int showTitle=0x7f0a001e;
         public static final int show_attachments=0x7f0a012e;
         public static final int show_folder_list=0x7f0a020d;
         public static final int show_headers=0x7f0a01ff;
@@ -2216,7 +2216,7 @@ containing a value of this type.
         public static final int subject_wrapper=0x7f0a0115;
         public static final int subscribed_folders_only=0x7f0a005e;
         public static final int swipe=0x7f0a0095;
-        public static final int tabMode=0x7f0a000f;
+        public static final int tabMode=0x7f0a0019;
         public static final int text=0x7f0a00bd;
         public static final int text1=0x7f0a0156;
         public static final int text2=0x7f0a0157;
@@ -2251,7 +2251,7 @@ containing a value of this type.
         public static final int unread_widget_layout=0x7f0a0191;
         public static final int up=0x7f0a01d6;
         public static final int upper_signature=0x7f0a0102;
-        public static final int useLogo=0x7f0a0010;
+        public static final int useLogo=0x7f0a001f;
         public static final int use_incoming_server_password=0x7f0a0087;
         public static final int userId=0x7f0a00fe;
         public static final int userIdRest=0x7f0a00ff;
@@ -2262,7 +2262,7 @@ containing a value of this type.
         public static final int view5=0x7f0a0168;
         public static final int viewColor=0x7f0a015d;
         public static final int viewPager=0x7f0a0197;
-        public static final int viewPager1=0x7f0a001c;
+        public static final int viewPager1=0x7f0a0009;
         public static final int viewPager2=0x7f0a019c;
         public static final int view_container=0x7f0a0198;
         public static final int viewbottom=0x7f0a015e;
@@ -2277,10 +2277,10 @@ containing a value of this type.
         public static final int webdav_mailbox_path=0x7f0a0061;
         public static final int webdav_owa_path_section=0x7f0a0062;
         public static final int webdav_path_prefix=0x7f0a0063;
-        public static final int webview=0x7f0a000a;
+        public static final int webview=0x7f0a0001;
         public static final int welcome_message=0x7f0a01ad;
         public static final int white_panel=0x7f0a00a4;
-        public static final int wrap_content=0x7f0a000c;
+        public static final int wrap_content=0x7f0a0016;
         public static final int yellow_panel=0x7f0a00a9;
     }
     public static final class integer {
@@ -2886,11 +2886,6 @@ Used in the about dialog
 === General strings ==================================================================
 === General strings ==================================================================
 === General strings ==================================================================
-=== General strings ==================================================================
-=== App Store-specific strings =======================================================
-=== General strings ==================================================================
-=== General strings ==================================================================
-=== General strings ==================================================================
 === App Store-specific strings =======================================================
 === General strings ==================================================================
 === General strings ==================================================================
@@ -2902,6 +2897,11 @@ Used in the about dialog
 === General strings ==================================================================
 === General strings ==================================================================
 === General strings ==================================================================
+=== General strings ==================================================================
+=== General strings ==================================================================
+=== General strings ==================================================================
+=== General strings ==================================================================
+=== App Store-specific strings =======================================================
 === General strings ==================================================================
 === General strings ==================================================================
 === General strings ==================================================================

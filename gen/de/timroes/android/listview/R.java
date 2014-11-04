@@ -12,12 +12,12 @@ public final class R {
 		public static final int elv_popup_show = 0x7f040001;
 	}
 	public static final class color {
-		public static final int elv_btn_focused = 0x7f060001;
-		public static final int elv_btn_normal = 0x7f060002;
-		public static final int elv_btn_pressed = 0x7f060000;
-		public static final int elv_popup_bg_color = 0x7f060003;
-		public static final int elv_popup_text_color = 0x7f060005;
-		public static final int elv_separator_color = 0x7f060004;
+		public static final int elv_btn_focused = 0x7f060002;
+		public static final int elv_btn_normal = 0x7f060003;
+		public static final int elv_btn_pressed = 0x7f060001;
+		public static final int elv_popup_bg_color = 0x7f060004;
+		public static final int elv_popup_text_color = 0x7f060006;
+		public static final int elv_separator_color = 0x7f060005;
 	}
 	public static final class dimen {
 		public static final int elv_touch_slop = 0x7f070001;
