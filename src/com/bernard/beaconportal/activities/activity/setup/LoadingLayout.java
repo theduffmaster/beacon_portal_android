@@ -30,6 +30,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -84,7 +86,7 @@ public class LoadingLayout extends Activity {
 	ListView mDrawerList;
 	ActionBarDrawerToggle mDrawerToggle;
 	private MenuListAdapter mMenuAdapter;
-	String actionbar_colors, background_colorsString;
+	String actionbar_colors, actionbar_colorsString;
 	private String Show_View;
 	String[] title;
 	String[] count;
@@ -148,6 +150,9 @@ public class LoadingLayout extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loading_layout);
 
+		getActionBar().setBackgroundDrawable(
+				new ColorDrawable(Color.parseColor("#1976D2")));
+		
 		new Update().execute();
 
 	}

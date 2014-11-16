@@ -111,11 +111,11 @@ public class ColorPickerDialogTabs extends Dialog implements
 		mColorPicker.setColor(color, true);
 
 		setColorAndClickAction(mWhite, 0xffffffff);
-		setColorAndClickAction(mBlack, 0xfff39c12);
-		setColorAndClickAction(mCyan, 0xff3498db);
-		setColorAndClickAction(mRed, 0xffe74c3c);
-		setColorAndClickAction(mGreen, 0xff2ecc71);
-		setColorAndClickAction(mYellow, 0xfff1c40f);
+		setColorAndClickAction(mBlack, 0xff1976D2);
+		setColorAndClickAction(mCyan, 0xff00BCD4);
+		setColorAndClickAction(mRed, 0xffF44336);
+		setColorAndClickAction(mGreen, 0xff009688);
+		setColorAndClickAction(mYellow, 0xffFFEB3B);
 
 		SharedPreferences sharedpref = getContext().getSharedPreferences(
 				"background_color", Context.MODE_PRIVATE);

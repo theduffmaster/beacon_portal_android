@@ -3,8 +3,8 @@
     
 
 	package="com.bernard.beaconportal.activities"
-    android:versionCode="33"
-    android:versionName="1.2"
+    android:versionCode="39"
+    android:versionName="1.4"
     >
 	
 	<uses-permission android:name="android.permission.BLUETOOTH" />
@@ -60,7 +60,7 @@
     
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="21" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -82,7 +82,6 @@
             android:configChanges="orientation"
             >
       
-            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
  
@@ -111,8 +110,8 @@
         
         <activity  
          android:name=".homeworkdueDetailsActivity"
-         android:theme="@style/CustomActionBarTheme"
          android:parentActivityName="com.bernard.beaconportal.activities.MainActivity"
+        android:theme="@style/CustomActionBarTheme"
         >
          
         
@@ -175,7 +174,7 @@
         <activity
             android:name=".activity.setup.LoadingLayout"
             android:label="Preparing For First Run"
-            
+            android:theme="@style/FirstActionBarTheme"
             >
         </activity>
         <activity

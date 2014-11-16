@@ -8,8 +8,6 @@
     android:background="#ffffff"
      >
 
-
-    
     <TextView
         android:id="@+id/textdate"
         android:layout_width="fill_parent"
@@ -19,15 +17,13 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:gravity="center" />
 
-
-
     <TextView
         android:id="@+id/texthomeworkdue"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text="Headline"
-        android:background="#3498db"
+        android:background="#42A5F5"
        android:gravity="center" 
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ffffff" />

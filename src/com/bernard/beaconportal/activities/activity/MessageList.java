@@ -277,7 +277,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	public static ActionBarDrawerToggle mDrawerToggle;
 	MenuListAdapter mMenuAdapter;
 	MenuListAdapter mMenuAdapter_Inbox;
-	String actionbar_colors, background_colorsString;
+	String actionbar_colors, actionbar_colorsString;
 	private String Show_View;
 	String[] title;
 	String[] count;
@@ -1135,14 +1135,28 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#298ccd")));
+					new ColorDrawable(Color.parseColor("#1976D2")));
 
 		} else {
 
 			actionbar_colors = sharedpref.getString("actionbar_color", null);
 
 			getActionBar().setBackgroundDrawable(
+
 					new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+
+    final View splitActionBar = findViewById(splitBarId);
+
+    if (splitActionBar != null) {
+
+       
+    splitActionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+    
+    }
 
 		}
 

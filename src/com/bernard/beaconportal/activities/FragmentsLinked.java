@@ -12,33 +12,19 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 public class FragmentsLinked extends FragmentActivity {
 
 	private ViewPager pager;
 	private ViewPagerAdapterScheduleView adapter;
+	private View underline;
 	private String background_colors, actionbar_colors;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
-				Context.MODE_PRIVATE);
-
-		if (!sharedpref.contains("actionbar_color")) {
-
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#298ccd")));
-
-		} else {
-
-			actionbar_colors = sharedpref.getString("actionbar_color", null);
-
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-		}
 
 		android.app.ActionBar bar = getActionBar();
 
@@ -52,6 +38,51 @@ public class FragmentsLinked extends FragmentActivity {
 
 		adapter = new ViewPagerAdapterScheduleView(getSupportFragmentManager());
 
+		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
+				Context.MODE_PRIVATE);
+
+		if (!sharedpref.contains("actionbar_color")) {
+
+			getActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor("#1976D2")));
+			
+
+			underline = (View) 
+					findViewById(R.id.View2);
+
+			underline.setBackgroundColor(Color.parseColor("#1976D2"));
+
+		} else {
+
+			actionbar_colors = sharedpref.getString("actionbar_color", null);
+
+			getActionBar().setBackgroundDrawable(
+
+new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+
+    final View splitActionBar = findViewById(splitBarId);
+
+    if (splitActionBar != null) {
+
+       
+
+    splitActionBar.setBackgroundDrawable(
+
+new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+    }
+			
+			underline = (View) 
+					findViewById(R.id.View2);
+
+			underline.setBackgroundColor(Color.parseColor(actionbar_colors));
+
+		}
+		
 		// Bind the tabs to the ViewPager
 
 		pager.setAdapter(adapter);

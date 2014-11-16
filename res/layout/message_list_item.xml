@@ -113,7 +113,7 @@
                     android:ellipsize="marquee"
                     android:singleLine="true"
                     android:textSize="18sp"
-                    android:textColor="@color/black_text"
+                    android:textColor="#000000"
                     />
 
             <TextView

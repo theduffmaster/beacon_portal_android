@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
 
@@ -71,14 +72,31 @@ public class homeworkdueDetailsActivity extends SherlockActivity {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#298ccd")));
+					new ColorDrawable(Color.parseColor("#1976D2")));
 
 		} else {
 
 			actionbar_colors = sharedpref.getString("actionbar_color", null);
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+
+    final View splitActionBar = findViewById(splitBarId);
+
+    if (splitActionBar != null) {
+
+       
+
+    splitActionBar.setBackgroundDrawable(
+
+new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+    }
 
 		}
 

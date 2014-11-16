@@ -51,32 +51,45 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     
-    
-    
-    
     <style name="CustomActionBarTheme" parent="@style/Theme.Sherlock.Light.DarkActionBar">
-  <!--  <item name="android:actionBarStyle">@style/CustomActionBarTheme.FlatActionBar</item> -->
-    <item name="android:windowContentOverlay">@null</item>
-    
+    	<item name="android:windowContentOverlay">@null</item>
+        <item name="android:actionBarStyle">@style/AppTheme_ActionBar</item>
+        <item name="android:actionOverflowButtonStyle">@style/AppTheme_ActionBar_Overflow</item>
+    	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
+    	<item name="android:actionBarSize">@dimen/action_bar_height</item>
+    	<item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>
 </style>
 
- 
-<style name="CustomActionBarTheme.FlatActionBar" parent="@style/Widget.Sherlock.Light.ActionBar.Solid.Inverse">
-            <item name="android:windowActionBarOverlay">true</item>
+    <style name="FirstActionBarTheme" parent="@style/Theme.Sherlock.Light.DarkActionBar">
+    	<item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
+        <item name="android:actionBarStyle">@style/AppTheme_ActionBar</item>
+        <item name="android:actionOverflowButtonStyle">@style/AppTheme_ActionBar_Overflow</item>
+    	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
+    	<item name="android:actionBarSize">@dimen/action_bar_height</item>
+    	<item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>
+    	
+</style>
 
-   
+<style name="CustomActionBarTheme.FlatActionBar" parent="@style/Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+      
     <item name="android:displayOptions"></item>
 </style>
 
 <style name="TextColor" parent="@android:style/TextAppearance">
     <item name="android:textColor">#58585b</item>
-    
-    
 </style>
+    <style name="AppTheme_ActionBar" parent="android:Widget.Holo.ActionBar.Solid">
+        <item name="android:icon">@drawable/actionbar_icon_placeholder_compat</item>
+        <item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
+    </style>
 
+    <style name="AppTheme_ActionBar_Title" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 
-
-    
-
+    <style name="AppTheme_ActionBar_Overflow" parent="android:Widget.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_ab_overflow_compat</item>
+    </style>
 
 </resources>

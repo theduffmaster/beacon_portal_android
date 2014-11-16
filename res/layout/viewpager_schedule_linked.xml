@@ -21,7 +21,7 @@
         android:layout_alignBottom="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:background="#3498DB" />
+        android:background="#42A5F5" />
 
     <TextView
         android:id="@+id/textView2"

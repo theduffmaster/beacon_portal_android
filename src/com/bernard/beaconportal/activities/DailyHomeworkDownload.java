@@ -76,7 +76,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 	ListView mDrawerList;
 	ActionBarDrawerToggle mDrawerToggle;
 	private MenuListAdapter mMenuAdapter;
-	String actionbar_colors, background_colorsString;
+	String actionbar_colors, actionbar_colorsString;
 	private String Show_View;
 	String[] title;
 	String[] count;
@@ -359,6 +359,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			}
 
 			Intent intents = new Intent(context, MainActivity.class);
+			intents.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			context.startActivity(intents);
 
 		}

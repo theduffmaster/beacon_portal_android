@@ -8,11 +8,11 @@ package com.larswerkman.colorpicker;
 
 public final class R {
 	public static final class attr {
-		public static final int pointer_size = 0x7f01000c;
-		public static final int wheel_size = 0x7f01000b;
+		public static final int pointer_size = 0x7f010079;
+		public static final int wheel_size = 0x7f010078;
 	}
 	public static final class styleable {
-		public static final int[] ColorPicker = { 0x7f01000b, 0x7f01000c };
+		public static final int[] ColorPicker = { 0x7f010078, 0x7f010079 };
 		public static final int ColorPicker_pointer_size = 1;
 		public static final int ColorPicker_wheel_size = 0;
 	}

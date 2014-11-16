@@ -31,7 +31,7 @@ import com.faizmalkani.floatingactionbutton.Fab;
 
 public class FragmentsSchedule extends SherlockFragment {
 
-	private String background_colors;
+	private String actionbar_colors, background_colors;
 
 	private Fab mFab;
 
@@ -48,36 +48,62 @@ public class FragmentsSchedule extends SherlockFragment {
 				false);
 
 		SharedPreferences sharedprefer = getActivity().getSharedPreferences(
-				"background_color", Context.MODE_PRIVATE);
+				"actionbar_color", Context.MODE_PRIVATE);
 
-		if (!sharedprefer.contains("background_color")) {
+		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view.findViewById(R.id.pagerTabStrip1); 
+		
+		if (!sharedprefer.contains("actionbar_color")) {
 
-			background_colors = "#ffffff";
+			actionbar_colors = "#1976D2";
 
 			RelativeLayout layout = (RelativeLayout) view
 					.findViewById(R.id.view_container);
 
-			layout.setBackgroundColor(Color.parseColor(background_colors));
+			layout.setBackgroundColor(Color.parseColor(actionbar_colors));
+			
+			tabs.setDividerColor(Color.parseColor(actionbar_colors));
 
 		} else {
 
-			background_colors = sharedprefer
-					.getString("background_color", null);
+			actionbar_colors = sharedprefer
+					.getString("actionbar_color", null);
+			
+			tabs.setDividerColor(Color.parseColor(actionbar_colors));
 
 		}
 
+		SharedPreferences sharedpreference = getActivity().getSharedPreferences(
+				"background_color", Context.MODE_PRIVATE);
+		
+		if (!sharedpreference.contains("background_color")) {
+
+			background_colors = "#ffffff";
+
+			tabs.setTextColor(Color.parseColor(background_colors));
+			
+			tabs.setIndicatorColor(Color.parseColor(background_colors));
+
+		} else {
+
+			background_colors = sharedpreference
+					.getString("background_color", "#ffffff");
+			
+			tabs.setTextColor(Color.parseColor(background_colors));
+			
+			tabs.setIndicatorColor(Color.parseColor(background_colors));
+
+		}
+		
 		ViewPager pager = (ViewPager) view.findViewById(R.id.viewPager1);
 
 		RelativeLayout layout = (RelativeLayout) view
 				.findViewById(R.id.view_container);
 
-		layout.setBackgroundColor(Color.parseColor(background_colors));
+		layout.setBackgroundColor(Color.parseColor(actionbar_colors));
 
 		pager.setAdapter(new ViewPagerAdapterScheduleView(
 				getChildFragmentManager()));
-		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view
-				.findViewById(R.id.pagerTabStrip1);
-
+		
 		tabs.setViewPager(pager);
 
 		String weekDay;
@@ -117,7 +143,7 @@ public class FragmentsSchedule extends SherlockFragment {
 
 		if (!sharedpref.contains("actionbar_color")) {
 
-			mFab.setFabColor(Color.parseColor("#298ccd"));
+			mFab.setFabColor(Color.parseColor("#1976D2"));
 
 		} else {
 
@@ -153,41 +179,6 @@ public class FragmentsSchedule extends SherlockFragment {
 				mFab.setVisibility(View.GONE);
 			}
 		}
-
-		// Calendar now = Calendar.getInstance();
-		// int day = now.get(Calendar.DAY_OF_WEEK);
-		//
-		//
-		// tabs.setOnPageChangeListener(new OnPageChangeListener() {
-		// public void onPageScrollStateChanged(int state) {}
-		//
-		// @Override
-		// public void onPageScrolled(int arg0, float arg1, int arg2) {
-		//
-		// Calendar now = Calendar.getInstance();
-		//
-		// int hour = now.get(Calendar.HOUR_OF_DAY);
-		// int minute = now.get(Calendar.MINUTE);
-		//
-		// current_minutes = ((hour * 60) + minute);
-		//
-		// System.out.println("total_minutes= " + current_minutes);
-		//
-		// }
-		//
-		// @Override
-		// public void onPageSelected(int arg0) {
-		// // TODO Auto-generated method stub
-		//
-		// }
-		//
-		// });
-		//
-		//
-		//
-		// if(day == 4){
-		//
-		// }
 
 		return view;
 	}

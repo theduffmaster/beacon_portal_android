@@ -27,6 +27,7 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.preference.RingtonePreference;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
@@ -235,7 +236,7 @@ public class AccountSettings extends K9PreferenceActivity {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#298ccd")));
+					new ColorDrawable(Color.parseColor("#1976D2")));
 
 		} else {
 
@@ -243,7 +244,24 @@ public class AccountSettings extends K9PreferenceActivity {
 					null);
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+
+    final View splitActionBar = findViewById(splitBarId);
+
+    if (splitActionBar != null) {
+
+       
+
+    splitActionBar.setBackgroundDrawable(
+
+new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+    }
 
 		}
 

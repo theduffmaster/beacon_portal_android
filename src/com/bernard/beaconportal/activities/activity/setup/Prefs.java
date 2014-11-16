@@ -23,6 +23,7 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -180,7 +181,7 @@ public class Prefs extends K9PreferenceActivity {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#298ccd")));
+					new ColorDrawable(Color.parseColor("#1976D2")));
 
 		} else {
 
@@ -188,7 +189,24 @@ public class Prefs extends K9PreferenceActivity {
 					null);
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+
+    final View splitActionBar = findViewById(splitBarId);
+
+    if (splitActionBar != null) {
+
+       
+
+    splitActionBar.setBackgroundDrawable(
+
+new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+    }
 
 		}
 

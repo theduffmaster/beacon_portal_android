@@ -33,6 +33,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -63,6 +64,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -71,6 +73,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 import com.bernard.beaconportal.activities.activity.Accounts;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupBasics;
 
@@ -105,9 +108,10 @@ public class MainActivity extends SherlockFragmentActivity {
 	TextView mWelcomePerson;
 	TextView mWelcome;
 	ListView mDrawerList;
+	ImageView mShadow;
 	ActionBarDrawerToggle mDrawerToggle;
 	private MenuListAdapter mMenuAdapter;
-	String actionbar_colors, background_colorsString;
+	String actionbar_colors, actionbar_colorsString;
 	private String Show_View;
 	String[] title;
 	String[] count;
@@ -161,6 +165,10 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		
+		setSupportProgressBarIndeterminateVisibility(true);
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		Calendar c = Calendar.getInstance();
@@ -344,17 +352,19 @@ public class MainActivity extends SherlockFragmentActivity {
 		mWelcomePerson.setText(person);
 
 		mWelcome = (TextView) findViewById(R.id.Welcome);
+		
+		mShadow = (ImageView) findViewById(R.id.material_shadow_image);
 
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getSupportActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#298ccd")));
+					new ColorDrawable(Color.parseColor("#1976D2")));
 
 			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#298ccd")));
+					.parseColor("#1976D2")));
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#298ccd")));
+					.parseColor("#1976D2")));
 
 		} else {
 
@@ -370,6 +380,9 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
 					.parseColor(actionbar_colors)));
+			
+			mShadow.setBackgroundColor(Color
+					.parseColor(actionbar_colors));
 
 		}
 
@@ -523,6 +536,8 @@ public class MainActivity extends SherlockFragmentActivity {
 		if (!sharedprefer.contains("help_check")) {
 
 			alert_help();
+			
+			setProgressBarIndeterminateVisibility(Boolean.TRUE);
 
 		}
 
@@ -619,16 +634,19 @@ public class MainActivity extends SherlockFragmentActivity {
 		mWelcomePerson.setText(person);
 
 		mWelcome = (TextView) findViewById(R.id.Welcome);
+		
+		mShadow = (ImageView) findViewById(R.id.material_shadow_image);
+		
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getSupportActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#298ccd")));
+					new ColorDrawable(Color.parseColor("#1976D2")));
 
 			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#298ccd")));
+					.parseColor("#1976D2")));
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#298ccd")));
+					.parseColor("#1976D2")));
 
 		} else {
 
@@ -644,6 +662,9 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
 					.parseColor(actionbar_colors)));
+			
+			mShadow.setBackgroundColor(Color
+					.parseColor(actionbar_colors));
 
 		}
 
@@ -2135,6 +2156,11 @@ public class MainActivity extends SherlockFragmentActivity {
 						@Override
 						public void onClick(DialogInterface dialog, int id) {
 
+							SharedPreferences sharedprefer = getSharedPreferences(
+									"first_run_starts", Context.MODE_PRIVATE);
+							
+							if(!sharedprefer.contains("help_check")){
+							
 							SharedPreferences.Editor localEditors = getSharedPreferences(
 									"first_run_starts", Context.MODE_PRIVATE)
 									.edit();
@@ -2144,12 +2170,22 @@ public class MainActivity extends SherlockFragmentActivity {
 							localEditors.commit();
 
 							MainActivity.this.recreate();
+							
+							}
 
 						}
 					});
 
 			alertDialog = builder.create();
+			
+			alertDialog.setOnCancelListener(new OnCancelListener() {
 
+				@Override
+				public void onCancel(DialogInterface dialog) {
+					setProgressBarIndeterminateVisibility(Boolean.FALSE);
+				}
+			});
+			
 			alertDialog.show();
 
 		}

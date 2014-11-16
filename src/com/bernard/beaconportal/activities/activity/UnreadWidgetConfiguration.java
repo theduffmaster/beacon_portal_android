@@ -8,6 +8,7 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 
 import com.bernard.beaconportal.activities.BaseAccount;
 import com.bernard.beaconportal.activities.provider.UnreadWidgetProvider;
@@ -50,7 +51,7 @@ public class UnreadWidgetConfiguration extends AccountList {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#298ccd")));
+					new ColorDrawable(Color.parseColor("#1976D2")));
 
 		} else {
 
@@ -58,7 +59,24 @@ public class UnreadWidgetConfiguration extends AccountList {
 					null);
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+
+    final View splitActionBar = findViewById(splitBarId);
+
+    if (splitActionBar != null) {
+
+       
+
+    splitActionBar.setBackgroundDrawable(
+
+new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+    }
 
 		}
 

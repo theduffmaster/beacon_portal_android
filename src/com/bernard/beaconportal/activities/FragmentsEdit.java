@@ -1,5 +1,9 @@
 package com.bernard.beaconportal.activities;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +19,7 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -27,7 +32,7 @@ public class FragmentsEdit extends FragmentActivity {
 	private PagerSlidingTabStrip tabs;
 	String uriString;
 
-	private String actionbar_colors, background_colors;
+	private String background_colors, actionbar_colors;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,20 +41,91 @@ public class FragmentsEdit extends FragmentActivity {
 		setContentView(R.layout.viewpager_schedule_edit);
 
 		SharedPreferences sharedprefer = getSharedPreferences(
-				"background_color", Context.MODE_PRIVATE);
+				"actionbar_color", Context.MODE_PRIVATE);
 
-		if (!sharedprefer.contains("background_color")) {
+PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTabStrip1); 
+		
+		if (!sharedprefer.contains("actionbar_color")) {
 
-			background_colors = "#ffffff";
+			actionbar_colors = "#1976D2";
 
-			RelativeLayout layout = (RelativeLayout) findViewById(R.id.view_container);
+			RelativeLayout layout = (RelativeLayout) 
+					findViewById(R.id.view_container);
 
-			layout.setBackgroundColor(Color.parseColor(background_colors));
+			layout.setBackgroundColor(Color.parseColor(actionbar_colors));
+			
+			tabs.setDividerColor(Color.parseColor(actionbar_colors));
 
 		} else {
 
-			background_colors = sharedprefer
-					.getString("background_color", null);
+			actionbar_colors = sharedprefer
+					.getString("actionbar_color", null);
+			
+			tabs.setDividerColor(Color.parseColor(actionbar_colors));
+
+		}
+		
+		SharedPreferences sharedpreference = getSharedPreferences(
+				"background_color", Context.MODE_PRIVATE);
+		
+		if (!sharedpreference.contains("background_color")) {
+
+			background_colors = "#ffffff";
+
+			tabs.setTextColor(Color.parseColor(background_colors));
+			
+			tabs.setIndicatorColor(Color.parseColor(background_colors));
+
+		} else {
+
+			background_colors = sharedpreference
+					.getString("background_color", "#ffffff");
+			
+			tabs.setTextColor(Color.parseColor(background_colors));
+			
+			tabs.setIndicatorColor(Color.parseColor(background_colors));
+
+		}
+
+		ViewPager pager = (ViewPager) findViewById(R.id.viewPager1);
+
+		RelativeLayout layout = (RelativeLayout) 
+				findViewById(R.id.view_container);
+
+		layout.setBackgroundColor(Color.parseColor(actionbar_colors));
+
+		pager.setAdapter(new ViewPagerAdapterScheduleView(
+				getSupportFragmentManager()));
+		
+		tabs.setViewPager(pager);
+
+		String weekDay;
+		SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.US);
+
+		Calendar calendar = Calendar.getInstance();
+		weekDay = dayFormat.format(calendar.getTime());
+
+		System.out.println(weekDay);
+
+		if (weekDay.contains("Monday")) {
+			pager.setCurrentItem(0);
+
+		}
+		if (weekDay.contains("Tuesday")) {
+			pager.setCurrentItem(1);
+
+		}
+
+		if (weekDay.contains("Wednesday")) {
+			pager.setCurrentItem(2);
+
+		}
+		if (weekDay.contains("Thursday")) {
+			pager.setCurrentItem(3);
+
+		}
+		if (weekDay.contains("Friday")) {
+			pager.setCurrentItem(4);
 
 		}
 
@@ -59,14 +135,31 @@ public class FragmentsEdit extends FragmentActivity {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#298ccd")));
+					new ColorDrawable(Color.parseColor("#1976D2")));
 
 		} else {
 
 			actionbar_colors = sharedpref.getString("actionbar_color", null);
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+
+    final View splitActionBar = findViewById(splitBarId);
+
+    if (splitActionBar != null) {
+
+       
+
+    splitActionBar.setBackgroundDrawable(
+
+new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+    }
 
 		}
 
@@ -78,9 +171,7 @@ public class FragmentsEdit extends FragmentActivity {
 
 		pager = (ViewPager) findViewById(R.id.viewPager1);
 
-		RelativeLayout layout = (RelativeLayout) findViewById(R.id.view_container);
-
-		layout.setBackgroundColor(Color.parseColor(background_colors));
+		layout.setBackgroundColor(Color.parseColor(actionbar_colors));
 		adapter = new ViewPagerAdapterSchedule(getSupportFragmentManager());
 
 		tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTabStrip1);

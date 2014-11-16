@@ -40,7 +40,7 @@
         <item name="textColorPrimaryRecipientDropdown">@android:color/primary_text_light</item>
         <item name="textColorSecondaryRecipientDropdown">@android:color/secondary_text_light</item>
         <item name="messageListSelectedBackgroundColor">#8038B8E2</item>
-        <item name="messageListReadItemBackgroundColor">#ffeeeeee</item>
+        <item name="messageListReadItemBackgroundColor">#ffffffff</item>
         <item name="messageListUnreadItemBackgroundColor">#00ffffff</item>
         <item name="messageListThreadCountForegroundColor">?android:attr/colorBackground</item>
         <item name="messageListThreadCountBackground">@drawable/thread_count_box_light</item>
@@ -53,7 +53,10 @@
         <item name="compatDividerVertical">?attr/messageListDividerColor</item>
         <item name="compatSelectableItemBackground">@android:color/transparent</item>
         <item name="contactPictureFallbackDefaultBackgroundColor">#ffababab</item>
-        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>
+    	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
+    	<item name="android:actionBarSize">@dimen/action_bar_height</item>
+    <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
     </style>
 
     <style name="Theme.K9.Dark.Base" parent="@android:style/Theme.Holo">
@@ -106,7 +109,11 @@
         <item name="compatDividerVertical">?attr/messageListDividerColor</item>
         <item name="compatSelectableItemBackground">@android:color/transparent</item>
         <item name="contactPictureFallbackDefaultBackgroundColor">#ff606060</item>
-    </style>
+    	<item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>
+    	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
+   	<item name="android:actionBarSize">@dimen/action_bar_height</item>
+    	<item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
+    	</style>
     
     <style name="Theme.Custom.Dark.Base" parent="@style/Theme.Sherlock.Light">
           <item name="iconFolder">@drawable/folder_light</item>
@@ -158,10 +165,12 @@
         <item name="compatDividerVertical">?attr/messageListDividerColor</item>
         <item name="compatSelectableItemBackground">@android:color/transparent</item>
         <item name="contactPictureFallbackDefaultBackgroundColor">#ffababab</item>
-    	<item name="android:windowContentOverlay">@null</item>
-
+		<item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>
     	 <item name="android:textColor">#58585b</item>
     	  <item name="android:textColorPrimary">#58585b</item>
+    	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
+    	<item name="android:actionBarSize">@dimen/action_bar_height</item>
+    <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
     </style>
 
     <style name="Theme.K9.Light" parent="Theme.K9.Light.Base">
@@ -205,7 +214,7 @@
         <item name="textColorPrimaryRecipientDropdown">@color/white</item>
         <item name="textColorSecondaryRecipientDropdown">@color/white</item>
         <item name="messageListSelectedBackgroundColor">#8038B8E2</item>
-        <item name="messageListReadItemBackgroundColor">#eeeeee</item>
+        <item name="messageListReadItemBackgroundColor">#ffffff</item>
         <item name="messageListUnreadItemBackgroundColor">#00ffffff</item>
         <item name="messageListThreadCountForegroundColor">?android:attr/colorBackground</item>
         <item name="messageListThreadCountBackground">@drawable/thread_count_box_light</item>
@@ -218,11 +227,13 @@
         <item name="compatDividerVertical">?attr/messageListDividerColor</item>
         <item name="compatSelectableItemBackground">@android:color/transparent</item>
         <item name="contactPictureFallbackDefaultBackgroundColor">#ffababab</item>
-    	<item name="android:windowContentOverlay">@null</item>
     	 <item name="android:textColor">#ffffff</item>
     	  <item name="android:textColorPrimary">#ffffff</item>
-    	   
-    </style>
+    	   <item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>
+    	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
+   	<item name="android:actionBarSize">@dimen/action_bar_height</item>
+    	<item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
+    	</style>
     
     <style name="Theme.K9.Dark" parent="Theme.K9.Dark.Base">
         <item name="android:windowBackground">@android:color/black</item>
@@ -257,4 +268,5 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
     </style>
+    
 </resources>

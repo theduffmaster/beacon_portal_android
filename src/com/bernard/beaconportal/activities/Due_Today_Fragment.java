@@ -223,7 +223,7 @@ public class Due_Today_Fragment extends Fragment {
 
 		System.out.println(date);
 
-		lView.setEmptyView(swipe.findViewById(R.id.scrollView1));
+		lView.setEmptyView(swipe.findViewById(R.id.textView2));
 
 		return swipe;
 

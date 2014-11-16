@@ -208,7 +208,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 				});
 
-		lView.setEmptyView(swipe.findViewById(R.id.scrollView1));
+		lView.setEmptyView(swipe.findViewById(R.id.textView2));
 
 		return swipe;
 

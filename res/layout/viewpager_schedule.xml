@@ -18,8 +18,10 @@
     android:id="@+id/pagerTabStrip1"
     android:layout_width="match_parent"
     android:layout_height="48dip"
-    app:pstsIndicatorColor="#3498DB" 
-    app:pstsUnderlineColor="#3498DB"
+   	app:pstsIndicatorColor="#ffffff" 
+   	app:pstsDividerColor="#1976D2"
+    app:pstsUnderlineColor="#eeeeee"
+    android:textColor="#ffffff"
     />
 
     <android.support.v4.view.ViewPager
