@@ -89,23 +89,20 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 
 			getActionBar().setBackgroundDrawable(
 
-new ColorDrawable(Color.parseColor(actionbar_colors)));
+			new ColorDrawable(Color.parseColor(actionbar_colors)));
 
+			final int splitBarId = getResources().getIdentifier(
+					"split_action_bar", "id", "android");
 
-final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+			final View splitActionBar = findViewById(splitBarId);
 
-    final View splitActionBar = findViewById(splitBarId);
+			if (splitActionBar != null) {
 
-    if (splitActionBar != null) {
+				splitActionBar.setBackgroundDrawable(
 
-       
+				new ColorDrawable(Color.parseColor(actionbar_colors)));
 
-    splitActionBar.setBackgroundDrawable(
-
-new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-
-    }
+			}
 
 		}
 
@@ -455,13 +452,14 @@ new ColorDrawable(Color.parseColor(actionbar_colors)));
 
 			String birthday = month + "/" + day + "/" + year;
 
-			builder.setTitle("Are You Sure " + birthday
+			builder.setTitle("Please Confirm That " + birthday
 					+ " Is Your Actual Birthday?");
 
-			builder.setMessage("If this isn't your real birthday, you won't be able to receive homework through the app. We need your birthday so we can tell if you are really you. So are you sure "
-					+ birthday + " is your actual birthday?");
+			builder.setMessage("You probably entered the right birthdate, but just to double check is "
+					+ birthday
+					+ " your actual birthday? If not, then you won't be able to properly use this app, and expierience all the features it has to offer.");
 
-			builder.setPositiveButton("No",
+			builder.setPositiveButton("Re-enter It",
 					new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int id) {
@@ -470,7 +468,7 @@ new ColorDrawable(Color.parseColor(actionbar_colors)));
 
 						}
 					});
-			builder.setNegativeButton("Yes",
+			builder.setNegativeButton("Confirm",
 					new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int id) {

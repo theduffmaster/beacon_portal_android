@@ -1,5 +1,10 @@
 package com.bernard.beaconportal.activities;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -41,12 +46,6 @@ import android.view.ViewParent;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 import de.timroes.android.listview.EnhancedListView;
 
 /**
@@ -891,8 +890,7 @@ public class ViewPager extends ViewGroup {
 			duration = 4 * Math.round(1000 * Math.abs(distance / velocity));
 		} else {
 			final float pageWidth = width * mAdapter.getPageWidth(mCurItem);
-			final float pageDelta = Math.abs(dx)
-					/ (pageWidth + mPageMargin);
+			final float pageDelta = Math.abs(dx) / (pageWidth + mPageMargin);
 			duration = (int) ((pageDelta + 1) * 100);
 		}
 		duration = Math.min(duration, MAX_SETTLE_DURATION);
@@ -1120,8 +1118,7 @@ public class ViewPager extends ViewGroup {
 							if (DEBUG) {
 								Log.i(TAG,
 										"populate() - destroyItem() with pos: "
-												+ pos + " view: "
-												+ (ii.object));
+												+ pos + " view: " + (ii.object));
 							}
 							ii = itemIndex < mItems.size() ? mItems
 									.get(itemIndex) : null;

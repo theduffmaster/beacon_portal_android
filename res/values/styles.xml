@@ -1,6 +1,6 @@
 <resources>
  
-    <style name="Theme.K9Dialog" parent="@android:Theme.Light">
+    <style name="Theme.K9Dialog" parent="Theme.AppCompat.Light">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowBackground">@drawable/popup_background</item>
         <item name="android:attr/windowTitleStyle">?android:attr/textAppearanceLargeInverse</item>
@@ -50,27 +50,8 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    
-    <style name="CustomActionBarTheme" parent="@style/Theme.Sherlock.Light.DarkActionBar">
-    	<item name="android:windowContentOverlay">@null</item>
-        <item name="android:actionBarStyle">@style/AppTheme_ActionBar</item>
-        <item name="android:actionOverflowButtonStyle">@style/AppTheme_ActionBar_Overflow</item>
-    	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
-    	<item name="android:actionBarSize">@dimen/action_bar_height</item>
-    	<item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>
-</style>
 
-    <style name="FirstActionBarTheme" parent="@style/Theme.Sherlock.Light.DarkActionBar">
-    	<item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
-        <item name="android:actionBarStyle">@style/AppTheme_ActionBar</item>
-        <item name="android:actionOverflowButtonStyle">@style/AppTheme_ActionBar_Overflow</item>
-    	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
-    	<item name="android:actionBarSize">@dimen/action_bar_height</item>
-    	<item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>
-    	
-</style>
-
-<style name="CustomActionBarTheme.FlatActionBar" parent="@style/Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+<style name="CustomActionBarTheme.FlatActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
       
     <item name="android:displayOptions"></item>
 </style>

@@ -3,10 +3,11 @@ package com.bernard.beaconportal.activities;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import com.actionbarsherlock.app.SherlockListFragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class FragmentsResource extends SherlockListFragment {
+public class FragmentsResource extends ListFragment {
 
 	private View view;
 
@@ -34,6 +35,11 @@ public class FragmentsResource extends SherlockListFragment {
 
 		view = inflater.inflate(R.layout.resources_list, container, false);
 
+		ActionBar actionBar = ((MainActivity) getActivity())
+				.getSupportActionBar();
+
+		actionBar.setElevation(2);
+
 		return view;
 
 	}
@@ -52,6 +58,11 @@ public class FragmentsResource extends SherlockListFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+
+		ActionBar actionBar = ((MainActivity) getActivity())
+				.getSupportActionBar();
+
+		actionBar.setElevation(2);
 
 		listView = getListView();
 

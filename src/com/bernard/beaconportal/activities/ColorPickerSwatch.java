@@ -16,8 +16,6 @@
 
 package com.bernard.beaconportal.activities;
 
-import com.bernard.beaconportal.activities.R;
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;

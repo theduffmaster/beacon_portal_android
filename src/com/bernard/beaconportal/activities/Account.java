@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import android.content.ContentResolver;
@@ -27,9 +27,9 @@ import com.bernard.beaconportal.activities.crypto.Apg;
 import com.bernard.beaconportal.activities.crypto.CryptoProvider;
 import com.bernard.beaconportal.activities.helper.Utility;
 import com.bernard.beaconportal.activities.mail.Address;
+import com.bernard.beaconportal.activities.mail.Folder.FolderClass;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Store;
-import com.bernard.beaconportal.activities.mail.Folder.FolderClass;
 import com.bernard.beaconportal.activities.mail.store.LocalStore;
 import com.bernard.beaconportal.activities.mail.store.StorageManager;
 import com.bernard.beaconportal.activities.mail.store.StorageManager.StorageProvider;
@@ -37,13 +37,12 @@ import com.bernard.beaconportal.activities.provider.EmailProvider;
 import com.bernard.beaconportal.activities.provider.EmailProvider.StatsColumns;
 import com.bernard.beaconportal.activities.search.ConditionsTreeNode;
 import com.bernard.beaconportal.activities.search.LocalSearch;
-import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Attribute;
 import com.bernard.beaconportal.activities.search.SearchSpecification.SearchCondition;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Searchfield;
+import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
 import com.bernard.beaconportal.activities.security.LocalKeyStore;
 import com.bernard.beaconportal.activities.view.ColorChip;
-import com.bernard.beaconportal.activities.R;
 import com.larswerkman.colorpicker.ColorPicker;
 
 /**

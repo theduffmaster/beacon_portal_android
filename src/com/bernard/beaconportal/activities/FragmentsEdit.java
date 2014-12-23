@@ -15,17 +15,20 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.bernard.beaconportal.activities.R;
 
-public class FragmentsEdit extends FragmentActivity {
+public class FragmentsEdit extends ActionBarActivity {
 
 	private ViewPager pager;
 	private ViewPagerAdapterSchedule adapter;
@@ -43,60 +46,61 @@ public class FragmentsEdit extends FragmentActivity {
 		SharedPreferences sharedprefer = getSharedPreferences(
 				"actionbar_color", Context.MODE_PRIVATE);
 
-PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTabStrip1); 
-		
+		ActionBar actionBar = getSupportActionBar();
+
+		actionBar.setElevation(0);
+
+		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTabStrip1);
+
 		if (!sharedprefer.contains("actionbar_color")) {
 
-			actionbar_colors = "#1976D2";
+			actionbar_colors = "#4285f4";
 
-			RelativeLayout layout = (RelativeLayout) 
-					findViewById(R.id.view_container);
+			RelativeLayout layout = (RelativeLayout) findViewById(R.id.view_container);
 
 			layout.setBackgroundColor(Color.parseColor(actionbar_colors));
-			
+
 			tabs.setDividerColor(Color.parseColor(actionbar_colors));
 
 		} else {
 
-			actionbar_colors = sharedprefer
-					.getString("actionbar_color", null);
-			
+			actionbar_colors = sharedprefer.getString("actionbar_color", null);
+
 			tabs.setDividerColor(Color.parseColor(actionbar_colors));
 
 		}
-		
+
 		SharedPreferences sharedpreference = getSharedPreferences(
 				"background_color", Context.MODE_PRIVATE);
-		
+
 		if (!sharedpreference.contains("background_color")) {
 
 			background_colors = "#ffffff";
 
 			tabs.setTextColor(Color.parseColor(background_colors));
-			
+
 			tabs.setIndicatorColor(Color.parseColor(background_colors));
 
 		} else {
 
-			background_colors = sharedpreference
-					.getString("background_color", "#ffffff");
-			
+			background_colors = sharedpreference.getString("background_color",
+					"#ffffff");
+
 			tabs.setTextColor(Color.parseColor(background_colors));
-			
+
 			tabs.setIndicatorColor(Color.parseColor(background_colors));
 
 		}
 
 		ViewPager pager = (ViewPager) findViewById(R.id.viewPager1);
 
-		RelativeLayout layout = (RelativeLayout) 
-				findViewById(R.id.view_container);
+		RelativeLayout layout = (RelativeLayout) findViewById(R.id.view_container);
 
 		layout.setBackgroundColor(Color.parseColor(actionbar_colors));
 
 		pager.setAdapter(new ViewPagerAdapterScheduleView(
 				getSupportFragmentManager()));
-		
+
 		tabs.setViewPager(pager);
 
 		String weekDay;
@@ -134,36 +138,33 @@ PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTabStr
 
 		if (!sharedpref.contains("actionbar_color")) {
 
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#1976D2")));
+			getSupportActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor("#4285f4")));
 
 		} else {
 
 			actionbar_colors = sharedpref.getString("actionbar_color", null);
 
-			getActionBar().setBackgroundDrawable(
+			getSupportActionBar().setBackgroundDrawable(
 
-new ColorDrawable(Color.parseColor(actionbar_colors)));
+			new ColorDrawable(Color.parseColor(actionbar_colors)));
 
+			final int splitBarId = getResources().getIdentifier(
+					"split_action_bar", "id", "android");
 
-final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+			final View splitActionBar = findViewById(splitBarId);
 
-    final View splitActionBar = findViewById(splitBarId);
+			if (splitActionBar != null) {
 
-    if (splitActionBar != null) {
+				splitActionBar.setBackgroundDrawable(
 
-       
+				new ColorDrawable(Color.parseColor(actionbar_colors)));
 
-    splitActionBar.setBackgroundDrawable(
-
-new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-
-    }
+			}
 
 		}
 
-		android.app.ActionBar bar = getActionBar();
+		ActionBar bar = getSupportActionBar();
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
@@ -181,6 +182,14 @@ new ColorDrawable(Color.parseColor(actionbar_colors)));
 		tabs.setViewPager(pager);
 
 		pager.setOffscreenPageLimit(4);
+
+		int margin_dpi = convertDip2Pixels(FragmentsEdit.this, 32);
+
+		pager.setPageMargin(margin_dpi);
+
+		ColorDrawable inbetween = new ColorDrawable(0xFFeeeeee);
+
+		pager.setPageMarginDrawable(inbetween);
 
 	}
 
@@ -236,16 +245,20 @@ new ColorDrawable(Color.parseColor(actionbar_colors)));
 
 	}
 
+	public static int convertDip2Pixels(Context context, int dip) {
+		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+				dip, context.getResources().getDisplayMetrics());
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu paramMenu)
 
 	{
-		getMenuInflater().inflate(R.menu.android_apply, paramMenu);
+		getMenuInflater().inflate(R.menu.android_apply_all, paramMenu);
 
 		return true;
 	}
 
-	@Override
 	public boolean onOptionsItemSelected(MenuItem paramMenuItem) {
 		switch (paramMenuItem.getItemId()) {
 		case R.id.apply:

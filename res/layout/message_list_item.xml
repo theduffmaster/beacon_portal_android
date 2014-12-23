@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="88dp"
+              android:layout_height="84dp"
               android:orientation="horizontal"
               android:layout_gravity="center_vertical"
               
@@ -67,10 +67,9 @@
                 android:layout_marginLeft="1dip"
                 android:layout_marginRight="3dip"
                 android:bufferType="spannable"
-                
                 android:layout_below="@+id/subject_wrapper"
                 android:singleLine="false"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="14sp"
                 android:textColor="@color/black_text"
                 android:longClickable="false"
                 android:layout_alignWithParentIfMissing="false"
@@ -98,8 +97,8 @@
                     android:singleLine="true"
                     android:layout_marginBottom="1dip"
                     android:layout_marginLeft="1dip"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    
+                     android:textSize="16sp"
+                    android:textColor="#000000"
                     />
 
             <TextView
@@ -109,10 +108,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="1dip"
                     android:layout_marginLeft="1dip"
-                   
                     android:ellipsize="marquee"
                     android:singleLine="true"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textColor="#000000"
                     />
 

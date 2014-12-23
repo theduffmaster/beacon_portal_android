@@ -1,7 +1,5 @@
 package com.bernard.beaconportal.activities;
 
-import com.bernard.beaconportal.activities.R;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -38,8 +36,8 @@ public class Thursday extends Fragment {
 
 		setHasOptionsMenu(true);
 
-		SharedPreferences sharedpref = getActivity().getApplicationContext()
-				.getSharedPreferences("thursday", Context.MODE_PRIVATE);
+		SharedPreferences sharedpref = getActivity().getSharedPreferences(
+				"thursday", Context.MODE_PRIVATE);
 		GBand = sharedpref.getString("g_Band", null);
 		EBand = sharedpref.getString("e_Band", null);
 		DBand = sharedpref.getString("d_Band", null);

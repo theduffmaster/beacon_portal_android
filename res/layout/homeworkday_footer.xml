@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="56dp" 
+    android:layout_height="match_parent"  
     >
+    
+        />
+    
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -12,14 +15,10 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Homework Due This Day"
-        android:textAppearance="?android:attr/textAppearanceMedium" 
+        android:textSize="18sp"
+        android:textColor="#4285f4"
        />
 
-    <View
-        android:id="@+id/view1"
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:layout_alignParentBottom="true"
-        android:background="#D3D3D3" />
+   
     
 </RelativeLayout>

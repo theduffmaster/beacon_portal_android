@@ -5,9 +5,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.bernard.beaconportal.activities.R;
-import com.commonsware.cwac.merge.MergeAdapter;
-
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -20,6 +17,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +35,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.TimePicker.OnTimeChangedListener;
 import android.widget.Toast;
+
+import com.commonsware.cwac.merge.MergeAdapter;
 
 public class FragmentSettings extends Fragment {
 
@@ -71,6 +71,8 @@ public class FragmentSettings extends Fragment {
 
 	private View relative_views;
 
+	private View shadow;
+
 	private RelativeLayout relativelayout;
 
 	private RelativeLayout relativerefresh;
@@ -86,6 +88,11 @@ public class FragmentSettings extends Fragment {
 
 		relative_views = View.inflate(getActivity(), R.layout.settings_layouts,
 				null);
+
+		ActionBar actionBar = ((MainActivity) getActivity())
+				.getSupportActionBar();
+
+		actionBar.setElevation(2);
 
 		merge = new MergeAdapter();
 
@@ -289,7 +296,7 @@ public class FragmentSettings extends Fragment {
 
 		if (!sharedpref.contains("actionbar_color")) {
 
-			actionbar_colors = "#1976D2";
+			actionbar_colors = "#4285f4";
 
 		} else {
 
@@ -610,8 +617,7 @@ public class FragmentSettings extends Fragment {
 
 	public void showDatePicker() {
 		// Initializiation
-		LayoutInflater inflater = getActivity()
-				.getLayoutInflater();
+		LayoutInflater inflater = getActivity().getLayoutInflater();
 		final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(
 				getActivity());
 		View customView = inflater
@@ -648,7 +654,7 @@ public class FragmentSettings extends Fragment {
 
 						cancelAlarm();
 
-						Toast.makeText(getActivity().getApplicationContext(),
+						Toast.makeText(getActivity(),
 								"Homework will no longer update automatically",
 								Toast.LENGTH_LONG).show();
 
@@ -734,7 +740,7 @@ public class FragmentSettings extends Fragment {
 
 						localEditor.apply();
 
-						Toast.makeText(getActivity().getApplicationContext(),
+						Toast.makeText(getActivity(),
 								"Homework set to refresh at " + time,
 								Toast.LENGTH_LONG).show();
 

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <color name="light_background">#eeeeee</color>
+    <color name="light_background_clicked">#ffffff</color>
+    <color name="dialog_divider">#eeeeee</color>
+</resources>

@@ -43,7 +43,6 @@ import com.bernard.beaconportal.activities.service.BootReceiver;
 import com.bernard.beaconportal.activities.service.MailService;
 import com.bernard.beaconportal.activities.service.ShutdownReceiver;
 import com.bernard.beaconportal.activities.service.StorageGoneReceiver;
-import com.bernard.beaconportal.activities.R;
 
 public class K9 extends Application {
 	/**

@@ -1,7 +1,9 @@
 package com.bernard.beaconportal.activities.activity.setup;
 
 import java.util.List;
+
 import org.apache.http.HttpResponse;
+
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -29,9 +31,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.bernard.beaconportal.activities.*;
 import com.bernard.beaconportal.activities.activity.Accounts;
 import com.bernard.beaconportal.activities.activity.K9Activity;
+import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
 import com.bernard.beaconportal.activities.helper.Utility;
 import com.bernard.beaconportal.activities.R;
 
@@ -153,23 +157,20 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 
 			getActionBar().setBackgroundDrawable(
 
-new ColorDrawable(Color.parseColor(actionbar_colors)));
+			new ColorDrawable(Color.parseColor(actionbar_colors)));
 
+			final int splitBarId = getResources().getIdentifier(
+					"split_action_bar", "id", "android");
 
-final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+			final View splitActionBar = findViewById(splitBarId);
 
-    final View splitActionBar = findViewById(splitBarId);
+			if (splitActionBar != null) {
 
-    if (splitActionBar != null) {
+				splitActionBar.setBackgroundDrawable(
 
-       
+				new ColorDrawable(Color.parseColor(actionbar_colors)));
 
-    splitActionBar.setBackgroundDrawable(
-
-new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-
-    }
+			}
 
 		}
 

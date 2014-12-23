@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/add_cc_bcc"
         android:alphabeticShortcut="c"
         android:title="@string/add_cc_bcc_action"
         android:icon="?attr/iconActionAddCcBcc"
+       app:showAsAction="always"
         android:showAsAction="always"
     />
     <item
@@ -12,6 +14,7 @@
         android:alphabeticShortcut="n"
         android:title="@string/add_attachment_action"
         android:icon="?attr/iconActionAddAttachment"
+        app:showAsAction="always"
         android:showAsAction="always"
     />
     <item
@@ -19,6 +22,7 @@
         android:alphabeticShortcut="s"
         android:title="@string/send_action"
         android:icon="?attr/iconActionSend"
+       app:showAsAction="always"
         android:showAsAction="always"
     />
     <item

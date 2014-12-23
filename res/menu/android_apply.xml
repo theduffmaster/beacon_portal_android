@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android" 
+     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item 
         android:id="@+id/apply" 
         android:titleCondensed="apply" 
         android:title="apply"
         android:icon="@drawable/ic_action_accept"
+        app:showAsAction="always"
         android:showAsAction="always"
         android:orderInCategory="2"
         ></item>
@@ -13,7 +15,8 @@
         android:titleCondensed="undo" 
         android:title="undo" 
         android:icon="@drawable/ic_action_undo"
-         android:showAsAction="ifRoom"
+         app:showAsAction="ifRoom"
+         android:showAsAction="always"
          android:orderInCategory="1"
          
          ></item>

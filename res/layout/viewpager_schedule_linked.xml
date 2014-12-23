@@ -12,17 +12,9 @@
         android:id="@+id/viewPager2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-      	android:layout_marginTop="48dp"/>
+      	android:layout_marginTop="52dp"/>
 
-    <View
-        android:id="@+id/View2"
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:background="#42A5F5" />
-
+   
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
@@ -31,6 +23,15 @@
         android:gravity="center"
         android:text="Edits Will be Applied to All of the Bands for That Class"
         android:textAlignment="gravity"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textSize="14sp" />
+    
+      <ImageView
+          android:id="@+id/material_shadow_image"
+        android:src="@drawable/material_shadow270"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView2"
+        android:background="#00000000"
+        />
  
 </RelativeLayout>

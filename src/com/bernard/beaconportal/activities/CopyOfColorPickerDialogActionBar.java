@@ -16,8 +16,6 @@
 
 package com.bernard.beaconportal.activities;
 
-import com.bernard.beaconportal.activities.R;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -108,7 +106,7 @@ public class CopyOfColorPickerDialogActionBar extends Dialog implements
 		mColorPicker.setColor(color, true);
 
 		setColorAndClickAction(mWhite, 0xffFF9800);
-		setColorAndClickAction(mBlack, 0xff1976D2);
+		setColorAndClickAction(mBlack, 0xff4285f4);
 		setColorAndClickAction(mCyan, 0xff00BCD4);
 		setColorAndClickAction(mRed, 0xffF44336);
 		setColorAndClickAction(mGreen, 0xff009688);

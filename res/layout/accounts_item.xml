@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:textColor="@color/black_text"
+                android:textColor="#000000"
                 android:textAppearance="?android:attr/textAppearanceMedium"/>
 
         <TextView

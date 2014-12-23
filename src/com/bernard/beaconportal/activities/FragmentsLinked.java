@@ -1,7 +1,5 @@
 package com.bernard.beaconportal.activities;
 
-import com.bernard.beaconportal.activities.R;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -12,10 +10,11 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
-import android.widget.RelativeLayout;
 
-public class FragmentsLinked extends FragmentActivity {
+public class FragmentsLinked extends ActionBarActivity {
 
 	private ViewPager pager;
 	private ViewPagerAdapterScheduleView adapter;
@@ -26,11 +25,13 @@ public class FragmentsLinked extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		android.app.ActionBar bar = getActionBar();
+		ActionBar bar = getSupportActionBar();
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 		bar.setTitle("Batch Edit");
+
+		bar.setElevation(0);
 
 		setContentView(R.layout.viewpager_schedule_linked);
 
@@ -43,46 +44,32 @@ public class FragmentsLinked extends FragmentActivity {
 
 		if (!sharedpref.contains("actionbar_color")) {
 
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#1976D2")));
-			
-
-			underline = (View) 
-					findViewById(R.id.View2);
-
-			underline.setBackgroundColor(Color.parseColor("#1976D2"));
+			getSupportActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor("#4285f4")));
 
 		} else {
 
 			actionbar_colors = sharedpref.getString("actionbar_color", null);
 
-			getActionBar().setBackgroundDrawable(
+			getSupportActionBar().setBackgroundDrawable(
 
-new ColorDrawable(Color.parseColor(actionbar_colors)));
+			new ColorDrawable(Color.parseColor(actionbar_colors)));
 
+			final int splitBarId = getResources().getIdentifier(
+					"split_action_bar", "id", "android");
 
-final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+			final View splitActionBar = findViewById(splitBarId);
 
-    final View splitActionBar = findViewById(splitBarId);
+			if (splitActionBar != null) {
 
-    if (splitActionBar != null) {
+				splitActionBar.setBackgroundDrawable(
 
-       
+				new ColorDrawable(Color.parseColor(actionbar_colors)));
 
-    splitActionBar.setBackgroundDrawable(
-
-new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-
-    }
-			
-			underline = (View) 
-					findViewById(R.id.View2);
-
-			underline.setBackgroundColor(Color.parseColor(actionbar_colors));
+			}
 
 		}
-		
+
 		// Bind the tabs to the ViewPager
 
 		pager.setAdapter(adapter);

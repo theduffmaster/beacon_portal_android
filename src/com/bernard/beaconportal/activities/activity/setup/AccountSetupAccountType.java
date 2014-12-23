@@ -17,6 +17,7 @@ import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.activity.K9Activity;
+import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
 import com.bernard.beaconportal.activities.R;
 
 import java.net.URI;
@@ -26,7 +27,7 @@ import java.net.URI;
  * passed in email address, password and makeDefault are then passed on to the
  * AccountSetupIncoming activity.
  */
-public class AccountSetupAccountType extends K9Activity implements
+public class AccountSetupAccountType extends K9ActivityMaterial implements
 		OnClickListener {
 	private static final String EXTRA_ACCOUNT = "account";
 
@@ -72,23 +73,20 @@ public class AccountSetupAccountType extends K9Activity implements
 
 			getActionBar().setBackgroundDrawable(
 
-new ColorDrawable(Color.parseColor(actionbar_colors)));
+			new ColorDrawable(Color.parseColor(actionbar_colors)));
 
+			final int splitBarId = getResources().getIdentifier(
+					"split_action_bar", "id", "android");
 
-final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+			final View splitActionBar = findViewById(splitBarId);
 
-    final View splitActionBar = findViewById(splitBarId);
+			if (splitActionBar != null) {
 
-    if (splitActionBar != null) {
+				splitActionBar.setBackgroundDrawable(
 
-       
+				new ColorDrawable(Color.parseColor(actionbar_colors)));
 
-    splitActionBar.setBackgroundDrawable(
-
-new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-
-    }
+			}
 
 		}
 

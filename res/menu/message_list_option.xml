@@ -14,7 +14,7 @@
     <item
         android:id="@+id/previous_message"
         android:title="@string/previous_action"
-        android:icon="?attr/iconActionPreviousMessage"
+        android:icon="@drawable/ic_chevron_left_grey600_48dp"
         android:showAsAction="always"
     />
 
@@ -22,7 +22,7 @@
     <item
         android:id="@+id/next_message"
         android:title="@string/next_action"
-        android:icon="?attr/iconActionNextMessage"
+        android:icon="@drawable/ic_chevron_right_grey600_48dp"
         android:showAsAction="always"
     />
 
@@ -53,7 +53,7 @@
     <item
         android:id="@+id/delete"
         android:alphabeticShortcut="q"
-        android:icon="?attr/iconActionDelete"
+        android:icon="@drawable/ic_delete_grey600_48dp"
         android:showAsAction="always"
         android:title="@string/delete_action"/>
     <!-- MessageView -->
@@ -84,7 +84,7 @@
     <!-- MessageView -->
     <item
         android:id="@+id/single_message_options"
-        android:icon="?attr/iconActionSingleMessageOptions"
+        android:icon="@drawable/ic_reply_all_grey600_48dp"
         android:showAsAction="ifRoom"
         android:title="@string/single_message_options_action">
         <menu>
@@ -106,7 +106,7 @@
     <!-- MessageView -->
     <item
         android:id="@+id/refile"
-        android:icon="?attr/iconActionSingleMessageOptions"
+        android:icon="@drawable/ic_view_list_grey600_48dp"
         android:showAsAction="never"
         android:title="@string/refile_action">
         <menu>
@@ -131,6 +131,12 @@
         </menu>
     </item>
     <!-- MessageView -->
+     <item
+        android:id="@+id/composeView"
+        android:alphabeticShortcut="c"
+        android:icon="@drawable/ic_create_grey600_48dp"
+        android:showAsAction="ifRoom"
+        android:title="@string/compose_action"/>
     <item
         android:id="@+id/toggle_unread"
         android:alphabeticShortcut="u"
@@ -176,15 +182,13 @@
         </menu>
     </item>
 
-    <!-- always -->
+    <!-- MessageList -->
     <item
-        android:id="@+id/compose"
+        android:id="@+id/composeList"
         android:alphabeticShortcut="c"
         android:icon="?attr/iconActionCompose"
         android:showAsAction="ifRoom"
         android:title="@string/compose_action"/>
-
-    <!-- MessageList -->
     <item
         android:id="@+id/select_all"
         android:icon="?attr/iconActionSelectAll"

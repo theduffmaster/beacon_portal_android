@@ -48,21 +48,26 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.WindowCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -70,15 +75,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.Window;
 import com.bernard.beaconportal.activities.activity.Accounts;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupBasics;
 
 @SuppressLint("ResourceAsColor")
-public class MainActivity extends SherlockFragmentActivity {
+public class MainActivity extends ActionBarActivity {
 	private String Data, Band, Number, Class, Teacher, Title, Date, Type,
 			Description, DescriptionAll, DescriptionCheck, due_today_shared,
 			due_today_shared_content, due_schedule_shared,
@@ -121,7 +122,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	Fragment fragment1 = new FragmentsSchedule();
 	Fragment fragment2 = new FragmentsHomeworkDue();
 	Fragment fragment3 = new FragmentSettings();
-	Fragment fragment4 = new FragmentsResource();
+	ListFragment fragment4 = new FragmentsResource();
 	private CharSequence mDrawerTitle;
 	private CharSequence mDrawerTitleCheck;
 	private CharSequence mTitle;
@@ -165,10 +166,6 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		
-		setSupportProgressBarIndeterminateVisibility(true);
-		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		Calendar c = Calendar.getInstance();
@@ -217,7 +214,7 @@ public class MainActivity extends SherlockFragmentActivity {
 			parse_count();
 
 			new Internet_check_reload().execute();
-			
+
 			SharedPreferences alarm = getSharedPreferences("alarm_check",
 					Context.MODE_PRIVATE);
 
@@ -229,7 +226,7 @@ public class MainActivity extends SherlockFragmentActivity {
 						"alarm_check", Context.MODE_PRIVATE).edit();
 
 				alarmEditor.putString("alarm", "ran");
-				
+
 				alarmEditor.putString("alarm_check", "ran");
 
 				alarmEditor.apply();
@@ -237,7 +234,7 @@ public class MainActivity extends SherlockFragmentActivity {
 				setAlarm();
 
 				setAlarmCustom();
-				
+
 			}
 
 		} else {
@@ -352,19 +349,19 @@ public class MainActivity extends SherlockFragmentActivity {
 		mWelcomePerson.setText(person);
 
 		mWelcome = (TextView) findViewById(R.id.Welcome);
-		
-		mShadow = (ImageView) findViewById(R.id.material_shadow_image);
+
+		mShadow = (ImageView) findViewById(R.id.material_shadow_image_main);
 
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getSupportActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#1976D2")));
+					new ColorDrawable(Color.parseColor("#4285f4")));
 
 			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#1976D2")));
+					.parseColor("#4285f4")));
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#1976D2")));
+					.parseColor("#4285f4")));
 
 		} else {
 
@@ -380,9 +377,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
 					.parseColor(actionbar_colors)));
-			
-			mShadow.setBackgroundColor(Color
-					.parseColor(actionbar_colors));
+
+			mShadow.setBackgroundColor(Color.parseColor(actionbar_colors));
 
 		}
 
@@ -471,8 +467,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-				R.drawable.ic_drawer, R.string.drawer_open,
-				R.string.drawer_close) {
+				R.drawable.ic_drawer, R.string.drawer_open) {
 
 			@Override
 			public void onDrawerClosed(View view) {
@@ -536,7 +531,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		if (!sharedprefer.contains("help_check")) {
 
 			alert_help();
-			
+
 			setProgressBarIndeterminateVisibility(Boolean.TRUE);
 
 		}
@@ -634,19 +629,19 @@ public class MainActivity extends SherlockFragmentActivity {
 		mWelcomePerson.setText(person);
 
 		mWelcome = (TextView) findViewById(R.id.Welcome);
-		
-		mShadow = (ImageView) findViewById(R.id.material_shadow_image);
-		
+
+		mShadow = (ImageView) findViewById(R.id.material_shadow_image_main);
+
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getSupportActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#1976D2")));
+					new ColorDrawable(Color.parseColor("#4285f4")));
 
 			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#1976D2")));
+					.parseColor("#4285f4")));
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#1976D2")));
+					.parseColor("#4285f4")));
 
 		} else {
 
@@ -662,9 +657,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
 					.parseColor(actionbar_colors)));
-			
-			mShadow.setBackgroundColor(Color
-					.parseColor(actionbar_colors));
+
+			mShadow.setBackgroundColor(Color.parseColor(actionbar_colors));
 
 		}
 
@@ -941,7 +935,7 @@ public class MainActivity extends SherlockFragmentActivity {
 					localEditor.putString("download_date", downloaded);
 
 					localEditor.apply();
-					
+
 					parse_shedule_homework();
 
 					Log.d("receiver", "information given to shared preferences");
@@ -1081,8 +1075,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(android.view.MenuItem item) {
 
 		if (item.getItemId() == android.R.id.home) {
 
@@ -1340,8 +1333,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	public void parse_due_tommorow_string() {
 
-		SharedPreferences Tommorow_Homework = getSharedPreferences(
-				"homework", Context.MODE_PRIVATE);
+		SharedPreferences Tommorow_Homework = getSharedPreferences("homework",
+				Context.MODE_PRIVATE);
 
 		String Due_Tommorow = Tommorow_Homework.getString("homework_content",
 				"");
@@ -1397,17 +1390,16 @@ public class MainActivity extends SherlockFragmentActivity {
 							due_tommorow_shared = "due_tommorow"
 									+ Integer.toString(shared);
 
-							SharedPreferences Band = 
-									getApplicationContext()
+							SharedPreferences Band = getApplicationContext()
 									.getSharedPreferences("last band tommorow",
 											Context.MODE_PRIVATE);
 
 							String band = Band.getString("last string",
 									"ZZZZZZ");
 
-							SharedPreferences.Editor localEditor = 
-									getSharedPreferences(due_tommorow_shared,
-											Context.MODE_PRIVATE).edit();
+							SharedPreferences.Editor localEditor = getSharedPreferences(
+									due_tommorow_shared, Context.MODE_PRIVATE)
+									.edit();
 
 							localEditor.putString("due_tommorow0", band);
 
@@ -1418,13 +1410,11 @@ public class MainActivity extends SherlockFragmentActivity {
 
 						if (shared_add > 8) {
 
-							SharedPreferences Band = 
-									getSharedPreferences("last band tommorow",
-											Context.MODE_PRIVATE);
+							SharedPreferences Band = getSharedPreferences(
+									"last band tommorow", Context.MODE_PRIVATE);
 
-							SharedPreferences Description = 
-									getSharedPreferences(due_tommorow_shared,
-											Context.MODE_PRIVATE);
+							SharedPreferences Description = getSharedPreferences(
+									due_tommorow_shared, Context.MODE_PRIVATE);
 
 							String last = Band.getString("last string",
 									"ZZZZZZ");
@@ -1436,9 +1426,9 @@ public class MainActivity extends SherlockFragmentActivity {
 
 							Log.d("fixed", fixed);
 
-							SharedPreferences.Editor localEditor = 
-									getSharedPreferences(due_tommorow_shared,
-											Context.MODE_PRIVATE).edit();
+							SharedPreferences.Editor localEditor = getSharedPreferences(
+									due_tommorow_shared, Context.MODE_PRIVATE)
+									.edit();
 
 							localEditor.putString("due_tommorow7", fixed);
 
@@ -1446,9 +1436,9 @@ public class MainActivity extends SherlockFragmentActivity {
 
 						}
 
-						SharedPreferences.Editor localEditors = 
-								getSharedPreferences("last band tommorow",
-										Context.MODE_PRIVATE).edit();
+						SharedPreferences.Editor localEditors = getSharedPreferences(
+								"last band tommorow", Context.MODE_PRIVATE)
+								.edit();
 
 						localEditors.putString("last string", strrr);
 
@@ -1464,9 +1454,9 @@ public class MainActivity extends SherlockFragmentActivity {
 
 						System.out.println("shared_pref= " + strr);
 
-						SharedPreferences.Editor localEditor = 
-								getSharedPreferences(due_tommorow_shared,
-										Context.MODE_PRIVATE).edit();
+						SharedPreferences.Editor localEditor = getSharedPreferences(
+								due_tommorow_shared, Context.MODE_PRIVATE)
+								.edit();
 
 						localEditor
 								.putString(due_tommorow_shared_content, strr);
@@ -1496,27 +1486,24 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			due_tommorow_shared_content = "due_tommorow7";
 
-			SharedPreferences.Editor localEditor = 
-					getSharedPreferences(due_tommorow_shared,
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor = getSharedPreferences(
+					due_tommorow_shared, Context.MODE_PRIVATE).edit();
 
 			localEditor.putString(due_tommorow_shared_content, strr);
 
 			localEditor.apply();
 
-			SharedPreferences.Editor localEditor1 = 
-					getSharedPreferences("due_tommorow_counter",
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor1 = getSharedPreferences(
+					"due_tommorow_counter", Context.MODE_PRIVATE).edit();
 
 			localEditor1.putInt("last shared preference", shared);
 
 			localEditor1.apply();
 
 			strb.setLength(0);
-			
-			SharedPreferences.Editor localEditors = 
-					getSharedPreferences("last band tommorow",
-							Context.MODE_PRIVATE).edit();
+
+			SharedPreferences.Editor localEditors = getSharedPreferences(
+					"last band tommorow", Context.MODE_PRIVATE).edit();
 
 			localEditors.clear();
 
@@ -1564,9 +1551,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			due_tommorow_shared = "due_tommorow" + Integer.toString(shared + 1);
 
-			SharedPreferences.Editor dummy_item = 
-					getSharedPreferences(due_tommorow_shared,
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor dummy_item = getSharedPreferences(
+					due_tommorow_shared, Context.MODE_PRIVATE).edit();
 
 			dummy_item.putString("due_tommorow0", "ZZZZZ");
 
@@ -1586,7 +1572,6 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			dummy_item.apply();
 
-
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -1599,10 +1584,11 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	public void parse_shedule_homework() {
 
-		SharedPreferences schedule_Homework = getSharedPreferences(
-				"homework", Context.MODE_PRIVATE);
+		SharedPreferences schedule_Homework = getSharedPreferences("homework",
+				Context.MODE_PRIVATE);
 
-		String Due_schedule = schedule_Homework.getString("homework_content", "");
+		String Due_schedule = schedule_Homework.getString("homework_content",
+				"");
 
 		Due_schedule = Due_schedule.replaceAll("^\"|\"$", "");
 
@@ -1655,16 +1641,15 @@ public class MainActivity extends SherlockFragmentActivity {
 							due_schedule_shared = "due_schedule"
 									+ Integer.toString(shared);
 
-							SharedPreferences Band = 
-									getSharedPreferences("last band schedule",
-											Context.MODE_PRIVATE);
+							SharedPreferences Band = getSharedPreferences(
+									"last band schedule", Context.MODE_PRIVATE);
 
 							String band = Band.getString("last string",
 									"ZZZZZZ");
 
-							SharedPreferences.Editor localEditor = 
-									getSharedPreferences(due_schedule_shared,
-											Context.MODE_PRIVATE).edit();
+							SharedPreferences.Editor localEditor = getSharedPreferences(
+									due_schedule_shared, Context.MODE_PRIVATE)
+									.edit();
 
 							localEditor.putString("due_schedule0", band);
 
@@ -1675,13 +1660,11 @@ public class MainActivity extends SherlockFragmentActivity {
 
 						if (shared_add > 8) {
 
-							SharedPreferences Band = 
-									getSharedPreferences("last band schedule",
-											Context.MODE_PRIVATE);
+							SharedPreferences Band = getSharedPreferences(
+									"last band schedule", Context.MODE_PRIVATE);
 
-							SharedPreferences Description = 
-									getSharedPreferences(due_schedule_shared,
-											Context.MODE_PRIVATE);
+							SharedPreferences Description = getSharedPreferences(
+									due_schedule_shared, Context.MODE_PRIVATE);
 
 							String last = Band.getString("last string",
 									"ZZZZZZ");
@@ -1693,9 +1676,9 @@ public class MainActivity extends SherlockFragmentActivity {
 
 							Log.d("fixed", fixed);
 
-							SharedPreferences.Editor localEditor = 
-									getSharedPreferences(due_schedule_shared,
-											Context.MODE_PRIVATE).edit();
+							SharedPreferences.Editor localEditor = getSharedPreferences(
+									due_schedule_shared, Context.MODE_PRIVATE)
+									.edit();
 
 							localEditor.putString("due_schedule7", fixed);
 
@@ -1703,9 +1686,9 @@ public class MainActivity extends SherlockFragmentActivity {
 
 						}
 
-						SharedPreferences.Editor localEditors = 
-								getSharedPreferences("last band schedule",
-										Context.MODE_PRIVATE).edit();
+						SharedPreferences.Editor localEditors = getSharedPreferences(
+								"last band schedule", Context.MODE_PRIVATE)
+								.edit();
 
 						localEditors.putString("last string", strrr);
 
@@ -1721,11 +1704,12 @@ public class MainActivity extends SherlockFragmentActivity {
 
 						System.out.println("shared_pref= " + strr);
 
-						SharedPreferences.Editor localEditor = 
-								getSharedPreferences(due_schedule_shared,
-										Context.MODE_PRIVATE).edit();
+						SharedPreferences.Editor localEditor = getSharedPreferences(
+								due_schedule_shared, Context.MODE_PRIVATE)
+								.edit();
 
-						localEditor.putString(due_schedule_shared_content, strr);
+						localEditor
+								.putString(due_schedule_shared_content, strr);
 
 						localEditor.apply();
 
@@ -1752,17 +1736,15 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			due_schedule_shared_content = "due_schedule7";
 
-			SharedPreferences.Editor localEditor = 
-					getSharedPreferences(due_schedule_shared,
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor = getSharedPreferences(
+					due_schedule_shared, Context.MODE_PRIVATE).edit();
 
 			localEditor.putString(due_schedule_shared_content, strr);
 
 			localEditor.apply();
 
-			SharedPreferences.Editor localEditor1 = 
-					getSharedPreferences("due_schedule_counter",
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor1 = getSharedPreferences(
+					"due_schedule_counter", Context.MODE_PRIVATE).edit();
 
 			localEditor1.putInt("last shared preference", shared);
 
@@ -1779,11 +1761,11 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		}
 	}
-	
+
 	public void parse_due_today_string() {
 
-		SharedPreferences Today_Homework = getSharedPreferences(
-				"homework", Context.MODE_PRIVATE);
+		SharedPreferences Today_Homework = getSharedPreferences("homework",
+				Context.MODE_PRIVATE);
 
 		String Due_Today = Today_Homework.getString("homework_content", "");
 
@@ -1838,16 +1820,15 @@ public class MainActivity extends SherlockFragmentActivity {
 							due_today_shared = "due_today"
 									+ Integer.toString(shared);
 
-							SharedPreferences Band = 
-									getSharedPreferences("last band today",
-											Context.MODE_PRIVATE);
+							SharedPreferences Band = getSharedPreferences(
+									"last band today", Context.MODE_PRIVATE);
 
 							String band = Band.getString("last string",
 									"ZZZZZZ");
 
-							SharedPreferences.Editor localEditor = 
-									getSharedPreferences(due_today_shared,
-											Context.MODE_PRIVATE).edit();
+							SharedPreferences.Editor localEditor = getSharedPreferences(
+									due_today_shared, Context.MODE_PRIVATE)
+									.edit();
 
 							localEditor.putString("due_today0", band);
 
@@ -1858,13 +1839,11 @@ public class MainActivity extends SherlockFragmentActivity {
 
 						if (shared_add > 8) {
 
-							SharedPreferences Band = 
-									getSharedPreferences("last band today",
-											Context.MODE_PRIVATE);
+							SharedPreferences Band = getSharedPreferences(
+									"last band today", Context.MODE_PRIVATE);
 
-							SharedPreferences Description = 
-									getSharedPreferences(due_today_shared,
-											Context.MODE_PRIVATE);
+							SharedPreferences Description = getSharedPreferences(
+									due_today_shared, Context.MODE_PRIVATE);
 
 							String last = Band.getString("last string",
 									"ZZZZZZ");
@@ -1876,9 +1855,9 @@ public class MainActivity extends SherlockFragmentActivity {
 
 							Log.d("fixed", fixed);
 
-							SharedPreferences.Editor localEditor = 
-									getSharedPreferences(due_today_shared,
-											Context.MODE_PRIVATE).edit();
+							SharedPreferences.Editor localEditor = getSharedPreferences(
+									due_today_shared, Context.MODE_PRIVATE)
+									.edit();
 
 							localEditor.putString("due_today7", fixed);
 
@@ -1886,9 +1865,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 						}
 
-						SharedPreferences.Editor localEditors = 
-								getSharedPreferences("last band today",
-										Context.MODE_PRIVATE).edit();
+						SharedPreferences.Editor localEditors = getSharedPreferences(
+								"last band today", Context.MODE_PRIVATE).edit();
 
 						localEditors.putString("last string", strrr);
 
@@ -1904,9 +1882,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 						System.out.println("shared_pref= " + strr);
 
-						SharedPreferences.Editor localEditor = 
-								getSharedPreferences(due_today_shared,
-										Context.MODE_PRIVATE).edit();
+						SharedPreferences.Editor localEditor = getSharedPreferences(
+								due_today_shared, Context.MODE_PRIVATE).edit();
 
 						localEditor.putString(due_today_shared_content, strr);
 
@@ -1935,35 +1912,32 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			due_today_shared_content = "due_today7";
 
-			SharedPreferences.Editor localEditor = 
-					getSharedPreferences(due_today_shared,
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor = getSharedPreferences(
+					due_today_shared, Context.MODE_PRIVATE).edit();
 
 			localEditor.putString(due_today_shared_content, strr);
 
 			localEditor.apply();
 
-			SharedPreferences.Editor localEditor1 = 
-					getSharedPreferences("due_today_counter",
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor localEditor1 = getSharedPreferences(
+					"due_today_counter", Context.MODE_PRIVATE).edit();
 
 			localEditor1.putInt("last shared preference", shared);
 
 			localEditor1.apply();
 
 			strb.setLength(0);
-			
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-				Calendar c = Calendar.getInstance();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-				date = sdf.format(c.getTime());
+			Calendar c = Calendar.getInstance();
+
+			date = sdf.format(c.getTime());
 
 			due_today_shared = "due_tommorow" + Integer.toString(shared + 1);
 
-			SharedPreferences.Editor dummy_item =
-					getSharedPreferences(due_today_shared,
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor dummy_item = getSharedPreferences(
+					due_today_shared, Context.MODE_PRIVATE).edit();
 
 			dummy_item.putString("due_today0", "ZZZZZ");
 
@@ -2158,26 +2132,26 @@ public class MainActivity extends SherlockFragmentActivity {
 
 							SharedPreferences sharedprefer = getSharedPreferences(
 									"first_run_starts", Context.MODE_PRIVATE);
-							
-							if(!sharedprefer.contains("help_check")){
-							
-							SharedPreferences.Editor localEditors = getSharedPreferences(
-									"first_run_starts", Context.MODE_PRIVATE)
-									.edit();
 
-							localEditors.putString("help_check", "checked");
+							if (!sharedprefer.contains("help_check")) {
 
-							localEditors.commit();
+								SharedPreferences.Editor localEditors = getSharedPreferences(
+										"first_run_starts",
+										Context.MODE_PRIVATE).edit();
 
-							MainActivity.this.recreate();
-							
+								localEditors.putString("help_check", "checked");
+
+								localEditors.commit();
+
+								MainActivity.this.recreate();
+
 							}
 
 						}
 					});
 
 			alertDialog = builder.create();
-			
+
 			alertDialog.setOnCancelListener(new OnCancelListener() {
 
 				@Override
@@ -2185,7 +2159,7 @@ public class MainActivity extends SherlockFragmentActivity {
 					setProgressBarIndeterminateVisibility(Boolean.FALSE);
 				}
 			});
-			
+
 			alertDialog.show();
 
 		}
@@ -2360,7 +2334,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		System.out.println("midnight");
 
 	}
-	
+
 	private void setAlarmCustom() {
 
 		Intent intent = new Intent(getBaseContext(),

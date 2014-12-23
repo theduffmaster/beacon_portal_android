@@ -12,26 +12,24 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.astuetz.PagerSlidingTabStrip;
-import com.bernard.beaconportal.activities.R;
 
-public class FragmentsHomeworkDue extends SherlockFragment {
+public class FragmentsHomeworkDue extends Fragment {
 
 	private String actionbar_colors, background_colors;
 
 	private Context context;
 
 	private View view;
-
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,59 +38,58 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 		view = inflater.inflate(R.layout.viewpager_main, container, false);
 
 		System.out.println("create");
-		
+
 		setHasOptionsMenu(true);
 
-		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view.findViewById(R.id.pagerTabStrip); 
-		
+		ActionBar actionBar = ((MainActivity) getActivity())
+				.getSupportActionBar();
+
+		actionBar.setElevation(0);
+
+		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view
+				.findViewById(R.id.pagerTabStrip);
+
 		SharedPreferences sharedprefer = getActivity().getSharedPreferences(
 				"actionbar_color", Context.MODE_PRIVATE);
 
 		if (!sharedprefer.contains("actionbar_color")) {
 
-			actionbar_colors = "#1976D2";
+			actionbar_colors = "#4285f4";
 
-			RelativeLayout layout = (RelativeLayout) view
-					.findViewById(R.id.homeworkdue_container);
-
-			layout.setBackgroundColor(Color.parseColor(actionbar_colors));
+			tabs.setBackgroundColor(Color.parseColor(actionbar_colors));
 
 		} else {
-			
-			actionbar_colors = sharedprefer
-					.getString("actionbar_color", null);
+
+			actionbar_colors = sharedprefer.getString("actionbar_color", null);
+
+			tabs.setBackgroundColor(Color.parseColor(actionbar_colors));
 
 		}
-		
-		SharedPreferences sharedpreference = getActivity().getSharedPreferences(
-				"background_color", Context.MODE_PRIVATE);
-		
+
+		SharedPreferences sharedpreference = getActivity()
+				.getSharedPreferences("background_color", Context.MODE_PRIVATE);
+
 		if (!sharedpreference.contains("background_color")) {
 
 			background_colors = "#ffffff";
 
 			tabs.setTextColor(Color.parseColor(background_colors));
-			
+
 			tabs.setIndicatorColor(Color.parseColor(background_colors));
 
 		} else {
 
-			background_colors = sharedpreference
-					.getString("background_color", "#ffffff");
-			
+			background_colors = sharedpreference.getString("background_color",
+					"#ffffff");
+
 			tabs.setTextColor(Color.parseColor(background_colors));
-			
+
 			tabs.setIndicatorColor(Color.parseColor(background_colors));
 
 		}
 
 		ScrollLock pager = (ScrollLock) view.findViewById(R.id.viewPager);
 
-		RelativeLayout layout = (RelativeLayout) view
-				.findViewById(R.id.homeworkdue_container);
-
-		layout.setBackgroundColor(Color.parseColor(actionbar_colors));
-	
 		Calendar calendar = Calendar.getInstance();
 
 		int i = calendar.get(Calendar.DAY_OF_WEEK);
@@ -125,13 +122,13 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 
 		return view;
 	}
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
-		
+
 		System.out.println("resume");
-		
+
 		ScrollLock pager = (ScrollLock) view.findViewById(R.id.viewPager);
 
 		RelativeLayout layout = (RelativeLayout) view
@@ -139,18 +136,21 @@ public class FragmentsHomeworkDue extends SherlockFragment {
 
 		layout.setBackgroundColor(Color.parseColor(actionbar_colors));
 
-		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view.findViewById(R.id.pagerTabStrip); 
-		
+		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view
+				.findViewById(R.id.pagerTabStrip);
+
 		tabs.setDividerColor(Color.parseColor(actionbar_colors));
-		
+
+		tabs.setBackgroundColor(Color.parseColor(actionbar_colors));
+
 		Calendar calendar = Calendar.getInstance();
 
 		int i = calendar.get(Calendar.DAY_OF_WEEK);
 
 		if (i == 6 || i == 7 || i == 1) {
 
-				pager.setAdapter(new ViewPagerAdapterHomeworkWeekend(
-						getChildFragmentManager()));
+			pager.setAdapter(new ViewPagerAdapterHomeworkWeekend(
+					getChildFragmentManager()));
 
 		} else {
 

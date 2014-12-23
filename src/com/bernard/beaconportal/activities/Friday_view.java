@@ -4,17 +4,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import com.bernard.beaconportal.activities.R;
-
-import de.timroes.android.listview.EnhancedListView;
-import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
-import de.timroes.android.listview.EnhancedListView.UndoStyle;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -29,6 +24,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import de.timroes.android.listview.EnhancedListView;
+import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
+import de.timroes.android.listview.EnhancedListView.UndoStyle;
 
 public class Friday_view extends Fragment {
 
@@ -39,6 +37,10 @@ public class Friday_view extends Fragment {
 	private static ArrayAdapter<schedule_view> adapter;
 
 	private static ListView list;
+
+	private String actionbar_colors;
+
+	private TextView footer_text;
 
 	private View footer;
 
@@ -72,8 +74,8 @@ public class Friday_view extends Fragment {
 
 		}
 
-		SharedPreferences sharedpref = getActivity().getApplicationContext()
-				.getSharedPreferences("friday", Context.MODE_PRIVATE);
+		SharedPreferences sharedpref = getActivity().getSharedPreferences(
+				"friday", Context.MODE_PRIVATE);
 		GBand = sharedpref.getString("g_Band", null);
 		BBand = sharedpref.getString("b_Band", null);
 		ADV1Band = sharedpref.getString("adv1_Band", null);
@@ -81,33 +83,33 @@ public class Friday_view extends Fragment {
 		CBand = sharedpref.getString("c_Band", null);
 		FBand = sharedpref.getString("f_Band", null);
 
-		SharedPreferences sharedpref0 = getActivity().getApplicationContext()
-				.getSharedPreferences("friday0", Context.MODE_PRIVATE);
+		SharedPreferences sharedpref0 = getActivity().getSharedPreferences(
+				"friday0", Context.MODE_PRIVATE);
 
 		count0 = sharedpref0.getInt("note_count", 1000);
 
-		SharedPreferences sharedpref1 = getActivity().getApplicationContext()
-				.getSharedPreferences("friday1", Context.MODE_PRIVATE);
+		SharedPreferences sharedpref1 = getActivity().getSharedPreferences(
+				"friday1", Context.MODE_PRIVATE);
 
 		count1 = sharedpref1.getInt("note_count", 1000);
 
-		SharedPreferences sharedpref2 = getActivity().getApplicationContext()
-				.getSharedPreferences("friday2", Context.MODE_PRIVATE);
+		SharedPreferences sharedpref2 = getActivity().getSharedPreferences(
+				"friday2", Context.MODE_PRIVATE);
 
 		count2 = sharedpref2.getInt("note_count", 1000);
 
-		SharedPreferences sharedpref3 = getActivity().getApplicationContext()
-				.getSharedPreferences("friday3", Context.MODE_PRIVATE);
+		SharedPreferences sharedpref3 = getActivity().getSharedPreferences(
+				"friday3", Context.MODE_PRIVATE);
 
 		count3 = sharedpref3.getInt("note_count", 1000);
 
-		SharedPreferences sharedpref4 = getActivity().getApplicationContext()
-				.getSharedPreferences("friday4", Context.MODE_PRIVATE);
+		SharedPreferences sharedpref4 = getActivity().getSharedPreferences(
+				"friday4", Context.MODE_PRIVATE);
 
 		count4 = sharedpref4.getInt("note_count", 1000);
 
-		SharedPreferences sharedpref5 = getActivity().getApplicationContext()
-				.getSharedPreferences("friday5", Context.MODE_PRIVATE);
+		SharedPreferences sharedpref5 = getActivity().getSharedPreferences(
+				"friday5", Context.MODE_PRIVATE);
 
 		count5 = sharedpref5.getInt("note_count", 1000);
 
@@ -135,18 +137,34 @@ public class Friday_view extends Fragment {
 		footer = getActivity().getLayoutInflater().inflate(
 				R.layout.homeworkday_footer, null);
 
-		  footer.setOnClickListener(new OnClickListener(){
-		        @Override
-		        public void onClick(View v) {
-		            
-		        	showDialog();
-		        	
-		        }
-		    });
+		footer.setBackgroundResource(R.drawable.item_selector);
 		
-		TextView footer_text = (TextView) footer.findViewById(R.id.textView1);
+		footer.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				showDialog();
+
+			}
+		});
+
+		footer_text = (TextView) footer.findViewById(R.id.textView1);
 
 		footer_text.setText("Homework Due Friday");
+
+		SharedPreferences sharedprefer = getActivity().getSharedPreferences(
+				"actionbar_color", Context.MODE_PRIVATE);
+
+		if (!sharedprefer.contains("actionbar_color")) {
+
+			footer_text.setTextColor(Color.parseColor("#4285f4"));
+
+		} else {
+
+			actionbar_colors = sharedprefer.getString("actionbar_color", null);
+
+			footer_text.setTextColor(Color.parseColor(actionbar_colors));
+		}
 
 		list.addFooterView(footer);
 
@@ -161,17 +179,17 @@ public class Friday_view extends Fragment {
 		});
 
 	}
-	
-	public void showDialog(){
-	    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-	    View view = getActivity().getLayoutInflater().inflate(R.layout.friday_fragment, null);
-	    builder.setView(view)
-	            .setTitle("Homework Due Friday")
-	            .setNegativeButton("Dismiss", null);
+	public void showDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-	    AlertDialog dialog = builder.create();
-	    dialog.show();
+		View view = getActivity().getLayoutInflater().inflate(
+				R.layout.friday_fragment, null);
+		builder.setView(view).setTitle("Homework Due Friday")
+				.setNegativeButton("Dismiss", null);
+
+		AlertDialog dialog = builder.create();
+		dialog.show();
 	}
 
 	public class MyListAdapter extends ArrayAdapter<schedule_view> {
@@ -287,9 +305,8 @@ public class Friday_view extends Fragment {
 
 			position_mainlist = position;
 
-			SharedPreferences sharedpref = getActivity()
-					.getApplicationContext().getSharedPreferences(
-							band_position, Context.MODE_PRIVATE);
+			SharedPreferences sharedpref = getActivity().getSharedPreferences(
+					band_position, Context.MODE_PRIVATE);
 
 			int counterssss = sharedpref.getInt("note_count", 0);
 
@@ -348,9 +365,9 @@ public class Friday_view extends Fragment {
 											Context.MODE_PRIVATE).edit();
 
 							SharedPreferences sharedpref = getActivity()
-									.getApplicationContext()
-									.getSharedPreferences(band_position,
-											Context.MODE_PRIVATE);
+
+							.getSharedPreferences(band_position,
+									Context.MODE_PRIVATE);
 
 							int counterssss = sharedpref
 									.getInt("note_count", 0);
@@ -562,9 +579,9 @@ public class Friday_view extends Fragment {
 												Context.MODE_PRIVATE).edit();
 
 								SharedPreferences sharedpref = getActivity()
-										.getApplicationContext()
-										.getSharedPreferences(band_position,
-												Context.MODE_PRIVATE);
+
+								.getSharedPreferences(band_position,
+										Context.MODE_PRIVATE);
 
 								if (sharedpref.contains("note_count")) {
 

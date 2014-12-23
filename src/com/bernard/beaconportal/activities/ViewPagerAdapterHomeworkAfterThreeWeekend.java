@@ -9,7 +9,7 @@ public class ViewPagerAdapterHomeworkAfterThreeWeekend extends
 		FragmentStatePagerAdapter {
 
 	final int PAGE_COUNT = 1;
-	private String titles[] = new String[] { "                             Homework Due Monday                             " };
+	private String titles[] = new String[] { "Homework Due Monday" };
 
 	public ViewPagerAdapterHomeworkAfterThreeWeekend(FragmentManager fm) {
 		super(fm);

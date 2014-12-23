@@ -137,7 +137,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 	private Context context;
 
 	private Activity activityContext;
-	
+
 	private String date;
 
 	public DailyHomeworkDownload() {
@@ -358,10 +358,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 			}
 
-			Intent intents = new Intent(context, MainActivity.class);
-			intents.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-			context.startActivity(intents);
-
+			
 		}
 
 	}
@@ -541,9 +538,9 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			localEditor1.apply();
 
 			strb.setLength(0);
-			
-			SharedPreferences.Editor localEditors = 
-					context.getSharedPreferences("last band tommorow",
+
+			SharedPreferences.Editor localEditors = context
+					.getSharedPreferences("last band tommorow",
 							Context.MODE_PRIVATE).edit();
 
 			localEditors.clear();
@@ -592,9 +589,8 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 			due_tommorow_shared = "due_tommorow" + Integer.toString(shared + 1);
 
-			SharedPreferences.Editor dummy_item = 
-					context.getSharedPreferences(due_tommorow_shared,
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor dummy_item = context.getSharedPreferences(
+					due_tommorow_shared, Context.MODE_PRIVATE).edit();
 
 			dummy_item.putString("due_tommorow0", "ZZZZZ");
 
@@ -613,7 +609,6 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			dummy_item.putString("due_tommorow7", "Description");
 
 			dummy_item.apply();
-
 
 		} catch (IOException e) {
 
@@ -797,18 +792,17 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			localEditor1.apply();
 
 			strb.setLength(0);
-			
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-				Calendar c = Calendar.getInstance();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-				date = sdf.format(c.getTime());
+			Calendar c = Calendar.getInstance();
+
+			date = sdf.format(c.getTime());
 
 			due_today_shared = "due_tommorow" + Integer.toString(shared + 1);
 
-			SharedPreferences.Editor dummy_item =
-					context.getSharedPreferences(due_today_shared,
-							Context.MODE_PRIVATE).edit();
+			SharedPreferences.Editor dummy_item = context.getSharedPreferences(
+					due_today_shared, Context.MODE_PRIVATE).edit();
 
 			dummy_item.putString("due_today0", "ZZZZZ");
 

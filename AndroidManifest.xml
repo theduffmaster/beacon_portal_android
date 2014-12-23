@@ -3,8 +3,8 @@
     
 
 	package="com.bernard.beaconportal.activities"
-    android:versionCode="39"
-    android:versionName="1.4"
+    android:versionCode="46"
+    android:versionName="1.9"
     >
 	
 	<uses-permission android:name="android.permission.BLUETOOTH" />
@@ -169,6 +169,7 @@
             android:configChanges="locale"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize"
+            android:theme="@style/Theme.Custom.Dark.Base.Material" 
             >
         </activity>
         <activity
@@ -181,36 +182,42 @@
             android:name=".activity.setup.AccountSetupAccountType"
             android:label="@string/account_setup_account_type_title"
             android:configChanges="locale"
+            android:theme="@style/Theme.Custom.Dark.Base.Material" 
             >
         </activity>
         <activity
             android:name=".activity.setup.AccountSetupIncoming"
             android:label="@string/account_setup_incoming_title"
             android:configChanges="locale"
+            android:theme="@style/Theme.Custom.Dark.Base.Material" 
             >
         </activity>
         <activity
             android:name=".activity.setup.AccountSetupComposition"
             android:label="@string/account_settings_composition_title"
             android:configChanges="locale"
+            android:theme="@style/Theme.Custom.Dark.Base.Material" 
         >
         </activity>
         <activity
             android:name=".activity.setup.AccountSetupOutgoing"
             android:label="@string/account_setup_outgoing_title"
             android:configChanges="locale"
+            android:theme="@style/Theme.Custom.Dark.Base.Material" 
             >
         </activity>
         <activity
             android:name=".activity.setup.AccountSetupOptions"
             android:label="@string/account_setup_options_title"
             android:configChanges="locale"
+            android:theme="@style/Theme.Custom.Dark.Base.Material" 
             >
         </activity>
         <activity
             android:name=".activity.setup.AccountSetupNames"
             android:label="@string/account_setup_names_title"
             android:configChanges="locale"
+            android:theme="@style/Theme.Custom.Dark.Base" 
             >
         </activity>
         <activity
@@ -305,6 +312,7 @@
             android:label="@string/app_name"
             android:enabled="false"
             android:configChanges="locale"
+            android:theme="@style/Theme.Custom.Dark.Base.Material" 
             >
             <intent-filter>
                 <action android:name="android.intent.action.SENDTO" />

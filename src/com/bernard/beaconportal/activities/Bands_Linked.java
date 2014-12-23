@@ -1,7 +1,5 @@
 package com.bernard.beaconportal.activities;
 
-import com.bernard.beaconportal.activities.R;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;

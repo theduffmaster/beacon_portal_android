@@ -8,6 +8,9 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -80,6 +83,7 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 	private Listener mListener = new Listener();
 	private MessageViewHandler mHandler = new MessageViewHandler();
 	private LayoutInflater mLayoutInflater;
+	private String actionbar_colors;
 
 	/**
 	 * this variable is used to save the calling AttachmentView until the
@@ -962,6 +966,7 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			// called when the up affordance/carat in actionbar is pressed
+
 			getActivity().onBackPressed();
 
 		}

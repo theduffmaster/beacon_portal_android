@@ -38,6 +38,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -58,7 +59,7 @@ import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.MenuListAdapter;
 import com.bernard.beaconportal.activities.R;
 
-public class LoadingLayout extends Activity {
+public class LoadingLayout extends ActionBarActivity {
 
 	private static final String EXTRA_ACCOUNT = "account";
 
@@ -150,9 +151,11 @@ public class LoadingLayout extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loading_layout);
 
-		getActionBar().setBackgroundDrawable(
+		getSupportActionBar().setBackgroundDrawable(
 				new ColorDrawable(Color.parseColor("#1976D2")));
-		
+
+		getSupportActionBar().setElevation(2);
+
 		new Update().execute();
 
 	}

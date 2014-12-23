@@ -11,14 +11,14 @@
     android:orientation="vertical"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
-    android:padding="8dp"
     >
-    
-         <ScrollView 
+        
+   	<ScrollView 
     android:id="@+id/scrollView2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:padding="8dp"
     >
         
             <LinearLayout 
@@ -54,7 +54,7 @@
        	android:id="@+id/textView2"
        	android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Woohoo! No assignments due! (In order to reload the homework if you swiped any away, or to check for new homework, swipe down)"
+        android:text="Woohoo! No assignments due! To reload swiped away homeworks, or to check for new homework, swipe down"
         android:textAppearance="?android:attr/textAppearanceMedium" 
         android:paddingLeft="10dp"
         android:paddingRight="10dp"

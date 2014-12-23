@@ -1,58 +1,31 @@
 package com.bernard.beaconportal.activities;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.text.DateFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.text.TextUtils.TruncateAt;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.bernard.beaconportal.activities.R;
-
 
 public class Friday_Fragment extends Fragment {
 	private List<Due_Today_List> due_schedule_list;
@@ -64,15 +37,15 @@ public class Friday_Fragment extends Fragment {
 	private String date;
 
 	private int shared;
-	
+
 	private String finalDay;
 
 	private int countersss;
-	
+
 	private java.util.Date dt1;
 
 	public static ListView lView;
-	
+
 	private ProgressBar progress;
 
 	private ArrayAdapter<Due_Today_List> adapter;
@@ -103,10 +76,11 @@ public class Friday_Fragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		swipe = inflater.inflate(R.layout.day_homework_fragment, container, false);
+		swipe = inflater.inflate(R.layout.day_homework_fragment, container,
+				false);
 
 		lView = (ListView) swipe.findViewById(R.id.listView1);
-		
+
 		progress = (ProgressBar) swipe.findViewById(R.id.progress);
 
 		lView.setVisibility(View.GONE);
@@ -127,9 +101,9 @@ public class Friday_Fragment extends Fragment {
 		populateListView();
 
 		registerClickCallback();
-		
+
 		progress.setVisibility(View.GONE);
-		
+
 		lView.setVisibility(View.VISIBLE);
 
 	}
@@ -139,8 +113,8 @@ public class Friday_Fragment extends Fragment {
 		date = "Friday";
 
 		SharedPreferences Today_Homework_Counter = getActivity()
-				.getApplicationContext().getSharedPreferences(
-						"due_schedule_counter", Context.MODE_PRIVATE);
+				.getSharedPreferences("due_schedule_counter",
+						Context.MODE_PRIVATE);
 
 		int counterssss = Today_Homework_Counter.getInt(
 				"last shared preference", 0);
@@ -154,8 +128,8 @@ public class Friday_Fragment extends Fragment {
 			due_schedule_shared = "due_schedule" + Integer.toString(i);
 
 			SharedPreferences Todays_Homework = getActivity()
-					.getApplicationContext().getSharedPreferences(
-							due_schedule_shared, Context.MODE_PRIVATE);
+					.getSharedPreferences(due_schedule_shared,
+							Context.MODE_PRIVATE);
 
 			String Band1 = Todays_Homework.getString("due_schedule0", null);
 
@@ -208,20 +182,20 @@ public class Friday_Fragment extends Fragment {
 
 				Date = Date1.trim();
 
-				 String input_date = Date;
-				  
-				 SimpleDateFormat format1= new SimpleDateFormat("yyyy-MM-dd");
-				   
+				String input_date = Date;
+
+				SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+
 				try {
 					dt1 = format1.parse(input_date);
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				  DateFormat format2=new SimpleDateFormat("EEEE"); 
-				  
-				  finalDay = format2.format(dt1);
-				
+				DateFormat format2 = new SimpleDateFormat("EEEE");
+
+				finalDay = format2.format(dt1);
+
 				Log.d("Date" + i, Date);
 
 			}
@@ -239,32 +213,30 @@ public class Friday_Fragment extends Fragment {
 			}
 
 			SharedPreferences description_check = getActivity()
-					.getApplicationContext().getSharedPreferences(
-							"descriptioncheck", Context.MODE_PRIVATE);
-
+					.getSharedPreferences("descriptioncheck",
+							Context.MODE_PRIVATE);
 
 			String descriptionCheck = description_check.getString(
 					"description", "");
 
-			
 			if (Type != null && Description != null
 					&& !Description.equals(descriptionCheck)
 					&& date.contentEquals(finalDay)) {
 
 				SharedPreferences.Editor checkeditor = getActivity()
-						.getApplicationContext()
-						.getSharedPreferences("descriptioncheck",
-								Context.MODE_PRIVATE).edit();
+
+				.getSharedPreferences("descriptioncheck", Context.MODE_PRIVATE)
+						.edit();
 
 				checkeditor.putString("description", Description);
 
 				checkeditor.commit();
 
 				if (!"Type".equals(Type)) {
-					
+
 					due_schedule_list.add(new Due_Today_List(Band, Number,
-					
-							Class, Teacher, Title, Date, Type, Description));
+
+					Class, Teacher, Title, Date, Type, Description));
 				}
 
 			}
@@ -274,8 +246,7 @@ public class Friday_Fragment extends Fragment {
 	}
 
 	private void registerClickCallback() {
-		ListView list = (ListView) swipe
-				.findViewById(R.id.listView1);
+		ListView list = (ListView) swipe.findViewById(R.id.listView1);
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
@@ -304,15 +275,14 @@ public class Friday_Fragment extends Fragment {
 	private void populateListView() {
 
 		adapter = new due_scheduleAdapter();
-		ListView list = (ListView) swipe
-				.findViewById(R.id.listView1);
+		ListView list = (ListView) swipe.findViewById(R.id.listView1);
 		list.setAdapter(adapter);
 
 	}
 
 	public class due_scheduleAdapter extends ArrayAdapter<Due_Today_List> {
 		public due_scheduleAdapter() {
-			super(getActivity(), R.layout.item_view, due_schedule_list);
+			super(getActivity(), R.layout.homeworkday_item_view, due_schedule_list);
 		}
 
 		@Override
@@ -321,7 +291,7 @@ public class Friday_Fragment extends Fragment {
 
 			if (convertView == null) {
 				convertView = getActivity().getLayoutInflater().inflate(
-						R.layout.item_view, parent, false);
+						R.layout.homeworkday_item_view, parent, false);
 				holder = new ViewHolder();
 
 				holder.imageView = (ImageView) convertView

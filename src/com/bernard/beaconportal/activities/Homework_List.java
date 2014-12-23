@@ -56,7 +56,7 @@ public class Homework_List {
 	public String getType() {
 		return Type;
 	}
-	
+
 	public String getBandLetter() {
 		return BandLetter;
 	}

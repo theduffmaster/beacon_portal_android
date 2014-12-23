@@ -1,7 +1,6 @@
 package com.bernard.beaconportal.activities;
 
 import android.content.Context;
-import com.bernard.beaconportal.activities.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 

@@ -28,11 +28,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.internal.view.menu.MenuView;
 import android.text.Html;
 import android.text.TextUtils.TruncateAt;
 import android.util.Log;
@@ -46,9 +48,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.bernard.beaconportal.activities.R;
 import de.timroes.android.listview.EnhancedListView;
 import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
 import de.timroes.android.listview.EnhancedListView.SwipeDirection;
@@ -65,6 +64,8 @@ public class Due_Today_Fragment extends Fragment {
 	private EnhancedListView list;
 
 	private int count;
+
+	private String actionbar_colors;
 
 	private String date;
 
@@ -107,6 +108,19 @@ public class Due_Today_Fragment extends Fragment {
 		new Download().execute();
 
 		View swipe = inflater.inflate(R.layout.activity_main, container, false);
+
+		SharedPreferences sharedprefer = getActivity().getSharedPreferences(
+				"actionbar_color", Context.MODE_PRIVATE);
+
+		if (!sharedprefer.contains("actionbar_color")) {
+
+			actionbar_colors = "#4285f4";
+
+		} else {
+
+			actionbar_colors = sharedprefer.getString("actionbar_color", null);
+
+		}
 
 		swipeLayout = (SwipeRefreshLayout) swipe.findViewById(R.id.swipe);
 
@@ -234,6 +248,19 @@ public class Due_Today_Fragment extends Fragment {
 
 		super.onResume();
 
+		SharedPreferences sharedprefer = getActivity().getSharedPreferences(
+				"actionbar_color", Context.MODE_PRIVATE);
+
+		if (!sharedprefer.contains("actionbar_color")) {
+
+			actionbar_colors = "#4285f4";
+
+		} else {
+
+			actionbar_colors = sharedprefer.getString("actionbar_color", null);
+
+		}
+
 		read_due_today_list = new ArrayList<String>();
 
 		due_today_list = new ArrayList<Due_Today_List>();
@@ -252,8 +279,7 @@ public class Due_Today_Fragment extends Fragment {
 
 				Log.d("shared clear1", "yes");
 
-				final Due_Today_List item = adapter
-						.getItem(position);
+				final Due_Today_List item = adapter.getItem(position);
 				// Store the item for later undo
 
 				final Due_Today_List currenthomeworkdue = due_today_list
@@ -282,8 +308,7 @@ public class Due_Today_Fragment extends Fragment {
 								.getDescription();
 
 						SharedPreferences Tommorow_Homework_Counter = getActivity()
-								.getApplicationContext().getSharedPreferences(
-										"due_today_counter",
+								.getSharedPreferences("due_today_counter",
 										Context.MODE_PRIVATE);
 
 						int counterssss = Tommorow_Homework_Counter.getInt(
@@ -297,9 +322,9 @@ public class Due_Today_Fragment extends Fragment {
 									+ Integer.toString(i);
 
 							SharedPreferences Tommorows_Homework = getActivity()
-									.getApplicationContext()
-									.getSharedPreferences(due_today_shared,
-											Context.MODE_PRIVATE);
+
+							.getSharedPreferences(due_today_shared,
+									Context.MODE_PRIVATE);
 
 							String Band1 = Tommorows_Homework.getString(
 									"due_today0", null);
@@ -380,9 +405,9 @@ public class Due_Today_Fragment extends Fragment {
 								Log.d("shared clear", "yes");
 
 								SharedPreferences.Editor localeditor = getActivity()
-										.getApplicationContext()
-										.getSharedPreferences(due_today_shared,
-												Context.MODE_PRIVATE).edit();
+
+								.getSharedPreferences(due_today_shared,
+										Context.MODE_PRIVATE).edit();
 
 								localeditor.clear();
 
@@ -412,9 +437,8 @@ public class Due_Today_Fragment extends Fragment {
 
 	public void parse_due_today_string() {
 
-		SharedPreferences Today_Homework = getActivity()
-				.getApplicationContext().getSharedPreferences("homework",
-						Context.MODE_PRIVATE);
+		SharedPreferences Today_Homework = getActivity().getSharedPreferences(
+				"homework", Context.MODE_PRIVATE);
 
 		String Due_Today = Today_Homework.getString("homework_content", "");
 
@@ -470,9 +494,9 @@ public class Due_Today_Fragment extends Fragment {
 									+ Integer.toString(shared);
 
 							SharedPreferences Band = getActivity()
-									.getApplicationContext()
-									.getSharedPreferences("last band today",
-											Context.MODE_PRIVATE);
+
+							.getSharedPreferences("last band today",
+									Context.MODE_PRIVATE);
 
 							String band = Band.getString("last string",
 									"ZZZZZZ");
@@ -491,9 +515,9 @@ public class Due_Today_Fragment extends Fragment {
 						if (shared_add > 8) {
 
 							SharedPreferences Band = getActivity()
-									.getApplicationContext()
-									.getSharedPreferences("last band today",
-											Context.MODE_PRIVATE);
+
+							.getSharedPreferences("last band today",
+									Context.MODE_PRIVATE);
 
 							SharedPreferences Description = getActivity()
 									.getSharedPreferences(due_today_shared,
@@ -966,8 +990,7 @@ public class Due_Today_Fragment extends Fragment {
 	public void parse_due_today_content() {
 
 		SharedPreferences Today_Homework_Counter = getActivity()
-				.getApplicationContext().getSharedPreferences(
-						"due_today_counter", Context.MODE_PRIVATE);
+				.getSharedPreferences("due_today_counter", Context.MODE_PRIVATE);
 
 		int counterssss = Today_Homework_Counter.getInt(
 				"last shared preference", 0);
@@ -979,8 +1002,8 @@ public class Due_Today_Fragment extends Fragment {
 			due_today_shared = "due_today" + Integer.toString(i);
 
 			SharedPreferences Todays_Homework = getActivity()
-					.getApplicationContext().getSharedPreferences(
-							due_today_shared, Context.MODE_PRIVATE);
+					.getSharedPreferences(due_today_shared,
+							Context.MODE_PRIVATE);
 
 			String Band1 = Todays_Homework.getString("due_today0", null);
 
@@ -1047,8 +1070,8 @@ public class Due_Today_Fragment extends Fragment {
 			}
 
 			SharedPreferences description_check = getActivity()
-					.getApplicationContext().getSharedPreferences(
-							"descriptioncheck", Context.MODE_PRIVATE);
+					.getSharedPreferences("descriptioncheck",
+							Context.MODE_PRIVATE);
 
 			String descriptionCheck = description_check.getString(
 					"description", "");
@@ -1058,9 +1081,9 @@ public class Due_Today_Fragment extends Fragment {
 					&& Description.length() > 5 && Date.equals(date)) {
 
 				SharedPreferences.Editor checkeditor = getActivity()
-						.getApplicationContext()
-						.getSharedPreferences("descriptioncheck",
-								Context.MODE_PRIVATE).edit();
+
+				.getSharedPreferences("descriptioncheck", Context.MODE_PRIVATE)
+						.edit();
 
 				checkeditor.putString("description", Description);
 
@@ -1114,8 +1137,7 @@ public class Due_Today_Fragment extends Fragment {
 
 				Log.d("shared clear1", "yes");
 
-				final Due_Today_List item = adapter
-						.getItem(position);
+				final Due_Today_List item = adapter.getItem(position);
 				// Store the item for later undo
 
 				final Due_Today_List currenthomeworkdue = due_today_list
@@ -1127,8 +1149,8 @@ public class Due_Today_Fragment extends Fragment {
 				String Description_Check = currenthomeworkdue.getDescription();
 
 				SharedPreferences Tommorow_Homework_Counter = getActivity()
-						.getApplicationContext().getSharedPreferences(
-								"due_today_counter", Context.MODE_PRIVATE);
+						.getSharedPreferences("due_today_counter",
+								Context.MODE_PRIVATE);
 
 				int counterssss = Tommorow_Homework_Counter.getInt(
 						"last shared preference", 0);
@@ -1140,8 +1162,8 @@ public class Due_Today_Fragment extends Fragment {
 					due_today_shared = "due_today" + Integer.toString(i);
 
 					SharedPreferences Tommorows_Homework = getActivity()
-							.getApplicationContext().getSharedPreferences(
-									due_today_shared, Context.MODE_PRIVATE);
+							.getSharedPreferences(due_today_shared,
+									Context.MODE_PRIVATE);
 
 					String Band1 = Tommorows_Homework.getString("due_today0",
 							null);
@@ -1222,9 +1244,9 @@ public class Due_Today_Fragment extends Fragment {
 						Log.d("shared clear", "yes");
 
 						SharedPreferences.Editor localeditor = getActivity()
-								.getApplicationContext()
-								.getSharedPreferences(due_today_shared,
-										Context.MODE_PRIVATE).edit();
+
+						.getSharedPreferences(due_today_shared,
+								Context.MODE_PRIVATE).edit();
 
 						localeditor.clear();
 
@@ -1570,7 +1592,8 @@ public class Due_Today_Fragment extends Fragment {
 
 		}
 
-		public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		public void onCreateOptionsMenu(android.view.Menu menu,
+				android.view.MenuInflater inflater) {
 
 			inflater.inflate(R.menu.android_refresh, menu);
 		}

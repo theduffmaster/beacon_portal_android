@@ -860,6 +860,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		requestWindowFeature(Window.FEATURE_PROGRESS);
+
 		if (!K9.isHideSpecialAccounts()) {
 			createSpecialAccounts();
 		}
@@ -881,8 +883,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			finish();
 			return;
 		}
-
-		requestWindowFeature(Window.FEATURE_PROGRESS);
 
 		Log.d(TAG, "onCreate()");
 
@@ -1132,10 +1132,21 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
 
+		final int splitBarId = getResources().getIdentifier("split_action_bar",
+				"id", "android");
+		final View splitActionBar = findViewById(splitBarId);
+
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#1976D2")));
+					new ColorDrawable(Color.parseColor("#4285f4")));
+
+			if (splitActionBar != null) {
+
+				splitActionBar.setBackgroundDrawable(new ColorDrawable(Color
+						.parseColor("#4285f4")));
+
+			}
 
 		} else {
 
@@ -1143,20 +1154,14 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			getActionBar().setBackgroundDrawable(
 
-					new ColorDrawable(Color.parseColor(actionbar_colors)));
+			new ColorDrawable(Color.parseColor(actionbar_colors)));
 
+			if (splitActionBar != null) {
 
-final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+				splitActionBar.setBackgroundDrawable(new ColorDrawable(Color
+						.parseColor(actionbar_colors)));
 
-    final View splitActionBar = findViewById(splitBarId);
-
-    if (splitActionBar != null) {
-
-       
-    splitActionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-    
-    }
+			}
 
 		}
 
@@ -1503,13 +1508,6 @@ final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "a
 			mAdapter.mFilteredFolders = Collections
 					.unmodifiableList(mAdapter.mFolders);
 		}
-	}
-
-	@Override
-	public Object onRetainNonConfigurationInstance() {
-
-		return (mAdapter == null) ? null : mAdapter.mFolders;
-
 	}
 
 	@Override
@@ -2951,6 +2949,8 @@ final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "a
 	private void initializeActionBar() {
 		mActionBar = getActionBar();
 
+		System.out.println("ActionBar= " + mActionBar);
+
 		mActionBar.setDisplayShowCustomEnabled(true);
 		mActionBar.setCustomView(R.layout.actionbar_custom);
 
@@ -3214,7 +3214,11 @@ final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "a
 
 		switch (itemId) {
 
-		case R.id.compose: {
+		case R.id.composeList: {
+			mMessageListFragment.onCompose();
+			return true;
+		}
+		case R.id.composeView: {
 			mMessageListFragment.onCompose();
 			return true;
 		}
@@ -3432,7 +3436,8 @@ final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "a
 			mMenu2.findItem(R.id.previous_message).setVisible(false);
 			mMenu2.findItem(R.id.single_message_options).setVisible(false);
 			mMenu2.findItem(R.id.delete).setVisible(false);
-			mMenu2.findItem(R.id.compose).setVisible(false);
+			mMenu2.findItem(R.id.composeList).setVisible(false);
+			mMenu2.findItem(R.id.composeView).setVisible(false);
 			mMenu2.findItem(R.id.archive).setVisible(false);
 			mMenu2.findItem(R.id.move).setVisible(false);
 			mMenu2.findItem(R.id.copy).setVisible(false);
@@ -3443,6 +3448,36 @@ final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "a
 			mMenu2.findItem(R.id.toggle_message_view_theme).setVisible(false);
 			mMenu2.findItem(R.id.show_headers).setVisible(false);
 			mMenu2.findItem(R.id.hide_headers).setVisible(false);
+
+			final int splitBarId = getResources().getIdentifier(
+					"split_action_bar", "id", "android");
+			final View splitActionBar = findViewById(splitBarId);
+
+			SharedPreferences sharedpref = getSharedPreferences(
+					"actionbar_color", Context.MODE_PRIVATE);
+
+			if (!sharedpref.contains("actionbar_color")) {
+
+				if (splitActionBar != null) {
+
+					splitActionBar.setBackgroundDrawable(new ColorDrawable(
+							Color.parseColor("#4285f4")));
+
+				}
+
+			} else {
+
+				actionbar_colors = sharedpref
+						.getString("actionbar_color", null);
+
+				if (splitActionBar != null) {
+
+					splitActionBar.setBackgroundDrawable(new ColorDrawable(
+							Color.parseColor(actionbar_colors)));
+				}
+
+			}
+
 		} else {
 			// hide prev/next buttons in split mode
 			if (mDisplayMode != DisplayMode.MESSAGE_VIEW) {
@@ -3465,6 +3500,17 @@ final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "a
 				// MenuItem next = menu.findItem(R.id.next_message);
 				// next.setEnabled(canDoNext);
 				// next.getIcon().setAlpha(canDoNext ? 255 : 127);
+
+				final int splitBarId = getResources().getIdentifier(
+						"split_action_bar", "id", "android");
+				final View splitActionBar = findViewById(splitBarId);
+
+				if (splitActionBar != null) {
+
+					splitActionBar.setBackgroundDrawable(new ColorDrawable(
+							Color.parseColor("#ffffff")));
+				}
+
 			}
 
 			MenuItem toggleTheme = mMenu2
@@ -3570,7 +3616,7 @@ final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "a
 		} else {
 			mMenu2.findItem(R.id.set_sort).setVisible(true);
 			mMenu2.findItem(R.id.select_all).setVisible(true);
-			mMenu2.findItem(R.id.compose).setVisible(true);
+			mMenu2.findItem(R.id.composeList).setVisible(true);
 			mMenu2.findItem(R.id.mark_all_as_read).setVisible(
 					mMessageListFragment.isMarkAllAsReadSupported());
 

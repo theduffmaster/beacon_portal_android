@@ -1,13 +1,12 @@
 package com.bernard.beaconportal.activities;
 
-import de.timroes.android.listview.EnhancedListView;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.AttributeSet;
-import android.view.View;
-
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.AttributeSet;
+import android.view.View;
+import de.timroes.android.listview.EnhancedListView;
 
 public class ScrollLock extends ViewPager {
 

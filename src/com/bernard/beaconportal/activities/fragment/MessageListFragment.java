@@ -19,12 +19,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -144,6 +146,8 @@ public class MessageListFragment extends Fragment implements
 	private static final int ACCOUNT_UUID_COLUMN = 16;
 	private static final int FOLDER_NAME_COLUMN = 17;
 	private static final int THREAD_COUNT_COLUMN = 18;
+
+	private String actionbar_colors;
 
 	private static final String[] PROJECTION = Utility.copyOf(
 			THREADED_PROJECTION, THREAD_COUNT_COLUMN);
@@ -1157,6 +1161,7 @@ public class MessageListFragment extends Fragment implements
 		}
 
 		updateTitle();
+
 	}
 
 	private void restartLoader() {

@@ -24,11 +24,11 @@
     android:clickable="true">
         
       <ImageView
-          android:id="@+id/material_shadow_image"
-        android:src="@drawable/material_shadow"
+          android:id="@+id/material_shadow_image_main"
+        android:src="@drawable/material_shadow270"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1976D2"
+        android:background="#4285f4"
         />
         
     <TextView
@@ -40,7 +40,7 @@
 			android:textColor="#ffffff"
             android:gravity="center"
             android:textStyle="bold" 
-            android:background="#1976D2"
+            android:background="#4285f4"
             android:paddingTop="16dp"
                 
         /> 
@@ -54,14 +54,14 @@
             android:textSize="30sp"
             android:textColor="#ffffff"
             android:gravity="center"
-            android:background="#1976D2"
+            android:background="#4285f4"
             android:paddingBottom="16dp"
             
         />     
     
       <ImageView
           android:id="@+id/material_shadow_image1"
-        android:src="@drawable/material_shadow"
+        android:src="@drawable/material_shadow270"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff"

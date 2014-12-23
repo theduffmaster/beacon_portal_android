@@ -7,29 +7,41 @@ import java.util.Locale;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Instrumentation;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Path.Direction;
+import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.test.TouchUtils;
+import android.util.TypedValue;
+import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-import com.astuetz.PagerSlidingTabStrip;
-import com.bernard.beaconportal.activities.R;
+import com.astuetz.PagerSlidingTabStripMargins;
 import com.faizmalkani.floatingactionbutton.Fab;
 
-public class FragmentsSchedule extends SherlockFragment {
+public class FragmentsSchedule extends Fragment {
 
 	private String actionbar_colors, background_colors;
 
@@ -44,67 +56,74 @@ public class FragmentsSchedule extends SherlockFragment {
 			Bundle savedInstanceState) {
 		setHasOptionsMenu(true);
 
-		View view = inflater.inflate(R.layout.viewpager_schedule, container,
-				false);
+		final View view = inflater.inflate(R.layout.viewpager_schedule,
+				container, false);
+
+		ActionBar actionBar = ((MainActivity) getActivity())
+				.getSupportActionBar();
+
+		actionBar.setElevation(0);
 
 		SharedPreferences sharedprefer = getActivity().getSharedPreferences(
 				"actionbar_color", Context.MODE_PRIVATE);
 
-		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view.findViewById(R.id.pagerTabStrip1); 
-		
+		PagerSlidingTabStripMargins tabs = (PagerSlidingTabStripMargins) view
+				.findViewById(R.id.pagerTabStrip1);
+
 		if (!sharedprefer.contains("actionbar_color")) {
 
-			actionbar_colors = "#1976D2";
+			actionbar_colors = "#4285f4";
 
-			RelativeLayout layout = (RelativeLayout) view
-					.findViewById(R.id.view_container);
-
-			layout.setBackgroundColor(Color.parseColor(actionbar_colors));
-			
 			tabs.setDividerColor(Color.parseColor(actionbar_colors));
+
+			tabs.setBackgroundColor(Color.parseColor(actionbar_colors));
 
 		} else {
 
-			actionbar_colors = sharedprefer
-					.getString("actionbar_color", null);
-			
+			actionbar_colors = sharedprefer.getString("actionbar_color", null);
+
 			tabs.setDividerColor(Color.parseColor(actionbar_colors));
+
+			tabs.setBackgroundColor(Color.parseColor(actionbar_colors));
 
 		}
 
-		SharedPreferences sharedpreference = getActivity().getSharedPreferences(
-				"background_color", Context.MODE_PRIVATE);
-		
+		SharedPreferences sharedpreference = getActivity()
+				.getSharedPreferences("background_color", Context.MODE_PRIVATE);
+
 		if (!sharedpreference.contains("background_color")) {
 
 			background_colors = "#ffffff";
 
 			tabs.setTextColor(Color.parseColor(background_colors));
-			
+
 			tabs.setIndicatorColor(Color.parseColor(background_colors));
 
 		} else {
 
-			background_colors = sharedpreference
-					.getString("background_color", "#ffffff");
-			
+			background_colors = sharedpreference.getString("background_color",
+					"#ffffff");
+
 			tabs.setTextColor(Color.parseColor(background_colors));
-			
+
 			tabs.setIndicatorColor(Color.parseColor(background_colors));
 
 		}
-		
+
 		ViewPager pager = (ViewPager) view.findViewById(R.id.viewPager1);
-
-		RelativeLayout layout = (RelativeLayout) view
-				.findViewById(R.id.view_container);
-
-		layout.setBackgroundColor(Color.parseColor(actionbar_colors));
 
 		pager.setAdapter(new ViewPagerAdapterScheduleView(
 				getChildFragmentManager()));
-		
+
 		tabs.setViewPager(pager);
+
+		int margin_dpi = convertDip2Pixels(getActivity(), 24);
+
+		pager.setPageMargin(margin_dpi);
+
+		ColorDrawable inbetween = new ColorDrawable(0xFFeeeeee);
+
+		pager.setPageMarginDrawable(inbetween);
 
 		String weekDay;
 		SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.US);
@@ -115,24 +134,24 @@ public class FragmentsSchedule extends SherlockFragment {
 		System.out.println(weekDay);
 
 		if (weekDay.contains("Monday")) {
-			pager.setCurrentItem(0);
+			pager.setCurrentItem(0, true);
 
 		}
 		if (weekDay.contains("Tuesday")) {
-			pager.setCurrentItem(1);
+			pager.setCurrentItem(1, true);
 
 		}
 
 		if (weekDay.contains("Wednesday")) {
-			pager.setCurrentItem(2);
+			pager.setCurrentItem(2, true);
 
 		}
 		if (weekDay.contains("Thursday")) {
-			pager.setCurrentItem(3);
+			pager.setCurrentItem(3, true);
 
 		}
 		if (weekDay.contains("Friday")) {
-			pager.setCurrentItem(4);
+			pager.setCurrentItem(4, true);
 
 		}
 
@@ -143,7 +162,7 @@ public class FragmentsSchedule extends SherlockFragment {
 
 		if (!sharedpref.contains("actionbar_color")) {
 
-			mFab.setFabColor(Color.parseColor("#1976D2"));
+			mFab.setFabColor(Color.parseColor("#4285f4"));
 
 		} else {
 
@@ -181,6 +200,11 @@ public class FragmentsSchedule extends SherlockFragment {
 		}
 
 		return view;
+	}
+
+	public static int convertDip2Pixels(Context context, int dip) {
+		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+				dip, context.getResources().getDisplayMetrics());
 	}
 
 	@Override

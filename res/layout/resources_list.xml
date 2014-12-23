@@ -3,8 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="8dp" >
+     >
 
+      <ImageView
+          android:id="@+id/material_shadow_image"
+        android:src="@drawable/material_shadow270"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        />
+    
     <ListView
         android:id="@id/android:list"
         android:layout_width="match_parent"

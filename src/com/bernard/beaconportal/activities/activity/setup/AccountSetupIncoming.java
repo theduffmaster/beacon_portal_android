@@ -18,7 +18,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.bernard.beaconportal.activities.*;
 import com.bernard.beaconportal.activities.Account.FolderMode;
-import com.bernard.beaconportal.activities.activity.K9Activity;
+import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupCheckSettings.CheckDirection;
 import com.bernard.beaconportal.activities.helper.Utility;
 import com.bernard.beaconportal.activities.mail.AuthType;
@@ -40,7 +40,8 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AccountSetupIncoming extends K9Activity implements OnClickListener {
+public class AccountSetupIncoming extends K9ActivityMaterial implements
+		OnClickListener {
 	private static final String EXTRA_ACCOUNT = "account";
 	private static final String EXTRA_MAKE_DEFAULT = "makeDefault";
 
@@ -123,23 +124,20 @@ public class AccountSetupIncoming extends K9Activity implements OnClickListener 
 
 			getActionBar().setBackgroundDrawable(
 
-new ColorDrawable(Color.parseColor(actionbar_colors)));
+			new ColorDrawable(Color.parseColor(actionbar_colors)));
 
+			final int splitBarId = getResources().getIdentifier(
+					"split_action_bar", "id", "android");
 
-final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+			final View splitActionBar = findViewById(splitBarId);
 
-    final View splitActionBar = findViewById(splitBarId);
+			if (splitActionBar != null) {
 
-    if (splitActionBar != null) {
+				splitActionBar.setBackgroundDrawable(
 
-       
+				new ColorDrawable(Color.parseColor(actionbar_colors)));
 
-    splitActionBar.setBackgroundDrawable(
-
-new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-
-    }
+			}
 
 		}
 

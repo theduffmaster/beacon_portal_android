@@ -14,7 +14,7 @@
         android:id="@+id/info_time"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@drawable/app_start" >
+        android:background="@drawable/dialog_selectable" >
 
         <TextView
             android:id="@+id/infotimeView"
@@ -34,13 +34,13 @@
         android:layout_height="1px"
          
         android:layout_alignBottom="@+id/Relative_Layout_Settings"
-        android:background="#D3D3D3" />
+        android:background="@color/dialog_divider" />
     
     <RelativeLayout
         android:id="@+id/notesAdd"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:background="@drawable/app_start" >
+        android:background="@drawable/dialog_selectable" >
 
         <TextView
             android:id="@+id/textViewTitles"
@@ -60,13 +60,13 @@
         android:layout_height="1px"
          
         android:layout_alignBottom="@+id/Relative_Layout_Settings"
-        android:background="#D3D3D3" />
+        android:background="@color/dialog_divider" />
     
     <RelativeLayout
         android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:background="@drawable/app_start" >
+        android:background="@drawable/dialog_selectable" >
 
         <TextView
             android:id="@+id/infotextView"
@@ -75,7 +75,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:singleLine="true"
-            android:text="Swipe Away Note to Delete That Note"
+            android:text="Swipe Away A Note to Delete That Note"
             android:textSize="12sp" />
        
     </RelativeLayout>
@@ -86,7 +86,7 @@
         android:layout_height="1px"
          
         android:layout_alignBottom="@+id/Relative_Layout_Settings"
-        android:background="#D3D3D3" />
+        android:background="@color/dialog_divider" />
     
    <de.timroes.android.listview.EnhancedListView
        
