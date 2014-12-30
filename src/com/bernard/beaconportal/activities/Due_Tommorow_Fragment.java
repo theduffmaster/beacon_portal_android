@@ -24,27 +24,43 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
+import com.bernard.beaconportal.activities.Friday_view.NotesDialog;
+import com.bernard.beaconportal.activities.Friday_view.NotesDialog.NoteDialog;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
+import android.text.InputType;
 import android.text.TextUtils.TruncateAt;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import de.timroes.android.listview.EnhancedListView;
@@ -60,15 +76,27 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 	private String actionbar_colors;
 
-	private String date;
+	private static String date;
 
 	private int shared;
 
 	private int countersss;
+	
+	private SharedPreferences bDay;
+	
+	private SharedPreferences userName;
 
 	public static EnhancedListView lView;
+	
+	public View footer;
+	
+	public TextView footer_text;
+	
+	private SharedPreferences Today_Homework_Counter;
+	
+	private TextView addHomework;
 
-	private ArrayAdapter<Due_Today_List> adapter;
+	private static ArrayAdapter<Due_Today_List> adapter;
 
 	private String Data, Band, Number, Class, Teacher, Title, Date, Type,
 			Description, DescriptionAll, DescriptionCheck, due_tommorow_shared,
@@ -98,6 +126,30 @@ public class Due_Tommorow_Fragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
+		SharedPreferences Homework_Counter = getActivity()
+				.getSharedPreferences("due_tommorow_counter",
+						Context.MODE_PRIVATE);
+		
+		int homework_counter = Homework_Counter.getInt("last shared preference",0);
+		
+		SharedPreferences Count1 = getActivity()
+				.getSharedPreferences("add_counter",
+						Context.MODE_PRIVATE);
+
+		int add_counter = Count1.getInt("tommorow", 0);
+
+		if(add_counter > homework_counter){
+			
+			SharedPreferences.Editor localEditorCount = getActivity()
+					.getSharedPreferences("due_tommorow_counter",
+							Context.MODE_PRIVATE).edit();
+
+			localEditorCount.putInt("last shared preference", add_counter);
+
+			localEditorCount.apply();
+			
+		}
+		
 		new Download().execute();
 
 		swipe = inflater.inflate(R.layout.activity_main, container, false);
@@ -126,6 +178,36 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		lView = (EnhancedListView) swipe.findViewById(R.id.listView1);
 
+		footer = getActivity().getLayoutInflater().inflate(
+				R.layout.homeworkadd_footer, null);
+		
+		footer.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				showNoteDialog();
+
+			}
+		});
+
+		footer_text = (TextView) footer.findViewById(R.id.textView1);
+		
+		SharedPreferences sharedprefers = getActivity().getSharedPreferences(
+				"actionbar_color", Context.MODE_PRIVATE);
+
+		if (!sharedprefers.contains("actionbar_color")) {
+
+			footer_text.setTextColor(Color.parseColor("#4285f4"));
+
+		} else {
+
+			actionbar_colors = sharedprefers.getString("actionbar_color", null);
+
+			footer_text.setTextColor(Color.parseColor(actionbar_colors));
+		}
+
+		lView.addFooterView(footer);
+		
 		lView.setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
 			public void onScrollStateChanged(AbsListView absListView, int i) {
@@ -222,8 +304,28 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 				});
 
-		lView.setEmptyView(swipe.findViewById(R.id.textView2));
+		lView.setEmptyView(swipe.findViewById(R.id.emptyView));
 
+		addHomework = (TextView) swipe.findViewById(R.id.textView2);
+		
+		addHomework.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				showNoteDialog();
+
+				Log.d("dialog shown?", "");
+				
+			}
+		});
+		
+		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
+				this.mClickedReceiver, new IntentFilter("refreshListView"));
+		
+		due_tommorow_list = new ArrayList<Due_Today_List>();
+		
+		
+		
 		return swipe;
 
 	}
@@ -406,11 +508,19 @@ public class Due_Tommorow_Fragment extends Fragment {
 		lView.enableSwipeToDismiss();
 		EnhancedListView.SwipeDirection direction = EnhancedListView.SwipeDirection.END;
 		lView.setSwipeDirection(direction);
+		lView.setRequireTouchBeforeDismiss(false);
 
 	}
 
 	public void parse_due_tommorow_string() {
 
+		SharedPreferences Homework_Counter = getActivity()
+				.getSharedPreferences("due_tommorow_counter",
+						Context.MODE_PRIVATE);
+
+			int Count = Homework_Counter.getInt("last shared preference",
+					0);
+		
 		SharedPreferences Tommorow_Homework = getActivity()
 				.getSharedPreferences("homework", Context.MODE_PRIVATE);
 
@@ -581,9 +691,23 @@ public class Due_Tommorow_Fragment extends Fragment {
 					.getSharedPreferences("due_tommorow_counter",
 							Context.MODE_PRIVATE).edit();
 
-			localEditor1.putInt("last shared preference", shared + 1);
+			if(shared+1 < Count){
+			
+			localEditor1.putInt("last shared preference", Count);
+			
+			due_tommorow_shared = "due_tommorow" + Integer.toString(Count + 1);
 
 			localEditor1.apply();
+			
+			}else{
+				
+				localEditor1.putInt("last shared preference", shared+1);
+				
+				due_tommorow_shared = "due_tommorow" + Integer.toString(shared + 1);
+
+				localEditor1.apply();
+				
+			}
 
 			strb.setLength(0);
 
@@ -698,7 +822,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		@Override
 		protected Void doInBackground(String... urls) {
-			SharedPreferences bDay = getActivity().getSharedPreferences(
+			bDay = getActivity().getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE);
 
 			String day1 = Integer.toString(bDay.getInt("Day", 0));
@@ -707,7 +831,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
 
-			SharedPreferences userName = getActivity().getSharedPreferences(
+			userName = getActivity().getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE);
 
 			String day = day1.replaceFirst("^0+(?!$)", "");
@@ -812,7 +936,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		@Override
 		protected Void doInBackground(String... urls) {
-			SharedPreferences bDay = getActivity().getSharedPreferences(
+			bDay = getActivity().getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE);
 
 			String day1 = Integer.toString(bDay.getInt("Day", 0));
@@ -821,7 +945,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
 
-			SharedPreferences userName = getActivity().getSharedPreferences(
+			userName = getActivity().getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE);
 
 			String day = day1.replaceFirst("^0+(?!$)", "");
@@ -985,12 +1109,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			Log.d("sender", "Broadcasting message");
 
-			Intent intent = new Intent("up_navigation");
-
-			intent.putExtra("message", "This is my message!");
-			LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(
-					intent);
-
 			Toast.makeText(getActivity(), "Refresh Finished", 4000).show();
 
 			SharedPreferences download_error = getActivity()
@@ -1068,7 +1186,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		System.out.println(date);
 
-		SharedPreferences Today_Homework_Counter = getActivity()
+		Today_Homework_Counter = getActivity()
 				.getSharedPreferences("due_tommorow_counter",
 						Context.MODE_PRIVATE);
 
@@ -1101,8 +1219,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			String Type1 = Todays_Homework.getString("due_tommorow6", null);
 
-			String Description1 = Todays_Homework.getString("due_tommorow7",
-					null);
+			String Description1 = Todays_Homework.getString("due_tommorow7",null);
 
 			if (Band1 != null) {
 
@@ -1263,6 +1380,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 	}
 
+	
+	
 	private void registerClickCallback() {
 		EnhancedListView list = (EnhancedListView) swipe
 				.findViewById(R.id.listView1);
@@ -1761,5 +1880,159 @@ public class Due_Tommorow_Fragment extends Fragment {
 		}
 
 	}
+	
+	
+	private void showNoteDialog() {
+		FragmentManager fm = getFragmentManager();
+		NoteDialog noteDialog = new NoteDialog();
+		noteDialog.show(fm, null);
+		
+		
+	}
 
+	public static class NoteDialog extends DialogFragment {
+
+		private EditText mTitleText;
+		
+		private EditText mDescriptionText;
+
+		private int Counts;
+
+		public NoteDialog() {
+			
+		}
+
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(
+					getActivity());
+
+			View view = getActivity().getLayoutInflater().inflate(
+					R.layout.add_homework, null);
+			
+			mTitleText = (EditText) view.findViewById(R.id.editText1);
+			
+			mDescriptionText = (EditText) view.findViewById(R.id.editText2);
+
+			builder.setView(view);
+
+			builder.setTitle("Add Homework Item");
+
+			builder.setNegativeButton("Cancel",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog,
+								int whichButton) {
+							getDialog().dismiss();
+						}
+					});
+
+			builder.setPositiveButton("Add",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog,
+								int whichButton) {
+
+							mDescriptionText.setInputType(InputType.TYPE_NULL);
+							
+							mTitleText.setInputType(InputType.TYPE_NULL);
+							
+							SharedPreferences Homework_Counter = getActivity()
+									.getSharedPreferences("due_tommorow_counter",
+											Context.MODE_PRIVATE);
+
+							if (Homework_Counter.contains("last shared preference")) {
+
+								int Count = Homework_Counter.getInt("last shared preference",
+										0);
+
+								Counts = Count + 2;
+								 
+								System.out.println("Counts1 "+ Counts);
+
+							} else {
+
+								Counts = 1;
+
+								System.out.println("Counts2 "+ Counts);
+								
+							}
+							
+							System.out.println("Counts3 "+Counts);
+							
+							String HomeworkNumber = "due_tommorow" + Integer.toString(Counts);
+							
+							SharedPreferences.Editor localEditorCount = getActivity()
+									.getSharedPreferences("due_tommorow_counter",
+											Context.MODE_PRIVATE).edit();
+
+							localEditorCount.putInt("last shared preference", Counts);
+
+							localEditorCount.apply();
+							
+							SharedPreferences.Editor localEditorCount1 = getActivity()
+									.getSharedPreferences("add_counter",
+											Context.MODE_PRIVATE).edit();
+
+							localEditorCount1.putInt("tommorow", Counts);
+
+							localEditorCount1.apply();
+							
+							SharedPreferences.Editor localEditor = getActivity()
+									.getSharedPreferences(HomeworkNumber,
+											Context.MODE_PRIVATE).edit();
+							
+							localEditor.putString("due_tommorow0", "X");
+
+							localEditor.putString("due_tommorow1", "0");
+
+							localEditor.putString("due_tommorow2", "Manually Added Homework");
+
+							localEditor.putString("due_tommorow3", "Teacher");
+
+							localEditor.putString("due_tommorow4", mTitleText.getText().toString());
+
+							localEditor.putString("due_tommorow5", date);
+
+							localEditor.putString("due_tommorow6", "Homework");
+
+							localEditor.putString("due_tommorow7", mDescriptionText.getText().toString());
+							
+							localEditor.apply();
+							
+							Intent intent = new Intent("refreshListView");
+
+							intent.putExtra("refresh", "refresh listview");
+							LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(
+									intent);
+							
+							getDialog().dismiss();
+							
+						}
+					});
+			
+			return builder.create();
+
+		}
+
+	}
+	
+	private BroadcastReceiver mClickedReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context paramAnonymousContext,
+				Intent paramAnonymousIntent) {
+
+			due_tommorow_list.clear();
+			
+			Log.d("receiver", "refreshed listview");
+			
+			parse_due_tommorow_content();
+			
+			adapter.notifyDataSetChanged();
+			
+		}
+	};
+	
 }
+

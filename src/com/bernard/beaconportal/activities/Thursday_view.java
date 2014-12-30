@@ -40,13 +40,15 @@ public class Thursday_view extends Fragment {
 
 	private ListView list;
 
-	private String actionbar_colors;
+	private static String actionbar_colors;
 
 	private TextView footer_text;
 
 	private static ArrayAdapter<schedule_view> adapter;
 
 	private View footer;
+	
+	private static TextView addNoteText;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -307,6 +309,24 @@ public class Thursday_view extends Fragment {
 			mNotes = (EnhancedListView) view.findViewById(R.id.listViewNotes);
 			addNote = (RelativeLayout) view.findViewById(R.id.notesAdd);
 
+			addNoteText = (TextView) view.findViewById(R.id.textViewTitles);
+			
+			SharedPreferences sharedprefer = getActivity().getSharedPreferences(
+					"actionbar_color", Context.MODE_PRIVATE);
+
+			if (!sharedprefer.contains("actionbar_color")) {
+
+				addNoteText.setTextColor(Color.parseColor("#4285f4"));
+
+			} else {
+
+				actionbar_colors = sharedprefer.getString("actionbar_color", null);
+
+				addNoteText.setTextColor(Color.parseColor(actionbar_colors));
+			}
+			
+			addNoteText.setText("Add Note For " + bandString);
+			
 			String band_position = ("thursday" + (Integer.toString(position)))
 					.toString();
 

@@ -108,12 +108,14 @@ public class FragmentsHomeworkDue extends Fragment {
 
 				pager.setAdapter(new ViewPagerAdapterHomeworkAfterThree(
 						getChildFragmentManager()));
+				
+				tabs.setIndicatorColor(Color.parseColor(actionbar_colors));
 
 			} else {
 
 				pager.setAdapter(new ViewPagerAdapterHomework(
 						getChildFragmentManager()));
-
+				
 			}
 
 		}
