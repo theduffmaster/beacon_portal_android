@@ -101,7 +101,6 @@ import com.bernard.beaconportal.activities.Account.FolderMode;
 import com.bernard.beaconportal.activities.Account.SortType;
 import com.bernard.beaconportal.activities.AccountStats;
 import com.bernard.beaconportal.activities.BaseAccount;
-import com.bernard.beaconportal.activities.Due_Today_List;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.FragmentSettings;
 import com.bernard.beaconportal.activities.FragmentsHomeworkDue;
@@ -236,8 +235,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	BroadcastReceiver receiver = null;
 	IntentFilter filter = null;
 
-	private Object mSelectedAccountItem1;
-
 	private View header_folders;
 
 	private View header_inbox;
@@ -286,36 +283,12 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	String[] count_Inbox;
 	int[] icon_Inbox;
 	private String counterss;
-	private int counters;
 	Fragment fragment1 = new FragmentsSchedule();
 	Fragment fragment2 = new FragmentsHomeworkDue();
 	Fragment fragment3 = new FragmentSettings();
-	private CharSequence mDrawerTitle;
-	private CharSequence mTitle;
-
-	private int shared1;
-
-	private BaseAccount mBaseAccount;
-
-	private int countersss1;
-
 	private int mUnreadMessageCount = 0;
 
-	private String due_tommorow_shared, due_tommorow_shared_content;
-
-	private List<Due_Today_List> due_today_list;
-
-	private List<String> read_due_today_list;
-
 	private String K9count;
-
-	private View swipe;
-
-	private int shared;
-
-	private int countersss;
-
-	private ArrayAdapter<Due_Today_List> adapter;
 
 	private ViewGroup mMessageViewContainer;
 	private View mMessageViewPlaceHolder;
@@ -324,23 +297,15 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	private MessageViewFragment mMessageViewFragment;
 	private int mFirstBackStackId = -1;
 
-	private ScrollView mDrawer_Scroll;
-
 	private Account mAccount;
 	private String mFolderName;
 	private LocalSearch mSearch;
 	private boolean mSingleFolderMode;
 	private boolean mSingleAccountMode;
 
-	private String[] Accountsone;
-	private String[] BeaconPortaltwo;
-	private String[] Foldersthree;
-
 	int[] mAccountsHeights;
 	int[] mBeaconPortalHeights;
 	int[] mFoldersHeights;
-
-	private K9FragmentActivity mK9FragmentActivity;
 
 	private K9ActivityCommon mBase;
 
@@ -360,8 +325,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	private boolean mNoThreading;
 
 	private String K9counts;
-
-	private MessageList currentActivity;
 
 	private DisplayMode mDisplayMode;
 	private MessageReference mMessageReference;
@@ -608,14 +571,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	private static final int DIALOG_RECREATE_ACCOUNT = 3;
 	private static final int DIALOG_NO_FILE_MANAGER = 4;
 
-	/**
-	 * Contains information about objects that need to be retained on
-	 * configuration changes.
-	 * 
-	 * @see #onRetainNonConfigurationInstance()
-	 */
-	private NonConfigurationInstance mNonConfigurationInstance;
-
 	private static final int ACTIVITY_REQUEST_PICK_SETTINGS_FILE = 1;
 
 	public class AccountsHandler extends Handler {
@@ -831,10 +786,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 	};
 
-	private static String ACCOUNT_STATS = "accountStats";
-	private static String STATE_UNREAD_COUNT = "unreadCount";
-	private static String SELECTED_CONTEXT_ACCOUNT = "selectedContextAccount";
-
 	public static final String EXTRA_STARTUP = "startup";
 
 	public static final String ACTION_IMPORT_SETTINGS = "importSettings";
@@ -1021,8 +972,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		Show_View = sharedpre.getString("show_view", "");
 
-		SharedPreferences Today_Homework = getApplicationContext()
-				.getSharedPreferences("due_today", Context.MODE_PRIVATE);
+		getApplicationContext().getSharedPreferences("due_today",
+				Context.MODE_PRIVATE);
 
 		SharedPreferences counts = getSharedPreferences("due_today",
 				Context.MODE_PRIVATE);
@@ -1342,8 +1293,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		Show_View = sharedpre.getString("show_view", "");
 
-		SharedPreferences Today_Homework = getApplicationContext()
-				.getSharedPreferences("due_today", Context.MODE_PRIVATE);
+		getApplicationContext().getSharedPreferences("due_today",
+				Context.MODE_PRIVATE);
 
 		SharedPreferences counts = getSharedPreferences("due_today",
 				Context.MODE_PRIVATE);
@@ -1808,8 +1759,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	}
 
 	public void onDeleteAccount(Account account) {
-		BaseAccount mSelectedContextAccount1 = account;
-
 		showDialog(DIALOG_REMOVE_ACCOUNT);
 	}
 
@@ -3490,8 +3439,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 						.isLoadFinished());
 				boolean canDoPrev = (initialized && !mMessageListFragment
 						.isFirst(ref));
-				boolean canDoNext = (initialized && !mMessageListFragment
-						.isLast(ref));
+				mMessageListFragment.isLast(ref);
 
 				MenuItem prev = mMenu2.findItem(R.id.previous_message);
 				prev.setEnabled(canDoPrev);
@@ -4622,10 +4570,8 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		List<BaseAccount> accounts = new ArrayList<BaseAccount>();
 
 		if (displaySpecialAccounts() && !K9.isHideSpecialAccounts()) {
-			BaseAccount unifiedInboxAccount = SearchAccount
-					.createUnifiedInboxAccount(this);
-			BaseAccount allMessagesAccount = SearchAccount
-					.createAllMessagesAccount(this);
+			SearchAccount.createUnifiedInboxAccount(this);
+			SearchAccount.createAllMessagesAccount(this);
 
 			// accounts.add(unifiedInboxAccount);
 			// accounts.add(allMessagesAccount);
@@ -4755,7 +4701,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			holder.description.setText(description);
 
 			if (account instanceof Account) {
-				Account realAccount = (Account) account;
 
 			} else {
 
@@ -5851,7 +5796,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	 *            called.
 	 */
 	void setNonConfigurationInstance(NonConfigurationInstance inst) {
-		mNonConfigurationInstance = inst;
 	}
 
 	public class AccountsAdapter1 extends ArrayAdapter<BaseAccount> {
@@ -5954,7 +5898,6 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				holder.flaggedMessageCountWrapper.setVisibility(View.GONE);
 			}
 			if (account instanceof Account) {
-				Account realAccount = (Account) account;
 
 			} else {
 

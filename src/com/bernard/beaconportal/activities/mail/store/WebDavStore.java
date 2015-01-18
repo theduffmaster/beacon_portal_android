@@ -1,17 +1,42 @@
 package com.bernard.beaconportal.activities.mail.store;
 
-import android.util.Log;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.zip.GZIPInputStream;
 
-import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.controller.MessageRetrievalListener;
-import com.bernard.beaconportal.activities.helper.Utility;
-import com.bernard.beaconportal.activities.mail.*;
-import com.bernard.beaconportal.activities.mail.filter.EOLConvertingOutputStream;
-import com.bernard.beaconportal.activities.mail.internet.MimeMessage;
+import javax.net.ssl.SSLException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.http.*;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpRequest;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
@@ -32,22 +57,24 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
-import javax.net.ssl.SSLException;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
+import android.util.Log;
 
-import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.zip.GZIPInputStream;
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.controller.MessageRetrievalListener;
+import com.bernard.beaconportal.activities.helper.Utility;
+import com.bernard.beaconportal.activities.mail.AuthType;
+import com.bernard.beaconportal.activities.mail.CertificateValidationException;
+import com.bernard.beaconportal.activities.mail.ConnectionSecurity;
+import com.bernard.beaconportal.activities.mail.FetchProfile;
+import com.bernard.beaconportal.activities.mail.Flag;
+import com.bernard.beaconportal.activities.mail.Folder;
+import com.bernard.beaconportal.activities.mail.Message;
+import com.bernard.beaconportal.activities.mail.MessagingException;
+import com.bernard.beaconportal.activities.mail.ServerSettings;
+import com.bernard.beaconportal.activities.mail.Store;
+import com.bernard.beaconportal.activities.mail.filter.EOLConvertingOutputStream;
+import com.bernard.beaconportal.activities.mail.internet.MimeMessage;
 
 /**
  * <pre>

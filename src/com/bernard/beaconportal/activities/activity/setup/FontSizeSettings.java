@@ -7,13 +7,16 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.preference.*;
+import android.preference.ListPreference;
+import android.preference.Preference;
 import android.view.View;
 import android.widget.TextView;
 
-import com.bernard.beaconportal.activities.*;
-import com.bernard.beaconportal.activities.activity.K9PreferenceActivity;
+import com.bernard.beaconportal.activities.FontSizes;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.activity.K9PreferenceActivity;
 
 /**
  * Activity to configure the font size of the information displayed in the

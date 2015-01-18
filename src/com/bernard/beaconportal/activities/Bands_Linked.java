@@ -16,8 +16,6 @@ import android.widget.TextView;
 
 public class Bands_Linked extends Fragment {
 
-	private String actionbar_colors;
-
 	private EditText editADV1Band;
 	private EditText editADV2Band;
 	private EditText editBBand;

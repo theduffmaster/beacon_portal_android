@@ -11,8 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.bernard.beaconportal.activities.BaseAccount;
-import com.bernard.beaconportal.activities.provider.UnreadWidgetProvider;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.provider.UnreadWidgetProvider;
 
 /**
  * Activity to select an account for the unread widget.

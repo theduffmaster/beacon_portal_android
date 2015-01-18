@@ -22,7 +22,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -39,10 +38,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -50,13 +45,7 @@ import android.widget.Toast;
 
 public class DailyHomeworkDownload extends BroadcastReceiver {
 
-	private static final String EXTRA_ACCOUNT = "account";
-
-	private String Data, Band, Number, Class, Teacher, Title, Date, Type,
-			Description, DescriptionAll, DescriptionCheck, due_today_shared,
-			due_today_shared_content;
-
-	private static final String TAG = "K9MailExtension";
+	private String due_today_shared, due_today_shared_content;
 
 	public static final String PREF_NAME = "pref_name";
 
@@ -75,64 +64,20 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 	TextView mWelcome;
 	ListView mDrawerList;
 	ActionBarDrawerToggle mDrawerToggle;
-	private MenuListAdapter mMenuAdapter;
 	String actionbar_colors, actionbar_colorsString;
-	private String Show_View;
 	String[] title;
 	String[] count;
 	int[] icon;
-	private String counterss;
-	private int counters;
-	private static ProgressDialog pd;
 	Fragment fragment1 = new FragmentsSchedule();
 	Fragment fragment2 = new FragmentsHomeworkDue();
 	Fragment fragment3 = new FragmentSettings();
-	private CharSequence mDrawerTitle;
-	private CharSequence mDrawerTitleCheck;
-	private CharSequence mTitle;
-	private String KEY_STATE_TITLE;
-
 	ProgressDialog LoginDialog;
 
 	private HttpResponse response;
 
-	private int starts = 0;
-
-	private String checkbox_edit;
-
-	private BaseAccount mSelectedContextAccount;
-
-	private int shared1;
-
-	private int number;
-
-	private int countersss1;
-
-	private int mUnreadMessageCount = 0;
-
 	private String due_tommorow_shared, due_tommorow_shared_content;
 
-	private List<Due_Today_List> due_today_list;
-
-	private List<String> read_due_today_list;
-
-	private String K9count;
-
-	private View swipe;
-
 	private int shared;
-
-	private int countersss;
-
-	private ArrayAdapter<Due_Today_List> adapter;
-
-	private EditText mDescription;
-
-	private EditText mName;
-
-	private Account mAccount;
-
-	private Button mDoneButton;
 
 	private Context context;
 
@@ -192,10 +137,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 			try {
 
-				// HttpClient httpClient = new DefaultHttpClient();
-				HttpContext localContext = new BasicHttpContext();
-				// HttpGet httpGet = new HttpGet(
-				// "http://www.beaconschool.org/~markovic/lincoln.php");
+				new BasicHttpContext();
 
 				HttpClient httpclient = new DefaultHttpClient();
 				HttpPost httppost = new HttpPost(
@@ -358,7 +300,6 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 			}
 
-			
 		}
 
 	}
@@ -384,11 +325,9 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 		try {
 
 			int value = 0;
-			countersss = 0;
 			int state = 0;
 			shared = 0;
 			int shared_add = 0;
-			String str = "";
 			StringBuilder strb = new StringBuilder();
 
 			while ((value = reader.read()) != -1) {
@@ -502,7 +441,6 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 						strb.setLength(0);
 						state = 0;
-						countersss++;
 						shared_add++;
 
 					} else {
@@ -640,11 +578,9 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 		try {
 
 			int value = 0;
-			countersss = 0;
 			int state = 0;
 			shared = 0;
 			int shared_add = 0;
-			String str = "";
 			StringBuilder strb = new StringBuilder();
 
 			while ((value = reader.read()) != -1) {
@@ -756,7 +692,6 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 						strb.setLength(0);
 						state = 0;
-						countersss++;
 						shared_add++;
 
 					} else {
@@ -837,6 +772,8 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 				.getInstance();
 		char localeMinusSign = currentLocaleSymbols.getMinusSign();
 
+		try{
+		
 		if (!Character.isDigit(str.charAt(0))
 				&& str.charAt(0) != localeMinusSign)
 			return false;
@@ -855,6 +792,14 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			}
 		}
 		return true;
+		
+		}catch(StringIndexOutOfBoundsException e){
+			
+			e.printStackTrace();
+			
+			return false;
+			
+		}
 	}
 
 }

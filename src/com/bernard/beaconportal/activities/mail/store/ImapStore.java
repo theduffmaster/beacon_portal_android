@@ -64,6 +64,7 @@ import android.util.Log;
 import com.beetstra.jutf7.CharsetProvider;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.controller.MessageRetrievalListener;
 import com.bernard.beaconportal.activities.helper.StringUtils;
 import com.bernard.beaconportal.activities.helper.Utility;
@@ -100,7 +101,6 @@ import com.bernard.beaconportal.activities.mail.store.imap.ImapUtility;
 import com.bernard.beaconportal.activities.mail.transport.imap.ImapSettings;
 import com.bernard.beaconportal.activities.net.ssl.TrustManagerFactory;
 import com.bernard.beaconportal.activities.net.ssl.TrustedSocketFactory;
-import com.bernard.beaconportal.activities.R;
 import com.jcraft.jzlib.JZlib;
 import com.jcraft.jzlib.ZOutputStream;
 

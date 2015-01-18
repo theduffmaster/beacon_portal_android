@@ -7,36 +7,24 @@ import java.util.Locale;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.Instrumentation;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.Path.Direction;
-import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.test.TouchUtils;
 import android.util.TypedValue;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStripMargins;
 import com.faizmalkani.floatingactionbutton.Fab;
@@ -46,8 +34,6 @@ public class FragmentsSchedule extends Fragment {
 	private String actionbar_colors, background_colors;
 
 	private Fab mFab;
-
-	private int current_minutes;
 
 	private String checkbox_edit;
 

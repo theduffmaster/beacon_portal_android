@@ -22,9 +22,9 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -69,6 +69,7 @@ import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.misc.ExtendedAsyncTask;
 import com.bernard.beaconportal.activities.activity.misc.NonConfigurationInstance;
 import com.bernard.beaconportal.activities.activity.setup.AccountSettings;
@@ -94,8 +95,6 @@ import com.bernard.beaconportal.activities.search.LocalSearch;
 import com.bernard.beaconportal.activities.search.SearchAccount;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Attribute;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Searchfield;
-
-import com.bernard.beaconportal.activities.R;
 
 import de.cketti.library.changelog.ChangeLog;
 
@@ -1999,7 +1998,6 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 				holder.flaggedMessageCountWrapper.setVisibility(View.GONE);
 			}
 			if (account instanceof Account) {
-				Account realAccount = (Account) account;
 
 			} else {
 

@@ -1,14 +1,14 @@
 package com.bernard.beaconportal.activities.preferences;
 
-import android.util.Log;
-
-import com.bernard.beaconportal.activities.K9;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import android.util.Log;
+
+import com.bernard.beaconportal.activities.K9;
 
 public class Editor implements android.content.SharedPreferences.Editor {
 	private Storage storage;

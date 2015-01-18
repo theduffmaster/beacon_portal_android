@@ -1,5 +1,13 @@
 package com.bernard.beaconportal.activities.preferences;
 
+import java.net.URI;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,14 +18,6 @@ import android.util.Log;
 
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.helper.Utility;
-
-import java.net.URI;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Storage implements SharedPreferences {
 	private static ConcurrentHashMap<Context, Storage> storages = new ConcurrentHashMap<Context, Storage>();

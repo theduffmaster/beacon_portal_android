@@ -1,5 +1,7 @@
 package com.bernard.beaconportal.activities.activity;
 
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,8 +20,6 @@ import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Identity;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
-
-import java.util.List;
 
 public class ChooseIdentity extends K9ListActivity {
 	Account mAccount;

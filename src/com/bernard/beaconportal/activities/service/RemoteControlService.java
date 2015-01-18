@@ -1,20 +1,29 @@
 package com.bernard.beaconportal.activities.service;
 
-import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.Account.FolderMode;
-import com.bernard.beaconportal.activities.K9.BACKGROUND_OPS;
-import com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl;
-import com.bernard.beaconportal.activities.R;
-
-import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.*;
+import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_ACCOUNT_UUID;
+import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_ALL_ACCOUNTS;
+import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_BACKGROUND_OPERATIONS;
+import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_NOTIFICATION_ENABLED;
+import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_POLL_CLASSES;
+import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_POLL_FREQUENCY;
+import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_PUSH_CLASSES;
+import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_RING_ENABLED;
+import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_THEME;
+import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_VIBRATE_ENABLED;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.Account.FolderMode;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.K9.BACKGROUND_OPS;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl;
 
 public class RemoteControlService extends CoreService {
 	private final static String RESCHEDULE_ACTION = "com.bernard.beaconportal.activities.service.RemoteControlService.RESCHEDULE_ACTION";

@@ -16,20 +16,20 @@
 
 package com.bernard.beaconportal.activities.helper;
 
-import android.net.http.SslCertificate;
-import android.util.Log;
-
-import com.bernard.beaconportal.activities.K9;
-
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.security.cert.X509Certificate;
 import java.security.cert.CertificateParsingException;
+import java.security.cert.X509Certificate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
+import android.net.http.SslCertificate;
+import android.util.Log;
+
+import com.bernard.beaconportal.activities.K9;
 
 /**
  * Implements basic domain-name validation as specified by RFC2818.

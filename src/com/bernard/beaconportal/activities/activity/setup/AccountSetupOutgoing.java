@@ -1,5 +1,8 @@
 package com.bernard.beaconportal.activities.activity.setup;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,11 +16,21 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bernard.beaconportal.activities.*;
-import com.bernard.beaconportal.activities.activity.K9Activity;
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupCheckSettings.CheckDirection;
 import com.bernard.beaconportal.activities.helper.Utility;
@@ -26,10 +39,6 @@ import com.bernard.beaconportal.activities.mail.ConnectionSecurity;
 import com.bernard.beaconportal.activities.mail.ServerSettings;
 import com.bernard.beaconportal.activities.mail.Transport;
 import com.bernard.beaconportal.activities.mail.transport.SmtpTransport;
-import com.bernard.beaconportal.activities.R;
-
-import java.net.URI;
-import java.net.URISyntaxException;
 
 public class AccountSetupOutgoing extends K9ActivityMaterial implements
 		OnClickListener, OnCheckedChangeListener {

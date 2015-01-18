@@ -3,8 +3,8 @@ package com.bernard.beaconportal.activities.activity;
 import android.content.Context;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.mail.Folder;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.mail.Folder;
 
 public class FolderInfoHolder implements Comparable<FolderInfoHolder> {
 	public String name;

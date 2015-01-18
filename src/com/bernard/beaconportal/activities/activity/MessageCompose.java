@@ -19,6 +19,16 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.james.mime4j.codec.EncoderUtil;
+import org.apache.james.mime4j.util.MimeUtil;
+import org.htmlcleaner.CleanerProperties;
+import org.htmlcleaner.HtmlCleaner;
+import org.htmlcleaner.SimpleHtmlSerializer;
+import org.htmlcleaner.TagNode;
+import org.openintents.openpgp.OpenPgpError;
+import org.openintents.openpgp.util.OpenPgpApi;
+import org.openintents.openpgp.util.OpenPgpServiceConnection;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -30,9 +40,9 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.IntentSender.SendIntentException;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -72,14 +82,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.Account.MessageFormat;
+import com.bernard.beaconportal.activities.Account.QuoteStyle;
 import com.bernard.beaconportal.activities.EmailAddressAdapter;
 import com.bernard.beaconportal.activities.EmailAddressValidator;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.Identity;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.Account.MessageFormat;
-import com.bernard.beaconportal.activities.Account.QuoteStyle;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.loader.AttachmentContentLoader;
 import com.bernard.beaconportal.activities.activity.loader.AttachmentInfoLoader;
 import com.bernard.beaconportal.activities.activity.misc.Attachment;
@@ -99,10 +110,10 @@ import com.bernard.beaconportal.activities.mail.Address;
 import com.bernard.beaconportal.activities.mail.Body;
 import com.bernard.beaconportal.activities.mail.Flag;
 import com.bernard.beaconportal.activities.mail.Message;
+import com.bernard.beaconportal.activities.mail.Message.RecipientType;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Multipart;
 import com.bernard.beaconportal.activities.mail.Part;
-import com.bernard.beaconportal.activities.mail.Message.RecipientType;
 import com.bernard.beaconportal.activities.mail.internet.MimeBodyPart;
 import com.bernard.beaconportal.activities.mail.internet.MimeHeader;
 import com.bernard.beaconportal.activities.mail.internet.MimeMessage;
@@ -114,17 +125,6 @@ import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalAttachment
 import com.bernard.beaconportal.activities.mail.store.LocalStore.TempFileBody;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.TempFileMessageBody;
 import com.bernard.beaconportal.activities.view.MessageWebView;
-import com.bernard.beaconportal.activities.R;
-
-import org.apache.james.mime4j.codec.EncoderUtil;
-import org.apache.james.mime4j.util.MimeUtil;
-import org.htmlcleaner.CleanerProperties;
-import org.htmlcleaner.HtmlCleaner;
-import org.htmlcleaner.SimpleHtmlSerializer;
-import org.htmlcleaner.TagNode;
-import org.openintents.openpgp.OpenPgpError;
-import org.openintents.openpgp.util.OpenPgpApi;
-import org.openintents.openpgp.util.OpenPgpServiceConnection;
 
 public class MessageCompose extends K9Activity implements OnClickListener,
 		ProgressDialogFragment.CancelListener {

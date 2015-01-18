@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2010 Daniel Nilsson
- * Copyright (C) 2013 Slimroms
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 package com.bernard.beaconportal.activities;
 
@@ -34,13 +18,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-/**
- * Displays a color picker to the user and allow them to select a color. A
- * slider for the alpha channel is also available. Enable it by setting
- * setAlphaSliderVisible(boolean) to true.
- * 
- * @author Daniel Nilsson
- */
 public class ColorPickerView extends View {
 
 	private final static int PANEL_SAT_VAL = 0;

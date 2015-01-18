@@ -1,11 +1,5 @@
 package com.bernard.beaconportal.activities.mail.internet;
 
-import com.bernard.beaconportal.activities.mail.Body;
-import com.bernard.beaconportal.activities.mail.BodyPart;
-import com.bernard.beaconportal.activities.mail.CompositeBody;
-import com.bernard.beaconportal.activities.mail.MessagingException;
-import com.bernard.beaconportal.activities.mail.Multipart;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -13,6 +7,12 @@ import java.io.OutputStreamWriter;
 import java.util.Locale;
 
 import org.apache.james.mime4j.util.MimeUtil;
+
+import com.bernard.beaconportal.activities.mail.Body;
+import com.bernard.beaconportal.activities.mail.BodyPart;
+import com.bernard.beaconportal.activities.mail.CompositeBody;
+import com.bernard.beaconportal.activities.mail.MessagingException;
+import com.bernard.beaconportal.activities.mail.Multipart;
 
 /**
  * TODO this is a close approximation of Message, need to update along with

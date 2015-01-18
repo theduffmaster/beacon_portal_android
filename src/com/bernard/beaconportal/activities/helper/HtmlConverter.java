@@ -1,13 +1,5 @@
 package com.bernard.beaconportal.activities.helper;
 
-import android.text.*;
-import android.text.Html.TagHandler;
-import android.util.Log;
-
-import com.bernard.beaconportal.activities.K9;
-
-import org.xml.sax.XMLReader;
-
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Collections;
@@ -15,6 +7,18 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Matcher;
+
+import org.xml.sax.XMLReader;
+
+import android.text.Annotation;
+import android.text.Editable;
+import android.text.Html;
+import android.text.Html.TagHandler;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.bernard.beaconportal.activities.K9;
 
 /**
  * Contains common routines to convert html to text and vice versa.

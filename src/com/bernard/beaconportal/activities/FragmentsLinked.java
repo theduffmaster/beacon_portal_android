@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -18,8 +17,7 @@ public class FragmentsLinked extends ActionBarActivity {
 
 	private ViewPager pager;
 	private ViewPagerAdapterScheduleView adapter;
-	private View underline;
-	private String background_colors, actionbar_colors;
+	private String actionbar_colors;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

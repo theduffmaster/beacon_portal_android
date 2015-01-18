@@ -11,11 +11,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -30,9 +28,7 @@ import com.astuetz.PagerSlidingTabStrip;
 
 public class FragmentsEdit extends ActionBarActivity {
 
-	private ViewPager pager;
 	private ViewPagerAdapterSchedule adapter;
-	private PagerSlidingTabStrip tabs;
 	String uriString;
 
 	private String background_colors, actionbar_colors;

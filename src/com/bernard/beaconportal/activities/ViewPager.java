@@ -46,7 +46,6 @@ import android.view.ViewParent;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
-import de.timroes.android.listview.EnhancedListView;
 
 /**
  * Layout manager that allows the user to flip left and right through pages of
@@ -166,7 +165,6 @@ public class ViewPager extends ViewGroup {
 
 	private boolean mIsBeingDragged;
 	private boolean mIsUnableToDrag;
-	private boolean mIgnoreGutter;
 	private int mDefaultGutterSize;
 	private int mGutterSize;
 	private int mTouchSlop;
@@ -211,7 +209,6 @@ public class ViewPager extends ViewGroup {
 	private EdgeEffectCompat mRightEdge;
 
 	private boolean mFirstLayout = true;
-	private boolean mNeedCalculatePageOffsets = false;
 	private boolean mCalledSuper;
 	private int mDecorChildCount;
 
@@ -1292,8 +1289,6 @@ public class ViewPager extends ViewGroup {
 			ii.offset = offset;
 			offset += ii.widthFactor + marginOffset;
 		}
-
-		mNeedCalculatePageOffsets = false;
 	}
 
 	/**
@@ -2212,8 +2207,7 @@ public class ViewPager extends ViewGroup {
 	public boolean performDrag(float x) {
 		boolean needsInvalidate = false;
 
-		EnhancedListView enhancedListView = (EnhancedListView) getChildAt(
-				getCurrentItem()).findViewById(R.id.listView1);
+		getChildAt(getCurrentItem()).findViewById(R.id.listView1);
 
 		final float deltaX = mLastMotionX - x;
 		mLastMotionX = x;

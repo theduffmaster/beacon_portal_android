@@ -8,14 +8,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
-import com.bernard.beaconportal.activities.helper.ContactItem;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.helper.ContactItem;
 
 public class EmailAddressList extends K9ListActivity implements
 		OnItemClickListener {

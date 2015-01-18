@@ -5,6 +5,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
+import org.openintents.openpgp.OpenPgpError;
+import org.openintents.openpgp.OpenPgpSignatureResult;
+import org.openintents.openpgp.util.OpenPgpApi;
+import org.openintents.openpgp.util.OpenPgpServiceConnection;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.PendingIntent;
@@ -25,6 +30,7 @@ import android.widget.Toast;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Identity;
 import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.crypto.CryptoHelper;
 import com.bernard.beaconportal.activities.crypto.OpenPgpApiHelper;
 import com.bernard.beaconportal.activities.fragment.MessageViewFragment;
@@ -33,12 +39,6 @@ import com.bernard.beaconportal.activities.mail.Message;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Part;
 import com.bernard.beaconportal.activities.mail.internet.MimeUtility;
-import com.bernard.beaconportal.activities.R;
-
-import org.openintents.openpgp.OpenPgpError;
-import org.openintents.openpgp.OpenPgpSignatureResult;
-import org.openintents.openpgp.util.OpenPgpApi;
-import org.openintents.openpgp.util.OpenPgpServiceConnection;
 
 public class MessageOpenPgpView extends LinearLayout {
 

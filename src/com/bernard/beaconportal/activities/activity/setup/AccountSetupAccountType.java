@@ -1,5 +1,7 @@
 package com.bernard.beaconportal.activities.activity.setup;
 
+import java.net.URI;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,11 +18,8 @@ import android.widget.Toast;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.activity.K9Activity;
-import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
 import com.bernard.beaconportal.activities.R;
-
-import java.net.URI;
+import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
 
 /**
  * Prompts the user to select an account type. The account type, along with the

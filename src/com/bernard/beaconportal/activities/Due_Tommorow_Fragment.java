@@ -22,10 +22,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
-
-import com.bernard.beaconportal.activities.Friday_view.NotesDialog;
-import com.bernard.beaconportal.activities.Friday_view.NotesDialog.NoteDialog;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -37,12 +33,16 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.IBinder;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
@@ -51,8 +51,8 @@ import android.text.TextUtils.TruncateAt;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
@@ -68,11 +68,11 @@ import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
 
 public class Due_Tommorow_Fragment extends Fragment {
 
+	private Activity mActivity;
+	
 	private List<Due_Today_List> due_tommorow_list;
 
 	private View swipe;
-
-	private int count;
 
 	private String actionbar_colors;
 
@@ -80,29 +80,26 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 	private int shared;
 
-	private int countersss;
-	
-	private SharedPreferences bDay;
-	
-	private SharedPreferences userName;
-
 	public static EnhancedListView lView;
 	
+	private RelativeLayout SwipedBackground;
+
 	public View footer;
-	
+
 	public TextView footer_text;
-	
-	private SharedPreferences Today_Homework_Counter;
-	
+
+	private SharedPreferences Tommorow_Homework_Counter;
+
+	private SharedPreferences Tommorow_Homework;
+
+	private SharedPreferences Add_Homework_Counter;
+
 	private TextView addHomework;
 
 	private static ArrayAdapter<Due_Today_List> adapter;
 
-	private String Data, Band, Number, Class, Teacher, Title, Date, Type,
-			Description, DescriptionAll, DescriptionCheck, due_tommorow_shared,
-			due_tommorow_shared_content;
-
-	private Activity context;
+	private String Band, Number, Class, Teacher, Title, Date, Type,
+			Description, due_tommorow_shared, due_tommorow_shared_content;
 
 	static class ViewHolder {
 		public ImageView imageView;
@@ -126,33 +123,20 @@ public class Due_Tommorow_Fragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		SharedPreferences Homework_Counter = getActivity()
-				.getSharedPreferences("due_tommorow_counter",
-						Context.MODE_PRIVATE);
-		
-		int homework_counter = Homework_Counter.getInt("last shared preference",0);
-		
-		SharedPreferences Count1 = getActivity()
-				.getSharedPreferences("add_counter",
-						Context.MODE_PRIVATE);
+		Tommorow_Homework_Counter = getActivity().getSharedPreferences(
+				"due_tommorow_counter", Context.MODE_PRIVATE);
 
-		int add_counter = Count1.getInt("tommorow", 0);
+		Add_Homework_Counter = getActivity().getSharedPreferences(
+				"add_homework_counter", Context.MODE_PRIVATE);
 
-		if(add_counter > homework_counter){
-			
-			SharedPreferences.Editor localEditorCount = getActivity()
-					.getSharedPreferences("due_tommorow_counter",
-							Context.MODE_PRIVATE).edit();
+		Tommorow_Homework = getActivity().getSharedPreferences("homework",
+				Context.MODE_PRIVATE);
 
-			localEditorCount.putInt("last shared preference", add_counter);
-
-			localEditorCount.apply();
-			
-		}
-		
 		new Download().execute();
 
 		swipe = inflater.inflate(R.layout.activity_main, container, false);
+		
+		View homeworkItem = inflater.inflate(R.layout.item_view, container, false);
 
 		swipeLayout = (SwipeRefreshLayout) swipe.findViewById(R.id.swipe);
 
@@ -171,7 +155,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		swipeLayout.setEnabled(false);
 
-		swipeLayout.setColorSchemeResources(android.R.color.holo_orange_light,
+		swipeLayout.setColorSchemeResources(
+				android.R.color.holo_orange_light,
 				android.R.color.holo_blue_light,
 				android.R.color.holo_orange_light,
 				android.R.color.holo_blue_light);
@@ -180,7 +165,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		footer = getActivity().getLayoutInflater().inflate(
 				R.layout.homeworkadd_footer, null);
-		
+
 		footer.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -191,23 +176,33 @@ public class Due_Tommorow_Fragment extends Fragment {
 		});
 
 		footer_text = (TextView) footer.findViewById(R.id.textView1);
-		
+
 		SharedPreferences sharedprefers = getActivity().getSharedPreferences(
 				"actionbar_color", Context.MODE_PRIVATE);
 
 		if (!sharedprefers.contains("actionbar_color")) {
 
 			footer_text.setTextColor(Color.parseColor("#4285f4"));
+			
+			SwipedBackground = (RelativeLayout) homeworkItem.findViewById(R.id.swiped_background);
+			
+			SwipedBackground.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor("#4285f4")));
 
 		} else {
 
 			actionbar_colors = sharedprefers.getString("actionbar_color", null);
 
 			footer_text.setTextColor(Color.parseColor(actionbar_colors));
+			
+			SwipedBackground = (RelativeLayout) homeworkItem.findViewById(R.id.swiped_background);
+			
+			SwipedBackground.setBackgroundDrawable(new ColorDrawable(Color
+					.parseColor(actionbar_colors)));
 		}
 
 		lView.addFooterView(footer);
-		
+
 		lView.setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
 			public void onScrollStateChanged(AbsListView absListView, int i) {
@@ -282,14 +277,14 @@ public class Due_Tommorow_Fragment extends Fragment {
 							Toast.makeText(getActivity(), download_date,
 									Toast.LENGTH_LONG).show();
 
-							due_tommorow_list.clear();
-
-							parse_due_tommorow_string();
+							due_tommorow_list = new ArrayList<Due_Today_List>();
 
 							parse_due_tommorow_content();
+							
+							parse_add_content();
 
-							adapter.notifyDataSetChanged();
-
+							populateListView();
+							
 							swipeLayout.setRefreshing(false);
 
 							Toast.makeText(getActivity(), downloaded,
@@ -307,7 +302,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 		lView.setEmptyView(swipe.findViewById(R.id.emptyView));
 
 		addHomework = (TextView) swipe.findViewById(R.id.textView2);
-		
+
 		addHomework.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -315,21 +310,25 @@ public class Due_Tommorow_Fragment extends Fragment {
 				showNoteDialog();
 
 				Log.d("dialog shown?", "");
-				
+
 			}
 		});
-		
+
 		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
-				this.mClickedReceiver, new IntentFilter("refreshListView"));
-		
+				this.mClickedReceiver, new IntentFilter("refreshListViewTommorow"));
+
 		due_tommorow_list = new ArrayList<Due_Today_List>();
-		
-		
 		
 		return swipe;
 
 	}
 
+	@Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mActivity = activity;
+    }
+	
 	@Override
 	public void onResume() {
 
@@ -347,10 +346,12 @@ public class Due_Tommorow_Fragment extends Fragment {
 			actionbar_colors = sharedprefer.getString("actionbar_color", null);
 
 		}
-
+		
 		due_tommorow_list = new ArrayList<Due_Today_List>();
 
 		parse_due_tommorow_content();
+		
+		parse_add_content();
 
 		populateListView();
 
@@ -386,10 +387,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 						String Description_Check = currenthomeworkdue
 								.getDescription();
-
-						SharedPreferences Tommorow_Homework_Counter = getActivity()
-								.getSharedPreferences("due_tommorow_counter",
-										Context.MODE_PRIVATE);
 
 						int counterssss = Tommorow_Homework_Counter.getInt(
 								"last shared preference", 0);
@@ -497,6 +494,115 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 						}
 
+						int add_counterssss = Add_Homework_Counter.getInt(
+								"add_homework_counter", 0);
+
+						int add_countersssss = add_counterssss + 1;
+
+						System.out.println("Counter for Add Homework1= "
+								+ add_countersssss);
+
+						for (int i = 0; i < add_countersssss; i++) {
+
+							due_tommorow_shared = "add_homework"
+									+ Integer.toString(i);
+
+							SharedPreferences Add_Homework = getActivity()
+
+							.getSharedPreferences(due_tommorow_shared,
+									Context.MODE_PRIVATE);
+
+							String Band1 = Add_Homework.getString("add_band",
+									null);
+
+							String Number1 = Add_Homework.getString(
+									"add_number", null);
+
+							String Class1 = Add_Homework.getString("add_class",
+									null);
+
+							String Teacher1 = Add_Homework.getString(
+									"add_teacher", null);
+
+							String Title1 = Add_Homework.getString("add_title",
+									null);
+
+							String Date1 = Add_Homework.getString("add_date",
+									null);
+
+							String Type1 = Add_Homework.getString("add_type",
+									null);
+
+							String Description1 = Add_Homework.getString(
+									"add_description", null);
+
+							if (Band1 != null) {
+
+								Band = Band1.trim();
+
+							}
+
+							if (Number1 != null) {
+
+								Number = Number1.trim();
+
+							}
+
+							if (Class1 != null) {
+
+								Class = Class1.trim();
+
+							}
+
+							if (Teacher1 != null) {
+
+								Teacher = Teacher1.trim();
+
+							}
+
+							if (Title1 != null) {
+
+								Title = Title1.trim();
+
+							}
+
+							if (Date1 != null) {
+
+								Date = Date1.trim();
+
+							}
+
+							if (Type1 != null) {
+
+								Type = Type1.trim();
+
+							}
+
+							if (Description1 != null) {
+
+								Description = Description1.trim();
+
+							}
+
+							Log.d("shared clear add", "no");
+
+							if (Description_Check.equals(Description)) {
+
+								Log.d("shared clear add", "yes");
+
+								SharedPreferences.Editor localeditor = getActivity()
+
+								.getSharedPreferences(due_tommorow_shared,
+										Context.MODE_PRIVATE).edit();
+
+								localeditor.clear();
+
+								localeditor.commit();
+
+							}
+
+						}
+
 					}
 
 				};
@@ -509,20 +615,11 @@ public class Due_Tommorow_Fragment extends Fragment {
 		EnhancedListView.SwipeDirection direction = EnhancedListView.SwipeDirection.END;
 		lView.setSwipeDirection(direction);
 		lView.setRequireTouchBeforeDismiss(false);
+		lView.setSwipingLayout(R.id.homework_item);
 
 	}
 
 	public void parse_due_tommorow_string() {
-
-		SharedPreferences Homework_Counter = getActivity()
-				.getSharedPreferences("due_tommorow_counter",
-						Context.MODE_PRIVATE);
-
-			int Count = Homework_Counter.getInt("last shared preference",
-					0);
-		
-		SharedPreferences Tommorow_Homework = getActivity()
-				.getSharedPreferences("homework", Context.MODE_PRIVATE);
 
 		String Due_Tommorow = Tommorow_Homework.getString("homework_content",
 				"");
@@ -540,11 +637,9 @@ public class Due_Tommorow_Fragment extends Fragment {
 		try {
 
 			int value = 0;
-			countersss = 0;
 			int state = 0;
 			shared = 0;
 			int shared_add = 0;
-			String str = "";
 			StringBuilder strb = new StringBuilder();
 
 			while ((value = reader.read()) != -1) {
@@ -660,7 +755,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 						strb.setLength(0);
 						state = 0;
-						countersss++;
 						shared_add++;
 
 					} else {
@@ -691,23 +785,9 @@ public class Due_Tommorow_Fragment extends Fragment {
 					.getSharedPreferences("due_tommorow_counter",
 							Context.MODE_PRIVATE).edit();
 
-			if(shared+1 < Count){
-			
-			localEditor1.putInt("last shared preference", Count);
-			
-			due_tommorow_shared = "due_tommorow" + Integer.toString(Count + 1);
+			localEditor1.putInt("last shared preference", shared + 1);
 
 			localEditor1.apply();
-			
-			}else{
-				
-				localEditor1.putInt("last shared preference", shared+1);
-				
-				due_tommorow_shared = "due_tommorow" + Integer.toString(shared + 1);
-
-				localEditor1.apply();
-				
-			}
 
 			strb.setLength(0);
 
@@ -798,6 +878,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 				.getInstance();
 		char localeMinusSign = currentLocaleSymbols.getMinusSign();
 
+		try{
+		
 		if (!Character.isDigit(str.charAt(0))
 				&& str.charAt(0) != localeMinusSign)
 			return false;
@@ -816,13 +898,21 @@ public class Due_Tommorow_Fragment extends Fragment {
 			}
 		}
 		return true;
+		
+		}catch(StringIndexOutOfBoundsException e){
+			
+			e.printStackTrace();
+			
+			return false;
+			
+		}
 	}
 
 	public class Download extends AsyncTask<String, Void, Void> {
 
 		@Override
 		protected Void doInBackground(String... urls) {
-			bDay = getActivity().getSharedPreferences(
+			SharedPreferences bDay = mActivity.getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE);
 
 			String day1 = Integer.toString(bDay.getInt("Day", 0));
@@ -831,7 +921,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
 
-			userName = getActivity().getSharedPreferences(
+			SharedPreferences userName = mActivity.getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE);
 
 			String day = day1.replaceFirst("^0+(?!$)", "");
@@ -852,10 +942,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			try {
 
-				// HttpClient httpClient = new DefaultHttpClient();
-				HttpContext localContext = new BasicHttpContext();
-				// HttpGet httpGet = new HttpGet(
-				// "http://www.beaconschool.org/~markovic/lincoln.php");
+				new BasicHttpContext();
 
 				HttpClient httpclient = new DefaultHttpClient();
 				HttpPost httppost = new HttpPost(
@@ -891,7 +978,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 					// String homework =
 					// Html.fromHtml(duetommorow_html).toString();
 
-					SharedPreferences.Editor localEditor = getActivity()
+					SharedPreferences.Editor localEditor = mActivity
 							.getSharedPreferences("homework",
 									Context.MODE_PRIVATE).edit();
 
@@ -936,7 +1023,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		@Override
 		protected Void doInBackground(String... urls) {
-			bDay = getActivity().getSharedPreferences(
+			SharedPreferences bDay = mActivity.getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE);
 
 			String day1 = Integer.toString(bDay.getInt("Day", 0));
@@ -945,7 +1032,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
 
-			userName = getActivity().getSharedPreferences(
+			SharedPreferences userName = mActivity.getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE);
 
 			String day = day1.replaceFirst("^0+(?!$)", "");
@@ -966,10 +1053,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			try {
 
-				// HttpClient httpClient = new DefaultHttpClient();
-				HttpContext localContext = new BasicHttpContext();
-				// HttpGet httpGet = new HttpGet(
-				// "http://www.beaconschool.org/~markovic/lincoln.php");
+				new BasicHttpContext();
 
 				HttpClient httpclient = new DefaultHttpClient();
 				HttpPost httppost = new HttpPost(
@@ -1005,7 +1089,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 					// String homework =
 					// Html.fromHtml(duetommorow_html).toString();
 
-					SharedPreferences.Editor localEditor = getActivity()
+					SharedPreferences.Editor localEditor = mActivity
 							.getSharedPreferences("homework",
 									Context.MODE_PRIVATE).edit();
 
@@ -1026,11 +1110,13 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 					Log.d("receiver", "information given to shared preferences");
 
-					due_tommorow_list.clear();
+					due_tommorow_list = new ArrayList<Due_Today_List>();
 
 					parse_due_tommorow_string();
 
 					parse_due_tommorow_content();
+					
+					parse_add_content();
 
 				} catch (IllegalStateException e) {
 
@@ -1040,13 +1126,17 @@ public class Due_Tommorow_Fragment extends Fragment {
 					e.printStackTrace();
 				} catch (NullPointerException e) {
 
-					due_tommorow_list.clear();
+					due_tommorow_list = new ArrayList<Due_Today_List>();
 
 					parse_due_tommorow_string();
 
 					parse_due_tommorow_content();
+					
+					parse_add_content();
+					
+					adapter.notifyDataSetChanged();
 
-					SharedPreferences.Editor localEditor = getActivity()
+					SharedPreferences.Editor localEditor = mActivity
 							.getSharedPreferences("homework",
 									Context.MODE_PRIVATE).edit();
 
@@ -1059,13 +1149,17 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 				catch (NoSuchElementException e) {
 
-					due_tommorow_list.clear();
+					due_tommorow_list = new ArrayList<Due_Today_List>();
 
 					parse_due_tommorow_string();
 
 					parse_due_tommorow_content();
+					
+					parse_add_content();
+					
+					adapter.notifyDataSetChanged();
 
-					SharedPreferences.Editor localEditor = getActivity()
+					SharedPreferences.Editor localEditor = mActivity
 							.getSharedPreferences("homework",
 									Context.MODE_PRIVATE).edit();
 
@@ -1078,13 +1172,17 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 				catch (RuntimeException e) {
 
-					due_tommorow_list.clear();
+					due_tommorow_list = new ArrayList<Due_Today_List>();
 
 					parse_due_tommorow_string();
 
 					parse_due_tommorow_content();
 
-					SharedPreferences.Editor localEditor = getActivity()
+					parse_add_content();
+					
+					adapter.notifyDataSetChanged();
+					
+					SharedPreferences.Editor localEditor = mActivity
 							.getSharedPreferences("homework",
 									Context.MODE_PRIVATE).edit();
 
@@ -1105,13 +1203,17 @@ public class Due_Tommorow_Fragment extends Fragment {
 		@Override
 		protected void onPostExecute(Void result) {
 
-			swipeLayout.setRefreshing(false);
-
 			Log.d("sender", "Broadcasting message");
 
-			Toast.makeText(getActivity(), "Refresh Finished", 4000).show();
+			Intent intent = new Intent("up_navigation");
 
-			SharedPreferences download_error = getActivity()
+			intent.putExtra("message", "This is my message!");
+			LocalBroadcastManager.getInstance(mActivity).sendBroadcast(
+					intent);
+
+			Toast.makeText(mActivity, "Refresh Finished", 4000).show();
+
+			SharedPreferences download_error = mActivity
 					.getSharedPreferences("homework", Context.MODE_PRIVATE);
 
 			String error = download_error.getString("download_error", "no");
@@ -1121,11 +1223,11 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			if (error.equals("yes")) {
 
-				SharedPreferences.Editor localEditor = getActivity()
+				SharedPreferences.Editor localEditor = mActivity
 						.getSharedPreferences("homework", Context.MODE_PRIVATE)
 						.edit();
 
-				Toast.makeText(getActivity(), download_date, Toast.LENGTH_LONG)
+				Toast.makeText(mActivity, download_date, Toast.LENGTH_LONG)
 						.show();
 
 				localEditor.putString("download_error", "no");
@@ -1134,8 +1236,10 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			}
 
-			adapter.notifyDataSetChanged();
+			//adapter.notifyDataSetChanged();
 
+			populateListView();
+			
 			swipeLayout.setRefreshing(false);
 
 		}
@@ -1186,22 +1290,18 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 		System.out.println(date);
 
-		Today_Homework_Counter = getActivity()
-				.getSharedPreferences("due_tommorow_counter",
-						Context.MODE_PRIVATE);
-
-		int counterssss = Today_Homework_Counter.getInt(
+		int counterssss = Tommorow_Homework_Counter.getInt(
 				"last shared preference", 0);
 
 		int countersssss = counterssss + 1;
-
-		int dummy_check = 0;
 
 		for (int i = 0; i < countersssss; i++) {
 
 			due_tommorow_shared = "due_tommorow" + Integer.toString(i);
 
-			SharedPreferences Todays_Homework = getActivity()
+			System.out.println("due_tommorow = "+due_tommorow_shared);
+			
+			SharedPreferences Todays_Homework = mActivity
 					.getSharedPreferences(due_tommorow_shared,
 							Context.MODE_PRIVATE);
 
@@ -1219,7 +1319,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			String Type1 = Todays_Homework.getString("due_tommorow6", null);
 
-			String Description1 = Todays_Homework.getString("due_tommorow7",null);
+			String Description1 = Todays_Homework.getString("due_tommorow7",
+					null);
 
 			if (Band1 != null) {
 
@@ -1285,7 +1386,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			}
 
-			SharedPreferences description_check = getActivity()
+			SharedPreferences description_check = mActivity
 					.getSharedPreferences("descriptioncheck",
 							Context.MODE_PRIVATE);
 
@@ -1360,7 +1461,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 				}
 
-				SharedPreferences.Editor checkeditor = getActivity()
+				SharedPreferences.Editor checkeditor = mActivity
 
 				.getSharedPreferences("descriptioncheck", Context.MODE_PRIVATE)
 						.edit();
@@ -1380,8 +1481,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 	}
 
-	
-	
 	private void registerClickCallback() {
 		EnhancedListView list = (EnhancedListView) swipe
 				.findViewById(R.id.listView1);
@@ -1434,116 +1533,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 				// Remove the item from the adapter
 				adapter.remove(adapter.getItem(position));
 
-				String Description_Check = currenthomeworkdue.getDescription();
-
-				SharedPreferences Tommorow_Homework_Counter = getActivity()
-						.getSharedPreferences("due_tommorow_counter",
-								Context.MODE_PRIVATE);
-
-				int counterssss = Tommorow_Homework_Counter.getInt(
-						"last shared preference", 0);
-
-				int countersssss = counterssss + 1;
-
-				for (int i = 0; i < countersssss; i++) {
-
-					due_tommorow_shared = "due_tommorow" + Integer.toString(i);
-
-					SharedPreferences Tommorows_Homework = getActivity()
-							.getSharedPreferences(due_tommorow_shared,
-									Context.MODE_PRIVATE);
-
-					String Band1 = Tommorows_Homework.getString(
-							"due_tommorow0", null);
-
-					String Number1 = Tommorows_Homework.getString(
-							"due_tommorow1", null);
-
-					String Class1 = Tommorows_Homework.getString(
-							"due_tommorow2", null);
-
-					String Teacher1 = Tommorows_Homework.getString(
-							"due_tommorow3", null);
-
-					String Title1 = Tommorows_Homework.getString(
-							"due_tommorow4", null);
-
-					String Date1 = Tommorows_Homework.getString(
-							"due_tommorow5", null);
-
-					String Type1 = Tommorows_Homework.getString(
-							"due_tommorow6", null);
-
-					String Description1 = Tommorows_Homework.getString(
-							"due_tommorow7", null);
-
-					if (Band1 != null) {
-
-						Band = Band1.trim();
-
-					}
-
-					if (Number1 != null) {
-
-						Number = Number1.trim();
-
-					}
-
-					if (Class1 != null) {
-
-						Class = Class1.trim();
-
-					}
-
-					if (Teacher1 != null) {
-
-						Teacher = Teacher1.trim();
-
-					}
-
-					if (Title1 != null) {
-
-						Title = Title1.trim();
-
-					}
-
-					if (Date1 != null) {
-
-						Date = Date1.trim();
-
-					}
-
-					if (Type1 != null) {
-
-						Type = Type1.trim();
-
-					}
-
-					if (Description1 != null) {
-
-						Description = Description1.trim();
-
-					}
-
-					Log.d("shared clear", "no");
-
-					if (Description_Check.equals(Description)) {
-
-						Log.d("shared clear", due_tommorow_shared);
-
-						SharedPreferences.Editor localeditor = getActivity()
-
-						.getSharedPreferences(due_tommorow_shared,
-								Context.MODE_PRIVATE).edit();
-
-						localeditor.clear();
-
-						localeditor.commit();
-
-					}
-
-				}
-
 				// return an Undoable
 
 				return new EnhancedListView.Undoable() {
@@ -1563,6 +1552,222 @@ public class Due_Tommorow_Fragment extends Fragment {
 					@Override
 					public void discard() {
 
+						String Description_Check = currenthomeworkdue
+								.getDescription();
+
+						int counterssss = Tommorow_Homework_Counter.getInt(
+								"last shared preference", 0);
+
+						int countersssss = counterssss + 1;
+
+						for (int i = 0; i < countersssss; i++) {
+
+							due_tommorow_shared = "due_tommorow"
+									+ Integer.toString(i);
+
+							SharedPreferences Tommorows_Homework = mActivity
+									.getSharedPreferences(due_tommorow_shared,
+											Context.MODE_PRIVATE);
+
+							String Band1 = Tommorows_Homework.getString(
+									"due_tommorow0", null);
+
+							String Number1 = Tommorows_Homework.getString(
+									"due_tommorow1", null);
+
+							String Class1 = Tommorows_Homework.getString(
+									"due_tommorow2", null);
+
+							String Teacher1 = Tommorows_Homework.getString(
+									"due_tommorow3", null);
+
+							String Title1 = Tommorows_Homework.getString(
+									"due_tommorow4", null);
+
+							String Date1 = Tommorows_Homework.getString(
+									"due_tommorow5", null);
+
+							String Type1 = Tommorows_Homework.getString(
+									"due_tommorow6", null);
+
+							String Description1 = Tommorows_Homework.getString(
+									"due_tommorow7", null);
+
+							if (Band1 != null) {
+
+								Band = Band1.trim();
+
+							}
+
+							if (Number1 != null) {
+
+								Number = Number1.trim();
+
+							}
+
+							if (Class1 != null) {
+
+								Class = Class1.trim();
+
+							}
+
+							if (Teacher1 != null) {
+
+								Teacher = Teacher1.trim();
+
+							}
+
+							if (Title1 != null) {
+
+								Title = Title1.trim();
+
+							}
+
+							if (Date1 != null) {
+
+								Date = Date1.trim();
+
+							}
+
+							if (Type1 != null) {
+
+								Type = Type1.trim();
+
+							}
+
+							if (Description1 != null) {
+
+								Description = Description1.trim();
+
+							}
+
+							Log.d("shared clear", "no");
+
+							if (Description_Check.equals(Description)) {
+
+								Log.d("shared clear", due_tommorow_shared);
+
+								SharedPreferences.Editor localeditor = mActivity
+
+								.getSharedPreferences(due_tommorow_shared,
+										Context.MODE_PRIVATE).edit();
+
+								localeditor.clear();
+
+								localeditor.commit();
+
+							}
+
+						}
+
+						int add_counterssss = Add_Homework_Counter.getInt(
+								"add_homework_counter", 0);
+
+						int add_countersssss = add_counterssss + 1;
+
+						System.out.println("Counter for Add Homework2= "
+								+ add_countersssss);
+
+						for (int i = 0; i < add_countersssss; i++) {
+
+							String add_shared = "add_homework"
+									+ Integer.toString(i);
+
+							SharedPreferences Add_Homework = mActivity
+									.getSharedPreferences(add_shared,
+											Context.MODE_PRIVATE);
+
+							String Band1 = Add_Homework.getString("add_band",
+									null);
+
+							String Number1 = Add_Homework.getString(
+									"add_number", null);
+
+							String Class1 = Add_Homework.getString("add_class",
+									null);
+
+							String Teacher1 = Add_Homework.getString(
+									"add_teacher", null);
+
+							String Title1 = Add_Homework.getString("add_title",
+									null);
+
+							String Date1 = Add_Homework.getString("add_date",
+									null);
+
+							String Type1 = Add_Homework.getString("add_type",
+									null);
+
+							String Description1 = Add_Homework.getString(
+									"add_description", null);
+
+							if (Band1 != null) {
+
+								Band = Band1.trim();
+
+							}
+
+							if (Number1 != null) {
+
+								Number = Number1.trim();
+
+							}
+
+							if (Class1 != null) {
+
+								Class = Class1.trim();
+
+							}
+
+							if (Teacher1 != null) {
+
+								Teacher = Teacher1.trim();
+
+							}
+
+							if (Title1 != null) {
+
+								Title = Title1.trim();
+
+							}
+
+							if (Date1 != null) {
+
+								Date = Date1.trim();
+
+							}
+
+							if (Type1 != null) {
+
+								Type = Type1.trim();
+
+							}
+
+							if (Description1 != null) {
+
+								Description = Description1.trim();
+
+							}
+
+							Log.d("shared clear add", "no");
+
+							if (Description_Check.equals(Description)) {
+
+								Log.d("shared clear add", "yes");
+
+								SharedPreferences.Editor localeditor = mActivity
+
+								.getSharedPreferences(due_tommorow_shared,
+										Context.MODE_PRIVATE).edit();
+
+								localeditor.clear();
+
+								localeditor.commit();
+
+							}
+
+						}
+
 					};
 
 				};
@@ -1573,9 +1778,13 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 	}
 
+	public static int getImageId(Context context, String imageName) {
+	    return context.getResources().getIdentifier("drawable/" + imageName, null, context.getPackageName());
+	}
+	
 	public class due_tommorowAdapter extends ArrayAdapter<Due_Today_List> {
 		public due_tommorowAdapter() {
-			super(getActivity(), R.layout.item_view, due_tommorow_list);
+			super(mActivity, R.layout.item_view, due_tommorow_list);
 		}
 
 		@Override
@@ -1583,7 +1792,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 			ViewHolder holder;
 
 			if (convertView == null) {
-				convertView = getActivity().getLayoutInflater().inflate(
+				convertView = mActivity.getLayoutInflater().inflate(
 						R.layout.item_view, parent, false);
 				holder = new ViewHolder();
 
@@ -1627,237 +1836,247 @@ public class Due_Tommorow_Fragment extends Fragment {
 
 			Description = Html.fromHtml(Description).toString();
 
-			if (currenthomeworkdue.Band.substring(0,
+//			String Image = currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2));
+//			
+//			int picId = getResources().getIdentifier(Image , "drawable", getActivity().getPackageName());
+//			
+//			System.out.println(getImageId(getActivity(), Image));
+//			
+//			holder.imageView.setImageResource(getImageId(getActivity(), Image));
+			
+			
+			if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UU")) {
 
 				holder.imageView.setImageResource(R.drawable.uu);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UN")) {
 
 				holder.imageView.setImageResource(R.drawable.un);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UG")) {
 
 				holder.imageView.setImageResource(R.drawable.ug);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("TZ")) {
 
 				holder.imageView.setImageResource(R.drawable.tz);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("TQ")) {
 
 				holder.imageView.setImageResource(R.drawable.tq);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SR")) {
 
 				holder.imageView.setImageResource(R.drawable.sr);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SQ")) {
 
 				holder.imageView.setImageResource(R.drawable.sq);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SP")) {
 
 				holder.imageView.setImageResource(R.drawable.sp);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SK")) {
 
 				holder.imageView.setImageResource(R.drawable.sk);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SF")) {
 
 				holder.imageView.setImageResource(R.drawable.sf);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SC")) {
 
 				holder.imageView.setImageResource(R.drawable.sc);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SB")) {
 
 				holder.imageView.setImageResource(R.drawable.sb);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PQ")) {
 
 				holder.imageView.setImageResource(R.drawable.pq);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PP")) {
 
 				holder.imageView.setImageResource(R.drawable.pp);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PH")) {
 
 				holder.imageView.setImageResource(R.drawable.ph);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MS")) {
 
 				holder.imageView.setImageResource(R.drawable.ms);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MR")) {
 
 				holder.imageView.setImageResource(R.drawable.mr);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MQ")) {
 
 				holder.imageView.setImageResource(R.drawable.mq);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MP")) {
 
 				holder.imageView.setImageResource(R.drawable.mp);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MG")) {
 
 				holder.imageView.setImageResource(R.drawable.mg);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("ME")) {
 
 				holder.imageView.setImageResource(R.drawable.me);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MC")) {
 
 				holder.imageView.setImageResource(R.drawable.mc);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HU")) {
 
 				holder.imageView.setImageResource(R.drawable.hu);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HG")) {
 
 				holder.imageView.setImageResource(R.drawable.hg);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HF")) {
 
 				holder.imageView.setImageResource(R.drawable.hf);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DM")) {
 
 				holder.imageView.setImageResource(R.drawable.dm);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DW")) {
 
 				holder.imageView.setImageResource(R.drawable.dw);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("EE")) {
 
 				holder.imageView.setImageResource(R.drawable.ee);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DQ")) {
 
 				holder.imageView.setImageResource(R.drawable.dq);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DJ")) {
 
 				holder.imageView.setImageResource(R.drawable.dj);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CR")) {
 
 				holder.imageView.setImageResource(R.drawable.cr);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CQ")) {
 
 				holder.imageView.setImageResource(R.drawable.cq);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CJ")) {
 
 				holder.imageView.setImageResource(R.drawable.cj);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AQ")) {
 
 				holder.imageView.setImageResource(R.drawable.aq);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AJ")) {
 
 				holder.imageView.setImageResource(R.drawable.aj);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AN")) {
 
 				holder.imageView.setImageResource(R.drawable.an);
 
 			}
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AC")) {
 
 				holder.imageView.setImageResource(R.drawable.ac);
 
 			}
 
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("FS")) {
 
 				holder.imageView.setImageResource(R.drawable.spanish);
 
 			}
 
-			if (currenthomeworkdue.Band.substring(0,
+			else if(currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("FF")) {
 
 				holder.imageView.setImageResource(R.drawable.french);
@@ -1880,39 +2099,263 @@ public class Due_Tommorow_Fragment extends Fragment {
 		}
 
 	}
-	
-	
-	private void showNoteDialog() {
-		FragmentManager fm = getFragmentManager();
-		NoteDialog noteDialog = new NoteDialog();
-		noteDialog.show(fm, null);
-		
-		
+
+	public void parse_add_content() {
+
+		Calendar calendar = Calendar.getInstance();
+
+		int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+		if (day == 6) {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Calendar c = Calendar.getInstance();
+
+			c.add(Calendar.DATE, 3);
+
+			date = sdf.format(c.getTime());
+
+			System.out.println("friday");
+
+		} else if (day == 7) {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Calendar c = Calendar.getInstance();
+
+			c.add(Calendar.DATE, 2);
+
+			date = sdf.format(c.getTime());
+
+			System.out.println("saturday");
+
+		} else {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Calendar c = Calendar.getInstance();
+
+			c.add(Calendar.DATE, 1);
+
+			date = sdf.format(c.getTime());
+
+		}
+
+		System.out.println(date);
+
+		int counterssss = Add_Homework_Counter
+				.getInt("add_homework_counter", 0);
+
+		int countersssss = counterssss + 1;
+
+		for (int i = 0; i < countersssss; i++) {
+
+			due_tommorow_shared = "add_homework" + Integer.toString(i);
+
+			Log.d("homework", due_tommorow_shared);
+
+			SharedPreferences Add_Homework = mActivity
+					.getSharedPreferences(due_tommorow_shared,
+							Context.MODE_PRIVATE);
+
+			String Band1 = Add_Homework.getString("add_band", null);
+
+			String Number1 = Add_Homework.getString("add_number", null);
+
+			String Class1 = Add_Homework.getString("add_class", null);
+
+			String Teacher1 = Add_Homework.getString("add_teacher", null);
+
+			String Title1 = Add_Homework.getString("add_title", null);
+
+			String Date1 = Add_Homework.getString("add_date", null);
+
+			String Type1 = Add_Homework.getString("add_type", null);
+
+			String Description1 = Add_Homework.getString("add_description",
+					null);
+
+			if (Band1 != null) {
+
+				Band = Band1.trim();
+
+				Log.d("Band" + i, Band);
+
+			}
+
+			if (Number1 != null) {
+
+				Number = Number1.trim();
+
+				Log.d("Number" + i, Number);
+
+			}
+
+			if (Class1 != null) {
+
+				Class = Class1.trim();
+
+				Log.d("Class" + i, Class);
+
+			}
+
+			if (Teacher1 != null) {
+
+				Teacher = Teacher1.trim();
+
+				Log.d("Teacher" + i, Teacher);
+
+			}
+
+			if (Title1 != null) {
+
+				Title = Title1.trim();
+
+				Log.d("Title" + i, Title);
+
+			}
+
+			if (Date1 != null) {
+
+				Date = Date1.trim();
+
+				Log.d("Date" + i, Date);
+
+			}
+
+			if (Type1 != null) {
+
+				Type = Type1.trim();
+
+				Log.d("Type" + i, Type);
+
+			}
+
+			if (Description1 != null) {
+
+				Description = Description1.trim();
+
+				Log.d("Description" + i, Description);
+
+			}
+
+			System.out.println("date= " + date);
+
+			System.out.println("Date= " + Date);
+
+			if (Date != null && Date.contentEquals(date)) {
+
+				if (Band1 != null) {
+
+					Band = Band1.trim();
+
+					Log.d("Band Passed" + i, Band);
+
+				}
+
+				if (Number1 != null) {
+
+					Number = Number1.trim();
+
+					Log.d("Number Passed" + i, Number);
+
+				}
+
+				if (Class1 != null) {
+
+					Class = Class1.trim();
+
+					Log.d("Class Passed" + i, Class);
+
+				}
+
+				if (Teacher1 != null) {
+
+					Teacher = Teacher1.trim();
+
+					Log.d("Teacher Passed" + i, Teacher);
+
+				}
+
+				if (Title1 != null) {
+
+					Title = Title1.trim();
+
+					Log.d("Title Passed" + i, Title);
+
+				}
+
+				if (Date1 != null) {
+
+					Date = Date1.trim();
+
+					Log.d("Date Passed" + i, Date);
+
+				}
+
+				if (Type1 != null) {
+
+					Type = Type1.trim();
+
+					Log.d("Type Passed" + i, Type);
+
+				}
+
+				if (Description1 != null) {
+
+					Description = Description1.trim();
+
+					Log.d("Description Passed" + i, Description);
+
+				}
+
+				if (!"Type".equals(Type)) {
+					due_tommorow_list.add(new Due_Today_List(Band, Number,
+							Class, Teacher, Title, Date, Type, Description));
+				}
+
+			}
+
+		}
+
 	}
 
+	private void showNoteDialog() {
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		NoteDialog noteDialog = new NoteDialog();
+		noteDialog.show(ft, null);
+
+	}
+	
+	public static void hide_keyboard_from(Context context, View view) {
+	    
+		InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+	    inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+	}
+	
 	public static class NoteDialog extends DialogFragment {
 
 		private EditText mTitleText;
-		
+
 		private EditText mDescriptionText;
 
 		private int Counts;
 
 		public NoteDialog() {
-			
+
 		}
 
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-			AlertDialog.Builder builder = new AlertDialog.Builder(
-					getActivity());
+			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-			View view = getActivity().getLayoutInflater().inflate(
+			final View view = getActivity().getLayoutInflater().inflate(
 					R.layout.add_homework, null);
-			
+
 			mTitleText = (EditText) view.findViewById(R.id.editText1);
-			
+
 			mDescriptionText = (EditText) view.findViewById(R.id.editText2);
 
 			builder.setView(view);
@@ -1934,105 +2377,140 @@ public class Due_Tommorow_Fragment extends Fragment {
 						public void onClick(DialogInterface dialog,
 								int whichButton) {
 
-							mDescriptionText.setInputType(InputType.TYPE_NULL);
-							
-							mTitleText.setInputType(InputType.TYPE_NULL);
+							hide_keyboard_from(getActivity(), view);
 							
 							SharedPreferences Homework_Counter = getActivity()
-									.getSharedPreferences("due_tommorow_counter",
+									.getSharedPreferences(
+											"add_homework_counter",
 											Context.MODE_PRIVATE);
 
-							if (Homework_Counter.contains("last shared preference")) {
+							if (Homework_Counter
+									.contains("add_homework_counter")) {
 
-								int Count = Homework_Counter.getInt("last shared preference",
-										0);
+								int Count = Homework_Counter.getInt(
+										"add_homework_counter", 0);
 
-								Counts = Count + 2;
-								 
-								System.out.println("Counts1 "+ Counts);
+								Counts = Count + 1;
+
+								System.out.println("Counts1 " + Counts);
 
 							} else {
 
-								Counts = 1;
+								Counts = 0;
 
-								System.out.println("Counts2 "+ Counts);
-								
+								System.out.println("Counts2 " + Counts);
+
 							}
-							
-							System.out.println("Counts3 "+Counts);
-							
-							String HomeworkNumber = "due_tommorow" + Integer.toString(Counts);
-							
+
+							System.out.println("Counts3 " + Counts);
+
+							String HomeworkNumber = "add_homework"
+									+ Integer.toString(Counts);
+
 							SharedPreferences.Editor localEditorCount = getActivity()
-									.getSharedPreferences("due_tommorow_counter",
+									.getSharedPreferences(
+											"add_homework_counter",
 											Context.MODE_PRIVATE).edit();
 
-							localEditorCount.putInt("last shared preference", Counts);
+							localEditorCount.putInt("add_homework_counter",
+									Counts);
 
 							localEditorCount.apply();
-							
-							SharedPreferences.Editor localEditorCount1 = getActivity()
-									.getSharedPreferences("add_counter",
-											Context.MODE_PRIVATE).edit();
 
-							localEditorCount1.putInt("tommorow", Counts);
-
-							localEditorCount1.apply();
-							
 							SharedPreferences.Editor localEditor = getActivity()
 									.getSharedPreferences(HomeworkNumber,
 											Context.MODE_PRIVATE).edit();
-							
-							localEditor.putString("due_tommorow0", "X");
 
-							localEditor.putString("due_tommorow1", "0");
+							localEditor.putString("add_band", "X");
 
-							localEditor.putString("due_tommorow2", "Manually Added Homework");
+							localEditor.putString("add_number", "0");
 
-							localEditor.putString("due_tommorow3", "Teacher");
+							localEditor.putString("add_class",
+									"Manually Added Homework");
 
-							localEditor.putString("due_tommorow4", mTitleText.getText().toString());
+							localEditor.putString("add_teacher", "You");
 
-							localEditor.putString("due_tommorow5", date);
+							localEditor.putString("add_title", mTitleText
+									.getText().toString());
 
-							localEditor.putString("due_tommorow6", "Homework");
+							localEditor.putString("add_date", date);
 
-							localEditor.putString("due_tommorow7", mDescriptionText.getText().toString());
-							
+							localEditor.putString("add_type", "Homework");
+
+							localEditor.putString("add_description",
+									mDescriptionText.getText().toString());
+
 							localEditor.apply();
-							
-							Intent intent = new Intent("refreshListView");
 
-							intent.putExtra("refresh", "refresh listview");
-							LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(
-									intent);
-							
 							getDialog().dismiss();
 							
+							Intent intent = new Intent("refreshListViewTommorow");
+
+							intent.putExtra("refresh", "refresh listview");
+							LocalBroadcastManager.getInstance(getActivity())
+									.sendBroadcast(intent);
+
 						}
 					});
-			
+
 			return builder.create();
 
 		}
 
 	}
-	
+
 	private BroadcastReceiver mClickedReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context paramAnonymousContext,
-				Intent paramAnonymousIntent) {
+				Intent paramAnonymousIntent) { 	
+			
+			due_tommorow_list = new ArrayList<Due_Today_List>();
 
-			due_tommorow_list.clear();
-			
-			Log.d("receiver", "refreshed listview");
-			
 			parse_due_tommorow_content();
 			
-			adapter.notifyDataSetChanged();
+			parse_add_content();
 			
+			populateListView();
+
+			Log.d("homework_add", "refresh");	
+			
+//			new UpdateAdd().execute();
+
+	    			
 		}
 	};
+
+	public class UpdateAdd extends AsyncTask<Void, Void, Void> {
+
+		@Override
+		protected Void doInBackground(Void... add) {
+
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+        	due_tommorow_list = new ArrayList<Due_Today_List>();
+
+			parse_due_tommorow_content();
+			
+			parse_add_content();
+
+			Log.d("homework_add", "refresh");	
+			
+			return null;
+
+		}
+		
+		@Override
+		protected void onPostExecute(Void updateUI) {
+
+			populateListView();
+
+		}
+		
+	}
 	
 }
-

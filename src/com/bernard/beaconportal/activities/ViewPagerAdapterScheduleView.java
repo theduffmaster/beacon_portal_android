@@ -6,10 +6,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class ViewPagerAdapterScheduleView extends FragmentPagerAdapter {
 
-	private int days;
-
-	private int day;
-
 	final int PAGE_COUNT = 5;
 	private String titles[] = new String[] { "Monday", "Tuesday", "Wednesday",
 			"Thursday", "Friday" };

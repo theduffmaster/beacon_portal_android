@@ -43,8 +43,8 @@ public class Friday_view extends Fragment {
 	private TextView footer_text;
 
 	private View footer;
-	
-	private static TextView  addNoteText;
+
+	private static TextView addNoteText;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -140,7 +140,7 @@ public class Friday_view extends Fragment {
 				R.layout.homeworkday_footer, null);
 
 		footer.setBackgroundResource(R.drawable.item_selector);
-		
+
 		footer.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -286,7 +286,6 @@ public class Friday_view extends Fragment {
 		private EnhancedListView mNotes;
 		private static RelativeLayout addNote;
 		private int position_mainlist;
-		private String note_removed;
 
 		public NotesDialog() {
 			// Empty constructor required for DialogFragment
@@ -301,11 +300,12 @@ public class Friday_view extends Fragment {
 					R.layout.note_dialog, null);
 			mNotes = (EnhancedListView) view.findViewById(R.id.listViewNotes);
 			addNote = (RelativeLayout) view.findViewById(R.id.notesAdd);
-			
+
 			addNoteText = (TextView) view.findViewById(R.id.textViewTitles);
-			
-			SharedPreferences sharedprefer = getActivity().getSharedPreferences(
-					"actionbar_color", Context.MODE_PRIVATE);
+
+			SharedPreferences sharedprefer = getActivity()
+					.getSharedPreferences("actionbar_color",
+							Context.MODE_PRIVATE);
 
 			if (!sharedprefer.contains("actionbar_color")) {
 
@@ -313,11 +313,12 @@ public class Friday_view extends Fragment {
 
 			} else {
 
-				actionbar_colors = sharedprefer.getString("actionbar_color", null);
+				actionbar_colors = sharedprefer.getString("actionbar_color",
+						null);
 
 				addNoteText.setTextColor(Color.parseColor(actionbar_colors));
 			}
-			
+
 			addNoteText.setText("Add Note For " + bandString);
 
 			String band_position = ("friday" + (Integer.toString(position)))

@@ -1,11 +1,49 @@
 package com.bernard.beaconportal.activities.mail.transport;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.Inet6Address;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.net.SocketException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.security.GeneralSecurityException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.TrustManager;
+
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.mail.*;
+import com.bernard.beaconportal.activities.mail.Address;
+import com.bernard.beaconportal.activities.mail.AuthType;
+import com.bernard.beaconportal.activities.mail.Authentication;
+import com.bernard.beaconportal.activities.mail.AuthenticationFailedException;
+import com.bernard.beaconportal.activities.mail.CertificateValidationException;
+import com.bernard.beaconportal.activities.mail.ConnectionSecurity;
+import com.bernard.beaconportal.activities.mail.Message;
 import com.bernard.beaconportal.activities.mail.Message.RecipientType;
+import com.bernard.beaconportal.activities.mail.MessagingException;
+import com.bernard.beaconportal.activities.mail.ServerSettings;
+import com.bernard.beaconportal.activities.mail.Transport;
 import com.bernard.beaconportal.activities.mail.filter.Base64;
 import com.bernard.beaconportal.activities.mail.filter.EOLConvertingOutputStream;
 import com.bernard.beaconportal.activities.mail.filter.LineWrapOutputStream;
@@ -15,21 +53,6 @@ import com.bernard.beaconportal.activities.mail.internet.MimeUtility;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalMessage;
 import com.bernard.beaconportal.activities.net.ssl.TrustManagerFactory;
 import com.bernard.beaconportal.activities.net.ssl.TrustedSocketFactory;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLException;
-import javax.net.ssl.TrustManager;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.*;
-import java.security.GeneralSecurityException;
-import java.security.SecureRandom;
-import java.security.cert.CertificateException;
-import java.util.*;
 
 public class SmtpTransport extends Transport {
 	public static final String TRANSPORT_TYPE = "SMTP";

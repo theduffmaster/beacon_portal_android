@@ -8,8 +8,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -17,9 +17,8 @@ import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.activity.K9Activity;
-import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
 
 public class AccountSetupComposition extends K9ActivityMaterial {
 

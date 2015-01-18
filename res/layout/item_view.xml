@@ -4,10 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
      >
-     
+		<RelativeLayout
+           	android:id="@+id/swiped_background"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:background="#4285f4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            
+            <ImageView 
+                android:id="@+id/action_delete"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_assignment_turned_in_white"
+                android:layout_width="48dp"
+                android:layout_height="match_parent" />
+        
+        </RelativeLayout>
     
-
+    
 <RelativeLayout 
+    android:id="@+id/homework_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/item_selector"
@@ -94,5 +110,6 @@
 </RelativeLayout>
 
 
+        
 
 </FrameLayout>

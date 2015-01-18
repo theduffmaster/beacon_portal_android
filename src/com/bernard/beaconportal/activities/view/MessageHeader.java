@@ -1,5 +1,10 @@
 package com.bernard.beaconportal.activities.view;
 
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Parcel;
@@ -9,8 +14,8 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.text.style.StyleSpan;
-import android.util.Log;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,6 +28,7 @@ import android.widget.Toast;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.misc.ContactPictureLoader;
 import com.bernard.beaconportal.activities.helper.ContactPicture;
 import com.bernard.beaconportal.activities.helper.Contacts;
@@ -33,12 +39,6 @@ import com.bernard.beaconportal.activities.mail.Flag;
 import com.bernard.beaconportal.activities.mail.Message;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.internet.MimeUtility;
-import com.bernard.beaconportal.activities.R;
-
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
 
 public class MessageHeader extends LinearLayout implements OnClickListener {
 	private Context mContext;
@@ -56,7 +56,6 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
 	private View mAnsweredIcon;
 	private View mForwardedIcon;
 	private Message mMessage;
-	private Account mAccount;
 	private FontSizes mFontSizes = K9.getFontSizes();
 	private Contacts mContacts;
 	private SavedState mSavedState;
@@ -257,8 +256,6 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
 		}
 
 		mMessage = message;
-		mAccount = account;
-
 		if (K9.showContactPicture()) {
 			mContactBadge.setVisibility(View.VISIBLE);
 			mContactsPictureLoader = ContactPicture

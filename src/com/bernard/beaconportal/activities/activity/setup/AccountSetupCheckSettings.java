@@ -1,5 +1,13 @@
 package com.bernard.beaconportal.activities.activity.setup;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateEncodingException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.Collection;
+import java.util.List;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -19,7 +27,10 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bernard.beaconportal.activities.*;
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.K9Activity;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.mail.AuthenticationFailedException;
@@ -28,15 +39,6 @@ import com.bernard.beaconportal.activities.mail.Store;
 import com.bernard.beaconportal.activities.mail.Transport;
 import com.bernard.beaconportal.activities.mail.filter.Hex;
 import com.bernard.beaconportal.activities.mail.store.WebDavStore;
-import com.bernard.beaconportal.activities.R;
-
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateEncodingException;
-import java.security.cert.X509Certificate;
-import java.security.NoSuchAlgorithmException;
-import java.security.MessageDigest;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * Checks the given settings to make sure that they can be used to send and

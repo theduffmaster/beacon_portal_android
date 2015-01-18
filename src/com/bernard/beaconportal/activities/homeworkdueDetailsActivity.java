@@ -5,14 +5,12 @@ import static com.bernard.beaconportal.activities.Due_Today_Fragment.KEY_DATE;
 import static com.bernard.beaconportal.activities.Due_Today_Fragment.KEY_DESC;
 import static com.bernard.beaconportal.activities.Due_Today_Fragment.KEY_HOMEWORK;
 import static com.bernard.beaconportal.activities.Due_Today_Fragment.KEY_TYPE;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -21,7 +19,7 @@ import android.widget.TextView;
 
 public class homeworkdueDetailsActivity extends ActionBarActivity {
 
-	private String background_colors, actionbar_colors;
+	private String actionbar_colors;
 
 	private TextView headlineTxt;
 
@@ -337,8 +335,7 @@ public class homeworkdueDetailsActivity extends ActionBarActivity {
 
 		System.out.println(band);
 
-		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
-				Context.MODE_PRIVATE);
+		getSharedPreferences("actionbar_color", Context.MODE_PRIVATE);
 
 		ActionBar bar = getSupportActionBar();
 

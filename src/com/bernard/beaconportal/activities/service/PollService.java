@@ -1,18 +1,19 @@
 package com.bernard.beaconportal.activities.service;
 
+import java.util.HashMap;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.*;
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.controller.MessagingListener;
 import com.bernard.beaconportal.activities.helper.power.TracingPowerManager;
 import com.bernard.beaconportal.activities.helper.power.TracingPowerManager.TracingWakeLock;
-
-import java.util.HashMap;
 
 public class PollService extends CoreService {
 	private static String START_SERVICE = "com.bernard.beaconportal.activities.service.PollService.startService";

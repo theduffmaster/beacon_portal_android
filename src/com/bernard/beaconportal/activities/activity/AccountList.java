@@ -25,8 +25,8 @@ import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.search.SearchAccount;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.search.SearchAccount;
 
 /**
  * Activity displaying the list of accounts.

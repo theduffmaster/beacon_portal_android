@@ -30,7 +30,7 @@ import de.timroes.android.listview.EnhancedListView.UndoStyle;
 
 public class Tuesday_view extends Fragment {
 
-	private String ABand, BBand, CBand, DBand, EBand, FBand, HBand, GBand;
+	private String ABand, BBand, CBand, DBand, EBand, HBand, GBand;
 
 	private int count0, count1, count2, count3, count4, count5, count6;
 
@@ -47,7 +47,7 @@ public class Tuesday_view extends Fragment {
 	private static ArrayAdapter<schedule_view> adapter;
 
 	private View footer;
-	
+
 	private static TextView addNoteText;
 
 	@Override
@@ -150,7 +150,7 @@ public class Tuesday_view extends Fragment {
 				R.layout.homeworkday_footer, null);
 
 		footer.setBackgroundResource(R.drawable.item_selector);
-		
+
 		footer.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -294,7 +294,6 @@ public class Tuesday_view extends Fragment {
 		private EnhancedListView mNotes;
 		private static RelativeLayout addNote;
 		private int position_mainlist;
-		private String note_removed;
 
 		public NotesDialog() {
 			// Empty constructor required for DialogFragment
@@ -311,9 +310,10 @@ public class Tuesday_view extends Fragment {
 			addNote = (RelativeLayout) view.findViewById(R.id.notesAdd);
 
 			addNoteText = (TextView) view.findViewById(R.id.textViewTitles);
-			
-			SharedPreferences sharedprefer = getActivity().getSharedPreferences(
-					"actionbar_color", Context.MODE_PRIVATE);
+
+			SharedPreferences sharedprefer = getActivity()
+					.getSharedPreferences("actionbar_color",
+							Context.MODE_PRIVATE);
 
 			if (!sharedprefer.contains("actionbar_color")) {
 
@@ -321,13 +321,14 @@ public class Tuesday_view extends Fragment {
 
 			} else {
 
-				actionbar_colors = sharedprefer.getString("actionbar_color", null);
+				actionbar_colors = sharedprefer.getString("actionbar_color",
+						null);
 
 				addNoteText.setTextColor(Color.parseColor(actionbar_colors));
 			}
-			
+
 			addNoteText.setText("Add Note For " + bandString);
-			
+
 			String band_position = ("tuesday" + (Integer.toString(position)))
 					.toString();
 

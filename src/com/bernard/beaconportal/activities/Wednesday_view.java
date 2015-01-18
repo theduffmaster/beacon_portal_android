@@ -29,7 +29,7 @@ import de.timroes.android.listview.EnhancedListView.UndoStyle;
 
 public class Wednesday_view extends Fragment {
 
-	private String ABand, BBand, CBand, DBand, EBand, FBand, HBand, GBand;
+	private String ABand, BBand, DBand, EBand, FBand, HBand, GBand;
 
 	private int count0, count1, count2, count3, count4, count5, count6;
 
@@ -39,8 +39,6 @@ public class Wednesday_view extends Fragment {
 
 	private static ArrayAdapter<schedule_view> adapter;
 
-	private int current_minutes;
-
 	private static String actionbar_colors;
 
 	private TextView footer_text;
@@ -48,7 +46,7 @@ public class Wednesday_view extends Fragment {
 	private ListView list;
 
 	private View footer;
-	
+
 	private static TextView addNoteText;
 
 	@Override
@@ -143,7 +141,7 @@ public class Wednesday_view extends Fragment {
 
 		footer = getActivity().getLayoutInflater().inflate(
 				R.layout.homeworkday_footer, null);
-		
+
 		footer.setBackgroundResource(R.drawable.item_selector);
 
 		footer.setOnClickListener(new OnClickListener() {
@@ -289,7 +287,6 @@ public class Wednesday_view extends Fragment {
 		private EnhancedListView mNotes;
 		private static RelativeLayout addNote;
 		private int position_mainlist;
-		private String note_removed;
 
 		public NotesDialog() {
 			// Empty constructor required for DialogFragment
@@ -306,9 +303,10 @@ public class Wednesday_view extends Fragment {
 			addNote = (RelativeLayout) view.findViewById(R.id.notesAdd);
 
 			addNoteText = (TextView) view.findViewById(R.id.textViewTitles);
-			
-			SharedPreferences sharedprefer = getActivity().getSharedPreferences(
-					"actionbar_color", Context.MODE_PRIVATE);
+
+			SharedPreferences sharedprefer = getActivity()
+					.getSharedPreferences("actionbar_color",
+							Context.MODE_PRIVATE);
 
 			if (!sharedprefer.contains("actionbar_color")) {
 
@@ -316,13 +314,14 @@ public class Wednesday_view extends Fragment {
 
 			} else {
 
-				actionbar_colors = sharedprefer.getString("actionbar_color", null);
+				actionbar_colors = sharedprefer.getString("actionbar_color",
+						null);
 
 				addNoteText.setTextColor(Color.parseColor(actionbar_colors));
 			}
-			
+
 			addNoteText.setText("Add Note For " + bandString);
-			
+
 			String band_position = ("wednesday" + (Integer.toString(position)))
 					.toString();
 

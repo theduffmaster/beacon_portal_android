@@ -1,9 +1,5 @@
 package com.bernard.beaconportal.activities.activity.setup;
 
-import java.util.List;
-
-import org.apache.http.HttpResponse;
-
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,28 +21,24 @@ import android.text.method.TextKeyListener.Capitalize;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bernard.beaconportal.activities.*;
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.FragmentSettings;
+import com.bernard.beaconportal.activities.FragmentsHomeworkDue;
+import com.bernard.beaconportal.activities.FragmentsSchedule;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.Accounts;
 import com.bernard.beaconportal.activities.activity.K9Activity;
-import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
 import com.bernard.beaconportal.activities.helper.Utility;
-import com.bernard.beaconportal.activities.R;
 
 public class AccountSetupNames extends K9Activity implements OnClickListener {
 	private static final String EXTRA_ACCOUNT = "account";
-
-	private String Data, Band, Number, Class, Teacher, Title, Date, Type,
-			Description, DescriptionAll, DescriptionCheck, due_today_shared,
-			due_today_shared_content;
-
-	private static final String TAG = "K9MailExtension";
 
 	public static final String PREF_NAME = "pref_name";
 
@@ -65,57 +57,14 @@ public class AccountSetupNames extends K9Activity implements OnClickListener {
 	TextView mWelcome;
 	ListView mDrawerList;
 	ActionBarDrawerToggle mDrawerToggle;
-	private MenuListAdapter mMenuAdapter;
 	String actionbar_colors, actionbar_colorsString;
-	private String Show_View;
 	String[] title;
 	String[] count;
 	int[] icon;
-	private String counterss;
-	private int counters;
-	private static ProgressDialog pd;
-	private static Context context;
 	Fragment fragment1 = new FragmentsSchedule();
 	Fragment fragment2 = new FragmentsHomeworkDue();
 	Fragment fragment3 = new FragmentSettings();
-	private CharSequence mDrawerTitle;
-	private CharSequence mDrawerTitleCheck;
-	private CharSequence mTitle;
-	private String KEY_STATE_TITLE;
-
 	ProgressDialog LoginDialog;
-
-	private HttpResponse response;
-
-	private int starts = 0;
-
-	private String checkbox_edit;
-
-	private BaseAccount mSelectedContextAccount;
-
-	private int shared1;
-
-	private int number;
-
-	private int countersss1;
-
-	private int mUnreadMessageCount = 0;
-
-	private String due_tommorow_shared, due_tommorow_shared_content;
-
-	private List<Due_Today_List> due_today_list;
-
-	private List<String> read_due_today_list;
-
-	private String K9count;
-
-	private View swipe;
-
-	private int shared;
-
-	private int countersss;
-
-	private ArrayAdapter<Due_Today_List> adapter;
 
 	private EditText mDescription;
 

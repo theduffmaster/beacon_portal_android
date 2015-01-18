@@ -1,5 +1,16 @@
 package com.bernard.beaconportal.activities.activity.setup;
 
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+import org.xmlpull.v1.XmlPullParser;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -22,22 +33,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.bernard.beaconportal.activities.*;
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.EmailAddressValidator;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.K9Activity;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupCheckSettings.CheckDirection;
 import com.bernard.beaconportal.activities.helper.Utility;
-import com.bernard.beaconportal.activities.R;
-
-import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-
-import org.xmlpull.v1.XmlPullParser;
 
 /**
  * Prompts the user for the email address and password. Attempts to lookup
@@ -337,177 +340,216 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 
 	protected void onNext() {
 
-		showDatePicker();
+		//showDatePicker();
+		
+		SharedPreferences.Editor localEditor = getSharedPreferences(
+				"Login_Info", Context.MODE_PRIVATE).edit();
 
-	}
+		localEditor.putInt("Day", 26);
 
-	public void showDatePicker() {
-		// Initializiation
-		LayoutInflater inflater = getLayoutInflater();
-		final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-		View customView = inflater.inflate(R.layout.bdaypicker, null);
-		dialogBuilder.setView(customView);
-		Calendar now = Calendar.getInstance();
-		final DatePicker datePicker = (DatePicker) customView
-				.findViewById(R.id.dialog_datepicker);
-		final TextView dateTextView = (TextView) customView
-				.findViewById(R.id.dialog_dateview);
-		final SimpleDateFormat dateViewFormatter = new SimpleDateFormat(
-				"MM/dd/yyyy");
+		localEditor.putInt("Year", 2000);
 
-		// View settings
-		dialogBuilder.setTitle("Please Enter Your Date of Birth");
-		Calendar choosenDate = Calendar.getInstance();
-		int year = choosenDate.get(Calendar.YEAR);
-		int month = choosenDate.get(Calendar.MONTH);
-		int day = choosenDate.get(Calendar.DAY_OF_MONTH);
-		try {
+		localEditor.putInt("Month", 11);
 
-			year = 2000;
-			month = 0;
-			day = 1;
-		} catch (Exception e) {
-			e.printStackTrace();
+		localEditor.apply();
+		
+		String email = mEmailView.getText().toString();
+		String[] emailParts = splitEmail(email);
+		String domain = emailParts[1];
+		mProvider = findProviderForDomain(domain);
+		if (mProvider == null) {
+			/*
+			 * We don't have default settings for this
+			 * account, start the manual setup process.
+			 */
+			onManualSetup();
+			return;
 		}
-		Calendar dateToDisplay = Calendar.getInstance();
-		dateToDisplay.set(year, month, day);
-		dateTextView.setText(dateViewFormatter.format(dateToDisplay.getTime()));
-		// Buttons
-		dialogBuilder.setNegativeButton("Go Back",
-				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
 
-						dialog.dismiss();
-					}
-				});
-		dialogBuilder.setPositiveButton("Login",
-				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-
-						int year = datePicker.getYear();
-						int month = datePicker.getMonth();
-						int day = datePicker.getDayOfMonth();
-
-						SharedPreferences.Editor localEditor = getSharedPreferences(
-								"Login_Info", Context.MODE_PRIVATE).edit();
-
-						localEditor.putInt("Day", day);
-
-						localEditor.putInt("Year", year);
-
-						localEditor.putInt("Month", month);
-
-						localEditor.apply();
-
-						dialog.dismiss();
-
-						bday_check_dialog();
-					}
-				});
-		final AlertDialog dialog = dialogBuilder.create();
-		// Initialize datepicker in dialog atepicker
-		datePicker.init(year, month, day,
-				new DatePicker.OnDateChangedListener() {
-					@Override
-					public void onDateChanged(DatePicker view, int year,
-							int monthOfYear, int dayOfMonth) {
-						Calendar choosenDate = Calendar.getInstance();
-						choosenDate.set(year, monthOfYear, dayOfMonth);
-						dateTextView.setText(dateViewFormatter
-								.format(choosenDate.getTime()));
-
-						dateTextView.setTextColor(Color.parseColor("#58585b"));
-						dialog.getButton(DialogInterface.BUTTON_POSITIVE)
-								.setEnabled(true);
-					}
-
-				});
-
-		dialog.show();
-	}
-
-	private void bday_check_dialog() {
-		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-			SharedPreferences bDay = getSharedPreferences("Login_Info",
-					Context.MODE_PRIVATE);
-
-			String day1 = Integer.toString(bDay.getInt("Day", 0));
-
-			String year1 = Integer.toString(bDay.getInt("Year", 0));
-
-			String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
-
-			SharedPreferences userName = getSharedPreferences("Login_Info",
-					Context.MODE_PRIVATE);
-
-			String day = day1.replaceFirst("^0+(?!$)", "");
-
-			String month = month1.replaceFirst("^0+(?!$)", "");
-
-			String year = year1.replaceFirst("^0+(?!$)", "");
-
-			String birthday = month + "/" + day + "/" + year;
-
-			builder.setTitle("Please Confirm That " + birthday
-					+ " Is Your Actual Birthday?");
-
-			builder.setMessage("You probably entered the right birthdate, but just to double check is "
-					+ birthday
-					+ " your actual birthday? If not, then you won't be able to properly use this app, and expierience all the features it has to offer.");
-
-			builder.setPositiveButton("Re-enter It",
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int id) {
-
-							showDatePicker();
-
-						}
-					});
-			builder.setNegativeButton("Confirm",
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int id) {
-
-							String email = mEmailView.getText().toString();
-							String[] emailParts = splitEmail(email);
-							String domain = emailParts[1];
-							mProvider = findProviderForDomain(domain);
-							if (mProvider == null) {
-								/*
-								 * We don't have default settings for this
-								 * account, start the manual setup process.
-								 */
-								onManualSetup();
-								return;
-							}
-
-							if (mProvider.note != null) {
-								showDialog(DIALOG_NOTE);
-							} else {
-								finishAutoSetup();
-							}
-
-							SharedPreferences.Editor localEditor = getSharedPreferences(
-									"Login_Info", Context.MODE_PRIVATE).edit();
-
-							localEditor.putString("email", email);
-
-							localEditor.apply();
-
-						}
-					});
-
-			AlertDialog alertDialog = builder.create();
-
-			alertDialog.show();
-
+		if (mProvider.note != null) {
+			showDialog(DIALOG_NOTE);
+		} else {
+			finishAutoSetup();
 		}
+
+		SharedPreferences.Editor localEditors = getSharedPreferences(
+				"Login_Info", Context.MODE_PRIVATE).edit();
+
+		localEditors.putString("email", email);
+
+		localEditors.apply();
+
 	}
+	
+	//lots of complaints about having to give your birthday, and turns out you dont have to give it sooooo just going to remove this
+
+//	public void showDatePicker() {
+//		// Initializiation
+//		LayoutInflater inflater = getLayoutInflater();
+//		final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+//		View customView = inflater.inflate(R.layout.bdaypicker, null);
+//		dialogBuilder.setView(customView);
+//		Calendar.getInstance();
+//		final DatePicker datePicker = (DatePicker) customView
+//				.findViewById(R.id.dialog_datepicker);
+//		final TextView dateTextView = (TextView) customView
+//				.findViewById(R.id.dialog_dateview);
+//		final SimpleDateFormat dateViewFormatter = new SimpleDateFormat(
+//				"MM/dd/yyyy");
+//
+//		// View settings
+//		dialogBuilder.setTitle("Please Enter Your Date of Birth");
+//		Calendar choosenDate = Calendar.getInstance();
+//		int year = choosenDate.get(Calendar.YEAR);
+//		int month = choosenDate.get(Calendar.MONTH);
+//		int day = choosenDate.get(Calendar.DAY_OF_MONTH);
+//		try {
+//
+//			year = 2000;
+//			month = 0;
+//			day = 1;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		Calendar dateToDisplay = Calendar.getInstance();
+//		dateToDisplay.set(year, month, day);
+//		dateTextView.setText(dateViewFormatter.format(dateToDisplay.getTime()));
+//		// Buttons
+//		dialogBuilder.setNegativeButton("Go Back",
+//				new DialogInterface.OnClickListener() {
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//
+//						dialog.dismiss();
+//					}
+//				});
+//		dialogBuilder.setPositiveButton("Login",
+//				new DialogInterface.OnClickListener() {
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//
+//						int year = datePicker.getYear();
+//						int month = datePicker.getMonth();
+//						int day = datePicker.getDayOfMonth();
+//
+//						SharedPreferences.Editor localEditor = getSharedPreferences(
+//								"Login_Info", Context.MODE_PRIVATE).edit();
+//
+//						localEditor.putInt("Day", day);
+//
+//						localEditor.putInt("Year", year);
+//
+//						localEditor.putInt("Month", month);
+//
+//						localEditor.apply();
+//
+//						dialog.dismiss();
+//
+//						bday_check_dialog();
+//					}
+//				});
+//		final AlertDialog dialog = dialogBuilder.create();
+//		// Initialize datepicker in dialog atepicker
+//		datePicker.init(year, month, day,
+//				new DatePicker.OnDateChangedListener() {
+//					@Override
+//					public void onDateChanged(DatePicker view, int year,
+//							int monthOfYear, int dayOfMonth) {
+//						Calendar choosenDate = Calendar.getInstance();
+//						choosenDate.set(year, monthOfYear, dayOfMonth);
+//						dateTextView.setText(dateViewFormatter
+//								.format(choosenDate.getTime()));
+//
+//						dateTextView.setTextColor(Color.parseColor("#58585b"));
+//						dialog.getButton(DialogInterface.BUTTON_POSITIVE)
+//								.setEnabled(true);
+//					}
+//
+//				});
+//
+//		dialog.show();
+//	}
+//
+//	private void bday_check_dialog() {
+//		{
+//			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//
+//			SharedPreferences bDay = getSharedPreferences("Login_Info",
+//					Context.MODE_PRIVATE);
+//
+//			String day1 = Integer.toString(bDay.getInt("Day", 0));
+//
+//			String year1 = Integer.toString(bDay.getInt("Year", 0));
+//
+//			String month1 = Integer.toString(1 + bDay.getInt("Month", 0));
+//
+//			SharedPreferences userName = getSharedPreferences("Login_Info",
+//					Context.MODE_PRIVATE);
+//
+//			String day = day1.replaceFirst("^0+(?!$)", "");
+//
+//			String month = month1.replaceFirst("^0+(?!$)", "");
+//
+//			String year = year1.replaceFirst("^0+(?!$)", "");
+//
+//			String birthday = month + "/" + day + "/" + year;
+//
+//			builder.setTitle("Please Confirm That " + birthday
+//					+ " Is Your Actual Birthday?");
+//
+//			builder.setMessage("You probably entered the right birthdate, but just to double check is "
+//					+ birthday
+//					+ " your actual birthday? If not, then you won't be able to properly use this app, and expierience all the features it has to offer.");
+//
+//			builder.setPositiveButton("Re-enter It",
+//					new DialogInterface.OnClickListener() {
+//						@Override
+//						public void onClick(DialogInterface dialog, int id) {
+//
+//							showDatePicker();
+//
+//						}
+//					});
+//			builder.setNegativeButton("Confirm",
+//					new DialogInterface.OnClickListener() {
+//						@Override
+//						public void onClick(DialogInterface dialog, int id) {
+//
+//							String email = mEmailView.getText().toString();
+//							String[] emailParts = splitEmail(email);
+//							String domain = emailParts[1];
+//							mProvider = findProviderForDomain(domain);
+//							if (mProvider == null) {
+//								/*
+//								 * We don't have default settings for this
+//								 * account, start the manual setup process.
+//								 */
+//								onManualSetup();
+//								return;
+//							}
+//
+//							if (mProvider.note != null) {
+//								showDialog(DIALOG_NOTE);
+//							} else {
+//								finishAutoSetup();
+//							}
+//
+//							SharedPreferences.Editor localEditor = getSharedPreferences(
+//									"Login_Info", Context.MODE_PRIVATE).edit();
+//
+//							localEditor.putString("email", email);
+//
+//							localEditor.apply();
+//
+//						}
+//					});
+//
+//			AlertDialog alertDialog = builder.create();
+//
+//			alertDialog.show();
+//
+//		}
+//	}
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {

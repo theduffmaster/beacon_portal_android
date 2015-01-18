@@ -28,10 +28,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.K9.NotificationHideSubject;
 import com.bernard.beaconportal.activities.K9.NotificationQuickDelete;
 import com.bernard.beaconportal.activities.K9.SplitViewMode;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.ColorPickerDialog;
 import com.bernard.beaconportal.activities.activity.K9PreferenceActivity;
 import com.bernard.beaconportal.activities.controller.MessagingController;
@@ -41,7 +42,6 @@ import com.bernard.beaconportal.activities.preferences.CheckBoxListPreference;
 import com.bernard.beaconportal.activities.preferences.TimePickerPreference;
 import com.bernard.beaconportal.activities.service.MailService;
 import com.bernard.beaconportal.activities.view.MessageWebView;
-import com.bernard.beaconportal.activities.R;
 
 public class Prefs extends K9PreferenceActivity {
 

@@ -1,7 +1,5 @@
 package com.bernard.beaconportal.activities.activity.setup;
 
-import android.app.Dialog;
-
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,6 +8,7 @@ import java.util.Map;
 import org.openintents.openpgp.util.OpenPgpListPreference;
 import org.openintents.openpgp.util.OpenPgpUtils;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,12 +30,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.Account.FolderMode;
+import com.bernard.beaconportal.activities.Account.QuoteStyle;
 import com.bernard.beaconportal.activities.BaseAccount;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.NotificationSetting;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.Account.FolderMode;
-import com.bernard.beaconportal.activities.Account.QuoteStyle;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.ChooseFolder;
 import com.bernard.beaconportal.activities.activity.ChooseIdentity;
 import com.bernard.beaconportal.activities.activity.ColorPickerDialog;
@@ -47,10 +47,9 @@ import com.bernard.beaconportal.activities.crypto.Apg;
 import com.bernard.beaconportal.activities.crypto.CryptoProvider;
 import com.bernard.beaconportal.activities.mail.Folder;
 import com.bernard.beaconportal.activities.mail.Store;
-import com.bernard.beaconportal.activities.mail.store.StorageManager;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalFolder;
+import com.bernard.beaconportal.activities.mail.store.StorageManager;
 import com.bernard.beaconportal.activities.service.MailService;
-import com.bernard.beaconportal.activities.R;
 
 public class AccountSettings extends K9PreferenceActivity {
 	private static final String EXTRA_ACCOUNT = "account";
@@ -118,8 +117,6 @@ public class AccountSettings extends K9PreferenceActivity {
 	private static final String PREFERENCE_CRYPTO_AUTO_ENCRYPT = "crypto_auto_encrypt";
 	private static final String PREFERENCE_CLOUD_SEARCH_ENABLED = "remote_search_enabled";
 	private static final String PREFERENCE_REMOTE_SEARCH_NUM_RESULTS = "account_remote_search_num_results";
-	private static final String PREFERENCE_REMOTE_SEARCH_FULL_TEXT = "account_remote_search_full_text";
-
 	private static final String PREFERENCE_LOCAL_STORAGE_PROVIDER = "local_storage_provider";
 	private static final String PREFERENCE_CATEGORY_FOLDERS = "folders";
 	private static final String PREFERENCE_ARCHIVE_FOLDER = "archive_folder";

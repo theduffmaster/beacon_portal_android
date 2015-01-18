@@ -8,6 +8,8 @@ import java.net.URLConnection;
 import java.net.URLDecoder;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
@@ -42,6 +44,7 @@ import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.controller.MessagingListener;
 import com.bernard.beaconportal.activities.crypto.CryptoProvider;
@@ -61,9 +64,6 @@ import com.bernard.beaconportal.activities.mail.internet.MimeUtility;
 import com.bernard.beaconportal.activities.mail.store.LocalStore;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalMessage;
 import com.bernard.beaconportal.activities.provider.AttachmentProvider.AttachmentProviderColumns;
-import com.bernard.beaconportal.activities.R;
-
-import org.apache.commons.io.IOUtils;
 
 public class SingleMessageView extends LinearLayout implements OnClickListener,
 		MessageHeader.OnLayoutChangedListener, OnCreateContextMenuListener {

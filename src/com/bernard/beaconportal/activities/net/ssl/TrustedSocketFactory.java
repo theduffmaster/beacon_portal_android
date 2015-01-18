@@ -1,17 +1,19 @@
 package com.bernard.beaconportal.activities.net.ssl;
 
-import android.util.Log;
-
-import com.bernard.beaconportal.activities.K9;
+import java.io.IOException;
+import java.net.Socket;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.security.SecureRandom;
-import java.util.*;
+import android.util.Log;
+
+import com.bernard.beaconportal.activities.K9;
 
 /**
  * Filter and reorder list of cipher suites and TLS versions.

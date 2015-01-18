@@ -11,8 +11,8 @@ import android.webkit.WebSettings;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.helper.HtmlConverter;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.helper.HtmlConverter;
 
 public class MessageWebView extends RigidWebView {
 

@@ -27,8 +27,6 @@ public class FragmentsHomeworkDue extends Fragment {
 
 	private String actionbar_colors, background_colors;
 
-	private Context context;
-
 	private View view;
 
 	@Override
@@ -108,14 +106,14 @@ public class FragmentsHomeworkDue extends Fragment {
 
 				pager.setAdapter(new ViewPagerAdapterHomeworkAfterThree(
 						getChildFragmentManager()));
-				
+
 				tabs.setIndicatorColor(Color.parseColor(actionbar_colors));
 
 			} else {
 
 				pager.setAdapter(new ViewPagerAdapterHomework(
 						getChildFragmentManager()));
-				
+
 			}
 
 		}
@@ -205,7 +203,7 @@ public class FragmentsHomeworkDue extends Fragment {
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			builder.setMessage(
-					"Swipe down to refresh, and keep track of the homework you've done by swiping it away. You can turn off swipeable homework items in options. The number in the navigation drawer is the amount of homework you have due tommorow.")
+					"Swipe down to refresh, and keep track of the homework you've done by swiping it away. You can turn off swipeable homework items in options. To manually add a homework, press add homework The number in the slide out drawer is the amount of homework you have due tommorow.")
 					.setTitle("About");
 
 			builder.setPositiveButton("OK",

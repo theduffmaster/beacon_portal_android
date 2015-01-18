@@ -1,23 +1,10 @@
 package com.bernard.beaconportal.activities.mail.internet;
 
-import android.content.Context;
-import android.util.Log;
-
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.helper.HtmlConverter;
-import com.bernard.beaconportal.activities.mail.*;
-import com.bernard.beaconportal.activities.mail.Message.RecipientType;
-import com.bernard.beaconportal.activities.mail.internet.BinaryTempFileBody.BinaryTempFileBodyInputStream;
-import com.bernard.beaconportal.activities.R;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.james.mime4j.codec.Base64InputStream;
-import org.apache.james.mime4j.codec.QuotedPrintableInputStream;
-import org.apache.james.mime4j.util.MimeUtil;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -26,8 +13,27 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.nio.charset.Charset;
-import java.nio.charset.IllegalCharsetNameException;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.james.mime4j.codec.Base64InputStream;
+import org.apache.james.mime4j.codec.QuotedPrintableInputStream;
+import org.apache.james.mime4j.util.MimeUtil;
+
+import android.content.Context;
+import android.util.Log;
+
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.helper.HtmlConverter;
+import com.bernard.beaconportal.activities.mail.Address;
+import com.bernard.beaconportal.activities.mail.Body;
+import com.bernard.beaconportal.activities.mail.BodyPart;
+import com.bernard.beaconportal.activities.mail.Message;
+import com.bernard.beaconportal.activities.mail.Message.RecipientType;
+import com.bernard.beaconportal.activities.mail.MessagingException;
+import com.bernard.beaconportal.activities.mail.Multipart;
+import com.bernard.beaconportal.activities.mail.Part;
+import com.bernard.beaconportal.activities.mail.internet.BinaryTempFileBody.BinaryTempFileBodyInputStream;
 
 public class MimeUtility {
 	public static final String DEFAULT_ATTACHMENT_MIME_TYPE = "application/octet-stream";

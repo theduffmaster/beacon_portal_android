@@ -1,5 +1,12 @@
 package com.bernard.beaconportal.activities.activity.setup;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -13,11 +20,22 @@ import android.text.method.DigitsKeyListener;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bernard.beaconportal.activities.*;
+import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Account.FolderMode;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.Preferences;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupCheckSettings.CheckDirection;
 import com.bernard.beaconportal.activities.helper.Utility;
@@ -26,19 +44,11 @@ import com.bernard.beaconportal.activities.mail.ConnectionSecurity;
 import com.bernard.beaconportal.activities.mail.ServerSettings;
 import com.bernard.beaconportal.activities.mail.Store;
 import com.bernard.beaconportal.activities.mail.store.ImapStore;
+import com.bernard.beaconportal.activities.mail.store.ImapStore.ImapStoreSettings;
 import com.bernard.beaconportal.activities.mail.store.Pop3Store;
 import com.bernard.beaconportal.activities.mail.store.WebDavStore;
-import com.bernard.beaconportal.activities.mail.store.ImapStore.ImapStoreSettings;
 import com.bernard.beaconportal.activities.mail.store.WebDavStore.WebDavStoreSettings;
 import com.bernard.beaconportal.activities.service.MailService;
-import com.bernard.beaconportal.activities.R;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 
 public class AccountSetupIncoming extends K9ActivityMaterial implements
 		OnClickListener {

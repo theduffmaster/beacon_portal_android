@@ -17,6 +17,7 @@
 package com.bernard.beaconportal.activities.activity;
 
 import java.util.ArrayList;
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.SharedPreferences;

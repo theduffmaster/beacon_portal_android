@@ -1,9 +1,9 @@
 package com.bernard.beaconportal.activities.crypto;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.app.Fragment;
 
 import com.bernard.beaconportal.activities.mail.Message;
 

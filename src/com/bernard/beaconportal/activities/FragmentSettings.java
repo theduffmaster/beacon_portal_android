@@ -15,7 +15,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
@@ -44,8 +43,7 @@ public class FragmentSettings extends Fragment {
 
 	private ArrayList<String> mSelectedItems;
 
-	private String actionbar_colors, background_colors, actionbar_colorcheck,
-			background_colorcheck;
+	private String actionbar_colors, background_colors;
 
 	private MergeAdapter merge;
 
@@ -65,13 +63,9 @@ public class FragmentSettings extends Fragment {
 	private int hour;
 	private int minute;
 	private String time;
-	private TextView text1;
-
 	private View view;
 
 	private View relative_views;
-
-	private View shadow;
 
 	private RelativeLayout relativelayout;
 
@@ -431,19 +425,17 @@ public class FragmentSettings extends Fragment {
 
 				Settings clickedhomeworkdue = settings.get(position);
 
-				if (clickedhomeworkdue.getTitle().equals("Set Tab Color")) {
+				if (clickedhomeworkdue.getTitle().equals("Set Secondary Color")) {
 
-					FragmentManager setcolor1 = getActivity()
-							.getSupportFragmentManager();
+					getActivity().getSupportFragmentManager();
 					ColorPickerDialogTabs colorpickerDialog = new ColorPickerDialogTabs(
 							getActivity(), position);
 					colorpickerDialog.show();
 				}
 
-				if (clickedhomeworkdue.getTitle().equals("Set ActionBar Color")) {
-					FragmentManager setcolor1 = getActivity()
-							.getSupportFragmentManager();
-					CopyOfColorPickerDialogActionBar colorpickerDialog = new CopyOfColorPickerDialogActionBar(
+				if (clickedhomeworkdue.getTitle().equals("Set Theme Color")) {
+					getActivity().getSupportFragmentManager();
+					ColorPickerDialogActionBar colorpickerDialog = new ColorPickerDialogActionBar(
 							getActivity(), position);
 					colorpickerDialog.show();
 
@@ -455,11 +447,13 @@ public class FragmentSettings extends Fragment {
 
 	private void populatehomeworkdueList() {
 
-		settings.add(new Settings("Set Tab Color", "Set the Color of the Tabs",
+		settings.add(new Settings("Set Theme Color",
+				"Pick which color is used throughout the app ", actionbar_colors));
+		
+		settings.add(new Settings("Set Secondary Color", "Pick which color compliments the theme color",
 				background_colors));
 
-		settings.add(new Settings("Set ActionBar Color",
-				"Set the ActionBar Background Color", actionbar_colors));
+		
 
 	}
 

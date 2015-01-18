@@ -16,12 +16,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.widget.Toast;
 
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.MessageCompose;
 import com.bernard.beaconportal.activities.mail.Message;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Part;
 import com.bernard.beaconportal.activities.mail.internet.MimeUtility;
-import com.bernard.beaconportal.activities.R;
 
 /**
  * APG integration.

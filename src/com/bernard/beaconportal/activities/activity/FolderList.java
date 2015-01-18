@@ -41,12 +41,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.Account.FolderMode;
 import com.bernard.beaconportal.activities.AccountStats;
 import com.bernard.beaconportal.activities.BaseAccount;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.Account.FolderMode;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.setup.AccountSettings;
 import com.bernard.beaconportal.activities.activity.setup.FolderSettings;
 import com.bernard.beaconportal.activities.activity.setup.Prefs;
@@ -63,7 +64,6 @@ import com.bernard.beaconportal.activities.search.LocalSearch;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Attribute;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Searchfield;
 import com.bernard.beaconportal.activities.service.MailService;
-import com.bernard.beaconportal.activities.R;
 
 /**
  * FolderList is the primary user interface for the program. This Activity shows

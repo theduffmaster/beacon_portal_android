@@ -25,14 +25,14 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.Account.FolderMode;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.Account.FolderMode;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.controller.MessagingListener;
 import com.bernard.beaconportal.activities.mail.Folder;
 import com.bernard.beaconportal.activities.mail.MessagingException;
-import com.bernard.beaconportal.activities.R;
 
 public class ChooseFolder extends K9ListActivity {
 	public static final String EXTRA_ACCOUNT = "com.bernard.beaconportal.activities.ChooseFolder_account";

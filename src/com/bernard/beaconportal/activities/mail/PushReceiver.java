@@ -2,9 +2,9 @@ package com.bernard.beaconportal.activities.mail;
 
 import java.util.List;
 
-import com.bernard.beaconportal.activities.helper.power.TracingPowerManager.TracingWakeLock;
-
 import android.content.Context;
+
+import com.bernard.beaconportal.activities.helper.power.TracingPowerManager.TracingWakeLock;
 
 public interface PushReceiver {
 	public Context getContext();

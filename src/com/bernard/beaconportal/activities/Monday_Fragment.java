@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.apache.http.HttpResponse;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,15 +31,9 @@ public class Monday_Fragment extends Fragment {
 
 	private View swipe;
 
-	private int count;
-
 	private String date;
 
-	private int shared;
-
 	private String finalDay;
-
-	private int countersss;
 
 	private java.util.Date dt1;
 
@@ -50,11 +43,8 @@ public class Monday_Fragment extends Fragment {
 
 	private ArrayAdapter<Due_Today_List> adapter;
 
-	private String Data, Band, Number, Class, Teacher, Title, Date, Type,
-			Description, DescriptionAll, DescriptionCheck, due_schedule_shared,
-			due_schedule_shared_content;
-
-	private Activity context;
+	private String Band, Number, Class, Teacher, Title, Date, Type,
+			Description, due_schedule_shared;
 
 	static class ViewHolder {
 		public ImageView imageView;
@@ -120,8 +110,6 @@ public class Monday_Fragment extends Fragment {
 				"last shared preference", 0);
 
 		int countersssss = counterssss + 1;
-
-		int dummy_check = 0;
 
 		for (int i = 0; i < countersssss; i++) {
 
@@ -282,7 +270,8 @@ public class Monday_Fragment extends Fragment {
 
 	public class due_scheduleAdapter extends ArrayAdapter<Due_Today_List> {
 		public due_scheduleAdapter() {
-			super(getActivity(), R.layout.homeworkday_item_view, due_schedule_list);
+			super(getActivity(), R.layout.homeworkday_item_view,
+					due_schedule_list);
 		}
 
 		@Override

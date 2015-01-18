@@ -16,15 +16,11 @@ import android.widget.TextView;
 
 public class Monday extends Fragment {
 
-	private String GBand, BBand, ADV1Band, ADV2Band, CBand, FBand, DBand,
-			EBand, HBand, ABand;
+	private String BBand, CBand, FBand, DBand, EBand, HBand, ABand;
 
-	private EditText editADV1Band;
-	private EditText editADV2Band;
 	private EditText editBBand;
 	private EditText editCBand;
 	private EditText editFBand;
-	private EditText editGBand;
 	private EditText editEBand;
 	private EditText editDBand;
 	private EditText editHBand;

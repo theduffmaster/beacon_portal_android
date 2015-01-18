@@ -1,6 +1,5 @@
 package com.bernard.beaconportal.activities.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MotionEvent;

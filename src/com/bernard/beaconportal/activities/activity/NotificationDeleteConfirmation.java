@@ -13,8 +13,8 @@ import android.os.Bundle;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.service.NotificationActionService;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.service.NotificationActionService;
 
 public class NotificationDeleteConfirmation extends Activity {
 	private final static String EXTRA_ACCOUNT = "account";

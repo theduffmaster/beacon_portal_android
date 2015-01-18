@@ -10,7 +10,11 @@ import java.util.TreeMap;
 import android.content.SharedPreferences;
 
 import com.bernard.beaconportal.activities.mail.Folder.FolderClass;
-import com.bernard.beaconportal.activities.preferences.Settings.*;
+import com.bernard.beaconportal.activities.preferences.Settings.BooleanSetting;
+import com.bernard.beaconportal.activities.preferences.Settings.EnumSetting;
+import com.bernard.beaconportal.activities.preferences.Settings.SettingsDescription;
+import com.bernard.beaconportal.activities.preferences.Settings.SettingsUpgrader;
+import com.bernard.beaconportal.activities.preferences.Settings.V;
 
 public class FolderSettings {
 	public static final Map<String, TreeMap<Integer, SettingsDescription>> SETTINGS;

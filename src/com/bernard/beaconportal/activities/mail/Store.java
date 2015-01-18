@@ -13,9 +13,9 @@ import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.mail.store.ImapStore;
 import com.bernard.beaconportal.activities.mail.store.LocalStore;
 import com.bernard.beaconportal.activities.mail.store.Pop3Store;
+import com.bernard.beaconportal.activities.mail.store.StorageManager.StorageProvider;
 import com.bernard.beaconportal.activities.mail.store.UnavailableStorageException;
 import com.bernard.beaconportal.activities.mail.store.WebDavStore;
-import com.bernard.beaconportal.activities.mail.store.StorageManager.StorageProvider;
 
 /**
  * Store is the access point for an email message store. It's location can be

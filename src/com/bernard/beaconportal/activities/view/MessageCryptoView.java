@@ -1,20 +1,24 @@
 package com.bernard.beaconportal.activities.view;
 
-import android.content.Context;
 import android.app.Fragment;
+import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.crypto.CryptoProvider;
 import com.bernard.beaconportal.activities.crypto.PgpData;
 import com.bernard.beaconportal.activities.mail.Message;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Part;
 import com.bernard.beaconportal.activities.mail.internet.MimeUtility;
-import com.bernard.beaconportal.activities.R;
 
 public class MessageCryptoView extends LinearLayout {
 

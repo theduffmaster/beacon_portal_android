@@ -1,14 +1,5 @@
 package com.bernard.beaconportal.activities.net.ssl;
 
-import android.util.Log;
-
-import com.bernard.beaconportal.activities.helper.DomainNameChecker;
-import com.bernard.beaconportal.activities.mail.CertificateChainException;
-import com.bernard.beaconportal.activities.security.LocalKeyStore;
-
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -16,6 +7,15 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import android.util.Log;
+
+import com.bernard.beaconportal.activities.helper.DomainNameChecker;
+import com.bernard.beaconportal.activities.mail.CertificateChainException;
+import com.bernard.beaconportal.activities.security.LocalKeyStore;
 
 public final class TrustManagerFactory {
 	private static final String LOG_TAG = "TrustManagerFactory";

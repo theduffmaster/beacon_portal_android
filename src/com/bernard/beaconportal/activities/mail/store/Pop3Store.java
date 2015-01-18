@@ -1,24 +1,18 @@
 package com.bernard.beaconportal.activities.mail.store;
 
-import android.util.Log;
-
-import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.controller.MessageRetrievalListener;
-import com.bernard.beaconportal.activities.helper.Utility;
-import com.bernard.beaconportal.activities.mail.*;
-import com.bernard.beaconportal.activities.mail.filter.Base64;
-import com.bernard.beaconportal.activities.mail.filter.Hex;
-import com.bernard.beaconportal.activities.mail.internet.MimeMessage;
-import com.bernard.beaconportal.activities.net.ssl.TrustManagerFactory;
-import com.bernard.beaconportal.activities.net.ssl.TrustedSocketFactory;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLException;
-import javax.net.ssl.TrustManager;
-
-import java.io.*;
-import java.net.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -27,13 +21,41 @@ import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.TrustManager;
+
+import android.util.Log;
+
+import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.controller.MessageRetrievalListener;
+import com.bernard.beaconportal.activities.helper.Utility;
+import com.bernard.beaconportal.activities.mail.AuthType;
+import com.bernard.beaconportal.activities.mail.Authentication;
+import com.bernard.beaconportal.activities.mail.AuthenticationFailedException;
+import com.bernard.beaconportal.activities.mail.CertificateValidationException;
+import com.bernard.beaconportal.activities.mail.ConnectionSecurity;
+import com.bernard.beaconportal.activities.mail.FetchProfile;
+import com.bernard.beaconportal.activities.mail.Flag;
+import com.bernard.beaconportal.activities.mail.Folder;
+import com.bernard.beaconportal.activities.mail.Message;
+import com.bernard.beaconportal.activities.mail.MessagingException;
+import com.bernard.beaconportal.activities.mail.ServerSettings;
+import com.bernard.beaconportal.activities.mail.Store;
+import com.bernard.beaconportal.activities.mail.filter.Base64;
+import com.bernard.beaconportal.activities.mail.filter.Hex;
+import com.bernard.beaconportal.activities.mail.internet.MimeMessage;
+import com.bernard.beaconportal.activities.net.ssl.TrustManagerFactory;
+import com.bernard.beaconportal.activities.net.ssl.TrustedSocketFactory;
 
 public class Pop3Store extends Store {
 	public static final String STORE_TYPE = "POP3";

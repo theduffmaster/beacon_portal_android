@@ -2,6 +2,7 @@ package com.bernard.beaconportal.activities.remotecontrol;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 
 /**

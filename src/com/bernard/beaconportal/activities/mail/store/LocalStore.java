@@ -40,9 +40,10 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
+import com.bernard.beaconportal.activities.Account.MessageFormat;
 import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Preferences;
-import com.bernard.beaconportal.activities.Account.MessageFormat;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.Search;
 import com.bernard.beaconportal.activities.controller.MessageRemovalListener;
 import com.bernard.beaconportal.activities.controller.MessageRetrievalListener;
@@ -57,18 +58,18 @@ import com.bernard.beaconportal.activities.mail.FetchProfile;
 import com.bernard.beaconportal.activities.mail.Flag;
 import com.bernard.beaconportal.activities.mail.Folder;
 import com.bernard.beaconportal.activities.mail.Message;
+import com.bernard.beaconportal.activities.mail.Message.RecipientType;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Part;
 import com.bernard.beaconportal.activities.mail.Store;
-import com.bernard.beaconportal.activities.mail.Message.RecipientType;
 import com.bernard.beaconportal.activities.mail.filter.Base64OutputStream;
 import com.bernard.beaconportal.activities.mail.internet.MimeBodyPart;
 import com.bernard.beaconportal.activities.mail.internet.MimeHeader;
 import com.bernard.beaconportal.activities.mail.internet.MimeMessage;
 import com.bernard.beaconportal.activities.mail.internet.MimeMultipart;
 import com.bernard.beaconportal.activities.mail.internet.MimeUtility;
-import com.bernard.beaconportal.activities.mail.internet.TextBody;
 import com.bernard.beaconportal.activities.mail.internet.MimeUtility.ViewableContainer;
+import com.bernard.beaconportal.activities.mail.internet.TextBody;
 import com.bernard.beaconportal.activities.mail.store.LockableDatabase.DbCallback;
 import com.bernard.beaconportal.activities.mail.store.LockableDatabase.WrappedException;
 import com.bernard.beaconportal.activities.mail.store.StorageManager.StorageProvider;
@@ -76,10 +77,9 @@ import com.bernard.beaconportal.activities.provider.AttachmentProvider;
 import com.bernard.beaconportal.activities.provider.EmailProvider;
 import com.bernard.beaconportal.activities.provider.EmailProvider.MessageColumns;
 import com.bernard.beaconportal.activities.search.LocalSearch;
-import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Attribute;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Searchfield;
-import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
 
 /**
  * <pre>

@@ -10,13 +10,22 @@ import java.util.TreeMap;
 import android.content.SharedPreferences;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
 import com.bernard.beaconportal.activities.Account.FolderMode;
 import com.bernard.beaconportal.activities.Account.SortType;
+import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.crypto.Apg;
 import com.bernard.beaconportal.activities.mail.store.StorageManager;
-import com.bernard.beaconportal.activities.preferences.Settings.*;
-import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.preferences.Settings.BooleanSetting;
+import com.bernard.beaconportal.activities.preferences.Settings.ColorSetting;
+import com.bernard.beaconportal.activities.preferences.Settings.EnumSetting;
+import com.bernard.beaconportal.activities.preferences.Settings.IntegerRangeSetting;
+import com.bernard.beaconportal.activities.preferences.Settings.InvalidSettingValueException;
+import com.bernard.beaconportal.activities.preferences.Settings.PseudoEnumSetting;
+import com.bernard.beaconportal.activities.preferences.Settings.SettingsDescription;
+import com.bernard.beaconportal.activities.preferences.Settings.SettingsUpgrader;
+import com.bernard.beaconportal.activities.preferences.Settings.StringSetting;
+import com.bernard.beaconportal.activities.preferences.Settings.V;
 
 public class AccountSettings {
 	public static final Map<String, TreeMap<Integer, SettingsDescription>> SETTINGS;
