@@ -80,7 +80,7 @@
         android:layout_height="48dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Add Homework Item"
+        android:text="Add Homework Assignment"
         android:textSize="16sp"
         android:textColor="#4285f4"
         android:background="@drawable/item_selector"

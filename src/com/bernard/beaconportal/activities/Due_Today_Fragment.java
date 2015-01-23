@@ -23,9 +23,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 
-import com.bernard.beaconportal.activities.Due_Tommorow_Fragment.UpdateAdd;
-import com.bernard.beaconportal.activities.Due_Tommorow_Fragment.due_tommorowAdapter;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -45,14 +42,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
-import android.text.InputType;
 import android.text.TextUtils.TruncateAt;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -68,11 +64,11 @@ import de.timroes.android.listview.EnhancedListView.UndoStyle;
 public class Due_Today_Fragment extends Fragment {
 
 	private Activity mActivity;
-	
+
 	private List<Due_Today_List> due_today_list;
 
 	private EnhancedListView list;
-	
+
 	private View swipe;
 
 	private String actionbar_colors;
@@ -266,9 +262,9 @@ public class Due_Today_Fragment extends Fragment {
 							due_today_list = new ArrayList<Due_Today_List>();
 
 							parse_due_today_string();
-							
+
 							parse_due_today_content();
-							
+
 							parse_add_content();
 
 							populateListView();
@@ -310,8 +306,9 @@ public class Due_Today_Fragment extends Fragment {
 			}
 		});
 
-		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
-				this.mClickedReceiver, new IntentFilter("refreshListViewToday"));
+		LocalBroadcastManager.getInstance(getActivity())
+				.registerReceiver(this.mClickedReceiver,
+						new IntentFilter("refreshListViewToday"));
 
 		due_today_list = new ArrayList<Due_Today_List>();
 
@@ -320,11 +317,11 @@ public class Due_Today_Fragment extends Fragment {
 	}
 
 	@Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mActivity = activity;
-    }
-	
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		mActivity = activity;
+	}
+
 	@Override
 	public void onResume() {
 
@@ -346,7 +343,7 @@ public class Due_Today_Fragment extends Fragment {
 		due_today_list = new ArrayList<Due_Today_List>();
 
 		parse_due_today_content();
-		
+
 		parse_add_content();
 
 		populateListView();
@@ -825,33 +822,33 @@ public class Due_Today_Fragment extends Fragment {
 				.getInstance();
 		char localeMinusSign = currentLocaleSymbols.getMinusSign();
 
-		try{
-		
-		if (!Character.isDigit(str.charAt(0))
-				&& str.charAt(0) != localeMinusSign)
-			return false;
+		try {
 
-		boolean isDecimalSeparatorFound = false;
-		char localeDecimalSeparator = currentLocaleSymbols
-				.getDecimalSeparator();
-
-		for (char c : str.substring(1).toCharArray()) {
-			if (!Character.isDigit(c)) {
-				if (c == localeDecimalSeparator && !isDecimalSeparatorFound) {
-					isDecimalSeparatorFound = true;
-					continue;
-				}
+			if (!Character.isDigit(str.charAt(0))
+					&& str.charAt(0) != localeMinusSign)
 				return false;
+
+			boolean isDecimalSeparatorFound = false;
+			char localeDecimalSeparator = currentLocaleSymbols
+					.getDecimalSeparator();
+
+			for (char c : str.substring(1).toCharArray()) {
+				if (!Character.isDigit(c)) {
+					if (c == localeDecimalSeparator && !isDecimalSeparatorFound) {
+						isDecimalSeparatorFound = true;
+						continue;
+					}
+					return false;
+				}
 			}
-		}
-		return true;
-		
-		}catch(StringIndexOutOfBoundsException e){
-			
+			return true;
+
+		} catch (StringIndexOutOfBoundsException e) {
+
 			e.printStackTrace();
-			
+
 			return false;
-			
+
 		}
 	}
 
@@ -1057,7 +1054,7 @@ public class Due_Today_Fragment extends Fragment {
 					parse_due_today_string();
 
 					parse_due_today_content();
-					
+
 					parse_add_content();
 
 				} catch (IllegalStateException e) {
@@ -1073,9 +1070,9 @@ public class Due_Today_Fragment extends Fragment {
 					parse_due_today_string();
 
 					parse_due_today_content();
-					
+
 					parse_add_content();
-					
+
 					adapter.notifyDataSetChanged();
 
 					SharedPreferences.Editor localEditor = mActivity
@@ -1095,9 +1092,9 @@ public class Due_Today_Fragment extends Fragment {
 					parse_due_today_string();
 
 					parse_due_today_content();
-					
+
 					parse_add_content();
-					
+
 					adapter.notifyDataSetChanged();
 
 					SharedPreferences.Editor localEditor = mActivity
@@ -1116,9 +1113,9 @@ public class Due_Today_Fragment extends Fragment {
 					parse_due_today_string();
 
 					parse_due_today_content();
-					
+
 					parse_add_content();
-					
+
 					adapter.notifyDataSetChanged();
 
 					SharedPreferences.Editor localEditor = mActivity
@@ -1148,8 +1145,8 @@ public class Due_Today_Fragment extends Fragment {
 
 			Toast.makeText(mActivity, "Refresh Finished", 4000).show();
 
-			SharedPreferences download_error = mActivity
-					.getSharedPreferences("homework", Context.MODE_PRIVATE);
+			SharedPreferences download_error = mActivity.getSharedPreferences(
+					"homework", Context.MODE_PRIVATE);
 
 			String error = download_error.getString("download_error", "no");
 
@@ -1190,9 +1187,8 @@ public class Due_Today_Fragment extends Fragment {
 
 			due_today_shared = "due_today" + Integer.toString(i);
 
-			SharedPreferences Todays_Homework = mActivity
-					.getSharedPreferences(due_today_shared,
-							Context.MODE_PRIVATE);
+			SharedPreferences Todays_Homework = mActivity.getSharedPreferences(
+					due_today_shared, Context.MODE_PRIVATE);
 
 			String Band1 = Todays_Homework.getString("due_today0", null);
 
@@ -1586,7 +1582,7 @@ public class Due_Today_Fragment extends Fragment {
 
 	public class Due_TodayAdapter extends ArrayAdapter<Due_Today_List> {
 		public Due_TodayAdapter() {
-			super(mActivity, R.layout.item_view, due_today_list);
+			super(mActivity, R.layout.today_item_view, due_today_list);
 		}
 
 		@Override
@@ -1595,7 +1591,7 @@ public class Due_Today_Fragment extends Fragment {
 
 			if (convertView == null) {
 				convertView = mActivity.getLayoutInflater().inflate(
-						R.layout.item_view, parent, false);
+						R.layout.today_item_view, parent, false);
 				holder = new ViewHolder();
 
 				holder.imageView = (ImageView) convertView
@@ -1639,218 +1635,182 @@ public class Due_Today_Fragment extends Fragment {
 
 				holder.imageView.setImageResource(R.drawable.uu);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UN")) {
 
 				holder.imageView.setImageResource(R.drawable.un);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UG")) {
 
 				holder.imageView.setImageResource(R.drawable.ug);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("TZ")) {
 
 				holder.imageView.setImageResource(R.drawable.tz);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("TQ")) {
 
 				holder.imageView.setImageResource(R.drawable.tq);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SR")) {
 
 				holder.imageView.setImageResource(R.drawable.sr);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SQ")) {
 
 				holder.imageView.setImageResource(R.drawable.sq);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SP")) {
 
 				holder.imageView.setImageResource(R.drawable.sp);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SK")) {
 
 				holder.imageView.setImageResource(R.drawable.sk);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SF")) {
 
 				holder.imageView.setImageResource(R.drawable.sf);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SC")) {
 
 				holder.imageView.setImageResource(R.drawable.sc);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SB")) {
 
 				holder.imageView.setImageResource(R.drawable.sb);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PQ")) {
 
 				holder.imageView.setImageResource(R.drawable.pq);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PP")) {
 
 				holder.imageView.setImageResource(R.drawable.pp);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PH")) {
 
 				holder.imageView.setImageResource(R.drawable.ph);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MS")) {
 
 				holder.imageView.setImageResource(R.drawable.ms);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MR")) {
 
 				holder.imageView.setImageResource(R.drawable.mr);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MQ")) {
 
 				holder.imageView.setImageResource(R.drawable.mq);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MP")) {
 
 				holder.imageView.setImageResource(R.drawable.mp);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MG")) {
 
 				holder.imageView.setImageResource(R.drawable.mg);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("ME")) {
 
 				holder.imageView.setImageResource(R.drawable.me);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MC")) {
 
 				holder.imageView.setImageResource(R.drawable.mc);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HU")) {
 
 				holder.imageView.setImageResource(R.drawable.hu);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HG")) {
 
 				holder.imageView.setImageResource(R.drawable.hg);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HF")) {
 
 				holder.imageView.setImageResource(R.drawable.hf);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DM")) {
 
 				holder.imageView.setImageResource(R.drawable.dm);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DW")) {
 
 				holder.imageView.setImageResource(R.drawable.dw);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("EE")) {
 
 				holder.imageView.setImageResource(R.drawable.ee);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DQ")) {
 
 				holder.imageView.setImageResource(R.drawable.dq);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DJ")) {
 
 				holder.imageView.setImageResource(R.drawable.dj);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CR")) {
 
 				holder.imageView.setImageResource(R.drawable.cr);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CQ")) {
 
 				holder.imageView.setImageResource(R.drawable.cq);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CJ")) {
 
 				holder.imageView.setImageResource(R.drawable.cj);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AQ")) {
 
 				holder.imageView.setImageResource(R.drawable.aq);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AJ")) {
 
 				holder.imageView.setImageResource(R.drawable.aj);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AN")) {
 
 				holder.imageView.setImageResource(R.drawable.an);
 
-			}
-			else if (currenthomeworkdue.Band.substring(0,
+			} else if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AC")) {
 
 				holder.imageView.setImageResource(R.drawable.ac);
@@ -1930,9 +1890,8 @@ public class Due_Today_Fragment extends Fragment {
 
 			Log.d("homework", due_today_shared);
 
-			SharedPreferences Todays_Homework = mActivity
-					.getSharedPreferences(due_today_shared,
-							Context.MODE_PRIVATE);
+			SharedPreferences Todays_Homework = mActivity.getSharedPreferences(
+					due_today_shared, Context.MODE_PRIVATE);
 
 			String Band1 = Todays_Homework.getString("add_band", null);
 
@@ -2091,12 +2050,12 @@ public class Due_Today_Fragment extends Fragment {
 		}
 
 	}
-	
-	
+
 	public static void hide_keyboard_from(Context context, View view) {
-	    
-		InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-	    inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+		InputMethodManager inputMethodManager = (InputMethodManager) context
+				.getSystemService(Activity.INPUT_METHOD_SERVICE);
+		inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
 	}
 
 	private void showNoteDialog() {
@@ -2132,7 +2091,7 @@ public class Due_Today_Fragment extends Fragment {
 
 			builder.setView(view);
 
-			builder.setTitle("Add Homework Item");
+			builder.setTitle("Add Homework Assignment");
 
 			builder.setNegativeButton("Cancel",
 					new DialogInterface.OnClickListener() {
@@ -2200,7 +2159,7 @@ public class Due_Today_Fragment extends Fragment {
 							localEditor.putString("add_class",
 									"Manually Added Homework");
 
-							localEditor.putString("add_teacher", "Teacher");
+							localEditor.putString("add_teacher", "You");
 
 							localEditor.putString("add_title", mTitleText
 									.getText().toString());
@@ -2239,15 +2198,15 @@ public class Due_Today_Fragment extends Fragment {
 			due_today_list = new ArrayList<Due_Today_List>();
 
 			parse_due_today_content();
-			
+
 			parse_add_content();
 
 			populateListView();
-			
-			Log.d("homework_add", "refresh");    	
-			
-//			new UpdateAdd().execute();
-	    			
+
+			Log.d("homework_add", "refresh");
+
+			// new UpdateAdd().execute();
+
 		}
 	};
 
@@ -2262,26 +2221,26 @@ public class Due_Today_Fragment extends Fragment {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        	
-        	due_today_list = new ArrayList<Due_Today_List>();
+
+			due_today_list = new ArrayList<Due_Today_List>();
 
 			parse_due_today_content();
-			
+
 			parse_add_content();
-			
-			Log.d("homework_add", "refresh");	
-			
+
+			Log.d("homework_add", "refresh");
+
 			return null;
 
 		}
-		
+
 		@Override
 		protected void onPostExecute(Void updateUI) {
 
 			populateListView();
 
 		}
-		
+
 	}
-	
+
 }

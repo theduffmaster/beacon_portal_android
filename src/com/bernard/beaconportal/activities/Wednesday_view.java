@@ -3,16 +3,24 @@ package com.bernard.beaconportal.activities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bernard.beaconportal.activities.Wednesday_view.Update;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -72,6 +80,21 @@ public class Wednesday_view extends Fragment {
 	public void onResume() {
 		// TODO Auto-generated method stub
 
+		buildScheduleList();
+		
+		super.onResume();
+
+		myschedule = new ArrayList<schedule_view>();
+		populatescheduleList();
+		populateListView();
+		
+		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
+				this.mClickedReceiver, new IntentFilter("refreshWednesday"));
+
+	}
+	
+	private void buildScheduleList(){
+		
 		SharedPreferences sharedpref = getActivity().getSharedPreferences(
 				"wednesday", Context.MODE_PRIVATE);
 		ABand = sharedpref.getString("a_Band", null);
@@ -116,13 +139,7 @@ public class Wednesday_view extends Fragment {
 				"wednesday6", Context.MODE_PRIVATE);
 
 		count6 = sharedpref6.getInt("note_count", 1000);
-
-		super.onResume();
-
-		myschedule = new ArrayList<schedule_view>();
-		populatescheduleList();
-		populateListView();
-
+		
 	}
 
 	private void populatescheduleList() {
@@ -184,6 +201,23 @@ public class Wednesday_view extends Fragment {
 		});
 
 	}
+	
+	private void updateListView(){
+		
+		adapter = new MyListAdapter();
+		list = (ListView) getView().findViewById(R.id.listView2);
+
+		list.setAdapter(adapter);
+
+		list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> av, View v, int pos,
+					long id) {
+				return onLongListItemClick(v, pos, id);
+			}
+		});
+		
+	}
 
 	public void showDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -199,7 +233,7 @@ public class Wednesday_view extends Fragment {
 
 	public class MyListAdapter extends ArrayAdapter<schedule_view> {
 		public MyListAdapter() {
-			super(getActivity(), R.layout.item_view, myschedule);
+			super(getActivity(), R.layout.tommorow_item_view, myschedule);
 		}
 
 		@Override
@@ -440,7 +474,12 @@ public class Wednesday_view extends Fragment {
 
 							localEditor.commit();
 
-							getActivity().recreate();
+							Intent intent = new Intent("refreshWednesday");
+
+							intent.putExtra("refresh", "refresh listview");
+							LocalBroadcastManager
+									.getInstance(getActivity())
+									.sendBroadcast(intent);
 
 						}
 					};
@@ -635,9 +674,12 @@ public class Wednesday_view extends Fragment {
 
 								localEditor.apply();
 
-								getDialog().dismiss();
+								Intent intent = new Intent("refreshWednesday");
 
-								getActivity().recreate();
+								intent.putExtra("refresh", "refresh listview");
+								LocalBroadcastManager
+										.getInstance(getActivity())
+										.sendBroadcast(intent);
 
 							}
 						});
@@ -650,6 +692,38 @@ public class Wednesday_view extends Fragment {
 
 	}
 
+	private BroadcastReceiver mClickedReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context paramAnonymousContext,
+				Intent paramAnonymousIntent) {
+
+			new Update().execute();
+
+		}
+	};
+
+	public class Update extends AsyncTask<Void, Void, Void> {
+
+		@Override
+		protected Void doInBackground(Void... add) {
+
+			buildScheduleList();
+			myschedule = new ArrayList<schedule_view>();
+			populatescheduleList();
+
+			Log.d("received", "yes");
+
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void updateUI) {
+
+			updateListView();
+
+		}
+	}
+
 	@Override
 	public void onPause() {
 		super.onPause();
@@ -657,5 +731,4 @@ public class Wednesday_view extends Fragment {
 		list.removeFooterView(footer);
 
 	}
-
 }

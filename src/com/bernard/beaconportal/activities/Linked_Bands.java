@@ -59,7 +59,7 @@ public class Linked_Bands extends Fragment {
 
 	public class MyListAdapter extends ArrayAdapter<schedule_linked> {
 		public MyListAdapter() {
-			super(getActivity(), R.layout.item_view, myschedule);
+			super(getActivity(), R.layout.tommorow_item_view, myschedule);
 		}
 
 		@Override

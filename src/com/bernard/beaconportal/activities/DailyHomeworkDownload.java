@@ -772,33 +772,33 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 				.getInstance();
 		char localeMinusSign = currentLocaleSymbols.getMinusSign();
 
-		try{
-		
-		if (!Character.isDigit(str.charAt(0))
-				&& str.charAt(0) != localeMinusSign)
-			return false;
+		try {
 
-		boolean isDecimalSeparatorFound = false;
-		char localeDecimalSeparator = currentLocaleSymbols
-				.getDecimalSeparator();
-
-		for (char c : str.substring(1).toCharArray()) {
-			if (!Character.isDigit(c)) {
-				if (c == localeDecimalSeparator && !isDecimalSeparatorFound) {
-					isDecimalSeparatorFound = true;
-					continue;
-				}
+			if (!Character.isDigit(str.charAt(0))
+					&& str.charAt(0) != localeMinusSign)
 				return false;
+
+			boolean isDecimalSeparatorFound = false;
+			char localeDecimalSeparator = currentLocaleSymbols
+					.getDecimalSeparator();
+
+			for (char c : str.substring(1).toCharArray()) {
+				if (!Character.isDigit(c)) {
+					if (c == localeDecimalSeparator && !isDecimalSeparatorFound) {
+						isDecimalSeparatorFound = true;
+						continue;
+					}
+					return false;
+				}
 			}
-		}
-		return true;
-		
-		}catch(StringIndexOutOfBoundsException e){
-			
+			return true;
+
+		} catch (StringIndexOutOfBoundsException e) {
+
 			e.printStackTrace();
-			
+
 			return false;
-			
+
 		}
 	}
 

@@ -15,7 +15,7 @@
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Add Homework Item"
+        android:text="Add Homework Assignment"
         android:textSize="16sp"
         android:textColor="#4285f4"
        />

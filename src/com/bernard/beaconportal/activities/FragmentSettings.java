@@ -448,12 +448,12 @@ public class FragmentSettings extends Fragment {
 	private void populatehomeworkdueList() {
 
 		settings.add(new Settings("Set Theme Color",
-				"Pick which color is used throughout the app ", actionbar_colors));
-		
-		settings.add(new Settings("Set Secondary Color", "Pick which color compliments the theme color",
-				background_colors));
+				"Pick which color is used throughout the app ",
+				actionbar_colors));
 
-		
+		settings.add(new Settings("Set Secondary Color",
+				"Pick which color compliments the theme color",
+				background_colors));
 
 	}
 

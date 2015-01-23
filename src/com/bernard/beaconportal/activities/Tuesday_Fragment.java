@@ -83,6 +83,12 @@ public class Tuesday_Fragment extends Fragment {
 
 		super.onResume();
 
+		TextView emptyView = (TextView) swipe.findViewById(R.id.emptyView);
+
+		emptyView.setText("As of now no homework due Tuesday");
+
+		lView.setEmptyView(emptyView);
+
 		due_schedule_list = new ArrayList<Due_Today_List>();
 
 		parse_due_schedule_content();

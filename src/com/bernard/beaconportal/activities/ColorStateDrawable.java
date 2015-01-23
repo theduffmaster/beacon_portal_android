@@ -1,4 +1,3 @@
-
 package com.bernard.beaconportal.activities;
 
 import android.graphics.Color;

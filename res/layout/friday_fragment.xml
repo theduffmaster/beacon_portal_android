@@ -4,7 +4,6 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.util.me.TestActivity"
     >
 
     <fragment
@@ -12,5 +11,7 @@
         android:layout_height="wrap_content"
         class="com.bernard.beaconportal.activities.Friday_Fragment"
         android:layout_centerHorizontal="true"/>
+    
+    
 
 </RelativeLayout>
