@@ -14,11 +14,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.FolderInfoHolder;
-import com.bernard.beaconportal.activities.activity.K9PreferenceActivity;
+import com.bernard.beaconportal.activities.activity.MAILPreferenceActivity;
 import com.bernard.beaconportal.activities.mail.Folder;
 import com.bernard.beaconportal.activities.mail.Folder.FolderClass;
 import com.bernard.beaconportal.activities.mail.MessagingException;
@@ -27,7 +27,7 @@ import com.bernard.beaconportal.activities.mail.store.LocalStore;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalFolder;
 import com.bernard.beaconportal.activities.service.MailService;
 
-public class FolderSettings extends K9PreferenceActivity {
+public class FolderSettings extends MAILPreferenceActivity {
 
 	private static final String EXTRA_FOLDER_NAME = "com.bernard.beaconportal.activities.folderName";
 	private static final String EXTRA_ACCOUNT = "com.bernard.beaconportal.activities.account";
@@ -113,7 +113,7 @@ public class FolderSettings extends K9PreferenceActivity {
 			mFolder = localStore.getFolder(folderName);
 			mFolder.open(Folder.OPEN_MODE_RW);
 		} catch (MessagingException me) {
-			Log.e(K9.LOG_TAG, "Unable to edit folder " + folderName
+			Log.e(MAIL.LOG_TAG, "Unable to edit folder " + folderName
 					+ " preferences", me);
 			return;
 		}
@@ -124,7 +124,7 @@ public class FolderSettings extends K9PreferenceActivity {
 			store = mAccount.getRemoteStore();
 			isPushCapable = store.isPushCapable();
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Could not get remote store", e);
+			Log.e(MAIL.LOG_TAG, "Could not get remote store", e);
 		}
 
 		addPreferencesFromResource(R.xml.folder_settings_preferences);
@@ -216,7 +216,7 @@ public class FolderSettings extends K9PreferenceActivity {
 		try {
 			saveSettings();
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG, "Saving folder settings failed", e);
+			Log.e(MAIL.LOG_TAG, "Saving folder settings failed", e);
 		}
 
 		super.onPause();

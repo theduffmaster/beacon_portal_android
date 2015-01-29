@@ -9,7 +9,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.mail.store.ImapStore;
 import com.bernard.beaconportal.activities.mail.store.LocalStore;
 import com.bernard.beaconportal.activities.mail.store.Pop3Store;
@@ -122,14 +122,14 @@ public abstract class Store {
 		try {
 			removeRemoteInstance(account);
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Failed to reset remote store for account "
+			Log.e(MAIL.LOG_TAG, "Failed to reset remote store for account "
 					+ account.getUuid(), e);
 		}
 
 		try {
 			removeLocalInstance(account);
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Failed to reset local store for account "
+			Log.e(MAIL.LOG_TAG, "Failed to reset local store for account "
 					+ account.getUuid(), e);
 		}
 	}

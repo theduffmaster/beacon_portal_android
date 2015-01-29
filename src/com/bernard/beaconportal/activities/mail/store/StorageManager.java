@@ -18,7 +18,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 
 /**
@@ -187,8 +187,8 @@ public class StorageManager {
 		@Override
 		public void init(final Context context) {
 			mRoot = computeRoot(context);
-			// use <STORAGE_ROOT>/k9
-			mApplicationDir = new File(mRoot, "k9");
+			// use <STORAGE_ROOT>/mail
+			mApplicationDir = new File(mRoot, "mail");
 		}
 
 		/**
@@ -207,7 +207,7 @@ public class StorageManager {
 						&& Environment.MEDIA_MOUNTED.equals(Environment
 								.getExternalStorageState());
 			} catch (IOException e) {
-				Log.w(K9.LOG_TAG, "Specified root isn't ready: " + mRoot, e);
+				Log.w(MAIL.LOG_TAG, "Specified root isn't ready: " + mRoot, e);
 				return false;
 			}
 		}
@@ -626,7 +626,7 @@ public class StorageManager {
 	public boolean isReady(final String providerId) {
 		StorageProvider provider = getProvider(providerId);
 		if (provider == null) {
-			Log.w(K9.LOG_TAG, "Storage-Provider \"" + providerId
+			Log.w(MAIL.LOG_TAG, "Storage-Provider \"" + providerId
 					+ "\" does not exist");
 			return false;
 		}
@@ -652,7 +652,7 @@ public class StorageManager {
 	 * @param path
 	 */
 	public void onBeforeUnmount(final String path) {
-		Log.i(K9.LOG_TAG, "storage path \"" + path + "\" unmounting");
+		Log.i(MAIL.LOG_TAG, "storage path \"" + path + "\" unmounting");
 		final StorageProvider provider = resolveProvider(path);
 		if (provider == null) {
 			return;
@@ -661,7 +661,7 @@ public class StorageManager {
 			try {
 				listener.onUnmount(provider.getId());
 			} catch (Exception e) {
-				Log.w(K9.LOG_TAG, "Error while notifying StorageListener", e);
+				Log.w(MAIL.LOG_TAG, "Error while notifying StorageListener", e);
 			}
 		}
 		final SynchronizationAid sync = mProviderLocks
@@ -672,7 +672,7 @@ public class StorageManager {
 	}
 
 	public void onAfterUnmount(final String path) {
-		Log.i(K9.LOG_TAG, "storage path \"" + path + "\" unmounted");
+		Log.i(MAIL.LOG_TAG, "storage path \"" + path + "\" unmounted");
 		final StorageProvider provider = resolveProvider(path);
 		if (provider == null) {
 			return;
@@ -683,7 +683,7 @@ public class StorageManager {
 		sync.unmounting = false;
 		sync.writeLock.unlock();
 
-		K9.setServicesEnabled(K9.app);
+		MAIL.setServicesEnabled(MAIL.app);
 	}
 
 	/**
@@ -691,7 +691,7 @@ public class StorageManager {
 	 * @param readOnly
 	 */
 	public void onMount(final String path, final boolean readOnly) {
-		Log.i(K9.LOG_TAG, "storage path \"" + path + "\" mounted readOnly="
+		Log.i(MAIL.LOG_TAG, "storage path \"" + path + "\" mounted readOnly="
 				+ readOnly);
 		if (readOnly) {
 			return;
@@ -705,14 +705,14 @@ public class StorageManager {
 			try {
 				listener.onMount(provider.getId());
 			} catch (Exception e) {
-				Log.w(K9.LOG_TAG, "Error while notifying StorageListener", e);
+				Log.w(MAIL.LOG_TAG, "Error while notifying StorageListener", e);
 			}
 		}
 
 		// XXX we should reset mail service ONLY if there are accounts using the
 		// storage (this is not done in a regular listener because it has to be
 		// invoked afterward)
-		K9.setServicesEnabled(K9.app);
+		MAIL.setServicesEnabled(MAIL.app);
 	}
 
 	/**

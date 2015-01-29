@@ -26,7 +26,7 @@ import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Account.FolderMode;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.controller.MessagingController;
@@ -34,7 +34,7 @@ import com.bernard.beaconportal.activities.controller.MessagingListener;
 import com.bernard.beaconportal.activities.mail.Folder;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 
-public class ChooseFolder extends K9ListActivity {
+public class ChooseFolder extends MAILListActivity {
 	public static final String EXTRA_ACCOUNT = "com.bernard.beaconportal.activities.ChooseFolder_account";
 	public static final String EXTRA_CUR_FOLDER = "com.bernard.beaconportal.activities.ChooseFolder_curfolder";
 	public static final String EXTRA_SEL_FOLDER = "com.bernard.beaconportal.activities.ChooseFolder_selfolder";
@@ -356,7 +356,7 @@ public class ChooseFolder extends K9ListActivity {
 						continue;
 					}
 				} catch (MessagingException me) {
-					Log.e(K9.LOG_TAG,
+					Log.e(MAIL.LOG_TAG,
 							"Couldn't get prefs to check for displayability of folder "
 									+ folder.getName(), me);
 				}
@@ -383,7 +383,7 @@ public class ChooseFolder extends K9ListActivity {
 					+ topFolders.size() + ((mShowOptionNone) ? 1 : 0));
 
 			if (mShowOptionNone) {
-				localFolders.add(K9.FOLDER_NONE);
+				localFolders.add(MAIL.FOLDER_NONE);
 			}
 
 			localFolders.addAll(topFolders);
@@ -404,7 +404,7 @@ public class ChooseFolder extends K9ListActivity {
 						folderList
 								.add(getString(R.string.special_mailbox_name_inbox));
 						mHeldInbox = name;
-					} else if (!K9.ERROR_FOLDER_NAME.equals(name)
+					} else if (!MAIL.ERROR_FOLDER_NAME.equals(name)
 							&& !account.getOutboxFolderName().equals(name)) {
 						folderList.add(name);
 					}

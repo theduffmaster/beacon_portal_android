@@ -22,7 +22,7 @@ import android.util.Log;
 import android.util.Xml;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.helper.Utility;
 import com.bernard.beaconportal.activities.mail.ServerSettings;
@@ -32,7 +32,7 @@ import com.bernard.beaconportal.activities.preferences.Settings.InvalidSettingVa
 import com.bernard.beaconportal.activities.preferences.Settings.SettingsDescription;
 
 public class SettingsExporter {
-	private static final String EXPORT_FILENAME = "settings.k9s";
+	private static final String EXPORT_FILENAME = "settings.mails";
 
 	/**
 	 * File format version number.
@@ -46,7 +46,7 @@ public class SettingsExporter {
 	 */
 	public static final int FILE_FORMAT_VERSION = 1;
 
-	public static final String ROOT_ELEMENT = "k9settings";
+	public static final String ROOT_ELEMENT = "mailsettings";
 	public static final String VERSION_ATTRIBUTE = "version";
 	public static final String FILE_FORMAT_ATTRIBUTE = "format";
 	public static final String GLOBAL_ELEMENT = "global";
@@ -99,7 +99,7 @@ public class SettingsExporter {
 				try {
 					os.close();
 				} catch (IOException ioe) {
-					Log.w(K9.LOG_TAG, "Couldn't close exported settings file: "
+					Log.w(MAIL.LOG_TAG, "Couldn't close exported settings file: "
 							+ filename);
 				}
 			}
@@ -127,7 +127,7 @@ public class SettingsExporter {
 			serializer.attribute(null, FILE_FORMAT_ATTRIBUTE,
 					Integer.toString(FILE_FORMAT_VERSION));
 
-			Log.i(K9.LOG_TAG, "Exporting preferences");
+			Log.i(MAIL.LOG_TAG, "Exporting preferences");
 
 			Preferences preferences = Preferences.getPreferences(context);
 			SharedPreferences storage = preferences.getPreferences();
@@ -191,7 +191,7 @@ public class SettingsExporter {
 					String outputValue = setting.toPrettyString(value);
 					writeKeyValue(serializer, key, outputValue);
 				} catch (InvalidSettingValueException e) {
-					Log.w(K9.LOG_TAG,
+					Log.w(MAIL.LOG_TAG,
 							"Global setting \""
 									+ key
 									+ "\" has invalid value \""
@@ -199,8 +199,8 @@ public class SettingsExporter {
 									+ "\" in preference storage. This shouldn't happen!");
 				}
 			} else {
-				if (K9.DEBUG) {
-					Log.d(K9.LOG_TAG, "Couldn't find key \"" + key
+				if (MAIL.DEBUG) {
+					Log.d(MAIL.LOG_TAG, "Couldn't find key \"" + key
 							+ "\" in preference storage."
 							+ "Using default value.");
 				}
@@ -353,7 +353,7 @@ public class SettingsExporter {
 						String pretty = setting.toPrettyString(value);
 						writeKeyValue(serializer, keyPart, pretty);
 					} catch (InvalidSettingValueException e) {
-						Log.w(K9.LOG_TAG,
+						Log.w(MAIL.LOG_TAG,
 								"Account setting \""
 										+ keyPart
 										+ "\" ("
@@ -460,7 +460,7 @@ public class SettingsExporter {
 						String outputValue = setting.toPrettyString(value);
 						writeKeyValue(serializer, identityKey, outputValue);
 					} catch (InvalidSettingValueException e) {
-						Log.w(K9.LOG_TAG,
+						Log.w(MAIL.LOG_TAG,
 								"Identity setting \""
 										+ identityKey
 										+ "\" has invalid value \""
@@ -518,7 +518,7 @@ public class SettingsExporter {
 						String outputValue = setting.toPrettyString(value);
 						writeKeyValue(serializer, folderKey, outputValue);
 					} catch (InvalidSettingValueException e) {
-						Log.w(K9.LOG_TAG,
+						Log.w(MAIL.LOG_TAG,
 								"Folder setting \""
 										+ folderKey
 										+ "\" has invalid value \""

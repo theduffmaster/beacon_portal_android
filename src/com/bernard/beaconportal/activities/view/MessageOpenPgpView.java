@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Identity;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.crypto.CryptoHelper;
 import com.bernard.beaconportal.activities.crypto.OpenPgpApiHelper;
@@ -261,7 +261,7 @@ public class MessageOpenPgpView extends LinearLayout {
 					decryptVerify(new Intent());
 
 				} catch (MessagingException me) {
-					Log.e(K9.LOG_TAG, "Unable to decrypt email.", me);
+					Log.e(MAIL.LOG_TAG, "Unable to decrypt email.", me);
 				}
 
 			}
@@ -283,7 +283,7 @@ public class MessageOpenPgpView extends LinearLayout {
 		try {
 			is = new ByteArrayInputStream(mData.getBytes("UTF-8"));
 		} catch (UnsupportedEncodingException e) {
-			Log.e(K9.LOG_TAG, "UnsupportedEncodingException.", e);
+			Log.e(MAIL.LOG_TAG, "UnsupportedEncodingException.", e);
 		}
 		final ByteArrayOutputStream os = new ByteArrayOutputStream();
 
@@ -299,7 +299,7 @@ public class MessageOpenPgpView extends LinearLayout {
 					mMissingKeyPI.getIntentSender(),
 					REQUEST_CODE_DECRYPT_VERIFY, null, 0, 0, 0);
 		} catch (SendIntentException e) {
-			Log.e(K9.LOG_TAG, "SendIntentException", e);
+			Log.e(MAIL.LOG_TAG, "SendIntentException", e);
 		}
 	}
 
@@ -329,8 +329,8 @@ public class MessageOpenPgpView extends LinearLayout {
 								.getParcelableExtra(OpenPgpApi.RESULT_SIGNATURE);
 					}
 
-					if (K9.DEBUG)
-						Log.d(K9.LOG_TAG, "result: " + os.toByteArray().length
+					if (MAIL.DEBUG)
+						Log.d(MAIL.LOG_TAG, "result: " + os.toByteArray().length
 								+ " str=" + output);
 
 					// missing key -> PendingIntent to get keys
@@ -340,7 +340,7 @@ public class MessageOpenPgpView extends LinearLayout {
 					mProgress.setVisibility(View.GONE);
 					mFragment.setMessageWithOpenPgp(output, sigResult);
 				} catch (UnsupportedEncodingException e) {
-					Log.e(K9.LOG_TAG, "UnsupportedEncodingException", e);
+					Log.e(MAIL.LOG_TAG, "UnsupportedEncodingException", e);
 				}
 				break;
 			}
@@ -351,7 +351,7 @@ public class MessageOpenPgpView extends LinearLayout {
 					mFragment.getActivity().startIntentSenderForResult(
 							pi.getIntentSender(), requestCode, null, 0, 0, 0);
 				} catch (SendIntentException e) {
-					Log.e(K9.LOG_TAG, "SendIntentException", e);
+					Log.e(MAIL.LOG_TAG, "SendIntentException", e);
 				}
 				break;
 			}
@@ -367,8 +367,8 @@ public class MessageOpenPgpView extends LinearLayout {
 
 	public boolean handleOnActivityResult(int requestCode, int resultCode,
 			Intent data) {
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, "onActivityResult resultCode: " + resultCode);
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, "onActivityResult resultCode: " + resultCode);
 
 		// try again after user interaction
 		if (resultCode == Activity.RESULT_OK
@@ -394,9 +394,9 @@ public class MessageOpenPgpView extends LinearLayout {
 			public void run() {
 				mProgress.setVisibility(View.GONE);
 
-				if (K9.DEBUG) {
-					Log.d(K9.LOG_TAG, "OpenPGP Error ID:" + error.getErrorId());
-					Log.d(K9.LOG_TAG,
+				if (MAIL.DEBUG) {
+					Log.d(MAIL.LOG_TAG, "OpenPGP Error ID:" + error.getErrorId());
+					Log.d(MAIL.LOG_TAG,
 							"OpenPGP Error Message:" + error.getMessage());
 				}
 

@@ -10,7 +10,7 @@ import android.view.KeyEvent;
 import android.webkit.WebSettings;
 import android.widget.Toast;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.helper.HtmlConverter;
 
@@ -31,7 +31,7 @@ public class MessageWebView extends RigidWebView {
 	 * column layout is enabled (see <a
 	 * href="http://code.google.com/p/android/issues/detail?id=34886">issue
 	 * 34886</a> in Android's bug tracker, and <a
-	 * href="http://code.google.com/p/k9mail/issues/detail?id=3820">issue
+	 * href="http://code.google.com/p/mailmail/issues/detail?id=3820">issue
 	 * 3820</a> in K-9 Mail's bug tracker).
 	 */
 	public static boolean isSingleColumnLayoutSupported() {
@@ -80,7 +80,7 @@ public class MessageWebView extends RigidWebView {
 		this.setScrollBarStyle(SCROLLBARS_INSIDE_OVERLAY);
 		this.setLongClickable(true);
 
-		if (K9.getK9MessageViewTheme() == K9.Theme.DARK) {
+		if (MAIL.getMAILMessageViewTheme() == MAIL.Theme.DARK) {
 			// Black theme should get a black webview background
 			// we'll set the background of the messages on load
 			this.setBackgroundColor(0xff000000);
@@ -93,7 +93,7 @@ public class MessageWebView extends RigidWebView {
 		webSettings.setSupportZoom(true);
 		webSettings.setBuiltInZoomControls(true);
 		webSettings.setUseWideViewPort(true);
-		if (K9.autofitWidth()) {
+		if (MAIL.autofitWidth()) {
 			webSettings.setLoadWithOverviewMode(true);
 		}
 
@@ -103,7 +103,7 @@ public class MessageWebView extends RigidWebView {
 		webSettings.setLoadsImagesAutomatically(true);
 		webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
 
-		if (isSingleColumnLayoutSupported() && K9.mobileOptimizedLayout()) {
+		if (isSingleColumnLayoutSupported() && MAIL.mobileOptimizedLayout()) {
 			webSettings
 					.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 		} else {
@@ -113,7 +113,7 @@ public class MessageWebView extends RigidWebView {
 
 		disableOverscrolling();
 
-		webSettings.setTextZoom(K9.getFontSizes()
+		webSettings.setTextZoom(MAIL.getFontSizes()
 				.getMessageViewContentAsPercent());
 
 		// Disable network images by default. This is overridden by preferences.
@@ -159,7 +159,7 @@ public class MessageWebView extends RigidWebView {
 		// Include a meta tag so the WebView will not use a fixed viewport width
 		// of 980 px
 		String content = "<html><head><meta name=\"viewport\" content=\"width=device-width\"/>";
-		if (K9.getK9MessageViewTheme() == K9.Theme.DARK) {
+		if (MAIL.getMAILMessageViewTheme() == MAIL.Theme.DARK) {
 			content += "<style type=\"text/css\">"
 					+ "* { background: black ! important; color: #F3F3F3 !important }"
 					+ ":link, :link * { color: #CCFF33 !important }"
@@ -184,7 +184,7 @@ public class MessageWebView extends RigidWebView {
 			Toast.makeText(getContext(), R.string.select_text_now,
 					Toast.LENGTH_SHORT).show();
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Exception in emulateShiftHeld()", e);
+			Log.e(MAIL.LOG_TAG, "Exception in emulateShiftHeld()", e);
 		}
 	}
 

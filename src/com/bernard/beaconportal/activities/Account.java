@@ -59,7 +59,7 @@ public class Account implements BaseAccount {
 	/**
 	 * This local folder is used to store messages to be sent.
 	 */
-	public static final String OUTBOX = "K9MAIL_INTERNAL_OUTBOX";
+	public static final String OUTBOX = "MAILMAIL_INTERNAL_OUTBOX";
 
 	public static final String EXPUNGE_IMMEDIATELY = "EXPUNGE_IMMEDIATELY";
 	public static final String EXPUNGE_MANUALLY = "EXPUNGE_MANUALLY";
@@ -270,12 +270,12 @@ public class Account implements BaseAccount {
 
 	protected Account(Context context) {
 		mUuid = UUID.randomUUID().toString();
-		mLocalStorageProviderId = StorageManager.getInstance(K9.app)
+		mLocalStorageProviderId = StorageManager.getInstance(MAIL.app)
 				.getDefaultProviderId();
 		mAutomaticCheckIntervalMinutes = -1;
 		mIdleRefreshMinutes = 24;
 		mPushPollOnConnect = true;
-		mDisplayCount = K9.DEFAULT_VISIBLE_LIMIT;
+		mDisplayCount = MAIL.DEFAULT_VISIBLE_LIMIT;
 		mAccountNumber = -1;
 		mNotifyNewMail = true;
 		mNotifySync = true;
@@ -379,7 +379,7 @@ public class Account implements BaseAccount {
 		mStoreUri = Utility.base64Decode(prefs.getString(mUuid + ".storeUri",
 				null));
 		mLocalStorageProviderId = prefs.getString(mUuid
-				+ ".localStorageProvider", StorageManager.getInstance(K9.app)
+				+ ".localStorageProvider", StorageManager.getInstance(MAIL.app)
 				.getDefaultProviderId());
 		mTransportUri = Utility.base64Decode(prefs.getString(mUuid
 				+ ".transportUri", null));
@@ -391,9 +391,9 @@ public class Account implements BaseAccount {
 		mPushPollOnConnect = prefs.getBoolean(mUuid + ".pushPollOnConnect",
 				true);
 		mDisplayCount = prefs.getInt(mUuid + ".displayCount",
-				K9.DEFAULT_VISIBLE_LIMIT);
+				MAIL.DEFAULT_VISIBLE_LIMIT);
 		if (mDisplayCount < 0) {
-			mDisplayCount = K9.DEFAULT_VISIBLE_LIMIT;
+			mDisplayCount = MAIL.DEFAULT_VISIBLE_LIMIT;
 		}
 		mLastAutomaticCheckTime = prefs.getLong(mUuid
 				+ ".lastAutomaticCheckTime", 0);
@@ -866,7 +866,7 @@ public class Account implements BaseAccount {
 		try {
 			getLocalStore().resetVisibleLimits(getDisplayCount());
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG, "Unable to reset visible limits", e);
+			Log.e(MAIL.LOG_TAG, "Unable to reset visible limits", e);
 		}
 
 	}
@@ -921,7 +921,7 @@ public class Account implements BaseAccount {
 		}
 
 		LocalStore localStore = getLocalStore();
-		if (K9.measureAccounts()) {
+		if (MAIL.measureAccounts()) {
 			stats.size = localStore.getSize();
 		}
 
@@ -1074,7 +1074,7 @@ public class Account implements BaseAccount {
 				switchLocalStorage(id);
 				successful = true;
 			} catch (MessagingException e) {
-				Log.e(K9.LOG_TAG, "Switching local storage provider from "
+				Log.e(MAIL.LOG_TAG, "Switching local storage provider from "
 						+ mLocalStorageProviderId + " to " + id + " failed.", e);
 			} finally {
 				// if migration to/from SD-card failed once, it will fail again.
@@ -1115,7 +1115,7 @@ public class Account implements BaseAccount {
 		// if (displayCount != -1) {
 		// this.mDisplayCount = displayCount;
 		// } else {
-		this.mDisplayCount = K9.DEFAULT_VISIBLE_LIMIT;
+		this.mDisplayCount = MAIL.DEFAULT_VISIBLE_LIMIT;
 		// }
 		resetVisibleLimits();
 	}
@@ -1180,7 +1180,7 @@ public class Account implements BaseAccount {
 	 * @return true if account has a drafts folder set.
 	 */
 	public synchronized boolean hasDraftsFolder() {
-		return !K9.FOLDER_NONE.equalsIgnoreCase(mDraftsFolderName);
+		return !MAIL.FOLDER_NONE.equalsIgnoreCase(mDraftsFolderName);
 	}
 
 	public synchronized String getSentFolderName() {
@@ -1188,7 +1188,7 @@ public class Account implements BaseAccount {
 	}
 
 	public synchronized String getErrorFolderName() {
-		return K9.ERROR_FOLDER_NAME;
+		return MAIL.ERROR_FOLDER_NAME;
 	}
 
 	public synchronized void setSentFolderName(String sentFolderName) {
@@ -1201,7 +1201,7 @@ public class Account implements BaseAccount {
 	 * @return true if account has a sent folder set.
 	 */
 	public synchronized boolean hasSentFolder() {
-		return !K9.FOLDER_NONE.equalsIgnoreCase(mSentFolderName);
+		return !MAIL.FOLDER_NONE.equalsIgnoreCase(mSentFolderName);
 	}
 
 	public synchronized String getTrashFolderName() {
@@ -1218,7 +1218,7 @@ public class Account implements BaseAccount {
 	 * @return true if account has a trash folder set.
 	 */
 	public synchronized boolean hasTrashFolder() {
-		return !K9.FOLDER_NONE.equalsIgnoreCase(mTrashFolderName);
+		return !MAIL.FOLDER_NONE.equalsIgnoreCase(mTrashFolderName);
 	}
 
 	public synchronized String getArchiveFolderName() {
@@ -1235,7 +1235,7 @@ public class Account implements BaseAccount {
 	 * @return true if account has an archive folder set.
 	 */
 	public synchronized boolean hasArchiveFolder() {
-		return !K9.FOLDER_NONE.equalsIgnoreCase(mArchiveFolderName);
+		return !MAIL.FOLDER_NONE.equalsIgnoreCase(mArchiveFolderName);
 	}
 
 	public synchronized String getSpamFolderName() {
@@ -1252,7 +1252,7 @@ public class Account implements BaseAccount {
 	 * @return true if account has a spam folder set.
 	 */
 	public synchronized boolean hasSpamFolder() {
-		return !K9.FOLDER_NONE.equalsIgnoreCase(mSpamFolderName);
+		return !MAIL.FOLDER_NONE.equalsIgnoreCase(mSpamFolderName);
 	}
 
 	public synchronized String getOutboxFolderName() {
@@ -1389,7 +1389,7 @@ public class Account implements BaseAccount {
 	}
 
 	public LocalStore getLocalStore() throws MessagingException {
-		return Store.getLocalInstance(this, K9.app);
+		return Store.getLocalInstance(this, MAIL.app);
 	}
 
 	public Store getRemoteStore() throws MessagingException {
@@ -1854,7 +1854,7 @@ public class Account implements BaseAccount {
 		if (localStorageProviderId == null) {
 			return true; // defaults to internal memory
 		}
-		return StorageManager.getInstance(K9.app).isReady(
+		return StorageManager.getInstance(MAIL.app).isReady(
 				localStorageProviderId);
 	}
 
@@ -2007,7 +2007,7 @@ public class Account implements BaseAccount {
 	}
 
 	private void excludeSpecialFolder(LocalSearch search, String folderName) {
-		if (!K9.FOLDER_NONE.equals(folderName)) {
+		if (!MAIL.FOLDER_NONE.equals(folderName)) {
 			search.and(Searchfield.FOLDER, folderName, Attribute.NOT_EQUALS);
 		}
 	}

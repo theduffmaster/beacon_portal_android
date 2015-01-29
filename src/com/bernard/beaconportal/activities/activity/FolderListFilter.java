@@ -8,7 +8,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 
 /**
  * Filter to search for occurences of the search-expression in any place of the
@@ -112,7 +112,7 @@ public class FolderListFilter<T> extends Filter {
 					}
 				}
 			} else {
-				Log.w(K9.LOG_TAG,
+				Log.w(MAIL.LOG_TAG,
 						"FolderListFilter.publishResults - null search-result ");
 			}
 

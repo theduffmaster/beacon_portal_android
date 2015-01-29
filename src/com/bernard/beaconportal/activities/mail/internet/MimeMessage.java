@@ -24,7 +24,7 @@ import org.apache.james.mime4j.stream.Field;
 import org.apache.james.mime4j.stream.MimeConfig;
 import org.apache.james.mime4j.util.MimeUtil;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.mail.Address;
 import com.bernard.beaconportal.activities.mail.Body;
 import com.bernard.beaconportal.activities.mail.BodyPart;
@@ -160,7 +160,7 @@ public class MimeMessage extends Message {
 					Locale.US);
 		}
 
-		if (K9.hideTimeZone()) {
+		if (MAIL.hideTimeZone()) {
 			mDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 		}
 

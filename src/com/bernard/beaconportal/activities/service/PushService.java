@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 
 public class PushService extends CoreService {
 	private static String START_SERVICE = "com.bernard.beaconportal.activities.service.PushService.startService";
@@ -31,12 +31,12 @@ public class PushService extends CoreService {
 	public int startService(Intent intent, int startId) {
 		int startFlag = START_STICKY;
 		if (START_SERVICE.equals(intent.getAction())) {
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG, "PushService started with startId = "
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG, "PushService started with startId = "
 						+ startId);
 		} else if (STOP_SERVICE.equals(intent.getAction())) {
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG, "PushService stopping with startId = "
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG, "PushService stopping with startId = "
 						+ startId);
 			stopSelf(startId);
 			startFlag = START_NOT_STICKY;

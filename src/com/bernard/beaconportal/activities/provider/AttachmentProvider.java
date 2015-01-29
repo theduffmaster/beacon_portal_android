@@ -20,7 +20,7 @@ import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Store;
@@ -86,8 +86,8 @@ public class AttachmentProvider extends ContentProvider {
 		File[] files = context.getCacheDir().listFiles();
 		for (File file : files) {
 			try {
-				if (K9.DEBUG) {
-					Log.d(K9.LOG_TAG,
+				if (MAIL.DEBUG) {
+					Log.d(MAIL.LOG_TAG,
 							"Deleting file " + file.getCanonicalPath());
 				}
 			} catch (IOException ioe) { /* No need to log failure to log */
@@ -227,18 +227,18 @@ public class AttachmentProvider extends ContentProvider {
 		try {
 			final Account account = Preferences.getPreferences(getContext())
 					.getAccount(dbName);
-			attachmentInfo = Store.getLocalInstance(account, K9.app)
+			attachmentInfo = Store.getLocalInstance(account, MAIL.app)
 					.getAttachmentInfo(id);
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG,
+			Log.e(MAIL.LOG_TAG,
 					"Unable to retrieve attachment info from local store for ID: "
 							+ id, e);
 			return null;
 		}
 
 		if (attachmentInfo == null) {
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "No attachment info for ID: " + id);
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "No attachment info for ID: " + id);
 			}
 			return null;
 		}
@@ -287,7 +287,7 @@ public class AttachmentProvider extends ContentProvider {
 
 			try {
 				final LocalStore localStore = Store.getLocalInstance(account,
-						K9.app);
+						MAIL.app);
 
 				AttachmentInfo attachmentInfo = localStore
 						.getAttachmentInfo(id);
@@ -300,7 +300,7 @@ public class AttachmentProvider extends ContentProvider {
 					type = attachmentInfo.type;
 				}
 			} catch (MessagingException e) {
-				Log.e(K9.LOG_TAG, "Unable to retrieve LocalStore for "
+				Log.e(MAIL.LOG_TAG, "Unable to retrieve LocalStore for "
 						+ account, e);
 				type = null;
 			}
@@ -313,7 +313,7 @@ public class AttachmentProvider extends ContentProvider {
 		Account account = Preferences.getPreferences(getContext()).getAccount(
 				dbName);
 
-		File attachmentsDir = StorageManager.getInstance(K9.app)
+		File attachmentsDir = StorageManager.getInstance(MAIL.app)
 				.getAttachmentDirectory(dbName,
 						account.getLocalStorageProviderId());
 

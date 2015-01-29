@@ -11,7 +11,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.controller.MessagingController;
@@ -29,9 +29,9 @@ import com.bernard.beaconportal.activities.service.DatabaseUpgradeService;
  * {@link #actionUpgradeDatabases(Context, Intent)} in their
  * {@link Activity#onCreate(Bundle)} method.</li>
  * <li>{@link #actionUpgradeDatabases(Context, Intent)} will call
- * {@link K9#areDatabasesUpToDate()} to check if we already know whether the
+ * {@link MAIL#areDatabasesUpToDate()} to check if we already know whether the
  * databases have been upgraded.</li>
- * <li>{@link K9#areDatabasesUpToDate()} will compare the last known database
+ * <li>{@link MAIL#areDatabasesUpToDate()} will compare the last known database
  * version stored in a {@link SharedPreferences} file to
  * {@link com.bernard.beaconportal.activities.mail.store.LocalStore#DB_VERSION}.
  * This is done as an optimization because it's faster than opening all of the
@@ -62,7 +62,7 @@ import com.bernard.beaconportal.activities.service.DatabaseUpgradeService;
  * {@link DatabaseUpgradeService} is performing the upgrade.
  * </p>
  */
-public class UpgradeDatabases extends K9Activity {
+public class UpgradeDatabases extends MAILActivity {
 	private static final String ACTION_UPGRADE_DATABASES = "upgrade_databases";
 	private static final String EXTRA_START_INTENT = "start_intent";
 
@@ -83,7 +83,7 @@ public class UpgradeDatabases extends K9Activity {
 	 */
 	public static boolean actionUpgradeDatabases(Context context,
 			Intent startIntent) {
-		if (K9.areDatabasesUpToDate()) {
+		if (MAIL.areDatabasesUpToDate()) {
 			return false;
 		}
 
@@ -114,7 +114,7 @@ public class UpgradeDatabases extends K9Activity {
 
 		// If the databases have already been upgraded there's no point in
 		// displaying this activity.
-		if (K9.areDatabasesUpToDate()) {
+		if (MAIL.areDatabasesUpToDate()) {
 			launchOriginalActivity();
 			return;
 		}
@@ -163,7 +163,7 @@ public class UpgradeDatabases extends K9Activity {
 		super.onResume();
 
 		// Check if the upgrade was completed while the activity was paused.
-		if (K9.areDatabasesUpToDate()) {
+		if (MAIL.areDatabasesUpToDate()) {
 			launchOriginalActivity();
 			return;
 		}

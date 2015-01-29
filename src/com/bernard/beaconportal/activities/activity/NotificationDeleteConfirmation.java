@@ -11,7 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.service.NotificationActionService;
@@ -41,8 +41,8 @@ public class NotificationDeleteConfirmation extends Activity {
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 
-		setTheme(K9.getK9Theme() == K9.Theme.LIGHT ? R.style.Theme_K9_Dialog_Translucent_Light
-				: R.style.Theme_K9_Dialog_Translucent_Dark);
+		setTheme(MAIL.getMAILTheme() == MAIL.Theme.LIGHT ? R.style.Theme_MAIL_Dialog_Translucent_Light
+				: R.style.Theme_MAIL_Dialog_Translucent_Dark);
 
 		final Preferences preferences = Preferences.getPreferences(this);
 		final Intent intent = getIntent();
@@ -52,7 +52,7 @@ public class NotificationDeleteConfirmation extends Activity {
 
 		if (mAccount == null || mMessageRefs == null || mMessageRefs.isEmpty()) {
 			finish();
-		} else if (!K9.confirmDeleteFromNotification()) {
+		} else if (!MAIL.confirmDeleteFromNotification()) {
 			triggerDelete();
 			finish();
 		} else {

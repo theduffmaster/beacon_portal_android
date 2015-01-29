@@ -28,10 +28,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
+import com.bernard.beaconportal.activities.activity.MAILActivityMaterial;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupCheckSettings.CheckDirection;
 import com.bernard.beaconportal.activities.helper.Utility;
 import com.bernard.beaconportal.activities.mail.AuthType;
@@ -40,7 +40,7 @@ import com.bernard.beaconportal.activities.mail.ServerSettings;
 import com.bernard.beaconportal.activities.mail.Transport;
 import com.bernard.beaconportal.activities.mail.transport.SmtpTransport;
 
-public class AccountSetupOutgoing extends K9ActivityMaterial implements
+public class AccountSetupOutgoing extends MAILActivityMaterial implements
 		OnClickListener, OnCheckedChangeListener {
 	private static final String EXTRA_ACCOUNT = "account";
 
@@ -319,7 +319,7 @@ public class AccountSetupOutgoing extends K9ActivityMaterial implements
 			break;
 		default:
 			port = "";
-			Log.e(K9.LOG_TAG, "Unhandled ConnectionSecurity type encountered");
+			Log.e(MAIL.LOG_TAG, "Unhandled ConnectionSecurity type encountered");
 		}
 		return port;
 	}
@@ -390,7 +390,7 @@ public class AccountSetupOutgoing extends K9ActivityMaterial implements
 	}
 
 	private void failure(Exception use) {
-		Log.e(K9.LOG_TAG, "Failure", use);
+		Log.e(MAIL.LOG_TAG, "Failure", use);
 		String toastText = getString(R.string.account_setup_bad_uri,
 				use.getMessage());
 

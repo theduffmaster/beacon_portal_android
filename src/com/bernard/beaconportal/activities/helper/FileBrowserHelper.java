@@ -12,7 +12,7 @@ import android.net.Uri;
 import android.text.InputType;
 import android.widget.EditText;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 
 public class FileBrowserHelper {
@@ -93,7 +93,7 @@ public class FileBrowserHelper {
 		boolean success = false;
 
 		if (startPath == null) {
-			startPath = new File(K9.getAttachmentDefaultPath());
+			startPath = new File(MAIL.getAttachmentDefaultPath());
 		}
 
 		int listIndex = 0;
@@ -126,7 +126,7 @@ public class FileBrowserHelper {
 		boolean success = false;
 
 		if (startPath == null) {
-			startPath = new File(K9.getAttachmentDefaultPath());
+			startPath = new File(MAIL.getAttachmentDefaultPath());
 		}
 
 		int listIndex = 0;

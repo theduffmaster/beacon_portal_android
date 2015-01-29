@@ -41,7 +41,7 @@ import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Account.MessageFormat;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.Search;
@@ -218,7 +218,7 @@ public class LocalStore extends Store implements Serializable {
 			try {
 				upgradeDatabase(db);
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						"Exception while upgrading database. Resetting the DB to v0",
 						e);
 				db.setVersion(0);
@@ -227,7 +227,7 @@ public class LocalStore extends Store implements Serializable {
 		}
 
 		private void upgradeDatabase(final SQLiteDatabase db) {
-			Log.i(K9.LOG_TAG, String.format(Locale.US,
+			Log.i(MAIL.LOG_TAG, String.format(Locale.US,
 					"Upgrading database from version %d to version %d",
 					db.getVersion(), DB_VERSION));
 
@@ -372,7 +372,7 @@ public class LocalStore extends Store implements Serializable {
 						try {
 							db.execSQL("update messages set flags = replace(flags, 'X_NO_SEEN_INFO', 'X_BAD_FLAG')");
 						} catch (SQLiteException e) {
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Unable to get rid of obsolete flag X_NO_SEEN_INFO",
 									e);
 						}
@@ -381,7 +381,7 @@ public class LocalStore extends Store implements Serializable {
 						try {
 							db.execSQL("ALTER TABLE attachments ADD content_id TEXT");
 						} catch (SQLiteException e) {
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Unable to add content_id column to attachments");
 						}
 					}
@@ -389,7 +389,7 @@ public class LocalStore extends Store implements Serializable {
 						try {
 							db.execSQL("ALTER TABLE attachments ADD content_disposition TEXT");
 						} catch (SQLiteException e) {
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Unable to add content_disposition column to attachments");
 						}
 					}
@@ -400,7 +400,7 @@ public class LocalStore extends Store implements Serializable {
 						try {
 							db.execSQL("DELETE FROM headers WHERE id in (SELECT headers.id FROM headers LEFT JOIN messages ON headers.message_id = messages.id WHERE messages.id IS NULL)");
 						} catch (SQLiteException e) {
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Unable to remove extra header data from the database");
 						}
 					}
@@ -410,7 +410,7 @@ public class LocalStore extends Store implements Serializable {
 						try {
 							db.execSQL("ALTER TABLE messages ADD mime_type TEXT");
 						} catch (SQLiteException e) {
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Unable to add mime_type column to messages");
 						}
 					}
@@ -441,7 +441,7 @@ public class LocalStore extends Store implements Serializable {
 									String name = cursor.getString(1);
 									update41Metadata(db, prefs, id, name);
 								} catch (Exception e) {
-									Log.e(K9.LOG_TAG,
+									Log.e(MAIL.LOG_TAG,
 											" error trying to ugpgrade a folder class",
 											e);
 								}
@@ -449,7 +449,7 @@ public class LocalStore extends Store implements Serializable {
 						}
 
 						catch (SQLiteException e) {
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Exception while upgrading database to v41. folder classes may have vanished",
 									e);
 
@@ -473,12 +473,12 @@ public class LocalStore extends Store implements Serializable {
 
 							editor.commit();
 							long endTime = System.currentTimeMillis();
-							Log.i(K9.LOG_TAG, "Putting folder preferences for "
+							Log.i(MAIL.LOG_TAG, "Putting folder preferences for "
 									+ folders.size()
 									+ " folders back into Preferences took "
 									+ (endTime - startTime) + " ms");
 						} catch (Exception e) {
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Could not replace Preferences in upgrade from DB_VERSION 41",
 									e);
 						}
@@ -487,20 +487,20 @@ public class LocalStore extends Store implements Serializable {
 						try {
 							// If folder "OUTBOX" (old, v3.800 - v3.802) exists,
 							// rename it to
-							// "K9MAIL_INTERNAL_OUTBOX" (new)
+							// "MAILMAIL_INTERNAL_OUTBOX" (new)
 							LocalFolder oldOutbox = new LocalFolder("OUTBOX");
 							if (oldOutbox.exists()) {
 								ContentValues cv = new ContentValues();
 								cv.put("name", Account.OUTBOX);
 								db.update("folders", cv, "name = ?",
 										new String[] { "OUTBOX" });
-								Log.i(K9.LOG_TAG, "Renamed folder OUTBOX to "
+								Log.i(MAIL.LOG_TAG, "Renamed folder OUTBOX to "
 										+ Account.OUTBOX);
 							}
 
 							// Check if old (pre v3.800) localized outbox folder
 							// exists
-							String localizedOutbox = K9.app
+							String localizedOutbox = MAIL.app
 									.getString(R.string.special_mailbox_name_outbox);
 							LocalFolder obsoleteOutbox = new LocalFolder(
 									localizedOutbox);
@@ -526,7 +526,7 @@ public class LocalStore extends Store implements Serializable {
 								obsoleteOutbox.delete(true);
 							}
 						} catch (Exception e) {
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Error trying to fix the outbox folders", e);
 						}
 					}
@@ -779,7 +779,7 @@ public class LocalStore extends Store implements Serializable {
 				integrate = prefs.getBoolean(uUid + "." + name + ".integrate",
 						integrate);
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						" Throwing away an error while trying to upgrade folder metadata",
 						e);
 			}
@@ -831,8 +831,8 @@ public class LocalStore extends Store implements Serializable {
 	}
 
 	public void compact() throws MessagingException {
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG, "Before compaction size = " + getSize());
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG, "Before compaction size = " + getSize());
 
 		database.execute(false, new DbCallback<Void>() {
 			@Override
@@ -842,24 +842,24 @@ public class LocalStore extends Store implements Serializable {
 				return null;
 			}
 		});
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG, "After compaction size = " + getSize());
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG, "After compaction size = " + getSize());
 	}
 
 	public void clear() throws MessagingException {
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG, "Before prune size = " + getSize());
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG, "Before prune size = " + getSize());
 
 		pruneCachedAttachments(true);
-		if (K9.DEBUG) {
-			Log.i(K9.LOG_TAG, "After prune / before compaction size = "
+		if (MAIL.DEBUG) {
+			Log.i(MAIL.LOG_TAG, "After prune / before compaction size = "
 					+ getSize());
 
-			Log.i(K9.LOG_TAG, "Before clear folder count = " + getFolderCount());
-			Log.i(K9.LOG_TAG, "Before clear message count = "
+			Log.i(MAIL.LOG_TAG, "Before clear folder count = " + getFolderCount());
+			Log.i(MAIL.LOG_TAG, "Before clear message count = "
 					+ getMessageCount());
 
-			Log.i(K9.LOG_TAG, "After prune / before clear size = " + getSize());
+			Log.i(MAIL.LOG_TAG, "After prune / before clear size = " + getSize());
 		}
 		// don't delete messages that are Local, since there is no copy on the
 		// server.
@@ -890,11 +890,11 @@ public class LocalStore extends Store implements Serializable {
 
 		compact();
 
-		if (K9.DEBUG) {
-			Log.i(K9.LOG_TAG, "After clear message count = "
+		if (MAIL.DEBUG) {
+			Log.i(MAIL.LOG_TAG, "After clear message count = "
 					+ getMessageCount());
 
-			Log.i(K9.LOG_TAG, "After clear size = " + getSize());
+			Log.i(MAIL.LOG_TAG, "After clear size = " + getSize());
 		}
 	}
 
@@ -1028,8 +1028,8 @@ public class LocalStore extends Store implements Serializable {
 										null, null);
 								if (cursor.moveToNext()) {
 									if (cursor.getString(0) == null) {
-										if (K9.DEBUG)
-											Log.d(K9.LOG_TAG,
+										if (MAIL.DEBUG)
+											Log.d(MAIL.LOG_TAG,
 													"Attachment "
 															+ file.getAbsolutePath()
 															+ " has no store data, not deleting");
@@ -1221,8 +1221,8 @@ public class LocalStore extends Store implements Serializable {
 				+ ((!StringUtils.isNullOrEmpty(where)) ? " AND (" + where + ")"
 						: "") + " ORDER BY date DESC";
 
-		if (K9.DEBUG) {
-			Log.d(K9.LOG_TAG, "Query = " + sqlQuery);
+		if (MAIL.DEBUG) {
+			Log.d(MAIL.LOG_TAG, "Query = " + sqlQuery);
 		}
 
 		return getMessages(retrievalListener, null, sqlQuery, selectionArgs);
@@ -1271,7 +1271,7 @@ public class LocalStore extends Store implements Serializable {
 						i++;
 					}
 				} catch (Exception e) {
-					Log.d(K9.LOG_TAG, "Got an exception", e);
+					Log.d(MAIL.LOG_TAG, "Got an exception", e);
 				} finally {
 					Utility.closeQuietly(cursor);
 				}
@@ -1489,7 +1489,7 @@ public class LocalStore extends Store implements Serializable {
 									open(cursor);
 								}
 							} else {
-								Log.w(K9.LOG_TAG, "Creating folder "
+								Log.w(MAIL.LOG_TAG, "Creating folder "
 										+ getName() + " with existing id "
 										+ getId());
 								create(FolderType.HOLDS_MESSAGES);
@@ -1930,7 +1930,7 @@ public class LocalStore extends Store implements Serializable {
 						.getString(id + ".displayMode",
 								prefHolder.displayClass.name()));
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						"Unable to load displayMode for " + getName(), e);
 			}
 			if (prefHolder.displayClass == FolderClass.NONE) {
@@ -1942,7 +1942,7 @@ public class LocalStore extends Store implements Serializable {
 						.getString(id + ".syncMode",
 								prefHolder.syncClass.name()));
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG, "Unable to load syncMode for " + getName(), e);
+				Log.e(MAIL.LOG_TAG, "Unable to load syncMode for " + getName(), e);
 
 			}
 			if (prefHolder.syncClass == FolderClass.NONE) {
@@ -1954,7 +1954,7 @@ public class LocalStore extends Store implements Serializable {
 						.getString(id + ".pushMode",
 								prefHolder.pushClass.name()));
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG, "Unable to load pushMode for " + getName(), e);
+				Log.e(MAIL.LOG_TAG, "Unable to load pushMode for " + getName(), e);
 			}
 			if (prefHolder.pushClass == FolderClass.NONE) {
 				prefHolder.pushClass = FolderClass.INHERITED;
@@ -2099,7 +2099,7 @@ public class LocalStore extends Store implements Serializable {
 										}
 
 									} catch (Exception e) {
-										Log.e(K9.LOG_TAG,
+										Log.e(MAIL.LOG_TAG,
 												"Exception fetching message:",
 												e);
 									} finally {
@@ -2306,7 +2306,7 @@ public class LocalStore extends Store implements Serializable {
 							Long id = cursor.getLong(0);
 							String name = cursor.getString(1);
 							String value = cursor.getString(2);
-							// Log.i(K9.LOG_TAG, "Retrieved header name= " +
+							// Log.i(MAIL.LOG_TAG, "Retrieved header name= " +
 							// name + ", value = " + value + " for message " +
 							// id);
 							popMessages.get(id).addHeader(name, value);
@@ -2493,8 +2493,8 @@ public class LocalStore extends Store implements Serializable {
 
 								String oldUID = message.getUid();
 
-								if (K9.DEBUG) {
-									Log.d(K9.LOG_TAG, "Updating folder_id to "
+								if (MAIL.DEBUG) {
+									Log.d(MAIL.LOG_TAG, "Updating folder_id to "
 											+ lDestFolder.getId()
 											+ " for message with UID "
 											+ message.getUid() + ", id "
@@ -2503,7 +2503,7 @@ public class LocalStore extends Store implements Serializable {
 											+ getName());
 								}
 
-								String newUid = K9.LOCAL_UID_PREFIX
+								String newUid = MAIL.LOCAL_UID_PREFIX
 										+ UUID.randomUUID().toString();
 								message.setUid(newUid);
 
@@ -2769,7 +2769,7 @@ public class LocalStore extends Store implements Serializable {
 									/*
 									 * Create a new message in the database
 									 */
-									String randomLocalUid = K9.LOCAL_UID_PREFIX
+									String randomLocalUid = MAIL.LOCAL_UID_PREFIX
 											+ UUID.randomUUID().toString();
 
 									if (copy) {
@@ -2813,7 +2813,7 @@ public class LocalStore extends Store implements Serializable {
 								}
 
 								boolean isDraft = (message
-										.getHeader(K9.IDENTITY_HEADER) != null);
+										.getHeader(MAIL.IDENTITY_HEADER) != null);
 
 								List<Part> attachments;
 								String text;
@@ -3398,7 +3398,7 @@ public class LocalStore extends Store implements Serializable {
 							try {
 								message.setFlags(flags, value);
 							} catch (MessagingException e) {
-								Log.e(K9.LOG_TAG,
+								Log.e(MAIL.LOG_TAG,
 										"Something went wrong while setting flag",
 										e);
 							}
@@ -3694,7 +3694,7 @@ public class LocalStore extends Store implements Serializable {
 									return cursor.getInt(0);
 								}
 							} catch (Exception e) {
-								Log.e(K9.LOG_TAG, "Unable to updateLastUid: ",
+								Log.e(MAIL.LOG_TAG, "Unable to updateLastUid: ",
 										e);
 							} finally {
 								Utility.closeQuietly(cursor);
@@ -3702,8 +3702,8 @@ public class LocalStore extends Store implements Serializable {
 							return null;
 						}
 					});
-			if (K9.DEBUG)
-				Log.d(K9.LOG_TAG, "Updated last UID for folder " + mName
+			if (MAIL.DEBUG)
+				Log.d(MAIL.LOG_TAG, "Updated last UID for folder " + mName
 						+ " to " + lastUid);
 			mLastUid = lastUid;
 		}
@@ -3724,7 +3724,7 @@ public class LocalStore extends Store implements Serializable {
 							return cursor.getLong(0);
 						}
 					} catch (Exception e) {
-						Log.e(K9.LOG_TAG,
+						Log.e(MAIL.LOG_TAG,
 								"Unable to fetch oldest message date: ", e);
 					} finally {
 						Utility.closeQuietly(cursor);
@@ -3983,7 +3983,7 @@ public class LocalStore extends Store implements Serializable {
 
 					catch (Exception e) {
 						if (!"X_BAD_FLAG".equals(flag)) {
-							Log.w(K9.LOG_TAG, "Unable to parse flag " + flag);
+							Log.w(MAIL.LOG_TAG, "Unable to parse flag " + flag);
 						}
 					}
 				}

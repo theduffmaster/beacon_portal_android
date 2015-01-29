@@ -76,14 +76,14 @@ public class MainActivity extends ActionBarActivity {
 	private String Date, Type, due_today_shared, due_today_shared_content,
 			due_schedule_shared, due_schedule_shared_content;
 
-	private static final String TAG = "K9MailExtension";
+	private static final String TAG = "MAILMailExtension";
 
 	public static final String PREF_NAME = "pref_name";
 
-	static final Uri k9AccountsUri = Uri
+	static final Uri mailAccountsUri = Uri
 			.parse("content://com.bernard.beaconportal.activities.messageprovider/accounts/");
-	static final String k9UnreadUri = "content://com.bernard.beaconportal.activities.messageprovider/account_unread/";
-	static final String k9MessageProvider = "content://com.bernard.beaconportal.activities.messageprovider/";
+	static final String mailUnreadUri = "content://com.bernard.beaconportal.activities.messageprovider/account_unread/";
+	static final String mailMessageProvider = "content://com.bernard.beaconportal.activities.messageprovider/";
 
 	ContentObserver contentObserver = null;
 	BroadcastReceiver receiver = null;
@@ -124,7 +124,7 @@ public class MainActivity extends ActionBarActivity {
 
 	private String due_tommorow_shared, due_tommorow_shared_content;
 
-	private String K9count;
+	private String MAILcount;
 
 	private int shared;
 
@@ -237,7 +237,7 @@ public class MainActivity extends ActionBarActivity {
 
 		if (versionNumber <= 1) {
 			// Register a listener for broadcasts (needed for the older versions
-			// of k9)
+			// of mail)
 			Log.d(TAG, "Initialising BroadcastReceiver for old K-9 version");
 			receiver = new BroadcastReceiver() {
 				@Override
@@ -265,16 +265,16 @@ public class MainActivity extends ActionBarActivity {
 				}
 			};
 			getContentResolver().registerContentObserver(
-					Uri.parse(k9UnreadUri), true, contentObserver);
+					Uri.parse(mailUnreadUri), true, contentObserver);
 		}
 
 		doRefresh();
 
-		int countssssss = getUnreadK9Count(this);
+		int countssssss = getUnreadMAILCount(this);
 
-		K9count = Integer.toString(countssssss);
+		MAILcount = Integer.toString(countssssss);
 
-		System.out.println("k9 Unread Count = " + countssssss);
+		System.out.println("mail Unread Count = " + countssssss);
 
 		SharedPreferences pref = getSharedPreferences("CheckBox",
 				Context.MODE_PRIVATE);
@@ -364,7 +364,7 @@ public class MainActivity extends ActionBarActivity {
 		SharedPreferences.Editor localEditor = getSharedPreferences(
 				"due_today", Context.MODE_PRIVATE).edit();
 
-		localEditor.putString("inbox", K9count);
+		localEditor.putString("inbox", MAILcount);
 		localEditor.putString("homeworkdue", counterss);
 
 		localEditor.apply();
@@ -381,11 +381,11 @@ public class MainActivity extends ActionBarActivity {
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { "", "", K9count, "", "", "" };
+				count = new String[] { "", "", MAILcount, "", "", "" };
 
 			} else {
 
-				count = new String[] { counterss, "", K9count, "", "", "", "" };
+				count = new String[] { counterss, "", MAILcount, "", "", "", "" };
 
 			}
 
@@ -393,11 +393,11 @@ public class MainActivity extends ActionBarActivity {
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { "", "", K9count, "", "", "" };
+				count = new String[] { "", "", MAILcount, "", "", "" };
 
 			} else {
 
-				count = new String[] { "", counterss, K9count, "", "", "" };
+				count = new String[] { "", counterss, MAILcount, "", "", "" };
 
 			}
 
@@ -639,11 +639,11 @@ public class MainActivity extends ActionBarActivity {
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { "", "", K9count, "", "" };
+				count = new String[] { "", "", MAILcount, "", "" };
 
 			} else {
 
-				count = new String[] { counterss, "", K9count, "", "", "" };
+				count = new String[] { counterss, "", MAILcount, "", "", "" };
 
 			}
 
@@ -651,11 +651,11 @@ public class MainActivity extends ActionBarActivity {
 
 			if (counterss == null && counterss.isEmpty()) {
 
-				count = new String[] { "", "", K9count, "", "" };
+				count = new String[] { "", "", MAILcount, "", "" };
 
 			} else {
 
-				count = new String[] { "", counterss, K9count, "", "" };
+				count = new String[] { "", counterss, MAILcount, "", "" };
 
 			}
 
@@ -717,7 +717,7 @@ public class MainActivity extends ActionBarActivity {
 
 		if (versionNumber <= 16024) {
 			// Register a listener for broadcasts (needed for the older versions
-			// of k9)
+			// of mail)
 			Log.d(TAG, "Initialising BroadcastReceiver for old K-9 version");
 			receiver = new BroadcastReceiver() {
 				@Override
@@ -745,16 +745,16 @@ public class MainActivity extends ActionBarActivity {
 				}
 			};
 			getContentResolver().registerContentObserver(
-					Uri.parse(k9UnreadUri), true, contentObserver);
+					Uri.parse(mailUnreadUri), true, contentObserver);
 		}
 
 		doRefresh();
 
-		int countssssss = getUnreadK9Count(this);
+		int countssssss = getUnreadMAILCount(this);
 
-		K9count = Integer.toString(countssssss);
+		MAILcount = Integer.toString(countssssss);
 
-		System.out.println("k9 Unread Count = " + countssssss);
+		System.out.println("mail Unread Count = " + countssssss);
 
 	}
 
@@ -1971,7 +1971,7 @@ public class MainActivity extends ActionBarActivity {
 	protected void doRefresh() {
 		Log.d(TAG, "doRefresh()");
 
-		int countssssss = getUnreadK9Count(this);
+		int countssssss = getUnreadMAILCount(this);
 
 		Log.d(TAG, "" + countssssss + " unread emails");
 
@@ -1994,22 +1994,22 @@ public class MainActivity extends ActionBarActivity {
 		}
 	}
 
-	private static int k9UnreadCount = 0;
+	private static int mailUnreadCount = 0;
 
-	public static int getUnreadK9Count(Context context) {
-		refreshUnreadK9Count(context);
+	public static int getUnreadMAILCount(Context context) {
+		refreshUnreadMAILCount(context);
 
-		return k9UnreadCount;
+		return mailUnreadCount;
 	}
 
-	private static int getUnreadK9Count(Context context, int accountNumber) {
+	private static int getUnreadMAILCount(Context context, int accountNumber) {
 		CursorHandler ch = new CursorHandler();
 		try {
 			Cursor cur = ch.add(context.getContentResolver().query(
-					Uri.parse(k9UnreadUri + "/" + accountNumber + "/"), null,
+					Uri.parse(mailUnreadUri + "/" + accountNumber + "/"), null,
 					null, null, null));
 			if (cur != null) {
-				Log.d(TAG, "k9: " + cur.getCount() + " unread rows returned");
+				Log.d(TAG, "mail: " + cur.getCount() + " unread rows returned");
 
 				if (cur.getCount() > 0) {
 					cur.moveToFirst();
@@ -2019,7 +2019,7 @@ public class MainActivity extends ActionBarActivity {
 					do {
 						String acct = cur.getString(nameIndex);
 						int unreadForAcct = cur.getInt(unreadIndex);
-						Log.d(TAG, "k9: " + acct + " - " + unreadForAcct
+						Log.d(TAG, "mail: " + acct + " - " + unreadForAcct
 								+ " unread");
 						unread += unreadForAcct;
 					} while (cur.moveToNext());
@@ -2027,7 +2027,7 @@ public class MainActivity extends ActionBarActivity {
 					return unread;
 				}
 			} else {
-				Log.d(TAG, "Failed to query k9 unread contentprovider.");
+				Log.d(TAG, "Failed to query mail unread contentprovider.");
 			}
 		} catch (IllegalStateException e) {
 			Log.d(TAG, "k-9 unread uri unknown.");
@@ -2035,32 +2035,32 @@ public class MainActivity extends ActionBarActivity {
 		return 0;
 	}
 
-	public static void refreshUnreadK9Count(Context context) {
-		int accounts = getK9AccountCount(context);
+	public static void refreshUnreadMAILCount(Context context) {
+		int accounts = getMAILAccountCount(context);
 		if (accounts > 0) {
 			int countssssss = 0;
 			for (int acct = 0; acct < accounts; ++acct) {
-				countssssss += getUnreadK9Count(context, acct);
+				countssssss += getUnreadMAILCount(context, acct);
 			}
-			k9UnreadCount = countssssss;
+			mailUnreadCount = countssssss;
 		}
 	}
 
-	public static int getK9AccountCount(Context context) {
+	public static int getMAILAccountCount(Context context) {
 		CursorHandler ch = new CursorHandler();
 		try {
 			Cursor cur = ch.add(context.getContentResolver().query(
-					k9AccountsUri, null, null, null, null));
+					mailAccountsUri, null, null, null, null));
 			if (cur != null) {
 				// if (Preferences.logging) Log.d(MetaWatch.TAG,
-				// "k9: "+cur.getCount()+ " account rows returned");
+				// "mail: "+cur.getCount()+ " account rows returned");
 
 				int count = cur.getCount();
 
 				return count;
 			} else {
 				// if (Preferences.logging) Log.d(MetaWatch.TAG,
-				// "Failed to query k9 unread contentprovider.");
+				// "Failed to query mail unread contentprovider.");
 			}
 		} catch (IllegalStateException e) {
 			// if (Preferences.logging) Log.d(MetaWatch.TAG,

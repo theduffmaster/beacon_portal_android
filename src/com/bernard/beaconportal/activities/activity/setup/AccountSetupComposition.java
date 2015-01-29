@@ -18,9 +18,9 @@ import android.widget.TextView;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
+import com.bernard.beaconportal.activities.activity.MAILActivityMaterial;
 
-public class AccountSetupComposition extends K9ActivityMaterial {
+public class AccountSetupComposition extends MAILActivityMaterial {
 
 	private static final String EXTRA_ACCOUNT = "account";
 

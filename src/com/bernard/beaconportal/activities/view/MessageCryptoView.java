@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.crypto.CryptoProvider;
 import com.bernard.beaconportal.activities.crypto.PgpData;
@@ -122,7 +122,7 @@ public class MessageCryptoView extends LinearLayout {
 					}
 					cryptoProvider.decrypt(mFragment, data, pgpData);
 				} catch (MessagingException me) {
-					Log.e(K9.LOG_TAG, "Unable to decrypt email.", me);
+					Log.e(MAIL.LOG_TAG, "Unable to decrypt email.", me);
 				}
 			}
 		});

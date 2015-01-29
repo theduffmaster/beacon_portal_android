@@ -45,7 +45,7 @@ import com.bernard.beaconportal.activities.Account.FolderMode;
 import com.bernard.beaconportal.activities.AccountStats;
 import com.bernard.beaconportal.activities.BaseAccount;
 import com.bernard.beaconportal.activities.FontSizes;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.setup.AccountSettings;
@@ -70,7 +70,7 @@ import com.bernard.beaconportal.activities.service.MailService;
  * list of the Account's folders
  */
 
-public class FolderList extends K9ListActivity {
+public class FolderList extends MAILListActivity {
 	private static final String EXTRA_ACCOUNT = "account";
 
 	private static final String EXTRA_FROM_SHORTCUT = "fromShortcut";
@@ -89,7 +89,7 @@ public class FolderList extends K9ListActivity {
 
 	private int mUnreadMessageCount;
 
-	private FontSizes mFontSizes = K9.getFontSizes();
+	private FontSizes mFontSizes = MAIL.getFontSizes();
 	private Context context;
 
 	private MenuItem mRefreshMenuItem;
@@ -223,7 +223,7 @@ public class FolderList extends K9ListActivity {
 		final TracingWakeLock wakeLock = pm.newWakeLock(
 				PowerManager.PARTIAL_WAKE_LOCK, "FolderList checkMail");
 		wakeLock.setReferenceCounted(false);
-		wakeLock.acquire(K9.WAKE_LOCK_TIMEOUT);
+		wakeLock.acquire(MAIL.WAKE_LOCK_TIMEOUT);
 		MessagingListener listener = new MessagingListener() {
 			@Override
 			public void synchronizeMailboxFinished(Account account,
@@ -373,7 +373,7 @@ public class FolderList extends K9ListActivity {
 		}
 
 		if (intent.getBooleanExtra(EXTRA_FROM_SHORTCUT, false)
-				&& !K9.FOLDER_NONE.equals(mAccount.getAutoExpandFolderName())) {
+				&& !MAIL.FOLDER_NONE.equals(mAccount.getAutoExpandFolderName())) {
 			onOpenFolder(mAccount.getAutoExpandFolderName());
 			finish();
 		} else {
@@ -431,7 +431,7 @@ public class FolderList extends K9ListActivity {
 		super.onResume();
 
 		if (!mAccount.isAvailable(this)) {
-			Log.i(K9.LOG_TAG,
+			Log.i(MAIL.LOG_TAG,
 					"account unavaliabale, not showing folder-list but account-list");
 			Accounts.listAccounts(this);
 			finish();
@@ -541,14 +541,14 @@ public class FolderList extends K9ListActivity {
 		try {
 			if (account == null || folderName == null
 					|| !account.isAvailable(FolderList.this)) {
-				Log.i(K9.LOG_TAG, "not clear folder of unavailable account");
+				Log.i(MAIL.LOG_TAG, "not clear folder of unavailable account");
 				return;
 			}
 			localFolder = account.getLocalStore().getFolder(folderName);
 			localFolder.open(Folder.OPEN_MODE_RW);
 			localFolder.clearAllMessages();
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Exception while clearing folder", e);
+			Log.e(MAIL.LOG_TAG, "Exception while clearing folder", e);
 		} finally {
 			if (localFolder != null) {
 				localFolder.close();
@@ -851,7 +851,7 @@ public class FolderList extends K9ListActivity {
 								continue;
 							}
 						} catch (MessagingException me) {
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Couldn't get prefs to check for displayability of folder "
 											+ folder.getName(), me);
 						}
@@ -918,7 +918,7 @@ public class FolderList extends K9ListActivity {
 				try {
 					if (account != null && folderName != null) {
 						if (!account.isAvailable(FolderList.this)) {
-							Log.i(K9.LOG_TAG,
+							Log.i(MAIL.LOG_TAG,
 									"not refreshing folder of unavailable account");
 							return;
 						}
@@ -934,7 +934,7 @@ public class FolderList extends K9ListActivity {
 						}
 					}
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG, "Exception while populating folder", e);
+					Log.e(MAIL.LOG_TAG, "Exception while populating folder", e);
 				} finally {
 					if (localFolder != null) {
 						localFolder.close();
@@ -1063,7 +1063,7 @@ public class FolderList extends K9ListActivity {
 			if (position <= getCount()) {
 				return getItemView(position, convertView, parent);
 			} else {
-				Log.e(K9.LOG_TAG, "getView with illegal positon=" + position
+				Log.e(MAIL.LOG_TAG, "getView with illegal positon=" + position
 						+ " called! count is only " + getCount());
 				return null;
 			}
@@ -1196,7 +1196,7 @@ public class FolderList extends K9ListActivity {
 					folder.unreadMessageCount = folder.folder
 							.getUnreadMessageCount();
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG, "Unable to get unreadMessageCount for "
+					Log.e(MAIL.LOG_TAG, "Unable to get unreadMessageCount for "
 							+ mAccount.getDescription() + ":" + folder.name);
 				}
 			}
@@ -1217,13 +1217,13 @@ public class FolderList extends K9ListActivity {
 					folder.flaggedMessageCount = folder.folder
 							.getFlaggedMessageCount();
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG, "Unable to get flaggedMessageCount for "
+					Log.e(MAIL.LOG_TAG, "Unable to get flaggedMessageCount for "
 							+ mAccount.getDescription() + ":" + folder.name);
 				}
 
 			}
 
-			if (K9.messageListStars() && folder.flaggedMessageCount > 0) {
+			if (MAIL.messageListStars() && folder.flaggedMessageCount > 0) {
 				holder.flaggedMessageCount.setText(Integer
 						.toString(folder.flaggedMessageCount));
 				holder.flaggedMessageCountWrapper
@@ -1249,7 +1249,7 @@ public class FolderList extends K9ListActivity {
 			mFontSizes.setViewTextSize(holder.folderName,
 					mFontSizes.getFolderName());
 
-			if (K9.wrapFolderNames()) {
+			if (MAIL.wrapFolderNames()) {
 				holder.folderName.setEllipsize(null);
 				holder.folderName.setSingleLine(false);
 			} else {

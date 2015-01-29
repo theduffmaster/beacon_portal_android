@@ -48,10 +48,10 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 
 	public static final String PREF_NAME = "pref_name";
 
-	static final Uri k9AccountsUri = Uri
+	static final Uri mailAccountsUri = Uri
 			.parse("content://com.bernard.beaconportal.activities.messageprovider/accounts/");
-	static final String k9UnreadUri = "content://com.bernard.beaconportal.activities.messageprovider/account_unread/";
-	static final String k9MessageProvider = "content://com.bernard.beaconportal.activities.messageprovider/";
+	static final String mailUnreadUri = "content://com.bernard.beaconportal.activities.messageprovider/account_unread/";
+	static final String mailMessageProvider = "content://com.bernard.beaconportal.activities.messageprovider/";
 
 	ContentObserver contentObserver = null;
 	BroadcastReceiver receiver = null;

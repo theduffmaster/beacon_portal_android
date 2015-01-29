@@ -22,7 +22,7 @@ import java.util.List;
 
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 
 /**
  * Utility methods for use with IMAP.
@@ -101,12 +101,12 @@ public class ImapUtility {
 							}
 						}
 					} else {
-						Log.d(K9.LOG_TAG, "Invalid range: " + range);
+						Log.d(MAIL.LOG_TAG, "Invalid range: " + range);
 					}
 				}
 			}
 		} catch (NumberFormatException e) {
-			Log.d(K9.LOG_TAG, "Invalid range value: " + range, e);
+			Log.d(MAIL.LOG_TAG, "Invalid range value: " + range, e);
 		}
 
 		return list;
@@ -122,7 +122,7 @@ public class ImapUtility {
 			// do nothing
 		}
 
-		Log.d(K9.LOG_TAG, "Invalid UID value: " + number);
+		Log.d(MAIL.LOG_TAG, "Invalid UID value: " + number);
 
 		return false;
 	}

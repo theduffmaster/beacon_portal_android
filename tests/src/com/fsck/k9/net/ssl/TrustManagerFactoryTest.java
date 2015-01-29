@@ -15,12 +15,12 @@ import android.test.AndroidTestCase;
  * Test the functionality of {@link TrustManagerFactory}.
  */
 public class TrustManagerFactoryTest extends AndroidTestCase {
-    public static final String MATCHING_HOST = "k9.example.com";
+    public static final String MATCHING_HOST = "mail.example.com";
     public static final String NOT_MATCHING_HOST = "bla.example.com";
     public static final int PORT1 = 993;
     public static final int PORT2 = 465;
 
-    private static final String K9_EXAMPLE_COM_CERT1 =
+    private static final String MAIL_EXAMPLE_COM_CERT1 =
               "-----BEGIN CERTIFICATE-----\n"
             + "MIICCTCCAXICCQD/R0TV7d0C5TANBgkqhkiG9w0BAQUFADBJMQswCQYDVQQGEwJD\n"
             + "SDETMBEGA1UECBMKU29tZS1TdGF0ZTEMMAoGA1UEChMDSy05MRcwFQYDVQQDEw5r\n"
@@ -35,7 +35,7 @@ public class TrustManagerFactoryTest extends AndroidTestCase {
             + "uH3x3W1/mH4ci268cIFVmofID0nYLTqOxBTczfYhI7q0VBUXqv/bZ+3bVMSh\n"
             + "-----END CERTIFICATE-----\n";
 
-    private static final String K9_EXAMPLE_COM_CERT2 =
+    private static final String MAIL_EXAMPLE_COM_CERT2 =
               "-----BEGIN CERTIFICATE-----\n"
             + "MIICCTCCAXICCQDMryqq0gZ80jANBgkqhkiG9w0BAQUFADBJMQswCQYDVQQGEwJD\n"
             + "SDETMBEGA1UECBMKU29tZS1TdGF0ZTEMMAoGA1UEChMDSy05MRcwFQYDVQQDEw5r\n"
@@ -59,7 +59,7 @@ public class TrustManagerFactoryTest extends AndroidTestCase {
           + "VQQKDANLLTkxGzAZBgNVBAMMEnRlc3QtY2EuazltYWlsLm9yZzCCASIwDQYJKoZI\n"
           + "hvcNAQEBBQADggEPADCCAQoCggEBAJ+YLg9enfFk5eba6B3LtQzUE7GiR2tIpQSi\n"
           + "zHMtHzn8KUnRDiGwC8VnSuWCOX7hXyQ0P6i2+DVRVBYOAeDCNMZHOq1hRqI66B33\n"
-          + "QqLfkBnJAIDeLqfqlgigHs1+//7eagVA6Z38ZFre3PFuKnK9NCwS+gz7PKw/poIG\n"
+          + "QqLfkBnJAIDeLqfqlgigHs1+//7eagVA6Z38ZFre3PFuKnMAILNCwS+gz7PKw/poIG\n"
           + "/FZP+ltMlkwvPww4S8SMlY6RXXH09+S/uM8aG6DUBT298eoAXTbSEIeaNhwBHZPe\n"
           + "rXqqzd8QDAIE9BFXSkh/BQiVEFDPSBMSdmUzUAsT2aM8osntnKWY5/G7B60wutvA\n"
           + "jYCULgtR6lR6jIDbG3ECHVDsTWR+Pgl+h1zeyERhN5iG1ffOtLUCAwEAAaNQME4w\n"
@@ -107,7 +107,7 @@ public class TrustManagerFactoryTest extends AndroidTestCase {
             "aWNhdGVzLnN0YXJmaWVsZHRlY2guY29tL3JlcG9zaXRvcnkxMTAvBgNVBAMTKFN0\n" +
             "YXJmaWVsZCBTZWN1cmUgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkxETAPBgNVBAUT\n" +
             "CDEwNjg4NDM1MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4qddo+1m\n" +
-            "72ovKzYf3Y3TBQKgyg9eGa44cs8W2lRKy0gK9KFzEWWFQ8lbFwyaK74PmFF6YCkN\n" +
+            "72ovKzYf3Y3TBQKgyg9eGa44cs8W2lRKy0gMAILKFzEWWFQ8lbFwyaK74PmFF6YCkN\n" +
             "bN7i6OUVTVb/kNGnpgQ/YAdKym+lEOez+FyxvCsq3AF59R019Xoog/KTc4KJrGBt\n" +
             "y8JIwh3UBkQXPKwBR6s+cIQJC7ggCEAgh6FjGso+g9I3s5iNMj83v6G3W1/eXDOS\n" +
             "zz4HzrlIS+LwVVAv+HBCidGTlopj2WYN5lhuuW2QvcrchGbyOY5bplhVc8tibBvX\n" +
@@ -137,7 +137,7 @@ public class TrustManagerFactoryTest extends AndroidTestCase {
             "eTERMA8GA1UEBRMIMTA2ODg0MzUwHhcNMTExMDA1MDI1MTQyWhcNMTQxMDA1MDI1\n" +
             "MTQyWjBPMRQwEgYDVQQKFAsqLmxpbnV4LmNvbTEhMB8GA1UECxMYRG9tYWluIENv\n" +
             "bnRyb2wgVmFsaWRhdGVkMRQwEgYDVQQDFAsqLmxpbnV4LmNvbTCCASIwDQYJKoZI\n" +
-            "hvcNAQEBBQADggEPADCCAQoCggEBANoZR/TDp2/8LtA8k9Li55I665ssC7rHX+Wk\n" +
+            "hvcNAQEBBQADggEPADCCAQoCggEBANoZR/TDp2/8LtA8mailLi55I665ssC7rHX+Wk\n" +
             "oiGa6xBeCKTvNy9mgaUVzHwrOQlwJ2GbxFI+X0e3W2sWXUDTSxESZSEW2VZnjEn2\n" +
             "600Qm8XMhZPvqztLRweHH8IuBNNYZHnW4Z2L4DS/Mi03EmjKZt2g3heGQbrv74m4\n" +
             "v9/g6Jgr5ZOIwES6LUJchSWV2zcL8VYunpxnAtbi2hq1YfA9oYU82ngP40Ds7HEB\n" +
@@ -172,8 +172,8 @@ public class TrustManagerFactoryTest extends AndroidTestCase {
 
 
     public TrustManagerFactoryTest() throws CertificateException {
-        mCert1 = loadCert(K9_EXAMPLE_COM_CERT1);
-        mCert2 = loadCert(K9_EXAMPLE_COM_CERT2);
+        mCert1 = loadCert(MAIL_EXAMPLE_COM_CERT1);
+        mCert2 = loadCert(MAIL_EXAMPLE_COM_CERT2);
         mCaCert = loadCert(CA_CERT);
         mCert3 = loadCert(CERT3);
         mStarfieldCert = loadCert(STARFIELD_CERT);
@@ -204,7 +204,7 @@ public class TrustManagerFactoryTest extends AndroidTestCase {
      *
      * <p>
      * This test is to make sure entries in the keystore file aren't overwritten.
-     * See <a href="https://code.google.com/p/k9mail/issues/detail?id=1326">Issue 1326</a>.
+     * See <a href="https://code.google.com/p/mailmail/issues/detail?id=1326">Issue 1326</a>.
      * </p>
      *
      * @throws Exception

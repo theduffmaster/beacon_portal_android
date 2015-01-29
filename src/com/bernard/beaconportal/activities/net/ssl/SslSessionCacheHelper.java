@@ -11,7 +11,7 @@ import android.net.SSLCertificateSocketFactory;
 import android.os.Build;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 
 /**
  * A class to help with associating an {@code SSLContext} with a persistent
@@ -45,7 +45,7 @@ public class SslSessionCacheHelper {
 		} else {
 			packageName = "com.android.org.conscrypt";
 		}
-		final File cacheDirectory = K9.app.getDir("sslcache",
+		final File cacheDirectory = MAIL.app.getDir("sslcache",
 				Context.MODE_PRIVATE);
 		try {
 			Class<?> fileClientSessionCacheClass = Class.forName(packageName
@@ -62,7 +62,7 @@ public class SslSessionCacheHelper {
 					"setPersistentCache", sslClientSessionCacheClass);
 		} catch (Exception e) {
 			// Something went wrong. Proceed without a session cache.
-			Log.e(K9.LOG_TAG, "Failed to initialize SslSessionCacheHelper: "
+			Log.e(MAIL.LOG_TAG, "Failed to initialize SslSessionCacheHelper: "
 					+ e);
 			sIsDisabled = true;
 		}
@@ -86,7 +86,7 @@ public class SslSessionCacheHelper {
 			sSetPersistentCacheMethod.invoke(sessionContext, sSessionCache);
 		} catch (Exception e) {
 			// Something went wrong. Proceed without a session cache.
-			Log.e(K9.LOG_TAG, "Failed to initialize persistent SSL cache: " + e);
+			Log.e(MAIL.LOG_TAG, "Failed to initialize persistent SSL cache: " + e);
 			sIsDisabled = true;
 		}
 	}

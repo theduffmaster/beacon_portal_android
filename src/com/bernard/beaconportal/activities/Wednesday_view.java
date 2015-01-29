@@ -3,8 +3,6 @@ package com.bernard.beaconportal.activities;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bernard.beaconportal.activities.Wednesday_view.Update;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;

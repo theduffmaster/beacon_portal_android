@@ -33,14 +33,14 @@ import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Account.FolderMode;
 import com.bernard.beaconportal.activities.Account.QuoteStyle;
 import com.bernard.beaconportal.activities.BaseAccount;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.NotificationSetting;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.ChooseFolder;
 import com.bernard.beaconportal.activities.activity.ChooseIdentity;
 import com.bernard.beaconportal.activities.activity.ColorPickerDialog;
-import com.bernard.beaconportal.activities.activity.K9PreferenceActivity;
+import com.bernard.beaconportal.activities.activity.MAILPreferenceActivity;
 import com.bernard.beaconportal.activities.activity.ManageIdentities;
 import com.bernard.beaconportal.activities.activity.MessageList;
 import com.bernard.beaconportal.activities.crypto.Apg;
@@ -51,7 +51,7 @@ import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalFolder;
 import com.bernard.beaconportal.activities.mail.store.StorageManager;
 import com.bernard.beaconportal.activities.service.MailService;
 
-public class AccountSettings extends K9PreferenceActivity {
+public class AccountSettings extends MAILPreferenceActivity {
 	private static final String EXTRA_ACCOUNT = "account";
 
 	private static final int DIALOG_COLOR_PICKER_ACCOUNT = 1;
@@ -224,7 +224,7 @@ public class AccountSettings extends K9PreferenceActivity {
 			mIsExpungeCapable = store.isExpungeCapable();
 			mIsSeenFlagSupported = store.isSeenFlagSupported();
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Could not get remote store", e);
+			Log.e(MAIL.LOG_TAG, "Could not get remote store", e);
 		}
 
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
@@ -581,7 +581,7 @@ public class AccountSettings extends K9PreferenceActivity {
 		mLocalStorageProvider = (ListPreference) findPreference(PREFERENCE_LOCAL_STORAGE_PROVIDER);
 		{
 			final Map<String, String> providers;
-			providers = StorageManager.getInstance(K9.app)
+			providers = StorageManager.getInstance(MAIL.app)
 					.getAvailableProviders();
 			int i = 0;
 			final String[] providerLabels = new String[providers.size()];
@@ -1234,8 +1234,8 @@ public class AccountSettings extends K9PreferenceActivity {
 			allFolderValues = new String[folders.size() + 1];
 			allFolderLabels = new String[folders.size() + 1];
 
-			allFolderValues[0] = K9.FOLDER_NONE;
-			allFolderLabels[0] = K9.FOLDER_NONE;
+			allFolderValues[0] = MAIL.FOLDER_NONE;
+			allFolderLabels[0] = MAIL.FOLDER_NONE;
 
 			int i = 1;
 			for (Folder folder : folders) {

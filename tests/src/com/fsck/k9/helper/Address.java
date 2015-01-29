@@ -5,7 +5,7 @@ public class Address extends TestCase {
     /**
      * test the possibility to parse "From:" fields with no email.
      * for example: From: News for Vector Limited - Google Finance
-     * http://code.google.com/p/k9mail/issues/detail?id=3814
+     * http://code.google.com/p/mailmail/issues/detail?id=3814
      */
     public void testParseWithMissingEmail() {
         com.bernard.beaconportal.activities.mail.Address[] addresses =  com.bernard.beaconportal.activities.mail.Address.parse("NAME ONLY");

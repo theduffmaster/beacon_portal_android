@@ -75,7 +75,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:singleLine="true"
-            android:text="Swipe Away A Note to Delete That Note"
+            android:text="Swipe Away a Note to Delete That Note"
             android:textSize="12sp" />
        
     </RelativeLayout>

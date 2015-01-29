@@ -96,7 +96,7 @@ public class PullToRefreshWebView extends PullToRefreshBase<WebView> {
 	protected WebView createRefreshableView(Context context, AttributeSet attrs) {
 		WebView webView;
 		if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
-			webView = new InternalWebViewSDK9(context, attrs);
+			webView = new InternalWebViewSDMAIL(context, attrs);
 		} else {
 			webView = new WebView(context, attrs);
 		}
@@ -129,7 +129,7 @@ public class PullToRefreshWebView extends PullToRefreshBase<WebView> {
 	}
 
 	@TargetApi(9)
-	final class InternalWebViewSDK9 extends WebView {
+	final class InternalWebViewSDMAIL extends WebView {
 
 		// WebView doesn't always scroll back to it's edge so we add some
 		// fuzziness
@@ -139,7 +139,7 @@ public class PullToRefreshWebView extends PullToRefreshBase<WebView> {
 		// factor to scale it's value
 		static final float OVERSCROLL_SCALE_FACTOR = 1.5f;
 
-		public InternalWebViewSDK9(Context context, AttributeSet attrs) {
+		public InternalWebViewSDMAIL(Context context, AttributeSet attrs) {
 			super(context, attrs);
 		}
 

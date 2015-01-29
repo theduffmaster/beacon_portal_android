@@ -614,7 +614,7 @@ public class Apg extends CryptoProvider {
 			}
 		} catch (SecurityException e) {
 			// if there was a problem, then let the user know, this will not
-			// stop K9/APG from
+			// stop MAIL/APG from
 			// working, but some features won't be available, so we can still
 			// return "true"
 			Toast.makeText(

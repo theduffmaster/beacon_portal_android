@@ -49,10 +49,10 @@ import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.AccountStats;
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.K9.Intents;
-import com.bernard.beaconportal.activities.K9.NotificationHideSubject;
-import com.bernard.beaconportal.activities.K9.NotificationQuickDelete;
+import com.bernard.beaconportal.activities.MAIL;
+import com.bernard.beaconportal.activities.MAIL.Intents;
+import com.bernard.beaconportal.activities.MAIL.NotificationHideSubject;
+import com.bernard.beaconportal.activities.MAIL.NotificationQuickDelete;
 import com.bernard.beaconportal.activities.NotificationSetting;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
@@ -212,7 +212,7 @@ public class MessagingController implements Runnable {
 	private boolean mBusy;
 
 	/**
-	 * {@link K9}
+	 * {@link MAIL}
 	 */
 	private Application mApplication;
 
@@ -407,7 +407,7 @@ public class MessagingController implements Runnable {
 
 	/**
 	 * @param application
-	 *            {@link K9}
+	 *            {@link MAIL}
 	 */
 	private MessagingController(Application application) {
 		mApplication = application;
@@ -424,7 +424,7 @@ public class MessagingController implements Runnable {
 	 * Application is used to provide a Context to classes that need it.
 	 * 
 	 * @param application
-	 *            {@link K9}
+	 *            {@link MAIL}
 	 * @return
 	 */
 	public synchronized static MessagingController getInstance(
@@ -450,8 +450,8 @@ public class MessagingController implements Runnable {
 				if (command != null) {
 					commandDescription = command.description;
 
-					if (K9.DEBUG)
-						Log.i(K9.LOG_TAG, "Running "
+					if (MAIL.DEBUG)
+						Log.i(MAIL.LOG_TAG, "Running "
 								+ (command.isForeground ? "Foreground"
 										: "Background") + " command '"
 								+ command.description + "', seq = "
@@ -469,7 +469,7 @@ public class MessagingController implements Runnable {
 									sleep(30 * 1000);
 									mCommands.put(command);
 								} catch (InterruptedException e) {
-									Log.e(K9.LOG_TAG,
+									Log.e(MAIL.LOG_TAG,
 											"interrupted while putting a pending command for"
 													+ " an unavailable account back into the queue."
 													+ " THIS SHOULD NEVER HAPPEN.");
@@ -478,8 +478,8 @@ public class MessagingController implements Runnable {
 						}.start();
 					}
 
-					if (K9.DEBUG)
-						Log.i(K9.LOG_TAG, (command.isForeground ? "Foreground"
+					if (MAIL.DEBUG)
+						Log.i(MAIL.LOG_TAG, (command.isForeground ? "Foreground"
 								: "Background")
 								+ " Command '"
 								+ command.description + "' completed");
@@ -489,7 +489,7 @@ public class MessagingController implements Runnable {
 					}
 				}
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG, "Error running command '"
+				Log.e(MAIL.LOG_TAG, "Error running command '"
 						+ commandDescription + "'", e);
 			}
 			mBusy = false;
@@ -601,7 +601,7 @@ public class MessagingController implements Runnable {
 		}
 		List<? extends Folder> localFolders = null;
 		if (!account.isAvailable(mApplication)) {
-			Log.i(K9.LOG_TAG, "not listing folders of unavailable account");
+			Log.i(MAIL.LOG_TAG, "not listing folders of unavailable account");
 		} else {
 			try {
 				Store localStore = account.getLocalStore();
@@ -682,7 +682,7 @@ public class MessagingController implements Runnable {
 						// FIXME: This is a hack used to clean up when we
 						// accidentally created the
 						// special placeholder folder "-NONE-".
-						if (K9.FOLDER_NONE.equals(localFolderName)) {
+						if (MAIL.FOLDER_NONE.equals(localFolderName)) {
 							localFolder.delete(false);
 						}
 
@@ -813,11 +813,11 @@ public class MessagingController implements Runnable {
 			final String folderName, final String query,
 			final Flag[] requiredFlags, final Flag[] forbiddenFlags,
 			final MessagingListener listener) {
-		if (K9.DEBUG) {
+		if (MAIL.DEBUG) {
 			String msg = "searchRemoteMessages (" + "acct=" + acctUuid
 					+ ", folderName = " + folderName + ", query = " + query
 					+ ")";
-			Log.i(K9.LOG_TAG, msg);
+			Log.i(MAIL.LOG_TAG, msg);
 		}
 
 		return threadPool.submit(new Runnable() {
@@ -858,7 +858,7 @@ public class MessagingController implements Runnable {
 			List<Message> messages = remoteFolder.search(query, requiredFlags,
 					forbiddenFlags);
 
-			if (K9.DEBUG) {
+			if (MAIL.DEBUG) {
 				Log.i("Remote Search", "Remote search got " + messages.size()
 						+ " results");
 			}
@@ -887,11 +887,11 @@ public class MessagingController implements Runnable {
 
 		} catch (Exception e) {
 			if (Thread.currentThread().isInterrupted()) {
-				Log.i(K9.LOG_TAG,
+				Log.i(MAIL.LOG_TAG,
 						"Caught exception on aborted remote search; safe to ignore.",
 						e);
 			} else {
-				Log.e(K9.LOG_TAG, "Could not complete remote search", e);
+				Log.e(MAIL.LOG_TAG, "Could not complete remote search", e);
 				if (listener != null) {
 					listener.remoteSearchFailed(acct, null, e.getMessage());
 				}
@@ -931,7 +931,7 @@ public class MessagingController implements Runnable {
 					loadSearchResultsSynchronous(messages, localFolder,
 							remoteFolder, listener);
 				} catch (MessagingException e) {
-					Log.e(K9.LOG_TAG, "Exception in loadSearchResults: " + e);
+					Log.e(MAIL.LOG_TAG, "Exception in loadSearchResults: " + e);
 					addErrorMessage(account, null, e);
 				} finally {
 					if (listener != null) {
@@ -1033,8 +1033,8 @@ public class MessagingController implements Runnable {
 		Folder remoteFolder = null;
 		LocalFolder tLocalFolder = null;
 
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG,
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG,
 					"Synchronizing folder " + account.getDescription() + ":"
 							+ folder);
 
@@ -1055,8 +1055,8 @@ public class MessagingController implements Runnable {
 
 		Exception commandException = null;
 		try {
-			if (K9.DEBUG)
-				Log.d(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.d(MAIL.LOG_TAG,
 						"SYNC: About to process pending commands for account "
 								+ account.getDescription());
 
@@ -1065,7 +1065,7 @@ public class MessagingController implements Runnable {
 			} catch (Exception e) {
 				addErrorMessage(account, null, e);
 
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						"Failure processing command, but allow message sync attempt",
 						e);
 				commandException = e;
@@ -1075,8 +1075,8 @@ public class MessagingController implements Runnable {
 			 * Get the message list from the local store and create an index of
 			 * the uids within the list.
 			 */
-			if (K9.DEBUG)
-				Log.v(K9.LOG_TAG, "SYNC: About to get local folder " + folder);
+			if (MAIL.DEBUG)
+				Log.v(MAIL.LOG_TAG, "SYNC: About to get local folder " + folder);
 
 			final LocalStore localStore = account.getLocalStore();
 			tLocalFolder = localStore.getFolder(folder);
@@ -1090,15 +1090,15 @@ public class MessagingController implements Runnable {
 			}
 
 			if (providedRemoteFolder != null) {
-				if (K9.DEBUG)
-					Log.v(K9.LOG_TAG, "SYNC: using providedRemoteFolder "
+				if (MAIL.DEBUG)
+					Log.v(MAIL.LOG_TAG, "SYNC: using providedRemoteFolder "
 							+ folder);
 				remoteFolder = providedRemoteFolder;
 			} else {
 				Store remoteStore = account.getRemoteStore();
 
-				if (K9.DEBUG)
-					Log.v(K9.LOG_TAG, "SYNC: About to get remote folder "
+				if (MAIL.DEBUG)
+					Log.v(MAIL.LOG_TAG, "SYNC: About to get remote folder "
 							+ folder);
 				remoteFolder = remoteStore.getFolder(folder);
 
@@ -1112,8 +1112,8 @@ public class MessagingController implements Runnable {
 				 * 
 				 * Open the folder Upload any local messages that are marked as
 				 * PENDING_UPLOAD (Drafts, Sent, Trash) Get the message count
-				 * Get the list of the newest K9.DEFAULT_VISIBLE_LIMIT messages
-				 * getMessages(messageCount - K9.DEFAULT_VISIBLE_LIMIT,
+				 * Get the list of the newest MAIL.DEFAULT_VISIBLE_LIMIT messages
+				 * getMessages(messageCount - MAIL.DEFAULT_VISIBLE_LIMIT,
 				 * messageCount) See if we have each message locally, if not
 				 * fetch it's flags and envelope Get and update the unread count
 				 * for the folder Update the remote flags of any messages we
@@ -1130,14 +1130,14 @@ public class MessagingController implements Runnable {
 				 * Open the remote folder. This pre-loads certain metadata like
 				 * message count.
 				 */
-				if (K9.DEBUG)
-					Log.v(K9.LOG_TAG, "SYNC: About to open remote folder "
+				if (MAIL.DEBUG)
+					Log.v(MAIL.LOG_TAG, "SYNC: About to open remote folder "
 							+ folder);
 
 				remoteFolder.open(Folder.OPEN_MODE_RW);
 				if (Account.EXPUNGE_ON_POLL.equals(account.getExpungePolicy())) {
-					if (K9.DEBUG)
-						Log.d(K9.LOG_TAG,
+					if (MAIL.DEBUG)
+						Log.d(MAIL.LOG_TAG,
 								"SYNC: Expunging folder "
 										+ account.getDescription() + ":"
 										+ folder);
@@ -1154,15 +1154,15 @@ public class MessagingController implements Runnable {
 			int visibleLimit = localFolder.getVisibleLimit();
 
 			if (visibleLimit < 0) {
-				visibleLimit = K9.DEFAULT_VISIBLE_LIMIT;
+				visibleLimit = MAIL.DEFAULT_VISIBLE_LIMIT;
 			}
 
 			Message[] remoteMessageArray = EMPTY_MESSAGE_ARRAY;
 			final ArrayList<Message> remoteMessages = new ArrayList<Message>();
 			HashMap<String, Message> remoteUidMap = new HashMap<String, Message>();
 
-			if (K9.DEBUG)
-				Log.v(K9.LOG_TAG, "SYNC: Remote message count for folder "
+			if (MAIL.DEBUG)
+				Log.v(MAIL.LOG_TAG, "SYNC: Remote message count for folder "
 						+ folder + " is " + remoteMessageCount);
 			final Date earliestDate = account.getEarliestPollDate();
 
@@ -1177,8 +1177,8 @@ public class MessagingController implements Runnable {
 				}
 				int remoteEnd = remoteMessageCount;
 
-				if (K9.DEBUG)
-					Log.v(K9.LOG_TAG, "SYNC: About to get messages "
+				if (MAIL.DEBUG)
+					Log.v(MAIL.LOG_TAG, "SYNC: About to get messages "
 							+ remoteStart + " through " + remoteEnd
 							+ " for folder " + folder);
 
@@ -1205,8 +1205,8 @@ public class MessagingController implements Runnable {
 						remoteUidMap.put(thisMess.getUid(), thisMess);
 					}
 				}
-				if (K9.DEBUG)
-					Log.v(K9.LOG_TAG, "SYNC: Got " + remoteUidMap.size()
+				if (MAIL.DEBUG)
+					Log.v(MAIL.LOG_TAG, "SYNC: Got " + remoteUidMap.size()
 							+ " messages for folder " + folder);
 
 				remoteMessageArray = null;
@@ -1260,8 +1260,8 @@ public class MessagingController implements Runnable {
 			localFolder.setLastChecked(System.currentTimeMillis());
 			localFolder.setStatus(null);
 
-			if (K9.DEBUG)
-				Log.d(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.d(MAIL.LOG_TAG,
 						"Done synchronizing folder " + account.getDescription()
 								+ ":" + folder + " @ " + new Date() + " with "
 								+ newMessages + " new messages");
@@ -1273,7 +1273,7 @@ public class MessagingController implements Runnable {
 
 			if (commandException != null) {
 				String rootMessage = getRootCauseMessage(commandException);
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						"Root cause failure in " + account.getDescription()
 								+ ":" + tLocalFolder.getName() + " was '"
 								+ rootMessage + "'");
@@ -1283,13 +1283,13 @@ public class MessagingController implements Runnable {
 				}
 			}
 
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG,
 						"Done synchronizing folder " + account.getDescription()
 								+ ":" + folder);
 
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "synchronizeMailbox", e);
+			Log.e(MAIL.LOG_TAG, "synchronizeMailbox", e);
 			// If we don't set the last checked, it can try too often during
 			// failure conditions
 			String rootMessage = getRootCauseMessage(e);
@@ -1298,7 +1298,7 @@ public class MessagingController implements Runnable {
 					tLocalFolder.setStatus(rootMessage);
 					tLocalFolder.setLastChecked(System.currentTimeMillis());
 				} catch (MessagingException me) {
-					Log.e(K9.LOG_TAG,
+					Log.e(MAIL.LOG_TAG,
 							"Could not set last checked on folder "
 									+ account.getDescription() + ":"
 									+ tLocalFolder.getName(), e);
@@ -1310,7 +1310,7 @@ public class MessagingController implements Runnable {
 			}
 			notifyUserIfCertificateProblem(mApplication, e, account, true);
 			addErrorMessage(account, null, e);
-			Log.e(K9.LOG_TAG,
+			Log.e(MAIL.LOG_TAG,
 					"Failed synchronizing folder " + account.getDescription()
 							+ ":" + folder + " @ " + new Date());
 
@@ -1348,8 +1348,8 @@ public class MessagingController implements Runnable {
 					for (MessagingListener l : getListeners(listener)) {
 						l.synchronizeMailboxFinished(account, folder, 0, 0);
 					}
-					if (K9.DEBUG)
-						Log.i(K9.LOG_TAG, "Done synchronizing folder " + folder);
+					if (MAIL.DEBUG)
+						Log.i(MAIL.LOG_TAG, "Done synchronizing folder " + folder);
 
 					return false;
 				}
@@ -1390,8 +1390,8 @@ public class MessagingController implements Runnable {
 		Date downloadStarted = new Date(); // now
 
 		if (earliestDate != null) {
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "Only syncing messages after " + earliestDate);
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "Only syncing messages after " + earliestDate);
 			}
 		}
 		final String folder = remoteFolder.getName();
@@ -1402,7 +1402,7 @@ public class MessagingController implements Runnable {
 			unreadBeforeStart = stats.unreadMessageCount;
 
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG, "Unable to getUnreadMessageCount for account: "
+			Log.e(MAIL.LOG_TAG, "Unable to getUnreadMessageCount for account: "
 					+ account, e);
 		}
 
@@ -1424,8 +1424,8 @@ public class MessagingController implements Runnable {
 			l.synchronizeMailboxProgress(account, folder, progress.get(), todo);
 		}
 
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, "SYNC: Have " + unsyncedMessages.size()
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, "SYNC: Have " + unsyncedMessages.size()
 					+ " unsynced messages");
 
 		messages.clear();
@@ -1452,8 +1452,8 @@ public class MessagingController implements Runnable {
 			}
 			fp.add(FetchProfile.Item.ENVELOPE);
 
-			if (K9.DEBUG)
-				Log.d(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.d(MAIL.LOG_TAG,
 						"SYNC: About to fetch " + unsyncedMessages.size()
 								+ " unsynced messages for folder " + folder);
 
@@ -1471,15 +1471,15 @@ public class MessagingController implements Runnable {
 					localFolder.setPushState(newPushState);
 				}
 			}
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "SYNC: Synced unsynced messages for folder "
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "SYNC: Synced unsynced messages for folder "
 						+ folder);
 			}
 
 		}
 
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, "SYNC: Have " + largeMessages.size()
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, "SYNC: Have " + largeMessages.size()
 					+ " large messages and " + smallMessages.size()
 					+ " small messages out of " + unsyncedMessages.size()
 					+ " unsynced messages");
@@ -1519,8 +1519,8 @@ public class MessagingController implements Runnable {
 		refreshLocalMessageFlags(account, remoteFolder, localFolder,
 				syncFlagMessages, progress, todo);
 
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, "SYNC: Synced remote messages for folder "
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, "SYNC: Synced remote messages for folder "
 					+ folder + ", " + newMessages.get() + " new messages");
 
 		localFolder.purgeToVisibleLimit(new MessageRemovalListener() {
@@ -1574,15 +1574,15 @@ public class MessagingController implements Runnable {
 			if (!flagSyncOnly) {
 				if (!message.isSet(Flag.X_DOWNLOADED_FULL)
 						&& !message.isSet(Flag.X_DOWNLOADED_PARTIAL)) {
-					if (K9.DEBUG)
-						Log.v(K9.LOG_TAG,
+					if (MAIL.DEBUG)
+						Log.v(MAIL.LOG_TAG,
 								"Message with uid " + message.getUid()
 										+ " has not yet been downloaded");
 
 					unsyncedMessages.add(message);
 				} else {
-					if (K9.DEBUG)
-						Log.v(K9.LOG_TAG,
+					if (MAIL.DEBUG)
+						Log.v(MAIL.LOG_TAG,
 								"Message with uid " + message.getUid()
 										+ " is partially or fully downloaded");
 
@@ -1607,14 +1607,14 @@ public class MessagingController implements Runnable {
 				}
 			}
 		} else if (!localMessage.isSet(Flag.DELETED)) {
-			if (K9.DEBUG)
-				Log.v(K9.LOG_TAG, "Message with uid " + message.getUid()
+			if (MAIL.DEBUG)
+				Log.v(MAIL.LOG_TAG, "Message with uid " + message.getUid()
 						+ " is present in the local store");
 
 			if (!localMessage.isSet(Flag.X_DOWNLOADED_FULL)
 					&& !localMessage.isSet(Flag.X_DOWNLOADED_PARTIAL)) {
-				if (K9.DEBUG)
-					Log.v(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.v(MAIL.LOG_TAG,
 							"Message with uid "
 									+ message.getUid()
 									+ " is not downloaded, even partially; trying again");
@@ -1661,9 +1661,9 @@ public class MessagingController implements Runnable {
 							if (message.isSet(Flag.DELETED)
 									|| message.olderThan(earliestDate)) {
 
-								if (K9.DEBUG) {
+								if (MAIL.DEBUG) {
 									if (message.isSet(Flag.DELETED)) {
-										Log.v(K9.LOG_TAG,
+										Log.v(MAIL.LOG_TAG,
 												"Newly downloaded message "
 														+ account
 														+ ":"
@@ -1672,7 +1672,7 @@ public class MessagingController implements Runnable {
 														+ message.getUid()
 														+ " was marked deleted on server, skipping");
 									} else {
-										Log.d(K9.LOG_TAG,
+										Log.d(MAIL.LOG_TAG,
 												"Newly downloaded message "
 														+ message.getUid()
 														+ " is older than "
@@ -1716,7 +1716,7 @@ public class MessagingController implements Runnable {
 								}
 							}
 						} catch (Exception e) {
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Error while storing downloaded message.",
 									e);
 							addErrorMessage(account, null, e);
@@ -1759,8 +1759,8 @@ public class MessagingController implements Runnable {
 	private void writeUnsyncedMessages(final List<Message> messages,
 			final LocalFolder localFolder, final Account account,
 			final String folder) {
-		if (K9.DEBUG) {
-			Log.v(K9.LOG_TAG,
+		if (MAIL.DEBUG) {
+			Log.v(MAIL.LOG_TAG,
 					"Batch writing " + Integer.toString(messages.size())
 							+ " messages");
 		}
@@ -1773,8 +1773,8 @@ public class MessagingController implements Runnable {
 				final Message localMessage = localFolder.getMessage(message
 						.getUid());
 				syncFlags(localMessage, message);
-				if (K9.DEBUG)
-					Log.v(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.v(MAIL.LOG_TAG,
 							"About to notify listeners that we got a new unsynced message "
 									+ account + ":" + folder + ":"
 									+ message.getUid());
@@ -1784,7 +1784,7 @@ public class MessagingController implements Runnable {
 				}
 			}
 		} catch (final Exception e) {
-			Log.e(K9.LOG_TAG, "Error while storing downloaded message.", e);
+			Log.e(MAIL.LOG_TAG, "Error while storing downloaded message.", e);
 			addErrorMessage(account, null, e);
 		}
 	}
@@ -1794,8 +1794,8 @@ public class MessagingController implements Runnable {
 			final AtomicInteger progress, final Date earliestDate) {
 
 		if (account.isSearchByDateCapable() && message.olderThan(earliestDate)) {
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "Message " + message.getUid()
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "Message " + message.getUid()
 						+ " is older than " + earliestDate
 						+ ", hence not saving");
 			}
@@ -1813,8 +1813,8 @@ public class MessagingController implements Runnable {
 
 		final Date earliestDate = account.getEarliestPollDate();
 
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, "SYNC: Fetching small messages for folder "
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, "SYNC: Fetching small messages for folder "
 					+ folder);
 
 		remoteFolder.fetch(
@@ -1848,8 +1848,8 @@ public class MessagingController implements Runnable {
 								newMessages.incrementAndGet();
 							}
 
-							if (K9.DEBUG)
-								Log.v(K9.LOG_TAG,
+							if (MAIL.DEBUG)
+								Log.v(MAIL.LOG_TAG,
 										"About to notify listeners that we got a new small message "
 												+ account + ":" + folder + ":"
 												+ message.getUid());
@@ -1877,7 +1877,7 @@ public class MessagingController implements Runnable {
 
 						} catch (MessagingException me) {
 							addErrorMessage(account, null, me);
-							Log.e(K9.LOG_TAG, "SYNC: fetch small messages", me);
+							Log.e(MAIL.LOG_TAG, "SYNC: fetch small messages", me);
 						}
 					}
 
@@ -1891,8 +1891,8 @@ public class MessagingController implements Runnable {
 					}
 				});
 
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, "SYNC: Done fetching small messages for folder "
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, "SYNC: Done fetching small messages for folder "
 					+ folder);
 	}
 
@@ -1905,8 +1905,8 @@ public class MessagingController implements Runnable {
 
 		final Date earliestDate = account.getEarliestPollDate();
 
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, "SYNC: Fetching large messages for folder "
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, "SYNC: Fetching large messages for folder "
 					+ folder);
 
 		remoteFolder.fetch(
@@ -1993,8 +1993,8 @@ public class MessagingController implements Runnable {
 				// viewed.
 				localMessage.setFlag(Flag.X_DOWNLOADED_PARTIAL, true);
 			}
-			if (K9.DEBUG)
-				Log.v(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.v(MAIL.LOG_TAG,
 						"About to notify listeners that we got a new large message "
 								+ account + ":" + folder + ":"
 								+ message.getUid());
@@ -2031,8 +2031,8 @@ public class MessagingController implements Runnable {
 			}
 
 		}// for large messages
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, "SYNC: Done fetching large messages for folder "
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, "SYNC: Done fetching large messages for folder "
 					+ folder);
 
 	}
@@ -2044,8 +2044,8 @@ public class MessagingController implements Runnable {
 
 		final String folder = remoteFolder.getName();
 		if (remoteFolder.supportsFetchingFlags()) {
-			if (K9.DEBUG)
-				Log.d(K9.LOG_TAG, "SYNC: About to sync flags for "
+			if (MAIL.DEBUG)
+				Log.d(MAIL.LOG_TAG, "SYNC: About to sync flags for "
 						+ syncFlagMessages.size()
 						+ " remote messages for folder " + folder);
 
@@ -2172,11 +2172,11 @@ public class MessagingController implements Runnable {
 				try {
 					processPendingCommandsSynchronous(account);
 				} catch (UnavailableStorageException e) {
-					Log.i(K9.LOG_TAG,
+					Log.i(MAIL.LOG_TAG,
 							"Failed to process pending command because storage is not available - trying again later.");
 					throw new UnavailableAccountException(e);
 				} catch (MessagingException me) {
-					Log.e(K9.LOG_TAG, "processPendingCommands", me);
+					Log.e(MAIL.LOG_TAG, "processPendingCommands", me);
 
 					addErrorMessage(account, null, me);
 
@@ -2209,8 +2209,8 @@ public class MessagingController implements Runnable {
 		try {
 			for (PendingCommand command : commands) {
 				processingCommand = command;
-				if (K9.DEBUG)
-					Log.d(K9.LOG_TAG, "Processing pending command '" + command
+				if (MAIL.DEBUG)
+					Log.d(MAIL.LOG_TAG, "Processing pending command '" + command
 							+ "'");
 
 				String[] components = command.command.split("\\.");
@@ -2251,13 +2251,13 @@ public class MessagingController implements Runnable {
 						processPendingExpunge(command, account);
 					}
 					localStore.removePendingCommand(command);
-					if (K9.DEBUG)
-						Log.d(K9.LOG_TAG, "Done processing pending command '"
+					if (MAIL.DEBUG)
+						Log.d(MAIL.LOG_TAG, "Done processing pending command '"
 								+ command + "'");
 				} catch (MessagingException me) {
 					if (me.isPermanentFailure()) {
 						addErrorMessage(account, null, me);
-						Log.e(K9.LOG_TAG,
+						Log.e(MAIL.LOG_TAG,
 								"Failure of command '"
 										+ command
 										+ "' was permanent, removing command from queue");
@@ -2277,7 +2277,7 @@ public class MessagingController implements Runnable {
 		} catch (MessagingException me) {
 			notifyUserIfCertificateProblem(mApplication, me, account, true);
 			addErrorMessage(account, null, me);
-			Log.e(K9.LOG_TAG, "Could not process command '" + processingCommand
+			Log.e(MAIL.LOG_TAG, "Could not process command '" + processingCommand
 					+ "'", me);
 			throw me;
 		} finally {
@@ -2334,13 +2334,13 @@ public class MessagingController implements Runnable {
 			}
 
 			Message remoteMessage = null;
-			if (!localMessage.getUid().startsWith(K9.LOCAL_UID_PREFIX)) {
+			if (!localMessage.getUid().startsWith(MAIL.LOCAL_UID_PREFIX)) {
 				remoteMessage = remoteFolder.getMessage(localMessage.getUid());
 			}
 
 			if (remoteMessage == null) {
 				if (localMessage.isSet(Flag.X_REMOTE_COPY_STARTED)) {
-					Log.w(K9.LOG_TAG,
+					Log.w(MAIL.LOG_TAG,
 							"Local message with uid "
 									+ localMessage.getUid()
 									+ " has flag "
@@ -2350,7 +2350,7 @@ public class MessagingController implements Runnable {
 					String rUid = remoteFolder
 							.getUidFromMessageId(localMessage);
 					if (rUid != null) {
-						Log.w(K9.LOG_TAG,
+						Log.w(MAIL.LOG_TAG,
 								"Local message has flag "
 										+ Flag.X_REMOTE_COPY_STARTED
 										+ " already set, and there is a remote message with "
@@ -2367,7 +2367,7 @@ public class MessagingController implements Runnable {
 						}
 						return;
 					} else {
-						Log.w(K9.LOG_TAG,
+						Log.w(MAIL.LOG_TAG,
 								"No remote message with message-id found, proceeding with append");
 					}
 				}
@@ -2565,7 +2565,7 @@ public class MessagingController implements Runnable {
 							+ offset]);
 
 					String uid = command.arguments[i];
-					if (!uid.startsWith(K9.LOCAL_UID_PREFIX)) {
+					if (!uid.startsWith(MAIL.LOCAL_UID_PREFIX)) {
 						messages.add(remoteSrcFolder.getMessage(uid));
 					}
 				}
@@ -2573,7 +2573,7 @@ public class MessagingController implements Runnable {
 			} else {
 				for (int i = 4; i < command.arguments.length; i++) {
 					String uid = command.arguments[i];
-					if (!uid.startsWith(K9.LOCAL_UID_PREFIX)) {
+					if (!uid.startsWith(MAIL.LOCAL_UID_PREFIX)) {
 						messages.add(remoteSrcFolder.getMessage(uid));
 					}
 				}
@@ -2596,8 +2596,8 @@ public class MessagingController implements Runnable {
 								+ srcFolder + " read/write", true);
 			}
 
-			if (K9.DEBUG)
-				Log.d(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.d(MAIL.LOG_TAG,
 						"processingPendingMoveOrCopy: source folder = "
 								+ srcFolder + ", " + messages.size()
 								+ " messages, destination folder = "
@@ -2606,12 +2606,12 @@ public class MessagingController implements Runnable {
 			Map<String, String> remoteUidMap = null;
 
 			if (!isCopy && destFolder.equals(account.getTrashFolderName())) {
-				if (K9.DEBUG)
-					Log.d(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.d(MAIL.LOG_TAG,
 							"processingPendingMoveOrCopy doing special case for deleting message");
 
 				String destFolderName = destFolder;
-				if (K9.FOLDER_NONE.equals(destFolderName)) {
+				if (MAIL.FOLDER_NONE.equals(destFolderName)) {
 					destFolderName = null;
 				}
 				remoteSrcFolder.delete(messages.toArray(EMPTY_MESSAGE_ARRAY),
@@ -2632,8 +2632,8 @@ public class MessagingController implements Runnable {
 			if (!isCopy
 					&& Account.EXPUNGE_IMMEDIATELY.equals(account
 							.getExpungePolicy())) {
-				if (K9.DEBUG)
-					Log.i(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.i(MAIL.LOG_TAG,
 							"processingPendingMoveOrCopy expunging folder "
 									+ account.getDescription() + ":"
 									+ srcFolder);
@@ -2725,7 +2725,7 @@ public class MessagingController implements Runnable {
 			List<Message> messages = new ArrayList<Message>();
 			for (int i = 3; i < command.arguments.length; i++) {
 				String uid = command.arguments[i];
-				if (!uid.startsWith(K9.LOCAL_UID_PREFIX)) {
+				if (!uid.startsWith(MAIL.LOCAL_UID_PREFIX)) {
 					messages.add(remoteFolder.getMessage(uid));
 				}
 			}
@@ -2751,8 +2751,8 @@ public class MessagingController implements Runnable {
 		if (account.getErrorFolderName().equals(folder)) {
 			return;
 		}
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, "processPendingSetFlagOld: folder = " + folder
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, "processPendingSetFlagOld: folder = " + folder
 					+ ", uid = " + uid);
 
 		boolean newState = Boolean.parseBoolean(command.arguments[2]);
@@ -2770,7 +2770,7 @@ public class MessagingController implements Runnable {
 				return;
 			}
 			Message remoteMessage = null;
-			if (!uid.startsWith(K9.LOCAL_UID_PREFIX)) {
+			if (!uid.startsWith(MAIL.LOCAL_UID_PREFIX)) {
 				remoteMessage = remoteFolder.getMessage(uid);
 			}
 			if (remoteMessage == null) {
@@ -2806,8 +2806,8 @@ public class MessagingController implements Runnable {
 		if (account.getErrorFolderName().equals(folder)) {
 			return;
 		}
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, "processPendingExpunge: folder = " + folder);
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, "processPendingExpunge: folder = " + folder);
 
 		Store remoteStore = account.getRemoteStore();
 		Folder remoteFolder = remoteStore.getFolder(folder);
@@ -2820,8 +2820,8 @@ public class MessagingController implements Runnable {
 				return;
 			}
 			remoteFolder.expunge();
-			if (K9.DEBUG)
-				Log.d(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.d(MAIL.LOG_TAG,
 						"processPendingExpunge: complete for folder = "
 								+ folder);
 		} finally {
@@ -2865,7 +2865,7 @@ public class MessagingController implements Runnable {
 		}
 
 		Message remoteMessage = null;
-		if (!uid.startsWith(K9.LOCAL_UID_PREFIX)) {
+		if (!uid.startsWith(MAIL.LOCAL_UID_PREFIX)) {
 			remoteMessage = remoteSrcFolder.getMessage(uid);
 		}
 		if (remoteMessage == null) {
@@ -2874,14 +2874,14 @@ public class MessagingController implements Runnable {
 							+ " does not exist", true);
 		}
 
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, "processPendingMoveOrCopyOld: source folder = "
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, "processPendingMoveOrCopyOld: source folder = "
 					+ srcFolder + ", uid = " + uid + ", destination folder = "
 					+ destFolder + ", isCopy = " + isCopy);
 
 		if (!isCopy && destFolder.equals(account.getTrashFolderName())) {
-			if (K9.DEBUG)
-				Log.d(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.d(MAIL.LOG_TAG,
 						"processPendingMoveOrCopyOld doing special case for deleting message");
 
 			remoteMessage.delete(account.getTrashFolderName());
@@ -2950,7 +2950,7 @@ public class MessagingController implements Runnable {
 			remoteFolder.setFlags(new Flag[] { Flag.SEEN }, true);
 			remoteFolder.close();
 		} catch (UnsupportedOperationException uoe) {
-			Log.w(K9.LOG_TAG,
+			Log.w(MAIL.LOG_TAG,
 					"Could not mark all server-side as read because store doesn't support operation",
 					uoe);
 		} finally {
@@ -2970,9 +2970,9 @@ public class MessagingController implements Runnable {
 			return;
 		}
 
-		final int id = incoming ? K9.CERTIFICATE_EXCEPTION_NOTIFICATION_INCOMING
+		final int id = incoming ? MAIL.CERTIFICATE_EXCEPTION_NOTIFICATION_INCOMING
 				+ account.getAccountNumber()
-				: K9.CERTIFICATE_EXCEPTION_NOTIFICATION_OUTGOING
+				: MAIL.CERTIFICATE_EXCEPTION_NOTIFICATION_OUTGOING
 						+ account.getAccountNumber();
 		final Intent i = incoming ? AccountSetupIncoming
 				.intentActionEditIncomingSettings(context, account)
@@ -2997,8 +2997,8 @@ public class MessagingController implements Runnable {
 		builder.setContentIntent(pi);
 
 		configureNotification(builder, null, null,
-				K9.NOTIFICATION_LED_FAILURE_COLOR,
-				K9.NOTIFICATION_LED_BLINK_FAST, true);
+				MAIL.NOTIFICATION_LED_FAILURE_COLOR,
+				MAIL.NOTIFICATION_LED_BLINK_FAST, true);
 
 		final NotificationManager nm = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -3011,10 +3011,10 @@ public class MessagingController implements Runnable {
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 
 		if (direction.equals(CheckDirection.INCOMING)) {
-			nm.cancel(null, K9.CERTIFICATE_EXCEPTION_NOTIFICATION_INCOMING
+			nm.cancel(null, MAIL.CERTIFICATE_EXCEPTION_NOTIFICATION_INCOMING
 					+ account.getAccountNumber());
 		} else {
-			nm.cancel(null, K9.CERTIFICATE_EXCEPTION_NOTIFICATION_OUTGOING
+			nm.cancel(null, MAIL.CERTIFICATE_EXCEPTION_NOTIFICATION_OUTGOING
 					+ account.getAccountNumber());
 		}
 	}
@@ -3034,7 +3034,7 @@ public class MessagingController implements Runnable {
 			try {
 				PackageInfo packageInfo = mApplication.getPackageManager()
 						.getPackageInfo(mApplication.getPackageName(), 0);
-				ps.format("K9-Mail version: %s\r\n", packageInfo.versionName);
+				ps.format("MAIL-Mail version: %s\r\n", packageInfo.versionName);
 			} catch (Exception e) {
 				// ignore
 			}
@@ -3050,14 +3050,14 @@ public class MessagingController implements Runnable {
 
 			addErrorMessage(account, subject, baos.toString());
 		} catch (Throwable it) {
-			Log.e(K9.LOG_TAG,
+			Log.e(MAIL.LOG_TAG,
 					"Could not save error message to "
 							+ account.getErrorFolderName(), it);
 		}
 	}
 
 	public void addErrorMessage(Account account, String subject, String body) {
-		if (!K9.DEBUG) {
+		if (!MAIL.DEBUG) {
 			return;
 		}
 		if (!loopCatch.compareAndSet(false, true)) {
@@ -3082,7 +3082,7 @@ public class MessagingController implements Runnable {
 			Date nowDate = new Date(nowTime);
 			message.setInternalDate(nowDate);
 			message.addSentDate(nowDate);
-			message.setFrom(new Address(account.getEmail(), "K9mail internal"));
+			message.setFrom(new Address(account.getEmail(), "MAILmail internal"));
 			messages[0] = message;
 
 			localFolder.appendMessages(messages);
@@ -3090,7 +3090,7 @@ public class MessagingController implements Runnable {
 			localFolder.clearMessagesOlderThan(nowTime - (15 * 60 * 1000));
 
 		} catch (Throwable it) {
-			Log.e(K9.LOG_TAG,
+			Log.e(MAIL.LOG_TAG,
 					"Could not save error message to "
 							+ account.getErrorFolderName(), it);
 		} finally {
@@ -3100,8 +3100,8 @@ public class MessagingController implements Runnable {
 
 	public void markAllMessagesRead(final Account account, final String folder) {
 
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG,
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG,
 					"Marking all messages in " + account.getDescription() + ":"
 							+ folder + " as read");
 		List<String> args = new ArrayList<String>();
@@ -3148,7 +3148,7 @@ public class MessagingController implements Runnable {
 		try {
 			localStore = account.getLocalStore();
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG, "Couldn't get LocalStore instance", e);
+			Log.e(MAIL.LOG_TAG, "Couldn't get LocalStore instance", e);
 			return;
 		}
 
@@ -3164,7 +3164,7 @@ public class MessagingController implements Runnable {
 				removeFlagFromCache(account, ids, flag);
 			}
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG, "Couldn't set flags in local database", e);
+			Log.e(MAIL.LOG_TAG, "Couldn't set flags in local database", e);
 		}
 
 		// Read folder name and UID of messages from the database
@@ -3172,7 +3172,7 @@ public class MessagingController implements Runnable {
 		try {
 			folderMap = localStore.getFoldersAndUids(ids, threadedList);
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG, "Couldn't get folder name and UID of messages", e);
+			Log.e(MAIL.LOG_TAG, "Couldn't get folder name and UID of messages", e);
 			return;
 		}
 
@@ -3189,7 +3189,7 @@ public class MessagingController implements Runnable {
 							unreadMessageCount);
 				}
 			} catch (MessagingException e) {
-				Log.w(K9.LOG_TAG, "Couldn't get unread count for folder: "
+				Log.w(MAIL.LOG_TAG, "Couldn't get unread count for folder: "
 						+ folderName, e);
 			}
 
@@ -3321,11 +3321,11 @@ public class MessagingController implements Runnable {
 
 	public void clearAllPending(final Account account) {
 		try {
-			Log.w(K9.LOG_TAG, "Clearing pending commands!");
+			Log.w(MAIL.LOG_TAG, "Clearing pending commands!");
 			LocalStore localStore = account.getLocalStore();
 			localStore.removePendingCommands();
 		} catch (MessagingException me) {
-			Log.e(K9.LOG_TAG, "Unable to clear pending command", me);
+			Log.e(MAIL.LOG_TAG, "Unable to clear pending command", me);
 			addErrorMessage(account, null, me);
 		}
 	}
@@ -3355,8 +3355,8 @@ public class MessagingController implements Runnable {
 
 			Message message = localFolder.getMessage(uid);
 
-			if (uid.startsWith(K9.LOCAL_UID_PREFIX)) {
-				Log.w(K9.LOG_TAG,
+			if (uid.startsWith(MAIL.LOCAL_UID_PREFIX)) {
+				Log.w(MAIL.LOG_TAG,
 						"Message has local UID so cannot download fully.");
 				// ASH move toast
 				android.widget.Toast.makeText(mApplication,
@@ -3372,7 +3372,7 @@ public class MessagingController implements Runnable {
 			/*
 			 * commented out because this was pulled from another unmerged
 			 * branch: } else if (localFolder.isLocalOnly() && !force) {
-			 * Log.w(K9.LOG_TAG,
+			 * Log.w(MAIL.LOG_TAG,
 			 * "Message in local-only folder so cannot download fully."); // ASH
 			 * move toast android.widget.Toast.makeText(mApplication,
 			 * "Message in local-only folder so cannot download fully",
@@ -3606,8 +3606,8 @@ public class MessagingController implements Runnable {
 						l.loadAttachmentFinished(account, message, part, tag);
 					}
 				} catch (MessagingException me) {
-					if (K9.DEBUG)
-						Log.v(K9.LOG_TAG, "Exception loading attachment", me);
+					if (MAIL.DEBUG)
+						Log.v(MAIL.LOG_TAG, "Exception loading attachment", me);
 
 					for (MessagingListener l : getListeners(listener)) {
 						l.loadAttachmentFailed(account, message, part, tag,
@@ -3700,7 +3700,7 @@ public class MessagingController implements Runnable {
 
 	private void notifyWhileSendingDone(Account account) {
 		if (account.isShowOngoing()) {
-			cancelNotification(K9.FETCHING_EMAIL_NOTIFICATION
+			cancelNotification(MAIL.FETCHING_EMAIL_NOTIFICATION
 					- account.getAccountNumber());
 		}
 	}
@@ -3740,14 +3740,14 @@ public class MessagingController implements Runnable {
 				account, account.getInboxFolderName());
 		builder.setContentIntent(stack.getPendingIntent(0, 0));
 
-		if (K9.NOTIFICATION_LED_WHILE_SYNCING) {
+		if (MAIL.NOTIFICATION_LED_WHILE_SYNCING) {
 			configureNotification(builder, null, null, account
 					.getNotificationSetting().getLedColor(),
-					K9.NOTIFICATION_LED_BLINK_FAST, true);
+					MAIL.NOTIFICATION_LED_BLINK_FAST, true);
 		}
 
 		notifMgr.notify(
-				K9.FETCHING_EMAIL_NOTIFICATION - account.getAccountNumber(),
+				MAIL.FETCHING_EMAIL_NOTIFICATION - account.getAccountNumber(),
 				builder.build());
 	}
 
@@ -3790,11 +3790,11 @@ public class MessagingController implements Runnable {
 		builder.setContentIntent(stack.getPendingIntent(0, 0));
 
 		configureNotification(builder, null, null,
-				K9.NOTIFICATION_LED_FAILURE_COLOR,
-				K9.NOTIFICATION_LED_BLINK_FAST, true);
+				MAIL.NOTIFICATION_LED_FAILURE_COLOR,
+				MAIL.NOTIFICATION_LED_BLINK_FAST, true);
 
 		notifMgr.notify(
-				K9.SEND_FAILED_NOTIFICATION - account.getAccountNumber(),
+				MAIL.SEND_FAILED_NOTIFICATION - account.getAccountNumber(),
 				builder.build());
 	}
 
@@ -3836,20 +3836,20 @@ public class MessagingController implements Runnable {
 				account, account.getInboxFolderName());
 		builder.setContentIntent(stack.getPendingIntent(0, 0));
 
-		if (K9.NOTIFICATION_LED_WHILE_SYNCING) {
+		if (MAIL.NOTIFICATION_LED_WHILE_SYNCING) {
 			configureNotification(builder, null, null, account
 					.getNotificationSetting().getLedColor(),
-					K9.NOTIFICATION_LED_BLINK_FAST, true);
+					MAIL.NOTIFICATION_LED_BLINK_FAST, true);
 		}
 
 		notifMgr.notify(
-				K9.FETCHING_EMAIL_NOTIFICATION - account.getAccountNumber(),
+				MAIL.FETCHING_EMAIL_NOTIFICATION - account.getAccountNumber(),
 				builder.build());
 	}
 
 	private void notifyFetchingMailCancel(final Account account) {
 		if (account.isShowOngoing()) {
-			cancelNotification(K9.FETCHING_EMAIL_NOTIFICATION
+			cancelNotification(MAIL.FETCHING_EMAIL_NOTIFICATION
 					- account.getAccountNumber());
 		}
 	}
@@ -3869,7 +3869,7 @@ public class MessagingController implements Runnable {
 				return true;
 			}
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Exception while checking for unsent messages", e);
+			Log.e(MAIL.LOG_TAG, "Exception while checking for unsent messages", e);
 		} finally {
 			closeFolder(localFolder);
 		}
@@ -3910,8 +3910,8 @@ public class MessagingController implements Runnable {
 			fp.add(FetchProfile.Item.ENVELOPE);
 			fp.add(FetchProfile.Item.BODY);
 
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG,
 						"Scanning folder '" + account.getOutboxFolderName()
 								+ "' (" + ((LocalFolder) localFolder).getId()
 								+ ") for messages to send");
@@ -3930,17 +3930,17 @@ public class MessagingController implements Runnable {
 						count = oldCount;
 					}
 
-					if (K9.DEBUG)
-						Log.i(K9.LOG_TAG,
+					if (MAIL.DEBUG)
+						Log.i(MAIL.LOG_TAG,
 								"Send count for message " + message.getUid()
 										+ " is " + count.get());
 
-					if (count.incrementAndGet() > K9.MAX_SEND_ATTEMPTS) {
-						Log.e(K9.LOG_TAG,
+					if (count.incrementAndGet() > MAIL.MAX_SEND_ATTEMPTS) {
+						Log.e(MAIL.LOG_TAG,
 								"Send count for message "
 										+ message.getUid()
 										+ " can't be delivered after "
-										+ K9.MAX_SEND_ATTEMPTS
+										+ MAIL.MAX_SEND_ATTEMPTS
 										+ " attempts.  Giving up until the user restarts the device");
 						notifySendTempFailed(account, new MessagingException(
 								message.getSubject()));
@@ -3950,8 +3950,8 @@ public class MessagingController implements Runnable {
 					localFolder.fetch(new Message[] { message }, fp, null);
 					try {
 
-						if (message.getHeader(K9.IDENTITY_HEADER) != null) {
-							Log.v(K9.LOG_TAG,
+						if (message.getHeader(MAIL.IDENTITY_HEADER) != null) {
+							Log.v(MAIL.LOG_TAG,
 									"The user has set the Outbox and Drafts folder to the same thing. "
 											+ "This message appears to be a draft, so K-9 will not send it");
 							continue;
@@ -3959,8 +3959,8 @@ public class MessagingController implements Runnable {
 						}
 
 						message.setFlag(Flag.X_SEND_IN_PROGRESS, true);
-						if (K9.DEBUG)
-							Log.i(K9.LOG_TAG, "Sending message with UID "
+						if (MAIL.DEBUG)
+							Log.i(MAIL.LOG_TAG, "Sending message with UID "
 									+ message.getUid());
 						transport.sendMessage(message);
 						message.setFlag(Flag.X_SEND_IN_PROGRESS, false);
@@ -3971,15 +3971,15 @@ public class MessagingController implements Runnable {
 									account.getSentFolderName(), progress, todo);
 						}
 						if (!account.hasSentFolder()) {
-							if (K9.DEBUG)
-								Log.i(K9.LOG_TAG,
+							if (MAIL.DEBUG)
+								Log.i(MAIL.LOG_TAG,
 										"Account does not have a sent mail folder; deleting sent message");
 							message.setFlag(Flag.DELETED, true);
 						} else {
 							LocalFolder localSentFolder = (LocalFolder) localStore
 									.getFolder(account.getSentFolderName());
-							if (K9.DEBUG)
-								Log.i(K9.LOG_TAG,
+							if (MAIL.DEBUG)
+								Log.i(MAIL.LOG_TAG,
 										"Moving sent message to folder '"
 												+ account.getSentFolderName()
 												+ "' ("
@@ -3989,8 +3989,8 @@ public class MessagingController implements Runnable {
 							localFolder.moveMessages(new Message[] { message },
 									localSentFolder);
 
-							if (K9.DEBUG)
-								Log.i(K9.LOG_TAG,
+							if (MAIL.DEBUG)
+								Log.i(MAIL.LOG_TAG,
 										"Moved sent message to folder '"
 												+ account.getSentFolderName()
 												+ "' ("
@@ -4022,7 +4022,7 @@ public class MessagingController implements Runnable {
 								account, false);
 						addErrorMessage(account, "Failed to send message", e);
 						message.setFlag(Flag.X_SEND_FAILED, true);
-						Log.e(K9.LOG_TAG, "Failed to send message", e);
+						Log.e(MAIL.LOG_TAG, "Failed to send message", e);
 						for (MessagingListener l : getListeners()) {
 							l.synchronizeMailboxFailed(account,
 									localFolder.getName(),
@@ -4031,7 +4031,7 @@ public class MessagingController implements Runnable {
 						lastFailure = e;
 					}
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG, "Failed to fetch message for sending", e);
+					Log.e(MAIL.LOG_TAG, "Failed to fetch message for sending", e);
 					for (MessagingListener l : getListeners()) {
 						l.synchronizeMailboxFailed(account,
 								localFolder.getName(), getRootCauseMessage(e));
@@ -4052,7 +4052,7 @@ public class MessagingController implements Runnable {
 				}
 			}
 		} catch (UnavailableStorageException e) {
-			Log.i(K9.LOG_TAG,
+			Log.i(MAIL.LOG_TAG,
 					"Failed to send pending messages because storage is not available - trying again later.");
 			throw new UnavailableAccountException(e);
 		} catch (Exception e) {
@@ -4063,7 +4063,7 @@ public class MessagingController implements Runnable {
 
 		} finally {
 			if (lastFailure == null) {
-				cancelNotification(K9.SEND_FAILED_NOTIFICATION
+				cancelNotification(MAIL.SEND_FAILED_NOTIFICATION
 						- account.getAccountNumber());
 			}
 			closeFolder(localFolder);
@@ -4093,7 +4093,7 @@ public class MessagingController implements Runnable {
 					}
 
 				} catch (MessagingException me) {
-					Log.e(K9.LOG_TAG, "Count not get unread count for account "
+					Log.e(MAIL.LOG_TAG, "Count not get unread count for account "
 							+ account.getDescription(), me);
 				}
 
@@ -4190,7 +4190,7 @@ public class MessagingController implements Runnable {
 							folderName);
 					unreadMessageCount = localFolder.getUnreadMessageCount();
 				} catch (MessagingException me) {
-					Log.e(K9.LOG_TAG, "Count not get unread count for account "
+					Log.e(MAIL.LOG_TAG, "Count not get unread count for account "
 							+ account.getDescription(), me);
 				}
 				l.folderStatusChanged(account, folderName, unreadMessageCount);
@@ -4202,7 +4202,7 @@ public class MessagingController implements Runnable {
 	}
 
 	public boolean isMoveCapable(Message message) {
-		return !message.getUid().startsWith(K9.LOCAL_UID_PREFIX);
+		return !message.getUid().startsWith(MAIL.LOCAL_UID_PREFIX);
 	}
 
 	public boolean isCopyCapable(Message message) {
@@ -4216,7 +4216,7 @@ public class MessagingController implements Runnable {
 			return localStore.isMoveCapable() && remoteStore.isMoveCapable();
 		} catch (MessagingException me) {
 
-			Log.e(K9.LOG_TAG, "Exception while ascertaining move capability",
+			Log.e(MAIL.LOG_TAG, "Exception while ascertaining move capability",
 					me);
 			return false;
 		}
@@ -4228,7 +4228,7 @@ public class MessagingController implements Runnable {
 			Store remoteStore = account.getRemoteStore();
 			return localStore.isCopyCapable() && remoteStore.isCopyCapable();
 		} catch (MessagingException me) {
-			Log.e(K9.LOG_TAG, "Exception while ascertaining copy capability",
+			Log.e(MAIL.LOG_TAG, "Exception while ascertaining copy capability",
 					me);
 			return false;
 		}
@@ -4347,7 +4347,7 @@ public class MessagingController implements Runnable {
 			List<String> uids = new LinkedList<String>();
 			for (Message message : inMessages) {
 				String uid = message.getUid();
-				if (!uid.startsWith(K9.LOCAL_UID_PREFIX)) {
+				if (!uid.startsWith(MAIL.LOCAL_UID_PREFIX)) {
 					uids.add(uid);
 				}
 
@@ -4365,8 +4365,8 @@ public class MessagingController implements Runnable {
 					origUidMap.put(message.getUid(), message);
 				}
 
-				if (K9.DEBUG)
-					Log.i(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.i(MAIL.LOG_TAG,
 							"moveOrCopyMessageSynchronous: source folder = "
 									+ srcFolder + ", " + messages.length
 									+ " messages, " + ", destination folder = "
@@ -4429,7 +4429,7 @@ public class MessagingController implements Runnable {
 
 			processPendingCommands(account);
 		} catch (UnavailableStorageException e) {
-			Log.i(K9.LOG_TAG,
+			Log.i(MAIL.LOG_TAG,
 					"Failed to move/copy message because storage is not available - trying again later.");
 			throw new UnavailableAccountException(e);
 		} catch (MessagingException me) {
@@ -4499,7 +4499,7 @@ public class MessagingController implements Runnable {
 			deleteMessagesSynchronous(account, folderName,
 					messagesToDelete.toArray(EMPTY_MESSAGE_ARRAY), null);
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG, "Something went wrong while deleting threads", e);
+			Log.e(MAIL.LOG_TAG, "Something went wrong while deleting threads", e);
 		}
 	}
 
@@ -4566,8 +4566,8 @@ public class MessagingController implements Runnable {
 			Map<String, String> uidMap = null;
 			if (folder.equals(account.getTrashFolderName())
 					|| !account.hasTrashFolder()) {
-				if (K9.DEBUG)
-					Log.d(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.d(MAIL.LOG_TAG,
 							"Deleting messages in trash folder or trash set to -None-, not copying");
 
 				localFolder.setFlags(messages, new Flag[] { Flag.DELETED },
@@ -4579,8 +4579,8 @@ public class MessagingController implements Runnable {
 					localTrashFolder.create(Folder.FolderType.HOLDS_MESSAGES);
 				}
 				if (localTrashFolder.exists()) {
-					if (K9.DEBUG)
-						Log.d(K9.LOG_TAG,
+					if (MAIL.DEBUG)
+						Log.d(MAIL.LOG_TAG,
 								"Deleting messages in normal folder, moving");
 
 					uidMap = localFolder.moveMessages(messages,
@@ -4599,8 +4599,8 @@ public class MessagingController implements Runnable {
 				}
 			}
 
-			if (K9.DEBUG)
-				Log.d(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.d(MAIL.LOG_TAG,
 						"Delete policy for account " + account.getDescription()
 								+ " is " + account.getDeletePolicy());
 
@@ -4630,15 +4630,15 @@ public class MessagingController implements Runnable {
 						Flag.SEEN.toString(), uids);
 				processPendingCommands(account);
 			} else {
-				if (K9.DEBUG)
-					Log.d(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.d(MAIL.LOG_TAG,
 							"Delete policy " + account.getDeletePolicy()
 									+ " prevents delete from server");
 			}
 
 			unsuppressMessages(account, messages);
 		} catch (UnavailableStorageException e) {
-			Log.i(K9.LOG_TAG,
+			Log.i(MAIL.LOG_TAG,
 					"Failed to delete message because storage is not available - trying again later.");
 			throw new UnavailableAccountException(e);
 		} catch (MessagingException me) {
@@ -4718,11 +4718,11 @@ public class MessagingController implements Runnable {
 						processPendingCommands(account);
 					}
 				} catch (UnavailableStorageException e) {
-					Log.i(K9.LOG_TAG,
+					Log.i(MAIL.LOG_TAG,
 							"Failed to empty trash because storage is not available - trying again later.");
 					throw new UnavailableAccountException(e);
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG, "emptyTrash failed", e);
+					Log.e(MAIL.LOG_TAG, "emptyTrash failed", e);
 					addErrorMessage(account, null, e);
 				} finally {
 					closeFolder(localFolder);
@@ -4756,8 +4756,8 @@ public class MessagingController implements Runnable {
 
 	public void sendAlternate(final Context context, Account account,
 			Message message) {
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG,
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG,
 					"About to load message " + account.getDescription() + ":"
 							+ message.getFolder().getName() + ":"
 							+ message.getUid() + " for sendAlternate");
@@ -4768,8 +4768,8 @@ public class MessagingController implements Runnable {
 					public void loadMessageForViewBodyAvailable(
 							Account account, String folder, String uid,
 							Message message) {
-						if (K9.DEBUG)
-							Log.d(K9.LOG_TAG,
+						if (MAIL.DEBUG)
+							Log.d(MAIL.LOG_TAG,
 									"Got message " + account.getDescription()
 											+ ":" + folder + ":"
 											+ message.getUid()
@@ -4821,7 +4821,7 @@ public class MessagingController implements Runnable {
 									msg,
 									context.getString(R.string.send_alternate_chooser_title)));
 						} catch (MessagingException me) {
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Unable to send email through alternate program",
 									me);
 						}
@@ -4848,9 +4848,9 @@ public class MessagingController implements Runnable {
 					.getPowerManager(context);
 
 			twakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-					"K9 MessagingController.checkMail");
+					"MAIL MessagingController.checkMail");
 			twakeLock.setReferenceCounted(false);
-			twakeLock.acquire(K9.MANUAL_WAKE_LOCK_TIMEOUT);
+			twakeLock.acquire(MAIL.MANUAL_WAKE_LOCK_TIMEOUT);
 		}
 		final TracingWakeLock wakeLock = twakeLock;
 
@@ -4862,8 +4862,8 @@ public class MessagingController implements Runnable {
 			public void run() {
 
 				try {
-					if (K9.DEBUG)
-						Log.i(K9.LOG_TAG, "Starting mail check");
+					if (MAIL.DEBUG)
+						Log.i(MAIL.LOG_TAG, "Starting mail check");
 					Preferences prefs = Preferences.getPreferences(context);
 
 					Collection<Account> accounts;
@@ -4880,15 +4880,15 @@ public class MessagingController implements Runnable {
 					}
 
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG, "Unable to synchronize mail", e);
+					Log.e(MAIL.LOG_TAG, "Unable to synchronize mail", e);
 					addErrorMessage(account, null, e);
 				}
 				putBackground("finalize sync", null, new Runnable() {
 					@Override
 					public void run() {
 
-						if (K9.DEBUG)
-							Log.i(K9.LOG_TAG, "Finished mail sync");
+						if (MAIL.DEBUG)
+							Log.i(MAIL.LOG_TAG, "Finished mail sync");
 
 						if (wakeLock != null) {
 							wakeLock.release();
@@ -4907,23 +4907,23 @@ public class MessagingController implements Runnable {
 			final Account account, final boolean ignoreLastCheckedTime,
 			final Preferences prefs, final MessagingListener listener) {
 		if (!account.isAvailable(context)) {
-			if (K9.DEBUG) {
-				Log.i(K9.LOG_TAG, "Skipping synchronizing unavailable account "
+			if (MAIL.DEBUG) {
+				Log.i(MAIL.LOG_TAG, "Skipping synchronizing unavailable account "
 						+ account.getDescription());
 			}
 			return;
 		}
 		final long accountInterval = account.getAutomaticCheckIntervalMinutes() * 60 * 1000;
 		if (!ignoreLastCheckedTime && accountInterval <= 0) {
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG,
 						"Skipping synchronizing account "
 								+ account.getDescription());
 			return;
 		}
 
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG,
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG,
 					"Synchronizing account " + account.getDescription());
 
 		account.setRingNotified(false);
@@ -4945,7 +4945,7 @@ public class MessagingController implements Runnable {
 				if (modeMismatch(aDisplayMode, fDisplayClass)) {
 					// Never sync a folder that isn't displayed
 					/*
-					 * if (K9.DEBUG) Log.v(K9.LOG_TAG, "Not syncing folder " +
+					 * if (MAIL.DEBUG) Log.v(MAIL.LOG_TAG, "Not syncing folder " +
 					 * folder.getName() + " which is in display mode " +
 					 * fDisplayClass + " while account is in display mode " +
 					 * aDisplayMode);
@@ -4957,7 +4957,7 @@ public class MessagingController implements Runnable {
 				if (modeMismatch(aSyncMode, fSyncClass)) {
 					// Do not sync folders in the wrong class
 					/*
-					 * if (K9.DEBUG) Log.v(K9.LOG_TAG, "Not syncing folder " +
+					 * if (MAIL.DEBUG) Log.v(MAIL.LOG_TAG, "Not syncing folder " +
 					 * folder.getName() + " which is in sync mode " + fSyncClass
 					 * + " while account is in sync mode " + aSyncMode);
 					 */
@@ -4968,7 +4968,7 @@ public class MessagingController implements Runnable {
 						accountInterval, listener);
 			}
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG,
+			Log.e(MAIL.LOG_TAG,
 					"Unable to synchronize account " + account.getName(), e);
 			addErrorMessage(account, null, e);
 		} finally {
@@ -4977,8 +4977,8 @@ public class MessagingController implements Runnable {
 					null, new Runnable() {
 						@Override
 						public void run() {
-							if (K9.DEBUG)
-								Log.v(K9.LOG_TAG,
+							if (MAIL.DEBUG)
+								Log.v(MAIL.LOG_TAG,
 										"Clearing notification flag for "
 												+ account.getDescription());
 							account.setRingNotified(false);
@@ -4989,7 +4989,7 @@ public class MessagingController implements Runnable {
 									notifyAccountCancel(context, account);
 								}
 							} catch (MessagingException e) {
-								Log.e(K9.LOG_TAG,
+								Log.e(MAIL.LOG_TAG,
 										"Unable to getUnreadMessageCount for account: "
 												+ account, e);
 							}
@@ -5003,14 +5003,14 @@ public class MessagingController implements Runnable {
 			final boolean ignoreLastCheckedTime, final long accountInterval,
 			final MessagingListener listener) {
 
-		if (K9.DEBUG)
-			Log.v(K9.LOG_TAG, "Folder " + folder.getName()
+		if (MAIL.DEBUG)
+			Log.v(MAIL.LOG_TAG, "Folder " + folder.getName()
 					+ " was last synced @ " + new Date(folder.getLastChecked()));
 
 		if (!ignoreLastCheckedTime
 				&& folder.getLastChecked() > (System.currentTimeMillis() - accountInterval)) {
-			if (K9.DEBUG)
-				Log.v(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.v(MAIL.LOG_TAG,
 						"Not syncing folder "
 								+ folder.getName()
 								+ ", previously synced @ "
@@ -5034,8 +5034,8 @@ public class MessagingController implements Runnable {
 					if (!ignoreLastCheckedTime
 							&& tLocalFolder.getLastChecked() > (System
 									.currentTimeMillis() - accountInterval)) {
-						if (K9.DEBUG)
-							Log.v(K9.LOG_TAG,
+						if (MAIL.DEBUG)
+							Log.v(MAIL.LOG_TAG,
 									"Not running Command for folder "
 											+ folder.getName()
 											+ ", previously synced @ "
@@ -5052,7 +5052,7 @@ public class MessagingController implements Runnable {
 					}
 				} catch (Exception e) {
 
-					Log.e(K9.LOG_TAG,
+					Log.e(MAIL.LOG_TAG,
 							"Exception while processing folder "
 									+ account.getDescription() + ":"
 									+ folder.getName(), e);
@@ -5079,11 +5079,11 @@ public class MessagingController implements Runnable {
 								l.accountSizeChanged(account, oldSize, newSize);
 							}
 						} catch (UnavailableStorageException e) {
-							Log.i(K9.LOG_TAG,
+							Log.i(MAIL.LOG_TAG,
 									"Failed to compact account because storage is not available - trying again later.");
 							throw new UnavailableAccountException(e);
 						} catch (Exception e) {
-							Log.e(K9.LOG_TAG, "Failed to compact account "
+							Log.e(MAIL.LOG_TAG, "Failed to compact account "
 									+ account.getDescription(), e);
 						}
 					}
@@ -5109,11 +5109,11 @@ public class MessagingController implements Runnable {
 						l.accountStatusChanged(account, stats);
 					}
 				} catch (UnavailableStorageException e) {
-					Log.i(K9.LOG_TAG,
+					Log.i(MAIL.LOG_TAG,
 							"Failed to clear account because storage is not available - trying again later.");
 					throw new UnavailableAccountException(e);
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG,
+					Log.e(MAIL.LOG_TAG,
 							"Failed to clear account "
 									+ account.getDescription(), e);
 				}
@@ -5142,11 +5142,11 @@ public class MessagingController implements Runnable {
 								l.accountStatusChanged(account, stats);
 							}
 						} catch (UnavailableStorageException e) {
-							Log.i(K9.LOG_TAG,
+							Log.i(MAIL.LOG_TAG,
 									"Failed to recreate an account because storage is not available - trying again later.");
 							throw new UnavailableAccountException(e);
 						} catch (Exception e) {
-							Log.e(K9.LOG_TAG, "Failed to recreate account "
+							Log.e(MAIL.LOG_TAG, "Failed to recreate account "
 									+ account.getDescription(), e);
 						}
 					}
@@ -5196,8 +5196,8 @@ public class MessagingController implements Runnable {
 			try {
 				Integer messageUid = Integer.parseInt(message.getUid());
 				if (messageUid <= localFolder.getLastUid()) {
-					if (K9.DEBUG)
-						Log.d(K9.LOG_TAG,
+					if (MAIL.DEBUG)
+						Log.d(MAIL.LOG_TAG,
 								"Message uid is " + messageUid
 										+ ", max message uid is "
 										+ localFolder.getLastUid()
@@ -5252,7 +5252,7 @@ public class MessagingController implements Runnable {
 			Message message) {
 		try {
 			boolean isSelf = false;
-			final Contacts contacts = K9.showContactName() ? Contacts
+			final Contacts contacts = MAIL.showContactName() ? Contacts
 					.getInstance(context) : null;
 			final Address[] fromAddrs = message.getFrom();
 
@@ -5276,7 +5276,7 @@ public class MessagingController implements Runnable {
 				return context.getString(R.string.general_no_sender);
 			}
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG,
+			Log.e(MAIL.LOG_TAG,
 					"Unable to get sender information for notification.", e);
 		}
 
@@ -5407,8 +5407,8 @@ public class MessagingController implements Runnable {
 		final CharSequence subject = getMessageSubject(context, message);
 		CharSequence summary = buildMessageSummary(context, sender, subject);
 
-		boolean privacyModeEnabled = (K9.getNotificationHideSubject() == NotificationHideSubject.ALWAYS)
-				|| (K9.getNotificationHideSubject() == NotificationHideSubject.WHEN_LOCKED && keyguardService
+		boolean privacyModeEnabled = (MAIL.getNotificationHideSubject() == NotificationHideSubject.ALWAYS)
+				|| (MAIL.getNotificationHideSubject() == NotificationHideSubject.WHEN_LOCKED && keyguardService
 						.inKeyguardRestrictedInputMode());
 
 		if (privacyModeEnabled || summary.length() == 0) {
@@ -5483,7 +5483,7 @@ public class MessagingController implements Runnable {
 					NotificationActionService.getReadAllMessagesIntent(context,
 							account, allRefs));
 
-			NotificationQuickDelete deleteOption = K9
+			NotificationQuickDelete deleteOption = MAIL
 					.getNotificationQuickDeleteBehaviour();
 			boolean showDeleteAction = deleteOption == NotificationQuickDelete.ALWAYS
 					|| (deleteOption == NotificationQuickDelete.FOR_SINGLE_MSG && newMessages == 1);
@@ -5567,7 +5567,7 @@ public class MessagingController implements Runnable {
 		configureNotification(builder, (n.shouldRing()) ? n.getRingtone()
 				: null, (n.shouldVibrate()) ? n.getVibration() : null,
 				(n.isLed()) ? Integer.valueOf(n.getLedColor()) : null,
-				K9.NOTIFICATION_LED_BLINK_SLOW, ringAndVibrate);
+				MAIL.NOTIFICATION_LED_BLINK_SLOW, ringAndVibrate);
 
 		notifMgr.notify(account.getAccountNumber(), builder.build());
 	}
@@ -5651,8 +5651,8 @@ public class MessagingController implements Runnable {
 	 *            Color to flash LED. {@code null}, if no LED flash should
 	 *            happen.
 	 * @param ledSpeed
-	 *            Either {@link K9#NOTIFICATION_LED_BLINK_SLOW} or
-	 *            {@link K9#NOTIFICATION_LED_BLINK_FAST}.
+	 *            Either {@link MAIL#NOTIFICATION_LED_BLINK_SLOW} or
+	 *            {@link MAIL#NOTIFICATION_LED_BLINK_FAST}.
 	 * @param ringAndVibrate
 	 *            {@code true}, if ringtone/vibration are allowed. {@code false}
 	 *            , otherwise.
@@ -5662,7 +5662,7 @@ public class MessagingController implements Runnable {
 			int ledSpeed, boolean ringAndVibrate) {
 
 		// if it's quiet time, then we shouldn't be ringing, buzzing or flashing
-		if (K9.isQuietTime()) {
+		if (MAIL.isQuietTime()) {
 			return;
 		}
 
@@ -5679,12 +5679,12 @@ public class MessagingController implements Runnable {
 		if (ledColor != null) {
 			int ledOnMS;
 			int ledOffMS;
-			if (ledSpeed == K9.NOTIFICATION_LED_BLINK_SLOW) {
-				ledOnMS = K9.NOTIFICATION_LED_ON_TIME;
-				ledOffMS = K9.NOTIFICATION_LED_OFF_TIME;
+			if (ledSpeed == MAIL.NOTIFICATION_LED_BLINK_SLOW) {
+				ledOnMS = MAIL.NOTIFICATION_LED_ON_TIME;
+				ledOffMS = MAIL.NOTIFICATION_LED_OFF_TIME;
 			} else {
-				ledOnMS = K9.NOTIFICATION_LED_FAST_ON_TIME;
-				ledOffMS = K9.NOTIFICATION_LED_FAST_OFF_TIME;
+				ledOnMS = MAIL.NOTIFICATION_LED_FAST_ON_TIME;
+				ledOffMS = MAIL.NOTIFICATION_LED_FAST_OFF_TIME;
 			}
 
 			builder.setLights(ledColor, ledOnMS, ledOffMS);
@@ -5738,7 +5738,7 @@ public class MessagingController implements Runnable {
 			processPendingCommands(account);
 
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG, "Unable to save message as draft.", e);
+			Log.e(MAIL.LOG_TAG, "Unable to save message as draft.", e);
 			addErrorMessage(account, null, e);
 		}
 		return localMessage;
@@ -5749,7 +5749,7 @@ public class MessagingController implements Runnable {
 		if (message instanceof LocalMessage) {
 			id = ((LocalMessage) message).getId();
 		} else {
-			Log.w(K9.LOG_TAG,
+			Log.w(MAIL.LOG_TAG,
 					"MessagingController.getId() called without a LocalMessage");
 			id = INVALID_MESSAGE_ID;
 		}
@@ -5832,7 +5832,7 @@ public class MessagingController implements Runnable {
 						|| folder.getName().equals(
 								account.getOutboxFolderName())) {
 					/*
-					 * if (K9.DEBUG) Log.v(K9.LOG_TAG, "Not pushing folder " +
+					 * if (MAIL.DEBUG) Log.v(MAIL.LOG_TAG, "Not pushing folder " +
 					 * folder.getName() + " which should never be pushed");
 					 */
 
@@ -5847,7 +5847,7 @@ public class MessagingController implements Runnable {
 				if (modeMismatch(aDisplayMode, fDisplayClass)) {
 					// Never push a folder that isn't displayed
 					/*
-					 * if (K9.DEBUG) Log.v(K9.LOG_TAG, "Not pushing folder " +
+					 * if (MAIL.DEBUG) Log.v(MAIL.LOG_TAG, "Not pushing folder " +
 					 * folder.getName() + " which is in display class " +
 					 * fDisplayClass + " while account is in display mode " +
 					 * aDisplayMode);
@@ -5859,15 +5859,15 @@ public class MessagingController implements Runnable {
 				if (modeMismatch(aPushMode, fPushClass)) {
 					// Do not push folders in the wrong class
 					/*
-					 * if (K9.DEBUG) Log.v(K9.LOG_TAG, "Not pushing folder " +
+					 * if (MAIL.DEBUG) Log.v(MAIL.LOG_TAG, "Not pushing folder " +
 					 * folder.getName() + " which is in push mode " + fPushClass
 					 * + " while account is in push mode " + aPushMode);
 					 */
 
 					continue;
 				}
-				if (K9.DEBUG)
-					Log.i(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.i(MAIL.LOG_TAG,
 							"Starting pusher for " + account.getDescription()
 									+ ":" + folder.getName());
 
@@ -5880,8 +5880,8 @@ public class MessagingController implements Runnable {
 				int maxPushFolders = account.getMaxPushFolders();
 
 				if (names.size() > maxPushFolders) {
-					if (K9.DEBUG)
-						Log.i(K9.LOG_TAG,
+					if (MAIL.DEBUG)
+						Log.i(MAIL.LOG_TAG,
 								"Count of folders to push for account "
 										+ account.getDescription() + " is "
 										+ names.size()
@@ -5894,8 +5894,8 @@ public class MessagingController implements Runnable {
 				try {
 					Store store = account.getRemoteStore();
 					if (!store.isPushCapable()) {
-						if (K9.DEBUG)
-							Log.i(K9.LOG_TAG,
+						if (MAIL.DEBUG)
+							Log.i(MAIL.LOG_TAG,
 									"Account " + account.getDescription()
 											+ " is not push capable, skipping");
 
@@ -5909,28 +5909,28 @@ public class MessagingController implements Runnable {
 						}
 					}
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG, "Could not get remote store", e);
+					Log.e(MAIL.LOG_TAG, "Could not get remote store", e);
 					return false;
 				}
 
 				return true;
 			} else {
-				if (K9.DEBUG)
-					Log.i(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.i(MAIL.LOG_TAG,
 							"No folders are configured for pushing in account "
 									+ account.getDescription());
 				return false;
 			}
 
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Got exception while setting up pushing", e);
+			Log.e(MAIL.LOG_TAG, "Got exception while setting up pushing", e);
 		}
 		return false;
 	}
 
 	public void stopAllPushing() {
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG, "Stopping all pushers");
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG, "Stopping all pushers");
 
 		Iterator<Pusher> iter = pushers.values().iterator();
 		while (iter.hasNext()) {
@@ -5943,8 +5943,8 @@ public class MessagingController implements Runnable {
 	public void messagesArrived(final Account account,
 			final Folder remoteFolder, final List<Message> messages,
 			final boolean flagSyncOnly) {
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG,
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG,
 					"Got new pushed email messages for account "
 							+ account.getDescription() + ", folder "
 							+ remoteFolder.getName());
@@ -5974,8 +5974,8 @@ public class MessagingController implements Runnable {
 							localFolder.setLastPush(System.currentTimeMillis());
 							localFolder.setStatus(null);
 
-							if (K9.DEBUG)
-								Log.i(K9.LOG_TAG, "messagesArrived newCount = "
+							if (MAIL.DEBUG)
+								Log.i(MAIL.LOG_TAG, "messagesArrived newCount = "
 										+ newCount + ", unread count = "
 										+ unreadMessageCount);
 
@@ -6000,7 +6000,7 @@ public class MessagingController implements Runnable {
 								LocalFolder folder = localFolder;
 								folder.setStatus(errorMessage);
 							} catch (Exception se) {
-								Log.e(K9.LOG_TAG,
+								Log.e(MAIL.LOG_TAG,
 										"Unable to set failed status on localFolder",
 										se);
 							}
@@ -6019,10 +6019,10 @@ public class MessagingController implements Runnable {
 		try {
 			latch.await();
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Interrupted while awaiting latch release", e);
+			Log.e(MAIL.LOG_TAG, "Interrupted while awaiting latch release", e);
 		}
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG,
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG,
 					"MessagingController.messagesArrivedLatch released");
 	}
 
@@ -6299,7 +6299,7 @@ public class MessagingController implements Runnable {
 				.entrySet()) {
 			Account account = entry.getKey();
 
-			// account.refresh(Preferences.getPreferences(K9.app));
+			// account.refresh(Preferences.getPreferences(MAIL.app));
 			Map<Folder, List<Message>> folderMap = entry.getValue();
 			for (Map.Entry<Folder, List<Message>> folderEntry : folderMap
 					.entrySet()) {

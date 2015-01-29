@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.helper.ContactItem;
 
-public class EmailAddressList extends K9ListActivity implements
+public class EmailAddressList extends MAILListActivity implements
 		OnItemClickListener {
 	public static final String EXTRA_CONTACT_ITEM = "contact";
 	public static final String EXTRA_EMAIL_ADDRESS = "emailAddress";

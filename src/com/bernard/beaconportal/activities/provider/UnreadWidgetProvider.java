@@ -13,7 +13,7 @@ import android.widget.RemoteViews;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.AccountStats;
 import com.bernard.beaconportal.activities.BaseAccount;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.FolderList;
@@ -73,7 +73,7 @@ public class UnreadWidgetProvider extends AppWidgetProvider {
 			if (searchAccount != null) {
 				account = searchAccount;
 				MessagingController controller = MessagingController
-						.getInstance(K9.app);
+						.getInstance(MAIL.app);
 				stats = controller.getSearchAccountStatsSynchronous(
 						searchAccount, null);
 				clickIntent = MessageList.intentDisplaySearch(context,
@@ -85,7 +85,7 @@ public class UnreadWidgetProvider extends AppWidgetProvider {
 					account = realAccount;
 					stats = realAccount.getStats(context);
 
-					if (K9.FOLDER_NONE.equals(realAccount
+					if (MAIL.FOLDER_NONE.equals(realAccount
 							.getAutoExpandFolderName())) {
 						clickIntent = FolderList.actionHandleAccountIntent(
 								context, realAccount, false);
@@ -110,8 +110,8 @@ public class UnreadWidgetProvider extends AppWidgetProvider {
 				unreadCount = stats.unreadMessageCount;
 			}
 		} catch (Exception e) {
-			if (K9.DEBUG) {
-				Log.e(K9.LOG_TAG, "Error getting widget configuration", e);
+			if (MAIL.DEBUG) {
+				Log.e(MAIL.LOG_TAG, "Error getting widget configuration", e);
 			}
 		}
 

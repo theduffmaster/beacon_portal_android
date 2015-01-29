@@ -18,7 +18,7 @@ import android.text.util.Rfc822Token;
 import android.text.util.Rfc822Tokenizer;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.helper.Contacts;
 import com.bernard.beaconportal.activities.helper.StringUtils;
 import com.bernard.beaconportal.activities.helper.Utility;
@@ -164,12 +164,12 @@ public class Address {
 					addresses.add(new Address(mailbox.getLocalPart() + "@"
 							+ mailbox.getDomain(), mailbox.getName(), false));
 				} else {
-					Log.e(K9.LOG_TAG, "Unknown address type from Mime4J: "
+					Log.e(MAIL.LOG_TAG, "Unknown address type from Mime4J: "
 							+ address.getClass().toString());
 				}
 			}
 		} catch (MimeException pe) {
-			Log.e(K9.LOG_TAG, "MimeException in Address.parse()", pe);
+			Log.e(MAIL.LOG_TAG, "MimeException in Address.parse()", pe);
 			// but we do an silent failover : we just use the given string as
 			// name with empty address
 			addresses.add(new Address(null, addressList, false));
@@ -259,7 +259,7 @@ public class Address {
 	 * @return A "friendly" name for this {@link Address}.
 	 */
 	public CharSequence toFriendly(final Contacts contacts) {
-		if (!K9.showCorrespondentNames()) {
+		if (!MAIL.showCorrespondentNames()) {
 			return mAddress;
 
 		} else if (contacts != null) {
@@ -269,11 +269,11 @@ public class Address {
 			// reasons.
 
 			if (name != null) {
-				if (K9.changeContactNameColor()) {
+				if (MAIL.changeContactNameColor()) {
 					final SpannableString coloredName = new SpannableString(
 							name);
 					coloredName.setSpan(
-							new ForegroundColorSpan(K9.getContactNameColor()),
+							new ForegroundColorSpan(MAIL.getContactNameColor()),
 							0, coloredName.length(),
 							Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 					return coloredName;

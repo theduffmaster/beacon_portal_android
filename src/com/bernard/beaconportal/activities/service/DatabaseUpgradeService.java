@@ -11,7 +11,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.activity.UpgradeDatabases;
 import com.bernard.beaconportal.activities.helper.power.TracingPowerManager;
@@ -123,8 +123,8 @@ public class DatabaseUpgradeService extends Service {
 		if (success) {
 			// The service wasn't running yet.
 
-			if (K9.DEBUG) {
-				Log.i(K9.LOG_TAG, "DatabaseUpgradeService started");
+			if (MAIL.DEBUG) {
+				Log.i(MAIL.LOG_TAG, "DatabaseUpgradeService started");
 			}
 
 			acquireWakelock();
@@ -165,8 +165,8 @@ public class DatabaseUpgradeService extends Service {
 	private void stopService() {
 		stopSelf();
 
-		if (K9.DEBUG) {
-			Log.i(K9.LOG_TAG, "DatabaseUpgradeService stopped");
+		if (MAIL.DEBUG) {
+			Log.i(MAIL.LOG_TAG, "DatabaseUpgradeService stopped");
 		}
 
 		releaseWakelock();
@@ -206,15 +206,15 @@ public class DatabaseUpgradeService extends Service {
 				// database if necessary
 				account.getLocalStore();
 			} catch (UnavailableStorageException e) {
-				Log.e(K9.LOG_TAG, "Database unavailable");
+				Log.e(MAIL.LOG_TAG, "Database unavailable");
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG, "Error while upgrading database", e);
+				Log.e(MAIL.LOG_TAG, "Error while upgrading database", e);
 			}
 
 			mProgress++;
 		}
 
-		K9.setDatabasesUpToDate(true);
+		MAIL.setDatabasesUpToDate(true);
 		sendUpgradeCompleteBroadcast();
 	}
 

@@ -632,7 +632,7 @@ public class FragmentSettings extends Fragment {
 
 		try {
 
-			hour = refresh_time.getInt("Hour", 3);
+			hour = refresh_time.getInt("Hour", 15);
 
 			minute = refresh_time.getInt("Minute", 0);
 

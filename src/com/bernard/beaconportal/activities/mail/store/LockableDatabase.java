@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteException;
 import android.os.Build;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.helper.Utility;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 
@@ -74,8 +74,8 @@ public class LockableDatabase {
 				return;
 			}
 
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "LockableDatabase: Closing DB " + uUid
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "LockableDatabase: Closing DB " + uUid
 						+ " due to unmount event on StorageProvider: "
 						+ providerId);
 			}
@@ -88,7 +88,7 @@ public class LockableDatabase {
 					unlockWrite();
 				}
 			} catch (UnavailableStorageException e) {
-				Log.w(K9.LOG_TAG, "Unable to writelock on unmount", e);
+				Log.w(MAIL.LOG_TAG, "Unable to writelock on unmount", e);
 			}
 		}
 
@@ -98,8 +98,8 @@ public class LockableDatabase {
 				return;
 			}
 
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "LockableDatabase: Opening DB " + uUid
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "LockableDatabase: Opening DB " + uUid
 						+ " due to mount event on StorageProvider: "
 						+ providerId);
 			}
@@ -107,7 +107,7 @@ public class LockableDatabase {
 			try {
 				openOrCreateDataspace(mApplication);
 			} catch (UnavailableStorageException e) {
-				Log.e(K9.LOG_TAG, "Unable to open DB on mount", e);
+				Log.e(MAIL.LOG_TAG, "Unable to open DB on mount", e);
 			}
 		}
 	}
@@ -284,7 +284,7 @@ public class LockableDatabase {
 		final boolean doTransaction = transactional
 				&& inTransaction.get() == null;
 		try {
-			final boolean debug = K9.DEBUG;
+			final boolean debug = MAIL.DEBUG;
 			if (doTransaction) {
 				inTransaction.set(Boolean.TRUE);
 				mDb.beginTransaction();
@@ -308,7 +308,7 @@ public class LockableDatabase {
 					// exception
 					mDb.endTransaction();
 					if (debug) {
-						Log.v(K9.LOG_TAG,
+						Log.v(MAIL.LOG_TAG,
 								"LockableDatabase: Transaction ended, took "
 										+ Long.toString(System
 												.currentTimeMillis() - begin)
@@ -334,7 +334,7 @@ public class LockableDatabase {
 	public void switchProvider(final String newProviderId)
 			throws MessagingException {
 		if (newProviderId.equals(mStorageProviderId)) {
-			Log.v(K9.LOG_TAG,
+			Log.v(MAIL.LOG_TAG,
 					"LockableDatabase: Ignoring provider switch request as they are equal: "
 							+ newProviderId);
 			return;
@@ -348,7 +348,7 @@ public class LockableDatabase {
 				try {
 					mDb.close();
 				} catch (Exception e) {
-					Log.i(K9.LOG_TAG,
+					Log.i(MAIL.LOG_TAG,
 							"Unable to close DB on local store migration", e);
 				}
 
@@ -415,7 +415,7 @@ public class LockableDatabase {
 				}
 			} catch (SQLiteException e) {
 				// try to gracefully handle DB corruption - see issue 2537
-				Log.w(K9.LOG_TAG, "Unable to open DB " + databaseFile
+				Log.w(MAIL.LOG_TAG, "Unable to open DB " + databaseFile
 						+ " - removing file and retrying", e);
 				databaseFile.delete();
 				if (StorageManager.InternalStorageProvider.ID
@@ -525,7 +525,7 @@ public class LockableDatabase {
 				deleteDatabase(storageManager.getDatabase(uUid,
 						mStorageProviderId));
 			} catch (Exception e) {
-				Log.i(K9.LOG_TAG,
+				Log.i(MAIL.LOG_TAG,
 						"LockableDatabase: delete(): Unable to delete backing DB file",
 						e);
 			}
@@ -551,7 +551,7 @@ public class LockableDatabase {
 			deleted |= new File(database.getPath() + "-journal").delete();
 		}
 		if (!deleted) {
-			Log.i(K9.LOG_TAG,
+			Log.i(MAIL.LOG_TAG,
 					"LockableDatabase: deleteDatabase(): No files deleted.");
 		}
 	}

@@ -35,7 +35,7 @@ import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.AccountStats;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.activity.FolderInfoHolder;
 import com.bernard.beaconportal.activities.activity.MessageInfoHolder;
@@ -357,7 +357,7 @@ public class MessageProvider extends ContentProvider {
 			final SearchAccount integratedInboxAccount = SearchAccount
 					.createUnifiedInboxAccount(getContext());
 			final MessagingController msgController = MessagingController
-					.getInstance(K9.app);
+					.getInstance(MAIL.app);
 
 			msgController.searchLocalMessages(
 					integratedInboxAccount.getRelatedSearch(),
@@ -569,7 +569,7 @@ public class MessageProvider extends ContentProvider {
 
 						ret.addRow(values);
 					} catch (MessagingException e) {
-						Log.e(K9.LOG_TAG, e.getMessage());
+						Log.e(MAIL.LOG_TAG, e.getMessage());
 						values[0] = "Unknown";
 						values[1] = 0;
 					}
@@ -621,7 +621,7 @@ public class MessageProvider extends ContentProvider {
 		public void close() {
 			if (mClosed.compareAndSet(false, true)) {
 				mCursor.close();
-				Log.d(K9.LOG_TAG,
+				Log.d(MAIL.LOG_TAG,
 						"Cursor closed, null'ing & releasing semaphore");
 				mCursor = null;
 				mSemaphore.release();
@@ -933,7 +933,7 @@ public class MessageProvider extends ContentProvider {
 			 * instances
 			 */
 			if (!(cursor instanceof CrossProcessCursor)) {
-				Log.w(K9.LOG_TAG, "Unsupported cursor, returning null: "
+				Log.w(MAIL.LOG_TAG, "Unsupported cursor, returning null: "
 						+ cursor);
 				mSemaphore.release();
 				return null;
@@ -953,12 +953,12 @@ public class MessageProvider extends ContentProvider {
 				public void run() {
 					final MonitoredCursor monitored = weakReference.get();
 					if (monitored != null && !monitored.isClosed()) {
-						Log.w(K9.LOG_TAG,
+						Log.w(MAIL.LOG_TAG,
 								"Forcibly closing remotely exposed cursor");
 						try {
 							monitored.close();
 						} catch (Exception e) {
-							Log.w(K9.LOG_TAG,
+							Log.w(MAIL.LOG_TAG,
 									"Exception while forcibly closing cursor",
 									e);
 						}
@@ -1019,7 +1019,7 @@ public class MessageProvider extends ContentProvider {
 			try {
 				queue.put(mHolders);
 			} catch (InterruptedException e) {
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						"Unable to return message list back to caller", e);
 			}
 		}
@@ -1070,10 +1070,10 @@ public class MessageProvider extends ContentProvider {
 		registerQueryHandler(new ThrottlingQueryHandler(
 				new UnreadQueryHandler()));
 
-		K9.registerApplicationAware(new K9.ApplicationAware() {
+		MAIL.registerApplicationAware(new MAIL.ApplicationAware() {
 			@Override
 			public void initializeComponent(final Application application) {
-				Log.v(K9.LOG_TAG, "Registering content resolver notifier");
+				Log.v(MAIL.LOG_TAG, "Registering content resolver notifier");
 
 				MessagingController.getInstance(application).addListener(
 						new MessagingListener() {
@@ -1092,12 +1092,12 @@ public class MessageProvider extends ContentProvider {
 
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
-		if (K9.app == null) {
+		if (MAIL.app == null) {
 			return 0;
 		}
 
-		if (K9.DEBUG) {
-			Log.v(K9.LOG_TAG, "MessageProvider/delete: " + uri);
+		if (MAIL.DEBUG) {
+			Log.v(MAIL.LOG_TAG, "MessageProvider/delete: " + uri);
 		}
 
 		// Note: can only delete a message
@@ -1119,7 +1119,7 @@ public class MessageProvider extends ContentProvider {
 			if (account.getAccountNumber() == accountId) {
 				myAccount = account;
 				if (!account.isAvailable(getContext())) {
-					Log.w(K9.LOG_TAG,
+					Log.w(MAIL.LOG_TAG,
 							"not deleting messages because account is unavailable at the moment");
 					return 0;
 				}
@@ -1129,21 +1129,21 @@ public class MessageProvider extends ContentProvider {
 		// get localstore parameter
 		Message msg = null;
 		try {
-			Folder lf = Store.getLocalInstance(myAccount, K9.app).getFolder(
+			Folder lf = Store.getLocalInstance(myAccount, MAIL.app).getFolder(
 					folderName);
 			int msgCount = lf.getMessageCount();
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "folder msg count = " + msgCount);
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "folder msg count = " + msgCount);
 			}
 			msg = lf.getMessage(msgUid);
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG, "Unable to retrieve message", e);
+			Log.e(MAIL.LOG_TAG, "Unable to retrieve message", e);
 		}
 
 		// launch command to delete the message
 		if ((myAccount != null) && (msg != null)) {
 			MessagingController controller = MessagingController
-					.getInstance(K9.app);
+					.getInstance(MAIL.app);
 			controller.deleteMessages(Collections.singletonList(msg), null);
 		}
 
@@ -1153,12 +1153,12 @@ public class MessageProvider extends ContentProvider {
 
 	@Override
 	public String getType(Uri uri) {
-		if (K9.app == null) {
+		if (MAIL.app == null) {
 			return null;
 		}
 
-		if (K9.DEBUG) {
-			Log.v(K9.LOG_TAG, "MessageProvider/getType: " + uri);
+		if (MAIL.DEBUG) {
+			Log.v(MAIL.LOG_TAG, "MessageProvider/getType: " + uri);
 		}
 
 		return null;
@@ -1166,12 +1166,12 @@ public class MessageProvider extends ContentProvider {
 
 	@Override
 	public Uri insert(Uri uri, ContentValues values) {
-		if (K9.app == null) {
+		if (MAIL.app == null) {
 			return null;
 		}
 
-		if (K9.DEBUG) {
-			Log.v(K9.LOG_TAG, "MessageProvider/insert: " + uri);
+		if (MAIL.DEBUG) {
+			Log.v(MAIL.LOG_TAG, "MessageProvider/insert: " + uri);
 		}
 
 		return null;
@@ -1181,12 +1181,12 @@ public class MessageProvider extends ContentProvider {
 	public Cursor query(final Uri uri, final String[] projection,
 			final String selection, final String[] selectionArgs,
 			final String sortOrder) {
-		if (K9.app == null) {
+		if (MAIL.app == null) {
 			return null;
 		}
 
-		if (K9.DEBUG) {
-			Log.v(K9.LOG_TAG, "MessageProvider/query: " + uri);
+		if (MAIL.DEBUG) {
+			Log.v(MAIL.LOG_TAG, "MessageProvider/query: " + uri);
 		}
 
 		final Cursor cursor;
@@ -1204,7 +1204,7 @@ public class MessageProvider extends ContentProvider {
 			cursor = handler.query(uri, projection, selection, selectionArgs,
 					sortOrder);
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Unable to execute query for URI: " + uri, e);
+			Log.e(MAIL.LOG_TAG, "Unable to execute query for URI: " + uri, e);
 			return null;
 		}
 
@@ -1214,12 +1214,12 @@ public class MessageProvider extends ContentProvider {
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
 			String[] selectionArgs) {
-		if (K9.app == null) {
+		if (MAIL.app == null) {
 			return 0;
 		}
 
-		if (K9.DEBUG) {
-			Log.v(K9.LOG_TAG, "MessageProvider/update: " + uri);
+		if (MAIL.DEBUG) {
+			Log.v(MAIL.LOG_TAG, "MessageProvider/update: " + uri);
 		}
 
 		// TBD

@@ -5,7 +5,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 import android.test.AndroidTestCase;
 
-import com.bernard.beaconportal.activities.activity.K9ActivityCommon;
+import com.bernard.beaconportal.activities.activity.MAILActivityCommon;
 import com.bernard.beaconportal.activities.mail.Address;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.Message.RecipientType;
@@ -28,7 +28,7 @@ public class ViewablesTest extends AndroidTestCase {
 
         String expectedText = bodyText;
         String expectedHtml =
-                "<pre class=\"k9mail\">" +
+                "<pre class=\"mailmail\">" +
                 "K-9 Mail rocks :&gt;" +
                 "</pre>";
 
@@ -85,12 +85,12 @@ public class ViewablesTest extends AndroidTestCase {
                 "------------------------------------------------------------------------\r\n\r\n" +
                 bodyText2;
         String expectedHtml =
-                "<pre class=\"k9mail\">" +
+                "<pre class=\"mailmail\">" +
                 bodyText1 +
                 "</pre>" +
                 "<p style=\"margin-top: 2.5em; margin-bottom: 1em; " +
                         "border-bottom: 1px solid #000\"></p>" +
-                "<pre class=\"k9mail\">" +
+                "<pre class=\"mailmail\">" +
                 bodyText2 +
                 "</pre>";
 
@@ -100,7 +100,7 @@ public class ViewablesTest extends AndroidTestCase {
     }
 
     public void testTextPlusRfc822Message() throws MessagingException {
-    	K9ActivityCommon.setLanguage(getContext(), "en");
+    	MAILActivityCommon.setLanguage(getContext(), "en");
         Locale.setDefault(Locale.US);
         TimeZone.setDefault(TimeZone.getTimeZone("GMT+01:00"));
 
@@ -148,7 +148,7 @@ public class ViewablesTest extends AndroidTestCase {
                 "\r\n" +
                 innerBodyText;
         String expectedHtml =
-                "<pre class=\"k9mail\">" +
+                "<pre class=\"mailmail\">" +
                 bodyText +
                 "</pre>" +
                 "<p style=\"margin-top: 2.5em; margin-bottom: 1em; border-bottom: " +
@@ -168,7 +168,7 @@ public class ViewablesTest extends AndroidTestCase {
                 "<td>Subject</td>" +
                 "</tr>" +
                 "</table>" +
-                "<pre class=\"k9mail\">" +
+                "<pre class=\"mailmail\">" +
                 innerBodyText +
                 "</pre>";
 

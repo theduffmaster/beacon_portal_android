@@ -13,7 +13,7 @@ import javax.net.ssl.SSLSocketFactory;
 
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 
 /**
  * Filter and reorder list of cipher suites and TLS versions.
@@ -71,7 +71,7 @@ public class TrustedSocketFactory {
 			enabledCiphers = sock.getEnabledCipherSuites();
 			enabledProtocols = sock.getEnabledProtocols();
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG,
+			Log.e(MAIL.LOG_TAG,
 					"Error getting information about available SSL/TLS ciphers and "
 							+ "protocols", e);
 		}

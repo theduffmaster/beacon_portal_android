@@ -1,6 +1,6 @@
 package com.bernard.beaconportal.activities.mail;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 
 public enum ConnectionSecurity {
@@ -16,6 +16,6 @@ public enum ConnectionSecurity {
 
 	@Override
 	public String toString() {
-		return K9.app.getString(mResourceId);
+		return MAIL.app.getString(mResourceId);
 	}
 }

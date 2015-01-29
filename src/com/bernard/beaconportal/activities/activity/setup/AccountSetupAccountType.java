@@ -16,17 +16,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
+import com.bernard.beaconportal.activities.activity.MAILActivityMaterial;
 
 /**
  * Prompts the user to select an account type. The account type, along with the
  * passed in email address, password and makeDefault are then passed on to the
  * AccountSetupIncoming activity.
  */
-public class AccountSetupAccountType extends K9ActivityMaterial implements
+public class AccountSetupAccountType extends MAILActivityMaterial implements
 		OnClickListener {
 	private static final String EXTRA_ACCOUNT = "account";
 
@@ -172,7 +172,7 @@ public class AccountSetupAccountType extends K9ActivityMaterial implements
 	}
 
 	private void failure(Exception use) {
-		Log.e(K9.LOG_TAG, "Failure", use);
+		Log.e(MAIL.LOG_TAG, "Failure", use);
 		String toastText = getString(R.string.account_setup_bad_uri,
 				use.getMessage());
 

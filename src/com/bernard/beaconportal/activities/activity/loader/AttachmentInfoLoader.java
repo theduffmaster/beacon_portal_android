@@ -10,7 +10,7 @@ import android.net.Uri;
 import android.provider.OpenableColumns;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.activity.misc.Attachment;
 import com.bernard.beaconportal.activities.mail.internet.MimeUtility;
 
@@ -78,16 +78,16 @@ public class AttachmentInfoLoader extends AsyncTaskLoader<Attachment> {
 		if (size <= 0) {
 			String uriString = uri.toString();
 			if (uriString.startsWith("file://")) {
-				Log.v(K9.LOG_TAG, uriString.substring("file://".length()));
+				Log.v(MAIL.LOG_TAG, uriString.substring("file://".length()));
 				File f = new File(uriString.substring("file://".length()));
 				size = f.length();
 			} else {
-				Log.v(K9.LOG_TAG, "Not a file: " + uriString);
+				Log.v(MAIL.LOG_TAG, "Not a file: " + uriString);
 			}
 		} else {
-			Log.v(K9.LOG_TAG, "old attachment.size: " + size);
+			Log.v(MAIL.LOG_TAG, "old attachment.size: " + size);
 		}
-		Log.v(K9.LOG_TAG, "new attachment.size: " + size);
+		Log.v(MAIL.LOG_TAG, "new attachment.size: " + size);
 
 		mAttachment.contentType = usableContentType;
 		mAttachment.name = name;

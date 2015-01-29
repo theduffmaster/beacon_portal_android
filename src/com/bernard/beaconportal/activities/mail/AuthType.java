@@ -3,7 +3,7 @@ package com.bernard.beaconportal.activities.mail;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 
 public enum AuthType {
@@ -81,7 +81,7 @@ public enum AuthType {
 		if (mResourceId == 0) {
 			return name();
 		} else {
-			return K9.app.getString(mResourceId);
+			return MAIL.app.getString(mResourceId);
 		}
 	}
 }

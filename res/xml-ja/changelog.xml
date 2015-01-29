@@ -124,7 +124,7 @@
         <change>Fastmail.FMのための自動設定を追加しました</change>
         <change>新たにスロバキア語の翻訳を追加しました</change>
         <change>イタリア語、ロシア語の翻訳を更新しました</change>
-        <change>シグネチャを使わない設定のとき、下書き保存時にX-K9mail-Identityヘッダにシグネチャを保存しないようにしました</change>
+        <change>シグネチャを使わない設定のとき、下書き保存時にX-MAILmail-Identityヘッダにシグネチャを保存しないようにしました</change>
     </release>
     <release version="4.505" versioncode="18005" >
         <change>フォルダ一覧の性能を向上しました</change>

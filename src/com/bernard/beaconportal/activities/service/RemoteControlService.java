@@ -1,15 +1,15 @@
 package com.bernard.beaconportal.activities.service;
 
-import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_ACCOUNT_UUID;
-import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_ALL_ACCOUNTS;
-import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_BACKGROUND_OPERATIONS;
-import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_NOTIFICATION_ENABLED;
-import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_POLL_CLASSES;
-import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_POLL_FREQUENCY;
-import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_PUSH_CLASSES;
-import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_RING_ENABLED;
-import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_THEME;
-import static com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl.K9_VIBRATE_ENABLED;
+import static com.bernard.beaconportal.activities.remotecontrol.MAILRemoteControl.MAIL_ACCOUNT_UUID;
+import static com.bernard.beaconportal.activities.remotecontrol.MAILRemoteControl.MAIL_ALL_ACCOUNTS;
+import static com.bernard.beaconportal.activities.remotecontrol.MAILRemoteControl.MAIL_BACKGROUND_OPERATIONS;
+import static com.bernard.beaconportal.activities.remotecontrol.MAILRemoteControl.MAIL_NOTIFICATION_ENABLED;
+import static com.bernard.beaconportal.activities.remotecontrol.MAILRemoteControl.MAIL_POLL_CLASSES;
+import static com.bernard.beaconportal.activities.remotecontrol.MAILRemoteControl.MAIL_POLL_FREQUENCY;
+import static com.bernard.beaconportal.activities.remotecontrol.MAILRemoteControl.MAIL_PUSH_CLASSES;
+import static com.bernard.beaconportal.activities.remotecontrol.MAILRemoteControl.MAIL_RING_ENABLED;
+import static com.bernard.beaconportal.activities.remotecontrol.MAILRemoteControl.MAIL_THEME;
+import static com.bernard.beaconportal.activities.remotecontrol.MAILRemoteControl.MAIL_VIBRATE_ENABLED;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,11 +19,11 @@ import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Account.FolderMode;
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.K9.BACKGROUND_OPS;
+import com.bernard.beaconportal.activities.MAIL;
+import com.bernard.beaconportal.activities.MAIL.BACKGROUND_OPS;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.remotecontrol.K9RemoteControl;
+import com.bernard.beaconportal.activities.remotecontrol.MAILRemoteControl;
 
 public class RemoteControlService extends CoreService {
 	private final static String RESCHEDULE_ACTION = "com.bernard.beaconportal.activities.service.RemoteControlService.RESCHEDULE_ACTION";
@@ -43,25 +43,25 @@ public class RemoteControlService extends CoreService {
 
 	@Override
 	public int startService(final Intent intent, final int startId) {
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG, "RemoteControlService started with startId = "
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG, "RemoteControlService started with startId = "
 					+ startId);
 		final Preferences preferences = Preferences.getPreferences(this);
 
 		if (RESCHEDULE_ACTION.equals(intent.getAction())) {
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG,
 						"RemoteControlService requesting MailService poll reschedule");
 			MailService.actionReschedulePoll(this, null);
 		}
 		if (PUSH_RESTART_ACTION.equals(intent.getAction())) {
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG,
 						"RemoteControlService requesting MailService push restart");
 			MailService.actionRestartPushers(this, null);
 		} else if (RemoteControlService.SET_ACTION.equals(intent.getAction())) {
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG,
 						"RemoteControlService got request to change settings");
 			execute(getApplication(),
 					new Runnable() {
@@ -71,15 +71,15 @@ public class RemoteControlService extends CoreService {
 								boolean needsReschedule = false;
 								boolean needsPushRestart = false;
 								String uuid = intent
-										.getStringExtra(K9_ACCOUNT_UUID);
+										.getStringExtra(MAIL_ACCOUNT_UUID);
 								boolean allAccounts = intent.getBooleanExtra(
-										K9_ALL_ACCOUNTS, false);
-								if (K9.DEBUG) {
+										MAIL_ALL_ACCOUNTS, false);
+								if (MAIL.DEBUG) {
 									if (allAccounts) {
-										Log.i(K9.LOG_TAG,
+										Log.i(MAIL.LOG_TAG,
 												"RemoteControlService changing settings for all accounts");
 									} else {
-										Log.i(K9.LOG_TAG,
+										Log.i(MAIL.LOG_TAG,
 												"RemoteControlService changing settings for account with UUID "
 														+ uuid);
 									}
@@ -90,24 +90,24 @@ public class RemoteControlService extends CoreService {
 									if (allAccounts
 											|| account.getUuid().equals(uuid)) {
 
-										if (K9.DEBUG)
-											Log.i(K9.LOG_TAG,
+										if (MAIL.DEBUG)
+											Log.i(MAIL.LOG_TAG,
 													"RemoteControlService changing settings for account "
 															+ account
 																	.getDescription());
 
 										String notificationEnabled = intent
-												.getStringExtra(K9_NOTIFICATION_ENABLED);
+												.getStringExtra(MAIL_NOTIFICATION_ENABLED);
 										String ringEnabled = intent
-												.getStringExtra(K9_RING_ENABLED);
+												.getStringExtra(MAIL_RING_ENABLED);
 										String vibrateEnabled = intent
-												.getStringExtra(K9_VIBRATE_ENABLED);
+												.getStringExtra(MAIL_VIBRATE_ENABLED);
 										String pushClasses = intent
-												.getStringExtra(K9_PUSH_CLASSES);
+												.getStringExtra(MAIL_PUSH_CLASSES);
 										String pollClasses = intent
-												.getStringExtra(K9_POLL_CLASSES);
+												.getStringExtra(MAIL_POLL_CLASSES);
 										String pollFrequency = intent
-												.getStringExtra(K9_POLL_FREQUENCY);
+												.getStringExtra(MAIL_POLL_FREQUENCY);
 
 										if (notificationEnabled != null) {
 											account.setNotifyNewMail(Boolean
@@ -151,40 +151,40 @@ public class RemoteControlService extends CoreService {
 												.getPreferences(RemoteControlService.this));
 									}
 								}
-								if (K9.DEBUG)
-									Log.i(K9.LOG_TAG,
+								if (MAIL.DEBUG)
+									Log.i(MAIL.LOG_TAG,
 											"RemoteControlService changing global settings");
 
 								String backgroundOps = intent
-										.getStringExtra(K9_BACKGROUND_OPERATIONS);
-								if (K9RemoteControl.K9_BACKGROUND_OPERATIONS_ALWAYS
+										.getStringExtra(MAIL_BACKGROUND_OPERATIONS);
+								if (MAILRemoteControl.MAIL_BACKGROUND_OPERATIONS_ALWAYS
 										.equals(backgroundOps)
-										|| K9RemoteControl.K9_BACKGROUND_OPERATIONS_NEVER
+										|| MAILRemoteControl.MAIL_BACKGROUND_OPERATIONS_NEVER
 												.equals(backgroundOps)
-										|| K9RemoteControl.K9_BACKGROUND_OPERATIONS_WHEN_CHECKED
+										|| MAILRemoteControl.MAIL_BACKGROUND_OPERATIONS_WHEN_CHECKED
 												.equals(backgroundOps)
-										|| K9RemoteControl.K9_BACKGROUND_OPERATIONS_WHEN_CHECKED_AUTO_SYNC
+										|| MAILRemoteControl.MAIL_BACKGROUND_OPERATIONS_WHEN_CHECKED_AUTO_SYNC
 												.equals(backgroundOps)) {
 									BACKGROUND_OPS newBackgroundOps = BACKGROUND_OPS
 											.valueOf(backgroundOps);
-									boolean needsReset = K9
+									boolean needsReset = MAIL
 											.setBackgroundOps(newBackgroundOps);
 									needsPushRestart |= needsReset;
 									needsReschedule |= needsReset;
 								}
 
-								String theme = intent.getStringExtra(K9_THEME);
+								String theme = intent.getStringExtra(MAIL_THEME);
 								if (theme != null) {
-									K9.setK9Theme(K9RemoteControl.K9_THEME_DARK
-											.equals(theme) ? K9.Theme.DARK
-											: K9.Theme.LIGHT);
+									MAIL.setMAILTheme(MAILRemoteControl.MAIL_THEME_DARK
+											.equals(theme) ? MAIL.Theme.DARK
+											: MAIL.Theme.LIGHT);
 								}
 
 								SharedPreferences sPrefs = preferences
 										.getPreferences();
 
 								Editor editor = sPrefs.edit();
-								K9.save(editor);
+								MAIL.save(editor);
 								editor.commit();
 
 								if (needsReschedule) {
@@ -210,7 +210,7 @@ public class RemoteControlService extends CoreService {
 											nextTime, i);
 								}
 							} catch (Exception e) {
-								Log.e(K9.LOG_TAG, "Could not handle K9_SET", e);
+								Log.e(MAIL.LOG_TAG, "Could not handle MAIL_SET", e);
 								Toast toast = Toast.makeText(
 										RemoteControlService.this,
 										e.getMessage(), Toast.LENGTH_LONG);

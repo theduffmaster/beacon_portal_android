@@ -8,7 +8,7 @@ import java.util.Set;
 
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 
 public class Editor implements android.content.SharedPreferences.Editor {
 	private Storage storage;
@@ -29,14 +29,14 @@ public class Editor implements android.content.SharedPreferences.Editor {
 			String key = entry.getKey();
 			Object value = entry.getValue();
 			if (key != null && value != null) {
-				if (K9.DEBUG) {
-					Log.d(K9.LOG_TAG, "Copying key '" + key + "', value '"
+				if (MAIL.DEBUG) {
+					Log.d(MAIL.LOG_TAG, "Copying key '" + key + "', value '"
 							+ value + "'");
 				}
 				changes.put(key, "" + value);
 			} else {
-				if (K9.DEBUG) {
-					Log.d(K9.LOG_TAG, "Skipping copying key '" + key
+				if (MAIL.DEBUG) {
+					Log.d(MAIL.LOG_TAG, "Skipping copying key '" + key
 							+ "', value '" + value + "'");
 				}
 			}
@@ -64,14 +64,14 @@ public class Editor implements android.content.SharedPreferences.Editor {
 			commitChanges();
 			return true;
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Failed to save preferences", e);
+			Log.e(MAIL.LOG_TAG, "Failed to save preferences", e);
 			return false;
 		}
 	}
 
 	public void commitChanges() {
 		long startTime = System.currentTimeMillis();
-		Log.i(K9.LOG_TAG, "Committing preference changes");
+		Log.i(MAIL.LOG_TAG, "Committing preference changes");
 		Runnable committer = new Runnable() {
 			@Override
 			public void run() {
@@ -96,7 +96,7 @@ public class Editor implements android.content.SharedPreferences.Editor {
 		};
 		storage.doInTransaction(committer);
 		long endTime = System.currentTimeMillis();
-		Log.i(K9.LOG_TAG, "Preferences commit took " + (endTime - startTime)
+		Log.i(MAIL.LOG_TAG, "Preferences commit took " + (endTime - startTime)
 				+ "ms");
 
 	}

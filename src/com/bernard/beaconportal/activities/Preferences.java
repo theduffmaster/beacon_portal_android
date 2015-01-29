@@ -42,7 +42,7 @@ public class Preferences {
 		mStorage = Storage.getStorage(context);
 		mContext = context;
 		if (mStorage.size() == 0) {
-			Log.i(K9.LOG_TAG,
+			Log.i(MAIL.LOG_TAG,
 					"Preferences storage is zero-size, importing from Android-style preferences");
 			Editor editor = mStorage.edit();
 			editor.copy(context.getSharedPreferences("AndroidMail.Main",
@@ -112,7 +112,7 @@ public class Preferences {
 	}
 
 	public synchronized Account newAccount() {
-		newAccount = new Account(K9.app);
+		newAccount = new Account(MAIL.app);
 		accounts.put(newAccount.getUuid(), newAccount);
 		accountsInOrder.add(newAccount);
 

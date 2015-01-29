@@ -8,7 +8,7 @@
   <string name="shortcuts_title">K-9 fiókok</string>
   <string name="unread_widget_label">K-9 olvasatlan</string>
   <string name="remote_control_label">K-9 Mail távoli vezérlés</string>
-  <string name="remote_control_desc">Lehetővé teszi, hogy az alkalmazás módosítsa a K9 mail beállításait.</string>
+  <string name="remote_control_desc">Lehetővé teszi, hogy az alkalmazás módosítsa a MAIL mail beállításait.</string>
   <!--Used in the about dialog-->
   <string name="app_authors">Google, The K-9 Dog Walkers.</string>
   <string name="app_copyright_fmt">Copyright 2008-<xliff:g>%s</xliff:g> The K-9 Dog Walkers. Portions Copyright 2006-<xliff:g>%s</xliff:g> the Android Open Source Project.</string>
@@ -41,13 +41,13 @@ K-9 továbbfejlesztett funkciói:
 Vegye figyelembe, hogy a K-9 nem támogatja a legtöbb ingyenes hotmail fiókot és még sok más klienst. Történnek furcsaságok, ha Microsoft Exchange-el kommunikál.
 </p><p>
 Hibajelentéseivel hozzájárul az újabb verziók tökéletesítéséhez, kérdéseit itt teheti fel
-<a href="http://k9mail.googlecode.com/">http://k9mail.googlecode.com/</a>.
+<a href="http://mailmail.googlecode.com/">http://mailmail.googlecode.com/</a>.
 </p>
     ]]></string>
   <!--Default signature-->
   <string name="default_signature">-- \nEzt a levelet mobiltelefonról küldtem, K-9 Mail-el. Elnézést a levél rövidségéért és az esetleges hibákért.</string>
   <!--General strings that include the app name-->
-  <string name="account_delete_dlg_instructions_fmt">A \"<xliff:g id="account">%s</xliff:g>\" fiók törölve a K9 Mail-ból.</string>
+  <string name="account_delete_dlg_instructions_fmt">A \"<xliff:g id="account">%s</xliff:g>\" fiók törölve a MAIL Mail-ból.</string>
   <string name="account_recreate_dlg_instructions_fmt">Az összes üzenet, melléklet, mappa és beállításai törlődni fognak a \"<xliff:g id="account">%s</xliff:g>\" fiókból. A fiók beállításai megmaradnak.</string>
   <string name="account_clear_dlg_instructions_fmt">Minden levél törlődni fog a \"<xliff:g id="account">%s</xliff:g>\" fiókból, de a beállítások megmaradnak.</string>
   <string name="insufficient_apg_permissions">A K-9-nek nincs hozzáférési joga az APG-hez. Kérem telepítse újra a K-9 Mail.</string>

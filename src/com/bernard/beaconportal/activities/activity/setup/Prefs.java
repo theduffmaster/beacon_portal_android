@@ -27,14 +27,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.K9.NotificationHideSubject;
-import com.bernard.beaconportal.activities.K9.NotificationQuickDelete;
-import com.bernard.beaconportal.activities.K9.SplitViewMode;
+import com.bernard.beaconportal.activities.MAIL;
+import com.bernard.beaconportal.activities.MAIL.NotificationHideSubject;
+import com.bernard.beaconportal.activities.MAIL.NotificationQuickDelete;
+import com.bernard.beaconportal.activities.MAIL.SplitViewMode;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.ColorPickerDialog;
-import com.bernard.beaconportal.activities.activity.K9PreferenceActivity;
+import com.bernard.beaconportal.activities.activity.MAILPreferenceActivity;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.helper.FileBrowserHelper;
 import com.bernard.beaconportal.activities.helper.FileBrowserHelper.FileBrowserFailOverCallback;
@@ -43,7 +43,7 @@ import com.bernard.beaconportal.activities.preferences.TimePickerPreference;
 import com.bernard.beaconportal.activities.service.MailService;
 import com.bernard.beaconportal.activities.view.MessageWebView;
 
-public class Prefs extends K9PreferenceActivity {
+public class Prefs extends MAILPreferenceActivity {
 
 	/**
 	 * Immutable empty {@link CharSequence} array
@@ -227,18 +227,18 @@ public class Prefs extends K9PreferenceActivity {
 				entryValueVector.remove(i);
 			}
 		}
-		initListPreference(mLanguage, K9.getK9Language(),
+		initListPreference(mLanguage, MAIL.getMAILLanguage(),
 				entryVector.toArray(EMPTY_CHAR_SEQUENCE_ARRAY),
 				entryValueVector.toArray(EMPTY_CHAR_SEQUENCE_ARRAY));
 
 		mTheme = setupListPreference(PREFERENCE_THEME,
-				themeIdToName(K9.getK9Theme()));
+				themeIdToName(MAIL.getMAILTheme()));
 		mFixedMessageTheme = (CheckBoxPreference) findPreference(PREFERENCE_FIXED_MESSAGE_THEME);
-		mFixedMessageTheme.setChecked(K9.useFixedMessageViewTheme());
+		mFixedMessageTheme.setChecked(MAIL.useFixedMessageViewTheme());
 		mMessageTheme = setupListPreference(PREFERENCE_MESSAGE_VIEW_THEME,
-				themeIdToName(K9.getK9MessageViewThemeSetting()));
+				themeIdToName(MAIL.getMAILMessageViewThemeSetting()));
 		mComposerTheme = setupListPreference(PREFERENCE_COMPOSER_THEME,
-				themeIdToName(K9.getK9ComposerThemeSetting()));
+				themeIdToName(MAIL.getMAILComposerThemeSetting()));
 
 		findPreference(PREFERENCE_FONT_SIZE).setOnPreferenceClickListener(
 				new Preference.OnPreferenceClickListener() {
@@ -250,21 +250,21 @@ public class Prefs extends K9PreferenceActivity {
 				});
 
 		mAnimations = (CheckBoxPreference) findPreference(PREFERENCE_ANIMATIONS);
-		mAnimations.setChecked(K9.showAnimations());
+		mAnimations.setChecked(MAIL.showAnimations());
 
 		mGestures = (CheckBoxPreference) findPreference(PREFERENCE_GESTURES);
-		mGestures.setChecked(K9.gesturesEnabled());
+		mGestures.setChecked(MAIL.gesturesEnabled());
 
 		mVolumeNavigation = (CheckBoxListPreference) findPreference(PREFERENCE_VOLUME_NAVIGATION);
 		mVolumeNavigation.setItems(new CharSequence[] {
 				getString(R.string.volume_navigation_message),
 				getString(R.string.volume_navigation_list) });
 		mVolumeNavigation.setCheckedItems(new boolean[] {
-				K9.useVolumeKeysForNavigationEnabled(),
-				K9.useVolumeKeysForListNavigationEnabled() });
+				MAIL.useVolumeKeysForNavigationEnabled(),
+				MAIL.useVolumeKeysForListNavigationEnabled() });
 
 		mStartIntegratedInbox = (CheckBoxPreference) findPreference(PREFERENCE_START_INTEGRATED_INBOX);
-		mStartIntegratedInbox.setChecked(K9.startIntegratedInbox());
+		mStartIntegratedInbox.setChecked(MAIL.startIntegratedInbox());
 
 		mConfirmActions = (CheckBoxListPreference) findPreference(PREFERENCE_CONFIRM_ACTIONS);
 
@@ -277,68 +277,68 @@ public class Prefs extends K9PreferenceActivity {
 		int index = 0;
 
 		confirmActionEntries[index] = getString(R.string.global_settings_confirm_action_delete);
-		confirmActionValues[index++] = K9.confirmDelete();
+		confirmActionValues[index++] = MAIL.confirmDelete();
 		confirmActionEntries[index] = getString(R.string.global_settings_confirm_action_delete_starred);
-		confirmActionValues[index++] = K9.confirmDeleteStarred();
+		confirmActionValues[index++] = MAIL.confirmDeleteStarred();
 		if (canDeleteFromNotification) {
 			confirmActionEntries[index] = getString(R.string.global_settings_confirm_action_delete_notif);
-			confirmActionValues[index++] = K9.confirmDeleteFromNotification();
+			confirmActionValues[index++] = MAIL.confirmDeleteFromNotification();
 		}
 		confirmActionEntries[index] = getString(R.string.global_settings_confirm_action_spam);
-		confirmActionValues[index++] = K9.confirmSpam();
+		confirmActionValues[index++] = MAIL.confirmSpam();
 
 		mConfirmActions.setItems(confirmActionEntries);
 		mConfirmActions.setCheckedItems(confirmActionValues);
 
 		mNotificationHideSubject = setupListPreference(
-				PREFERENCE_NOTIFICATION_HIDE_SUBJECT, K9
+				PREFERENCE_NOTIFICATION_HIDE_SUBJECT, MAIL
 						.getNotificationHideSubject().toString());
 
 		mMeasureAccounts = (CheckBoxPreference) findPreference(PREFERENCE_MEASURE_ACCOUNTS);
-		mMeasureAccounts.setChecked(K9.measureAccounts());
+		mMeasureAccounts.setChecked(MAIL.measureAccounts());
 
 		mCountSearch = (CheckBoxPreference) findPreference(PREFERENCE_COUNT_SEARCH);
-		mCountSearch.setChecked(K9.countSearchMessages());
+		mCountSearch.setChecked(MAIL.countSearchMessages());
 
 		mHideSpecialAccounts = (CheckBoxPreference) findPreference(PREFERENCE_HIDE_SPECIAL_ACCOUNTS);
-		mHideSpecialAccounts.setChecked(K9.isHideSpecialAccounts());
+		mHideSpecialAccounts.setChecked(MAIL.isHideSpecialAccounts());
 
 		mPreviewLines = setupListPreference(
 				PREFERENCE_MESSAGELIST_PREVIEW_LINES,
-				Integer.toString(K9.messageListPreviewLines()));
+				Integer.toString(MAIL.messageListPreviewLines()));
 
 		mSenderAboveSubject = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGELIST_SENDER_ABOVE_SUBJECT);
-		mSenderAboveSubject.setChecked(K9.messageListSenderAboveSubject());
+		mSenderAboveSubject.setChecked(MAIL.messageListSenderAboveSubject());
 		mCheckboxes = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGELIST_CHECKBOXES);
-		mCheckboxes.setChecked(K9.messageListCheckboxes());
+		mCheckboxes.setChecked(MAIL.messageListCheckboxes());
 
 		mStars = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGELIST_STARS);
-		mStars.setChecked(K9.messageListStars());
+		mStars.setChecked(MAIL.messageListStars());
 
 		mShowCorrespondentNames = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGELIST_SHOW_CORRESPONDENT_NAMES);
-		mShowCorrespondentNames.setChecked(K9.showCorrespondentNames());
+		mShowCorrespondentNames.setChecked(MAIL.showCorrespondentNames());
 
 		mShowContactName = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGELIST_SHOW_CONTACT_NAME);
-		mShowContactName.setChecked(K9.showContactName());
+		mShowContactName.setChecked(MAIL.showContactName());
 
 		mShowContactPicture = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGELIST_SHOW_CONTACT_PICTURE);
-		mShowContactPicture.setChecked(K9.showContactPicture());
+		mShowContactPicture.setChecked(MAIL.showContactPicture());
 
 		mColorizeMissingContactPictures = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGELIST_COLORIZE_MISSING_CONTACT_PICTURES);
-		mColorizeMissingContactPictures.setChecked(K9
+		mColorizeMissingContactPictures.setChecked(MAIL
 				.isColorizeMissingContactPictures());
 
 		mBackgroundAsUnreadIndicator = (CheckBoxPreference) findPreference(PREFERENCE_BACKGROUND_AS_UNREAD_INDICATOR);
-		mBackgroundAsUnreadIndicator.setChecked(K9
+		mBackgroundAsUnreadIndicator.setChecked(MAIL
 				.useBackgroundAsUnreadIndicator());
 
 		mChangeContactNameColor = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGELIST_CONTACT_NAME_COLOR);
-		mChangeContactNameColor.setChecked(K9.changeContactNameColor());
+		mChangeContactNameColor.setChecked(MAIL.changeContactNameColor());
 
 		mThreadedView = (CheckBoxPreference) findPreference(PREFERENCE_THREADED_VIEW);
-		mThreadedView.setChecked(K9.isThreadedViewEnabled());
+		mThreadedView.setChecked(MAIL.isThreadedViewEnabled());
 
-		if (K9.changeContactNameColor()) {
+		if (MAIL.changeContactNameColor()) {
 			mChangeContactNameColor
 					.setSummary(R.string.global_settings_registered_name_color_changed);
 		} else {
@@ -365,31 +365,31 @@ public class Prefs extends K9PreferenceActivity {
 				});
 
 		mFixedWidth = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGEVIEW_FIXEDWIDTH);
-		mFixedWidth.setChecked(K9.messageViewFixedWidthFont());
+		mFixedWidth.setChecked(MAIL.messageViewFixedWidthFont());
 
 		mReturnToList = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGEVIEW_RETURN_TO_LIST);
-		mReturnToList.setChecked(K9.messageViewReturnToList());
+		mReturnToList.setChecked(MAIL.messageViewReturnToList());
 
 		mShowNext = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGEVIEW_SHOW_NEXT);
-		mShowNext.setChecked(K9.messageViewShowNext());
+		mShowNext.setChecked(MAIL.messageViewShowNext());
 
 		mMobileOptimizedLayout = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGEVIEW_MOBILE_LAYOUT);
 		if (!MessageWebView.isSingleColumnLayoutSupported()) {
 			PreferenceCategory prefs = (PreferenceCategory) findPreference("messageview_preferences");
 			prefs.removePreference(mMobileOptimizedLayout);
 		} else {
-			mMobileOptimizedLayout.setChecked(K9.mobileOptimizedLayout());
+			mMobileOptimizedLayout.setChecked(MAIL.mobileOptimizedLayout());
 		}
 
 		mAutofitWidth = (CheckBoxPreference) findPreference(PREFERENCE_AUTOFIT_WIDTH);
-		mAutofitWidth.setChecked(K9.autofitWidth());
+		mAutofitWidth.setChecked(MAIL.autofitWidth());
 
 		mQuietTimeEnabled = (CheckBoxPreference) findPreference(PREFERENCE_QUIET_TIME_ENABLED);
-		mQuietTimeEnabled.setChecked(K9.getQuietTimeEnabled());
+		mQuietTimeEnabled.setChecked(MAIL.getQuietTimeEnabled());
 
 		mQuietTimeStarts = (TimePickerPreference) findPreference(PREFERENCE_QUIET_TIME_STARTS);
-		mQuietTimeStarts.setDefaultValue(K9.getQuietTimeStarts());
-		mQuietTimeStarts.setSummary(K9.getQuietTimeStarts());
+		mQuietTimeStarts.setDefaultValue(MAIL.getQuietTimeStarts());
+		mQuietTimeStarts.setSummary(MAIL.getQuietTimeStarts());
 		mQuietTimeStarts
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 					@Override
@@ -402,8 +402,8 @@ public class Prefs extends K9PreferenceActivity {
 				});
 
 		mQuietTimeEnds = (TimePickerPreference) findPreference(PREFERENCE_QUIET_TIME_ENDS);
-		mQuietTimeEnds.setSummary(K9.getQuietTimeEnds());
-		mQuietTimeEnds.setDefaultValue(K9.getQuietTimeEnds());
+		mQuietTimeEnds.setSummary(MAIL.getQuietTimeEnds());
+		mQuietTimeEnds.setDefaultValue(MAIL.getQuietTimeEnds());
 		mQuietTimeEnds
 				.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 					@Override
@@ -416,7 +416,7 @@ public class Prefs extends K9PreferenceActivity {
 				});
 
 		mNotificationQuickDelete = setupListPreference(
-				PREFERENCE_NOTIF_QUICK_DELETE, K9
+				PREFERENCE_NOTIF_QUICK_DELETE, MAIL
 						.getNotificationQuickDeleteBehaviour().toString());
 		if (!MessagingController.platformSupportsExtendedNotifications()) {
 			PreferenceScreen prefs = (PreferenceScreen) findPreference("notification_preferences");
@@ -424,7 +424,7 @@ public class Prefs extends K9PreferenceActivity {
 			mNotificationQuickDelete = null;
 		}
 
-		mBackgroundOps = setupListPreference(PREFERENCE_BACKGROUND_OPS, K9
+		mBackgroundOps = setupListPreference(PREFERENCE_BACKGROUND_OPS, MAIL
 				.getBackgroundOps().toString());
 		// In ICS+ there is no 'background data' setting that apps can chose to
 		// ignore anymore. So
@@ -451,27 +451,27 @@ public class Prefs extends K9PreferenceActivity {
 			// Since ConnectivityManager.getBackgroundDataSetting() always
 			// returns 'true' on ICS+
 			// we map WHEN_CHECKED to ALWAYS.
-			if (K9.getBackgroundOps() == K9.BACKGROUND_OPS.WHEN_CHECKED) {
-				mBackgroundOps.setValue(K9.BACKGROUND_OPS.ALWAYS.toString());
+			if (MAIL.getBackgroundOps() == MAIL.BACKGROUND_OPS.WHEN_CHECKED) {
+				mBackgroundOps.setValue(MAIL.BACKGROUND_OPS.ALWAYS.toString());
 				mBackgroundOps.setSummary(mBackgroundOps.getEntry());
 			}
 		}
 
 		mUseGalleryBugWorkaround = (CheckBoxPreference) findPreference(PREFERENCE_GALLERY_BUG_WORKAROUND);
-		mUseGalleryBugWorkaround.setChecked(K9.useGalleryBugWorkaround());
+		mUseGalleryBugWorkaround.setChecked(MAIL.useGalleryBugWorkaround());
 
 		mDebugLogging = (CheckBoxPreference) findPreference(PREFERENCE_DEBUG_LOGGING);
 		mSensitiveLogging = (CheckBoxPreference) findPreference(PREFERENCE_SENSITIVE_LOGGING);
 		mHideUserAgent = (CheckBoxPreference) findPreference(PREFERENCE_HIDE_USERAGENT);
 		mHideTimeZone = (CheckBoxPreference) findPreference(PREFERENCE_HIDE_TIMEZONE);
 
-		mDebugLogging.setChecked(K9.DEBUG);
-		mSensitiveLogging.setChecked(K9.DEBUG_SENSITIVE);
-		mHideUserAgent.setChecked(K9.hideUserAgent());
-		mHideTimeZone.setChecked(K9.hideTimeZone());
+		mDebugLogging.setChecked(MAIL.DEBUG);
+		mSensitiveLogging.setChecked(MAIL.DEBUG_SENSITIVE);
+		mHideUserAgent.setChecked(MAIL.hideUserAgent());
+		mHideTimeZone.setChecked(MAIL.hideTimeZone());
 
 		mAttachmentPathPreference = findPreference(PREFERENCE_ATTACHMENT_DEF_PATH);
-		mAttachmentPathPreference.setSummary(K9.getAttachmentDefaultPath());
+		mAttachmentPathPreference.setSummary(MAIL.getAttachmentDefaultPath());
 		mAttachmentPathPreference
 				.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 					@Override
@@ -480,7 +480,7 @@ public class Prefs extends K9PreferenceActivity {
 								.getInstance()
 								.showFileBrowserActivity(
 										Prefs.this,
-										new File(K9.getAttachmentDefaultPath()),
+										new File(MAIL.getAttachmentDefaultPath()),
 										ACTIVITY_CHOOSE_FOLDER, callback);
 
 						return true;
@@ -491,7 +491,7 @@ public class Prefs extends K9PreferenceActivity {
 						@Override
 						public void onPathEntered(String path) {
 							mAttachmentPathPreference.setSummary(path);
-							K9.setAttachmentDefaultPath(path);
+							MAIL.setAttachmentDefaultPath(path);
 						}
 
 						@Override
@@ -502,7 +502,7 @@ public class Prefs extends K9PreferenceActivity {
 				});
 
 		mWrapFolderNames = (CheckBoxPreference) findPreference(PREFERENCE_FOLDERLIST_WRAP_NAME);
-		mWrapFolderNames.setChecked(K9.wrapFolderNames());
+		mWrapFolderNames.setChecked(MAIL.wrapFolderNames());
 
 		mVisibleRefileActions = (CheckBoxListPreference) findPreference(PREFERENCE_MESSAGEVIEW_VISIBLE_REFILE_ACTIONS);
 		CharSequence[] visibleRefileActionsEntries = new CharSequence[5];
@@ -513,26 +513,26 @@ public class Prefs extends K9PreferenceActivity {
 		visibleRefileActionsEntries[VISIBLE_REFILE_ACTIONS_SPAM] = getString(R.string.spam_action);
 
 		boolean[] visibleRefileActionsValues = new boolean[5];
-		visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_DELETE] = K9
+		visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_DELETE] = MAIL
 				.isMessageViewDeleteActionVisible();
-		visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_ARCHIVE] = K9
+		visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_ARCHIVE] = MAIL
 				.isMessageViewArchiveActionVisible();
-		visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_MOVE] = K9
+		visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_MOVE] = MAIL
 				.isMessageViewMoveActionVisible();
-		visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_COPY] = K9
+		visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_COPY] = MAIL
 				.isMessageViewCopyActionVisible();
-		visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_SPAM] = K9
+		visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_SPAM] = MAIL
 				.isMessageViewSpamActionVisible();
 
 		mVisibleRefileActions.setItems(visibleRefileActionsEntries);
 		mVisibleRefileActions.setCheckedItems(visibleRefileActionsValues);
 
 		mSplitViewMode = (ListPreference) findPreference(PREFERENCE_SPLITVIEW_MODE);
-		initListPreference(mSplitViewMode, K9.getSplitViewMode().name(),
+		initListPreference(mSplitViewMode, MAIL.getSplitViewMode().name(),
 				mSplitViewMode.getEntries(), mSplitViewMode.getEntryValues());
 	}
 
-	private static String themeIdToName(K9.Theme theme) {
+	private static String themeIdToName(MAIL.Theme theme) {
 		switch (theme) {
 		case DARK:
 			return "dark";
@@ -543,13 +543,13 @@ public class Prefs extends K9PreferenceActivity {
 		}
 	}
 
-	private static K9.Theme themeNameToId(String theme) {
+	private static MAIL.Theme themeNameToId(String theme) {
 		if (TextUtils.equals(theme, "dark")) {
-			return K9.Theme.DARK;
+			return MAIL.Theme.DARK;
 		} else if (TextUtils.equals(theme, "global")) {
-			return K9.Theme.USE_GLOBAL;
+			return MAIL.Theme.USE_GLOBAL;
 		} else {
-			return K9.Theme.LIGHT;
+			return MAIL.Theme.LIGHT;
 		}
 	}
 
@@ -557,89 +557,89 @@ public class Prefs extends K9PreferenceActivity {
 		SharedPreferences preferences = Preferences.getPreferences(this)
 				.getPreferences();
 
-		K9.setK9Language(mLanguage.getValue());
+		MAIL.setMAILLanguage(mLanguage.getValue());
 
-		K9.setK9Theme(themeNameToId(mTheme.getValue()));
-		K9.setUseFixedMessageViewTheme(mFixedMessageTheme.isChecked());
-		K9.setK9MessageViewThemeSetting(themeNameToId(mMessageTheme.getValue()));
-		K9.setK9ComposerThemeSetting(themeNameToId(mComposerTheme.getValue()));
+		MAIL.setMAILTheme(themeNameToId(mTheme.getValue()));
+		MAIL.setUseFixedMessageViewTheme(mFixedMessageTheme.isChecked());
+		MAIL.setMAILMessageViewThemeSetting(themeNameToId(mMessageTheme.getValue()));
+		MAIL.setMAILComposerThemeSetting(themeNameToId(mComposerTheme.getValue()));
 
-		K9.setAnimations(mAnimations.isChecked());
-		K9.setGesturesEnabled(mGestures.isChecked());
-		K9.setUseVolumeKeysForNavigation(mVolumeNavigation.getCheckedItems()[0]);
-		K9.setUseVolumeKeysForListNavigation(mVolumeNavigation
+		MAIL.setAnimations(mAnimations.isChecked());
+		MAIL.setGesturesEnabled(mGestures.isChecked());
+		MAIL.setUseVolumeKeysForNavigation(mVolumeNavigation.getCheckedItems()[0]);
+		MAIL.setUseVolumeKeysForListNavigation(mVolumeNavigation
 				.getCheckedItems()[1]);
-		K9.setStartIntegratedInbox(!mHideSpecialAccounts.isChecked()
+		MAIL.setStartIntegratedInbox(!mHideSpecialAccounts.isChecked()
 				&& mStartIntegratedInbox.isChecked());
-		K9.setNotificationHideSubject(NotificationHideSubject
+		MAIL.setNotificationHideSubject(NotificationHideSubject
 				.valueOf(mNotificationHideSubject.getValue()));
 
 		int index = 0;
-		K9.setConfirmDelete(mConfirmActions.getCheckedItems()[index++]);
-		K9.setConfirmDeleteStarred(mConfirmActions.getCheckedItems()[index++]);
+		MAIL.setConfirmDelete(mConfirmActions.getCheckedItems()[index++]);
+		MAIL.setConfirmDeleteStarred(mConfirmActions.getCheckedItems()[index++]);
 		if (MessagingController.platformSupportsExtendedNotifications()) {
-			K9.setConfirmDeleteFromNotification(mConfirmActions
+			MAIL.setConfirmDeleteFromNotification(mConfirmActions
 					.getCheckedItems()[index++]);
 		}
-		K9.setConfirmSpam(mConfirmActions.getCheckedItems()[index++]);
+		MAIL.setConfirmSpam(mConfirmActions.getCheckedItems()[index++]);
 
-		K9.setMeasureAccounts(mMeasureAccounts.isChecked());
-		K9.setCountSearchMessages(mCountSearch.isChecked());
-		K9.setHideSpecialAccounts(mHideSpecialAccounts.isChecked());
-		K9.setMessageListPreviewLines(Integer.parseInt(mPreviewLines.getValue()));
-		K9.setMessageListCheckboxes(mCheckboxes.isChecked());
-		K9.setMessageListStars(mStars.isChecked());
-		K9.setShowCorrespondentNames(mShowCorrespondentNames.isChecked());
-		K9.setMessageListSenderAboveSubject(mSenderAboveSubject.isChecked());
-		K9.setShowContactName(mShowContactName.isChecked());
-		K9.setShowContactPicture(mShowContactPicture.isChecked());
-		K9.setColorizeMissingContactPictures(mColorizeMissingContactPictures
+		MAIL.setMeasureAccounts(mMeasureAccounts.isChecked());
+		MAIL.setCountSearchMessages(mCountSearch.isChecked());
+		MAIL.setHideSpecialAccounts(mHideSpecialAccounts.isChecked());
+		MAIL.setMessageListPreviewLines(Integer.parseInt(mPreviewLines.getValue()));
+		MAIL.setMessageListCheckboxes(mCheckboxes.isChecked());
+		MAIL.setMessageListStars(mStars.isChecked());
+		MAIL.setShowCorrespondentNames(mShowCorrespondentNames.isChecked());
+		MAIL.setMessageListSenderAboveSubject(mSenderAboveSubject.isChecked());
+		MAIL.setShowContactName(mShowContactName.isChecked());
+		MAIL.setShowContactPicture(mShowContactPicture.isChecked());
+		MAIL.setColorizeMissingContactPictures(mColorizeMissingContactPictures
 				.isChecked());
-		K9.setUseBackgroundAsUnreadIndicator(mBackgroundAsUnreadIndicator
+		MAIL.setUseBackgroundAsUnreadIndicator(mBackgroundAsUnreadIndicator
 				.isChecked());
-		K9.setThreadedViewEnabled(mThreadedView.isChecked());
-		K9.setChangeContactNameColor(mChangeContactNameColor.isChecked());
-		K9.setMessageViewFixedWidthFont(mFixedWidth.isChecked());
-		K9.setMessageViewReturnToList(mReturnToList.isChecked());
-		K9.setMessageViewShowNext(mShowNext.isChecked());
-		K9.setMobileOptimizedLayout(mMobileOptimizedLayout.isChecked());
-		K9.setAutofitWidth(mAutofitWidth.isChecked());
-		K9.setQuietTimeEnabled(mQuietTimeEnabled.isChecked());
+		MAIL.setThreadedViewEnabled(mThreadedView.isChecked());
+		MAIL.setChangeContactNameColor(mChangeContactNameColor.isChecked());
+		MAIL.setMessageViewFixedWidthFont(mFixedWidth.isChecked());
+		MAIL.setMessageViewReturnToList(mReturnToList.isChecked());
+		MAIL.setMessageViewShowNext(mShowNext.isChecked());
+		MAIL.setMobileOptimizedLayout(mMobileOptimizedLayout.isChecked());
+		MAIL.setAutofitWidth(mAutofitWidth.isChecked());
+		MAIL.setQuietTimeEnabled(mQuietTimeEnabled.isChecked());
 
 		boolean[] enabledRefileActions = mVisibleRefileActions
 				.getCheckedItems();
-		K9.setMessageViewDeleteActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_DELETE]);
-		K9.setMessageViewArchiveActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_ARCHIVE]);
-		K9.setMessageViewMoveActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_MOVE]);
-		K9.setMessageViewCopyActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_COPY]);
-		K9.setMessageViewSpamActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_SPAM]);
+		MAIL.setMessageViewDeleteActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_DELETE]);
+		MAIL.setMessageViewArchiveActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_ARCHIVE]);
+		MAIL.setMessageViewMoveActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_MOVE]);
+		MAIL.setMessageViewCopyActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_COPY]);
+		MAIL.setMessageViewSpamActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_SPAM]);
 
-		K9.setQuietTimeStarts(mQuietTimeStarts.getTime());
-		K9.setQuietTimeEnds(mQuietTimeEnds.getTime());
-		K9.setWrapFolderNames(mWrapFolderNames.isChecked());
+		MAIL.setQuietTimeStarts(mQuietTimeStarts.getTime());
+		MAIL.setQuietTimeEnds(mQuietTimeEnds.getTime());
+		MAIL.setWrapFolderNames(mWrapFolderNames.isChecked());
 
 		if (mNotificationQuickDelete != null) {
-			K9.setNotificationQuickDeleteBehaviour(NotificationQuickDelete
+			MAIL.setNotificationQuickDeleteBehaviour(NotificationQuickDelete
 					.valueOf(mNotificationQuickDelete.getValue()));
 		}
 
-		K9.setSplitViewMode(SplitViewMode.valueOf(mSplitViewMode.getValue()));
-		K9.setAttachmentDefaultPath(mAttachmentPathPreference.getSummary()
+		MAIL.setSplitViewMode(SplitViewMode.valueOf(mSplitViewMode.getValue()));
+		MAIL.setAttachmentDefaultPath(mAttachmentPathPreference.getSummary()
 				.toString());
-		boolean needsRefresh = K9.setBackgroundOps(mBackgroundOps.getValue());
-		K9.setUseGalleryBugWorkaround(mUseGalleryBugWorkaround.isChecked());
+		boolean needsRefresh = MAIL.setBackgroundOps(mBackgroundOps.getValue());
+		MAIL.setUseGalleryBugWorkaround(mUseGalleryBugWorkaround.isChecked());
 
-		if (!K9.DEBUG && mDebugLogging.isChecked()) {
+		if (!MAIL.DEBUG && mDebugLogging.isChecked()) {
 			Toast.makeText(this, R.string.debug_logging_enabled,
 					Toast.LENGTH_LONG).show();
 		}
-		K9.DEBUG = mDebugLogging.isChecked();
-		K9.DEBUG_SENSITIVE = mSensitiveLogging.isChecked();
-		K9.setHideUserAgent(mHideUserAgent.isChecked());
-		K9.setHideTimeZone(mHideTimeZone.isChecked());
+		MAIL.DEBUG = mDebugLogging.isChecked();
+		MAIL.DEBUG_SENSITIVE = mSensitiveLogging.isChecked();
+		MAIL.setHideUserAgent(mHideUserAgent.isChecked());
+		MAIL.setHideTimeZone(mHideTimeZone.isChecked());
 
 		Editor editor = preferences.edit();
-		K9.save(editor);
+		MAIL.save(editor);
 		editor.commit();
 
 		if (needsRefresh) {
@@ -662,9 +662,9 @@ public class Prefs extends K9PreferenceActivity {
 				new ColorPickerDialog.OnColorChangedListener() {
 					@Override
 					public void colorChanged(int color) {
-						K9.setContactNameColor(color);
+						MAIL.setContactNameColor(color);
 					}
-				}, K9.getContactNameColor()).show();
+				}, MAIL.getContactNameColor()).show();
 	}
 
 	@Override
@@ -679,7 +679,7 @@ public class Prefs extends K9PreferenceActivity {
 					if (filePath != null) {
 						mAttachmentPathPreference.setSummary(filePath
 								.toString());
-						K9.setAttachmentDefaultPath(filePath.toString());
+						MAIL.setAttachmentDefaultPath(filePath.toString());
 					}
 				}
 			}

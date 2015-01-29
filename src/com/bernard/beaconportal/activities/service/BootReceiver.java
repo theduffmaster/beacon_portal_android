@@ -10,7 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 
 public class BootReceiver extends CoreReceiver {
 
@@ -23,12 +23,12 @@ public class BootReceiver extends CoreReceiver {
 
 	@Override
 	public Integer receive(Context context, Intent intent, Integer tmpWakeLockId) {
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG, "BootReceiver.onReceive" + intent);
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG, "BootReceiver.onReceive" + intent);
 
 		final String action = intent.getAction();
 		if (Intent.ACTION_BOOT_COMPLETED.equals(action)) {
-			// K9.setServicesEnabled(context, tmpWakeLockId);
+			// MAIL.setServicesEnabled(context, tmpWakeLockId);
 			// tmpWakeLockId = null;
 		} else if (Intent.ACTION_DEVICE_STORAGE_LOW.equals(action)) {
 			MailService.actionCancel(context, tmpWakeLockId);
@@ -40,24 +40,24 @@ public class BootReceiver extends CoreReceiver {
 			MailService.connectivityChange(context, tmpWakeLockId);
 			tmpWakeLockId = null;
 		} else if ("com.android.sync.SYNC_CONN_STATUS_CHANGED".equals(action)) {
-			K9.BACKGROUND_OPS bOps = K9.getBackgroundOps();
-			if (bOps == K9.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC) {
+			MAIL.BACKGROUND_OPS bOps = MAIL.getBackgroundOps();
+			if (bOps == MAIL.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC) {
 				MailService.actionReset(context, tmpWakeLockId);
 				tmpWakeLockId = null;
 			}
 		} else if (ConnectivityManager.ACTION_BACKGROUND_DATA_SETTING_CHANGED
 				.equals(action)) {
-			K9.BACKGROUND_OPS bOps = K9.getBackgroundOps();
-			if (bOps == K9.BACKGROUND_OPS.WHEN_CHECKED
-					|| bOps == K9.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC) {
+			MAIL.BACKGROUND_OPS bOps = MAIL.getBackgroundOps();
+			if (bOps == MAIL.BACKGROUND_OPS.WHEN_CHECKED
+					|| bOps == MAIL.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC) {
 				MailService.actionReset(context, tmpWakeLockId);
 				tmpWakeLockId = null;
 			}
 		} else if (FIRE_INTENT.equals(action)) {
 			Intent alarmedIntent = intent.getParcelableExtra(ALARMED_INTENT);
 			String alarmedAction = alarmedIntent.getAction();
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG,
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG,
 						"BootReceiver Got alarm to fire alarmedIntent "
 								+ alarmedAction);
 			alarmedIntent.putExtra(WAKE_LOCK_ID, tmpWakeLockId);
@@ -66,8 +66,8 @@ public class BootReceiver extends CoreReceiver {
 		} else if (SCHEDULE_INTENT.equals(action)) {
 			long atTime = intent.getLongExtra(AT_TIME, -1);
 			Intent alarmedIntent = intent.getParcelableExtra(ALARMED_INTENT);
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG, "BootReceiver Scheduling intent "
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG, "BootReceiver Scheduling intent "
 						+ alarmedIntent + " for " + new Date(atTime));
 
 			PendingIntent pi = buildPendingIntent(context, intent);
@@ -77,8 +77,8 @@ public class BootReceiver extends CoreReceiver {
 			alarmMgr.set(AlarmManager.RTC_WAKEUP, atTime, pi);
 		} else if (CANCEL_INTENT.equals(action)) {
 			Intent alarmedIntent = intent.getParcelableExtra(ALARMED_INTENT);
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG, "BootReceiver Canceling alarmedIntent "
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG, "BootReceiver Canceling alarmedIntent "
 						+ alarmedIntent);
 
 			PendingIntent pi = buildPendingIntent(context, intent);
@@ -106,8 +106,8 @@ public class BootReceiver extends CoreReceiver {
 
 	public static void scheduleIntent(Context context, long atTime,
 			Intent alarmedIntent) {
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG,
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG,
 					"BootReceiver Got request to schedule alarmedIntent "
 							+ alarmedIntent.getAction());
 		Intent i = new Intent();
@@ -119,8 +119,8 @@ public class BootReceiver extends CoreReceiver {
 	}
 
 	public static void cancelIntent(Context context, Intent alarmedIntent) {
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG,
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG,
 					"BootReceiver Got request to cancel alarmedIntent "
 							+ alarmedIntent.getAction());
 		Intent i = new Intent();

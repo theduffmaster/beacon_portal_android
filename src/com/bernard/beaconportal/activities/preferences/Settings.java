@@ -12,7 +12,7 @@ import java.util.TreeMap;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.FontSizes;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 
 /*
  * TODO:
@@ -70,7 +70,7 @@ public class Settings {
 
 			boolean useDefaultValue;
 			if (!importedSettings.containsKey(key)) {
-				Log.v(K9.LOG_TAG, "Key \"" + key
+				Log.v(MAIL.LOG_TAG, "Key \"" + key
 						+ "\" wasn't found in the imported file."
 						+ ((useDefaultValues) ? " Using default value." : ""));
 				useDefaultValue = useDefaultValues;
@@ -81,7 +81,7 @@ public class Settings {
 					validatedSettings.put(key, internalValue);
 					useDefaultValue = false;
 				} catch (InvalidSettingValueException e) {
-					Log.v(K9.LOG_TAG, "Key \""
+					Log.v(MAIL.LOG_TAG, "Key \""
 							+ key
 							+ "\" has invalid value \""
 							+ prettyValue
@@ -159,10 +159,10 @@ public class Settings {
 						Object defaultValue = setting.getDefaultValue();
 						upgradedSettings.put(settingName, defaultValue);
 
-						if (K9.DEBUG) {
+						if (MAIL.DEBUG) {
 							String prettyValue = setting
 									.toPrettyString(defaultValue);
-							Log.v(K9.LOG_TAG, "Added new setting \""
+							Log.v(MAIL.LOG_TAG, "Added new setting \""
 									+ settingName + "\" with default value \""
 									+ prettyValue + "\"");
 						}
@@ -179,8 +179,8 @@ public class Settings {
 					}
 					deletedSettings.add(settingName);
 
-					if (K9.DEBUG) {
-						Log.v(K9.LOG_TAG, "Removed setting \"" + settingName
+					if (MAIL.DEBUG) {
+						Log.v(MAIL.LOG_TAG, "Removed setting \"" + settingName
 								+ "\"");
 					}
 				}
@@ -224,8 +224,8 @@ public class Settings {
 
 				serializedSettings.put(settingName, stringValue);
 			} else {
-				if (K9.DEBUG) {
-					Log.w(K9.LOG_TAG,
+				if (MAIL.DEBUG) {
+					Log.w(MAIL.LOG_TAG,
 							"Settings.serialize() called with a setting that should "
 									+ "have been removed: " + settingName);
 				}
@@ -287,7 +287,7 @@ public class Settings {
 	 * The one that is used by the internal preference {@link Storage}. It is
 	 * usually obtained by calling {@code toString()} on the internal
 	 * representation of the setting value (see e.g.
-	 * {@link K9#save(android.content.SharedPreferences.Editor)}).</li>
+	 * {@link MAIL#save(android.content.SharedPreferences.Editor)}).</li>
 	 * <li>
 	 * The "pretty" version that is used by the import/export settings file
 	 * (e.g. colors are exported in #rrggbb format instead of a integer string

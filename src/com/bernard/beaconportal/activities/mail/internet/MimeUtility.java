@@ -22,7 +22,7 @@ import org.apache.james.mime4j.util.MimeUtil;
 import android.content.Context;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.helper.HtmlConverter;
 import com.bernard.beaconportal.activities.mail.Address;
@@ -38,7 +38,7 @@ import com.bernard.beaconportal.activities.mail.internet.BinaryTempFileBody.Bina
 public class MimeUtility {
 	public static final String DEFAULT_ATTACHMENT_MIME_TYPE = "application/octet-stream";
 
-	public static final String K9_SETTINGS_MIME_TYPE = "application/x-k9settings";
+	public static final String MAIL_SETTINGS_MIME_TYPE = "application/x-mailsettings";
 
 	private static final String TEXT_DIVIDER = "------------------------------------------------------------------------";
 
@@ -49,7 +49,7 @@ public class MimeUtility {
 	public static final String[][] MIME_TYPE_BY_EXTENSION_MAP = new String[][] {
 			// * Do not delete the next two lines
 			{ "", DEFAULT_ATTACHMENT_MIME_TYPE },
-			{ "k9s", K9_SETTINGS_MIME_TYPE },
+			{ "mails", MAIL_SETTINGS_MIME_TYPE },
 			// * Do not delete the previous two lines
 			{ "123", "application/vnd.lotus-1-2-3" },
 			{ "323", "text/h323" },
@@ -1143,14 +1143,14 @@ public class MimeUtility {
 			 * about it. Return null and let the upper layers handle the missing
 			 * content.
 			 */
-			Log.e(K9.LOG_TAG, "Unable to getTextFromPart " + oom.toString());
+			Log.e(MAIL.LOG_TAG, "Unable to getTextFromPart " + oom.toString());
 		} catch (Exception e) {
 			/*
 			 * If we are not able to process the body there's nothing we can do
 			 * about it. Return null and let the upper layers handle the missing
 			 * content.
 			 */
-			Log.e(K9.LOG_TAG, "Unable to getTextFromPart", e);
+			Log.e(MAIL.LOG_TAG, "Unable to getTextFromPart", e);
 		}
 		return null;
 	}
@@ -2492,7 +2492,7 @@ public class MimeUtility {
 			}
 
 			if (charset.matches(rule[0])) {
-				Log.e(K9.LOG_TAG, "I don't know how to deal with the charset "
+				Log.e(MAIL.LOG_TAG, "I don't know how to deal with the charset "
 						+ charset + ". Falling back to " + rule[1]);
 				charset = rule[1];
 				try {

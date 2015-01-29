@@ -8,7 +8,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.helper.power.TracingPowerManager.TracingWakeLock;
 import com.bernard.beaconportal.activities.mail.Folder;
 import com.bernard.beaconportal.activities.mail.Message;
@@ -46,8 +46,8 @@ public class MessagingControllerPushReceiver implements PushReceiver {
 
 	@Override
 	public void syncFolder(Folder folder) {
-		if (K9.DEBUG)
-			Log.v(K9.LOG_TAG, "syncFolder(" + folder.getName() + ")");
+		if (MAIL.DEBUG)
+			Log.v(MAIL.LOG_TAG, "syncFolder(" + folder.getName() + ")");
 		final CountDownLatch latch = new CountDownLatch(1);
 		controller.synchronizeMailbox(account, folder.getName(),
 				new MessagingListener() {
@@ -65,23 +65,23 @@ public class MessagingControllerPushReceiver implements PushReceiver {
 					}
 				}, folder);
 
-		if (K9.DEBUG)
-			Log.v(K9.LOG_TAG, "syncFolder(" + folder.getName()
+		if (MAIL.DEBUG)
+			Log.v(MAIL.LOG_TAG, "syncFolder(" + folder.getName()
 					+ ") about to await latch release");
 		try {
 			latch.await();
-			if (K9.DEBUG)
-				Log.v(K9.LOG_TAG, "syncFolder(" + folder.getName()
+			if (MAIL.DEBUG)
+				Log.v(MAIL.LOG_TAG, "syncFolder(" + folder.getName()
 						+ ") got latch release");
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Interrupted while awaiting latch release", e);
+			Log.e(MAIL.LOG_TAG, "Interrupted while awaiting latch release", e);
 		}
 	}
 
 	@Override
 	public void sleep(TracingWakeLock wakeLock, long millis) {
 		SleepService.sleep(mApplication, millis, wakeLock,
-				K9.PUSH_WAKE_LOCK_TIMEOUT);
+				MAIL.PUSH_WAKE_LOCK_TIMEOUT);
 	}
 
 	@Override
@@ -105,7 +105,7 @@ public class MessagingControllerPushReceiver implements PushReceiver {
 			localFolder.open(Folder.OPEN_MODE_RW);
 			return localFolder.getPushState();
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Unable to get push state from account "
+			Log.e(MAIL.LOG_TAG, "Unable to get push state from account "
 					+ account.getDescription() + ", folder " + folderName, e);
 			return null;
 		} finally {

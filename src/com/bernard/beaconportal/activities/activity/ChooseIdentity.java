@@ -21,7 +21,7 @@ import com.bernard.beaconportal.activities.Identity;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 
-public class ChooseIdentity extends K9ListActivity {
+public class ChooseIdentity extends MAILListActivity {
 	Account mAccount;
 	ArrayAdapter<String> adapter;
 

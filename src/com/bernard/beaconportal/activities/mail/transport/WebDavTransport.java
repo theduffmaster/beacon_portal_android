@@ -3,7 +3,7 @@ package com.bernard.beaconportal.activities.mail.transport;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.mail.Message;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 import com.bernard.beaconportal.activities.mail.ServerSettings;
@@ -48,14 +48,14 @@ public class WebDavTransport extends Transport {
 			store = new WebDavStore(account);
 		}
 
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, ">>> New WebDavTransport creation complete");
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, ">>> New WebDavTransport creation complete");
 	}
 
 	@Override
 	public void open() throws MessagingException {
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, ">>> open called on WebDavTransport ");
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, ">>> open called on WebDavTransport ");
 
 		store.getHttpClient();
 	}

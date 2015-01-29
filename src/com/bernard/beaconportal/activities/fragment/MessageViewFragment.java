@@ -26,7 +26,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.ChooseFolder;
@@ -200,7 +200,7 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		Context context = new ContextThemeWrapper(inflater.getContext(),
-				K9.getK9ThemeResourceId(K9.getK9MessageViewTheme()));
+				MAIL.getMAILThemeResourceId(MAIL.getMAILMessageViewTheme()));
 		mLayoutInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = mLayoutInflater.inflate(R.layout.message, container, false);
@@ -278,8 +278,8 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 
 	private void displayMessage(MessageReference ref, boolean resetPgpData) {
 		mMessageReference = ref;
-		if (K9.DEBUG) {
-			Log.d(K9.LOG_TAG, "MessageView displaying message "
+		if (MAIL.DEBUG) {
+			Log.d(MAIL.LOG_TAG, "MessageView displaying message "
 					+ mMessageReference);
 		}
 
@@ -306,8 +306,8 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 	 * Called from UI thread when user select Delete
 	 */
 	public void onDelete() {
-		if (K9.confirmDelete()
-				|| (K9.confirmDeleteStarred() && mMessage.isSet(Flag.FLAGGED))) {
+		if (MAIL.confirmDelete()
+				|| (MAIL.confirmDeleteStarred() && mMessage.isSet(Flag.FLAGGED))) {
 			showDialog(R.id.dialog_confirm_delete);
 		} else {
 			delete();
@@ -346,11 +346,11 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 			return;
 		}
 
-		if (K9.FOLDER_NONE.equalsIgnoreCase(dstFolder)) {
+		if (MAIL.FOLDER_NONE.equalsIgnoreCase(dstFolder)) {
 			return;
 		}
 
-		if (mAccount.getSpamFolderName().equals(dstFolder) && K9.confirmSpam()) {
+		if (mAccount.getSpamFolderName().equals(dstFolder) && MAIL.confirmSpam()) {
 			mDstFolder = dstFolder;
 			showDialog(R.id.dialog_confirm_spam);
 		} else {
@@ -643,7 +643,7 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 						mFragmentListener.updateMenu();
 
 					} catch (MessagingException e) {
-						Log.v(K9.LOG_TAG, "loadMessageForViewBodyAvailable", e);
+						Log.v(MAIL.LOG_TAG, "loadMessageForViewBodyAvailable", e);
 					}
 				}
 			});
@@ -779,7 +779,7 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 			mMessageView.setMessage(mAccount, (LocalMessage) mMessage, data,
 					mController, mListener);
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG, "displayMessageBody failed", e);
+			Log.e(MAIL.LOG_TAG, "displayMessageBody failed", e);
 		}
 	}
 
@@ -794,7 +794,7 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 			mMessageView.setMessage(account, message, pgpData, controller,
 					listener);
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG, "displayMessageBody failed", e);
+			Log.e(MAIL.LOG_TAG, "displayMessageBody failed", e);
 		}
 	}
 

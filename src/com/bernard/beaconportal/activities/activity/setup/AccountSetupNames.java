@@ -34,18 +34,18 @@ import com.bernard.beaconportal.activities.FragmentsSchedule;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.Accounts;
-import com.bernard.beaconportal.activities.activity.K9Activity;
+import com.bernard.beaconportal.activities.activity.MAILActivity;
 import com.bernard.beaconportal.activities.helper.Utility;
 
-public class AccountSetupNames extends K9Activity implements OnClickListener {
+public class AccountSetupNames extends MAILActivity implements OnClickListener {
 	private static final String EXTRA_ACCOUNT = "account";
 
 	public static final String PREF_NAME = "pref_name";
 
-	static final Uri k9AccountsUri = Uri
+	static final Uri mailAccountsUri = Uri
 			.parse("content://com.bernard.beaconportal.activities.messageprovider/accounts/");
-	static final String k9UnreadUri = "content://com.bernard.beaconportal.activities.messageprovider/account_unread/";
-	static final String k9MessageProvider = "content://com.bernard.beaconportal.activities.messageprovider/";
+	static final String mailUnreadUri = "content://com.bernard.beaconportal.activities.messageprovider/account_unread/";
+	static final String mailMessageProvider = "content://com.bernard.beaconportal.activities.messageprovider/";
 
 	ContentObserver contentObserver = null;
 	BroadcastReceiver receiver = null;

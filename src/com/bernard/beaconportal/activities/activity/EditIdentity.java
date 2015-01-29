@@ -19,7 +19,7 @@ import com.bernard.beaconportal.activities.Identity;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 
-public class EditIdentity extends K9Activity {
+public class EditIdentity extends MAILActivity {
 
 	public static final String EXTRA_IDENTITY = "com.bernard.beaconportal.activities.EditIdentity_identity";
 	public static final String EXTRA_IDENTITY_INDEX = "com.bernard.beaconportal.activities.EditIdentity_identity_index";

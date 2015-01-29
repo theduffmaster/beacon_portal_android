@@ -18,7 +18,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 
 /**
  * Contains common routines to convert html to text and vice versa.
@@ -91,7 +91,7 @@ public class HtmlConverter {
 			}
 		}
 
-		private static final String IGNORED_ANNOTATION_KEY = "K9_ANNOTATION";
+		private static final String IGNORED_ANNOTATION_KEY = "MAIL_ANNOTATION";
 		private static final String IGNORED_ANNOTATION_VALUE = "hiddenSpan";
 
 		/**
@@ -128,7 +128,7 @@ public class HtmlConverter {
 
 		/**
 		 * Fetch the matching opening Annotation object and verify that it's the
-		 * one added by K9.
+		 * one added by MAIL.
 		 * 
 		 * @param output
 		 *            Spannable string we're working with.
@@ -197,7 +197,7 @@ public class HtmlConverter {
 			}
 		} catch (IOException e) {
 			// Should never happen
-			Log.e(K9.LOG_TAG, "Could not read string to convert text to HTML:",
+			Log.e(MAIL.LOG_TAG, "Could not read string to convert text to HTML:",
 					e);
 		}
 
@@ -294,7 +294,7 @@ public class HtmlConverter {
 			}
 		} catch (IOException e) {
 			// Should never happen
-			Log.e(K9.LOG_TAG, "Could not read string to convert text to HTML:",
+			Log.e(MAIL.LOG_TAG, "Could not read string to convert text to HTML:",
 					e);
 		}
 		// Close off any quotes we may have opened.
@@ -391,7 +391,7 @@ public class HtmlConverter {
 	protected static final String QUOTE_COLOR_LEVEL_3 = "#8ae234";
 	protected static final String QUOTE_COLOR_LEVEL_4 = "#fcaf3e";
 	protected static final String QUOTE_COLOR_LEVEL_5 = "#e9b96e";
-	private static final String K9MAIL_CSS_CLASS = "k9mail";
+	private static final String MAILMAIL_CSS_CLASS = "mailmail";
 
 	/**
 	 * Return an HTML hex color string for a given quote level.
@@ -1321,7 +1321,7 @@ public class HtmlConverter {
 	}
 
 	private static String htmlifyMessageHeader() {
-		return "<pre class=\"" + K9MAIL_CSS_CLASS + "\">";
+		return "<pre class=\"" + MAILMAIL_CSS_CLASS + "\">";
 	}
 
 	private static String htmlifyMessageFooter() {
@@ -1340,9 +1340,9 @@ public class HtmlConverter {
 	 *         HTML {@code <head>} element when messages are displayed.
 	 */
 	public static String cssStylePre() {
-		final String font = K9.messageViewFixedWidthFont() ? "monospace"
+		final String font = MAIL.messageViewFixedWidthFont() ? "monospace"
 				: "sans-serif";
-		return "<style type=\"text/css\"> pre." + K9MAIL_CSS_CLASS
+		return "<style type=\"text/css\"> pre." + MAILMAIL_CSS_CLASS
 				+ " {white-space: pre-wrap; word-wrap:break-word; "
 				+ "font-family: " + font + "; margin-top: 0px}</style>";
 	}

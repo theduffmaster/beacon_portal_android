@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.FontSizes;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.misc.ContactPictureLoader;
 import com.bernard.beaconportal.activities.helper.ContactPicture;
@@ -56,7 +56,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
 	private View mAnsweredIcon;
 	private View mForwardedIcon;
 	private Message mMessage;
-	private FontSizes mFontSizes = K9.getFontSizes();
+	private FontSizes mFontSizes = MAIL.getFontSizes();
 	private Contacts mContacts;
 	private SavedState mSavedState;
 
@@ -149,7 +149,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
 				final Address senderEmail = mMessage.getFrom()[0];
 				mContacts.createContact(senderEmail);
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG, "Couldn't create contact", e);
+				Log.e(MAIL.LOG_TAG, "Couldn't create contact", e);
 			}
 		}
 	}
@@ -220,7 +220,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
 
 	public void populate(final Message message, final Account account)
 			throws MessagingException {
-		final Contacts contacts = K9.showContactName() ? mContacts : null;
+		final Contacts contacts = MAIL.showContactName() ? mContacts : null;
 		final CharSequence from = Address.toFriendly(message.getFrom(),
 				contacts);
 		final CharSequence to = Address.toFriendly(
@@ -256,7 +256,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
 		}
 
 		mMessage = message;
-		if (K9.showContactPicture()) {
+		if (MAIL.showContactPicture()) {
 			mContactBadge.setVisibility(View.VISIBLE);
 			mContactsPictureLoader = ContactPicture
 					.getContactPictureLoader(mContext);
@@ -278,7 +278,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
 				| DateUtils.FORMAT_SHOW_YEAR);
 		mDateView.setText(dateTime);
 
-		if (K9.showContactPicture()) {
+		if (MAIL.showContactPicture()) {
 			if (counterpartyAddress != null) {
 				mContactBadge.assignContactFromEmail(
 						counterpartyAddress.getAddress(), true);

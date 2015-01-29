@@ -23,7 +23,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 
+import com.astuetz.PagerSlidingTabStripMargins;
+
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -31,13 +36,30 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompatExtras;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -49,15 +71,19 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 	public static final String PREF_NAME = "pref_name";
 
-	static final Uri k9AccountsUri = Uri
+	static final Uri mailAccountsUri = Uri
 			.parse("content://com.bernard.beaconportal.activities.messageprovider/accounts/");
-	static final String k9UnreadUri = "content://com.bernard.beaconportal.activities.messageprovider/account_unread/";
-	static final String k9MessageProvider = "content://com.bernard.beaconportal.activities.messageprovider/";
+	static final String mailUnreadUri = "content://com.bernard.beaconportal.activities.messageprovider/account_unread/";
+	static final String mailMessageProvider = "content://com.bernard.beaconportal.activities.messageprovider/";
 
 	ContentObserver contentObserver = null;
 	BroadcastReceiver receiver = null;
 	IntentFilter filter = null;
 
+
+	private String Band, Number, Class, Teacher, Title, Date, Type,
+			Description;
+	
 	DrawerLayout mDrawerLayout;
 	LinearLayout mDrawerLinear;
 	TextView mWelcomePerson;
@@ -72,6 +98,9 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 	Fragment fragment2 = new FragmentsHomeworkDue();
 	Fragment fragment3 = new FragmentSettings();
 	ProgressDialog LoginDialog;
+	int homeworkCount;
+	Notification n;
+	ArrayList<String> due_tommorow_list;
 
 	private HttpResponse response;
 
@@ -99,6 +128,8 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 		context = receive_context;
 
 		new Update().execute();
+		
+		createNotification();
 
 	}
 
@@ -302,10 +333,54 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 		}
 
+		
+		
 	}
 
 	public void parse_due_tommorow_string() {
 
+		homeworkCount = 0;
+		
+		Calendar calendar = Calendar.getInstance();
+
+		int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+		if (day == 6) {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Calendar c = Calendar.getInstance();
+
+			c.add(Calendar.DATE, 3);
+
+			date = sdf.format(c.getTime());
+
+			System.out.println("friday");
+
+		} else if (day == 7) {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Calendar c = Calendar.getInstance();
+
+			c.add(Calendar.DATE, 2);
+
+			date = sdf.format(c.getTime());
+
+			System.out.println("saturday");
+
+		} else {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Calendar c = Calendar.getInstance();
+
+			c.add(Calendar.DATE, 1);
+
+			date = sdf.format(c.getTime());
+
+		}
+		
 		SharedPreferences Tommorow_Homework = context.getSharedPreferences(
 				"homework", Context.MODE_PRIVATE);
 
@@ -436,6 +511,14 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 								.putString(due_tommorow_shared_content, strr);
 
 						localEditor.apply();
+						
+						if(strr.equals(date)){
+							
+							homeworkCount++;
+							
+							System.out.println("Homework Count= "+homeworkCount);
+							
+						}
 
 						System.out.println("shared= " + shared);
 
@@ -485,46 +568,6 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 			localEditors.apply();
 
-			Calendar calendar = Calendar.getInstance();
-
-			int day = calendar.get(Calendar.DAY_OF_WEEK);
-
-			if (day == 6) {
-
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-				Calendar c = Calendar.getInstance();
-
-				c.add(Calendar.DATE, 3);
-
-				date = sdf.format(c.getTime());
-
-				System.out.println("friday");
-
-			} else if (day == 7) {
-
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-				Calendar c = Calendar.getInstance();
-
-				c.add(Calendar.DATE, 2);
-
-				date = sdf.format(c.getTime());
-
-				System.out.println("saturday");
-
-			} else {
-
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-				Calendar c = Calendar.getInstance();
-
-				c.add(Calendar.DATE, 1);
-
-				date = sdf.format(c.getTime());
-
-			}
-
 			due_tommorow_shared = "due_tommorow" + Integer.toString(shared + 1);
 
 			SharedPreferences.Editor dummy_item = context.getSharedPreferences(
@@ -547,6 +590,8 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			dummy_item.putString("due_tommorow7", "Description");
 
 			dummy_item.apply();
+			
+			System.out.println("Homework Count= "+homeworkCount);
 
 		} catch (IOException e) {
 
@@ -766,6 +811,19 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 		}
 	}
+	
+	public static Bitmap drawableToBitmap (Drawable drawable) {
+	    if (drawable instanceof BitmapDrawable) {
+	        return ((BitmapDrawable)drawable).getBitmap();
+	    }
+
+	    Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Config.ARGB_8888);
+	    Canvas canvas = new Canvas(bitmap); 
+	    drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+	    drawable.draw(canvas);
+
+	    return bitmap;
+	}
 
 	public static boolean isStringNumeric(String str) {
 		DecimalFormatSymbols currentLocaleSymbols = DecimalFormatSymbols
@@ -801,5 +859,604 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 		}
 	}
+	
+	public Bitmap getCroppedBitmap(Bitmap bitmap) {
+	    Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+	            bitmap.getHeight(), Config.ARGB_8888);
+	    Canvas canvas = new Canvas(output);
 
-}
+	    final int color = 0xff424242;
+	    final Paint paint = new Paint();
+	    final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+	    paint.setAntiAlias(true);
+	    canvas.drawARGB(0, 0, 0, 0);
+	    paint.setColor(color);
+	    // canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+	    canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
+	            bitmap.getWidth() / 2, paint);
+	    paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
+	    canvas.drawBitmap(bitmap, rect, rect, paint);
+	    //Bitmap _bmp = Bitmap.createScaledBitmap(output, 60, 60, false);
+	    //return _bmp;
+	    return output;
+	}
+	
+	public void parse_due_tommorow_content() {
+
+		due_tommorow_list = new ArrayList<String>();
+		
+		Calendar calendar = Calendar.getInstance();
+
+		int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+		if (day == 6) {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Calendar c = Calendar.getInstance();
+
+			c.add(Calendar.DATE, 3);
+
+			date = sdf.format(c.getTime());
+
+			System.out.println("friday");
+
+		} else if (day == 7) {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Calendar c = Calendar.getInstance();
+
+			c.add(Calendar.DATE, 2);
+
+			date = sdf.format(c.getTime());
+
+			System.out.println("saturday");
+
+		} else {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Calendar c = Calendar.getInstance();
+
+			c.add(Calendar.DATE, 1);
+
+			date = sdf.format(c.getTime());
+
+		}
+
+		System.out.println(date);
+
+		SharedPreferences Tommorow_Homework_Counter = context.getSharedPreferences(
+				"due_tommorow_counter", Context.MODE_PRIVATE);
+		
+		int counterssss = Tommorow_Homework_Counter.getInt(
+				"last shared preference", 0);
+
+		int countersssss = counterssss + 1;
+
+		for (int i = 0; i < countersssss; i++) {
+
+			due_tommorow_shared = "due_tommorow" + Integer.toString(i);
+
+			System.out.println("due_tommorow = "+due_tommorow_shared);
+			
+			SharedPreferences Todays_Homework = context
+					.getSharedPreferences(due_tommorow_shared,
+							Context.MODE_PRIVATE);
+
+			String Band1 = Todays_Homework.getString("due_tommorow0", null);
+
+			String Number1 = Todays_Homework.getString("due_tommorow1", null);
+
+			String Class1 = Todays_Homework.getString("due_tommorow2", null);
+
+			String Teacher1 = Todays_Homework.getString("due_tommorow3", null);
+
+			String Title1 = Todays_Homework.getString("due_tommorow4", null);
+
+			String Date1 = Todays_Homework.getString("due_tommorow5", null);
+
+			String Type1 = Todays_Homework.getString("due_tommorow6", null);
+
+			String Description1 = Todays_Homework.getString("due_tommorow7",
+					null);
+
+			if (Band1 != null) {
+
+				Band = Band1.trim();
+
+				Log.d("Band" + i, Band);
+
+			}
+
+			if (Number1 != null) {
+
+				Number = Number1.trim();
+
+				Log.d("Number" + i, Number);
+
+			}
+
+			if (Class1 != null) {
+
+				Class = Class1.trim();
+
+				Log.d("Class" + i, Class);
+
+			}
+
+			if (Teacher1 != null) {
+
+				Teacher = Teacher1.trim();
+
+				Log.d("Teacher" + i, Teacher);
+
+			}
+
+			if (Title1 != null) {
+
+				Title = Title1.trim();
+
+				Log.d("Title" + i, Title);
+
+			}
+
+			if (Date1 != null) {
+
+				Date = Date1.trim();
+
+				Log.d("Date" + i, Date);
+
+			}
+
+			if (Type1 != null) {
+
+				Type = Type1.trim();
+
+				Log.d("Type" + i, Type);
+
+			}
+
+			if (Description1 != null) {
+
+				Description = Description1.trim();
+
+				Log.d("Description" + i, Description);
+
+			}
+
+			SharedPreferences description_check = context
+					.getSharedPreferences("descriptioncheck",
+							Context.MODE_PRIVATE);
+
+			String descriptionCheck = description_check.getString(
+					"description", "");
+
+			if (Type != null && Description != null
+					&& !Description.equals(descriptionCheck)
+					&& Date.contentEquals(date)) {
+
+				if (Band1 != null) {
+
+					Band = Band1.trim();
+
+					Log.d("Band Passed" + i, Band);
+
+				}
+
+				if (Number1 != null) {
+
+					Number = Number1.trim();
+
+					Log.d("Number Passed" + i, Number);
+
+				}
+
+				if (Class1 != null) {
+
+					Class = Class1.trim();
+
+					Log.d("Class Passed" + i, Class);
+
+				}
+
+				if (Teacher1 != null) {
+
+					Teacher = Teacher1.trim();
+
+					Log.d("Teacher Passed" + i, Teacher);
+
+				}
+
+				if (Title1 != null) {
+
+					Title = Title1.trim();
+
+					Log.d("Title Passed" + i, Title);
+
+				}
+
+				if (Date1 != null) {
+
+					Date = Date1.trim();
+
+					Log.d("Date Passed" + i, Date);
+
+				}
+
+				if (Type1 != null) {
+
+					Type = Type1.trim();
+
+					Log.d("Type Passed" + i, Type);
+
+				}
+
+				if (Description1 != null) {
+
+					Description = Description1.trim();
+
+					Log.d("Description Passed" + i, Description);
+
+				}
+
+				SharedPreferences.Editor checkeditor = context
+
+				.getSharedPreferences("descriptioncheck", Context.MODE_PRIVATE)
+						.edit();
+
+				checkeditor.putString("description", Description);
+
+				checkeditor.commit();
+
+				if (!"Type".equals(Type)) {
+					
+					due_tommorow_list.add(Title);
+				}
+
+			}
+
+		}
+
+	}
+
+	 public void createNotification() {
+		// prepare intent which is triggered if the
+		// notification is selected
+
+		 SharedPreferences sharedpre = context.getSharedPreferences("show_view",
+					Context.MODE_PRIVATE);
+
+			String Show_View = sharedpre.getString("show_view", "");
+		 
+	if(Show_View.equals("Homework Due")){
+			
+		 SharedPreferences.Editor localEditor1 = context.getSharedPreferences(
+					"return_to_main", Context.MODE_PRIVATE).edit();
+
+			localEditor1.putString("fragment_to_start", "2");
+
+			localEditor1.commit();
+			
+			}else{
+				
+				 SharedPreferences.Editor localEditor1 = context.getSharedPreferences(
+							"return_to_main", Context.MODE_PRIVATE).edit();
+
+					localEditor1.putString("fragment_to_start", "1");
+
+					localEditor1.commit();
+				
+			}
+		 
+		Intent intent = new Intent(context, MainActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
+                | PendingIntent.FLAG_ONE_SHOT);
+		
+		SharedPreferences sharedprefer = context.getSharedPreferences(
+				"actionbar_color", Context.MODE_PRIVATE);
+
+		if (!sharedprefer.contains("actionbar_color")) {
+
+			actionbar_colors = "#4285f4";
+
+		} else {
+
+			actionbar_colors = sharedprefer.getString("actionbar_color", null);
+
+		}
+		
+		// build notification
+		// the addAction re-use the same intent to keep the example short
+		
+		if(homeworkCount == 0){
+		
+			Bitmap icon0 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.icon0);
+			
+			Bitmap coloredBitmap = Bitmap.createBitmap(icon0.getWidth(), icon0.getHeight(), icon0.getConfig());
+			Canvas canvas = new Canvas(coloredBitmap);
+			canvas.drawColor(Color.parseColor(actionbar_colors));
+			canvas.drawBitmap(icon0, 0, 0, null);
+			
+			
+			n  = new NotificationCompat.Builder(context)
+		        .setColor(Color.parseColor("#607D8B"))
+				.setContentTitle("No Homework Due Tommorow!")
+		        .setSmallIcon(R.drawable.ic_action_assignment_light)
+		        .setLargeIcon(getCroppedBitmap(coloredBitmap))
+		        .setContentText("Congratulations")
+		        .setContentIntent(pIntent)
+		        .setAutoCancel(true).build();
+		     
+		}else if(homeworkCount == 1){
+			
+			Bitmap icon1 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.icon1);
+			
+			Bitmap coloredBitmap = Bitmap.createBitmap(icon1.getWidth(), icon1.getHeight(), icon1.getConfig());
+			Canvas canvas = new Canvas(coloredBitmap);
+			canvas.drawColor(Color.parseColor(actionbar_colors));
+			canvas.drawBitmap(icon1, 0, 0, null);
+			
+			n  = new NotificationCompat.Builder(context)
+					.setColor(Color.parseColor("#607D8B"))
+					.setContentTitle("1 Assignment Due Tommorow")
+			        .setSmallIcon(R.drawable.ic_action_assignment_light)
+			        .setLargeIcon(icon1)
+			        .setContentText(due_tommorow_list.get(0))
+			        .setContentIntent(pIntent)
+			        .setStyle(new NotificationCompat.InboxStyle()
+			        .addLine(due_tommorow_list.get(0)))
+			        .setAutoCancel(true).build();
+			     
+		}else if(homeworkCount == 2){
+			
+			Bitmap icon2 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.icon2);
+			
+			Bitmap coloredBitmap = Bitmap.createBitmap(icon2.getWidth(), icon2.getHeight(), icon2.getConfig());
+			Canvas canvas = new Canvas(coloredBitmap);
+			canvas.drawColor(Color.parseColor(actionbar_colors));
+			canvas.drawBitmap(icon2, 0, 0, null);
+			
+			n  = new NotificationCompat.Builder(context)
+					.setColor(Color.parseColor("#607D8B"))
+					.setContentTitle("2 Assignments Due Tommorow")
+			        .setSmallIcon(R.drawable.ic_action_assignment_light)
+			        .setLargeIcon(icon2)
+			        .setContentText(due_tommorow_list.get(0))
+			        .setContentIntent(pIntent)
+			        .setStyle(new NotificationCompat.InboxStyle()
+			        .addLine(due_tommorow_list.get(0))
+			        .addLine(due_tommorow_list.get(1)))
+			        .setAutoCancel(true).build();
+			     
+		}else if(homeworkCount == 3){
+			
+			Bitmap icon3 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.icon3);
+			
+			Bitmap coloredBitmap = Bitmap.createBitmap(icon3.getWidth(), icon3.getHeight(), icon3.getConfig());
+			Canvas canvas = new Canvas(coloredBitmap);
+			canvas.drawColor(Color.parseColor(actionbar_colors));
+			canvas.drawBitmap(icon3, 0, 0, null);
+			
+			n  = new NotificationCompat.Builder(context)
+					.setColor(Color.parseColor("#607D8B"))
+					.setContentTitle("3 Assignments Due Tommorow")
+			        .setSmallIcon(R.drawable.ic_action_assignment_light)
+			        .setLargeIcon(icon3)
+			        .setContentText(due_tommorow_list.get(0))
+			        .setContentIntent(pIntent)
+			        .setStyle(new NotificationCompat.InboxStyle()
+			        .addLine(due_tommorow_list.get(0))
+			        .addLine(due_tommorow_list.get(1))
+			        .addLine(due_tommorow_list.get(2)))
+			        .setAutoCancel(true).build();
+			     
+		}else if(homeworkCount == 4){
+			
+			Bitmap icon4 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.icon4);
+			
+			Bitmap coloredBitmap = Bitmap.createBitmap(icon4.getWidth(), icon4.getHeight(), icon4.getConfig());
+			Canvas canvas = new Canvas(coloredBitmap);
+			canvas.drawColor(Color.parseColor(actionbar_colors));
+			canvas.drawBitmap(icon4, 0, 0, null);
+			
+			n  = new NotificationCompat.Builder(context)
+					.setColor(Color.parseColor("#607D8B"))
+					.setContentTitle("4 Assignments Due Tommorow")
+			        .setSmallIcon(R.drawable.ic_action_assignment_light)
+			        .setLargeIcon(icon4)
+			        .setContentText(due_tommorow_list.get(0))
+			        .setStyle(new NotificationCompat.InboxStyle()
+			        .addLine(due_tommorow_list.get(0))
+			        .addLine(due_tommorow_list.get(1))
+			        .addLine(due_tommorow_list.get(2))
+			        .addLine(due_tommorow_list.get(3)))
+			        .setContentIntent(pIntent)
+			        
+			        .setAutoCancel(true).build();
+			     
+		}else if(homeworkCount == 5){
+			
+			Bitmap icon5 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.icon5);
+			
+			Bitmap coloredBitmap = Bitmap.createBitmap(icon5.getWidth(), icon5.getHeight(), icon5.getConfig());
+			Canvas canvas = new Canvas(coloredBitmap);
+			canvas.drawColor(Color.parseColor(actionbar_colors));
+			canvas.drawBitmap(icon5, 0, 0, null);
+			
+			n  = new NotificationCompat.Builder(context)
+					.setColor(Color.parseColor("#607D8B"))
+					.setContentTitle("5 Assignments Due Tommorow")
+			        .setSmallIcon(R.drawable.ic_action_assignment_light)
+			        .setLargeIcon(icon5)
+			        .setContentText(due_tommorow_list.get(0))
+			        .setContentIntent(pIntent)
+			        .setStyle(new NotificationCompat.InboxStyle()
+			        .addLine(due_tommorow_list.get(0))
+			        .addLine(due_tommorow_list.get(1))
+			        .addLine(due_tommorow_list.get(2))
+			        .addLine(due_tommorow_list.get(3))
+			        .addLine(due_tommorow_list.get(4)))
+			        .setAutoCancel(true).build();
+			     
+		}else if(homeworkCount == 6){
+			
+			Bitmap icon6 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.icon6);
+			
+			Bitmap coloredBitmap = Bitmap.createBitmap(icon6.getWidth(), icon6.getHeight(), icon6.getConfig());
+			Canvas canvas = new Canvas(coloredBitmap);
+			canvas.drawColor(Color.parseColor(actionbar_colors));
+			canvas.drawBitmap(icon6, 0, 0, null);
+			
+			n  = new NotificationCompat.Builder(context)
+					.setColor(Color.parseColor("#607D8B"))
+					.setContentTitle("6 Assignments Due Tommorow")
+			        .setSmallIcon(R.drawable.ic_action_assignment_light)
+			        .setLargeIcon(icon6)
+			        .setContentText(due_tommorow_list.get(0))
+			        .setContentIntent(pIntent)
+			        .setStyle(new NotificationCompat.InboxStyle()
+			        .addLine(due_tommorow_list.get(0))
+			        .addLine(due_tommorow_list.get(1))
+			        .addLine(due_tommorow_list.get(2))
+			        .addLine(due_tommorow_list.get(3))
+			        .addLine(due_tommorow_list.get(4))
+			        .setSummaryText("+1 more"))
+			        .setAutoCancel(true).build();
+			     
+		}else if(homeworkCount == 7){
+			
+			Bitmap icon7 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.icon7);
+			
+			Bitmap coloredBitmap = Bitmap.createBitmap(icon7.getWidth(), icon7.getHeight(), icon7.getConfig());
+			Canvas canvas = new Canvas(coloredBitmap);
+			canvas.drawColor(Color.parseColor(actionbar_colors));
+			canvas.drawBitmap(icon7, 0, 0, null);
+			
+			n  = new NotificationCompat.Builder(context)
+					.setColor(Color.parseColor("#607D8B"))	
+					.setContentTitle("7 Assignments Due Tommorow")
+			        .setSmallIcon(R.drawable.ic_action_assignment_light)
+			        .setLargeIcon(icon7)
+			        .setContentText(due_tommorow_list.get(0))
+			        .setContentIntent(pIntent)
+			        .setStyle(new NotificationCompat.InboxStyle()
+			        .addLine(due_tommorow_list.get(0))
+			        .addLine(due_tommorow_list.get(1))
+			        .addLine(due_tommorow_list.get(2))
+			        .addLine(due_tommorow_list.get(3))
+			        .addLine(due_tommorow_list.get(4))
+			        .setSummaryText("+2 more"))
+			        .setAutoCancel(true).build();
+			     
+		}else if(homeworkCount == 8){
+			
+			Bitmap icon8 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.icon8);
+			
+			Bitmap coloredBitmap = Bitmap.createBitmap(icon8.getWidth(), icon8.getHeight(), icon8.getConfig());
+			Canvas canvas = new Canvas(coloredBitmap);
+			canvas.drawColor(Color.parseColor(actionbar_colors));
+			canvas.drawBitmap(icon8, 0, 0, null);
+			
+			n  = new NotificationCompat.Builder(context)
+					.setColor(Color.parseColor("#607D8B"))
+					.setContentTitle("8 Assignments Due Tommorow")
+			        .setSmallIcon(R.drawable.ic_action_assignment_light)
+			        .setLargeIcon(icon8)
+			        .setContentText(due_tommorow_list.get(0))
+			        .setContentIntent(pIntent)
+			        .setStyle(new NotificationCompat.InboxStyle()
+			        .addLine(due_tommorow_list.get(0))
+			        .addLine(due_tommorow_list.get(1))
+			        .addLine(due_tommorow_list.get(2))
+			        .addLine(due_tommorow_list.get(3))
+			        .addLine(due_tommorow_list.get(4))
+			        .setSummaryText("+3 more"))
+			        .setAutoCancel(true).build();
+			     
+		}else if(homeworkCount == 9){
+			
+			Bitmap icon9 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.icon9);
+			
+			Bitmap coloredBitmap = Bitmap.createBitmap(icon9.getWidth(), icon9.getHeight(), icon9.getConfig());
+			Canvas canvas = new Canvas(coloredBitmap);
+			canvas.drawColor(Color.parseColor(actionbar_colors));
+			canvas.drawBitmap(icon9, 0, 0, null);
+			
+			n  = new NotificationCompat.Builder(context)
+					.setColor(Color.parseColor("#607D8B"))
+					.setContentTitle("9 Assignments Due Tommorow")
+			        .setSmallIcon(R.drawable.ic_action_assignment_light)
+			        .setLargeIcon(icon9)
+			        .setContentText(due_tommorow_list.get(0))
+			        .setContentIntent(pIntent)
+			        .setStyle(new NotificationCompat.InboxStyle()
+			        .addLine(due_tommorow_list.get(0))
+			        .addLine(due_tommorow_list.get(1))
+			        .addLine(due_tommorow_list.get(2))
+			        .addLine(due_tommorow_list.get(3))
+			        .addLine(due_tommorow_list.get(4))
+			        .setSummaryText("+4 more"))
+			        .setAutoCancel(true).build();
+			     
+		}else if(homeworkCount > 9){
+			
+			Bitmap icon10 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.icon10);
+			
+			Bitmap coloredBitmap = Bitmap.createBitmap(icon10.getWidth(), icon10.getHeight(), icon10.getConfig());
+			Canvas canvas = new Canvas(coloredBitmap);
+			canvas.drawColor(Color.parseColor(actionbar_colors));
+			canvas.drawBitmap(icon10, 0, 0, null);
+			
+			String howManyMore = "+" + Integer.toString(homeworkCount-5) + " more";
+			
+			n  = new NotificationCompat.Builder(context)
+					.setColor(Color.parseColor("#607D8B"))
+					.setContentTitle("10 or More Assignments Due Tommorow")
+			        .setSmallIcon(R.drawable.ic_action_assignment_light)
+			        .setLargeIcon(icon10)
+			        .setContentText(due_tommorow_list.get(0))
+			        .setContentIntent(pIntent)
+			        .setStyle(new NotificationCompat.InboxStyle()
+			        .addLine(due_tommorow_list.get(0))
+			        .addLine(due_tommorow_list.get(1))
+			        .addLine(due_tommorow_list.get(2))
+			        .addLine(due_tommorow_list.get(3))
+			        .addLine(due_tommorow_list.get(4))
+			        .setSummaryText(howManyMore))
+			        .setAutoCancel(true).build();
+			     
+			}else{
+				
+				n  = new NotificationCompat.Builder(context)
+				.setColor(Color.parseColor(actionbar_colors))
+				.setContentTitle("Homework Due Tommorow")
+		        .setSmallIcon(R.drawable.ic_action_assignment_light)
+		        .setContentText("Subject")
+		        .setContentIntent(pIntent)
+		        .setAutoCancel(true).build();
+				
+			}
+		  
+		NotificationManager notificationManager = 
+				  (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+				notificationManager.notify(1, n); 
+			
+
+		  }
+		} 

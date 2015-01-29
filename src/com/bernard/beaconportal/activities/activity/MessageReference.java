@@ -8,7 +8,7 @@ import android.os.Parcelable;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.helper.Utility;
 import com.bernard.beaconportal.activities.mail.Flag;
@@ -72,8 +72,8 @@ public class MessageReference implements Parcelable {
 					}
 				}
 
-				if (K9.DEBUG)
-					Log.d(K9.LOG_TAG, "Thawed " + toString());
+				if (MAIL.DEBUG)
+					Log.d(MAIL.LOG_TAG, "Thawed " + toString());
 			} else {
 				throw new MessagingException("Invalid MessageReference in "
 						+ identity + " identity.");
@@ -82,7 +82,7 @@ public class MessageReference implements Parcelable {
 	}
 
 	/**
-	 * Serialize this MessageReference for storing in a K9 identity. This is a
+	 * Serialize this MessageReference for storing in a MAIL identity. This is a
 	 * colon-delimited base64 string.
 	 * 
 	 * @return Serialized string.
@@ -152,19 +152,19 @@ public class MessageReference implements Parcelable {
 					if (message != null) {
 						return message;
 					} else {
-						Log.d(K9.LOG_TAG, "Could not restore message, uid "
+						Log.d(MAIL.LOG_TAG, "Could not restore message, uid "
 								+ uid + " is unknown.");
 					}
 				} else {
-					Log.d(K9.LOG_TAG, "Could not restore message, folder "
+					Log.d(MAIL.LOG_TAG, "Could not restore message, folder "
 							+ folderName + " is unknown.");
 				}
 			} else {
-				Log.d(K9.LOG_TAG, "Could not restore message, account "
+				Log.d(MAIL.LOG_TAG, "Could not restore message, account "
 						+ accountUuid + " is unknown.");
 			}
 		} catch (MessagingException e) {
-			Log.w(K9.LOG_TAG, "Could not retrieve message for reference.", e);
+			Log.w(MAIL.LOG_TAG, "Could not retrieve message for reference.", e);
 		}
 
 		return null;

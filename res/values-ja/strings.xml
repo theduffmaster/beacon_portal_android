@@ -40,8 +40,8 @@ K-9で改良された機能:
 <p>
 K-9 は大多数のメールクライアントと同様に、ほとんどのフリーHotmailアカウントをサポートしていません。また、 Microsoft Exchange との通信において少し癖を持っていることに注意してください。
 </p><p>
-バグレポートや新機能の貢献、質問は http://k9mail.googlecode.com/ にお願いします。<br>
-日本語で質問などがある場合は <a href="http://groups.google.co.jp/group/k9mail_ja/">http://groups.google.co.jp/group/k9mail_ja/</a> を参照してください。
+バグレポートや新機能の貢献、質問は http://mailmail.googlecode.com/ にお願いします。<br>
+日本語で質問などがある場合は <a href="http://groups.google.co.jp/group/mailmail_ja/">http://groups.google.co.jp/group/mailmail_ja/</a> を参照してください。
 </p>
     ]]></string>
   <!--Default signature-->
@@ -142,7 +142,7 @@ K-9 は大多数のメールクライアントと同様に、ほとんどのフ�
   <string name="empty_trash_action">ゴミ箱を空に</string>
   <string name="expunge_action">完全削除(Expunge)</string>
   <string name="clear_local_folder_action">ローカルのメッセージをクリア</string>
-  <string name="about_action">k9mailについて</string>
+  <string name="about_action">mailmailについて</string>
   <string name="prefs_title">グローバル設定</string>
   <string name="accounts_context_menu_title">アカウントオプション</string>
   <!--Shown in place of the subject when a message has no subject. Showing this in parentheses is customary.-->

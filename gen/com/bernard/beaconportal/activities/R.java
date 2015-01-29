@@ -2444,399 +2444,425 @@ containing a value of this type.
         public static final int elv_undo_btn_bg_focused=0x7f020077;
         public static final int elv_undo_btn_bg_pressed=0x7f020078;
         public static final int english=0x7f020079;
-        public static final int folder_dark=0x7f02007a;
-        public static final int folder_light=0x7f02007b;
-        public static final int french=0x7f02007c;
-        public static final int global_studies=0x7f02007d;
-        public static final int guitar=0x7f02007e;
-        public static final int half_life_3_where_are_you=0x7f02007f;
-        public static final int hf=0x7f020080;
-        public static final int hg=0x7f020081;
-        public static final int hip_hop=0x7f020082;
-        public static final int hu=0x7f020083;
-        public static final int ic_ab_overflow_compat=0x7f020084;
-        public static final int ic_ab_up_compat=0x7f020085;
-        public static final int ic_action_about=0x7f020086;
-        public static final int ic_action_about_dark=0x7f020087;
-        public static final int ic_action_about_light=0x7f020088;
-        public static final int ic_action_accept=0x7f020089;
-        public static final int ic_action_accept_black=0x7f02008a;
-        public static final int ic_action_accept_dark=0x7f02008b;
-        public static final int ic_action_accept_light=0x7f02008c;
-        public static final int ic_action_add_attachment_dark=0x7f02008d;
-        public static final int ic_action_add_attachment_light=0x7f02008e;
-        public static final int ic_action_add_cc_bbc_dark=0x7f02008f;
-        public static final int ic_action_add_cc_bbc_light=0x7f020090;
-        public static final int ic_action_add_cc_bcc_dark=0x7f020091;
-        public static final int ic_action_add_dark=0x7f020092;
-        public static final int ic_action_add_light=0x7f020093;
-        public static final int ic_action_archive_dark=0x7f020094;
-        public static final int ic_action_archive_light=0x7f020095;
-        public static final int ic_action_assignment_black=0x7f020096;
-        public static final int ic_action_assignment_dark=0x7f020097;
-        public static final int ic_action_assignment_light=0x7f020098;
-        public static final int ic_action_autorenew_black=0x7f020099;
-        public static final int ic_action_autorenew_dark=0x7f02009a;
-        public static final int ic_action_autorenew_light=0x7f02009b;
-        public static final int ic_action_cancel_dark=0x7f02009c;
-        public static final int ic_action_cancel_launchersize=0x7f02009d;
-        public static final int ic_action_cancel_launchersize_light=0x7f02009e;
-        public static final int ic_action_cancel_light=0x7f02009f;
-        public static final int ic_action_compose_dark=0x7f0200a0;
-        public static final int ic_action_compose_light=0x7f0200a1;
-        public static final int ic_action_copy_dark=0x7f0200a2;
-        public static final int ic_action_copy_light=0x7f0200a3;
-        public static final int ic_action_delete_black=0x7f0200a4;
-        public static final int ic_action_delete_dark=0x7f0200a5;
-        public static final int ic_action_delete_light=0x7f0200a6;
-        public static final int ic_action_description_black=0x7f0200a7;
-        public static final int ic_action_description_dark=0x7f0200a8;
-        public static final int ic_action_description_light=0x7f0200a9;
-        public static final int ic_action_discard=0x7f0200aa;
-        public static final int ic_action_discard_dark=0x7f0200ab;
-        public static final int ic_action_discard_light=0x7f0200ac;
-        public static final int ic_action_done_all=0x7f0200ad;
-        public static final int ic_action_done_all_black=0x7f0200ae;
-        public static final int ic_action_done_all_dark=0x7f0200af;
-        public static final int ic_action_done_all_light=0x7f0200b0;
-        public static final int ic_action_drafts_black=0x7f0200b1;
-        public static final int ic_action_drafts_dark=0x7f0200b2;
-        public static final int ic_action_drafts_light=0x7f0200b3;
-        public static final int ic_action_duehomework=0x7f0200b4;
-        public static final int ic_action_duehomework_copied=0x7f0200b5;
-        public static final int ic_action_edit=0x7f0200b6;
-        public static final int ic_action_edit_black=0x7f0200b7;
-        public static final int ic_action_edit_dark=0x7f0200b8;
-        public static final int ic_action_edit_light=0x7f0200b9;
-        public static final int ic_action_email=0x7f0200ba;
-        public static final int ic_action_event=0x7f0200bb;
-        public static final int ic_action_event_note_black=0x7f0200bc;
-        public static final int ic_action_event_note_dark=0x7f0200bd;
-        public static final int ic_action_event_note_light=0x7f0200be;
-        public static final int ic_action_flag_dark=0x7f0200bf;
-        public static final int ic_action_flag_light=0x7f0200c0;
-        public static final int ic_action_forward_black=0x7f0200c1;
-        public static final int ic_action_forward_dark=0x7f0200c2;
-        public static final int ic_action_forward_light=0x7f0200c3;
-        public static final int ic_action_go_to_today=0x7f0200c4;
-        public static final int ic_action_help=0x7f0200c5;
-        public static final int ic_action_help_black=0x7f0200c6;
-        public static final int ic_action_help_dark=0x7f0200c7;
-        public static final int ic_action_help_light=0x7f0200c8;
-        public static final int ic_action_import_export_dark=0x7f0200c9;
-        public static final int ic_action_import_export_light=0x7f0200ca;
-        public static final int ic_action_inbox_black=0x7f0200cb;
-        public static final int ic_action_inbox_dark=0x7f0200cc;
-        public static final int ic_action_inbox_light=0x7f0200cd;
-        public static final int ic_action_info_outline_dark=0x7f0200ce;
-        public static final int ic_action_info_outline_light=0x7f0200cf;
-        public static final int ic_action_logout=0x7f0200d0;
-        public static final int ic_action_logout_black=0x7f0200d1;
-        public static final int ic_action_logout_dark=0x7f0200d2;
-        public static final int ic_action_logout_light=0x7f0200d3;
-        public static final int ic_action_mail_dark=0x7f0200d4;
-        public static final int ic_action_mail_light=0x7f0200d5;
-        public static final int ic_action_mark_as_read_dark=0x7f0200d6;
-        public static final int ic_action_mark_as_read_light=0x7f0200d7;
-        public static final int ic_action_mark_as_unread_dark=0x7f0200d8;
-        public static final int ic_action_mark_as_unread_light=0x7f0200d9;
-        public static final int ic_action_markunread=0x7f0200da;
-        public static final int ic_action_markunread_black=0x7f0200db;
-        public static final int ic_action_markunread_dark=0x7f0200dc;
-        public static final int ic_action_markunread_light=0x7f0200dd;
-        public static final int ic_action_move_dark=0x7f0200de;
-        public static final int ic_action_move_light=0x7f0200df;
-        public static final int ic_action_next_message_dark=0x7f0200e0;
-        public static final int ic_action_next_message_light=0x7f0200e1;
-        public static final int ic_action_overflow=0x7f0200e2;
-        public static final int ic_action_previous_message_dark=0x7f0200e3;
-        public static final int ic_action_previous_message_light=0x7f0200e4;
-        public static final int ic_action_redo_black=0x7f0200e5;
-        public static final int ic_action_redo_dark=0x7f0200e6;
-        public static final int ic_action_redo_light=0x7f0200e7;
-        public static final int ic_action_refresh=0x7f0200e8;
-        public static final int ic_action_refresh1=0x7f0200e9;
-        public static final int ic_action_refresh2=0x7f0200ea;
-        public static final int ic_action_refresh_black=0x7f0200eb;
-        public static final int ic_action_refresh_dark=0x7f0200ec;
-        public static final int ic_action_refresh_light=0x7f0200ed;
-        public static final int ic_action_remote_search_dark=0x7f0200ee;
-        public static final int ic_action_remote_search_light=0x7f0200ef;
-        public static final int ic_action_remove_black=0x7f0200f0;
-        public static final int ic_action_remove_dark=0x7f0200f1;
-        public static final int ic_action_remove_light=0x7f0200f2;
-        public static final int ic_action_reply_all_black=0x7f0200f3;
-        public static final int ic_action_reply_all_dark=0x7f0200f4;
-        public static final int ic_action_reply_all_light=0x7f0200f5;
-        public static final int ic_action_reply_black=0x7f0200f6;
-        public static final int ic_action_reply_dark=0x7f0200f7;
-        public static final int ic_action_reply_light=0x7f0200f8;
-        public static final int ic_action_request_read_receipt_dark=0x7f0200f9;
-        public static final int ic_action_request_read_receipt_light=0x7f0200fa;
-        public static final int ic_action_resources=0x7f0200fb;
-        public static final int ic_action_s=0x7f0200fc;
-        public static final int ic_action_save=0x7f0200fd;
-        public static final int ic_action_save_black=0x7f0200fe;
-        public static final int ic_action_save_dark=0x7f0200ff;
-        public static final int ic_action_save_light=0x7f020100;
-        public static final int ic_action_search_dark=0x7f020101;
-        public static final int ic_action_search_light=0x7f020102;
-        public static final int ic_action_select_all_dark=0x7f020103;
-        public static final int ic_action_select_all_light=0x7f020104;
-        public static final int ic_action_send_black=0x7f020105;
-        public static final int ic_action_send_dark=0x7f020106;
-        public static final int ic_action_send_light=0x7f020107;
-        public static final int ic_action_set=0x7f020108;
-        public static final int ic_action_set_dark=0x7f020109;
-        public static final int ic_action_set_light=0x7f02010a;
-        public static final int ic_action_settings=0x7f02010b;
-        public static final int ic_action_settings_black=0x7f02010c;
-        public static final int ic_action_settings_dark=0x7f02010d;
-        public static final int ic_action_settings_light=0x7f02010e;
-        public static final int ic_action_single_message_options_dark=0x7f02010f;
-        public static final int ic_action_single_message_options_light=0x7f020110;
-        public static final int ic_action_sort_dark=0x7f020111;
-        public static final int ic_action_sort_light=0x7f020112;
-        public static final int ic_action_spam_dark=0x7f020113;
-        public static final int ic_action_spam_light=0x7f020114;
-        public static final int ic_action_sync_dark=0x7f020115;
-        public static final int ic_action_undo=0x7f020116;
-        public static final int ic_action_undo_black=0x7f020117;
-        public static final int ic_action_undo_dark=0x7f020118;
-        public static final int ic_action_undo_light=0x7f020119;
-        public static final int ic_action_unflag_dark=0x7f02011a;
-        public static final int ic_action_unflag_light=0x7f02011b;
-        public static final int ic_action_upload_dark=0x7f02011c;
-        public static final int ic_action_upload_light=0x7f02011d;
-        public static final int ic_action_view_as_list=0x7f02011e;
-        public static final int ic_add_black_48dp=0x7f02011f;
-        public static final int ic_add_circle_black_48dp=0x7f020120;
-        public static final int ic_add_circle_grey600_48dp=0x7f020121;
-        public static final int ic_add_circle_white_48dp=0x7f020122;
-        public static final int ic_add_grey600_48dp=0x7f020123;
-        public static final int ic_add_to_photos_black_48dp=0x7f020124;
-        public static final int ic_add_to_photos_grey600_48dp=0x7f020125;
-        public static final int ic_archive_black_48dp=0x7f020126;
-        public static final int ic_archive_grey600_48dp=0x7f020127;
-        public static final int ic_arrow_back_black_48dp=0x7f020128;
-        public static final int ic_arrow_back_grey600_48dp=0x7f020129;
-        public static final int ic_arrow_forward_black_48dp=0x7f02012a;
-        public static final int ic_arrow_forward_grey600_48dp=0x7f02012b;
-        public static final int ic_arrow_forward_white_48dp=0x7f02012c;
-        public static final int ic_assignment_black_48dp=0x7f02012d;
-        public static final int ic_assignment_grey600_48dp=0x7f02012e;
-        public static final int ic_assignment_turned_in_black=0x7f02012f;
-        public static final int ic_assignment_turned_in_black_48dp=0x7f020130;
-        public static final int ic_assignment_turned_in_grey600=0x7f020131;
-        public static final int ic_assignment_turned_in_grey600_48dp=0x7f020132;
-        public static final int ic_assignment_turned_in_white=0x7f020133;
-        public static final int ic_assignment_turned_in_white_48dp=0x7f020134;
-        public static final int ic_attachment_black_18dp=0x7f020135;
-        public static final int ic_attachment_black_48dp=0x7f020136;
-        public static final int ic_attachment_grey600_18dp=0x7f020137;
-        public static final int ic_attachment_grey600_48dp=0x7f020138;
-        public static final int ic_autorenew_black_48dp=0x7f020139;
-        public static final int ic_autorenew_grey600_48dp=0x7f02013a;
-        public static final int ic_button_add_contact_dark=0x7f02013b;
-        public static final int ic_button_add_contact_light=0x7f02013c;
-        public static final int ic_check_black_48dp=0x7f02013d;
-        public static final int ic_check_box_black_48dp=0x7f02013e;
-        public static final int ic_check_box_grey600_48dp=0x7f02013f;
-        public static final int ic_check_grey600_48dp=0x7f020140;
-        public static final int ic_chevron_left_black_48dp=0x7f020141;
-        public static final int ic_chevron_left_grey600_48dp=0x7f020142;
-        public static final int ic_chevron_right_black_48dp=0x7f020143;
-        public static final int ic_chevron_right_grey600_48dp=0x7f020144;
-        public static final int ic_clear_black_48dp=0x7f020145;
-        public static final int ic_clear_grey600_48dp=0x7f020146;
-        public static final int ic_close_black_48dp=0x7f020147;
-        public static final int ic_close_grey600_48dp=0x7f020148;
-        public static final int ic_colorpicker_swatch_selected=0x7f020149;
-        public static final int ic_contact_picture=0x7f02014a;
-        public static final int ic_content_copy_black_48dp=0x7f02014b;
-        public static final int ic_content_copy_grey600_48dp=0x7f02014c;
-        public static final int ic_create_black_48dp=0x7f02014d;
-        public static final int ic_create_grey600_48dp=0x7f02014e;
-        public static final int ic_delete=0x7f02014f;
-        public static final int ic_delete_black_48dp=0x7f020150;
-        public static final int ic_delete_grey600_48dp=0x7f020151;
-        public static final int ic_description_black_48dp=0x7f020152;
-        public static final int ic_description_grey600_48dp=0x7f020153;
-        public static final int ic_done_all_black_48dp=0x7f020154;
-        public static final int ic_done_all_grey600_48dp=0x7f020155;
-        public static final int ic_done_black_48dp=0x7f020156;
-        public static final int ic_done_grey600_48dp=0x7f020157;
-        public static final int ic_drafts_black_48dp=0x7f020158;
-        public static final int ic_drafts_grey600_48dp=0x7f020159;
-        public static final int ic_drawer=0x7f02015a;
-        public static final int ic_email_answered_small=0x7f02015b;
-        public static final int ic_email_attachment=0x7f02015c;
-        public static final int ic_email_attachment_small=0x7f02015d;
-        public static final int ic_email_black_48dp=0x7f02015e;
-        public static final int ic_email_forwarded_answered_small=0x7f02015f;
-        public static final int ic_email_forwarded_small=0x7f020160;
-        public static final int ic_email_grey600_48dp=0x7f020161;
-        public static final int ic_email_white_48dp=0x7f020162;
-        public static final int ic_event_note_black_48dp=0x7f020163;
-        public static final int ic_event_note_grey600_48dp=0x7f020164;
-        public static final int ic_file_upload_black_48dp=0x7f020165;
-        public static final int ic_file_upload_grey600_48dp=0x7f020166;
-        public static final int ic_folder_black_48dp=0x7f020167;
-        public static final int ic_folder_star_holo_checked=0x7f020168;
-        public static final int ic_folder_star_holo_dark=0x7f020169;
-        public static final int ic_folder_star_holo_gray=0x7f02016a;
-        public static final int ic_folder_star_holo_light=0x7f02016b;
-        public static final int ic_folder_star_holo_unchecked=0x7f02016c;
-        public static final int ic_forward_black_48dp=0x7f02016d;
-        public static final int ic_forward_grey600_48dp=0x7f02016e;
-        public static final int ic_help_black_48dp=0x7f02016f;
-        public static final int ic_help_grey600_48dp=0x7f020170;
-        public static final int ic_import_export_black_48dp=0x7f020171;
-        public static final int ic_import_export_grey600_48dp=0x7f020172;
-        public static final int ic_inbox_black_48dp=0x7f020173;
-        public static final int ic_inbox_grey600_48dp=0x7f020174;
-        public static final int ic_info_black_48dp=0x7f020175;
-        public static final int ic_info_grey600_48dp=0x7f020176;
-        public static final int ic_info_outline_black_48dp=0x7f020177;
-        public static final int ic_launcher=0x7f020178;
-        public static final int ic_mail_black_48dp=0x7f020179;
-        public static final int ic_mail_grey600_48dp=0x7f02017a;
-        public static final int ic_mail_white_48dp=0x7f02017b;
-        public static final int ic_markunread_black600_48dp=0x7f02017c;
-        public static final int ic_markunread_black_48dp=0x7f02017d;
-        public static final int ic_markunread_grey600_48dp=0x7f02017e;
-        public static final int ic_markunread_mailbox_black_48dp=0x7f02017f;
-        public static final int ic_markunread_mailbox_grey600_48dp=0x7f020180;
-        public static final int ic_markunread_white_48dp=0x7f020181;
-        public static final int ic_menu_black_48dp=0x7f020182;
-        public static final int ic_menu_grey600_48dp=0x7f020183;
-        public static final int ic_menu_moreoverflow_holo_dark=0x7f020184;
-        public static final int ic_menu_moreoverflow_holo_light=0x7f020185;
-        public static final int ic_menu_white_48dp=0x7f020186;
-        public static final int ic_more_horiz_black_48dp=0x7f020187;
-        public static final int ic_more_horiz_grey600_48dp=0x7f020188;
-        public static final int ic_more_horiz_white_48dp=0x7f020189;
-        public static final int ic_more_vert_black_48dp=0x7f02018a;
-        public static final int ic_more_vert_grey600_48dp=0x7f02018b;
-        public static final int ic_note_add_black_48dp=0x7f02018c;
-        public static final int ic_note_add_grey600_48dp=0x7f02018d;
-        public static final int ic_notify_check_mail=0x7f02018e;
-        public static final int ic_notify_check_mail_anim_0=0x7f02018f;
-        public static final int ic_notify_check_mail_anim_1=0x7f020190;
-        public static final int ic_notify_check_mail_anim_2=0x7f020191;
-        public static final int ic_notify_check_mail_anim_3=0x7f020192;
-        public static final int ic_notify_check_mail_anim_4=0x7f020193;
-        public static final int ic_notify_check_mail_anim_5=0x7f020194;
-        public static final int ic_notify_new_mail=0x7f020195;
-        public static final int ic_people_black_48dp=0x7f020196;
-        public static final int ic_people_grey600_48dp=0x7f020197;
-        public static final int ic_person_add_black_48dp=0x7f020198;
-        public static final int ic_person_add_grey600_48dp=0x7f020199;
-        public static final int ic_quick_contacts_mail_black_48dp=0x7f02019a;
-        public static final int ic_quick_contacts_mail_grey600_48dp=0x7f02019b;
-        public static final int ic_quick_contacts_mail_white_48dp=0x7f02019c;
-        public static final int ic_redo_black_48dp=0x7f02019d;
-        public static final int ic_redo_grey600_48dp=0x7f02019e;
-        public static final int ic_refresh_black_48dp=0x7f02019f;
-        public static final int ic_refresh_grey600_48dp=0x7f0201a0;
-        public static final int ic_remove_circle_black_36dp=0x7f0201a1;
-        public static final int ic_remove_circle_grey600_36dp=0x7f0201a2;
-        public static final int ic_reply_all_black_48dp=0x7f0201a3;
-        public static final int ic_reply_all_grey600_48dp=0x7f0201a4;
-        public static final int ic_reply_black_48dp=0x7f0201a5;
-        public static final int ic_reply_grey600_48dp=0x7f0201a6;
-        public static final int ic_save_black_48dp=0x7f0201a7;
-        public static final int ic_save_grey600_48dp=0x7f0201a8;
-        public static final int ic_search_black_48dp=0x7f0201a9;
-        public static final int ic_search_grey600_48dp=0x7f0201aa;
-        public static final int ic_select_all_black_48dp=0x7f0201ab;
-        public static final int ic_select_all_grey600_48dp=0x7f0201ac;
-        public static final int ic_send_black_48dp=0x7f0201ad;
-        public static final int ic_send_grey600_48dp=0x7f0201ae;
-        public static final int ic_settings_black_48dp=0x7f0201af;
-        public static final int ic_settings_grey600_48dp=0x7f0201b0;
-        public static final int ic_sort_black_48dp=0x7f0201b1;
-        public static final int ic_sort_grey600_48dp=0x7f0201b2;
-        public static final int ic_star_black_48dp=0x7f0201b3;
-        public static final int ic_star_grey600_48dp=0x7f0201b4;
-        public static final int ic_star_outline_black_48dp=0x7f0201b5;
-        public static final int ic_star_outline_white_48dp=0x7f0201b6;
-        public static final int ic_undo_black_48dp=0x7f0201b7;
-        public static final int ic_undo_grey600_48dp=0x7f0201b8;
-        public static final int ic_unread_widget=0x7f0201b9;
-        public static final int ic_unread_widget_selected=0x7f0201ba;
-        public static final int ic_view_list_black_48dp=0x7f0201bb;
-        public static final int ic_view_list_grey600_48dp=0x7f0201bc;
-        public static final int ic_view_list_white_48dp=0x7f0201bd;
-        public static final int ic_warning_amber_48dp=0x7f0201be;
-        public static final int ic_warning_black_48dp=0x7f0201bf;
-        public static final int ic_warning_grey600_48dp=0x7f0201c0;
-        public static final int icon=0x7f0201c1;
-        public static final int indicator_arrow=0x7f0201c2;
-        public static final int indicator_bg_bottom=0x7f0201c3;
-        public static final int indicator_bg_top=0x7f0201c4;
-        public static final int item_focused=0x7f0201c5;
-        public static final int item_pressed=0x7f0201c6;
-        public static final int item_selector=0x7f0201c7;
-        public static final int list_item_bg_normal=0x7f0201c8;
-        public static final int list_item_bg_pressed=0x7f0201c9;
-        public static final int list_selector=0x7f0201ca;
-        public static final int lunch=0x7f0201cb;
-        public static final int material_shadow=0x7f0201cc;
-        public static final int material_shadow180=0x7f0201cd;
-        public static final int material_shadow270=0x7f0201ce;
-        public static final int material_shadow360=0x7f0201cf;
-        public static final int material_shadow90=0x7f0201d0;
-        public static final int mathematics=0x7f0201d1;
-        public static final int mc=0x7f0201d2;
-        public static final int me=0x7f0201d3;
-        public static final int message_list_item_footer_background=0x7f0201d4;
-        public static final int mg=0x7f0201d5;
-        public static final int mp=0x7f0201d6;
-        public static final int mq=0x7f0201d7;
-        public static final int mr=0x7f0201d8;
-        public static final int ms=0x7f0201d9;
-        public static final int music=0x7f0201da;
-        public static final int musical_production=0x7f0201db;
-        public static final int nyt=0x7f0201dc;
-        public static final int overlay_error=0x7f0201dd;
-        public static final int overlay_ok=0x7f0201de;
-        public static final int panel_separator=0x7f0201df;
-        public static final int percussion=0x7f0201e0;
-        public static final int ph=0x7f0201e1;
-        public static final int photography=0x7f0201e2;
-        public static final int physical_education=0x7f0201e3;
-        public static final int popup_background=0x7f0201e4;
-        public static final int pp=0x7f0201e5;
-        public static final int pq=0x7f0201e6;
-        public static final int preview_unread_widget=0x7f0201e7;
-        public static final int robotics=0x7f0201e8;
-        public static final int rounded_corners=0x7f0201e9;
-        public static final int sb=0x7f0201ea;
-        public static final int sc=0x7f0201eb;
-        public static final int school_01_256=0x7f0201ec;
-        public static final int science=0x7f0201ed;
-        public static final int selectable_item_background=0x7f0201ee;
-        public static final int sf=0x7f0201ef;
-        public static final int signed_large=0x7f0201f0;
-        public static final int sk=0x7f0201f1;
-        public static final int sp=0x7f0201f2;
-        public static final int spanish=0x7f0201f3;
-        public static final int sq=0x7f0201f4;
-        public static final int squirrel_mail=0x7f0201f5;
-        public static final int sr=0x7f0201f6;
-        public static final int studio_art=0x7f0201f7;
-        public static final int thread_count_box_dark=0x7f0201f8;
-        public static final int thread_count_box_light=0x7f0201f9;
-        public static final int tq=0x7f0201fa;
-        public static final int tz=0x7f0201fb;
-        public static final int ug=0x7f0201fc;
-        public static final int un=0x7f0201fd;
-        public static final int unread_count_background=0x7f0201fe;
-        public static final int unread_widget_background=0x7f0201ff;
-        public static final int unread_widget_icon=0x7f020200;
-        public static final int uu=0x7f020201;
-        public static final int z=0x7f020202;
+        public static final int engrade=0x7f02007a;
+        public static final int folder_dark=0x7f02007b;
+        public static final int folder_light=0x7f02007c;
+        public static final int french=0x7f02007d;
+        public static final int global_studies=0x7f02007e;
+        public static final int guitar=0x7f02007f;
+        public static final int half_life_3_where_are_you=0x7f020080;
+        public static final int hf=0x7f020081;
+        public static final int hg=0x7f020082;
+        public static final int hip_hop=0x7f020083;
+        public static final int hu=0x7f020084;
+        public static final int ic_ab_overflow_compat=0x7f020085;
+        public static final int ic_ab_up_compat=0x7f020086;
+        public static final int ic_action_about=0x7f020087;
+        public static final int ic_action_about_dark=0x7f020088;
+        public static final int ic_action_about_light=0x7f020089;
+        public static final int ic_action_accept=0x7f02008a;
+        public static final int ic_action_accept_black=0x7f02008b;
+        public static final int ic_action_accept_dark=0x7f02008c;
+        public static final int ic_action_accept_light=0x7f02008d;
+        public static final int ic_action_add_attachment_dark=0x7f02008e;
+        public static final int ic_action_add_attachment_light=0x7f02008f;
+        public static final int ic_action_add_cc_bbc_dark=0x7f020090;
+        public static final int ic_action_add_cc_bbc_light=0x7f020091;
+        public static final int ic_action_add_cc_bcc_dark=0x7f020092;
+        public static final int ic_action_add_dark=0x7f020093;
+        public static final int ic_action_add_light=0x7f020094;
+        public static final int ic_action_archive_dark=0x7f020095;
+        public static final int ic_action_archive_light=0x7f020096;
+        public static final int ic_action_assignment_black=0x7f020097;
+        public static final int ic_action_assignment_dark=0x7f020098;
+        public static final int ic_action_assignment_light=0x7f020099;
+        public static final int ic_action_autorenew_black=0x7f02009a;
+        public static final int ic_action_autorenew_dark=0x7f02009b;
+        public static final int ic_action_autorenew_light=0x7f02009c;
+        public static final int ic_action_cancel_dark=0x7f02009d;
+        public static final int ic_action_cancel_launchersize=0x7f02009e;
+        public static final int ic_action_cancel_launchersize_light=0x7f02009f;
+        public static final int ic_action_cancel_light=0x7f0200a0;
+        public static final int ic_action_compose_dark=0x7f0200a1;
+        public static final int ic_action_compose_light=0x7f0200a2;
+        public static final int ic_action_copy_dark=0x7f0200a3;
+        public static final int ic_action_copy_light=0x7f0200a4;
+        public static final int ic_action_delete_black=0x7f0200a5;
+        public static final int ic_action_delete_dark=0x7f0200a6;
+        public static final int ic_action_delete_light=0x7f0200a7;
+        public static final int ic_action_description_black=0x7f0200a8;
+        public static final int ic_action_description_dark=0x7f0200a9;
+        public static final int ic_action_description_light=0x7f0200aa;
+        public static final int ic_action_discard=0x7f0200ab;
+        public static final int ic_action_discard_dark=0x7f0200ac;
+        public static final int ic_action_discard_light=0x7f0200ad;
+        public static final int ic_action_done_all=0x7f0200ae;
+        public static final int ic_action_done_all_black=0x7f0200af;
+        public static final int ic_action_done_all_dark=0x7f0200b0;
+        public static final int ic_action_done_all_light=0x7f0200b1;
+        public static final int ic_action_drafts_black=0x7f0200b2;
+        public static final int ic_action_drafts_dark=0x7f0200b3;
+        public static final int ic_action_drafts_light=0x7f0200b4;
+        public static final int ic_action_duehomework=0x7f0200b5;
+        public static final int ic_action_duehomework_copied=0x7f0200b6;
+        public static final int ic_action_duehomework_notification=0x7f0200b7;
+        public static final int ic_action_edit=0x7f0200b8;
+        public static final int ic_action_edit_black=0x7f0200b9;
+        public static final int ic_action_edit_dark=0x7f0200ba;
+        public static final int ic_action_edit_light=0x7f0200bb;
+        public static final int ic_action_email=0x7f0200bc;
+        public static final int ic_action_event=0x7f0200bd;
+        public static final int ic_action_event_note_black=0x7f0200be;
+        public static final int ic_action_event_note_dark=0x7f0200bf;
+        public static final int ic_action_event_note_light=0x7f0200c0;
+        public static final int ic_action_flag_dark=0x7f0200c1;
+        public static final int ic_action_flag_light=0x7f0200c2;
+        public static final int ic_action_forward_black=0x7f0200c3;
+        public static final int ic_action_forward_dark=0x7f0200c4;
+        public static final int ic_action_forward_light=0x7f0200c5;
+        public static final int ic_action_go_to_today=0x7f0200c6;
+        public static final int ic_action_help=0x7f0200c7;
+        public static final int ic_action_help_black=0x7f0200c8;
+        public static final int ic_action_help_dark=0x7f0200c9;
+        public static final int ic_action_help_light=0x7f0200ca;
+        public static final int ic_action_import_export_dark=0x7f0200cb;
+        public static final int ic_action_import_export_light=0x7f0200cc;
+        public static final int ic_action_inbox_black=0x7f0200cd;
+        public static final int ic_action_inbox_dark=0x7f0200ce;
+        public static final int ic_action_inbox_light=0x7f0200cf;
+        public static final int ic_action_info_outline_dark=0x7f0200d0;
+        public static final int ic_action_info_outline_light=0x7f0200d1;
+        public static final int ic_action_logout=0x7f0200d2;
+        public static final int ic_action_logout_black=0x7f0200d3;
+        public static final int ic_action_logout_dark=0x7f0200d4;
+        public static final int ic_action_logout_light=0x7f0200d5;
+        public static final int ic_action_mail_dark=0x7f0200d6;
+        public static final int ic_action_mail_light=0x7f0200d7;
+        public static final int ic_action_mark_as_read_dark=0x7f0200d8;
+        public static final int ic_action_mark_as_read_light=0x7f0200d9;
+        public static final int ic_action_mark_as_unread_dark=0x7f0200da;
+        public static final int ic_action_mark_as_unread_light=0x7f0200db;
+        public static final int ic_action_markunread=0x7f0200dc;
+        public static final int ic_action_markunread_black=0x7f0200dd;
+        public static final int ic_action_markunread_dark=0x7f0200de;
+        public static final int ic_action_markunread_light=0x7f0200df;
+        public static final int ic_action_move_dark=0x7f0200e0;
+        public static final int ic_action_move_light=0x7f0200e1;
+        public static final int ic_action_next_message_dark=0x7f0200e2;
+        public static final int ic_action_next_message_light=0x7f0200e3;
+        public static final int ic_action_overflow=0x7f0200e4;
+        public static final int ic_action_previous_message_dark=0x7f0200e5;
+        public static final int ic_action_previous_message_light=0x7f0200e6;
+        public static final int ic_action_redo_black=0x7f0200e7;
+        public static final int ic_action_redo_dark=0x7f0200e8;
+        public static final int ic_action_redo_light=0x7f0200e9;
+        public static final int ic_action_refresh=0x7f0200ea;
+        public static final int ic_action_refresh1=0x7f0200eb;
+        public static final int ic_action_refresh2=0x7f0200ec;
+        public static final int ic_action_refresh_black=0x7f0200ed;
+        public static final int ic_action_refresh_dark=0x7f0200ee;
+        public static final int ic_action_refresh_light=0x7f0200ef;
+        public static final int ic_action_remote_search_dark=0x7f0200f0;
+        public static final int ic_action_remote_search_light=0x7f0200f1;
+        public static final int ic_action_remove_black=0x7f0200f2;
+        public static final int ic_action_remove_dark=0x7f0200f3;
+        public static final int ic_action_remove_light=0x7f0200f4;
+        public static final int ic_action_reply_all_black=0x7f0200f5;
+        public static final int ic_action_reply_all_dark=0x7f0200f6;
+        public static final int ic_action_reply_all_light=0x7f0200f7;
+        public static final int ic_action_reply_black=0x7f0200f8;
+        public static final int ic_action_reply_dark=0x7f0200f9;
+        public static final int ic_action_reply_light=0x7f0200fa;
+        public static final int ic_action_request_read_receipt_dark=0x7f0200fb;
+        public static final int ic_action_request_read_receipt_light=0x7f0200fc;
+        public static final int ic_action_resources=0x7f0200fd;
+        public static final int ic_action_s=0x7f0200fe;
+        public static final int ic_action_save=0x7f0200ff;
+        public static final int ic_action_save_black=0x7f020100;
+        public static final int ic_action_save_dark=0x7f020101;
+        public static final int ic_action_save_light=0x7f020102;
+        public static final int ic_action_search_dark=0x7f020103;
+        public static final int ic_action_search_light=0x7f020104;
+        public static final int ic_action_select_all_dark=0x7f020105;
+        public static final int ic_action_select_all_light=0x7f020106;
+        public static final int ic_action_send_black=0x7f020107;
+        public static final int ic_action_send_dark=0x7f020108;
+        public static final int ic_action_send_light=0x7f020109;
+        public static final int ic_action_set=0x7f02010a;
+        public static final int ic_action_set_dark=0x7f02010b;
+        public static final int ic_action_set_light=0x7f02010c;
+        public static final int ic_action_settings=0x7f02010d;
+        public static final int ic_action_settings_black=0x7f02010e;
+        public static final int ic_action_settings_dark=0x7f02010f;
+        public static final int ic_action_settings_light=0x7f020110;
+        public static final int ic_action_single_message_options_dark=0x7f020111;
+        public static final int ic_action_single_message_options_light=0x7f020112;
+        public static final int ic_action_sort_dark=0x7f020113;
+        public static final int ic_action_sort_light=0x7f020114;
+        public static final int ic_action_spam_dark=0x7f020115;
+        public static final int ic_action_spam_light=0x7f020116;
+        public static final int ic_action_sync_dark=0x7f020117;
+        public static final int ic_action_undo=0x7f020118;
+        public static final int ic_action_undo_black=0x7f020119;
+        public static final int ic_action_undo_dark=0x7f02011a;
+        public static final int ic_action_undo_light=0x7f02011b;
+        public static final int ic_action_unflag_dark=0x7f02011c;
+        public static final int ic_action_unflag_light=0x7f02011d;
+        public static final int ic_action_upload_dark=0x7f02011e;
+        public static final int ic_action_upload_light=0x7f02011f;
+        public static final int ic_action_view_as_list=0x7f020120;
+        public static final int ic_add_black_48dp=0x7f020121;
+        public static final int ic_add_circle_black_48dp=0x7f020122;
+        public static final int ic_add_circle_grey600_48dp=0x7f020123;
+        public static final int ic_add_circle_white_48dp=0x7f020124;
+        public static final int ic_add_grey600_48dp=0x7f020125;
+        public static final int ic_add_to_photos_black_48dp=0x7f020126;
+        public static final int ic_add_to_photos_grey600_48dp=0x7f020127;
+        public static final int ic_archive_black_48dp=0x7f020128;
+        public static final int ic_archive_grey600_48dp=0x7f020129;
+        public static final int ic_arrow_back_black_48dp=0x7f02012a;
+        public static final int ic_arrow_back_grey600_48dp=0x7f02012b;
+        public static final int ic_arrow_forward_black_48dp=0x7f02012c;
+        public static final int ic_arrow_forward_grey600_48dp=0x7f02012d;
+        public static final int ic_arrow_forward_white_48dp=0x7f02012e;
+        public static final int ic_assignment_black_48dp=0x7f02012f;
+        public static final int ic_assignment_grey600_48dp=0x7f020130;
+        public static final int ic_assignment_turned_in_black=0x7f020131;
+        public static final int ic_assignment_turned_in_black_48dp=0x7f020132;
+        public static final int ic_assignment_turned_in_grey600=0x7f020133;
+        public static final int ic_assignment_turned_in_grey600_48dp=0x7f020134;
+        public static final int ic_assignment_turned_in_white=0x7f020135;
+        public static final int ic_assignment_turned_in_white_48dp=0x7f020136;
+        public static final int ic_attachment_black_18dp=0x7f020137;
+        public static final int ic_attachment_black_48dp=0x7f020138;
+        public static final int ic_attachment_grey600_18dp=0x7f020139;
+        public static final int ic_attachment_grey600_48dp=0x7f02013a;
+        public static final int ic_autorenew_black_48dp=0x7f02013b;
+        public static final int ic_autorenew_grey600_48dp=0x7f02013c;
+        public static final int ic_button_add_contact_dark=0x7f02013d;
+        public static final int ic_button_add_contact_light=0x7f02013e;
+        public static final int ic_check_black_48dp=0x7f02013f;
+        public static final int ic_check_box_black_48dp=0x7f020140;
+        public static final int ic_check_box_grey600_48dp=0x7f020141;
+        public static final int ic_check_grey600_48dp=0x7f020142;
+        public static final int ic_chevron_left_black_48dp=0x7f020143;
+        public static final int ic_chevron_left_grey600_48dp=0x7f020144;
+        public static final int ic_chevron_right_black_48dp=0x7f020145;
+        public static final int ic_chevron_right_grey600_48dp=0x7f020146;
+        public static final int ic_clear_black_48dp=0x7f020147;
+        public static final int ic_clear_grey600_48dp=0x7f020148;
+        public static final int ic_close_black_48dp=0x7f020149;
+        public static final int ic_close_grey600_48dp=0x7f02014a;
+        public static final int ic_colorpicker_swatch_selected=0x7f02014b;
+        public static final int ic_contact_picture=0x7f02014c;
+        public static final int ic_content_copy_black_48dp=0x7f02014d;
+        public static final int ic_content_copy_grey600_48dp=0x7f02014e;
+        public static final int ic_create_black_48dp=0x7f02014f;
+        public static final int ic_create_grey600_48dp=0x7f020150;
+        public static final int ic_delete=0x7f020151;
+        public static final int ic_delete_black_48dp=0x7f020152;
+        public static final int ic_delete_grey600_48dp=0x7f020153;
+        public static final int ic_description_black_48dp=0x7f020154;
+        public static final int ic_description_grey600_48dp=0x7f020155;
+        public static final int ic_done_all_black_48dp=0x7f020156;
+        public static final int ic_done_all_grey600_48dp=0x7f020157;
+        public static final int ic_done_black_48dp=0x7f020158;
+        public static final int ic_done_grey600_48dp=0x7f020159;
+        public static final int ic_drafts_black_48dp=0x7f02015a;
+        public static final int ic_drafts_grey600_48dp=0x7f02015b;
+        public static final int ic_drawer=0x7f02015c;
+        public static final int ic_email_answered_small=0x7f02015d;
+        public static final int ic_email_attachment=0x7f02015e;
+        public static final int ic_email_attachment_small=0x7f02015f;
+        public static final int ic_email_black_48dp=0x7f020160;
+        public static final int ic_email_forwarded_answered_small=0x7f020161;
+        public static final int ic_email_forwarded_small=0x7f020162;
+        public static final int ic_email_grey600_48dp=0x7f020163;
+        public static final int ic_email_white_48dp=0x7f020164;
+        public static final int ic_event_note_black_48dp=0x7f020165;
+        public static final int ic_event_note_grey600_48dp=0x7f020166;
+        public static final int ic_file_upload_black_48dp=0x7f020167;
+        public static final int ic_file_upload_grey600_48dp=0x7f020168;
+        public static final int ic_folder_black_48dp=0x7f020169;
+        public static final int ic_folder_star_holo_checked=0x7f02016a;
+        public static final int ic_folder_star_holo_dark=0x7f02016b;
+        public static final int ic_folder_star_holo_gray=0x7f02016c;
+        public static final int ic_folder_star_holo_light=0x7f02016d;
+        public static final int ic_folder_star_holo_unchecked=0x7f02016e;
+        public static final int ic_forward_black_48dp=0x7f02016f;
+        public static final int ic_forward_grey600_48dp=0x7f020170;
+        public static final int ic_help_black_48dp=0x7f020171;
+        public static final int ic_help_grey600_48dp=0x7f020172;
+        public static final int ic_import_export_black_48dp=0x7f020173;
+        public static final int ic_import_export_grey600_48dp=0x7f020174;
+        public static final int ic_inbox_black_48dp=0x7f020175;
+        public static final int ic_inbox_grey600_48dp=0x7f020176;
+        public static final int ic_info_black_48dp=0x7f020177;
+        public static final int ic_info_grey600_48dp=0x7f020178;
+        public static final int ic_info_outline_black_48dp=0x7f020179;
+        public static final int ic_launcher=0x7f02017a;
+        public static final int ic_mail_black_48dp=0x7f02017b;
+        public static final int ic_mail_grey600_48dp=0x7f02017c;
+        public static final int ic_mail_white_48dp=0x7f02017d;
+        public static final int ic_markunread_black600_48dp=0x7f02017e;
+        public static final int ic_markunread_black_48dp=0x7f02017f;
+        public static final int ic_markunread_grey600_48dp=0x7f020180;
+        public static final int ic_markunread_mailbox_black_48dp=0x7f020181;
+        public static final int ic_markunread_mailbox_grey600_48dp=0x7f020182;
+        public static final int ic_markunread_white_48dp=0x7f020183;
+        public static final int ic_menu_black_48dp=0x7f020184;
+        public static final int ic_menu_grey600_48dp=0x7f020185;
+        public static final int ic_menu_moreoverflow_holo_dark=0x7f020186;
+        public static final int ic_menu_moreoverflow_holo_light=0x7f020187;
+        public static final int ic_menu_white_48dp=0x7f020188;
+        public static final int ic_more_horiz_black_48dp=0x7f020189;
+        public static final int ic_more_horiz_grey600_48dp=0x7f02018a;
+        public static final int ic_more_horiz_white_48dp=0x7f02018b;
+        public static final int ic_more_vert_black_48dp=0x7f02018c;
+        public static final int ic_more_vert_grey600_48dp=0x7f02018d;
+        public static final int ic_note_add_black_48dp=0x7f02018e;
+        public static final int ic_note_add_grey600_48dp=0x7f02018f;
+        public static final int ic_notify_check_mail=0x7f020190;
+        public static final int ic_notify_check_mail_anim_0=0x7f020191;
+        public static final int ic_notify_check_mail_anim_1=0x7f020192;
+        public static final int ic_notify_check_mail_anim_2=0x7f020193;
+        public static final int ic_notify_check_mail_anim_3=0x7f020194;
+        public static final int ic_notify_check_mail_anim_4=0x7f020195;
+        public static final int ic_notify_check_mail_anim_5=0x7f020196;
+        public static final int ic_notify_new_mail=0x7f020197;
+        public static final int ic_people_black_48dp=0x7f020198;
+        public static final int ic_people_grey600_48dp=0x7f020199;
+        public static final int ic_person_add_black_48dp=0x7f02019a;
+        public static final int ic_person_add_grey600_48dp=0x7f02019b;
+        public static final int ic_quick_contacts_mail_black_48dp=0x7f02019c;
+        public static final int ic_quick_contacts_mail_grey600_48dp=0x7f02019d;
+        public static final int ic_quick_contacts_mail_white_48dp=0x7f02019e;
+        public static final int ic_redo_black_48dp=0x7f02019f;
+        public static final int ic_redo_grey600_48dp=0x7f0201a0;
+        public static final int ic_refresh_black_48dp=0x7f0201a1;
+        public static final int ic_refresh_grey600_48dp=0x7f0201a2;
+        public static final int ic_remove_circle_black_36dp=0x7f0201a3;
+        public static final int ic_remove_circle_grey600_36dp=0x7f0201a4;
+        public static final int ic_reply_all_black_48dp=0x7f0201a5;
+        public static final int ic_reply_all_grey600_48dp=0x7f0201a6;
+        public static final int ic_reply_black_48dp=0x7f0201a7;
+        public static final int ic_reply_grey600_48dp=0x7f0201a8;
+        public static final int ic_save_black_48dp=0x7f0201a9;
+        public static final int ic_save_grey600_48dp=0x7f0201aa;
+        public static final int ic_search_black_48dp=0x7f0201ab;
+        public static final int ic_search_grey600_48dp=0x7f0201ac;
+        public static final int ic_select_all_black_48dp=0x7f0201ad;
+        public static final int ic_select_all_grey600_48dp=0x7f0201ae;
+        public static final int ic_send_black_48dp=0x7f0201af;
+        public static final int ic_send_grey600_48dp=0x7f0201b0;
+        public static final int ic_settings_black_48dp=0x7f0201b1;
+        public static final int ic_settings_grey600_48dp=0x7f0201b2;
+        public static final int ic_sort_black_48dp=0x7f0201b3;
+        public static final int ic_sort_grey600_48dp=0x7f0201b4;
+        public static final int ic_star_black_48dp=0x7f0201b5;
+        public static final int ic_star_grey600_48dp=0x7f0201b6;
+        public static final int ic_star_outline_black_48dp=0x7f0201b7;
+        public static final int ic_star_outline_white_48dp=0x7f0201b8;
+        public static final int ic_undo_black_48dp=0x7f0201b9;
+        public static final int ic_undo_grey600_48dp=0x7f0201ba;
+        public static final int ic_unread_widget=0x7f0201bb;
+        public static final int ic_unread_widget_selected=0x7f0201bc;
+        public static final int ic_view_list_black_48dp=0x7f0201bd;
+        public static final int ic_view_list_grey600_48dp=0x7f0201be;
+        public static final int ic_view_list_white_48dp=0x7f0201bf;
+        public static final int ic_warning_amber_48dp=0x7f0201c0;
+        public static final int ic_warning_black_48dp=0x7f0201c1;
+        public static final int ic_warning_grey600_48dp=0x7f0201c2;
+        public static final int icon=0x7f0201c3;
+        public static final int icon0=0x7f0201c4;
+        public static final int icon1=0x7f0201c5;
+        public static final int icon10=0x7f0201c6;
+        public static final int icon2=0x7f0201c7;
+        public static final int icon3=0x7f0201c8;
+        public static final int icon4=0x7f0201c9;
+        public static final int icon5=0x7f0201ca;
+        public static final int icon6=0x7f0201cb;
+        public static final int icon7=0x7f0201cc;
+        public static final int icon8=0x7f0201cd;
+        public static final int icon9=0x7f0201ce;
+        public static final int icon_0=0x7f0201cf;
+        public static final int icon_1=0x7f0201d0;
+        public static final int icon_10=0x7f0201d1;
+        public static final int icon_2=0x7f0201d2;
+        public static final int icon_3=0x7f0201d3;
+        public static final int icon_4=0x7f0201d4;
+        public static final int icon_5=0x7f0201d5;
+        public static final int icon_6=0x7f0201d6;
+        public static final int icon_7=0x7f0201d7;
+        public static final int icon_8=0x7f0201d8;
+        public static final int icon_9=0x7f0201d9;
+        public static final int indicator_arrow=0x7f0201da;
+        public static final int indicator_bg_bottom=0x7f0201db;
+        public static final int indicator_bg_top=0x7f0201dc;
+        public static final int item_focused=0x7f0201dd;
+        public static final int item_pressed=0x7f0201de;
+        public static final int item_selector=0x7f0201df;
+        public static final int list_item_bg_normal=0x7f0201e0;
+        public static final int list_item_bg_pressed=0x7f0201e1;
+        public static final int list_selector=0x7f0201e2;
+        public static final int lunch=0x7f0201e3;
+        public static final int material_shadow=0x7f0201e4;
+        public static final int material_shadow180=0x7f0201e5;
+        public static final int material_shadow270=0x7f0201e6;
+        public static final int material_shadow360=0x7f0201e7;
+        public static final int material_shadow90=0x7f0201e8;
+        public static final int mathematics=0x7f0201e9;
+        public static final int mc=0x7f0201ea;
+        public static final int me=0x7f0201eb;
+        public static final int message_list_item_footer_background=0x7f0201ec;
+        public static final int mg=0x7f0201ed;
+        public static final int mp=0x7f0201ee;
+        public static final int mq=0x7f0201ef;
+        public static final int mr=0x7f0201f0;
+        public static final int ms=0x7f0201f1;
+        public static final int music=0x7f0201f2;
+        public static final int musical_production=0x7f0201f3;
+        public static final int nyt=0x7f0201f4;
+        public static final int nyt_dark=0x7f0201f5;
+        public static final int overlay_error=0x7f0201f6;
+        public static final int overlay_ok=0x7f0201f7;
+        public static final int panel_separator=0x7f0201f8;
+        public static final int percussion=0x7f0201f9;
+        public static final int ph=0x7f0201fa;
+        public static final int photography=0x7f0201fb;
+        public static final int physical_education=0x7f0201fc;
+        public static final int popup_background=0x7f0201fd;
+        public static final int pp=0x7f0201fe;
+        public static final int pq=0x7f0201ff;
+        public static final int preview_unread_widget=0x7f020200;
+        public static final int robotics=0x7f020201;
+        public static final int rounded_corners=0x7f020202;
+        public static final int sb=0x7f020203;
+        public static final int sc=0x7f020204;
+        public static final int school_01_256=0x7f020205;
+        public static final int science=0x7f020206;
+        public static final int selectable_item_background=0x7f020207;
+        public static final int sf=0x7f020208;
+        public static final int signed_large=0x7f020209;
+        public static final int sk=0x7f02020a;
+        public static final int sp=0x7f02020b;
+        public static final int spanish=0x7f02020c;
+        public static final int sq=0x7f02020d;
+        public static final int squirrel_mail=0x7f02020e;
+        public static final int sr=0x7f02020f;
+        public static final int studio_art=0x7f020210;
+        public static final int teacher_ease=0x7f020211;
+        public static final int thread_count_box_dark=0x7f020212;
+        public static final int thread_count_box_light=0x7f020213;
+        public static final int tq=0x7f020214;
+        public static final int tz=0x7f020215;
+        public static final int ug=0x7f020216;
+        public static final int un=0x7f020217;
+        public static final int unread_count_background=0x7f020218;
+        public static final int unread_widget_background=0x7f020219;
+        public static final int unread_widget_icon=0x7f02021a;
+        public static final int uu=0x7f02021b;
+        public static final int z=0x7f02021c;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f0b009f;
@@ -5298,22 +5324,22 @@ Welcome message
         public static final int Theme_AppCompat_NoActionBar=0x7f0800c0;
         public static final int Theme_Custom_Dark_Base=0x7f0800fe;
         public static final int Theme_Custom_Dark_Base_Material=0x7f080103;
-        public static final int Theme_K9_Dark=0x7f080105;
-        public static final int Theme_K9_Dark_Base=0x7f0800fd;
-        public static final int Theme_K9_Dark_Base_Material=0x7f080102;
+        public static final int Theme_MAIL_Dark=0x7f080105;
+        public static final int Theme_MAIL_Dark_Base=0x7f0800fd;
+        public static final int Theme_MAIL_Dark_Base_Material=0x7f080102;
         /**  Prior to Honeycomb we always use the light theme for dialogs 
          */
-        public static final int Theme_K9_Dialog_Dark=0x7f080107;
-        public static final int Theme_K9_Dialog_Light=0x7f080106;
-        public static final int Theme_K9_Dialog_Translucent_Dark=0x7f080108;
-        public static final int Theme_K9_Dialog_Translucent_Light=0x7f080109;
-        public static final int Theme_K9_Light=0x7f0800ff;
-        public static final int Theme_K9_Light_Base=0x7f0800fc;
-        public static final int Theme_K9_Light_Base_Material=0x7f080101;
-        public static final int Theme_K9_Startup=0x7f0800fb;
-        public static final int Theme_K9_White=0x7f080100;
-        public static final int Theme_K9_White_Material=0x7f080104;
-        public static final int Theme_K9Dialog=0x7f0800ef;
+        public static final int Theme_MAIL_Dialog_Dark=0x7f080107;
+        public static final int Theme_MAIL_Dialog_Light=0x7f080106;
+        public static final int Theme_MAIL_Dialog_Translucent_Dark=0x7f080108;
+        public static final int Theme_MAIL_Dialog_Translucent_Light=0x7f080109;
+        public static final int Theme_MAIL_Light=0x7f0800ff;
+        public static final int Theme_MAIL_Light_Base=0x7f0800fc;
+        public static final int Theme_MAIL_Light_Base_Material=0x7f080101;
+        public static final int Theme_MAIL_Startup=0x7f0800fb;
+        public static final int Theme_MAIL_White=0x7f080100;
+        public static final int Theme_MAIL_White_Material=0x7f080104;
+        public static final int Theme_MAILDialog=0x7f0800ef;
         public static final int ThemeOverlay_AppCompat=0x7f0800c7;
         /**  Theme overlay that replaces the normal control color, which by default is the same as the
          secondary text color, with the primary text color. 
@@ -5404,7 +5430,7 @@ Welcome message
       See https://code.google.com/p/android/issues/detail?id=5237
     
          */
-        public static final int Widget_K9_AutoCompleteTextView=0x7f0800f0;
+        public static final int Widget_MAIL_AutoCompleteTextView=0x7f0800f0;
         public static final int elv_fade_animation=0x7f0800ee;
     }
     public static final class xml {
@@ -6574,669 +6600,6 @@ containing a value of this type.
           @attr name com.bernard.beaconportal.activities:topBottomBarArrowSize
         */
         public static final int DrawerArrowToggle_topBottomBarArrowSize = 4;
-        /** Attributes that can be used with a K9Styles.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #K9Styles_backgroundColorChooseAccountHeader com.bernard.beaconportal.activities:backgroundColorChooseAccountHeader}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_compatDividerVertical com.bernard.beaconportal.activities:compatDividerVertical}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_compatSelectableItemBackground com.bernard.beaconportal.activities:compatSelectableItemBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_composerBackgroundColor com.bernard.beaconportal.activities:composerBackgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_contactPictureFallbackDefaultBackgroundColor com.bernard.beaconportal.activities:contactPictureFallbackDefaultBackgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionAbout com.bernard.beaconportal.activities:iconActionAbout}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionAdd com.bernard.beaconportal.activities:iconActionAdd}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionAddAttachment com.bernard.beaconportal.activities:iconActionAddAttachment}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionAddCcBcc com.bernard.beaconportal.activities:iconActionAddCcBcc}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionArchive com.bernard.beaconportal.activities:iconActionArchive}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionCancel com.bernard.beaconportal.activities:iconActionCancel}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionCompose com.bernard.beaconportal.activities:iconActionCompose}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionCopy com.bernard.beaconportal.activities:iconActionCopy}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionDelete com.bernard.beaconportal.activities:iconActionDelete}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionFlag com.bernard.beaconportal.activities:iconActionFlag}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionImportExport com.bernard.beaconportal.activities:iconActionImportExport}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionMarkAsRead com.bernard.beaconportal.activities:iconActionMarkAsRead}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionMarkAsUnread com.bernard.beaconportal.activities:iconActionMarkAsUnread}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionMove com.bernard.beaconportal.activities:iconActionMove}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionNextMessage com.bernard.beaconportal.activities:iconActionNextMessage}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionPreviousMessage com.bernard.beaconportal.activities:iconActionPreviousMessage}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionRefresh com.bernard.beaconportal.activities:iconActionRefresh}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionRemoteSearch com.bernard.beaconportal.activities:iconActionRemoteSearch}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionRequestReadReceipt com.bernard.beaconportal.activities:iconActionRequestReadReceipt}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionSave com.bernard.beaconportal.activities:iconActionSave}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionSearch com.bernard.beaconportal.activities:iconActionSearch}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionSearchFolder com.bernard.beaconportal.activities:iconActionSearchFolder}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionSelectAll com.bernard.beaconportal.activities:iconActionSelectAll}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionSend com.bernard.beaconportal.activities:iconActionSend}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionSettings com.bernard.beaconportal.activities:iconActionSettings}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionSingleMessageOptions com.bernard.beaconportal.activities:iconActionSingleMessageOptions}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionSort com.bernard.beaconportal.activities:iconActionSort}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionSpam com.bernard.beaconportal.activities:iconActionSpam}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionUnflag com.bernard.beaconportal.activities:iconActionUnflag}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconActionUpload com.bernard.beaconportal.activities:iconActionUpload}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconFolder com.bernard.beaconportal.activities:iconFolder}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconListItemMenu com.bernard.beaconportal.activities:iconListItemMenu}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_iconMenuInfoDetails com.bernard.beaconportal.activities:iconMenuInfoDetails}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_messageComposeAddContactImage com.bernard.beaconportal.activities:messageComposeAddContactImage}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_messageListActiveItemBackgroundColor com.bernard.beaconportal.activities:messageListActiveItemBackgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_messageListCheckbox com.bernard.beaconportal.activities:messageListCheckbox}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_messageListDividerColor com.bernard.beaconportal.activities:messageListDividerColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_messageListReadItemBackgroundColor com.bernard.beaconportal.activities:messageListReadItemBackgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_messageListSelectedBackgroundColor com.bernard.beaconportal.activities:messageListSelectedBackgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_messageListThreadCountBackground com.bernard.beaconportal.activities:messageListThreadCountBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_messageListThreadCountForegroundColor com.bernard.beaconportal.activities:messageListThreadCountForegroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_messageListUnreadItemBackgroundColor com.bernard.beaconportal.activities:messageListUnreadItemBackgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_messageViewAttachmentBackground com.bernard.beaconportal.activities:messageViewAttachmentBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_messageViewHeaderBackgroundColor com.bernard.beaconportal.activities:messageViewHeaderBackgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_textColorPrimaryRecipientDropdown com.bernard.beaconportal.activities:textColorPrimaryRecipientDropdown}</code></td><td></td></tr>
-           <tr><td><code>{@link #K9Styles_textColorSecondaryRecipientDropdown com.bernard.beaconportal.activities:textColorSecondaryRecipientDropdown}</code></td><td></td></tr>
-           </table>
-           @see #K9Styles_backgroundColorChooseAccountHeader
-           @see #K9Styles_compatDividerVertical
-           @see #K9Styles_compatSelectableItemBackground
-           @see #K9Styles_composerBackgroundColor
-           @see #K9Styles_contactPictureFallbackDefaultBackgroundColor
-           @see #K9Styles_iconActionAbout
-           @see #K9Styles_iconActionAdd
-           @see #K9Styles_iconActionAddAttachment
-           @see #K9Styles_iconActionAddCcBcc
-           @see #K9Styles_iconActionArchive
-           @see #K9Styles_iconActionCancel
-           @see #K9Styles_iconActionCompose
-           @see #K9Styles_iconActionCopy
-           @see #K9Styles_iconActionDelete
-           @see #K9Styles_iconActionFlag
-           @see #K9Styles_iconActionImportExport
-           @see #K9Styles_iconActionMarkAsRead
-           @see #K9Styles_iconActionMarkAsUnread
-           @see #K9Styles_iconActionMove
-           @see #K9Styles_iconActionNextMessage
-           @see #K9Styles_iconActionPreviousMessage
-           @see #K9Styles_iconActionRefresh
-           @see #K9Styles_iconActionRemoteSearch
-           @see #K9Styles_iconActionRequestReadReceipt
-           @see #K9Styles_iconActionSave
-           @see #K9Styles_iconActionSearch
-           @see #K9Styles_iconActionSearchFolder
-           @see #K9Styles_iconActionSelectAll
-           @see #K9Styles_iconActionSend
-           @see #K9Styles_iconActionSettings
-           @see #K9Styles_iconActionSingleMessageOptions
-           @see #K9Styles_iconActionSort
-           @see #K9Styles_iconActionSpam
-           @see #K9Styles_iconActionUnflag
-           @see #K9Styles_iconActionUpload
-           @see #K9Styles_iconFolder
-           @see #K9Styles_iconListItemMenu
-           @see #K9Styles_iconMenuInfoDetails
-           @see #K9Styles_messageComposeAddContactImage
-           @see #K9Styles_messageListActiveItemBackgroundColor
-           @see #K9Styles_messageListCheckbox
-           @see #K9Styles_messageListDividerColor
-           @see #K9Styles_messageListReadItemBackgroundColor
-           @see #K9Styles_messageListSelectedBackgroundColor
-           @see #K9Styles_messageListThreadCountBackground
-           @see #K9Styles_messageListThreadCountForegroundColor
-           @see #K9Styles_messageListUnreadItemBackgroundColor
-           @see #K9Styles_messageViewAttachmentBackground
-           @see #K9Styles_messageViewHeaderBackgroundColor
-           @see #K9Styles_textColorPrimaryRecipientDropdown
-           @see #K9Styles_textColorSecondaryRecipientDropdown
-         */
-        public static final int[] K9Styles = {
-            0x7f0100d4, 0x7f0100d5, 0x7f0100d6, 0x7f0100d7,
-            0x7f0100d8, 0x7f0100d9, 0x7f0100da, 0x7f0100db,
-            0x7f0100dc, 0x7f0100dd, 0x7f0100de, 0x7f0100df,
-            0x7f0100e0, 0x7f0100e1, 0x7f0100e2, 0x7f0100e3,
-            0x7f0100e4, 0x7f0100e5, 0x7f0100e6, 0x7f0100e7,
-            0x7f0100e8, 0x7f0100e9, 0x7f0100ea, 0x7f0100eb,
-            0x7f0100ec, 0x7f0100ed, 0x7f0100ee, 0x7f0100ef,
-            0x7f0100f0, 0x7f0100f1, 0x7f0100f2, 0x7f0100f3,
-            0x7f0100f4, 0x7f0100f5, 0x7f0100f6, 0x7f0100f7,
-            0x7f0100f8, 0x7f0100f9, 0x7f0100fa, 0x7f0100fb,
-            0x7f0100fc, 0x7f0100fd, 0x7f0100fe, 0x7f0100ff,
-            0x7f010100, 0x7f010101, 0x7f010102, 0x7f010103,
-            0x7f010104, 0x7f010105, 0x7f010106
-        };
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#backgroundColorChooseAccountHeader}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.bernard.beaconportal.activities:backgroundColorChooseAccountHeader
-        */
-        public static final int K9Styles_backgroundColorChooseAccountHeader = 35;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#compatDividerVertical}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:compatDividerVertical
-        */
-        public static final int K9Styles_compatDividerVertical = 48;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#compatSelectableItemBackground}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:compatSelectableItemBackground
-        */
-        public static final int K9Styles_compatSelectableItemBackground = 49;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#composerBackgroundColor}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.bernard.beaconportal.activities:composerBackgroundColor
-        */
-        public static final int K9Styles_composerBackgroundColor = 47;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#contactPictureFallbackDefaultBackgroundColor}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.bernard.beaconportal.activities:contactPictureFallbackDefaultBackgroundColor
-        */
-        public static final int K9Styles_contactPictureFallbackDefaultBackgroundColor = 50;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionAbout}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionAbout
-        */
-        public static final int K9Styles_iconActionAbout = 25;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionAdd}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionAdd
-        */
-        public static final int K9Styles_iconActionAdd = 26;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionAddAttachment}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionAddAttachment
-        */
-        public static final int K9Styles_iconActionAddAttachment = 3;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionAddCcBcc}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionAddCcBcc
-        */
-        public static final int K9Styles_iconActionAddCcBcc = 4;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionArchive}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionArchive
-        */
-        public static final int K9Styles_iconActionArchive = 5;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionCancel}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionCancel
-        */
-        public static final int K9Styles_iconActionCancel = 31;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionCompose}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionCompose
-        */
-        public static final int K9Styles_iconActionCompose = 6;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionCopy}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionCopy
-        */
-        public static final int K9Styles_iconActionCopy = 9;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionDelete}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionDelete
-        */
-        public static final int K9Styles_iconActionDelete = 7;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionFlag}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionFlag
-        */
-        public static final int K9Styles_iconActionFlag = 20;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionImportExport}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionImportExport
-        */
-        public static final int K9Styles_iconActionImportExport = 27;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionMarkAsRead}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionMarkAsRead
-        */
-        public static final int K9Styles_iconActionMarkAsRead = 22;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionMarkAsUnread}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionMarkAsUnread
-        */
-        public static final int K9Styles_iconActionMarkAsUnread = 23;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionMove}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionMove
-        */
-        public static final int K9Styles_iconActionMove = 8;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionNextMessage}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionNextMessage
-        */
-        public static final int K9Styles_iconActionNextMessage = 10;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionPreviousMessage}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionPreviousMessage
-        */
-        public static final int K9Styles_iconActionPreviousMessage = 11;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionRefresh}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionRefresh
-        */
-        public static final int K9Styles_iconActionRefresh = 12;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionRemoteSearch}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionRemoteSearch
-        */
-        public static final int K9Styles_iconActionRemoteSearch = 24;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionRequestReadReceipt}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionRequestReadReceipt
-        */
-        public static final int K9Styles_iconActionRequestReadReceipt = 32;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSave}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionSave
-        */
-        public static final int K9Styles_iconActionSave = 30;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSearch}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionSearch
-        */
-        public static final int K9Styles_iconActionSearch = 13;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSearchFolder}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionSearchFolder
-        */
-        public static final int K9Styles_iconActionSearchFolder = 14;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSelectAll}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionSelectAll
-        */
-        public static final int K9Styles_iconActionSelectAll = 29;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSend}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionSend
-        */
-        public static final int K9Styles_iconActionSend = 15;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSettings}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionSettings
-        */
-        public static final int K9Styles_iconActionSettings = 16;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSingleMessageOptions}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionSingleMessageOptions
-        */
-        public static final int K9Styles_iconActionSingleMessageOptions = 17;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSort}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionSort
-        */
-        public static final int K9Styles_iconActionSort = 18;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSpam}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionSpam
-        */
-        public static final int K9Styles_iconActionSpam = 19;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionUnflag}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionUnflag
-        */
-        public static final int K9Styles_iconActionUnflag = 21;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionUpload}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconActionUpload
-        */
-        public static final int K9Styles_iconActionUpload = 28;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconFolder}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconFolder
-        */
-        public static final int K9Styles_iconFolder = 0;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconListItemMenu}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconListItemMenu
-        */
-        public static final int K9Styles_iconListItemMenu = 1;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconMenuInfoDetails}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:iconMenuInfoDetails
-        */
-        public static final int K9Styles_iconMenuInfoDetails = 2;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageComposeAddContactImage}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:messageComposeAddContactImage
-        */
-        public static final int K9Styles_messageComposeAddContactImage = 46;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListActiveItemBackgroundColor}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.bernard.beaconportal.activities:messageListActiveItemBackgroundColor
-        */
-        public static final int K9Styles_messageListActiveItemBackgroundColor = 41;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListCheckbox}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:messageListCheckbox
-        */
-        public static final int K9Styles_messageListCheckbox = 43;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListDividerColor}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.bernard.beaconportal.activities:messageListDividerColor
-        */
-        public static final int K9Styles_messageListDividerColor = 42;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListReadItemBackgroundColor}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.bernard.beaconportal.activities:messageListReadItemBackgroundColor
-        */
-        public static final int K9Styles_messageListReadItemBackgroundColor = 37;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListSelectedBackgroundColor}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.bernard.beaconportal.activities:messageListSelectedBackgroundColor
-        */
-        public static final int K9Styles_messageListSelectedBackgroundColor = 36;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListThreadCountBackground}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.bernard.beaconportal.activities:messageListThreadCountBackground
-        */
-        public static final int K9Styles_messageListThreadCountBackground = 40;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListThreadCountForegroundColor}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.bernard.beaconportal.activities:messageListThreadCountForegroundColor
-        */
-        public static final int K9Styles_messageListThreadCountForegroundColor = 39;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListUnreadItemBackgroundColor}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.bernard.beaconportal.activities:messageListUnreadItemBackgroundColor
-        */
-        public static final int K9Styles_messageListUnreadItemBackgroundColor = 38;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageViewAttachmentBackground}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:messageViewAttachmentBackground
-        */
-        public static final int K9Styles_messageViewAttachmentBackground = 45;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageViewHeaderBackgroundColor}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.bernard.beaconportal.activities:messageViewHeaderBackgroundColor
-        */
-        public static final int K9Styles_messageViewHeaderBackgroundColor = 44;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#textColorPrimaryRecipientDropdown}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:textColorPrimaryRecipientDropdown
-        */
-        public static final int K9Styles_textColorPrimaryRecipientDropdown = 33;
-        /**
-          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#textColorSecondaryRecipientDropdown}
-          attribute's value can be found in the {@link #K9Styles} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.bernard.beaconportal.activities:textColorSecondaryRecipientDropdown
-        */
-        public static final int K9Styles_textColorSecondaryRecipientDropdown = 34;
         /** Attributes that can be used with a LinearLayoutCompat.
            <p>Includes the following attributes:</p>
            <table>
@@ -7470,6 +6833,669 @@ containing a value of this type.
           @attr name android:dropDownVerticalOffset
         */
         public static final int ListPopupWindow_android_dropDownVerticalOffset = 1;
+        /** Attributes that can be used with a MAILStyles.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #MAILStyles_backgroundColorChooseAccountHeader com.bernard.beaconportal.activities:backgroundColorChooseAccountHeader}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_compatDividerVertical com.bernard.beaconportal.activities:compatDividerVertical}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_compatSelectableItemBackground com.bernard.beaconportal.activities:compatSelectableItemBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_composerBackgroundColor com.bernard.beaconportal.activities:composerBackgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_contactPictureFallbackDefaultBackgroundColor com.bernard.beaconportal.activities:contactPictureFallbackDefaultBackgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionAbout com.bernard.beaconportal.activities:iconActionAbout}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionAdd com.bernard.beaconportal.activities:iconActionAdd}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionAddAttachment com.bernard.beaconportal.activities:iconActionAddAttachment}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionAddCcBcc com.bernard.beaconportal.activities:iconActionAddCcBcc}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionArchive com.bernard.beaconportal.activities:iconActionArchive}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionCancel com.bernard.beaconportal.activities:iconActionCancel}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionCompose com.bernard.beaconportal.activities:iconActionCompose}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionCopy com.bernard.beaconportal.activities:iconActionCopy}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionDelete com.bernard.beaconportal.activities:iconActionDelete}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionFlag com.bernard.beaconportal.activities:iconActionFlag}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionImportExport com.bernard.beaconportal.activities:iconActionImportExport}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionMarkAsRead com.bernard.beaconportal.activities:iconActionMarkAsRead}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionMarkAsUnread com.bernard.beaconportal.activities:iconActionMarkAsUnread}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionMove com.bernard.beaconportal.activities:iconActionMove}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionNextMessage com.bernard.beaconportal.activities:iconActionNextMessage}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionPreviousMessage com.bernard.beaconportal.activities:iconActionPreviousMessage}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionRefresh com.bernard.beaconportal.activities:iconActionRefresh}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionRemoteSearch com.bernard.beaconportal.activities:iconActionRemoteSearch}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionRequestReadReceipt com.bernard.beaconportal.activities:iconActionRequestReadReceipt}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionSave com.bernard.beaconportal.activities:iconActionSave}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionSearch com.bernard.beaconportal.activities:iconActionSearch}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionSearchFolder com.bernard.beaconportal.activities:iconActionSearchFolder}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionSelectAll com.bernard.beaconportal.activities:iconActionSelectAll}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionSend com.bernard.beaconportal.activities:iconActionSend}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionSettings com.bernard.beaconportal.activities:iconActionSettings}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionSingleMessageOptions com.bernard.beaconportal.activities:iconActionSingleMessageOptions}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionSort com.bernard.beaconportal.activities:iconActionSort}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionSpam com.bernard.beaconportal.activities:iconActionSpam}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionUnflag com.bernard.beaconportal.activities:iconActionUnflag}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconActionUpload com.bernard.beaconportal.activities:iconActionUpload}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconFolder com.bernard.beaconportal.activities:iconFolder}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconListItemMenu com.bernard.beaconportal.activities:iconListItemMenu}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_iconMenuInfoDetails com.bernard.beaconportal.activities:iconMenuInfoDetails}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_messageComposeAddContactImage com.bernard.beaconportal.activities:messageComposeAddContactImage}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_messageListActiveItemBackgroundColor com.bernard.beaconportal.activities:messageListActiveItemBackgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_messageListCheckbox com.bernard.beaconportal.activities:messageListCheckbox}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_messageListDividerColor com.bernard.beaconportal.activities:messageListDividerColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_messageListReadItemBackgroundColor com.bernard.beaconportal.activities:messageListReadItemBackgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_messageListSelectedBackgroundColor com.bernard.beaconportal.activities:messageListSelectedBackgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_messageListThreadCountBackground com.bernard.beaconportal.activities:messageListThreadCountBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_messageListThreadCountForegroundColor com.bernard.beaconportal.activities:messageListThreadCountForegroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_messageListUnreadItemBackgroundColor com.bernard.beaconportal.activities:messageListUnreadItemBackgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_messageViewAttachmentBackground com.bernard.beaconportal.activities:messageViewAttachmentBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_messageViewHeaderBackgroundColor com.bernard.beaconportal.activities:messageViewHeaderBackgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_textColorPrimaryRecipientDropdown com.bernard.beaconportal.activities:textColorPrimaryRecipientDropdown}</code></td><td></td></tr>
+           <tr><td><code>{@link #MAILStyles_textColorSecondaryRecipientDropdown com.bernard.beaconportal.activities:textColorSecondaryRecipientDropdown}</code></td><td></td></tr>
+           </table>
+           @see #MAILStyles_backgroundColorChooseAccountHeader
+           @see #MAILStyles_compatDividerVertical
+           @see #MAILStyles_compatSelectableItemBackground
+           @see #MAILStyles_composerBackgroundColor
+           @see #MAILStyles_contactPictureFallbackDefaultBackgroundColor
+           @see #MAILStyles_iconActionAbout
+           @see #MAILStyles_iconActionAdd
+           @see #MAILStyles_iconActionAddAttachment
+           @see #MAILStyles_iconActionAddCcBcc
+           @see #MAILStyles_iconActionArchive
+           @see #MAILStyles_iconActionCancel
+           @see #MAILStyles_iconActionCompose
+           @see #MAILStyles_iconActionCopy
+           @see #MAILStyles_iconActionDelete
+           @see #MAILStyles_iconActionFlag
+           @see #MAILStyles_iconActionImportExport
+           @see #MAILStyles_iconActionMarkAsRead
+           @see #MAILStyles_iconActionMarkAsUnread
+           @see #MAILStyles_iconActionMove
+           @see #MAILStyles_iconActionNextMessage
+           @see #MAILStyles_iconActionPreviousMessage
+           @see #MAILStyles_iconActionRefresh
+           @see #MAILStyles_iconActionRemoteSearch
+           @see #MAILStyles_iconActionRequestReadReceipt
+           @see #MAILStyles_iconActionSave
+           @see #MAILStyles_iconActionSearch
+           @see #MAILStyles_iconActionSearchFolder
+           @see #MAILStyles_iconActionSelectAll
+           @see #MAILStyles_iconActionSend
+           @see #MAILStyles_iconActionSettings
+           @see #MAILStyles_iconActionSingleMessageOptions
+           @see #MAILStyles_iconActionSort
+           @see #MAILStyles_iconActionSpam
+           @see #MAILStyles_iconActionUnflag
+           @see #MAILStyles_iconActionUpload
+           @see #MAILStyles_iconFolder
+           @see #MAILStyles_iconListItemMenu
+           @see #MAILStyles_iconMenuInfoDetails
+           @see #MAILStyles_messageComposeAddContactImage
+           @see #MAILStyles_messageListActiveItemBackgroundColor
+           @see #MAILStyles_messageListCheckbox
+           @see #MAILStyles_messageListDividerColor
+           @see #MAILStyles_messageListReadItemBackgroundColor
+           @see #MAILStyles_messageListSelectedBackgroundColor
+           @see #MAILStyles_messageListThreadCountBackground
+           @see #MAILStyles_messageListThreadCountForegroundColor
+           @see #MAILStyles_messageListUnreadItemBackgroundColor
+           @see #MAILStyles_messageViewAttachmentBackground
+           @see #MAILStyles_messageViewHeaderBackgroundColor
+           @see #MAILStyles_textColorPrimaryRecipientDropdown
+           @see #MAILStyles_textColorSecondaryRecipientDropdown
+         */
+        public static final int[] MAILStyles = {
+            0x7f0100d4, 0x7f0100d5, 0x7f0100d6, 0x7f0100d7,
+            0x7f0100d8, 0x7f0100d9, 0x7f0100da, 0x7f0100db,
+            0x7f0100dc, 0x7f0100dd, 0x7f0100de, 0x7f0100df,
+            0x7f0100e0, 0x7f0100e1, 0x7f0100e2, 0x7f0100e3,
+            0x7f0100e4, 0x7f0100e5, 0x7f0100e6, 0x7f0100e7,
+            0x7f0100e8, 0x7f0100e9, 0x7f0100ea, 0x7f0100eb,
+            0x7f0100ec, 0x7f0100ed, 0x7f0100ee, 0x7f0100ef,
+            0x7f0100f0, 0x7f0100f1, 0x7f0100f2, 0x7f0100f3,
+            0x7f0100f4, 0x7f0100f5, 0x7f0100f6, 0x7f0100f7,
+            0x7f0100f8, 0x7f0100f9, 0x7f0100fa, 0x7f0100fb,
+            0x7f0100fc, 0x7f0100fd, 0x7f0100fe, 0x7f0100ff,
+            0x7f010100, 0x7f010101, 0x7f010102, 0x7f010103,
+            0x7f010104, 0x7f010105, 0x7f010106
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#backgroundColorChooseAccountHeader}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.bernard.beaconportal.activities:backgroundColorChooseAccountHeader
+        */
+        public static final int MAILStyles_backgroundColorChooseAccountHeader = 35;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#compatDividerVertical}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:compatDividerVertical
+        */
+        public static final int MAILStyles_compatDividerVertical = 48;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#compatSelectableItemBackground}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:compatSelectableItemBackground
+        */
+        public static final int MAILStyles_compatSelectableItemBackground = 49;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#composerBackgroundColor}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.bernard.beaconportal.activities:composerBackgroundColor
+        */
+        public static final int MAILStyles_composerBackgroundColor = 47;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#contactPictureFallbackDefaultBackgroundColor}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.bernard.beaconportal.activities:contactPictureFallbackDefaultBackgroundColor
+        */
+        public static final int MAILStyles_contactPictureFallbackDefaultBackgroundColor = 50;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionAbout}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionAbout
+        */
+        public static final int MAILStyles_iconActionAbout = 25;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionAdd}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionAdd
+        */
+        public static final int MAILStyles_iconActionAdd = 26;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionAddAttachment}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionAddAttachment
+        */
+        public static final int MAILStyles_iconActionAddAttachment = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionAddCcBcc}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionAddCcBcc
+        */
+        public static final int MAILStyles_iconActionAddCcBcc = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionArchive}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionArchive
+        */
+        public static final int MAILStyles_iconActionArchive = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionCancel}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionCancel
+        */
+        public static final int MAILStyles_iconActionCancel = 31;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionCompose}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionCompose
+        */
+        public static final int MAILStyles_iconActionCompose = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionCopy}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionCopy
+        */
+        public static final int MAILStyles_iconActionCopy = 9;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionDelete}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionDelete
+        */
+        public static final int MAILStyles_iconActionDelete = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionFlag}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionFlag
+        */
+        public static final int MAILStyles_iconActionFlag = 20;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionImportExport}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionImportExport
+        */
+        public static final int MAILStyles_iconActionImportExport = 27;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionMarkAsRead}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionMarkAsRead
+        */
+        public static final int MAILStyles_iconActionMarkAsRead = 22;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionMarkAsUnread}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionMarkAsUnread
+        */
+        public static final int MAILStyles_iconActionMarkAsUnread = 23;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionMove}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionMove
+        */
+        public static final int MAILStyles_iconActionMove = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionNextMessage}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionNextMessage
+        */
+        public static final int MAILStyles_iconActionNextMessage = 10;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionPreviousMessage}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionPreviousMessage
+        */
+        public static final int MAILStyles_iconActionPreviousMessage = 11;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionRefresh}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionRefresh
+        */
+        public static final int MAILStyles_iconActionRefresh = 12;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionRemoteSearch}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionRemoteSearch
+        */
+        public static final int MAILStyles_iconActionRemoteSearch = 24;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionRequestReadReceipt}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionRequestReadReceipt
+        */
+        public static final int MAILStyles_iconActionRequestReadReceipt = 32;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSave}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionSave
+        */
+        public static final int MAILStyles_iconActionSave = 30;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSearch}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionSearch
+        */
+        public static final int MAILStyles_iconActionSearch = 13;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSearchFolder}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionSearchFolder
+        */
+        public static final int MAILStyles_iconActionSearchFolder = 14;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSelectAll}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionSelectAll
+        */
+        public static final int MAILStyles_iconActionSelectAll = 29;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSend}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionSend
+        */
+        public static final int MAILStyles_iconActionSend = 15;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSettings}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionSettings
+        */
+        public static final int MAILStyles_iconActionSettings = 16;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSingleMessageOptions}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionSingleMessageOptions
+        */
+        public static final int MAILStyles_iconActionSingleMessageOptions = 17;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSort}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionSort
+        */
+        public static final int MAILStyles_iconActionSort = 18;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionSpam}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionSpam
+        */
+        public static final int MAILStyles_iconActionSpam = 19;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionUnflag}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionUnflag
+        */
+        public static final int MAILStyles_iconActionUnflag = 21;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconActionUpload}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconActionUpload
+        */
+        public static final int MAILStyles_iconActionUpload = 28;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconFolder}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconFolder
+        */
+        public static final int MAILStyles_iconFolder = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconListItemMenu}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconListItemMenu
+        */
+        public static final int MAILStyles_iconListItemMenu = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#iconMenuInfoDetails}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:iconMenuInfoDetails
+        */
+        public static final int MAILStyles_iconMenuInfoDetails = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageComposeAddContactImage}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:messageComposeAddContactImage
+        */
+        public static final int MAILStyles_messageComposeAddContactImage = 46;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListActiveItemBackgroundColor}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.bernard.beaconportal.activities:messageListActiveItemBackgroundColor
+        */
+        public static final int MAILStyles_messageListActiveItemBackgroundColor = 41;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListCheckbox}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:messageListCheckbox
+        */
+        public static final int MAILStyles_messageListCheckbox = 43;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListDividerColor}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.bernard.beaconportal.activities:messageListDividerColor
+        */
+        public static final int MAILStyles_messageListDividerColor = 42;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListReadItemBackgroundColor}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.bernard.beaconportal.activities:messageListReadItemBackgroundColor
+        */
+        public static final int MAILStyles_messageListReadItemBackgroundColor = 37;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListSelectedBackgroundColor}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.bernard.beaconportal.activities:messageListSelectedBackgroundColor
+        */
+        public static final int MAILStyles_messageListSelectedBackgroundColor = 36;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListThreadCountBackground}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.bernard.beaconportal.activities:messageListThreadCountBackground
+        */
+        public static final int MAILStyles_messageListThreadCountBackground = 40;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListThreadCountForegroundColor}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.bernard.beaconportal.activities:messageListThreadCountForegroundColor
+        */
+        public static final int MAILStyles_messageListThreadCountForegroundColor = 39;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageListUnreadItemBackgroundColor}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.bernard.beaconportal.activities:messageListUnreadItemBackgroundColor
+        */
+        public static final int MAILStyles_messageListUnreadItemBackgroundColor = 38;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageViewAttachmentBackground}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:messageViewAttachmentBackground
+        */
+        public static final int MAILStyles_messageViewAttachmentBackground = 45;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#messageViewHeaderBackgroundColor}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.bernard.beaconportal.activities:messageViewHeaderBackgroundColor
+        */
+        public static final int MAILStyles_messageViewHeaderBackgroundColor = 44;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#textColorPrimaryRecipientDropdown}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:textColorPrimaryRecipientDropdown
+        */
+        public static final int MAILStyles_textColorPrimaryRecipientDropdown = 33;
+        /**
+          <p>This symbol is the offset where the {@link com.bernard.beaconportal.activities.R.attr#textColorSecondaryRecipientDropdown}
+          attribute's value can be found in the {@link #MAILStyles} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bernard.beaconportal.activities:textColorSecondaryRecipientDropdown
+        */
+        public static final int MAILStyles_textColorSecondaryRecipientDropdown = 34;
         /**  Base attributes that are available to all groups. 
            <p>Includes the following attributes:</p>
            <table>

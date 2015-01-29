@@ -9,7 +9,7 @@ import android.os.PowerManager;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.controller.MessagingListener;
 import com.bernard.beaconportal.activities.helper.power.TracingPowerManager;
@@ -46,31 +46,31 @@ public class PollService extends CoreService {
 	@Override
 	public int startService(Intent intent, int startId) {
 		if (START_SERVICE.equals(intent.getAction())) {
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG, "PollService started with startId = "
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG, "PollService started with startId = "
 						+ startId);
 
 			MessagingController controller = MessagingController
 					.getInstance(getApplication());
 			Listener listener = (Listener) controller.getCheckMailListener();
 			if (listener == null) {
-				if (K9.DEBUG)
-					Log.i(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.i(MAIL.LOG_TAG,
 							"***** PollService *****: starting new check");
 				mListener.setStartId(startId);
 				mListener.wakeLockAcquire();
 				controller.setCheckMailListener(mListener);
 				controller.checkMail(this, null, false, false, mListener);
 			} else {
-				if (K9.DEBUG)
-					Log.i(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.i(MAIL.LOG_TAG,
 							"***** PollService *****: renewing WakeLock");
 				listener.setStartId(startId);
 				listener.wakeLockAcquire();
 			}
 		} else if (STOP_SERVICE.equals(intent.getAction())) {
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG, "PollService stopping");
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG, "PollService stopping");
 			stopSelf();
 		}
 
@@ -98,7 +98,7 @@ public class PollService extends CoreService {
 			wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
 					"PollService wakeLockAcquire");
 			wakeLock.setReferenceCounted(false);
-			wakeLock.acquire(K9.WAKE_LOCK_TIMEOUT);
+			wakeLock.acquire(MAIL.WAKE_LOCK_TIMEOUT);
 
 			if (oldWakeLock != null) {
 				oldWakeLock.release();
@@ -147,8 +147,8 @@ public class PollService extends CoreService {
 
 			MailService.actionReschedulePoll(PollService.this, null);
 			wakeLockRelease();
-			if (K9.DEBUG)
-				Log.i(K9.LOG_TAG, "PollService stopping with startId = "
+			if (MAIL.DEBUG)
+				Log.i(MAIL.LOG_TAG, "PollService stopping with startId = "
 						+ startId);
 
 			stopSelf(startId);
@@ -157,8 +157,8 @@ public class PollService extends CoreService {
 		@Override
 		public void checkMailFinished(Context context, Account account) {
 
-			if (K9.DEBUG)
-				Log.v(K9.LOG_TAG, "***** PollService *****: checkMailFinished");
+			if (MAIL.DEBUG)
+				Log.v(MAIL.LOG_TAG, "***** PollService *****: checkMailFinished");
 			release();
 		}
 

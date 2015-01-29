@@ -67,9 +67,9 @@ public class FragmentsResource extends ListFragment {
 		listView = getListView();
 
 		title = new String[] { "Today's NYT Front Page",
-				"Yesterday's NYT Front Page" };
+				"Yesterday's NYT Front Page", "Engrade", "TeacherEase" };
 
-		IconID = new int[] { R.drawable.nyt, R.drawable.nyt };
+		IconID = new int[] { R.drawable.nyt, R.drawable.nyt, R.drawable.engrade, R.drawable.teacher_ease };
 
 		listAdapter = new Resources(getActivity(), title, IconID);
 
@@ -116,6 +116,26 @@ public class FragmentsResource extends ListFragment {
 							.parse(yesterdayLink));
 					startActivity(yesterdayIntent);
 
+					break;
+					
+				case 2:
+
+					String engrade = "https://www.engrade.com/user/login.php";
+
+					Intent engradeIntent = new Intent(Intent.ACTION_VIEW, Uri
+							.parse(engrade));
+					startActivity(engradeIntent);
+					
+					break;
+					
+				case 3:
+
+					String teacherEase = "https://www.teacherease.com/common/login.aspx";
+
+					Intent teacherEaseIntent = new Intent(Intent.ACTION_VIEW, Uri
+							.parse(teacherEase));
+					startActivity(teacherEaseIntent);
+					
 					break;
 
 				}

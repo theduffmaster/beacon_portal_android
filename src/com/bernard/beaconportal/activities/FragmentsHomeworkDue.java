@@ -6,12 +6,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -180,6 +182,11 @@ public class FragmentsHomeworkDue extends Fragment {
 
 		}
 
+		NotificationManager mNotificationManager =
+		        (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+		
+		    mNotificationManager.cancelAll();
+		
 	}
 
 	@Override
@@ -203,7 +210,7 @@ public class FragmentsHomeworkDue extends Fragment {
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			builder.setMessage(
-					"Swipe down to refresh, and keep track of the homework you've done by swiping it away. You can turn off swipeable homework items in options. To manually add a homework, press add homework The number in the slide out drawer is the amount of homework you have due tommorow.")
+					"Swipe down to refresh, and keep track of the homework you've done by swiping it away. You can turn off swipeable homework items in options. To manually add a homework, press add homework The number in the slide out drawer is the amount of homework you have due tommorow according to the Portal.")
 					.setTitle("About");
 
 			builder.setPositiveButton("OK",

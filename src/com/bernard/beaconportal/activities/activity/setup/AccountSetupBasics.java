@@ -31,10 +31,10 @@ import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.EmailAddressValidator;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.activity.K9Activity;
+import com.bernard.beaconportal.activities.activity.MAILActivity;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupCheckSettings.CheckDirection;
 import com.bernard.beaconportal.activities.helper.Utility;
 
@@ -46,7 +46,7 @@ import com.bernard.beaconportal.activities.helper.Utility;
  * activity.
  */
 @SuppressLint("ResourceAsColor")
-public class AccountSetupBasics extends K9Activity implements OnClickListener,
+public class AccountSetupBasics extends MAILActivity implements OnClickListener,
 		TextWatcher {
 	private final static String EXTRA_ACCOUNT = "com.bernard.beaconportal.activities.AccountSetupBasics.account";
 	private final static int DIALOG_NOTE = 1;
@@ -203,7 +203,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 		try {
 			name = getDefaultAccountName();
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Could not get default account name", e);
+			Log.e(MAIL.LOG_TAG, "Could not get default account name", e);
 		}
 
 		if (name == null) {
@@ -316,7 +316,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 		} catch (UnsupportedEncodingException enc) {
 			// This really shouldn't happen since the encoding is hardcoded to
 			// UTF-8
-			Log.e(K9.LOG_TAG, "Couldn't urlencode username or password.", enc);
+			Log.e(MAIL.LOG_TAG, "Couldn't urlencode username or password.", enc);
 		} catch (URISyntaxException use) {
 			/*
 			 * If there is some problem with the URI we give up and go on to
@@ -561,7 +561,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 				// We've successfully checked outgoing as well.
 				mAccount.setDescription(mAccount.getEmail());
 				mAccount.save(Preferences.getPreferences(this));
-				K9.setServicesEnabled(this);
+				MAIL.setServicesEnabled(this);
 				AccountSetupNames.actionSetNames(this, mAccount);
 				finish();
 			}
@@ -591,7 +591,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 		} catch (UnsupportedEncodingException enc) {
 			// This really shouldn't happen since the encoding is hardcoded to
 			// UTF-8
-			Log.e(K9.LOG_TAG, "Couldn't urlencode username or password.", enc);
+			Log.e(MAIL.LOG_TAG, "Couldn't urlencode username or password.", enc);
 		} catch (URISyntaxException use) {
 			/*
 			 * If we can't set up the URL we just continue. It's only for
@@ -676,7 +676,7 @@ public class AccountSetupBasics extends K9Activity implements OnClickListener,
 				}
 			}
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Error while trying to load provider settings.",
+			Log.e(MAIL.LOG_TAG, "Error while trying to load provider settings.",
 					e);
 		}
 		return null;

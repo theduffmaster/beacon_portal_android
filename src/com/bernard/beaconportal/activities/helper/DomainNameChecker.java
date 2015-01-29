@@ -29,7 +29,7 @@ import java.util.regex.PatternSyntaxException;
 import android.net.http.SslCertificate;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 
 /**
  * Implements basic domain-name validation as specified by RFC2818.
@@ -92,8 +92,8 @@ public class DomainNameChecker {
 				errorMessage = "unknown host exception";
 			}
 
-			if (K9.DEBUG) {
-				Log.v(K9.LOG_TAG, "DomainNameChecker.isIpAddress(): "
+			if (MAIL.DEBUG) {
+				Log.v(MAIL.LOG_TAG, "DomainNameChecker.isIpAddress(): "
 						+ errorMessage);
 			}
 
@@ -115,8 +115,8 @@ public class DomainNameChecker {
 	 */
 	private static boolean matchIpAddress(X509Certificate certificate,
 			String thisDomain) {
-		if (K9.DEBUG) {
-			Log.v(K9.LOG_TAG,
+		if (MAIL.DEBUG) {
+			Log.v(MAIL.LOG_TAG,
 					"DomainNameChecker.matchIpAddress(): this domain: "
 							+ thisDomain);
 		}
@@ -132,8 +132,8 @@ public class DomainNameChecker {
 								&& altNameType.intValue() == ALT_IPA_NAME) {
 							String altName = (String) (altNameEntry.get(1));
 							if (altName != null) {
-								if (K9.DEBUG) {
-									Log.v(K9.LOG_TAG, "alternative IP: "
+								if (MAIL.DEBUG) {
+									Log.v(MAIL.LOG_TAG, "alternative IP: "
 											+ altName);
 								}
 								if (thisDomain.equalsIgnoreCase(altName)) {
@@ -188,13 +188,13 @@ public class DomainNameChecker {
 			// spec (a valid DNS name must start with a letter); there is no
 			// good way around this, and in order to be compatible we proceed
 			// to check the common name (ie, ignore alternative names)
-			if (K9.DEBUG) {
+			if (MAIL.DEBUG) {
 				String errorMessage = e.getMessage();
 				if (errorMessage == null) {
 					errorMessage = "failed to parse certificate";
 				}
 
-				Log.v(K9.LOG_TAG, "DomainNameChecker.matchDns(): "
+				Log.v(MAIL.LOG_TAG, "DomainNameChecker.matchDns(): "
 						+ errorMessage);
 			}
 		}
@@ -215,8 +215,8 @@ public class DomainNameChecker {
 	 * @return True iff thisDomain matches thatDomain as specified by RFC2818
 	 */
 	private static boolean matchDns(String thisDomain, String thatDomain) {
-		if (K9.DEBUG) {
-			Log.v(K9.LOG_TAG, "DomainNameChecker.matchDns():"
+		if (MAIL.DEBUG) {
+			Log.v(MAIL.LOG_TAG, "DomainNameChecker.matchDns():"
 					+ " this domain: " + thisDomain + " that domain: "
 					+ thatDomain);
 		}

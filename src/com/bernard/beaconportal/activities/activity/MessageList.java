@@ -105,8 +105,8 @@ import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.FragmentSettings;
 import com.bernard.beaconportal.activities.FragmentsHomeworkDue;
 import com.bernard.beaconportal.activities.FragmentsSchedule;
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.K9.SplitViewMode;
+import com.bernard.beaconportal.activities.MAIL;
+import com.bernard.beaconportal.activities.MAIL.SplitViewMode;
 import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.MenuListAdapter;
 import com.bernard.beaconportal.activities.Preferences;
@@ -167,7 +167,7 @@ import de.cketti.library.changelog.ChangeLog;
  * shows a list of messages. From this Activity the user can perform all
  * standard message operations.
  */
-public class MessageList extends K9ListActivity implements OnItemClickListener,
+public class MessageList extends MAILListActivity implements OnItemClickListener,
 		MessageListFragmentListener, MessageViewFragmentListener,
 		OnBackStackChangedListener, OnSwipeGestureListener,
 		OnSwitchCompleteListener {
@@ -222,14 +222,14 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 	private ProgressDialog progress;
 
-	private static final String TAG = "K9MailExtension";
+	private static final String TAG = "MAILMailExtension";
 
 	public static final String PREF_NAME = "pref_name";
 
-	static final Uri k9AccountsUri = Uri
+	static final Uri mailAccountsUri = Uri
 			.parse("content://com.bernard.beaconportal.activities.messageprovider/accounts/");
-	static final String k9UnreadUri = "content://com.bernard.beaconportal.activities.messageprovider/account_unread/";
-	static final String k9MessageProvider = "content://com.bernard.beaconportal.activities.messageprovider/";
+	static final String mailUnreadUri = "content://com.bernard.beaconportal.activities.messageprovider/account_unread/";
+	static final String mailMessageProvider = "content://com.bernard.beaconportal.activities.messageprovider/";
 
 	ContentObserver contentObserver = null;
 	BroadcastReceiver receiver = null;
@@ -247,7 +247,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 	private Accounts mAccounts;
 
-	private FontSizes mFontSizes = K9.getFontSizes();
+	private FontSizes mFontSizes = MAIL.getFontSizes();
 	private Context context;
 
 	private MenuItem mRefreshMenuItem;
@@ -288,7 +288,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	Fragment fragment3 = new FragmentSettings();
 	private int mUnreadMessageCount = 0;
 
-	private String K9count;
+	private String MAILcount;
 
 	private ViewGroup mMessageViewContainer;
 	private View mMessageViewPlaceHolder;
@@ -307,14 +307,14 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	int[] mBeaconPortalHeights;
 	int[] mFoldersHeights;
 
-	private K9ActivityCommon mBase;
+	private MAILActivityCommon mBase;
 
 	private BaseAccount mSelectedContextAccount;
 
 	private ProgressBar mActionBarProgress;
 	private android.view.MenuItem mMenuButtonCheckMail;
 	private View mActionButtonIndeterminateProgress;
-	private int mLastDirection = (K9.messageViewShowNext()) ? NEXT : PREVIOUS;
+	private int mLastDirection = (MAIL.messageViewShowNext()) ? NEXT : PREVIOUS;
 
 	/**
 	 * {@code true} if the message list should be displayed as flat list (i.e.
@@ -324,7 +324,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	 */
 	private boolean mNoThreading;
 
-	private String K9counts;
+	private String MAILcounts;
 
 	private DisplayMode mDisplayMode;
 	private MessageReference mMessageReference;
@@ -460,7 +460,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		final TracingWakeLock wakeLock = pm.newWakeLock(
 				PowerManager.PARTIAL_WAKE_LOCK, "FolderList checkMail");
 		wakeLock.setReferenceCounted(false);
-		wakeLock.acquire(K9.WAKE_LOCK_TIMEOUT);
+		wakeLock.acquire(MAIL.WAKE_LOCK_TIMEOUT);
 		MessagingListener listener = new MessagingListener() {
 			@Override
 			public void synchronizeMailboxFinished(Account account,
@@ -659,7 +659,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				@Override
 				public void run() {
 					AccountStats stats = accountStats.get(account.getUuid());
-					if (newSize != -1 && stats != null && K9.measureAccounts()) {
+					if (newSize != -1 && stats != null && MAIL.measureAccounts()) {
 						stats.size = newSize;
 					}
 					String toastText = getString(
@@ -727,12 +727,12 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			try {
 				AccountStats stats = account.getStats(MessageList.this);
 				if (stats == null) {
-					Log.w(K9.LOG_TAG, "Unable to get account stats");
+					Log.w(MAIL.LOG_TAG, "Unable to get account stats");
 				} else {
 					accountStatusChanged(account, stats);
 				}
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG, "Unable to get account stats", e);
+				Log.e(MAIL.LOG_TAG, "Unable to get account stats", e);
 			}
 		}
 
@@ -813,7 +813,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		requestWindowFeature(Window.FEATURE_PROGRESS);
 
-		if (!K9.isHideSpecialAccounts()) {
+		if (!MAIL.isHideSpecialAccounts()) {
 			createSpecialAccounts();
 		}
 
@@ -858,7 +858,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		if (versionNumber <= 1) {
 			// Register a listener for broadcasts (needed for the older versions
-			// of k9)
+			// of mail)
 			Log.d(TAG, "Initialising BroadcastReceiver for old K-9 version");
 			receiver = new BroadcastReceiver() {
 				@Override
@@ -886,7 +886,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				}
 			};
 			getContentResolver().registerContentObserver(
-					Uri.parse(k9UnreadUri), true, contentObserver);
+					Uri.parse(mailUnreadUri), true, contentObserver);
 		}
 
 		doRefresh();
@@ -989,7 +989,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		icon_Inbox = new int[] { R.drawable.ic_action_email };
 
-		count_Inbox = new String[] { K9counts };
+		count_Inbox = new String[] { MAILcounts };
 
 		if (Show_View.equals("Homework Due")) {
 
@@ -1205,7 +1205,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		// figure out why below if statement throws null later
 
 		// if (!mAccount.isAvailable(this)) {
-		// Log.i(K9.LOG_TAG,
+		// Log.i(MAIL.LOG_TAG,
 		// "account unavaliabale, not showing folder-list but account-list");
 		// Accounts.listAccounts(this);
 		// finish();
@@ -1299,7 +1299,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		SharedPreferences counts = getSharedPreferences("due_today",
 				Context.MODE_PRIVATE);
 
-		K9counts = counts.getString("inbox", null);
+		MAILcounts = counts.getString("inbox", null);
 
 		counterss = counts.getString("homeworkdue", null);
 
@@ -1307,7 +1307,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		icon_Inbox = new int[] { R.drawable.ic_action_email };
 
-		count_Inbox = new String[] { K9counts };
+		count_Inbox = new String[] { MAILcounts };
 
 		if (Show_View.equals("Homework Due")) {
 
@@ -1411,7 +1411,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		// }
 
 		if (intent.getBooleanExtra(EXTRA_FROM_SHORTCUT, false)
-				&& !K9.FOLDER_NONE.equals(mAccount.getAutoExpandFolderName())) {
+				&& !MAIL.FOLDER_NONE.equals(mAccount.getAutoExpandFolderName())) {
 			onOpenFolder(mAccount.getAutoExpandFolderName());
 			finish();
 		} else {
@@ -1547,14 +1547,14 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		try {
 			if (account == null || folderName == null
 					|| !account.isAvailable(MessageList.this)) {
-				Log.i(K9.LOG_TAG, "not clear folder of unavailable account");
+				Log.i(MAIL.LOG_TAG, "not clear folder of unavailable account");
 				return;
 			}
 			localFolder = account.getLocalStore().getFolder(folderName);
 			localFolder.open(Folder.OPEN_MODE_RW);
 			localFolder.clearAllMessages();
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Exception while clearing folder", e);
+			Log.e(MAIL.LOG_TAG, "Exception while clearing folder", e);
 		} finally {
 			if (localFolder != null) {
 				localFolder.close();
@@ -1807,7 +1807,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 										MessageList.this, realAccount);
 								Preferences.getPreferences(MessageList.this)
 										.deleteAccount(realAccount);
-								K9.setServicesEnabled(MessageList.this);
+								MAIL.setServicesEnabled(MessageList.this);
 
 							}
 						}
@@ -2025,7 +2025,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 								continue;
 							}
 						} catch (MessagingException me) {
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Couldn't get prefs to check for displayability of folder "
 											+ folder.getName(), me);
 						}
@@ -2092,7 +2092,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				try {
 					if (account != null && folderName != null) {
 						if (!account.isAvailable(MessageList.this)) {
-							Log.i(K9.LOG_TAG,
+							Log.i(MAIL.LOG_TAG,
 									"not refreshing folder of unavailable account");
 							return;
 						}
@@ -2108,7 +2108,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 						}
 					}
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG, "Exception while populating folder", e);
+					Log.e(MAIL.LOG_TAG, "Exception while populating folder", e);
 				} finally {
 					if (localFolder != null) {
 						localFolder.close();
@@ -2237,7 +2237,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			if (position <= getCount()) {
 				return getItemView(position, convertView, parent);
 			} else {
-				Log.e(K9.LOG_TAG, "getView with illegal positon=" + position
+				Log.e(MAIL.LOG_TAG, "getView with illegal positon=" + position
 						+ " called! count is only " + getCount());
 				return null;
 			}
@@ -2337,7 +2337,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 							.getUnreadMessageCount();
 
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG, "Unable to get unreadMessageCount for "
+					Log.e(MAIL.LOG_TAG, "Unable to get unreadMessageCount for "
 							+ mAccount.getDescription() + ":" + folder.name);
 				}
 			}
@@ -2351,13 +2351,13 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 				Log.d("3 Unread Messages=",
 						Integer.toString(folder.unreadMessageCount));
-				K9count = Integer.toString(folder.unreadMessageCount);
+				MAILcount = Integer.toString(folder.unreadMessageCount);
 
 				title_Inbox = new String[] { "Inbox" };
 
 				icon_Inbox = new int[] { R.drawable.ic_action_email };
 
-				count_Inbox = new String[] { K9counts };
+				count_Inbox = new String[] { MAILcounts };
 
 				mMenuAdapter_Inbox = new MenuListAdapter(MessageList.this,
 						title_Inbox, icon_Inbox, count_Inbox);
@@ -2374,13 +2374,13 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 					folder.flaggedMessageCount = folder.folder
 							.getFlaggedMessageCount();
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG, "Unable to get flaggedMessageCount for "
+					Log.e(MAIL.LOG_TAG, "Unable to get flaggedMessageCount for "
 							+ mAccount.getDescription() + ":" + folder.name);
 				}
 
 			}
 
-			if (K9.messageListStars() && folder.flaggedMessageCount > 0) {
+			if (MAIL.messageListStars() && folder.flaggedMessageCount > 0) {
 				holder.flaggedMessageCount.setText(Integer
 						.toString(folder.flaggedMessageCount));
 				holder.flaggedMessageCountWrapper
@@ -2404,7 +2404,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			mFontSizes.setViewTextSize(holder.folderName,
 					mFontSizes.getFolderName());
 
-			if (K9.wrapFolderNames()) {
+			if (MAIL.wrapFolderNames()) {
 				holder.folderName.setEllipsize(null);
 				holder.folderName.setSingleLine(false);
 			} else {
@@ -2609,7 +2609,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		if (!hasMessageListFragment) {
 			FragmentTransaction ft = fragmentManager.beginTransaction();
 			mMessageListFragment = MessageListFragment.newInstance(mSearch,
-					false, (K9.isThreadedViewEnabled() && !mNoThreading));
+					false, (MAIL.isThreadedViewEnabled() && !mNoThreading));
 			// ft.remove(mMessageListFragment);
 			ft.commit();
 
@@ -2634,7 +2634,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		if (!hasMessageListFragment) {
 			FragmentTransaction ft = fragmentManager.beginTransaction();
 			mMessageListFragment = MessageListFragment.newInstance(mSearch,
-					false, (K9.isThreadedViewEnabled() && !mNoThreading));
+					false, (MAIL.isThreadedViewEnabled() && !mNoThreading));
 			ft.add(R.id.message_list_container, mMessageListFragment);
 			ft.commit();
 		}
@@ -2684,7 +2684,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	}
 
 	private boolean useSplitView() {
-		SplitViewMode splitViewMode = K9.getSplitViewMode();
+		SplitViewMode splitViewMode = MAIL.getSplitViewMode();
 		int orientation = getResources().getConfiguration().orientation;
 
 		return (splitViewMode == SplitViewMode.ALWAYS || (splitViewMode == SplitViewMode.WHEN_IN_LANDSCAPE && orientation == Configuration.ORIENTATION_LANDSCAPE));
@@ -2832,7 +2832,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 		if (mSingleAccountMode
 				&& (mAccount == null || !mAccount.isAvailable(this))) {
-			Log.i(K9.LOG_TAG, "not opening MessageList of unavailable account");
+			Log.i(MAIL.LOG_TAG, "not opening MessageList of unavailable account");
 			onAccountUnavailable();
 			return false;
 		}
@@ -2983,11 +2983,11 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		case KeyEvent.KEYCODE_VOLUME_UP: {
 			if (mMessageViewFragment != null
 					&& mDisplayMode != DisplayMode.MESSAGE_LIST
-					&& K9.useVolumeKeysForNavigationEnabled()) {
+					&& MAIL.useVolumeKeysForNavigationEnabled()) {
 				showPreviousMessage();
 				return true;
 			} else if (mDisplayMode != DisplayMode.MESSAGE_VIEW
-					&& K9.useVolumeKeysForListNavigationEnabled()) {
+					&& MAIL.useVolumeKeysForListNavigationEnabled()) {
 				mMessageListFragment.onMoveUp();
 				return true;
 			}
@@ -2997,11 +2997,11 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		case KeyEvent.KEYCODE_VOLUME_DOWN: {
 			if (mMessageViewFragment != null
 					&& mDisplayMode != DisplayMode.MESSAGE_LIST
-					&& K9.useVolumeKeysForNavigationEnabled()) {
+					&& MAIL.useVolumeKeysForNavigationEnabled()) {
 				showNextMessage();
 				return true;
 			} else if (mDisplayMode != DisplayMode.MESSAGE_VIEW
-					&& K9.useVolumeKeysForListNavigationEnabled()) {
+					&& MAIL.useVolumeKeysForListNavigationEnabled()) {
 				mMessageListFragment.onMoveDown();
 				return true;
 			}
@@ -3132,11 +3132,11 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		// Swallow these events too to avoid the audible notification of a
 		// volume change
-		if (K9.useVolumeKeysForListNavigationEnabled()) {
+		if (MAIL.useVolumeKeysForListNavigationEnabled()) {
 			if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)
 					|| (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
-				if (K9.DEBUG)
-					Log.v(K9.LOG_TAG, "Swallowed key up.");
+				if (MAIL.DEBUG)
+					Log.v(MAIL.LOG_TAG, "Swallowed key up.");
 				return true;
 			}
 		}
@@ -3463,11 +3463,11 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 			MenuItem toggleTheme = mMenu2
 					.findItem(R.id.toggle_message_view_theme);
-			if (K9.useFixedMessageViewTheme()) {
+			if (MAIL.useFixedMessageViewTheme()) {
 				toggleTheme.setVisible(false);
 			} else {
 				// Set title of menu item to switch to dark/light theme
-				if (K9.getK9MessageViewTheme() == K9.Theme.DARK) {
+				if (MAIL.getMAILMessageViewTheme() == MAIL.Theme.DARK) {
 					toggleTheme
 							.setTitle(R.string.message_view_theme_action_light);
 				} else {
@@ -3492,7 +3492,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 					Build.VERSION.SDK_INT < 16);
 
 			mMenu2.findItem(R.id.delete).setVisible(
-					K9.isMessageViewDeleteActionVisible());
+					MAIL.isMessageViewDeleteActionVisible());
 
 			/*
 			 * Set visibility of copy, move, archive, spam in action bar and
@@ -3500,7 +3500,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 			 */
 			if (mMessageViewFragment.isCopyCapable()) {
 				mMenu2.findItem(R.id.copy).setVisible(
-						K9.isMessageViewCopyActionVisible());
+						MAIL.isMessageViewCopyActionVisible());
 				mMenu2.findItem(R.id.refile_copy).setVisible(true);
 			} else {
 				mMenu2.findItem(R.id.copy).setVisible(false);
@@ -3514,13 +3514,13 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 						.canMessageBeMovedToSpam();
 
 				mMenu2.findItem(R.id.move).setVisible(
-						K9.isMessageViewMoveActionVisible());
+						MAIL.isMessageViewMoveActionVisible());
 				mMenu2.findItem(R.id.archive).setVisible(
 						canMessageBeArchived
-								&& K9.isMessageViewArchiveActionVisible());
+								&& MAIL.isMessageViewArchiveActionVisible());
 				mMenu2.findItem(R.id.spam).setVisible(
 						canMessageBeMovedToSpam
-								&& K9.isMessageViewSpamActionVisible());
+								&& MAIL.isMessageViewSpamActionVisible());
 
 				mMenu2.findItem(R.id.refile_move).setVisible(true);
 				mMenu2.findItem(R.id.refile_archive).setVisible(
@@ -3946,7 +3946,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 
 	@Override
 	public void showNextMessageOrReturn() {
-		if (K9.messageViewReturnToList() || !showLogicalNextMessage()) {
+		if (MAIL.messageViewReturnToList() || !showLogicalNextMessage()) {
 			if (mDisplayMode == DisplayMode.SPLIT_VIEW) {
 				showMessageViewPlaceHolder();
 			} else {
@@ -4041,10 +4041,10 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	}
 
 	private void onToggleTheme() {
-		if (K9.getK9MessageViewTheme() == K9.Theme.DARK) {
-			K9.setK9MessageViewThemeSetting(K9.Theme.LIGHT);
+		if (MAIL.getMAILMessageViewTheme() == MAIL.Theme.DARK) {
+			MAIL.setMAILMessageViewThemeSetting(MAIL.Theme.LIGHT);
 		} else {
-			K9.setK9MessageViewThemeSetting(K9.Theme.DARK);
+			MAIL.setMAILMessageViewThemeSetting(MAIL.Theme.DARK);
 		}
 
 		new Thread(new Runnable() {
@@ -4053,7 +4053,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				Context appContext = getApplicationContext();
 				Preferences prefs = Preferences.getPreferences(appContext);
 				Editor editor = prefs.getPreferences().edit();
-				K9.save(editor);
+				MAIL.save(editor);
 				editor.commit();
 			}
 		}).start();
@@ -4093,7 +4093,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
-		Log.i(K9.LOG_TAG, "onActivityResult requestCode = " + requestCode
+		Log.i(MAIL.LOG_TAG, "onActivityResult requestCode = " + requestCode
 				+ ", resultCode = " + resultCode + ", data = " + data);
 		if (resultCode != RESULT_OK)
 			return;
@@ -4455,7 +4455,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	protected void doRefresh() {
 		Log.d(TAG, "doRefresh()");
 
-		int countssssss = getUnreadK9Count(this);
+		int countssssss = getUnreadMAILCount(this);
 
 		Log.d(TAG, "" + countssssss + " unread emails");
 
@@ -4478,22 +4478,22 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		}
 	}
 
-	private static int k9UnreadCount = 0;
+	private static int mailUnreadCount = 0;
 
-	public static int getUnreadK9Count(Context context) {
-		refreshUnreadK9Count(context);
+	public static int getUnreadMAILCount(Context context) {
+		refreshUnreadMAILCount(context);
 
-		return k9UnreadCount;
+		return mailUnreadCount;
 	}
 
-	private static int getUnreadK9Count(Context context, int accountNumber) {
+	private static int getUnreadMAILCount(Context context, int accountNumber) {
 		CursorHandler ch = new CursorHandler();
 		try {
 			Cursor cur = ch.add(context.getContentResolver().query(
-					Uri.parse(k9UnreadUri + "/" + accountNumber + "/"), null,
+					Uri.parse(mailUnreadUri + "/" + accountNumber + "/"), null,
 					null, null, null));
 			if (cur != null) {
-				Log.d(TAG, "k9: " + cur.getCount() + " unread rows returned");
+				Log.d(TAG, "mail: " + cur.getCount() + " unread rows returned");
 
 				if (cur.getCount() > 0) {
 					cur.moveToFirst();
@@ -4503,7 +4503,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 					do {
 						String acct = cur.getString(nameIndex);
 						int unreadForAcct = cur.getInt(unreadIndex);
-						Log.d(TAG, "k9: " + acct + " - " + unreadForAcct
+						Log.d(TAG, "mail: " + acct + " - " + unreadForAcct
 								+ " unread");
 						unread += unreadForAcct;
 					} while (cur.moveToNext());
@@ -4511,7 +4511,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 					return unread;
 				}
 			} else {
-				Log.d(TAG, "Failed to query k9 unread contentprovider.");
+				Log.d(TAG, "Failed to query mail unread contentprovider.");
 			}
 		} catch (IllegalStateException e) {
 			Log.d(TAG, "k-9 unread uri unknown.");
@@ -4519,32 +4519,32 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		return 0;
 	}
 
-	public static void refreshUnreadK9Count(Context context) {
-		int accounts = getK9AccountCount(context);
+	public static void refreshUnreadMAILCount(Context context) {
+		int accounts = getMAILAccountCount(context);
 		if (accounts > 0) {
 			int countssssss = 0;
 			for (int acct = 0; acct < accounts; ++acct) {
-				countssssss += getUnreadK9Count(context, acct);
+				countssssss += getUnreadMAILCount(context, acct);
 			}
-			k9UnreadCount = countssssss;
+			mailUnreadCount = countssssss;
 		}
 	}
 
-	public static int getK9AccountCount(Context context) {
+	public static int getMAILAccountCount(Context context) {
 		CursorHandler ch = new CursorHandler();
 		try {
 			Cursor cur = ch.add(context.getContentResolver().query(
-					k9AccountsUri, null, null, null, null));
+					mailAccountsUri, null, null, null, null));
 			if (cur != null) {
 				// if (Preferences.logging) Log.d(MetaWatch.TAG,
-				// "k9: "+cur.getCount()+ " account rows returned");
+				// "mail: "+cur.getCount()+ " account rows returned");
 
 				int count = cur.getCount();
 
 				return count;
 			} else {
 				// if (Preferences.logging) Log.d(MetaWatch.TAG,
-				// "Failed to query k9 unread contentprovider.");
+				// "Failed to query mail unread contentprovider.");
 			}
 		} catch (IllegalStateException e) {
 			// if (Preferences.logging) Log.d(MetaWatch.TAG,
@@ -4569,7 +4569,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 	public void populateListView(Account[] realAccounts) {
 		List<BaseAccount> accounts = new ArrayList<BaseAccount>();
 
-		if (displaySpecialAccounts() && !K9.isHideSpecialAccounts()) {
+		if (displaySpecialAccounts() && !MAIL.isHideSpecialAccounts()) {
 			SearchAccount.createUnifiedInboxAccount(this);
 			SearchAccount.createAllMessagesAccount(this);
 
@@ -4745,7 +4745,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				holder.flaggedMessageCount.setText(Integer
 						.toString(stats.flaggedMessageCount));
 				holder.flaggedMessageCountWrapper
-						.setVisibility(K9.messageListStars()
+						.setVisibility(MAIL.messageListStars()
 								&& stats.flaggedMessageCount > 0 ? View.VISIBLE
 								: View.GONE);
 
@@ -4960,11 +4960,11 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 						Toast.LENGTH_SHORT);
 				toast.show();
 
-				Log.i(K9.LOG_TAG,
+				Log.i(MAIL.LOG_TAG,
 						"refusing to open account that is not available");
 				return false;
 			}
-			if (K9.FOLDER_NONE.equals(realAccount.getAutoExpandFolderName())) {
+			if (MAIL.FOLDER_NONE.equals(realAccount.getAutoExpandFolderName())) {
 				FolderList.actionHandleAccount(this, realAccount);
 			} else {
 				LocalSearch search = new LocalSearch(
@@ -5309,13 +5309,13 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				mAccount.save(Preferences.getPreferences(mContext));
 
 				// Start services if necessary
-				K9.setServicesEnabled(mContext);
+				MAIL.setServicesEnabled(mContext);
 
 				// Get list of folders from remote server
 				MessagingController.getInstance(mApplication).listFolders(
 						mAccount, true, null);
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						"Something went while setting account passwords", e);
 			}
 			return null;
@@ -5874,7 +5874,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				holder.flaggedMessageCount.setText(Integer
 						.toString(stats.flaggedMessageCount));
 				holder.flaggedMessageCountWrapper
-						.setVisibility(K9.messageListStars()
+						.setVisibility(MAIL.messageListStars()
 								&& stats.flaggedMessageCount > 0 ? View.VISIBLE
 								: View.GONE);
 
@@ -6007,7 +6007,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				mFileName = SettingsExporter.exportToFile(mContext,
 						mIncludeGlobals, mAccountUuids);
 			} catch (SettingsImportExportException e) {
-				Log.w(K9.LOG_TAG, "Exception during export", e);
+				Log.w(MAIL.LOG_TAG, "Exception during export", e);
 				return false;
 			}
 			return true;
@@ -6082,13 +6082,13 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 					}
 				}
 			} catch (SettingsImportExportException e) {
-				Log.w(K9.LOG_TAG, "Exception during import", e);
+				Log.w(MAIL.LOG_TAG, "Exception during import", e);
 				return false;
 			} catch (FileNotFoundException e) {
-				Log.w(K9.LOG_TAG, "Couldn't open import file", e);
+				Log.w(MAIL.LOG_TAG, "Couldn't open import file", e);
 				return false;
 			} catch (Exception e) {
-				Log.w(K9.LOG_TAG, "Unknown error", e);
+				Log.w(MAIL.LOG_TAG, "Unknown error", e);
 				return false;
 			}
 			return true;
@@ -6164,10 +6164,10 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 					}
 				}
 			} catch (SettingsImportExportException e) {
-				Log.w(K9.LOG_TAG, "Exception during export", e);
+				Log.w(MAIL.LOG_TAG, "Exception during export", e);
 				return false;
 			} catch (FileNotFoundException e) {
-				Log.w(K9.LOG_TAG, "Couldn't read content from URI " + mUri);
+				Log.w(MAIL.LOG_TAG, "Couldn't read content from URI " + mUri);
 				return false;
 			}
 			return true;
@@ -6247,7 +6247,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 		// }
 
 		List<BaseAccount> newAccounts;
-		if (!K9.isHideSpecialAccounts() && accounts.length > 0) {
+		if (!MAIL.isHideSpecialAccounts() && accounts.length > 0) {
 			if (mUnifiedInboxAccount == null || mAllMessagesAccount == null) {
 				createSpecialAccounts();
 			}
@@ -6282,7 +6282,7 @@ public class MessageList extends K9ListActivity implements OnItemClickListener,
 				Account realAccount = (Account) account;
 				controller.getAccountStats(this, realAccount,
 						mListener_Accounts);
-			} else if (K9.countSearchMessages()
+			} else if (MAIL.countSearchMessages()
 					&& account instanceof SearchAccount) {
 				final SearchAccount searchAccount = (SearchAccount) account;
 				controller.getSearchAccountStats(searchAccount,

@@ -13,7 +13,7 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.helper.power.TracingPowerManager;
 import com.bernard.beaconportal.activities.helper.power.TracingPowerManager.TracingWakeLock;
@@ -36,7 +36,7 @@ import com.bernard.beaconportal.activities.helper.power.TracingPowerManager.Trac
  * </p>
  * <p>
  * CoreService is providing the execution plumbing for background tasks
- * including the required thread and task queuing for all K9 services to use.
+ * including the required thread and task queuing for all MAIL services to use.
  * </p>
  * <p>
  * A service is supposed to run only as long as it has some work to do whether
@@ -161,7 +161,7 @@ public abstract class CoreService extends Service {
 	 */
 	protected static void addWakeLock(Context context, Intent intent) {
 		TracingWakeLock wakeLock = acquireWakeLock(context,
-				"CoreService addWakeLock", K9.MAIL_SERVICE_WAKE_LOCK_TIMEOUT);
+				"CoreService addWakeLock", MAIL.MAIL_SERVICE_WAKE_LOCK_TIMEOUT);
 		Integer tmpWakeLockId = registerWakeLock(wakeLock);
 		intent.putExtra(WAKE_LOCK_ID, tmpWakeLockId);
 	}
@@ -209,8 +209,8 @@ public abstract class CoreService extends Service {
 
 	@Override
 	public void onCreate() {
-		if (K9.DEBUG) {
-			Log.i(K9.LOG_TAG, "CoreService: " + className + ".onCreate()");
+		if (MAIL.DEBUG) {
+			Log.i(MAIL.LOG_TAG, "CoreService: " + className + ".onCreate()");
 		}
 
 		mThreadPool = Executors.newFixedThreadPool(1); // Must be single
@@ -225,7 +225,7 @@ public abstract class CoreService extends Service {
 		 * intent being null.
 		 * 
 		 * For now we just ignore these restart events. This should be fine
-		 * because all necessary services are started from K9.onCreate() when
+		 * because all necessary services are started from MAIL.onCreate() when
 		 * the Application object is initialized.
 		 * 
 		 * See issue 3750
@@ -237,10 +237,10 @@ public abstract class CoreService extends Service {
 
 		// Acquire new wake lock
 		TracingWakeLock wakeLock = acquireWakeLock(this, "CoreService onStart",
-				K9.MAIL_SERVICE_WAKE_LOCK_TIMEOUT);
+				MAIL.MAIL_SERVICE_WAKE_LOCK_TIMEOUT);
 
-		if (K9.DEBUG) {
-			Log.i(K9.LOG_TAG, "CoreService: " + className + ".onStart("
+		if (MAIL.DEBUG) {
+			Log.i(MAIL.LOG_TAG, "CoreService: " + className + ".onStart("
 					+ intent + ", " + startId + ")");
 		}
 
@@ -256,8 +256,8 @@ public abstract class CoreService extends Service {
 		// release it.
 		int coreWakeLockId = intent.getIntExtra(WAKE_LOCK_ID, -1);
 		if (coreWakeLockId != -1) {
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "Got core wake lock id " + coreWakeLockId);
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "Got core wake lock id " + coreWakeLockId);
 			}
 
 			// Remove wake lock from the registry
@@ -265,8 +265,8 @@ public abstract class CoreService extends Service {
 
 			// Release wake lock
 			if (coreWakeLock != null) {
-				if (K9.DEBUG) {
-					Log.d(K9.LOG_TAG, "Found core wake lock with id "
+				if (MAIL.DEBUG) {
+					Log.d(MAIL.LOG_TAG, "Found core wake lock with id "
 							+ coreWakeLockId + ", releasing");
 				}
 				coreWakeLock.release();
@@ -340,8 +340,8 @@ public abstract class CoreService extends Service {
 					// Get the sync status
 					boolean oldIsSyncDisabled = MailService.isSyncDisabled();
 
-					if (K9.DEBUG) {
-						Log.d(K9.LOG_TAG, "CoreService (" + className
+					if (MAIL.DEBUG) {
+						Log.d(MAIL.LOG_TAG, "CoreService (" + className
 								+ ") running Runnable " + runner.hashCode()
 								+ " with startId " + startId);
 					}
@@ -359,8 +359,8 @@ public abstract class CoreService extends Service {
 				} finally {
 					// Making absolutely sure stopSelf() will be called
 					try {
-						if (K9.DEBUG) {
-							Log.d(K9.LOG_TAG,
+						if (MAIL.DEBUG) {
+							Log.d(MAIL.LOG_TAG,
 									"CoreService (" + className
 											+ ") completed " + "Runnable "
 											+ runner.hashCode()
@@ -378,7 +378,7 @@ public abstract class CoreService extends Service {
 
 		// TODO: remove this. we never set mThreadPool to null
 		if (mThreadPool == null) {
-			Log.e(K9.LOG_TAG, "CoreService.execute (" + className
+			Log.e(MAIL.LOG_TAG, "CoreService.execute (" + className
 					+ ") called with no thread "
 					+ "pool available; running Runnable " + runner.hashCode()
 					+ " in calling thread");
@@ -388,8 +388,8 @@ public abstract class CoreService extends Service {
 				serviceShutdownScheduled = startId != null;
 			}
 		} else {
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "CoreService (" + className
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "CoreService (" + className
 						+ ") queueing Runnable " + runner.hashCode()
 						+ " with startId " + startId);
 			}
@@ -405,7 +405,7 @@ public abstract class CoreService extends Service {
 					throw e;
 				}
 
-				Log.i(K9.LOG_TAG, "CoreService: " + className
+				Log.i(MAIL.LOG_TAG, "CoreService: " + className
 						+ " is shutting down, ignoring "
 						+ "rejected execution exception: " + e.getMessage());
 			}
@@ -438,7 +438,7 @@ public abstract class CoreService extends Service {
 
 	@Override
 	public void onLowMemory() {
-		Log.w(K9.LOG_TAG, "CoreService: " + className
+		Log.w(MAIL.LOG_TAG, "CoreService: " + className
 				+ ".onLowMemory() - Running low on memory");
 	}
 
@@ -447,8 +447,8 @@ public abstract class CoreService extends Service {
 	 */
 	@Override
 	public void onDestroy() {
-		if (K9.DEBUG) {
-			Log.i(K9.LOG_TAG, "CoreService: " + className + ".onDestroy()");
+		if (MAIL.DEBUG) {
+			Log.i(MAIL.LOG_TAG, "CoreService: " + className + ".onDestroy()");
 		}
 
 		// Shut down thread pool

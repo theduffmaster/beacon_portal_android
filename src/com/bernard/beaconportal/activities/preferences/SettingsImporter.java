@@ -20,7 +20,7 @@ import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Identity;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.helper.Utility;
 import com.bernard.beaconportal.activities.mail.AuthType;
@@ -205,25 +205,25 @@ public class SettingsImporter {
 								imported.contentVersion,
 								imported.globalSettings);
 					} else {
-						Log.w(K9.LOG_TAG,
+						Log.w(MAIL.LOG_TAG,
 								"Was asked to import global settings but none found.");
 					}
 					if (editor.commit()) {
-						if (K9.DEBUG) {
-							Log.v(K9.LOG_TAG,
+						if (MAIL.DEBUG) {
+							Log.v(MAIL.LOG_TAG,
 									"Committed global settings to the preference "
 											+ "storage.");
 						}
 						globalSettingsImported = true;
 					} else {
-						if (K9.DEBUG) {
-							Log.v(K9.LOG_TAG,
+						if (MAIL.DEBUG) {
+							Log.v(MAIL.LOG_TAG,
 									"Failed to commit global settings to the "
 											+ "preference storage");
 						}
 					}
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG,
+					Log.e(MAIL.LOG_TAG,
 							"Exception while importing global settings", e);
 				}
 			}
@@ -244,8 +244,8 @@ public class SettingsImporter {
 										overwrite);
 
 								if (editor.commit()) {
-									if (K9.DEBUG) {
-										Log.v(K9.LOG_TAG,
+									if (MAIL.DEBUG) {
+										Log.v(MAIL.LOG_TAG,
 												"Committed settings for account \""
 														+ importResult.imported.name
 														+ "\" to the settings database.");
@@ -279,8 +279,8 @@ public class SettingsImporter {
 
 									importedAccounts.add(importResult);
 								} else {
-									if (K9.DEBUG) {
-										Log.w(K9.LOG_TAG,
+									if (MAIL.DEBUG) {
+										Log.w(MAIL.LOG_TAG,
 												"Error while committing settings for "
 														+ "account \""
 														+ importResult.original.name
@@ -290,8 +290,8 @@ public class SettingsImporter {
 											.add(importResult.original);
 								}
 							} catch (InvalidSettingValueException e) {
-								if (K9.DEBUG) {
-									Log.e(K9.LOG_TAG,
+								if (MAIL.DEBUG) {
+									Log.e(MAIL.LOG_TAG,
 											"Encountered invalid setting while "
 													+ "importing account \""
 													+ account.name + "\"", e);
@@ -299,14 +299,14 @@ public class SettingsImporter {
 								errorneousAccounts.add(new AccountDescription(
 										account.name, account.uuid));
 							} catch (Exception e) {
-								Log.e(K9.LOG_TAG,
+								Log.e(MAIL.LOG_TAG,
 										"Exception while importing account \""
 												+ account.name + "\"", e);
 								errorneousAccounts.add(new AccountDescription(
 										account.name, account.uuid));
 							}
 						} else {
-							Log.w(K9.LOG_TAG,
+							Log.w(MAIL.LOG_TAG,
 									"Was asked to import account with UUID "
 											+ accountUuid
 											+ ". But this account wasn't found.");
@@ -327,14 +327,14 @@ public class SettingsImporter {
 								"Failed to set default account");
 					}
 				} else {
-					Log.w(K9.LOG_TAG,
+					Log.w(MAIL.LOG_TAG,
 							"Was asked to import at least one account but none found.");
 				}
 			}
 
 			preferences.loadAccounts();
-			K9.loadPrefs(preferences);
-			K9.setServicesEnabled(context);
+			MAIL.loadPrefs(preferences);
+			MAIL.setServicesEnabled(context);
 
 			return new ImportResults(globalSettingsImported, importedAccounts,
 					errorneousAccounts);
@@ -723,14 +723,14 @@ public class SettingsImporter {
 	 */
 	private static void putString(SharedPreferences.Editor editor, String key,
 			String value) {
-		if (K9.DEBUG) {
+		if (MAIL.DEBUG) {
 			String outputValue = value;
-			if (!K9.DEBUG_SENSITIVE
+			if (!MAIL.DEBUG_SENSITIVE
 					&& (key.endsWith(".transportUri") || key
 							.endsWith(".storeUri"))) {
 				outputValue = "*sensitive*";
 			}
-			Log.v(K9.LOG_TAG, "Setting " + key + "=" + outputValue);
+			Log.v(MAIL.LOG_TAG, "Setting " + key + "=" + outputValue);
 		}
 		editor.putString(key, value);
 	}
@@ -760,7 +760,7 @@ public class SettingsImporter {
 						imported = parseRoot(xpp, globalSettings, accountUuids,
 								overview);
 					} else {
-						Log.w(K9.LOG_TAG,
+						Log.w(MAIL.LOG_TAG,
 								"Unexpected start tag: " + xpp.getName());
 					}
 				}
@@ -832,23 +832,23 @@ public class SettingsImporter {
 							}
 						} else {
 							skipToEndTag(xpp, SettingsExporter.GLOBAL_ELEMENT);
-							Log.w(K9.LOG_TAG,
+							Log.w(MAIL.LOG_TAG,
 									"More than one global settings element. Only using the first one!");
 						}
 					} else {
 						skipToEndTag(xpp, SettingsExporter.GLOBAL_ELEMENT);
-						Log.i(K9.LOG_TAG, "Skipping global settings");
+						Log.i(MAIL.LOG_TAG, "Skipping global settings");
 					}
 				} else if (SettingsExporter.ACCOUNTS_ELEMENT.equals(element)) {
 					if (result.accounts == null) {
 						result.accounts = parseAccounts(xpp, accountUuids,
 								overview);
 					} else {
-						Log.w(K9.LOG_TAG,
+						Log.w(MAIL.LOG_TAG,
 								"More than one accounts element. Only using the first one!");
 					}
 				} else {
-					Log.w(K9.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();
@@ -925,13 +925,13 @@ public class SettingsImporter {
 					}
 
 					if (result.settings.containsKey(key)) {
-						Log.w(K9.LOG_TAG, "Already read key \"" + key
+						Log.w(MAIL.LOG_TAG, "Already read key \"" + key
 								+ "\". Ignoring value \"" + value + "\"");
 					} else {
 						result.settings.put(key, value);
 					}
 				} else {
-					Log.w(K9.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();
@@ -965,12 +965,12 @@ public class SettingsImporter {
 					} else if (!accounts.containsKey(account.uuid)) {
 						accounts.put(account.uuid, account);
 					} else {
-						Log.w(K9.LOG_TAG,
+						Log.w(MAIL.LOG_TAG,
 								"Duplicate account entries with UUID "
 										+ account.uuid + ". Ignoring!");
 					}
 				} else {
-					Log.w(K9.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();
@@ -990,7 +990,7 @@ public class SettingsImporter {
 			UUID.fromString(uuid);
 		} catch (Exception e) {
 			skipToEndTag(xpp, SettingsExporter.ACCOUNT_ELEMENT);
-			Log.w(K9.LOG_TAG, "Skipping account with invalid UUID " + uuid);
+			Log.w(MAIL.LOG_TAG, "Skipping account with invalid UUID " + uuid);
 			return null;
 		}
 
@@ -1047,7 +1047,7 @@ public class SettingsImporter {
 							account.folders = parseFolders(xpp);
 						}
 					} else {
-						Log.w(K9.LOG_TAG,
+						Log.w(MAIL.LOG_TAG,
 								"Unexpected start tag: " + xpp.getName());
 					}
 				}
@@ -1055,7 +1055,7 @@ public class SettingsImporter {
 			}
 		} else {
 			skipToEndTag(xpp, SettingsExporter.ACCOUNT_ELEMENT);
-			Log.i(K9.LOG_TAG, "Skipping account with UUID " + uuid);
+			Log.i(MAIL.LOG_TAG, "Skipping account with UUID " + uuid);
 		}
 
 		// If we couldn't find an account name use the UUID
@@ -1097,7 +1097,7 @@ public class SettingsImporter {
 					server.extras = parseSettings(xpp,
 							SettingsExporter.EXTRA_ELEMENT);
 				} else {
-					Log.w(K9.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();
@@ -1124,7 +1124,7 @@ public class SettingsImporter {
 					ImportedIdentity identity = parseIdentity(xpp);
 					identities.add(identity);
 				} else {
-					Log.w(K9.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();
@@ -1153,7 +1153,7 @@ public class SettingsImporter {
 					identity.settings = parseSettings(xpp,
 							SettingsExporter.SETTINGS_ELEMENT);
 				} else {
-					Log.w(K9.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();
@@ -1180,7 +1180,7 @@ public class SettingsImporter {
 					ImportedFolder folder = parseFolder(xpp);
 					folders.add(folder);
 				} else {
-					Log.w(K9.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();

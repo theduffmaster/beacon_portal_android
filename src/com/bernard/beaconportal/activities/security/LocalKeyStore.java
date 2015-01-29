@@ -15,7 +15,7 @@ import org.apache.commons.io.IOUtils;
 
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 
 public class LocalKeyStore {
 	private static final int KEY_STORE_FILE_VERSION = 1;
@@ -48,7 +48,7 @@ public class LocalKeyStore {
 			 * error, presuming setKeyStoreFile(File) is called next with a
 			 * non-null File.
 			 */
-			Log.w(K9.LOG_TAG, "Local key store has not been initialized");
+			Log.w(MAIL.LOG_TAG, "Local key store has not been initialized");
 		}
 	}
 
@@ -92,7 +92,7 @@ public class LocalKeyStore {
 			mKeyStore = store;
 			mKeyStoreFile = file;
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Failed to initialize local key store", e);
+			Log.e(MAIL.LOG_TAG, "Failed to initialize local key store", e);
 			// Use of the local key store is effectively disabled.
 			mKeyStore = null;
 			mKeyStoreFile = null;
@@ -169,7 +169,7 @@ public class LocalKeyStore {
 		} catch (KeyStoreException e) {
 			// Ignore: most likely there was no cert. found
 		} catch (CertificateException e) {
-			Log.e(K9.LOG_TAG, "Error updating the local key store file", e);
+			Log.e(MAIL.LOG_TAG, "Error updating the local key store file", e);
 		}
 	}
 

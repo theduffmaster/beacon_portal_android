@@ -66,7 +66,7 @@ import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.AccountStats;
 import com.bernard.beaconportal.activities.BaseAccount;
 import com.bernard.beaconportal.activities.FontSizes;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
@@ -98,7 +98,7 @@ import com.bernard.beaconportal.activities.search.SearchSpecification.Searchfiel
 
 import de.cketti.library.changelog.ChangeLog;
 
-public class Accounts extends K9ListActivity implements OnItemClickListener {
+public class Accounts extends MAILListActivity implements OnItemClickListener {
 
 	/**
 	 * Immutable empty {@link BaseAccount} array
@@ -131,7 +131,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 	public static AccountsAdapter mAdapter;
 	private SearchAccount mAllMessagesAccount = null;
 	private SearchAccount mUnifiedInboxAccount = null;
-	private FontSizes mFontSizes = K9.getFontSizes();
+	private FontSizes mFontSizes = MAIL.getFontSizes();
 
 	private MenuItem mRefreshMenuItem;
 	private ActionBar mActionBar;
@@ -210,7 +210,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 				@Override
 				public void run() {
 					AccountStats stats = accountStats.get(account.getUuid());
-					if (newSize != -1 && stats != null && K9.measureAccounts()) {
+					if (newSize != -1 && stats != null && MAIL.measureAccounts()) {
 						stats.size = newSize;
 					}
 					String toastText = getString(
@@ -277,12 +277,12 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 			try {
 				AccountStats stats = account.getStats(Accounts.this);
 				if (stats == null) {
-					Log.w(K9.LOG_TAG, "Unable to get account stats");
+					Log.w(MAIL.LOG_TAG, "Unable to get account stats");
 				} else {
 					accountStatusChanged(account, stats);
 				}
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG, "Unable to get account stats", e);
+				Log.e(MAIL.LOG_TAG, "Unable to get account stats", e);
 			}
 		}
 
@@ -401,15 +401,15 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 	@Override
 	public void onNewIntent(Intent intent) {
 		Uri uri = intent.getData();
-		Log.i(K9.LOG_TAG, "Accounts Activity got uri " + uri);
+		Log.i(MAIL.LOG_TAG, "Accounts Activity got uri " + uri);
 		if (uri != null) {
 			ContentResolver contentResolver = getContentResolver();
 
-			Log.i(K9.LOG_TAG, "Accounts Activity got content of type "
+			Log.i(MAIL.LOG_TAG, "Accounts Activity got content of type "
 					+ contentResolver.getType(uri));
 
 			String contentType = contentResolver.getType(uri);
-			if (MimeUtility.K9_SETTINGS_MIME_TYPE.equals(contentType)) {
+			if (MimeUtility.MAIL_SETTINGS_MIME_TYPE.equals(contentType)) {
 				onImport(uri);
 			}
 		}
@@ -428,7 +428,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 
 		startActivity(intents);
 
-		if (!K9.isHideSpecialAccounts()) {
+		if (!MAIL.isHideSpecialAccounts()) {
 			createSpecialAccounts();
 		}
 
@@ -451,7 +451,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		}
 
 		boolean startup = intent.getBooleanExtra(EXTRA_STARTUP, true);
-		if (startup && K9.startIntegratedInbox() && !K9.isHideSpecialAccounts()) {
+		if (startup && MAIL.startIntegratedInbox() && !MAIL.isHideSpecialAccounts()) {
 			onOpenAccount(mUnifiedInboxAccount);
 			finish();
 			return;
@@ -659,7 +659,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 		// }
 
 		List<BaseAccount> newAccounts;
-		if (!K9.isHideSpecialAccounts() && accounts.length > 0) {
+		if (!MAIL.isHideSpecialAccounts() && accounts.length > 0) {
 			if (mUnifiedInboxAccount == null || mAllMessagesAccount == null) {
 				createSpecialAccounts();
 			}
@@ -692,7 +692,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 			if (account instanceof Account) {
 				Account realAccount = (Account) account;
 				controller.getAccountStats(this, realAccount, mListener);
-			} else if (K9.countSearchMessages()
+			} else if (MAIL.countSearchMessages()
 					&& account instanceof SearchAccount) {
 				final SearchAccount searchAccount = (SearchAccount) account;
 				controller.getSearchAccountStats(searchAccount, mListener);
@@ -771,11 +771,11 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 						Toast.LENGTH_SHORT);
 				toast.show();
 
-				Log.i(K9.LOG_TAG,
+				Log.i(MAIL.LOG_TAG,
 						"refusing to open account that is not available");
 				return false;
 			}
-			if (K9.FOLDER_NONE.equals(realAccount.getAutoExpandFolderName())) {
+			if (MAIL.FOLDER_NONE.equals(realAccount.getAutoExpandFolderName())) {
 				FolderList.actionHandleAccount(this, realAccount);
 			} else {
 				LocalSearch search = new LocalSearch(
@@ -1120,13 +1120,13 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 				mAccount.save(Preferences.getPreferences(mContext));
 
 				// Start services if necessary
-				K9.setServicesEnabled(mContext);
+				MAIL.setServicesEnabled(mContext);
 
 				// Get list of folders from remote server
 				MessagingController.getInstance(mApplication).listFolders(
 						mAccount, true, null);
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						"Something went while setting account passwords", e);
 			}
 			return null;
@@ -1193,7 +1193,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 										Accounts.this, realAccount);
 								Preferences.getPreferences(Accounts.this)
 										.deleteAccount(realAccount);
-								K9.setServicesEnabled(Accounts.this);
+								MAIL.setServicesEnabled(Accounts.this);
 								refresh();
 							}
 						}
@@ -1572,7 +1572,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		Log.i(K9.LOG_TAG, "onActivityResult requestCode = " + requestCode
+		Log.i(MAIL.LOG_TAG, "onActivityResult requestCode = " + requestCode
 				+ ", resultCode = " + resultCode + ", data = " + data);
 		if (resultCode != RESULT_OK)
 			return;
@@ -1974,7 +1974,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 				holder.flaggedMessageCount.setText(Integer
 						.toString(stats.flaggedMessageCount));
 				holder.flaggedMessageCountWrapper
-						.setVisibility(K9.messageListStars()
+						.setVisibility(MAIL.messageListStars()
 								&& stats.flaggedMessageCount > 0 ? View.VISIBLE
 								: View.GONE);
 
@@ -2137,7 +2137,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 				mFileName = SettingsExporter.exportToFile(mContext,
 						mIncludeGlobals, mAccountUuids);
 			} catch (SettingsImportExportException e) {
-				Log.w(K9.LOG_TAG, "Exception during export", e);
+				Log.w(MAIL.LOG_TAG, "Exception during export", e);
 				return false;
 			}
 			return true;
@@ -2211,13 +2211,13 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 					}
 				}
 			} catch (SettingsImportExportException e) {
-				Log.w(K9.LOG_TAG, "Exception during import", e);
+				Log.w(MAIL.LOG_TAG, "Exception during import", e);
 				return false;
 			} catch (FileNotFoundException e) {
-				Log.w(K9.LOG_TAG, "Couldn't open import file", e);
+				Log.w(MAIL.LOG_TAG, "Couldn't open import file", e);
 				return false;
 			} catch (Exception e) {
-				Log.w(K9.LOG_TAG, "Unknown error", e);
+				Log.w(MAIL.LOG_TAG, "Unknown error", e);
 				return false;
 			}
 			return true;
@@ -2293,10 +2293,10 @@ public class Accounts extends K9ListActivity implements OnItemClickListener {
 					}
 				}
 			} catch (SettingsImportExportException e) {
-				Log.w(K9.LOG_TAG, "Exception during export", e);
+				Log.w(MAIL.LOG_TAG, "Exception during export", e);
 				return false;
 			} catch (FileNotFoundException e) {
-				Log.w(K9.LOG_TAG, "Couldn't read content from URI " + mUri);
+				Log.w(MAIL.LOG_TAG, "Couldn't read content from URI " + mUri);
 				return false;
 			}
 			return true;

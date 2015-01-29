@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.activity.MessageCompose;
 import com.bernard.beaconportal.activities.activity.MessageReference;
@@ -70,8 +70,8 @@ public class NotificationActionService extends CoreService {
 
 	@Override
 	public int startService(Intent intent, int startId) {
-		if (K9.DEBUG)
-			Log.i(K9.LOG_TAG,
+		if (MAIL.DEBUG)
+			Log.i(MAIL.LOG_TAG,
 					"NotificationActionService started with startId = "
 							+ startId);
 		final Preferences preferences = Preferences.getPreferences(this);
@@ -83,8 +83,8 @@ public class NotificationActionService extends CoreService {
 
 		if (account != null) {
 			if (READ_ALL_ACTION.equals(action)) {
-				if (K9.DEBUG)
-					Log.i(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.i(MAIL.LOG_TAG,
 							"NotificationActionService marking messages as read");
 
 				ArrayList<MessageReference> refs = intent
@@ -94,8 +94,8 @@ public class NotificationActionService extends CoreService {
 							Flag.SEEN, true);
 				}
 			} else if (DELETE_ALL_ACTION.equals(action)) {
-				if (K9.DEBUG)
-					Log.i(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.i(MAIL.LOG_TAG,
 							"NotificationActionService deleting messages");
 
 				ArrayList<MessageReference> refs = intent
@@ -111,8 +111,8 @@ public class NotificationActionService extends CoreService {
 
 				controller.deleteMessages(messages, null);
 			} else if (REPLY_ACTION.equals(action)) {
-				if (K9.DEBUG)
-					Log.i(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.i(MAIL.LOG_TAG,
 							"NotificationActionService initiating reply");
 
 				MessageReference ref = (MessageReference) intent
@@ -124,7 +124,7 @@ public class NotificationActionService extends CoreService {
 					i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					startActivity(i);
 				} else {
-					Log.i(K9.LOG_TAG, "Could not execute reply action.");
+					Log.i(MAIL.LOG_TAG, "Could not execute reply action.");
 				}
 			} else if (ACKNOWLEDGE_ACTION.equals(action)) {
 				// nothing to do here, we just want to cancel the notification
@@ -138,7 +138,7 @@ public class NotificationActionService extends CoreService {
 			 */
 			controller.notifyAccountCancel(this, account);
 		} else {
-			Log.w(K9.LOG_TAG, "Could not find account for notification action.");
+			Log.w(MAIL.LOG_TAG, "Could not find account for notification action.");
 		}
 
 		return START_NOT_STICKY;

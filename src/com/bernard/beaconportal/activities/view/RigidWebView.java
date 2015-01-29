@@ -22,7 +22,7 @@ import android.util.Log;
 import android.webkit.WebView;
 
 import com.bernard.beaconportal.activities.Clock;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Throttle;
 import com.bernard.beaconportal.activities.helper.Utility;
 
@@ -79,8 +79,8 @@ public class RigidWebView extends WebView {
 		if (mIgnoreNext) {
 			mIgnoreNext = false;
 			if (recentlySized) {
-				if (K9.DEBUG) {
-					Log.w(K9.LOG_TAG, "Supressing size change in RigidWebView");
+				if (MAIL.DEBUG) {
+					Log.w(MAIL.LOG_TAG, "Supressing size change in RigidWebView");
 				}
 				return;
 			}

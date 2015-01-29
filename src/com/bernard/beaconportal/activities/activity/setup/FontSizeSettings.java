@@ -13,10 +13,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.FontSizes;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.activity.K9PreferenceActivity;
+import com.bernard.beaconportal.activities.activity.MAILPreferenceActivity;
 
 /**
  * Activity to configure the font size of the information displayed in the
@@ -24,7 +24,7 @@ import com.bernard.beaconportal.activities.activity.K9PreferenceActivity;
  * 
  * @see FontSizes
  */
-public class FontSizeSettings extends K9PreferenceActivity {
+public class FontSizeSettings extends MAILPreferenceActivity {
 	/*
 	 * Keys of the preferences defined in res/xml/font_preferences.xml
 	 */
@@ -123,7 +123,7 @@ public class FontSizeSettings extends K9PreferenceActivity {
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
-		FontSizes fontSizes = K9.getFontSizes();
+		FontSizes fontSizes = MAIL.getFontSizes();
 		addPreferencesFromResource(R.xml.font_preferences);
 
 		mAccountName = setupListPreference(PREFERENCE_ACCOUNT_NAME_FONT,
@@ -207,7 +207,7 @@ public class FontSizeSettings extends K9PreferenceActivity {
 	 * changed) font size settings.
 	 */
 	private void saveSettings() {
-		FontSizes fontSizes = K9.getFontSizes();
+		FontSizes fontSizes = MAIL.getFontSizes();
 
 		fontSizes.setAccountName(Integer.parseInt(mAccountName.getValue()));
 		fontSizes.setAccountDescription(Integer.parseInt(mAccountDescription

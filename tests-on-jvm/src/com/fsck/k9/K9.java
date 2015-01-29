@@ -1,5 +1,5 @@
-package com.fsck.k9;
+package com.fsck.mail;
 
-public class K9 {
+public class MAIL {
     public static boolean DEBUG = false;
 }

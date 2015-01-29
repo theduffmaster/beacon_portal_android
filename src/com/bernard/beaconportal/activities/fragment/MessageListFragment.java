@@ -70,7 +70,7 @@ import android.widget.Toast;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Account.SortType;
 import com.bernard.beaconportal.activities.FontSizes;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.ActivityListener;
@@ -411,7 +411,7 @@ public class MessageListFragment extends Fragment implements
 	private int mSelectedCount = 0;
 	private Set<Long> mSelected = new HashSet<Long>();
 
-	private FontSizes mFontSizes = K9.getFontSizes();
+	private FontSizes mFontSizes = MAIL.getFontSizes();
 
 	private ActionMode mActionMode;
 
@@ -823,11 +823,11 @@ public class MessageListFragment extends Fragment implements
 		mController = MessagingController.getInstance(getActivity()
 				.getApplication());
 
-		mPreviewLines = K9.messageListPreviewLines();
-		mCheckboxes = K9.messageListCheckboxes();
-		mStars = K9.messageListStars();
+		mPreviewLines = MAIL.messageListPreviewLines();
+		mCheckboxes = MAIL.messageListCheckboxes();
+		mStars = MAIL.messageListStars();
 
-		if (K9.showContactPicture()) {
+		if (MAIL.showContactPicture()) {
 			mContactsPictureLoader = ContactPicture
 					.getContactPictureLoader(getActivity());
 		}
@@ -972,9 +972,9 @@ public class MessageListFragment extends Fragment implements
 			mSortAscending = mAccount.isSortAscending(mSortType);
 			mSortDateAscending = mAccount.isSortAscending(SortType.SORT_DATE);
 		} else {
-			mSortType = K9.getSortType();
-			mSortAscending = K9.isSortAscending(mSortType);
-			mSortDateAscending = K9.isSortAscending(SortType.SORT_DATE);
+			mSortType = MAIL.getSortType();
+			mSortAscending = MAIL.isSortAscending(mSortType);
+			mSortDateAscending = MAIL.isSortAscending(SortType.SORT_DATE);
 		}
 	}
 
@@ -1062,7 +1062,7 @@ public class MessageListFragment extends Fragment implements
 			localFolder = localStore.getFolder(folder);
 			return new FolderInfoHolder(mContext, localFolder, account);
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "getFolder(" + folder + ") goes boom: ", e);
+			Log.e(MAIL.LOG_TAG, "getFolder(" + folder + ") goes boom: ", e);
 			return null;
 		} finally {
 			if (localFolder != null) {
@@ -1078,7 +1078,7 @@ public class MessageListFragment extends Fragment implements
 				return folder.getName();
 			}
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "getFolderNameById() failed.", e);
+			Log.e(MAIL.LOG_TAG, "getFolderNameById() failed.", e);
 		}
 
 		return null;
@@ -1091,7 +1091,7 @@ public class MessageListFragment extends Fragment implements
 			localFolder.open(Folder.OPEN_MODE_RO);
 			return localFolder;
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "getFolderNameById() failed.", e);
+			Log.e(MAIL.LOG_TAG, "getFolderNameById() failed.", e);
 			return null;
 		}
 	}
@@ -1116,7 +1116,7 @@ public class MessageListFragment extends Fragment implements
 
 		Context appContext = getActivity().getApplicationContext();
 
-		mSenderAboveSubject = K9.messageListSenderAboveSubject();
+		mSenderAboveSubject = MAIL.messageListSenderAboveSubject();
 
 		if (!mLoaderJustInitialized) {
 			restartLoader();
@@ -1319,18 +1319,18 @@ public class MessageListFragment extends Fragment implements
 
 			account.save(mPreferences);
 		} else {
-			K9.setSortType(mSortType);
+			MAIL.setSortType(mSortType);
 
 			if (sortAscending == null) {
-				mSortAscending = K9.isSortAscending(mSortType);
+				mSortAscending = MAIL.isSortAscending(mSortType);
 			} else {
 				mSortAscending = sortAscending;
 			}
-			K9.setSortAscending(mSortType, mSortAscending);
-			mSortDateAscending = K9.isSortAscending(SortType.SORT_DATE);
+			MAIL.setSortAscending(mSortType, mSortAscending);
+			mSortDateAscending = MAIL.isSortAscending(SortType.SORT_DATE);
 
 			Editor editor = mPreferences.getPreferences().edit();
-			K9.save(editor);
+			MAIL.save(editor);
 			editor.commit();
 		}
 
@@ -1375,7 +1375,7 @@ public class MessageListFragment extends Fragment implements
 	}
 
 	private void onDelete(List<Message> messages) {
-		if (K9.confirmDelete()) {
+		if (MAIL.confirmDelete()) {
 			// remember the message selection for #onCreateDialog(int)
 			mActiveMessages = messages;
 			showDialog(R.id.dialog_confirm_delete);
@@ -2091,7 +2091,7 @@ public class MessageListFragment extends Fragment implements
 			}
 
 			// Background color
-			if (selected || K9.useBackgroundAsUnreadIndicator()) {
+			if (selected || MAIL.useBackgroundAsUnreadIndicator()) {
 				int res;
 				if (selected) {
 					res = R.attr.messageListSelectedBackgroundColor;
@@ -2163,7 +2163,7 @@ public class MessageListFragment extends Fragment implements
 					Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 			// TODO: make this part of the theme
-			int color = (K9.getK9Theme() == K9.Theme.LIGHT) ? Color.rgb(105,
+			int color = (MAIL.getMAILTheme() == MAIL.Theme.LIGHT) ? Color.rgb(105,
 					105, 105) : Color.rgb(160, 160, 160);
 
 			// Set span (color) for preview message
@@ -2641,7 +2641,7 @@ public class MessageListFragment extends Fragment implements
 			Account account = entry.getKey();
 			String archiveFolder = account.getArchiveFolderName();
 
-			if (!K9.FOLDER_NONE.equals(archiveFolder)) {
+			if (!MAIL.FOLDER_NONE.equals(archiveFolder)) {
 				move(entry.getValue(), archiveFolder);
 			}
 		}
@@ -2675,7 +2675,7 @@ public class MessageListFragment extends Fragment implements
 	 *            The messages to move to the spam folder. Never {@code null}.
 	 */
 	private void onSpam(List<Message> messages) {
-		if (K9.confirmSpam()) {
+		if (MAIL.confirmSpam()) {
 			// remember the message selection for #onCreateDialog(int)
 			mActiveMessages = messages;
 			showDialog(R.id.dialog_confirm_spam);
@@ -2691,7 +2691,7 @@ public class MessageListFragment extends Fragment implements
 			Account account = entry.getKey();
 			String spamFolder = account.getSpamFolderName();
 
-			if (!K9.FOLDER_NONE.equals(spamFolder)) {
+			if (!MAIL.FOLDER_NONE.equals(spamFolder)) {
 				move(entry.getValue(), spamFolder);
 			}
 		}
@@ -2779,7 +2779,7 @@ public class MessageListFragment extends Fragment implements
 	 *            The list of messages to copy or move. Never {@code null}.
 	 * @param destination
 	 *            The name of the destination folder. Never {@code null} or
-	 *            {@link K9#FOLDER_NONE}.
+	 *            {@link MAIL#FOLDER_NONE}.
 	 * @param operation
 	 *            Specifies what operation to perform. Never {@code null}.
 	 */
@@ -3119,14 +3119,14 @@ public class MessageListFragment extends Fragment implements
 		// If we represent a remote search, then kill that before going back.
 		if (isRemoteSearch() && mRemoteSearchFuture != null) {
 			try {
-				Log.i(K9.LOG_TAG,
+				Log.i(MAIL.LOG_TAG,
 						"Remote search in progress, attempting to abort...");
 				// Canceling the future stops any message fetches in progress.
 				final boolean cancelSuccess = mRemoteSearchFuture.cancel(true); // mayInterruptIfRunning
 																				// =
 																				// true
 				if (!cancelSuccess) {
-					Log.e(K9.LOG_TAG, "Could not cancel remote search future.");
+					Log.e(MAIL.LOG_TAG, "Could not cancel remote search future.");
 				}
 				// Closing the folder will kill off the connection if we're
 				// mid-search.
@@ -3138,7 +3138,7 @@ public class MessageListFragment extends Fragment implements
 						mCurrentFolder.name, 0, null);
 			} catch (Exception e) {
 				// Since the user is going back, log and squash any exceptions.
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						"Could not abort remote search before going back", e);
 			}
 		}
@@ -3345,7 +3345,7 @@ public class MessageListFragment extends Fragment implements
 		try {
 			return folder.getMessage(uid);
 		} catch (MessagingException e) {
-			Log.e(K9.LOG_TAG, "Something went wrong while fetching a message",
+			Log.e(MAIL.LOG_TAG, "Something went wrong while fetching a message",
 					e);
 		}
 
@@ -3426,7 +3426,7 @@ public class MessageListFragment extends Fragment implements
 	}
 
 	public boolean isErrorFolder() {
-		return K9.ERROR_FOLDER_NAME.equals(mFolderName);
+		return MAIL.ERROR_FOLDER_NAME.equals(mFolderName);
 	}
 
 	public boolean isRemoteFolder() {

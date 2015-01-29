@@ -36,7 +36,7 @@ import javax.net.ssl.TrustManager;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.controller.MessageRetrievalListener;
 import com.bernard.beaconportal.activities.helper.Utility;
 import com.bernard.beaconportal.activities.mail.AuthType;
@@ -657,7 +657,7 @@ public class Pop3Store extends Store {
 						// response = "+OK msgNum msgUid"
 						String[] uidParts = response.split(" +");
 						if (uidParts.length < 3 || !"+OK".equals(uidParts[0])) {
-							Log.e(K9.LOG_TAG, "ERR response: " + response);
+							Log.e(MAIL.LOG_TAG, "ERR response: " + response);
 							return;
 						}
 						String msgUid = uidParts[2];
@@ -716,8 +716,8 @@ public class Pop3Store extends Store {
 			Set<String> unindexedUids = new HashSet<String>();
 			for (String uid : uids) {
 				if (mUidToMsgMap.get(uid) == null) {
-					if (K9.DEBUG && K9.DEBUG_PROTOCOL_POP3) {
-						Log.d(K9.LOG_TAG, "Need to index UID " + uid);
+					if (MAIL.DEBUG && MAIL.DEBUG_PROTOCOL_POP3) {
+						Log.d(MAIL.LOG_TAG, "Need to index UID " + uid);
 					}
 					unindexedUids.add(uid);
 				}
@@ -742,8 +742,8 @@ public class Pop3Store extends Store {
 					Integer msgNum = Integer.valueOf(uidParts[0]);
 					String msgUid = uidParts[1];
 					if (unindexedUids.contains(msgUid)) {
-						if (K9.DEBUG && K9.DEBUG_PROTOCOL_POP3) {
-							Log.d(K9.LOG_TAG, "Got msgNum " + msgNum
+						if (MAIL.DEBUG && MAIL.DEBUG_PROTOCOL_POP3) {
+							Log.d(MAIL.LOG_TAG, "Got msgNum " + msgNum
 									+ " for UID " + msgUid);
 						}
 
@@ -758,8 +758,8 @@ public class Pop3Store extends Store {
 		}
 
 		private void indexMessage(int msgNum, Pop3Message message) {
-			if (K9.DEBUG && K9.DEBUG_PROTOCOL_POP3) {
-				Log.d(K9.LOG_TAG, "Adding index for UID " + message.getUid()
+			if (MAIL.DEBUG && MAIL.DEBUG_PROTOCOL_POP3) {
+				Log.d(MAIL.LOG_TAG, "Adding index for UID " + message.getUid()
 						+ " to msgNum " + msgNum);
 			}
 			mMsgNumToMsgMap.put(msgNum, message);
@@ -947,9 +947,9 @@ public class Pop3Store extends Store {
 			// the whole message.
 			if (lines != -1 && (!mTopNotSupported || mCapabilities.top)) {
 				try {
-					if (K9.DEBUG && K9.DEBUG_PROTOCOL_POP3
+					if (MAIL.DEBUG && MAIL.DEBUG_PROTOCOL_POP3
 							&& !mCapabilities.top) {
-						Log.d(K9.LOG_TAG,
+						Log.d(MAIL.LOG_TAG,
 								"This server doesn't support the CAPA command. "
 										+ "Checking to see if the TOP command is supported nevertheless.");
 					}
@@ -967,8 +967,8 @@ public class Pop3Store extends Store {
 						// went wrong.
 						throw e;
 					} else {
-						if (K9.DEBUG && K9.DEBUG_PROTOCOL_POP3) {
-							Log.d(K9.LOG_TAG,
+						if (MAIL.DEBUG && MAIL.DEBUG_PROTOCOL_POP3) {
+							Log.d(MAIL.LOG_TAG,
 									"The server really doesn't support the TOP "
 											+ "command. Using RETR instead.");
 						}
@@ -1087,8 +1087,8 @@ public class Pop3Store extends Store {
 				}
 			} while ((d = mIn.read()) != -1);
 			String ret = sb.toString();
-			if (K9.DEBUG && K9.DEBUG_PROTOCOL_POP3) {
-				Log.d(K9.LOG_TAG, "<<< " + ret);
+			if (MAIL.DEBUG && MAIL.DEBUG_PROTOCOL_POP3) {
+				Log.d(MAIL.LOG_TAG, "<<< " + ret);
 			}
 			return ret;
 		}
@@ -1184,13 +1184,13 @@ public class Pop3Store extends Store {
 				open(Folder.OPEN_MODE_RW);
 
 				if (command != null) {
-					if (K9.DEBUG && K9.DEBUG_PROTOCOL_POP3) {
-						if (sensitive && !K9.DEBUG_SENSITIVE) {
-							Log.d(K9.LOG_TAG,
+					if (MAIL.DEBUG && MAIL.DEBUG_PROTOCOL_POP3) {
+						if (sensitive && !MAIL.DEBUG_SENSITIVE) {
+							Log.d(MAIL.LOG_TAG,
 									">>> "
 											+ "[Command Hidden, Enable Sensitive Debug Logging To Show]");
 						} else {
-							Log.d(K9.LOG_TAG, ">>> " + command);
+							Log.d(MAIL.LOG_TAG, ">>> " + command);
 						}
 					}
 
@@ -1270,7 +1270,7 @@ public class Pop3Store extends Store {
 			// }
 			// catch (MessagingException me)
 			// {
-			// Log.w(K9.LOG_TAG, "Could not delete non-existent message", me);
+			// Log.w(MAIL.LOG_TAG, "Could not delete non-existent message", me);
 			// }
 		}
 	}

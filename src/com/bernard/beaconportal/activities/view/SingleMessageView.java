@@ -43,7 +43,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.controller.MessagingListener;
@@ -586,7 +586,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
 			mHeaderContainer.setVisibility(View.VISIBLE);
 
 		} catch (Exception me) {
-			Log.e(K9.LOG_TAG, "setHeaders - error", me);
+			Log.e(MAIL.LOG_TAG, "setHeaders - error", me);
 		}
 	}
 
@@ -766,7 +766,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
 					addHiddenAttachment(view);
 				}
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG, "Error adding attachment view", e);
+				Log.e(MAIL.LOG_TAG, "Error adding attachment view", e);
 			}
 		}
 	}
@@ -983,7 +983,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
 
 					String sanitized = Utility.sanitizeFilename(filename);
 
-					File directory = new File(K9.getAttachmentDefaultPath());
+					File directory = new File(MAIL.getAttachmentDefaultPath());
 					File file = Utility.createUniqueFile(directory, sanitized);
 					FileOutputStream out = new FileOutputStream(file);
 					try {

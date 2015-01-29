@@ -11,7 +11,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.mail.Address;
 
 /**
@@ -332,7 +332,7 @@ public class Contacts {
 				return new ContactItem(displayName, email);
 			}
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Failed to get email data", e);
+			Log.e(MAIL.LOG_TAG, "Failed to get email data", e);
 		} finally {
 			Utility.closeQuietly(cursor);
 		}
@@ -394,7 +394,7 @@ public class Contacts {
 			return Uri.withAppendedPath(person,
 					ContactsContract.Contacts.Photo.CONTENT_DIRECTORY);
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Couldn't fetch photo for contact with email "
+			Log.e(MAIL.LOG_TAG, "Couldn't fetch photo for contact with email "
 					+ address, e);
 			return null;
 		}

@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.mail.store.StorageManager;
 
 /**
@@ -28,16 +28,16 @@ public class StorageGoneReceiver extends BroadcastReceiver {
 			return;
 		}
 
-		if (K9.DEBUG) {
-			Log.v(K9.LOG_TAG, "StorageGoneReceiver: " + intent.toString());
+		if (MAIL.DEBUG) {
+			Log.v(MAIL.LOG_TAG, "StorageGoneReceiver: " + intent.toString());
 		}
 
 		final String path = uri.getPath();
 
 		if (Intent.ACTION_MEDIA_EJECT.equals(action)) {
-			StorageManager.getInstance(K9.app).onBeforeUnmount(path);
+			StorageManager.getInstance(MAIL.app).onBeforeUnmount(path);
 		} else if (Intent.ACTION_MEDIA_UNMOUNTED.equals(action)) {
-			StorageManager.getInstance(K9.app).onAfterUnmount(path);
+			StorageManager.getInstance(MAIL.app).onAfterUnmount(path);
 		}
 	}
 

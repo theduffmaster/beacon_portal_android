@@ -33,10 +33,10 @@ import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Account.FolderMode;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
+import com.bernard.beaconportal.activities.activity.MAILActivityMaterial;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupCheckSettings.CheckDirection;
 import com.bernard.beaconportal.activities.helper.Utility;
 import com.bernard.beaconportal.activities.mail.AuthType;
@@ -50,7 +50,7 @@ import com.bernard.beaconportal.activities.mail.store.WebDavStore;
 import com.bernard.beaconportal.activities.mail.store.WebDavStore.WebDavStoreSettings;
 import com.bernard.beaconportal.activities.service.MailService;
 
-public class AccountSetupIncoming extends K9ActivityMaterial implements
+public class AccountSetupIncoming extends MAILActivityMaterial implements
 		OnClickListener {
 	private static final String EXTRA_ACCOUNT = "account";
 	private static final String EXTRA_MAKE_DEFAULT = "makeDefault";
@@ -439,7 +439,7 @@ public class AccountSetupIncoming extends K9ActivityMaterial implements
 			port = mDefaultSslPort;
 			break;
 		default:
-			Log.e(K9.LOG_TAG, "Unhandled ConnectionSecurity type encountered");
+			Log.e(MAIL.LOG_TAG, "Unhandled ConnectionSecurity type encountered");
 			port = "";
 		}
 		return port;
@@ -465,7 +465,7 @@ public class AccountSetupIncoming extends K9ActivityMaterial implements
 					Store store = mAccount.getRemoteStore();
 					isPushCapable = store.isPushCapable();
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG, "Could not get remote store", e);
+					Log.e(MAIL.LOG_TAG, "Could not get remote store", e);
 				}
 				if (isPushCapable
 						&& mAccount.getFolderPushMode() != FolderMode.NONE) {
@@ -491,7 +491,7 @@ public class AccountSetupIncoming extends K9ActivityMaterial implements
 				} catch (UnsupportedEncodingException enc) {
 					// This really shouldn't happen since the encoding is
 					// hardcoded to UTF-8
-					Log.e(K9.LOG_TAG,
+					Log.e(MAIL.LOG_TAG,
 							"Couldn't urlencode username or password.", enc);
 				} catch (URISyntaxException use) {
 					/*
@@ -573,7 +573,7 @@ public class AccountSetupIncoming extends K9ActivityMaterial implements
 	}
 
 	private void failure(Exception use) {
-		Log.e(K9.LOG_TAG, "Failure", use);
+		Log.e(MAIL.LOG_TAG, "Failure", use);
 		String toastText = getString(R.string.account_setup_bad_uri,
 				use.getMessage());
 

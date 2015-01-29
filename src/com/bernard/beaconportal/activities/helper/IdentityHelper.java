@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Identity;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.mail.Address;
 import com.bernard.beaconportal.activities.mail.Message;
 import com.bernard.beaconportal.activities.mail.MessagingException;
@@ -52,7 +52,7 @@ public class IdentityHelper {
 				}
 			}
 		} catch (MessagingException e) {
-			Log.w(K9.LOG_TAG,
+			Log.w(MAIL.LOG_TAG,
 					"Error finding the identity this message was sent to", e);
 		}
 

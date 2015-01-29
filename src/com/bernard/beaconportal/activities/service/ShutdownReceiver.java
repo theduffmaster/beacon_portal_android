@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 
 /**
  * Capture the system shutdown event in order to properly free resources.
@@ -24,7 +24,7 @@ public class ShutdownReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(final Context context, final Intent intent) {
 		if (Intent.ACTION_SHUTDOWN.equals(intent.getAction())) {
-			Log.i(K9.LOG_TAG, "System is shutting down, releasing resources");
+			Log.i(MAIL.LOG_TAG, "System is shutting down, releasing resources");
 
 			// prevent any scheduled intent from waking up K-9
 			BootReceiver.purgeSchedule(context);

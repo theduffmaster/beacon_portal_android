@@ -14,13 +14,13 @@ import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.Accounts;
-import com.bernard.beaconportal.activities.activity.K9Activity;
+import com.bernard.beaconportal.activities.activity.MAILActivity;
 import com.bernard.beaconportal.activities.helper.HtmlConverter;
 
 /**
  * Displays a welcome message when no accounts have been created yet.
  */
-public class WelcomeMessage extends K9Activity implements OnClickListener {
+public class WelcomeMessage extends MAILActivity implements OnClickListener {
 
 	public static void showWelcomeMessage(Context context) {
 		Intent intent = new Intent(context, WelcomeMessage.class);

@@ -88,7 +88,7 @@ import com.bernard.beaconportal.activities.EmailAddressAdapter;
 import com.bernard.beaconportal.activities.EmailAddressValidator;
 import com.bernard.beaconportal.activities.FontSizes;
 import com.bernard.beaconportal.activities.Identity;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.loader.AttachmentContentLoader;
@@ -126,7 +126,7 @@ import com.bernard.beaconportal.activities.mail.store.LocalStore.TempFileBody;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.TempFileMessageBody;
 import com.bernard.beaconportal.activities.view.MessageWebView;
 
-public class MessageCompose extends K9Activity implements OnClickListener,
+public class MessageCompose extends MAILActivity implements OnClickListener,
 		ProgressDialogFragment.CancelListener {
 
 	private static final int DIALOG_SAVE_OR_DISCARD_DRAFT_MESSAGE = 1;
@@ -404,7 +404,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 	private EmailAddressAdapter mAddressAdapter;
 	private Validator mAddressValidator;
 
-	private FontSizes mFontSizes = K9.getFontSizes();
+	private FontSizes mFontSizes = MAIL.getFontSizes();
 	private ContextThemeWrapper mThemeContext;
 
 	/**
@@ -558,11 +558,11 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
-		if (K9.getK9ComposerThemeSetting() != K9.Theme.USE_GLOBAL) {
+		if (MAIL.getMAILComposerThemeSetting() != MAIL.Theme.USE_GLOBAL) {
 			// theme the whole content according to the theme (except the action
 			// bar)
 			mThemeContext = new ContextThemeWrapper(this,
-					K9.getK9ThemeResourceId(K9.getK9ComposerTheme()));
+					MAIL.getMAILThemeResourceId(MAIL.getMAILComposerTheme()));
 			View v = ((LayoutInflater) mThemeContext
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
 					.inflate(R.layout.message_compose, null);
@@ -582,8 +582,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		mMessageReference = intent.getParcelableExtra(EXTRA_MESSAGE_REFERENCE);
 		mSourceMessageBody = intent.getStringExtra(EXTRA_MESSAGE_BODY);
 
-		if (K9.DEBUG && mSourceMessageBody != null) {
-			Log.d(K9.LOG_TAG,
+		if (MAIL.DEBUG && mSourceMessageBody != null) {
+			Log.d(MAIL.LOG_TAG,
 					"Composing message with explicitly specified message body.");
 		}
 
@@ -824,7 +824,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 				mAction = Action.EDIT_DRAFT;
 			} else {
 				// This shouldn't happen
-				Log.w(K9.LOG_TAG,
+				Log.w(MAIL.LOG_TAG,
 						"MessageCompose was started with an unsupported action");
 				mAction = Action.COMPOSE;
 			}
@@ -1293,7 +1293,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 					.getString(STATE_KEY_WAITING_FOR_ATTACHMENTS);
 			mWaitingForAttachments = WaitingAction.valueOf(waitingFor);
 		} catch (Exception e) {
-			Log.w(K9.LOG_TAG,
+			Log.w(MAIL.LOG_TAG,
 					"Couldn't read value \" + STATE_KEY_WAITING_FOR_ATTACHMENTS +"
 							+ "\" from saved instance state", e);
 		}
@@ -1535,7 +1535,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			message.setHeader("Return-Receipt-To", from.toEncodedString());
 		}
 
-		if (!K9.hideUserAgent()) {
+		if (!MAIL.hideUserAgent()) {
 			message.setHeader("User-Agent",
 					getString(R.string.message_header_mua));
 		}
@@ -1620,7 +1620,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		// If this is a draft, add metadata for thawing.
 		if (isDraft) {
 			// Add the identity to the message.
-			message.addHeader(K9.IDENTITY_HEADER,
+			message.addHeader(MAIL.IDENTITY_HEADER,
 					buildIdentityHeader(body, bodyPlain));
 		}
 
@@ -1817,13 +1817,13 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		uri.appendQueryParameter(IdentityField.QUOTED_TEXT_MODE.value(),
 				mQuotedTextMode.name());
 
-		String k9identity = IDENTITY_VERSION_1 + uri.build().getEncodedQuery();
+		String mailidentity = IDENTITY_VERSION_1 + uri.build().getEncodedQuery();
 
-		if (K9.DEBUG) {
-			Log.d(K9.LOG_TAG, "Generated identity: " + k9identity);
+		if (MAIL.DEBUG) {
+			Log.d(MAIL.LOG_TAG, "Generated identity: " + mailidentity);
 		}
 
-		return k9identity;
+		return mailidentity;
 	}
 
 	/**
@@ -1840,8 +1840,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			final String identityString) {
 		Map<IdentityField, String> identity = new HashMap<IdentityField, String>();
 
-		if (K9.DEBUG) {
-			Log.d(K9.LOG_TAG, "Decoding identity: " + identityString);
+		if (MAIL.DEBUG) {
+			Log.d(MAIL.LOG_TAG, "Decoding identity: " + identityString);
 		}
 
 		if (identityString == null || identityString.length() < 1) {
@@ -1864,8 +1864,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 				}
 			}
 
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "Decoded identity: " + identity.toString());
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "Decoded identity: " + identity.toString());
 			}
 
 			// Sanity check our Integers so that recipients of this result don't
@@ -1875,7 +1875,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 					try {
 						Integer.parseInt(identity.get(key));
 					} catch (NumberFormatException e) {
-						Log.e(K9.LOG_TAG, "Invalid " + key.name()
+						Log.e(MAIL.LOG_TAG, "Invalid " + key.name()
 								+ " field in identity: " + identity.get(key));
 					}
 				}
@@ -1883,8 +1883,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		} else {
 			// Legacy identity
 
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "Got a saved legacy identity: "
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "Got a saved legacy identity: "
 						+ identityString);
 			}
 			StringTokenizer tokenizer = new StringTokenizer(identityString,
@@ -1899,7 +1899,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 					identity.put(IdentityField.LENGTH,
 							Integer.valueOf(bodyLengthS).toString());
 				} catch (Exception e) {
-					Log.e(K9.LOG_TAG, "Unable to parse bodyLength '"
+					Log.e(MAIL.LOG_TAG, "Unable to parse bodyLength '"
 							+ bodyLengthS + "'");
 				}
 			}
@@ -2068,8 +2068,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		sendMessage();
 
 		if (mMessageReference != null && mMessageReference.flag != null) {
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "Setting referenced message ("
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "Setting referenced message ("
 						+ mMessageReference.folderName + ", "
 						+ mMessageReference.uid + ") flag to "
 						+ mMessageReference.flag);
@@ -2094,7 +2094,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		try {
 			is = new ByteArrayInputStream(text.getBytes("UTF-8"));
 		} catch (UnsupportedEncodingException e) {
-			Log.e(K9.LOG_TAG, "UnsupportedEncodingException.", e);
+			Log.e(MAIL.LOG_TAG, "UnsupportedEncodingException.", e);
 		}
 		return is;
 	}
@@ -2138,14 +2138,14 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 				try {
 					final String output = os.toString("UTF-8");
 
-					if (K9.DEBUG)
+					if (MAIL.DEBUG)
 						Log.d(OpenPgpApi.TAG, "result: "
 								+ os.toByteArray().length + " str=" + output);
 
 					mPgpData.setEncryptedData(output);
 					onSend();
 				} catch (UnsupportedEncodingException e) {
-					Log.e(K9.LOG_TAG, "UnsupportedEncodingException", e);
+					Log.e(MAIL.LOG_TAG, "UnsupportedEncodingException", e);
 				}
 
 				break;
@@ -2157,7 +2157,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 					startIntentSenderForResult(pi.getIntentSender(),
 							requestCode, null, 0, 0, 0);
 				} catch (SendIntentException e) {
-					Log.e(K9.LOG_TAG, "SendIntentException", e);
+					Log.e(MAIL.LOG_TAG, "SendIntentException", e);
 				}
 				break;
 			}
@@ -2176,8 +2176,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 
 			@Override
 			public void run() {
-				Log.e(K9.LOG_TAG, "OpenPGP Error ID:" + error.getErrorId());
-				Log.e(K9.LOG_TAG, "OpenPGP Error Message:" + error.getMessage());
+				Log.e(MAIL.LOG_TAG, "OpenPGP Error ID:" + error.getErrorId());
+				Log.e(MAIL.LOG_TAG, "OpenPGP Error Message:" + error.getMessage());
 
 				Toast.makeText(
 						MessageCompose.this,
@@ -2251,8 +2251,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 	 * Android take over.
 	 */
 	private void onAddAttachment() {
-		if (K9.isGalleryBuggy()) {
-			if (K9.useGalleryBugWorkaround()) {
+		if (MAIL.isGalleryBuggy()) {
+			if (MAIL.useGalleryBugWorkaround()) {
 				Toast.makeText(MessageCompose.this,
 						getString(R.string.message_compose_use_workaround),
 						Toast.LENGTH_LONG).show();
@@ -2523,10 +2523,10 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 				}
 				return;
 			}
-			if (K9.DEBUG) {
+			if (MAIL.DEBUG) {
 				List<String> emails = contact.emailAddresses;
 				for (int i = 0; i < emails.size(); i++) {
-					Log.v(K9.LOG_TAG, "email[" + i + "]: " + emails.get(i));
+					Log.v(MAIL.LOG_TAG, "email[" + i + "]: " + emails.get(i));
 				}
 			}
 
@@ -2586,8 +2586,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 
 	private void onAccountChosen(Account account, Identity identity) {
 		if (!mAccount.equals(account)) {
-			if (K9.DEBUG) {
-				Log.v(K9.LOG_TAG, "Switching account from " + mAccount + " to "
+			if (MAIL.DEBUG) {
+				Log.v(MAIL.LOG_TAG, "Switching account from " + mAccount + " to "
 						+ account);
 			}
 
@@ -2607,15 +2607,15 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 				// actual account switch
 				mAccount = account;
 
-				if (K9.DEBUG) {
-					Log.v(K9.LOG_TAG,
+				if (MAIL.DEBUG) {
+					Log.v(MAIL.LOG_TAG,
 							"Account switch, saving new draft in new account");
 				}
 				saveMessage();
 
 				if (previousDraftId != INVALID_DRAFT_ID) {
-					if (K9.DEBUG) {
-						Log.v(K9.LOG_TAG,
+					if (MAIL.DEBUG) {
+						Log.v(MAIL.LOG_TAG,
 								"Account switch, deleting draft from previous account: "
 										+ previousDraftId);
 					}
@@ -2813,9 +2813,9 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		 * enabled (see Issue 1186).
 		 */
 		menu.findItem(R.id.add_attachment_image).setVisible(
-				K9.useGalleryBugWorkaround());
+				MAIL.useGalleryBugWorkaround());
 		menu.findItem(R.id.add_attachment_video).setVisible(
-				K9.useGalleryBugWorkaround());
+				MAIL.useGalleryBugWorkaround());
 
 		return true;
 	}
@@ -2981,8 +2981,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		case DIALOG_CHOOSE_IDENTITY:
 			Context context = new ContextThemeWrapper(
 					this,
-					(K9.getK9Theme() == K9.Theme.LIGHT) ? R.style.Theme_K9_Dialog_Light
-							: R.style.Theme_K9_Dialog_Dark);
+					(MAIL.getMAILTheme() == MAIL.Theme.LIGHT) ? R.style.Theme_MAIL_Dialog_Light
+							: R.style.Theme_MAIL_Dialog_Dark);
 			Builder builder = new AlertDialog.Builder(context);
 			builder.setTitle(R.string.send_as);
 			final IdentityAdapter adapter = new IdentityAdapter(context);
@@ -3071,7 +3071,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 				break;
 			}
 			default: {
-				Log.w(K9.LOG_TAG,
+				Log.w(MAIL.LOG_TAG,
 						"processSourceMessage() called with unsupported action");
 				break;
 			}
@@ -3082,7 +3082,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			 * problem processing the source message. Log it as an error,
 			 * though.
 			 */
-			Log.e(K9.LOG_TAG, "Error while processing source message: ", me);
+			Log.e(MAIL.LOG_TAG, "Error while processing source message: ", me);
 		} finally {
 			mSourceMessageProcessed = true;
 			mDraftNeedsSaving = false;
@@ -3137,8 +3137,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			}
 
 		} else {
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "could not get Message-ID.");
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "could not get Message-ID.");
 			}
 		}
 
@@ -3204,8 +3204,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			mInReplyTo = message.getMessageId();
 			mReferences = mInReplyTo;
 		} else {
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG, "could not get Message-ID.");
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG, "could not get Message-ID.");
 			}
 		}
 
@@ -3264,18 +3264,18 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		// Decode the identity header when loading a draft.
 		// See buildIdentityHeader(TextBody) for a detailed description of the
 		// composition of this blob.
-		Map<IdentityField, String> k9identity = new HashMap<IdentityField, String>();
-		if (message.getHeader(K9.IDENTITY_HEADER) != null
-				&& message.getHeader(K9.IDENTITY_HEADER).length > 0
-				&& message.getHeader(K9.IDENTITY_HEADER)[0] != null) {
-			k9identity = parseIdentityHeader(message
-					.getHeader(K9.IDENTITY_HEADER)[0]);
+		Map<IdentityField, String> mailidentity = new HashMap<IdentityField, String>();
+		if (message.getHeader(MAIL.IDENTITY_HEADER) != null
+				&& message.getHeader(MAIL.IDENTITY_HEADER).length > 0
+				&& message.getHeader(MAIL.IDENTITY_HEADER)[0] != null) {
+			mailidentity = parseIdentityHeader(message
+					.getHeader(MAIL.IDENTITY_HEADER)[0]);
 		}
 
 		Identity newIdentity = new Identity();
-		if (k9identity.containsKey(IdentityField.SIGNATURE)) {
+		if (mailidentity.containsKey(IdentityField.SIGNATURE)) {
 			newIdentity.setSignatureUse(true);
-			newIdentity.setSignature(k9identity.get(IdentityField.SIGNATURE));
+			newIdentity.setSignature(mailidentity.get(IdentityField.SIGNATURE));
 			mSignatureChanged = true;
 		} else {
 			newIdentity.setSignatureUse(message.getFolder().getAccount()
@@ -3283,24 +3283,24 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			newIdentity.setSignature(mIdentity.getSignature());
 		}
 
-		if (k9identity.containsKey(IdentityField.NAME)) {
-			newIdentity.setName(k9identity.get(IdentityField.NAME));
+		if (mailidentity.containsKey(IdentityField.NAME)) {
+			newIdentity.setName(mailidentity.get(IdentityField.NAME));
 			mIdentityChanged = true;
 		} else {
 			newIdentity.setName(mIdentity.getName());
 		}
 
-		if (k9identity.containsKey(IdentityField.EMAIL)) {
-			newIdentity.setEmail(k9identity.get(IdentityField.EMAIL));
+		if (mailidentity.containsKey(IdentityField.EMAIL)) {
+			newIdentity.setEmail(mailidentity.get(IdentityField.EMAIL));
 			mIdentityChanged = true;
 		} else {
 			newIdentity.setEmail(mIdentity.getEmail());
 		}
 
-		if (k9identity.containsKey(IdentityField.ORIGINAL_MESSAGE)) {
+		if (mailidentity.containsKey(IdentityField.ORIGINAL_MESSAGE)) {
 			mMessageReference = null;
 			try {
-				String originalMessage = k9identity
+				String originalMessage = mailidentity
 						.get(IdentityField.ORIGINAL_MESSAGE);
 				MessageReference messageReference = new MessageReference(
 						originalMessage);
@@ -3314,26 +3314,26 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 					mMessageReference = messageReference;
 				}
 			} catch (MessagingException e) {
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						"Could not decode message reference in identity.", e);
 			}
 		}
 
 		int cursorPosition = 0;
-		if (k9identity.containsKey(IdentityField.CURSOR_POSITION)) {
+		if (mailidentity.containsKey(IdentityField.CURSOR_POSITION)) {
 			try {
 				cursorPosition = Integer.valueOf(
-						k9identity.get(IdentityField.CURSOR_POSITION))
+						mailidentity.get(IdentityField.CURSOR_POSITION))
 						.intValue();
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						"Could not parse cursor position for MessageCompose; continuing.",
 						e);
 			}
 		}
 
-		if (k9identity.containsKey(IdentityField.QUOTED_TEXT_MODE)) {
-			showQuotedTextMode = k9identity.get(IdentityField.QUOTED_TEXT_MODE);
+		if (mailidentity.containsKey(IdentityField.QUOTED_TEXT_MODE)) {
+			showQuotedTextMode = mailidentity.get(IdentityField.QUOTED_TEXT_MODE);
 		}
 
 		mIdentity = newIdentity;
@@ -3341,18 +3341,18 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		updateSignature();
 		updateFrom();
 
-		Integer bodyLength = k9identity.get(IdentityField.LENGTH) != null ? Integer
-				.valueOf(k9identity.get(IdentityField.LENGTH)) : 0;
-		Integer bodyOffset = k9identity.get(IdentityField.OFFSET) != null ? Integer
-				.valueOf(k9identity.get(IdentityField.OFFSET)) : 0;
-		Integer bodyFooterOffset = k9identity.get(IdentityField.FOOTER_OFFSET) != null ? Integer
-				.valueOf(k9identity.get(IdentityField.FOOTER_OFFSET)) : null;
-		Integer bodyPlainLength = k9identity.get(IdentityField.PLAIN_LENGTH) != null ? Integer
-				.valueOf(k9identity.get(IdentityField.PLAIN_LENGTH)) : null;
-		Integer bodyPlainOffset = k9identity.get(IdentityField.PLAIN_OFFSET) != null ? Integer
-				.valueOf(k9identity.get(IdentityField.PLAIN_OFFSET)) : null;
-		mQuoteStyle = k9identity.get(IdentityField.QUOTE_STYLE) != null ? QuoteStyle
-				.valueOf(k9identity.get(IdentityField.QUOTE_STYLE)) : mAccount
+		Integer bodyLength = mailidentity.get(IdentityField.LENGTH) != null ? Integer
+				.valueOf(mailidentity.get(IdentityField.LENGTH)) : 0;
+		Integer bodyOffset = mailidentity.get(IdentityField.OFFSET) != null ? Integer
+				.valueOf(mailidentity.get(IdentityField.OFFSET)) : 0;
+		Integer bodyFooterOffset = mailidentity.get(IdentityField.FOOTER_OFFSET) != null ? Integer
+				.valueOf(mailidentity.get(IdentityField.FOOTER_OFFSET)) : null;
+		Integer bodyPlainLength = mailidentity.get(IdentityField.PLAIN_LENGTH) != null ? Integer
+				.valueOf(mailidentity.get(IdentityField.PLAIN_LENGTH)) : null;
+		Integer bodyPlainOffset = mailidentity.get(IdentityField.PLAIN_OFFSET) != null ? Integer
+				.valueOf(mailidentity.get(IdentityField.PLAIN_OFFSET)) : null;
+		mQuoteStyle = mailidentity.get(IdentityField.QUOTE_STYLE) != null ? QuoteStyle
+				.valueOf(mailidentity.get(IdentityField.QUOTE_STYLE)) : mAccount
 				.getQuoteStyle();
 
 		QuotedTextMode quotedMode;
@@ -3366,8 +3366,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 		// if the
 		// draft was saved in a different format.
 		// TODO - The current implementation doesn't allow a user in HTML mode
-		// to edit a draft that wasn't saved with K9mail.
-		String messageFormatString = k9identity
+		// to edit a draft that wasn't saved with MAILmail.
+		String messageFormatString = mailidentity
 				.get(IdentityField.MESSAGE_FORMAT);
 
 		MessageFormat messageFormat = null;
@@ -3403,15 +3403,15 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 								// it.
 				mQuotedTextFormat = SimpleMessageFormat.HTML;
 				String text = MimeUtility.getTextFromPart(part);
-				if (K9.DEBUG) {
-					Log.d(K9.LOG_TAG, "Loading message with offset "
+				if (MAIL.DEBUG) {
+					Log.d(MAIL.LOG_TAG, "Loading message with offset "
 							+ bodyOffset + ", length " + bodyLength
 							+ ". Text length is " + text.length() + ".");
 				}
 
 				if (bodyOffset + bodyLength > text.length()) {
 					// The draft was edited outside of K-9 Mail?
-					Log.d(K9.LOG_TAG,
+					Log.d(MAIL.LOG_TAG,
 							"The identity field from the draft contains an invalid LENGTH/OFFSET");
 					bodyOffset = 0;
 					bodyLength = 0;
@@ -3451,14 +3451,14 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			mQuotedTextFormat = SimpleMessageFormat.TEXT;
 			processSourceMessageText(message, bodyOffset, bodyLength, true);
 		} else {
-			Log.e(K9.LOG_TAG, "Unhandled message format.");
+			Log.e(MAIL.LOG_TAG, "Unhandled message format.");
 		}
 
 		// Set the cursor position if we have it.
 		try {
 			mMessageContentView.setSelection(cursorPosition);
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG,
+			Log.e(MAIL.LOG_TAG,
 					"Could not set cursor position in MessageCompose; ignoring.",
 					e);
 		}
@@ -3487,8 +3487,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 				"text/plain");
 		if (textPart != null) {
 			String text = MimeUtility.getTextFromPart(textPart);
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG,
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG,
 						"Loading message with offset " + bodyOffset
 								+ ", length " + bodyLength
 								+ ". Text length is " + text.length() + ".");
@@ -3532,7 +3532,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 				} catch (IndexOutOfBoundsException e) {
 					// Invalid bodyOffset or bodyLength. The draft was edited
 					// outside of K-9 Mail?
-					Log.d(K9.LOG_TAG,
+					Log.d(MAIL.LOG_TAG,
 							"The identity field from the draft contains an invalid bodyOffset/bodyLength");
 					if (viewMessageContent) {
 						mMessageContentView.setCharacters(text);
@@ -3612,7 +3612,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 						end.add(blockquoteEnd.start());
 					}
 					if (start.size() != end.size()) {
-						Log.d(K9.LOG_TAG, "There are " + start.size()
+						Log.d(MAIL.LOG_TAG, "There are " + start.size()
 								+ " <blockquote> tags, but " + end.size()
 								+ " </blockquote> tags. Refusing to strip.");
 					} else if (start.size() > 0) {
@@ -3675,7 +3675,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 					content = htmlSerialized.getAsString(node, "UTF8");
 				} catch (java.io.IOException ioe) {
 					// Can't imagine this happening.
-					Log.e(K9.LOG_TAG, "Problem cleaning quoted message.", ioe);
+					Log.e(MAIL.LOG_TAG, "Problem cleaning quoted message.", ioe);
 				}
 			}
 
@@ -3731,8 +3731,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			// HTML takes precedence, then text.
 			part = MimeUtility.findFirstPartByMimeType(message, "text/html");
 			if (part != null) {
-				if (K9.DEBUG) {
-					Log.d(K9.LOG_TAG,
+				if (MAIL.DEBUG) {
+					Log.d(MAIL.LOG_TAG,
 							"getBodyTextFromMessage: HTML requested, HTML found.");
 				}
 				return MimeUtility.getTextFromPart(part);
@@ -3740,8 +3740,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 
 			part = MimeUtility.findFirstPartByMimeType(message, "text/plain");
 			if (part != null) {
-				if (K9.DEBUG) {
-					Log.d(K9.LOG_TAG,
+				if (MAIL.DEBUG) {
+					Log.d(MAIL.LOG_TAG,
 							"getBodyTextFromMessage: HTML requested, text found.");
 				}
 				return HtmlConverter.textToHtml(MimeUtility
@@ -3751,8 +3751,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			// Text takes precedence, then html.
 			part = MimeUtility.findFirstPartByMimeType(message, "text/plain");
 			if (part != null) {
-				if (K9.DEBUG) {
-					Log.d(K9.LOG_TAG,
+				if (MAIL.DEBUG) {
+					Log.d(MAIL.LOG_TAG,
 							"getBodyTextFromMessage: Text requested, text found.");
 				}
 				return MimeUtility.getTextFromPart(part);
@@ -3760,8 +3760,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 
 			part = MimeUtility.findFirstPartByMimeType(message, "text/html");
 			if (part != null) {
-				if (K9.DEBUG) {
-					Log.d(K9.LOG_TAG,
+				if (MAIL.DEBUG) {
+					Log.d(MAIL.LOG_TAG,
 							"getBodyTextFromMessage: Text requested, HTML found.");
 				}
 				return HtmlConverter.htmlToText(MimeUtility
@@ -3847,8 +3847,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			hasBodyTag = true;
 		}
 
-		if (K9.DEBUG) {
-			Log.d(K9.LOG_TAG, "Open: hasHtmlTag:" + hasHtmlTag + " hasHeadTag:"
+		if (MAIL.DEBUG) {
+			Log.d(MAIL.LOG_TAG, "Open: hasHtmlTag:" + hasHtmlTag + " hasHeadTag:"
 					+ hasHeadTag + " hasBodyTag:" + hasBodyTag);
 		}
 
@@ -3921,8 +3921,8 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			hasBodyEndTag = true;
 		}
 
-		if (K9.DEBUG) {
-			Log.d(K9.LOG_TAG, "Close: hasHtmlEndTag:" + hasHtmlEndTag
+		if (MAIL.DEBUG) {
+			Log.d(MAIL.LOG_TAG, "Close: hasHtmlEndTag:" + hasHtmlEndTag
 					+ " hasBodyEndTag:" + hasBodyEndTag);
 		}
 
@@ -3996,7 +3996,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 							// Hm, if we couldn't populate the UI after source
 							// reprocessing, let's just delete it?
 							showOrHideQuotedText(QuotedTextMode.HIDE);
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Could not re-process source message; deleting quoted text to be safe.",
 									e);
 						}
@@ -4154,7 +4154,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			try {
 				message = createMessage(false); // isDraft = true
 			} catch (MessagingException me) {
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						"Failed to create new message for send or save.", me);
 				throw new RuntimeException(
 						"Failed to create a new message for send or save.", me);
@@ -4168,7 +4168,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 				mContacts.markAsContacted(message
 						.getRecipients(RecipientType.BCC));
 			} catch (Exception e) {
-				Log.e(K9.LOG_TAG, "Failed to mark contact as contacted.", e);
+				Log.e(MAIL.LOG_TAG, "Failed to mark contact as contacted.", e);
 			}
 
 			MessagingController.getInstance(getApplication()).sendMessage(
@@ -4194,7 +4194,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
 			try {
 				message = createMessage(true); // isDraft = true
 			} catch (MessagingException me) {
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						"Failed to create new message for send or save.", me);
 				throw new RuntimeException(
 						"Failed to create a new message for send or save.", me);

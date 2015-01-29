@@ -10,7 +10,7 @@ import org.apache.james.mime4j.util.CharsetUtil;
 
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.mail.Message;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 
@@ -192,7 +192,7 @@ public class DecoderUtil {
 		}
 
 		if (encodedText.isEmpty()) {
-			Log.w(K9.LOG_TAG,
+			Log.w(MAIL.LOG_TAG,
 					"Missing encoded text in encoded word: '"
 							+ body.substring(begin, end) + "'");
 			return null;
@@ -203,7 +203,7 @@ public class DecoderUtil {
 		} else if (encoding.equalsIgnoreCase("B")) {
 			return DecoderUtil.decodeB(encodedText, charset);
 		} else {
-			Log.w(K9.LOG_TAG, "Warning: Unknown encoding in encoded word '"
+			Log.w(MAIL.LOG_TAG, "Warning: Unknown encoding in encoded word '"
 					+ body.substring(begin, end) + "'");
 			return null;
 		}

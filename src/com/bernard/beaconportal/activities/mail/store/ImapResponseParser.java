@@ -307,7 +307,7 @@ public class ImapResponseParser {
 			} catch (Exception e) {
 				// Catch everything else and save it for later.
 				mException = e;
-				// Log.e(K9.LOG_TAG,
+				// Log.e(MAIL.LOG_TAG,
 				// "parseLiteral(): Exception in callback method", e);
 			}
 

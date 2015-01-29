@@ -6,7 +6,7 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.ViewAnimator;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 
 /**
  * A {@link ViewAnimator} that animates between two child views using different
@@ -48,7 +48,7 @@ public class ViewSwitcher extends ViewAnimator implements AnimationListener {
 	}
 
 	private void setupAnimations(Animation in, Animation out) {
-		if (K9.showAnimations()) {
+		if (MAIL.showAnimations()) {
 			setInAnimation(in);
 			setOutAnimation(out);
 			out.setAnimationListener(this);
@@ -59,7 +59,7 @@ public class ViewSwitcher extends ViewAnimator implements AnimationListener {
 	}
 
 	private void handleSwitchCompleteCallback() {
-		if (!K9.showAnimations()) {
+		if (!MAIL.showAnimations()) {
 			onAnimationEnd(null);
 		}
 	}

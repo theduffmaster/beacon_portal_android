@@ -7,23 +7,23 @@ import android.os.Bundle;
 import android.util.Log;
 
 class AccountReceiver extends BroadcastReceiver {
-	K9AccountReceptor receptor = null;
+	MAILAccountReceptor receptor = null;
 
-	protected AccountReceiver(K9AccountReceptor nReceptor) {
+	protected AccountReceiver(MAILAccountReceptor nReceptor) {
 		receptor = nReceptor;
 	}
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		if (K9RemoteControl.K9_REQUEST_ACCOUNTS.equals(intent.getAction())) {
+		if (MAILRemoteControl.MAIL_REQUEST_ACCOUNTS.equals(intent.getAction())) {
 			Bundle bundle = getResultExtras(false);
 			if (bundle == null) {
-				Log.w(K9RemoteControl.LOG_TAG, "Response bundle is empty");
+				Log.w(MAILRemoteControl.LOG_TAG, "Response bundle is empty");
 				return;
 			}
 			receptor.accounts(bundle
-					.getStringArray(K9RemoteControl.K9_ACCOUNT_UUIDS), bundle
-					.getStringArray(K9RemoteControl.K9_ACCOUNT_DESCRIPTIONS));
+					.getStringArray(MAILRemoteControl.MAIL_ACCOUNT_UUIDS), bundle
+					.getStringArray(MAILRemoteControl.MAIL_ACCOUNT_DESCRIPTIONS));
 		}
 	}
 

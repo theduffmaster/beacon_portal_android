@@ -7,7 +7,7 @@ import java.util.Map;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.controller.MessageRetrievalListener;
 
@@ -182,8 +182,8 @@ public abstract class Folder {
 		// This is causing trouble. Disabled for now. See issue 1733
 		// throw new RuntimeException("fetchPart() not implemented.");
 
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG, "fetchPart() not implemented.");
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG, "fetchPart() not implemented.");
 	}
 
 	public abstract void delete(boolean recurse) throws MessagingException;

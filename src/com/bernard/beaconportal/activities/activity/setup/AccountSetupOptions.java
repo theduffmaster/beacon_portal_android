@@ -15,13 +15,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.activity.K9ActivityMaterial;
+import com.bernard.beaconportal.activities.activity.MAILActivityMaterial;
 import com.bernard.beaconportal.activities.mail.Store;
 
-public class AccountSetupOptions extends K9ActivityMaterial implements
+public class AccountSetupOptions extends MAILActivityMaterial implements
 		OnClickListener {
 	private static final String EXTRA_ACCOUNT = "account";
 
@@ -191,7 +191,7 @@ public class AccountSetupOptions extends K9ActivityMaterial implements
 			Store store = mAccount.getRemoteStore();
 			isPushCapable = store.isPushCapable();
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Could not get remote store", e);
+			Log.e(MAIL.LOG_TAG, "Could not get remote store", e);
 		}
 
 		if (!isPushCapable) {
@@ -223,7 +223,7 @@ public class AccountSetupOptions extends K9ActivityMaterial implements
 				|| getIntent().getBooleanExtra(EXTRA_MAKE_DEFAULT, false)) {
 			Preferences.getPreferences(this).setDefaultAccount(mAccount);
 		}
-		K9.setServicesEnabled(this);
+		MAIL.setServicesEnabled(this);
 		AccountSetupNames.actionSetNames(this, mAccount);
 		finish();
 	}

@@ -50,7 +50,7 @@ public class PullToRefreshScrollView extends PullToRefreshBase<ScrollView> {
 	protected ScrollView createRefreshableView(Context context, AttributeSet attrs) {
 		ScrollView scrollView;
 		if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
-			scrollView = new InternalScrollViewSDK9(context, attrs);
+			scrollView = new InternalScrollViewSDMAIL(context, attrs);
 		} else {
 			scrollView = new ScrollView(context, attrs);
 		}
@@ -74,9 +74,9 @@ public class PullToRefreshScrollView extends PullToRefreshBase<ScrollView> {
 	}
 
 	@TargetApi(9)
-	final class InternalScrollViewSDK9 extends ScrollView {
+	final class InternalScrollViewSDMAIL extends ScrollView {
 
-		public InternalScrollViewSDK9(Context context, AttributeSet attrs) {
+		public InternalScrollViewSDMAIL(Context context, AttributeSet attrs) {
 			super(context, attrs);
 		}
 

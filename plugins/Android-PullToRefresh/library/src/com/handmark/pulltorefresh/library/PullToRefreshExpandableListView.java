@@ -52,7 +52,7 @@ public class PullToRefreshExpandableListView extends PullToRefreshAdapterViewBas
 	protected ExpandableListView createRefreshableView(Context context, AttributeSet attrs) {
 		final ExpandableListView lv;
 		if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
-			lv = new InternalExpandableListViewSDK9(context, attrs);
+			lv = new InternalExpandableListViewSDMAIL(context, attrs);
 		} else {
 			lv = new InternalExpandableListView(context, attrs);
 		}
@@ -80,9 +80,9 @@ public class PullToRefreshExpandableListView extends PullToRefreshAdapterViewBas
 	}
 
 	@TargetApi(9)
-	final class InternalExpandableListViewSDK9 extends InternalExpandableListView {
+	final class InternalExpandableListViewSDMAIL extends InternalExpandableListView {
 
-		public InternalExpandableListViewSDK9(Context context, AttributeSet attrs) {
+		public InternalExpandableListViewSDMAIL(Context context, AttributeSet attrs) {
 			super(context, attrs);
 		}
 

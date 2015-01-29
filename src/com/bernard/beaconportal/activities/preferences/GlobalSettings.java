@@ -16,10 +16,10 @@ import android.os.Environment;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Account.SortType;
 import com.bernard.beaconportal.activities.FontSizes;
-import com.bernard.beaconportal.activities.K9;
-import com.bernard.beaconportal.activities.K9.NotificationHideSubject;
-import com.bernard.beaconportal.activities.K9.SplitViewMode;
-import com.bernard.beaconportal.activities.K9.Theme;
+import com.bernard.beaconportal.activities.MAIL;
+import com.bernard.beaconportal.activities.MAIL.NotificationHideSubject;
+import com.bernard.beaconportal.activities.MAIL.SplitViewMode;
+import com.bernard.beaconportal.activities.MAIL.Theme;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.preferences.Settings.BooleanSetting;
 import com.bernard.beaconportal.activities.preferences.Settings.ColorSetting;
@@ -51,8 +51,8 @@ public class GlobalSettings {
 				new DirectorySetting(Environment.getExternalStorageDirectory()
 						.toString()))));
 		s.put("backgroundOperations", Settings.versions(new V(1,
-				new EnumSetting<K9.BACKGROUND_OPS>(K9.BACKGROUND_OPS.class,
-						K9.BACKGROUND_OPS.WHEN_CHECKED))));
+				new EnumSetting<MAIL.BACKGROUND_OPS>(MAIL.BACKGROUND_OPS.class,
+						MAIL.BACKGROUND_OPS.WHEN_CHECKED))));
 		s.put("changeRegisteredNameColor",
 				Settings.versions(new V(1, new BooleanSetting(false))));
 		s.put("confirmDelete",
@@ -144,10 +144,10 @@ public class GlobalSettings {
 		s.put("startIntegratedInbox",
 				Settings.versions(new V(1, new BooleanSetting(false))));
 		s.put("theme",
-				Settings.versions(new V(1, new ThemeSetting(K9.Theme.LIGHT))));
+				Settings.versions(new V(1, new ThemeSetting(MAIL.Theme.LIGHT))));
 		s.put("messageViewTheme", Settings.versions(new V(16, new ThemeSetting(
-				K9.Theme.LIGHT)), new V(24, new SubThemeSetting(
-				K9.Theme.USE_GLOBAL))));
+				MAIL.Theme.LIGHT)), new V(24, new SubThemeSetting(
+				MAIL.Theme.USE_GLOBAL))));
 		s.put("useGalleryBugWorkaround",
 				Settings.versions(new V(1, new GalleryBugWorkaroundSetting())));
 		s.put("useVolumeKeysForListNavigation",
@@ -168,7 +168,7 @@ public class GlobalSettings {
 				new EnumSetting<SplitViewMode>(SplitViewMode.class,
 						SplitViewMode.NEVER))));
 		s.put("messageComposeTheme", Settings.versions(new V(24,
-				new SubThemeSetting(K9.Theme.USE_GLOBAL))));
+				new SubThemeSetting(MAIL.Theme.USE_GLOBAL))));
 		s.put("fixedMessageViewTheme",
 				Settings.versions(new V(24, new BooleanSetting(true))));
 		s.put("showContactPicture",
@@ -258,7 +258,7 @@ public class GlobalSettings {
 	 * Upgrades the settings from version 23 to 24.
 	 * 
 	 * <p>
-	 * Set <em>messageViewTheme</em> to {@link K9.Theme#USE_GLOBAL} if
+	 * Set <em>messageViewTheme</em> to {@link MAIL.Theme#USE_GLOBAL} if
 	 * <em>messageViewTheme</em> has the same value as <em>theme</em>.
 	 * </p>
 	 */
@@ -266,12 +266,12 @@ public class GlobalSettings {
 
 		@Override
 		public Set<String> upgrade(Map<String, Object> settings) {
-			K9.Theme messageViewTheme = (K9.Theme) settings
+			MAIL.Theme messageViewTheme = (MAIL.Theme) settings
 					.get("messageViewTheme");
-			K9.Theme theme = (K9.Theme) settings.get("theme");
+			MAIL.Theme theme = (MAIL.Theme) settings.get("theme");
 			if (theme != null && messageViewTheme != null
 					&& theme == messageViewTheme) {
-				settings.put("messageViewTheme", K9.Theme.USE_GLOBAL);
+				settings.put("messageViewTheme", MAIL.Theme.USE_GLOBAL);
 			}
 
 			return null;
@@ -331,7 +331,7 @@ public class GlobalSettings {
 	 * Gallery 3D installed that contains the bug we work around.
 	 * </p>
 	 * 
-	 * @see K9#isGalleryBuggy()
+	 * @see MAIL#isGalleryBuggy()
 	 */
 	public static class GalleryBugWorkaroundSetting extends BooleanSetting {
 		public GalleryBugWorkaroundSetting() {
@@ -340,7 +340,7 @@ public class GlobalSettings {
 
 		@Override
 		public Object getDefaultValue() {
-			return K9.isGalleryBuggy();
+			return MAIL.isGalleryBuggy();
 		}
 	}
 
@@ -359,7 +359,7 @@ public class GlobalSettings {
 			super("");
 
 			Map<String, String> mapping = new HashMap<String, String>();
-			String[] values = K9.app.getResources().getStringArray(
+			String[] values = MAIL.app.getResources().getStringArray(
 					R.array.settings_language_values);
 			for (String value : values) {
 				if (value.length() == 0) {
@@ -394,7 +394,7 @@ public class GlobalSettings {
 		private static final String THEME_LIGHT = "light";
 		private static final String THEME_DARK = "dark";
 
-		public ThemeSetting(K9.Theme defaultValue) {
+		public ThemeSetting(MAIL.Theme defaultValue) {
 			super(defaultValue);
 		}
 
@@ -403,17 +403,17 @@ public class GlobalSettings {
 				throws InvalidSettingValueException {
 			try {
 				Integer theme = Integer.parseInt(value);
-				if (theme == K9.Theme.LIGHT.ordinal() ||
+				if (theme == MAIL.Theme.LIGHT.ordinal() ||
 				// We used to store the resource ID of the theme in the
 				// preference storage,
 				// but don't use the database upgrade mechanism to update the
 				// values. So
 				// we have to deal with the old format here.
 						theme == android.R.style.Theme_Light) {
-					return K9.Theme.LIGHT;
-				} else if (theme == K9.Theme.DARK.ordinal()
+					return MAIL.Theme.LIGHT;
+				} else if (theme == MAIL.Theme.DARK.ordinal()
 						|| theme == android.R.style.Theme) {
-					return K9.Theme.DARK;
+					return MAIL.Theme.DARK;
 				}
 			} catch (NumberFormatException e) { /* do nothing */
 			}
@@ -425,9 +425,9 @@ public class GlobalSettings {
 		public Object fromPrettyString(String value)
 				throws InvalidSettingValueException {
 			if (THEME_LIGHT.equals(value)) {
-				return K9.Theme.LIGHT;
+				return MAIL.Theme.LIGHT;
 			} else if (THEME_DARK.equals(value)) {
-				return K9.Theme.DARK;
+				return MAIL.Theme.DARK;
 			}
 
 			throw new InvalidSettingValueException();
@@ -435,7 +435,7 @@ public class GlobalSettings {
 
 		@Override
 		public String toPrettyString(Object value) {
-			switch ((K9.Theme) value) {
+			switch ((MAIL.Theme) value) {
 			case DARK: {
 				return THEME_DARK;
 			}
@@ -447,7 +447,7 @@ public class GlobalSettings {
 
 		@Override
 		public String toString(Object value) {
-			return Integer.toString(((K9.Theme) value).ordinal());
+			return Integer.toString(((MAIL.Theme) value).ordinal());
 		}
 	}
 
@@ -466,8 +466,8 @@ public class GlobalSettings {
 				throws InvalidSettingValueException {
 			try {
 				Integer theme = Integer.parseInt(value);
-				if (theme == K9.Theme.USE_GLOBAL.ordinal()) {
-					return K9.Theme.USE_GLOBAL;
+				if (theme == MAIL.Theme.USE_GLOBAL.ordinal()) {
+					return MAIL.Theme.USE_GLOBAL;
 				}
 
 				return super.fromString(value);
@@ -480,7 +480,7 @@ public class GlobalSettings {
 		public Object fromPrettyString(String value)
 				throws InvalidSettingValueException {
 			if (THEME_USE_GLOBAL.equals(value)) {
-				return K9.Theme.USE_GLOBAL;
+				return MAIL.Theme.USE_GLOBAL;
 			}
 
 			return super.fromPrettyString(value);
@@ -488,7 +488,7 @@ public class GlobalSettings {
 
 		@Override
 		public String toPrettyString(Object value) {
-			if (((K9.Theme) value) == K9.Theme.USE_GLOBAL) {
+			if (((MAIL.Theme) value) == MAIL.Theme.USE_GLOBAL) {
 				return THEME_USE_GLOBAL;
 			}
 

@@ -2,7 +2,7 @@ package com.bernard.beaconportal.activities.mail.internet;
 
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.activity.InsertableHtmlContent;
 import com.bernard.beaconportal.activities.helper.HtmlConverter;
 import com.bernard.beaconportal.activities.helper.StringUtils;
@@ -44,8 +44,8 @@ public class TextBodyBuilder {
 		if (mIncludeQuotedText) {
 			InsertableHtmlContent quotedHtmlContent = getQuotedTextHtml();
 
-			if (K9.DEBUG) {
-				Log.d(K9.LOG_TAG,
+			if (MAIL.DEBUG) {
+				Log.d(MAIL.LOG_TAG,
 						"insertable: " + quotedHtmlContent.toDebugString());
 			}
 

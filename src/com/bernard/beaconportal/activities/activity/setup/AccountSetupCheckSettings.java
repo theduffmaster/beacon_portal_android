@@ -28,10 +28,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.activity.K9Activity;
+import com.bernard.beaconportal.activities.activity.MAILActivity;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.mail.AuthenticationFailedException;
 import com.bernard.beaconportal.activities.mail.CertificateValidationException;
@@ -47,7 +47,7 @@ import com.bernard.beaconportal.activities.mail.store.WebDavStore;
  * XXX NOTE: The manifest for this app has it ignore config changes, because it
  * doesn't correctly deal with restarting while its thread is running.
  */
-public class AccountSetupCheckSettings extends K9Activity implements
+public class AccountSetupCheckSettings extends MAILActivity implements
 		OnClickListener {
 
 	public static final int ACTIVITY_REQUEST_CODE = 1;
@@ -208,12 +208,12 @@ public class AccountSetupCheckSettings extends K9Activity implements
 					setResult(RESULT_OK);
 					finish();
 				} catch (final AuthenticationFailedException afe) {
-					Log.e(K9.LOG_TAG, "Error while testing settings", afe);
+					Log.e(MAIL.LOG_TAG, "Error while testing settings", afe);
 					showErrorDialog(
 							R.string.account_setup_failed_dlg_auth_message_fmt,
 							afe.getMessage() == null ? "" : afe.getMessage());
 				} catch (final CertificateValidationException cve) {
-					Log.e(K9.LOG_TAG, "Error while testing settings", cve);
+					Log.e(MAIL.LOG_TAG, "Error while testing settings", cve);
 
 					X509Certificate[] chain = cve.getCertChain();
 					// Avoid NullPointerException in acceptKeyDialog()
@@ -228,7 +228,7 @@ public class AccountSetupCheckSettings extends K9Activity implements
 										.getMessage()));
 					}
 				} catch (final Throwable t) {
-					Log.e(K9.LOG_TAG, "Error while testing settings", t);
+					Log.e(MAIL.LOG_TAG, "Error while testing settings", t);
 					showErrorDialog(
 							R.string.account_setup_failed_dlg_server_message_fmt,
 							(t.getMessage() == null ? "" : t.getMessage()));
@@ -325,7 +325,7 @@ public class AccountSetupCheckSettings extends K9Activity implements
 				try {
 					sha1 = MessageDigest.getInstance("SHA-1");
 				} catch (NoSuchAlgorithmException e) {
-					Log.e(K9.LOG_TAG, "Error while initializing MessageDigest",
+					Log.e(MAIL.LOG_TAG, "Error while initializing MessageDigest",
 							e);
 				}
 
@@ -369,7 +369,7 @@ public class AccountSetupCheckSettings extends K9Activity implements
 								String name = "";
 								switch (type.intValue()) {
 								case 0:
-									Log.w(K9.LOG_TAG,
+									Log.w(MAIL.LOG_TAG,
 											"SubjectAltName of type OtherName not supported.");
 									continue;
 								case 1: // RFC822Name
@@ -379,15 +379,15 @@ public class AccountSetupCheckSettings extends K9Activity implements
 									name = (String) value;
 									break;
 								case 3:
-									Log.w(K9.LOG_TAG,
+									Log.w(MAIL.LOG_TAG,
 											"unsupported SubjectAltName of type x400Address");
 									continue;
 								case 4:
-									Log.w(K9.LOG_TAG,
+									Log.w(MAIL.LOG_TAG,
 											"unsupported SubjectAltName of type directoryName");
 									continue;
 								case 5:
-									Log.w(K9.LOG_TAG,
+									Log.w(MAIL.LOG_TAG,
 											"unsupported SubjectAltName of type ediPartyName");
 									continue;
 								case 6: // Uri
@@ -397,7 +397,7 @@ public class AccountSetupCheckSettings extends K9Activity implements
 									name = (String) value;
 									break;
 								default:
-									Log.w(K9.LOG_TAG,
+									Log.w(MAIL.LOG_TAG,
 											"unsupported SubjectAltName of unknown type");
 									continue;
 								}
@@ -423,7 +423,7 @@ public class AccountSetupCheckSettings extends K9Activity implements
 						}
 					} catch (Exception e1) {
 						// don't fail just because of subjectAltNames
-						Log.w(K9.LOG_TAG,
+						Log.w(MAIL.LOG_TAG,
 								"cannot display SubjectAltNames in dialog", e1);
 					}
 
@@ -438,7 +438,7 @@ public class AccountSetupCheckSettings extends K9Activity implements
 							chainInfo.append("Fingerprint (SHA-1): ")
 									.append(new String(sha1sum)).append("\n");
 						} catch (CertificateEncodingException e) {
-							Log.e(K9.LOG_TAG,
+							Log.e(MAIL.LOG_TAG,
 									"Error while encoding certificate", e);
 						}
 					}

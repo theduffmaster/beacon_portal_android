@@ -2,7 +2,7 @@ package com.bernard.beaconportal.activities.mail.internet;
 
 import java.util.Locale;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.mail.MessagingException;
 
 import junit.framework.TestCase;

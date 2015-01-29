@@ -36,6 +36,8 @@ public class FragmentsSchedule extends Fragment {
 	private Fab mFab;
 
 	private String checkbox_edit;
+	
+	private ViewPager pager;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -96,7 +98,7 @@ public class FragmentsSchedule extends Fragment {
 
 		}
 
-		ViewPager pager = (ViewPager) view.findViewById(R.id.viewPager1);
+		pager = (ViewPager) view.findViewById(R.id.viewPager1);
 
 		pager.setAdapter(new ViewPagerAdapterScheduleView(
 				getChildFragmentManager()));
@@ -110,36 +112,6 @@ public class FragmentsSchedule extends Fragment {
 		ColorDrawable inbetween = new ColorDrawable(0xFFeeeeee);
 
 		pager.setPageMarginDrawable(inbetween);
-
-		String weekDay;
-		SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.US);
-
-		Calendar calendar = Calendar.getInstance();
-		weekDay = dayFormat.format(calendar.getTime());
-
-		System.out.println(weekDay);
-
-		if (weekDay.contains("Monday")) {
-			pager.setCurrentItem(0, true);
-
-		}
-		if (weekDay.contains("Tuesday")) {
-			pager.setCurrentItem(1, true);
-
-		}
-
-		if (weekDay.contains("Wednesday")) {
-			pager.setCurrentItem(2, true);
-
-		}
-		if (weekDay.contains("Thursday")) {
-			pager.setCurrentItem(3, true);
-
-		}
-		if (weekDay.contains("Friday")) {
-			pager.setCurrentItem(4, true);
-
-		}
 
 		mFab = (Fab) view.findViewById(R.id.fabbutton);
 
@@ -186,6 +158,42 @@ public class FragmentsSchedule extends Fragment {
 		}
 
 		return view;
+	}
+	
+	public void onResume(){
+		super.onResume();
+		
+		String weekDay;
+		SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.US);
+
+		Calendar calendar = Calendar.getInstance();
+		weekDay = dayFormat.format(calendar.getTime());
+
+		System.out.println(weekDay);
+
+		if (weekDay.contains("Monday")) {
+			pager.setCurrentItem(0, true);
+
+		}
+		if (weekDay.contains("Tuesday")) {
+			pager.setCurrentItem(1, true);
+
+		}
+
+		if (weekDay.contains("Wednesday")) {
+			pager.setCurrentItem(2, true);
+
+		}
+		if (weekDay.contains("Thursday")) {
+			pager.setCurrentItem(3, true);
+
+		}
+		if (weekDay.contains("Friday")) {
+			pager.setCurrentItem(4, true);
+
+		}
+
+		
 	}
 
 	public static int convertDip2Pixels(Context context, int dip) {

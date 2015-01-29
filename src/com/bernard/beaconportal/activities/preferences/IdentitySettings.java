@@ -10,7 +10,7 @@ import java.util.TreeMap;
 import android.content.SharedPreferences;
 
 import com.bernard.beaconportal.activities.EmailAddressValidator;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.preferences.Settings.BooleanSetting;
 import com.bernard.beaconportal.activities.preferences.Settings.InvalidSettingValueException;
@@ -86,7 +86,7 @@ public class IdentitySettings {
 
 		@Override
 		public Object getDefaultValue() {
-			return K9.app.getResources().getString(R.string.default_signature);
+			return MAIL.app.getResources().getString(R.string.default_signature);
 		}
 
 		@Override

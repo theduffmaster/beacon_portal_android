@@ -608,9 +608,10 @@ public class Due_Today_Fragment extends Fragment {
 		EnhancedListView.UndoStyle style = EnhancedListView.UndoStyle.MULTILEVEL_POPUP;
 		lView.setUndoStyle(style);
 		lView.enableSwipeToDismiss();
-		EnhancedListView.SwipeDirection direction = EnhancedListView.SwipeDirection.START;
-		lView.setSwipeDirection(direction);
+		lView.setSwipeDirection(SwipeDirection.START);
 		lView.setRequireTouchBeforeDismiss(false);
+		lView.setSwipingLayout(R.id.homework_item);
+
 
 	}
 

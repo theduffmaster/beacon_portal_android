@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.BaseAccount;
 import com.bernard.beaconportal.activities.FontSizes;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
@@ -37,9 +37,9 @@ import com.bernard.beaconportal.activities.search.SearchAccount;
  * account is selected.
  * </p>
  */
-public abstract class AccountList extends K9ListActivity implements
+public abstract class AccountList extends MAILListActivity implements
 		OnItemClickListener {
-	private FontSizes mFontSizes = K9.getFontSizes();
+	private FontSizes mFontSizes = MAIL.getFontSizes();
 
 	@Override
 	public void onCreate(Bundle icicle) {
@@ -120,7 +120,7 @@ public abstract class AccountList extends K9ListActivity implements
 	public void populateListView(Account[] realAccounts) {
 		List<BaseAccount> accounts = new ArrayList<BaseAccount>();
 
-		if (displaySpecialAccounts() && !K9.isHideSpecialAccounts()) {
+		if (displaySpecialAccounts() && !MAIL.isHideSpecialAccounts()) {
 			BaseAccount unifiedInboxAccount = SearchAccount
 					.createUnifiedInboxAccount(this);
 			BaseAccount allMessagesAccount = SearchAccount

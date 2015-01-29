@@ -5,7 +5,7 @@ import android.text.SpannableStringBuilder;
 import android.util.Log;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.FolderInfoHolder;
 import com.bernard.beaconportal.activities.activity.MessageInfoHolder;
@@ -34,7 +34,7 @@ public class MessageHelper {
 
 	public void populate(final MessageInfoHolder target, final Message message,
 			final FolderInfoHolder folder, final Account account) {
-		final Contacts contactHelper = K9.showContactName() ? Contacts
+		final Contacts contactHelper = MAIL.showContactName() ? Contacts
 				.getInstance(mContext) : null;
 		try {
 			target.message = message;
@@ -79,13 +79,13 @@ public class MessageHelper {
 					+ message.getFolder().getName() + "/" + message.getUid();
 
 		} catch (MessagingException me) {
-			Log.w(K9.LOG_TAG, "Unable to load message info", me);
+			Log.w(MAIL.LOG_TAG, "Unable to load message info", me);
 		}
 	}
 
 	public CharSequence getDisplayName(Account account, Address[] fromAddrs,
 			Address[] toAddrs) {
-		final Contacts contactHelper = K9.showContactName() ? Contacts
+		final Contacts contactHelper = MAIL.showContactName() ? Contacts
 				.getInstance(mContext) : null;
 
 		CharSequence displayName;

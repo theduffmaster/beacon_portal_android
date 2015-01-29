@@ -26,7 +26,7 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.mail.filter.Base64;
 
 public class Utility {
@@ -496,7 +496,7 @@ public class Utility {
 				file.setLastModified(System.currentTimeMillis());
 			}
 		} catch (Exception e) {
-			Log.d(K9.LOG_TAG,
+			Log.d(MAIL.LOG_TAG,
 					"Unable to touch file: " + file.getAbsolutePath(), e);
 		}
 	}
@@ -566,7 +566,7 @@ public class Utility {
 			from.delete();
 			return true;
 		} catch (Exception e) {
-			Log.w(K9.LOG_TAG, "cannot move " + from.getAbsolutePath() + " to "
+			Log.w(MAIL.LOG_TAG, "cannot move " + from.getAbsolutePath() + " to "
 					+ to.getAbsolutePath(), e);
 			return false;
 		}
@@ -584,13 +584,13 @@ public class Utility {
 		if (!fromDir.isDirectory()) {
 			if (toDir.exists()) {
 				if (!toDir.delete()) {
-					Log.w(K9.LOG_TAG,
+					Log.w(MAIL.LOG_TAG,
 							"cannot delete already existing file/directory "
 									+ toDir.getAbsolutePath());
 				}
 			}
 			if (!fromDir.renameTo(toDir)) {
-				Log.w(K9.LOG_TAG, "cannot rename " + fromDir.getAbsolutePath()
+				Log.w(MAIL.LOG_TAG, "cannot rename " + fromDir.getAbsolutePath()
 						+ " to " + toDir.getAbsolutePath()
 						+ " - moving instead");
 				move(fromDir, toDir);
@@ -602,7 +602,7 @@ public class Utility {
 				toDir.delete();
 			}
 			if (!toDir.mkdirs()) {
-				Log.w(K9.LOG_TAG,
+				Log.w(MAIL.LOG_TAG,
 						"cannot create directory " + toDir.getAbsolutePath());
 			}
 		}
@@ -614,7 +614,7 @@ public class Utility {
 			} else {
 				File target = new File(toDir, file.getName());
 				if (!file.renameTo(target)) {
-					Log.w(K9.LOG_TAG, "cannot rename " + file.getAbsolutePath()
+					Log.w(MAIL.LOG_TAG, "cannot rename " + file.getAbsolutePath()
 							+ " to " + target.getAbsolutePath()
 							+ " - moving instead");
 					move(file, target);
@@ -622,7 +622,7 @@ public class Utility {
 			}
 		}
 		if (!fromDir.delete()) {
-			Log.w(K9.LOG_TAG, "cannot delete " + fromDir.getAbsolutePath());
+			Log.w(MAIL.LOG_TAG, "cannot delete " + fromDir.getAbsolutePath());
 		}
 	}
 
@@ -641,14 +641,14 @@ public class Utility {
 		Matcher imgMatches = IMG_PATTERN.matcher(message);
 		while (imgMatches.find()) {
 			if (!imgMatches.group(1).equals("content")) {
-				if (K9.DEBUG) {
-					Log.d(K9.LOG_TAG, "External images found");
+				if (MAIL.DEBUG) {
+					Log.d(MAIL.LOG_TAG, "External images found");
 				}
 				return true;
 			}
 		}
-		if (K9.DEBUG) {
-			Log.d(K9.LOG_TAG, "No external images.");
+		if (MAIL.DEBUG) {
+			Log.d(MAIL.LOG_TAG, "No external images.");
 		}
 		return false;
 	}

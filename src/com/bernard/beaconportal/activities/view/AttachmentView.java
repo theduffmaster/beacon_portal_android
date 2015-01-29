@@ -28,7 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.controller.MessagingController;
 import com.bernard.beaconportal.activities.controller.MessagingListener;
@@ -166,18 +166,18 @@ public class AttachmentView extends FrameLayout implements OnClickListener,
 		viewButton = (Button) findViewById(R.id.view);
 		downloadButton = (Button) findViewById(R.id.download);
 		if ((!MimeUtility.mimeTypeMatches(contentType,
-				K9.ACCEPTABLE_ATTACHMENT_VIEW_TYPES))
+				MAIL.ACCEPTABLE_ATTACHMENT_VIEW_TYPES))
 				|| (MimeUtility.mimeTypeMatches(contentType,
-						K9.UNACCEPTABLE_ATTACHMENT_VIEW_TYPES))) {
+						MAIL.UNACCEPTABLE_ATTACHMENT_VIEW_TYPES))) {
 			viewButton.setVisibility(View.GONE);
 		}
 		if ((!MimeUtility.mimeTypeMatches(contentType,
-				K9.ACCEPTABLE_ATTACHMENT_DOWNLOAD_TYPES))
+				MAIL.ACCEPTABLE_ATTACHMENT_DOWNLOAD_TYPES))
 				|| (MimeUtility.mimeTypeMatches(contentType,
-						K9.UNACCEPTABLE_ATTACHMENT_DOWNLOAD_TYPES))) {
+						MAIL.UNACCEPTABLE_ATTACHMENT_DOWNLOAD_TYPES))) {
 			downloadButton.setVisibility(View.GONE);
 		}
-		if (size > K9.MAX_ATTACHMENT_DOWNLOAD_SIZE) {
+		if (size > MAIL.MAX_ATTACHMENT_DOWNLOAD_SIZE) {
 			viewButton.setVisibility(View.GONE);
 			downloadButton.setVisibility(View.GONE);
 		}
@@ -282,8 +282,8 @@ public class AttachmentView extends FrameLayout implements OnClickListener,
 			attachmentSaved(file.toString());
 			new MediaScannerNotifier(mContext, file);
 		} catch (IOException ioe) {
-			if (K9.DEBUG) {
-				Log.e(K9.LOG_TAG, "Error saving attachment", ioe);
+			if (MAIL.DEBUG) {
+				Log.e(MAIL.LOG_TAG, "Error saving attachment", ioe);
 			}
 			attachmentNotSaved();
 		}
@@ -294,7 +294,7 @@ public class AttachmentView extends FrameLayout implements OnClickListener,
 	 * is not set => to the Environment
 	 */
 	public void writeFile() {
-		writeFile(new File(K9.getAttachmentDefaultPath()));
+		writeFile(new File(MAIL.getAttachmentDefaultPath()));
 	}
 
 	public void saveFile() {
@@ -332,7 +332,7 @@ public class AttachmentView extends FrameLayout implements OnClickListener,
 		try {
 			mContext.startActivity(intent);
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG, "Could not display attachment of type "
+			Log.e(MAIL.LOG_TAG, "Could not display attachment of type "
 					+ contentType, e);
 			Toast toast = Toast.makeText(mContext, mContext.getString(
 					R.string.message_view_no_viewer, contentType),
@@ -369,7 +369,7 @@ public class AttachmentView extends FrameLayout implements OnClickListener,
 			}
 			// currently we do not cache re result.
 		} catch (Exception e) {
-			Log.e(K9.LOG_TAG,
+			Log.e(MAIL.LOG_TAG,
 					"Cannot resolve activity to determine if we shall show the 'view'-button for an attachment",
 					e);
 		}

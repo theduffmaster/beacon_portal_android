@@ -9,7 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.helper.power.TracingPowerManager.TracingWakeLock;
 
 public class SleepService extends CoreService {
@@ -24,8 +24,8 @@ public class SleepService extends CoreService {
 	public static void sleep(Context context, long sleepTime,
 			TracingWakeLock wakeLock, long wakeLockTimeout) {
 		Integer id = latchId.getAndIncrement();
-		if (K9.DEBUG)
-			Log.d(K9.LOG_TAG,
+		if (MAIL.DEBUG)
+			Log.d(MAIL.LOG_TAG,
 					"SleepService Preparing CountDownLatch with id = " + id
 							+ ", thread " + Thread.currentThread().getName());
 		SleepDatum sleepDatum = new SleepDatum();
@@ -50,36 +50,36 @@ public class SleepService extends CoreService {
 		try {
 			boolean countedDown = latch.await(sleepTime, TimeUnit.MILLISECONDS);
 			if (!countedDown) {
-				if (K9.DEBUG)
-					Log.d(K9.LOG_TAG, "SleepService latch timed out for id = "
+				if (MAIL.DEBUG)
+					Log.d(MAIL.LOG_TAG, "SleepService latch timed out for id = "
 							+ id + ", thread "
 							+ Thread.currentThread().getName());
 			}
 		} catch (InterruptedException ie) {
-			Log.e(K9.LOG_TAG, "SleepService Interrupted while awaiting latch",
+			Log.e(MAIL.LOG_TAG, "SleepService Interrupted while awaiting latch",
 					ie);
 		}
 		SleepDatum releaseDatum = sleepData.remove(id);
 		if (releaseDatum == null) {
 			try {
-				if (K9.DEBUG)
-					Log.d(K9.LOG_TAG,
+				if (MAIL.DEBUG)
+					Log.d(MAIL.LOG_TAG,
 							"SleepService waiting for reacquireLatch for id = "
 									+ id + ", thread "
 									+ Thread.currentThread().getName());
 				if (!sleepDatum.reacquireLatch.await(5000,
 						TimeUnit.MILLISECONDS)) {
-					Log.w(K9.LOG_TAG,
+					Log.w(MAIL.LOG_TAG,
 							"SleepService reacquireLatch timed out for id = "
 									+ id + ", thread "
 									+ Thread.currentThread().getName());
-				} else if (K9.DEBUG)
-					Log.d(K9.LOG_TAG,
+				} else if (MAIL.DEBUG)
+					Log.d(MAIL.LOG_TAG,
 							"SleepService reacquireLatch finished for id = "
 									+ id + ", thread "
 									+ Thread.currentThread().getName());
 			} catch (InterruptedException ie) {
-				Log.e(K9.LOG_TAG,
+				Log.e(MAIL.LOG_TAG,
 						"SleepService Interrupted while awaiting reacquireLatch",
 						ie);
 			}
@@ -91,12 +91,12 @@ public class SleepService extends CoreService {
 		long actualSleep = endTime - startTime;
 
 		if (actualSleep < sleepTime) {
-			Log.w(K9.LOG_TAG,
+			Log.w(MAIL.LOG_TAG,
 					"SleepService sleep time too short: requested was "
 							+ sleepTime + ", actual was " + actualSleep);
 		} else {
-			if (K9.DEBUG)
-				Log.d(K9.LOG_TAG, "SleepService requested sleep time was "
+			if (MAIL.DEBUG)
+				Log.d(MAIL.LOG_TAG, "SleepService requested sleep time was "
 						+ sleepTime + ", actual was " + actualSleep);
 		}
 	}
@@ -107,12 +107,12 @@ public class SleepService extends CoreService {
 			if (sleepDatum != null) {
 				CountDownLatch latch = sleepDatum.latch;
 				if (latch == null) {
-					Log.e(K9.LOG_TAG,
+					Log.e(MAIL.LOG_TAG,
 							"SleepService No CountDownLatch available with id = "
 									+ id);
 				} else {
-					if (K9.DEBUG)
-						Log.d(K9.LOG_TAG,
+					if (MAIL.DEBUG)
+						Log.d(MAIL.LOG_TAG,
 								"SleepService Counting down CountDownLatch with id = "
 										+ id);
 					latch.countDown();
@@ -120,8 +120,8 @@ public class SleepService extends CoreService {
 				reacquireWakeLock(sleepDatum);
 				sleepDatum.reacquireLatch.countDown();
 			} else {
-				if (K9.DEBUG)
-					Log.d(K9.LOG_TAG, "SleepService Sleep for id " + id
+				if (MAIL.DEBUG)
+					Log.d(MAIL.LOG_TAG, "SleepService Sleep for id " + id
 							+ " already finished");
 			}
 		}
@@ -132,8 +132,8 @@ public class SleepService extends CoreService {
 		if (wakeLock != null) {
 			synchronized (wakeLock) {
 				long timeout = sleepDatum.timeout;
-				if (K9.DEBUG)
-					Log.d(K9.LOG_TAG, "SleepService Acquiring wakeLock for "
+				if (MAIL.DEBUG)
+					Log.d(MAIL.LOG_TAG, "SleepService Acquiring wakeLock for "
 							+ timeout + "ms");
 				wakeLock.acquire(timeout);
 			}

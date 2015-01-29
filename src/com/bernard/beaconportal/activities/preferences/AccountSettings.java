@@ -12,7 +12,7 @@ import android.content.SharedPreferences;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.Account.FolderMode;
 import com.bernard.beaconportal.activities.Account.SortType;
-import com.bernard.beaconportal.activities.K9;
+import com.bernard.beaconportal.activities.MAIL;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.crypto.Apg;
 import com.bernard.beaconportal.activities.mail.store.StorageManager;
@@ -62,7 +62,7 @@ public class AccountSettings {
 		s.put("deletePolicy", Settings.versions(new V(1,
 				new DeletePolicySetting(Account.DELETE_POLICY_NEVER))));
 		s.put("displayCount", Settings.versions(new V(1,
-				new IntegerResourceSetting(K9.DEFAULT_VISIBLE_LIMIT,
+				new IntegerResourceSetting(MAIL.DEFAULT_VISIBLE_LIMIT,
 						R.array.account_settings_display_count_values))));
 		s.put("draftsFolderName",
 				Settings.versions(new V(1, new StringSetting("Drafts"))));
@@ -236,7 +236,7 @@ public class AccountSettings {
 			super(defaultValue);
 
 			Map<Integer, String> mapping = new HashMap<Integer, String>();
-			String[] values = K9.app.getResources().getStringArray(resId);
+			String[] values = MAIL.app.getResources().getStringArray(resId);
 			for (String value : values) {
 				int intValue = Integer.parseInt(value);
 				mapping.put(intValue, value);
@@ -275,7 +275,7 @@ public class AccountSettings {
 			super(defaultValue);
 
 			Map<String, String> mapping = new HashMap<String, String>();
-			String[] values = K9.app.getResources().getStringArray(resId);
+			String[] values = MAIL.app.getResources().getStringArray(resId);
 			for (String value : values) {
 				mapping.put(value, value);
 			}
@@ -322,12 +322,12 @@ public class AccountSettings {
 
 		@Override
 		public Object getDefaultValue() {
-			return StorageManager.getInstance(K9.app).getDefaultProviderId();
+			return StorageManager.getInstance(MAIL.app).getDefaultProviderId();
 		}
 
 		@Override
 		public Object fromString(String value) {
-			StorageManager storageManager = StorageManager.getInstance(K9.app);
+			StorageManager storageManager = StorageManager.getInstance(MAIL.app);
 			Map<String, String> providers = storageManager
 					.getAvailableProviders();
 			if (providers.containsKey(value)) {
