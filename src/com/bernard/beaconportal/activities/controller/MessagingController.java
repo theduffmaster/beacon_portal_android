@@ -2491,8 +2491,8 @@ public class MessagingController implements Runnable {
 	 * {@link #processPendingMoveOrCopy(PendingCommand, Account)}.
 	 * 
 	 * <p>
-	 * TODO: This method is obsolete and is only for transition from K-9 4.0 to
-	 * K-9 4.2 Eventually, it should be removed.
+	 * TODO: This method is obsolete and is only for transition from Mail 4.0 to
+	 * Mail 4.2 Eventually, it should be removed.
 	 * </p>
 	 * 
 	 * @param command
@@ -2740,8 +2740,8 @@ public class MessagingController implements Runnable {
 		}
 	}
 
-	// TODO: This method is obsolete and is only for transition from K-9 2.0 to
-	// K-9 2.1
+	// TODO: This method is obsolete and is only for transition from Mail 2.0 to
+	// Mail 2.1
 	// Eventually, it should be removed
 	private void processPendingSetFlagOld(PendingCommand command,
 			Account account) throws MessagingException {
@@ -2829,8 +2829,8 @@ public class MessagingController implements Runnable {
 		}
 	}
 
-	// TODO: This method is obsolete and is only for transition from K-9 2.0 to
-	// K-9 2.1
+	// TODO: This method is obsolete and is only for transition from Mail 2.0 to
+	// Mail 2.1
 	// Eventually, it should be removed
 	private void processPendingMoveOrCopyOld(PendingCommand command,
 			Account account) throws MessagingException {
@@ -3953,7 +3953,7 @@ public class MessagingController implements Runnable {
 						if (message.getHeader(MAIL.IDENTITY_HEADER) != null) {
 							Log.v(MAIL.LOG_TAG,
 									"The user has set the Outbox and Drafts folder to the same thing. "
-											+ "This message appears to be a draft, so K-9 will not send it");
+											+ "This message appears to be a draft, so Mail will not send it");
 							continue;
 
 						}

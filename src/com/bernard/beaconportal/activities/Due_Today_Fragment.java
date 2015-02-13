@@ -1074,8 +1074,6 @@ public class Due_Today_Fragment extends Fragment {
 
 					parse_add_content();
 
-					adapter.notifyDataSetChanged();
-
 					SharedPreferences.Editor localEditor = mActivity
 							.getSharedPreferences("homework",
 									Context.MODE_PRIVATE).edit();
@@ -1096,8 +1094,6 @@ public class Due_Today_Fragment extends Fragment {
 
 					parse_add_content();
 
-					adapter.notifyDataSetChanged();
-
 					SharedPreferences.Editor localEditor = mActivity
 							.getSharedPreferences("homework",
 									Context.MODE_PRIVATE).edit();
@@ -1116,8 +1112,6 @@ public class Due_Today_Fragment extends Fragment {
 					parse_due_today_content();
 
 					parse_add_content();
-
-					adapter.notifyDataSetChanged();
 
 					SharedPreferences.Editor localEditor = mActivity
 							.getSharedPreferences("homework",

@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -64,7 +67,14 @@ public class AccountSetupComposition extends MAILActivityMaterial {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#1976D2")));
+					new ColorDrawable(Color.parseColor("#4285f4")));
+			
+			if (Build.VERSION.SDK_INT >= 21) {
+	            Window window = getWindow();
+	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	            window.setStatusBarColor(Color.parseColor("#3367d6"));
+	}
 
 		} else {
 
@@ -88,6 +98,13 @@ public class AccountSetupComposition extends MAILActivityMaterial {
 
 			}
 
+			if (Build.VERSION.SDK_INT >= 21) {
+	            Window window = getWindow();
+	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	            window.setStatusBarColor(Color.parseColor(actionbar_colors));
+	}
+			
 		}
 
 		android.app.ActionBar bar = getActionBar();

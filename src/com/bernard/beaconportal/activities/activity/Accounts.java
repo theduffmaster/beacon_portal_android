@@ -498,7 +498,7 @@ public class Accounts extends MAILListActivity implements OnItemClickListener {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#1976D2")));
+					new ColorDrawable(Color.parseColor("#4285f4")));
 
 		} else {
 

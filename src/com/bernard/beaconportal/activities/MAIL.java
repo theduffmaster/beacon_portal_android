@@ -139,25 +139,25 @@ public class MAIL extends Application {
 	public static boolean DEBUG = false;
 
 	/**
-	 * Should K-9 log the conversation it has over the wire with SMTP servers?
+	 * Should Mail log the conversation it has over the wire with SMTP servers?
 	 */
 
 	public static boolean DEBUG_PROTOCOL_SMTP = true;
 
 	/**
-	 * Should K-9 log the conversation it has over the wire with IMAP servers?
+	 * Should Mail log the conversation it has over the wire with IMAP servers?
 	 */
 
 	public static boolean DEBUG_PROTOCOL_IMAP = true;
 
 	/**
-	 * Should K-9 log the conversation it has over the wire with POP3 servers?
+	 * Should Mail log the conversation it has over the wire with POP3 servers?
 	 */
 
 	public static boolean DEBUG_PROTOCOL_POP3 = true;
 
 	/**
-	 * Should K-9 log the conversation it has over the wire with WebDAV servers?
+	 * Should Mail log the conversation it has over the wire with WebDAV servers?
 	 */
 
 	public static boolean DEBUG_PROTOCOL_WEBDAV = true;
@@ -322,7 +322,7 @@ public class MAIL extends Application {
 	public static final int MAX_ATTACHMENT_DOWNLOAD_SIZE = (128 * 1024 * 1024);
 
 	/*
-	 * How many times should K-9 try to deliver a message before giving up until
+	 * How many times should Mail try to deliver a message before giving up until
 	 * the app is killed and restarted
 	 */
 
@@ -452,7 +452,7 @@ public class MAIL extends Application {
 
 	/**
 	 * Register BroadcastReceivers programmaticaly because doing it from
-	 * manifest would make K-9 auto-start. We don't want auto-start because the
+	 * manifest would make Mail auto-start. We don't want auto-start because the
 	 * initialization sequence isn't safe while some events occur (SD card
 	 * unmount).
 	 */

@@ -3,8 +3,8 @@
     
 
 	package="com.bernard.beaconportal.activities"
-    android:versionCode="49"
-    android:versionName="1.93"
+    android:versionCode="50"
+    android:versionName="1.94"
     >
 	
 	<uses-permission android:name="android.permission.BLUETOOTH" />
@@ -217,7 +217,7 @@
             android:name=".activity.setup.AccountSetupNames"
             android:label="@string/account_setup_names_title"
             android:configChanges="locale"
-            android:theme="@style/Theme.Custom.Dark.Base" 
+            android:theme="@style/Theme.Custom.Dark.Base.Material" 
             >
         </activity>
         <activity
@@ -429,7 +429,7 @@ android.intent.action.MEDIA_MOUNTED
 <!--
 
 MEDIA_EJECT and MEDIA_UNMOUNTED are not defined here: they have to be dynamically registered
-otherwise it would make K-9 start at the wrong time
+otherwise it would make Mail start at the wrong time
 
  -->
                 <data android:scheme="file"/>

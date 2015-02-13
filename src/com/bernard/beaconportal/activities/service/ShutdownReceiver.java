@@ -12,9 +12,9 @@ import com.bernard.beaconportal.activities.MAIL;
  * 
  * <p>
  * It is advised not to statically register (from AndroidManifest.xml) this
- * receiver in order to avoid unecessary K-9 launch (which would defeat the
+ * receiver in order to avoid unecessary Mail launch (which would defeat the
  * purpose of that receiver). Using AndroidManifest.xml instructs Android to
- * launch K-9 if not running, defeating the purpose of this receiver. <br>
+ * launch Mail if not running, defeating the purpose of this receiver. <br>
  * The recommended way is to register this receiver using
  * {@link Context#registerReceiver(BroadcastReceiver, android.content.IntentFilter)}
  * </p>
@@ -26,7 +26,7 @@ public class ShutdownReceiver extends BroadcastReceiver {
 		if (Intent.ACTION_SHUTDOWN.equals(intent.getAction())) {
 			Log.i(MAIL.LOG_TAG, "System is shutting down, releasing resources");
 
-			// prevent any scheduled intent from waking up K-9
+			// prevent any scheduled intent from waking up Mail
 			BootReceiver.purgeSchedule(context);
 
 			/*

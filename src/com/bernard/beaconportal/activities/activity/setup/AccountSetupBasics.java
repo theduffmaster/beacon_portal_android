@@ -19,11 +19,17 @@ import android.content.SharedPreferences;
 import android.content.res.XmlResourceParser;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,7 +52,7 @@ import com.bernard.beaconportal.activities.helper.Utility;
  * activity.
  */
 @SuppressLint("ResourceAsColor")
-public class AccountSetupBasics extends MAILActivity implements OnClickListener,
+public class AccountSetupBasics extends ActionBarActivity implements OnClickListener,
 		TextWatcher {
 	private final static String EXTRA_ACCOUNT = "com.bernard.beaconportal.activities.AccountSetupBasics.account";
 	private final static int DIALOG_NOTE = 1;
@@ -78,15 +84,22 @@ public class AccountSetupBasics extends MAILActivity implements OnClickListener,
 
 		if (!sharedpref.contains("actionbar_color")) {
 
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#1976D2")));
+			getSupportActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor("#4285f4")));
+			
+			if (Build.VERSION.SDK_INT >= 21) {
+	            Window window = getWindow();
+	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	            window.setStatusBarColor(Color.parseColor("#3367d6"));
+	}
 
 		} else {
 
 			String actionbar_colors = sharedpref.getString("actionbar_color",
 					null);
 
-			getActionBar().setBackgroundDrawable(
+			getSupportActionBar().setBackgroundDrawable(
 
 			new ColorDrawable(Color.parseColor(actionbar_colors)));
 
@@ -103,18 +116,23 @@ public class AccountSetupBasics extends MAILActivity implements OnClickListener,
 
 			}
 
+			if (Build.VERSION.SDK_INT >= 21) {
+	            Window window = getWindow();
+	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	            window.setStatusBarColor(Color.parseColor(actionbar_colors));
+	}
+			
 		}
 
-		android.app.ActionBar bar = getActionBar();
+		ActionBar bar = getSupportActionBar();
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
-
-		int titleId = getResources().getIdentifier("action_bar_title", "id",
-				"android");
-
-		TextView abTitle = (TextView) findViewById(titleId);
-		abTitle.setTextColor(getResources().getColor((R.color.white)));
+		
+		bar.setElevation(0);
+		
+		bar.setTitle(Html.fromHtml("<font color='#ffffff'> Login </font>"));
 
 		mEmailView = (EditText) findViewById(R.id.account_email);
 		mPasswordView = (EditText) findViewById(R.id.account_password);

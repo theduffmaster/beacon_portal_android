@@ -16,7 +16,7 @@ import com.bernard.beaconportal.activities.activity.misc.SwipeGestureDetector.On
 import com.bernard.beaconportal.activities.helper.StringUtils;
 
 /**
- * This class implements functionality common to most activities used in K-9
+ * This class implements functionality common to most activities used in Mail
  * Mail.
  * 
  * @see MAILActivity
@@ -70,6 +70,8 @@ public class MAILActivityCommon {
 
 	private Activity mActivity;
 	private GestureDetector mGestureDetector;
+	
+	private String actionbar_colors;
 
 	private MAILActivityCommon(Activity activity) {
 		mActivity = activity;
@@ -113,4 +115,5 @@ public class MAILActivityCommon {
 		mGestureDetector = new GestureDetector(mActivity,
 				new SwipeGestureDetector(mActivity, listener));
 	}
+	
 }

@@ -46,6 +46,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -60,6 +61,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -228,17 +231,17 @@ public class MainActivity extends ActionBarActivity {
 			versionNumber = pi.versionCode;
 			String versionName = pi.versionName;
 
-			Log.d(TAG, "K-9 is installed - " + versionNumber + " "
+			Log.d(TAG, "Mail is installed - " + versionNumber + " "
 					+ versionName);
 
 		} catch (NameNotFoundException e) {
-			Log.d(TAG, "K-9 not found");
+			Log.d(TAG, "Mail not found");
 		}
 
 		if (versionNumber <= 1) {
 			// Register a listener for broadcasts (needed for the older versions
 			// of mail)
-			Log.d(TAG, "Initialising BroadcastReceiver for old K-9 version");
+			Log.d(TAG, "Initialising BroadcastReceiver for old Mail version");
 			receiver = new BroadcastReceiver() {
 				@Override
 				public void onReceive(Context context, Intent intent) {
@@ -256,7 +259,7 @@ public class MainActivity extends ActionBarActivity {
 			// Register our own content observer, rather than using
 			// addWatchContentUris()
 			// since DashClock might not have permission to access the database
-			Log.d(TAG, "Initialising ContentObserver for new K-9 version");
+			Log.d(TAG, "Initialising ContentObserver for new Mail version");
 			contentObserver = new ContentObserver(null) {
 				@Override
 				public void onChange(boolean selfChange) {
@@ -328,6 +331,13 @@ public class MainActivity extends ActionBarActivity {
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
 					.parseColor("#4285f4")));
+			
+			if (Build.VERSION.SDK_INT >= 21) {
+	            Window window = getWindow();
+	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	            window.setStatusBarColor(Color.parseColor("#3367d6"));
+	}
 
 		} else {
 
@@ -342,9 +352,17 @@ public class MainActivity extends ActionBarActivity {
 					.parseColor(actionbar_colors)));
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor(actionbar_colors)));
-
+					.parseColor(actionbar_colors)));  
+			
 			mShadow.setBackgroundColor(Color.parseColor(actionbar_colors));
+			
+			if (Build.VERSION.SDK_INT >= 21) {
+	            Window window = getWindow();
+	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	            window.setStatusBarColor(Color.parseColor(actionbar_colors));
+	            
+			}
 
 		}
 
@@ -708,17 +726,17 @@ public class MainActivity extends ActionBarActivity {
 			versionNumber = pi.versionCode;
 			String versionName = pi.versionName;
 
-			Log.d(TAG, "K-9 is installed - " + versionNumber + " "
+			Log.d(TAG, "Mail is installed - " + versionNumber + " "
 					+ versionName);
 
 		} catch (NameNotFoundException e) {
-			Log.d(TAG, "K-9 not found");
+			Log.d(TAG, "Mail not found");
 		}
 
 		if (versionNumber <= 16024) {
 			// Register a listener for broadcasts (needed for the older versions
 			// of mail)
-			Log.d(TAG, "Initialising BroadcastReceiver for old K-9 version");
+			Log.d(TAG, "Initialising BroadcastReceiver for old Mail version");
 			receiver = new BroadcastReceiver() {
 				@Override
 				public void onReceive(Context context, Intent intent) {
@@ -736,7 +754,7 @@ public class MainActivity extends ActionBarActivity {
 			// Register our own content observer, rather than using
 			// addWatchContentUris()
 			// since DashClock might not have permission to access the database
-			Log.d(TAG, "Initialising ContentObserver for new K-9 version");
+			Log.d(TAG, "Initialising ContentObserver for new Mail version");
 			contentObserver = new ContentObserver(null) {
 				@Override
 				public void onChange(boolean selfChange) {
@@ -2030,7 +2048,7 @@ public class MainActivity extends ActionBarActivity {
 				Log.d(TAG, "Failed to query mail unread contentprovider.");
 			}
 		} catch (IllegalStateException e) {
-			Log.d(TAG, "k-9 unread uri unknown.");
+			Log.d(TAG, "Mail unread uri unknown.");
 		}
 		return 0;
 	}
@@ -2064,10 +2082,10 @@ public class MainActivity extends ActionBarActivity {
 			}
 		} catch (IllegalStateException e) {
 			// if (Preferences.logging) Log.d(MetaWatch.TAG,
-			// "k-9 accounts uri unknown.");
+			// "Mail accounts uri unknown.");
 		} catch (java.lang.SecurityException e) {
 			// if (Preferences.logging) Log.d(MetaWatch.TAG,
-			// "Permissions failure accessing k-9 databases");
+			// "Permissions failure accessing Mail databases");
 		} finally {
 			ch.closeAll();
 		}

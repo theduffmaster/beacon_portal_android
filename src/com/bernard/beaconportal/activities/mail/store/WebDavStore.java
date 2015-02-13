@@ -447,7 +447,7 @@ public class WebDavStore extends Store {
 		if (folderName != null)
 			mAccount.setSpamFolderName(folderName);
 
-		// K-9 Mail's outbox is a special local folder and different from
+		// Mail Mail's outbox is a special local folder and different from
 		// Exchange/WebDAV's outbox.
 		/*
 		 * folderName =

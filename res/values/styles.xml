@@ -52,7 +52,6 @@
     </style>
 
 <style name="CustomActionBarTheme.FlatActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-      
     <item name="android:displayOptions"></item>
 </style>
 
@@ -72,5 +71,9 @@
     <style name="AppTheme_ActionBar_Overflow" parent="android:Widget.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_ab_overflow_compat</item>
     </style>
+    
+    <style name="ActionButtonStyle" parent="@android:style/Widget.Holo.Light.ActionButton">
+    <item name="android:minWidth">5dip</item>               
+</style>
 
 </resources>

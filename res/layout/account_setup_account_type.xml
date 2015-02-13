@@ -6,6 +6,16 @@
     android:orientation="vertical"
         android:layout_gravity="center_horizontal|center_vertical"
       >
+      
+            <ImageView
+          android:id="@+id/material_shadow_image"
+        android:src="@drawable/material_shadow270"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView2"
+        android:background="#00000000"
+        />
+      
       <TextView
           android:text="@string/account_setup_account_type_instructions"
         android:layout_height="wrap_content"

@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text="Headline"
-        android:background="#42A5F5"
+        android:background="#4285f4"
        android:gravity="center" 
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ffffff"

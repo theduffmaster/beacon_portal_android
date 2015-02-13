@@ -3,21 +3,21 @@
   <!--=== App-specific strings =============================================================-->
   <!--This should make it easier for forks to change the branding-->
   <!--Used in AndroidManifest.xml-->
-  <string name="app_name">K-9 paštas</string>
-  <string name="beta_app_name">„K-9 Mail“ BETA</string>
-  <string name="shortcuts_title">K-9 paskyros</string>
-  <string name="unread_widget_label">K-9 neskaityta</string>
-  <string name="remote_control_label">„K-9 Mail“ nutolęs valdymas</string>
-  <string name="remote_control_desc">Leisti šiai programai valdyti „K-9 Mail“ veiklą ir nustatymus.</string>
+  <string name="app_name">Mail paštas</string>
+  <string name="beta_app_name">„Mail Mail“ BETA</string>
+  <string name="shortcuts_title">Mail paskyros</string>
+  <string name="unread_widget_label">Mail neskaityta</string>
+  <string name="remote_control_label">„Mail Mail“ nutolęs valdymas</string>
+  <string name="remote_control_desc">Leisti šiai programai valdyti „Mail Mail“ veiklą ir nustatymus.</string>
   <!--Used in the about dialog-->
-  <string name="app_authors">Google, The K-9 Dog Walkers.</string>
-  <string name="app_copyright_fmt">Autorinės teisės 2008-<xliff:g>%s</xliff:g> K-9 Dog Walkers. Dalis autorinių teisių priklauso 2006-<xliff:g>%s</xliff:g> the Android Open Source Project.</string>
+  <string name="app_authors">Google, The Mail Dog Walkers.</string>
+  <string name="app_copyright_fmt">Autorinės teisės 2008-<xliff:g>%s</xliff:g> Mail Dog Walkers. Dalis autorinių teisių priklauso 2006-<xliff:g>%s</xliff:g> the Android Open Source Project.</string>
   <string name="app_license">Išleista pagal Apache License sąlygas, versija 2.</string>
   <!--Welcome message-->
-  <string name="welcome_message_title">Sveiki atvykę į „K-9 Mail“</string>
+  <string name="welcome_message_title">Sveiki atvykę į „Mail Mail“</string>
   <string name="accounts_welcome"><![CDATA[
 <p>
-„K-9 Mail“ yra galingas ir nemokamas pašto klientas Android įrenginiams.
+„Mail Mail“ yra galingas ir nemokamas pašto klientas Android įrenginiams.
 </p><p>
 Pagerintos galimybės:
 </p>
@@ -38,19 +38,19 @@ Pagerintos galimybės:
   <li>…ir dar daug daugiau</li>
 </ul>
 <p>
-Pastaba: K-9 nepalaiko daugumos Hotmail paskyrų ir kaip dauguma el. pašto klientų turi keblumų bendraujant su Microsoft Exchange.
+Pastaba: Mail nepalaiko daugumos Hotmail paskyrų ir kaip dauguma el. pašto klientų turi keblumų bendraujant su Microsoft Exchange.
 </p><p>
 Praneškite apie klaidas, pridėkite naujų galimybių ir užduokite klausimus mūsų tinklapyje
 <a href="http://mailmail.googlecode.com/">http://mailmail.googlecode.com/</a>.
 </p>
     ]]></string>
   <!--Default signature-->
-  <string name="default_signature">--\nIšsiųsta iš mano Android įrenginio naudojant „K-9 Mail“.</string>
+  <string name="default_signature">--\nIšsiųsta iš mano Android įrenginio naudojant „Mail Mail“.</string>
   <!--General strings that include the app name-->
-  <string name="account_delete_dlg_instructions_fmt">Paskyra \"<xliff:g id="account">%s</xliff:g>\" bus pašalinta iš „K-9 Mail“.</string>
+  <string name="account_delete_dlg_instructions_fmt">Paskyra \"<xliff:g id="account">%s</xliff:g>\" bus pašalinta iš „Mail Mail“.</string>
   <string name="account_recreate_dlg_instructions_fmt">Visi vietiniai \"<xliff:g id="account">%s</xliff:g>\" duomenys bus pašalinti. Paskyros nustatymai išliks.</string>
   <string name="account_clear_dlg_instructions_fmt">Vietinės  \"<xliff:g id="account">%s</xliff:g>\" laiškų kopijos bus pašalintos. Paskyros nustatymai išliks.</string>
-  <string name="insufficient_apg_permissions">K-9 neturi reikiamų leidimų pasiekti AGP, norėdami tai pataisyti iš naujo įdiekite K-9.</string>
+  <string name="insufficient_apg_permissions">Mail neturi reikiamų leidimų pasiekti AGP, norėdami tai pataisyti iš naujo įdiekite Mail.</string>
   <!--=== App Store-specific strings =======================================================-->
   <string name="import_dialog_error_message">Norėdami tęsti importavimą turite įdiegti failų tvarkyklę.</string>
   <string name="open_market">Atverti „Play Store“</string>

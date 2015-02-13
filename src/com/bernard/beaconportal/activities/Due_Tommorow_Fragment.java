@@ -36,6 +36,8 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -1127,8 +1129,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 					parse_due_tommorow_content();
 					
 					parse_add_content();
-					
-					adapter.notifyDataSetChanged();
 
 					SharedPreferences.Editor localEditor = mActivity
 							.getSharedPreferences("homework",
@@ -1150,8 +1150,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 					parse_due_tommorow_content();
 					
 					parse_add_content();
-					
-					adapter.notifyDataSetChanged();
 
 					SharedPreferences.Editor localEditor = mActivity
 							.getSharedPreferences("homework",
@@ -1173,8 +1171,6 @@ public class Due_Tommorow_Fragment extends Fragment {
 					parse_due_tommorow_content();
 
 					parse_add_content();
-					
-					adapter.notifyDataSetChanged();
 					
 					SharedPreferences.Editor localEditor = mActivity
 							.getSharedPreferences("homework",
@@ -1490,6 +1486,8 @@ public class Due_Tommorow_Fragment extends Fragment {
 				// Description =
 				// clickedhomeworkdue.getDescription().substring(5);
 
+				String transitionName = getString(R.string.transition_homework_icon);
+				
 				Intent intent = new Intent(getActivity(),
 						homeworkdueDetailsActivity.class);
 				intent.putExtra(KEY_HOMEWORK, clickedhomeworkdue.getTitle());
@@ -1499,6 +1497,7 @@ public class Due_Tommorow_Fragment extends Fragment {
 				intent.putExtra(KEY_BAND, clickedhomeworkdue.getBand());
 
 				startActivity(intent);
+				
 			}
 		});
 	}

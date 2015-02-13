@@ -57,6 +57,7 @@
     	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
     	<item name="android:actionBarSize">@dimen/action_bar_height</item>
 	<item name="android:windowContentOverlay">@drawable/material_shadow</item>
+	<item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
     </style>
 
     <style name="Theme.MAIL.Dark.Base" parent="@android:style/Theme.Holo">
@@ -113,6 +114,7 @@
     	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
    	<item name="android:actionBarSize">@dimen/action_bar_height</item>
     	<item name="android:windowContentOverlay">@drawable/material_shadow</item>
+    	<item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
 
     	</style>
     
@@ -172,6 +174,7 @@
     	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
     	<item name="android:actionBarSize">@dimen/action_bar_height</item>
    <item name="android:windowContentOverlay">@drawable/material_shadow</item>
+   <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
 
     </style>
 
@@ -235,6 +238,7 @@
     	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
    	<item name="android:actionBarSize">@dimen/action_bar_height</item>
     	<item name="android:windowContentOverlay">@drawable/material_shadow</item>
+    	<item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
 
     	</style>
     
@@ -291,7 +295,8 @@
         <item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>
     	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
     	<item name="android:actionBarSize">@dimen/action_bar_height</item>
-  
+  		<item name="colorAccent">#4285f4</item>
+  		<item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
     </style>
 
     <style name="Theme.MAIL.Dark.Base.Material" parent="@style/Theme.AppCompat">
@@ -347,7 +352,8 @@
     	<item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>
     	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
    	<item name="android:actionBarSize">@dimen/action_bar_height</item>
-    	
+    	<item name="colorAccent">#4285f4</item>
+    	<item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
     	</style>
     
     <style name="Theme.Custom.Dark.Base.Material" parent="@style/Theme.AppCompat.Light">
@@ -405,7 +411,8 @@
     	  <item name="android:textColorPrimary">#58585b</item>
     	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
     	<item name="android:actionBarSize">@dimen/action_bar_height</item>
-    
+    	<item name="colorAccent">#4285f4</item>
+    	<item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
     </style>
 
     <style name="Theme.MAIL.White.Material" parent="Theme.AppCompat.Light">
@@ -463,7 +470,8 @@
     	   <item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>
     	<item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
    	<item name="android:actionBarSize">@dimen/action_bar_height</item>
-    	
+    	<item name="colorAccent">#4285f4</item>
+    	<item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
     	</style>
     
     <style name="Theme.MAIL.Dark" parent="Theme.MAIL.Dark.Base">
@@ -508,6 +516,7 @@
     	<item name="android:actionBarSize">@dimen/action_bar_height</item>
     	<item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>
     	 <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+    	 <item name="colorAccent">#4285f4</item>
     	
 </style>
 
@@ -519,7 +528,7 @@
     	<item name="android:actionBarSize">@dimen/action_bar_height</item>
     	<item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>	
     	 <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-    	
+    	<item name="colorAccent">#4285f4</item>
 </style>
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">

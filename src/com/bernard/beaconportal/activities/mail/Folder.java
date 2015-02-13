@@ -275,6 +275,6 @@ public abstract class Folder {
 	public List<Message> search(String queryString, final Flag[] requiredFlags,
 			final Flag[] forbiddenFlags) throws MessagingException {
 		throw new MessagingException(
-				"K-9 does not support searches on this folder type");
+				"Mail does not support searches on this folder type");
 	}
 }

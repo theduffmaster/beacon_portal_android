@@ -32,7 +32,7 @@ public class MessageWebView extends RigidWebView {
 	 * href="http://code.google.com/p/android/issues/detail?id=34886">issue
 	 * 34886</a> in Android's bug tracker, and <a
 	 * href="http://code.google.com/p/mailmail/issues/detail?id=3820">issue
-	 * 3820</a> in K-9 Mail's bug tracker).
+	 * 3820</a> in Mail Mail's bug tracker).
 	 */
 	public static boolean isSingleColumnLayoutSupported() {
 		return (Build.VERSION.SDK_INT > 7 && Build.VERSION.SDK_INT < 11);

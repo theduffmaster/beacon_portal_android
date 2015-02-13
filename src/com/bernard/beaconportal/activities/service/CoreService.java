@@ -19,13 +19,13 @@ import com.bernard.beaconportal.activities.helper.power.TracingPowerManager;
 import com.bernard.beaconportal.activities.helper.power.TracingPowerManager.TracingWakeLock;
 
 /**
- * {@code CoreService} is the base class for all K-9 Services.
+ * {@code CoreService} is the base class for all Mail Services.
  * 
  * <p>
  * An Android service is a way to model a part of an application that needs to
  * accomplish certain tasks without the UI part of the application being
  * necessarily active (of course an application could also be a pure service,
- * without any UI; this is not the case of K-9). By declaring a service and
+ * without any UI; this is not the case of Mail). By declaring a service and
  * starting it, the OS knows that the application has work to do and should
  * avoid killing the process.
  * </p>
@@ -58,7 +58,7 @@ import com.bernard.beaconportal.activities.helper.power.TracingPowerManager.Trac
  * store wake locks.
  * </p>
  * <p>
- * In short, CoreService provides the following features to K-9 Services:
+ * In short, CoreService provides the following features to Mail Services:
  * <ul>
  * <li>task execution and queuing</li>
  * <li>Service life cycle management (ensures the service is stopped when not

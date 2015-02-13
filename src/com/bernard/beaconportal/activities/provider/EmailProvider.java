@@ -34,7 +34,7 @@ import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
  * 
  * <p>
  * For now this content provider is for internal use only. In the future we may
- * allow third-party apps to access K-9 Mail content using this content
+ * allow third-party apps to access Mail Mail content using this content
  * provider.
  * </p>
  */

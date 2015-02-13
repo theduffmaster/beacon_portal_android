@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 The K-9 Dog Walkers
+ * Copyright (C) 2012 The Mail Dog Walkers
  * Copyright (C) 2006 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

@@ -239,7 +239,7 @@ public class Account implements BaseAccount {
 	/**
 	 * Name of the folder that was last selected for a copy or move operation.
 	 * 
-	 * Note: For now this value isn't persisted. So it will be reset when K-9
+	 * Note: For now this value isn't persisted. So it will be reset when Mail
 	 * Mail is restarted.
 	 */
 	private String lastSelectedFolderName = null;

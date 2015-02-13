@@ -114,7 +114,7 @@ public class FragmentSettings extends Fragment {
 		TextView dateSubText = (TextView) relative_views
 				.findViewById(R.id.textViewSubTitle_Refresh);
 
-		dateSubText.setText("Homework will refresh at " + time);
+		dateSubText.setText("A notification is set to be issued at " + time);
 
 		relativelayout.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -452,7 +452,7 @@ public class FragmentSettings extends Fragment {
 				actionbar_colors));
 
 		settings.add(new Settings("Set Secondary Color",
-				"Pick which color compliments the theme color",
+				"Pick a color to compliment the theme color",
 				background_colors));
 
 	}
@@ -618,7 +618,7 @@ public class FragmentSettings extends Fragment {
 				.inflate(R.layout.download_alarm_dialog, null);
 		dialogBuilder.setView(customView);
 		// View settings
-		dialogBuilder.setTitle("Set Homework Refresh Time");
+		dialogBuilder.setTitle("Set Notification Creation Time");
 
 		final TimePicker timePicker = (TimePicker) customView
 				.findViewById(R.id.timePicker1);
@@ -641,7 +641,7 @@ public class FragmentSettings extends Fragment {
 		}
 
 		// Buttons
-		dialogBuilder.setNegativeButton("Stop Updates",
+		dialogBuilder.setNegativeButton("Stop",
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {

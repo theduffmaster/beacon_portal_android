@@ -6,34 +6,34 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 
 /**
- * Utillity definitions for Android applications to control the behavior of K-9
+ * Utillity definitions for Android applications to control the behavior of Mail
  * Mail. All such applications must declare the following permission:
  * <uses-permission android:name=
  * "com.bernard.beaconportal.activities.permission.REMOTE_CONTROL"/> in their
  * AndroidManifest.xml In addition, all applications sending remote control
- * messages to K-9 Mail must
+ * messages to Mail Mail must
  * 
- * An application that wishes to act on a particular Account in K-9 needs to
+ * An application that wishes to act on a particular Account in Mail needs to
  * fetch the list of configured Accounts by broadcasting an {@link Intent} using
  * MAIL_REQUEST_ACCOUNTS as the Action. The broadcast must be made using the
  * {@link ContextWrapper} sendOrderedBroadcast(Intent intent, String
  * receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int
  * initialCode, String initialData, Bundle initialExtras).sendOrderedBroadcast}
  * method in order to receive the list of Account UUIDs and descriptions that
- * K-9 will provide.
+ * Mail will provide.
  * 
  * @author Daniel I. Applebaum
  * 
  */
 public class MAILRemoteControl {
 	/**
-	 * Permission that every application sending a broadcast to K-9 for Remote
+	 * Permission that every application sending a broadcast to Mail for Remote
 	 * Control purposes should send on every broadcast. Prevent other
 	 * applications from intercepting the broadcasts.
 	 */
 	public final static String MAIL_REMOTE_CONTROL_PERMISSION = "com.bernard.beaconportal.activities.permission.REMOTE_CONTROL";
 	/**
-	 * {@link Intent} Action to be sent to K-9 using
+	 * {@link Intent} Action to be sent to Mail using
 	 * {@link ContextWrapper.sendOrderedBroadcast} in order to fetch the list of
 	 * configured Accounts. The responseData will contain two String[] with keys
 	 * MAIL_ACCOUNT_UUIDS and MAIL_ACCOUNT_DESCRIPTIONS
@@ -43,14 +43,14 @@ public class MAILRemoteControl {
 	public final static String MAIL_ACCOUNT_DESCRIPTIONS = "com.bernard.beaconportal.activities.MAILRemoteControl.accountDescriptions";
 
 	/**
-	 * The {@link {@link Intent} Action to set in order to cause K-9 to check
+	 * The {@link {@link Intent} Action to set in order to cause Mail to check
 	 * mail. (Not yet implemented)
 	 */
 	// public final static String MAIL_CHECK_MAIL =
 	// "com.bernard.beaconportal.activities.MAILRemoteControl.checkMail";
 
 	/**
-	 * The {@link {@link Intent} Action to set when remotely changing K-9 Mail
+	 * The {@link {@link Intent} Action to set when remotely changing Mail Mail
 	 * settings
 	 */
 	public final static String MAIL_SET = "com.bernard.beaconportal.activities.MAILRemoteControl.set";
@@ -76,13 +76,13 @@ public class MAILRemoteControl {
 	 */
 	public final static String MAIL_NOTIFICATION_ENABLED = "com.bernard.beaconportal.activities.MAILRemoteControl.notificationEnabled";
 	/*
-	 * Key for the {@link Intent} Extra for controlling whether K-9 will sound
+	 * Key for the {@link Intent} Extra for controlling whether Mail will sound
 	 * the ringtone for new unread mail. Acceptable values are MAIL_ENABLED and
 	 * MAIL_DISABLED
 	 */
 	public final static String MAIL_RING_ENABLED = "com.bernard.beaconportal.activities.MAILRemoteControl.ringEnabled";
 	/*
-	 * Key for the {@link Intent} Extra for controlling whether K-9 will
+	 * Key for the {@link Intent} Extra for controlling whether Mail will
 	 * activate the vibrator for new unread mail. Acceptable values are
 	 * MAIL_ENABLED and MAIL_DISABLED
 	 */
@@ -118,7 +118,7 @@ public class MAILRemoteControl {
 	public final static String MAIL_POLL_FREQUENCY = "com.bernard.beaconportal.activities.MAILRemoteControl.pollFrequency";
 
 	/**
-	 * Key for the {@link Intent} Extra to set for controlling K-9's global
+	 * Key for the {@link Intent} Extra to set for controlling Mail's global
 	 * "Background sync" setting. Acceptable values are
 	 * MAIL_BACKGROUND_OPERATIONS_ALWAYS, MAIL_BACKGROUND_OPERATIONS_NEVER
 	 * MAIL_BACKGROUND_OPERATIONS_WHEN_CHECKED
@@ -131,7 +131,7 @@ public class MAILRemoteControl {
 
 	/**
 	 * Key for the {@link Intent} Extra to set for controlling which display
-	 * theme K-9 will use. Acceptable values are MAIL_THEME_LIGHT, MAIL_THEME_DARK
+	 * theme Mail will use. Acceptable values are MAIL_THEME_LIGHT, MAIL_THEME_DARK
 	 */
 	public final static String MAIL_THEME = "com.bernard.beaconportal.activities.MAILRemoteControl.theme";
 	public final static String MAIL_THEME_LIGHT = "LIGHT";

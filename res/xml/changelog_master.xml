@@ -51,7 +51,7 @@
         <change>Add support for bitcoin URIs</change>
         <change>Change the way we harden SSL/TLS sockets Blacklist a couple of weak ciphers, bring known ones in a defined order and sort unknown ciphers at the end. Also re-enable SSLv3 because it's still used a lot.</change>
         <change>Implement pruning of old certificates from LocalKeyStore. Certificates are deleted whenever server settings are changed or an account is deleted.</change>
-        <change>Fix inadequate certificate validation. Proper host name validation was not being performed for certificates kept in the local keystore.  If an attacker could convince a user to accept and store an attacker's certificate, then that certificate could be used for MITM attacks, giving the attacker access to all connections to all servers in all accounts in K-9.</change>
+        <change>Fix inadequate certificate validation. Proper host name validation was not being performed for certificates kept in the local keystore.  If an attacker could convince a user to accept and store an attacker's certificate, then that certificate could be used for MITM attacks, giving the attacker access to all connections to all servers in all accounts in Mail.</change>
         <change>Users can now use different certificates for different servers on the same host (listening to different ports).</change>
         <change>The above changes mean that users might have to re-accept certificates that they had previously accepted and are still using (but only if the certificate's Subject doesn't match the host that they are connecting to).</change>
         <change>Make sure to return different colors for senders with different name, but the same mail address (e.g. mails sent by certain issue tracking systems).</change>
@@ -61,7 +61,7 @@
     <release version="4.701" versioncode="19002" >
         <change>Overhauled how we do message view scrolling to fix a KitKat issue. Thanks to Joe Steele!</change>
         <change>Hardened TLS cipher suites and versions</change>
-        <change>K-9 no longer adds blank lines to composed messages if there is no quoted text</change>
+        <change>Mail no longer adds blank lines to composed messages if there is no quoted text</change>
         <change>Fixed serveral issues related to message drafts</change>
         <change>Better cleanup of old data when deleting an account</change>
         <change>Worked around a bug in KitKat that stopped settings import from working</change>
@@ -207,8 +207,8 @@
     <release version="4.327" versioncode="17028" >
         <change>Fix dialog message when deleting multiple messages from a notification</change>
         <change>Message view / list: fix NPE when list is empty</change>
-        <change>If there is no message when resuming, K-9 should return to a MessageList.</change>
-        <change>Add a caching layer to EmailProvider.  Database updates can be surprisingly slow. This lead to slow updates of the user interface which in turn made working with K-9 Mail not as fun as it should be. This commit hopefully changes that.</change>
+        <change>If there is no message when resuming, Mail should return to a MessageList.</change>
+        <change>Add a caching layer to EmailProvider.  Database updates can be surprisingly slow. This lead to slow updates of the user interface which in turn made working with Mail Mail not as fun as it should be. This commit hopefully changes that.</change>
         <change>Updated Japanese translation</change>
         <change>Updated French translation</change>
         <change>Updated Czech localization</change>

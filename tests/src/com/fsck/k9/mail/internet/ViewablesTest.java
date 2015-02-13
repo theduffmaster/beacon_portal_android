@@ -14,7 +14,7 @@ import com.bernard.beaconportal.activities.mail.internet.MimeUtility.ViewableCon
 public class ViewablesTest extends AndroidTestCase {
 
     public void testSimplePlainTextMessage() throws MessagingException {
-        String bodyText = "K-9 Mail rocks :>";
+        String bodyText = "Mail Mail rocks :>";
 
         // Create text/plain body
         TextBody body = new TextBody(bodyText);
@@ -29,7 +29,7 @@ public class ViewablesTest extends AndroidTestCase {
         String expectedText = bodyText;
         String expectedHtml =
                 "<pre class=\"mailmail\">" +
-                "K-9 Mail rocks :&gt;" +
+                "Mail Mail rocks :&gt;" +
                 "</pre>";
 
         assertEquals(expectedText, container.text);
@@ -37,7 +37,7 @@ public class ViewablesTest extends AndroidTestCase {
     }
 
     public void testSimpleHtmlMessage() throws MessagingException {
-        String bodyText = "<strong>K-9 Mail</strong> rocks :&gt;";
+        String bodyText = "<strong>Mail Mail</strong> rocks :&gt;";
 
         // Create text/plain body
         TextBody body = new TextBody(bodyText);
@@ -50,7 +50,7 @@ public class ViewablesTest extends AndroidTestCase {
         // Extract text
         ViewableContainer container = MimeUtility.extractTextAndAttachments(getContext(), message);
 
-        String expectedText = "K-9 Mail rocks :>";
+        String expectedText = "Mail Mail rocks :>";
         String expectedHtml =
                 bodyText;
 

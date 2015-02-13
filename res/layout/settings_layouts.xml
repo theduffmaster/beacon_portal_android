@@ -63,7 +63,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginTop="10dp"
             android:singleLine="true"
-            android:text="Set Homework Refresh Time"
+            android:text="Set Notification Creation Time"
             android:textSize="18sp" />
 
         <TextView
@@ -76,7 +76,7 @@
             android:layout_marginLeft="12dp"
             android:maxLines="2"
             android:singleLine="true"
-            android:text="Homework will refresh at 3:00pm"
+            android:text="A notification is set to be issued at 3:00pm"
             android:textSize="14sp" />
 
     </RelativeLayout>

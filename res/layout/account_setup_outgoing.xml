@@ -5,6 +5,15 @@
     android:layout_height="fill_parent"
     android:layout_width="fill_parent">
 
+          <ImageView
+          android:id="@+id/material_shadow_image"
+        android:src="@drawable/material_shadow270"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView2"
+        android:background="#00000000"
+        />
+    
 <ScrollView
     android:layout_width="fill_parent"
     android:layout_height="0dp"

@@ -10,15 +10,21 @@ import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.TextKeyListener;
 import android.text.method.TextKeyListener.Capitalize;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -37,7 +43,7 @@ import com.bernard.beaconportal.activities.activity.Accounts;
 import com.bernard.beaconportal.activities.activity.MAILActivity;
 import com.bernard.beaconportal.activities.helper.Utility;
 
-public class AccountSetupNames extends MAILActivity implements OnClickListener {
+public class AccountSetupNames extends ActionBarActivity implements OnClickListener {
 	private static final String EXTRA_ACCOUNT = "account";
 
 	public static final String PREF_NAME = "pref_name";
@@ -85,26 +91,27 @@ public class AccountSetupNames extends MAILActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.account_setup_names);
 
-		int titleId = getResources().getIdentifier("action_bar_title", "id",
-				"android");
-
-		TextView abTitle = (TextView) findViewById(titleId);
-		abTitle.setTextColor(getResources().getColor((R.color.white)));
-
 		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
 				Context.MODE_PRIVATE);
 
 		if (!sharedpref.contains("actionbar_color")) {
 
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#1976D2")));
+			getSupportActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor("#4285f4")));
+			
+			if (Build.VERSION.SDK_INT >= 21) {
+	            Window window = getWindow();
+	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	            window.setStatusBarColor(Color.parseColor("#3367d6"));
+	}
 
 		} else {
 
 			String actionbar_colors = sharedpref.getString("actionbar_color",
 					null);
 
-			getActionBar().setBackgroundDrawable(
+			getSupportActionBar().setBackgroundDrawable(
 
 			new ColorDrawable(Color.parseColor(actionbar_colors)));
 
@@ -121,12 +128,23 @@ public class AccountSetupNames extends MAILActivity implements OnClickListener {
 
 			}
 
+			if (Build.VERSION.SDK_INT >= 21) {
+	            Window window = getWindow();
+	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	            window.setStatusBarColor(Color.parseColor(actionbar_colors));
+	}
+			
 		}
 
-		android.app.ActionBar bar = getActionBar();
+		ActionBar bar = getSupportActionBar();
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
+		
+		bar.setElevation(0);
+		
+		bar.setTitle(Html.fromHtml("<font color='#ffffff'> Almost Done </font>"));
 
 		mDescription = (EditText) findViewById(R.id.account_description);
 		mName = (EditText) findViewById(R.id.account_name);

@@ -85,7 +85,7 @@ public class TracingPowerManager {
 								+ tag
 								+ " / id "
 								+ id
-								+ ": acquired with no timeout.  K-9 Mail should not do this");
+								+ ": acquired with no timeout.  Mail Mail should not do this");
 			}
 			if (startTime == null) {
 				startTime = System.currentTimeMillis();

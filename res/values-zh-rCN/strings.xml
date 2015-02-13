@@ -3,23 +3,23 @@
   <!--=== App-specific strings =============================================================-->
   <!--This should make it easier for forks to change the branding-->
   <!--Used in AndroidManifest.xml-->
-  <string name="app_name">K-9 Mail</string>
-  <string name="beta_app_name">K-9 Mail测试版</string>
-  <string name="shortcuts_title">K-9账户</string>
-  <string name="unread_widget_label">K-9 Mail 未读</string>
-  <string name="remote_control_label">远程控制K-9 Mail</string>
-  <string name="remote_control_desc">运行这个程序控制K-9 Mail的行为和设置。</string>
+  <string name="app_name">Mail Mail</string>
+  <string name="beta_app_name">Mail Mail测试版</string>
+  <string name="shortcuts_title">Mail账户</string>
+  <string name="unread_widget_label">Mail Mail 未读</string>
+  <string name="remote_control_label">远程控制Mail Mail</string>
+  <string name="remote_control_desc">运行这个程序控制Mail Mail的行为和设置。</string>
   <!--Used in the about dialog-->
-  <string name="app_authors">谷歌以及帮着遛K-9的小朋友们。</string>
-  <string name="app_copyright_fmt">Copyright 2008-<xliff:g>%s</xliff:g> The K-9 Dog Walkers. Portions Copyright 2006-<xliff:g>%s</xliff:g> the Android Open Source Project.</string>
+  <string name="app_authors">谷歌以及帮着遛Mail的小朋友们。</string>
+  <string name="app_copyright_fmt">Copyright 2008-<xliff:g>%s</xliff:g> The Mail Dog Walkers. Portions Copyright 2006-<xliff:g>%s</xliff:g> the Android Open Source Project.</string>
   <string name="app_license">根据Apache License 2.0 协议授权。</string>
   <!--Welcome message-->
-  <string name="welcome_message_title">欢迎来到K-9 Mail</string>
+  <string name="welcome_message_title">欢迎来到Mail Mail</string>
   <string name="accounts_welcome"><![CDATA[
 <p>
-K-9 Mail是Android下的开源电子邮件客户端，其最初的代码来自Android默认的电子邮件程序。
+Mail Mail是Android下的开源电子邮件客户端，其最初的代码来自Android默认的电子邮件程序。
 </p><p>
-K-9改进的功能包括：
+Mail改进的功能包括：
 </p>
 <ul>
   <li>利用IMAP IDEL进行Push mail</li>
@@ -38,25 +38,25 @@ K-9改进的功能包括：
   <li>以及其他很多哦～</li>
 </ul>
 <p>
-请注意K-9不支持绝大多数免费Hotmail账户，以及，和很多邮件客户端一样，在和Microsoft Exchange沟通的时候存在一些奇妙的问题。
+请注意Mail不支持绝大多数免费Hotmail账户，以及，和很多邮件客户端一样，在和Microsoft Exchange沟通的时候存在一些奇妙的问题。
 </p><p>
 请到<a href="http://mailmail.googlecode.com/">http://mailmail.googlecode.com/</a>提交错误报告、贡献新功能或提出您的问题。
 </p>
     ]]></string>
   <!--Default signature-->
-  <string name="default_signature">-- \n抱歉暂时无法详细说明。这份邮件是使用安装有K-9 Mail的Android移动设备发送的。</string>
+  <string name="default_signature">-- \n抱歉暂时无法详细说明。这份邮件是使用安装有Mail Mail的Android移动设备发送的。</string>
   <!--General strings that include the app name-->
-  <string name="account_delete_dlg_instructions_fmt">账户“<xliff:g id="account">%s</xliff:g>”将从K-9 Mail中删除。</string>
-  <string name="account_recreate_dlg_instructions_fmt">账户“<xliff:g id="account">%s</xliff:g>”的全部数据将从K-9 Mail中删除，但是账户设置将保留。</string>
-  <string name="account_clear_dlg_instructions_fmt">账户“<xliff:g id="account">%s</xliff:g>”中的全部邮件将从K-9 Mail中删除，但是账户设置将保留。</string>
-  <string name="insufficient_apg_permissions">K-9没有被允许完全访问APG，请重新安装K-9以便修复这一问题。</string>
+  <string name="account_delete_dlg_instructions_fmt">账户“<xliff:g id="account">%s</xliff:g>”将从Mail Mail中删除。</string>
+  <string name="account_recreate_dlg_instructions_fmt">账户“<xliff:g id="account">%s</xliff:g>”的全部数据将从Mail Mail中删除，但是账户设置将保留。</string>
+  <string name="account_clear_dlg_instructions_fmt">账户“<xliff:g id="account">%s</xliff:g>”中的全部邮件将从Mail Mail中删除，但是账户设置将保留。</string>
+  <string name="insufficient_apg_permissions">Mail没有被允许完全访问APG，请重新安装Mail以便修复这一问题。</string>
   <!--=== App Store-specific strings =======================================================-->
   <string name="import_dialog_error_message">没有找到合适的应用来处理导入操作。请从安卓市场安装一款文件管理器</string>
   <string name="open_market">打开市场</string>
   <!--=== General strings ==================================================================-->
   <string name="app_authors_fmt">作者: <xliff:g id="app_authors">%s</xliff:g></string>
   <string name="app_revision_fmt">更新日志: <xliff:g id="app_revision_url">%s</xliff:g></string>
-  <string name="app_libraries">K-9 Mail包含如下来源的源代码： <xliff:g id="app_libraries_list">%s</xliff:g></string>
+  <string name="app_libraries">Mail Mail包含如下来源的源代码： <xliff:g id="app_libraries_list">%s</xliff:g></string>
   <string name="app_emoji_icons">Emoji图标： <xliff:g id="app_emoji_icons_link">%s</xliff:g></string>
   <string name="read_attachment_label">显示附件</string>
   <string name="read_attachment_desc">允许该程序读取附件。</string>

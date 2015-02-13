@@ -17,11 +17,14 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Process;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -99,7 +102,14 @@ public class AccountSetupCheckSettings extends MAILActivity implements
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#1976D2")));
+					new ColorDrawable(Color.parseColor("#4285f4")));
+			
+			if (Build.VERSION.SDK_INT >= 21) {
+	            Window window = getWindow();
+	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	            window.setStatusBarColor(Color.parseColor("#3367d6"));
+	}
 
 		} else {
 
@@ -123,6 +133,13 @@ public class AccountSetupCheckSettings extends MAILActivity implements
 
 			}
 
+			if (Build.VERSION.SDK_INT >= 21) {
+	            Window window = getWindow();
+	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	            window.setStatusBarColor(Color.parseColor(actionbar_colors));
+	}
+			
 		}
 
 		android.app.ActionBar bar = getActionBar();

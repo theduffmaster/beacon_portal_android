@@ -44,6 +44,7 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
@@ -79,10 +80,6 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 	ContentObserver contentObserver = null;
 	BroadcastReceiver receiver = null;
 	IntentFilter filter = null;
-
-
-	private String Band, Number, Class, Teacher, Title, Date, Type,
-			Description;
 	
 	DrawerLayout mDrawerLayout;
 	LinearLayout mDrawerLinear;
@@ -98,9 +95,10 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 	Fragment fragment2 = new FragmentsHomeworkDue();
 	Fragment fragment3 = new FragmentSettings();
 	ProgressDialog LoginDialog;
-	int homeworkCount;
+	public static int homeworkCount;
+	
 	Notification n;
-	ArrayList<String> due_tommorow_list;
+	public static ArrayList<String> due_tommorow_list;
 
 	private HttpResponse response;
 
@@ -112,7 +110,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 	private Activity activityContext;
 
-	private String date;
+	private static String date;
 
 	public DailyHomeworkDownload() {
 		super();
@@ -121,6 +119,8 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context receive_context, Intent intent) {
 
+		due_tommorow_list = new ArrayList<String>();
+		
 		this.activityContext = activityContext;
 
 		Log.d("Beacon Portal", "alarm activated daily");
@@ -128,8 +128,6 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 		context = receive_context;
 
 		new Update().execute();
-		
-		createNotification();
 
 	}
 
@@ -231,6 +229,17 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					parse_due_tommorow_string();
 
 					parse_due_today_string();
+					
+					parse_due_tommorow_content();
+					
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					createNotification();
 
 				} catch (IllegalStateException e) {
 					// TODO Auto-generated catch block
@@ -243,6 +252,17 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					parse_due_tommorow_string();
 
 					parse_due_today_string();
+					
+					parse_due_tommorow_content();
+					
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					createNotification();
 
 					SharedPreferences.Editor localEditor = context
 							.getSharedPreferences("homework",
@@ -260,6 +280,17 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					parse_due_tommorow_string();
 
 					parse_due_today_string();
+					
+					parse_due_tommorow_content();
+					
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					createNotification();
 
 					SharedPreferences.Editor localEditor = context
 							.getSharedPreferences("homework",
@@ -276,6 +307,17 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					parse_due_tommorow_string();
 
 					parse_due_today_string();
+					
+					parse_due_tommorow_content();
+					
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					createNotification();
 
 					SharedPreferences.Editor localEditor = context
 							.getSharedPreferences("homework",
@@ -327,10 +369,26 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 				localEditor.putString("download_error", "no");
 
-				localEditor.commit();
+				localEditor.commit();			
 
 			}
 
+			System.out.println("Homework List For Update = "+due_tommorow_list);
+			
+//			parse_due_tommorow_content();
+//			
+//			try{
+//			
+//			createNotification();
+//			
+//			}catch (IndexOutOfBoundsException e) {
+//				
+//				parse_due_tommorow_content();
+//				
+//				createNotification();
+//				
+//			}
+//			
 		}
 
 		
@@ -883,8 +941,6 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 	}
 	
 	public void parse_due_tommorow_content() {
-
-		due_tommorow_list = new ArrayList<String>();
 		
 		Calendar calendar = Calendar.getInstance();
 
@@ -926,7 +982,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 
 		}
 
-		System.out.println(date);
+		System.out.println("Date = "+ date);
 
 		SharedPreferences Tommorow_Homework_Counter = context.getSharedPreferences(
 				"due_tommorow_counter", Context.MODE_PRIVATE);
@@ -963,157 +1019,34 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			String Description1 = Todays_Homework.getString("due_tommorow7",
 					null);
 
-			if (Band1 != null) {
-
-				Band = Band1.trim();
-
-				Log.d("Band" + i, Band);
-
-			}
-
-			if (Number1 != null) {
-
-				Number = Number1.trim();
-
-				Log.d("Number" + i, Number);
-
-			}
-
-			if (Class1 != null) {
-
-				Class = Class1.trim();
-
-				Log.d("Class" + i, Class);
-
-			}
-
-			if (Teacher1 != null) {
-
-				Teacher = Teacher1.trim();
-
-				Log.d("Teacher" + i, Teacher);
-
-			}
-
-			if (Title1 != null) {
-
-				Title = Title1.trim();
-
-				Log.d("Title" + i, Title);
-
-			}
-
-			if (Date1 != null) {
-
-				Date = Date1.trim();
-
-				Log.d("Date" + i, Date);
-
-			}
-
-			if (Type1 != null) {
-
-				Type = Type1.trim();
-
-				Log.d("Type" + i, Type);
-
-			}
-
-			if (Description1 != null) {
-
-				Description = Description1.trim();
-
-				Log.d("Description" + i, Description);
-
-			}
-
 			SharedPreferences description_check = context
 					.getSharedPreferences("descriptioncheck",
 							Context.MODE_PRIVATE);
 
 			String descriptionCheck = description_check.getString(
 					"description", "");
+			
+			System.out.println("DateCheck ="+ Date1);
+			
+			System.out.println("datecheck ="+date);
 
-			if (Type != null && Description != null
-					&& !Description.equals(descriptionCheck)
-					&& Date.contentEquals(date)) {
-
-				if (Band1 != null) {
-
-					Band = Band1.trim();
-
-					Log.d("Band Passed" + i, Band);
-
-				}
-
-				if (Number1 != null) {
-
-					Number = Number1.trim();
-
-					Log.d("Number Passed" + i, Number);
-
-				}
-
-				if (Class1 != null) {
-
-					Class = Class1.trim();
-
-					Log.d("Class Passed" + i, Class);
-
-				}
-
-				if (Teacher1 != null) {
-
-					Teacher = Teacher1.trim();
-
-					Log.d("Teacher Passed" + i, Teacher);
-
-				}
-
-				if (Title1 != null) {
-
-					Title = Title1.trim();
-
-					Log.d("Title Passed" + i, Title);
-
-				}
-
-				if (Date1 != null) {
-
-					Date = Date1.trim();
-
-					Log.d("Date Passed" + i, Date);
-
-				}
-
-				if (Type1 != null) {
-
-					Type = Type1.trim();
-
-					Log.d("Type Passed" + i, Type);
-
-				}
-
-				if (Description1 != null) {
-
-					Description = Description1.trim();
-
-					Log.d("Description Passed" + i, Description);
-
-				}
-
+			if (Date1.contentEquals(date)) {
+				
 				SharedPreferences.Editor checkeditor = context
 
 				.getSharedPreferences("descriptioncheck", Context.MODE_PRIVATE)
 						.edit();
 
-				checkeditor.putString("description", Description);
+				checkeditor.putString("description", Description1);
 
 				checkeditor.commit();
 
-				if (!"Type".equals(Type)) {
+				if (!"Type".equals(Type1)) {
 					
-					due_tommorow_list.add(Title);
+					due_tommorow_list.add(Title1);
+					
+					System.out.println("Homework Title For Notification = "+due_tommorow_list);
+					
 				}
 
 			}
@@ -1125,6 +1058,10 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 	 public void createNotification() {
 		// prepare intent which is triggered if the
 		// notification is selected
+		 
+		 System.out.println("Homework Count For Notification = "+ homeworkCount);
+		 
+		 System.out.println("Homework List For Notification = "+due_tommorow_list);
 
 		 SharedPreferences sharedpre = context.getSharedPreferences("show_view",
 					Context.MODE_PRIVATE);
@@ -1170,7 +1107,6 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 		}
 		
 		// build notification
-		// the addAction re-use the same intent to keep the example short
 		
 		if(homeworkCount == 0){
 		
@@ -1206,7 +1142,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("1 Assignment Due Tommorow")
 			        .setSmallIcon(R.drawable.ic_action_assignment_light)
-			        .setLargeIcon(icon1)
+			        .setLargeIcon(getCroppedBitmap(coloredBitmap))
 			        .setContentText(due_tommorow_list.get(0))
 			        .setContentIntent(pIntent)
 			        .setStyle(new NotificationCompat.InboxStyle()
@@ -1227,7 +1163,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("2 Assignments Due Tommorow")
 			        .setSmallIcon(R.drawable.ic_action_assignment_light)
-			        .setLargeIcon(icon2)
+			        .setLargeIcon(getCroppedBitmap(coloredBitmap))
 			        .setContentText(due_tommorow_list.get(0))
 			        .setContentIntent(pIntent)
 			        .setStyle(new NotificationCompat.InboxStyle()
@@ -1249,7 +1185,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("3 Assignments Due Tommorow")
 			        .setSmallIcon(R.drawable.ic_action_assignment_light)
-			        .setLargeIcon(icon3)
+			        .setLargeIcon(getCroppedBitmap(coloredBitmap))
 			        .setContentText(due_tommorow_list.get(0))
 			        .setContentIntent(pIntent)
 			        .setStyle(new NotificationCompat.InboxStyle()
@@ -1272,7 +1208,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("4 Assignments Due Tommorow")
 			        .setSmallIcon(R.drawable.ic_action_assignment_light)
-			        .setLargeIcon(icon4)
+			        .setLargeIcon(getCroppedBitmap(coloredBitmap))
 			        .setContentText(due_tommorow_list.get(0))
 			        .setStyle(new NotificationCompat.InboxStyle()
 			        .addLine(due_tommorow_list.get(0))
@@ -1297,7 +1233,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("5 Assignments Due Tommorow")
 			        .setSmallIcon(R.drawable.ic_action_assignment_light)
-			        .setLargeIcon(icon5)
+			        .setLargeIcon(getCroppedBitmap(coloredBitmap))
 			        .setContentText(due_tommorow_list.get(0))
 			        .setContentIntent(pIntent)
 			        .setStyle(new NotificationCompat.InboxStyle()
@@ -1322,7 +1258,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("6 Assignments Due Tommorow")
 			        .setSmallIcon(R.drawable.ic_action_assignment_light)
-			        .setLargeIcon(icon6)
+			        .setLargeIcon(getCroppedBitmap(coloredBitmap))
 			        .setContentText(due_tommorow_list.get(0))
 			        .setContentIntent(pIntent)
 			        .setStyle(new NotificationCompat.InboxStyle()
@@ -1348,7 +1284,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					.setColor(Color.parseColor("#607D8B"))	
 					.setContentTitle("7 Assignments Due Tommorow")
 			        .setSmallIcon(R.drawable.ic_action_assignment_light)
-			        .setLargeIcon(icon7)
+			        .setLargeIcon(getCroppedBitmap(coloredBitmap))
 			        .setContentText(due_tommorow_list.get(0))
 			        .setContentIntent(pIntent)
 			        .setStyle(new NotificationCompat.InboxStyle()
@@ -1374,7 +1310,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("8 Assignments Due Tommorow")
 			        .setSmallIcon(R.drawable.ic_action_assignment_light)
-			        .setLargeIcon(icon8)
+			        .setLargeIcon(getCroppedBitmap(coloredBitmap))
 			        .setContentText(due_tommorow_list.get(0))
 			        .setContentIntent(pIntent)
 			        .setStyle(new NotificationCompat.InboxStyle()
@@ -1400,7 +1336,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("9 Assignments Due Tommorow")
 			        .setSmallIcon(R.drawable.ic_action_assignment_light)
-			        .setLargeIcon(icon9)
+			        .setLargeIcon(getCroppedBitmap(coloredBitmap))
 			        .setContentText(due_tommorow_list.get(0))
 			        .setContentIntent(pIntent)
 			        .setStyle(new NotificationCompat.InboxStyle()
@@ -1428,7 +1364,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("10 or More Assignments Due Tommorow")
 			        .setSmallIcon(R.drawable.ic_action_assignment_light)
-			        .setLargeIcon(icon10)
+			        .setLargeIcon(getCroppedBitmap(coloredBitmap))
 			        .setContentText(due_tommorow_list.get(0))
 			        .setContentIntent(pIntent)
 			        .setStyle(new NotificationCompat.InboxStyle()

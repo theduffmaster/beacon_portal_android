@@ -27,6 +27,8 @@ import android.preference.PreferenceScreen;
 import android.preference.RingtonePreference;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
@@ -233,7 +235,14 @@ public class AccountSettings extends MAILPreferenceActivity {
 		if (!sharedpref.contains("actionbar_color")) {
 
 			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#1976D2")));
+					new ColorDrawable(Color.parseColor("#4285f4")));
+			
+			if (Build.VERSION.SDK_INT >= 21) {
+	            Window window = getWindow();
+	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	            window.setStatusBarColor(Color.parseColor("#3367d6"));
+	}
 
 		} else {
 
@@ -257,6 +266,13 @@ public class AccountSettings extends MAILPreferenceActivity {
 
 			}
 
+			if (Build.VERSION.SDK_INT >= 21) {
+	            Window window = getWindow();
+	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	            window.setStatusBarColor(Color.parseColor(actionbar_colors));
+	}
+		
 		}
 
 		int titleId = getResources().getIdentifier("action_bar_title", "id",

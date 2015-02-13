@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:textAlignment="center"
-        android:text="Homework due will be updated every day at the time you specify here."
+        android:text="A notification will be issued daily at the time you specify here. Press stop to stop all homework notifications."
         android:textSize="14sp" />
 
      <TimePicker
@@ -18,13 +18,5 @@
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
          />
-
-     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:textAlignment="center"
-        android:text="Pressing &quot;Cancel Updates&quot; will set it so it doesn't update automatically in the background."
-        android:textAppearance="?android:attr/textAppearanceMedium" />
      
 </LinearLayout>
