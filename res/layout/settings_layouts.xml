@@ -26,7 +26,7 @@
              
             android:singleLine="true"
             android:text="Choose What to Show at App Start"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textViewSubTitle"
@@ -35,16 +35,15 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="12dp"
-            
             android:singleLine="true"
             android:text="Show &quot;Schedule&quot; or &quot;Homework Due&quot;"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
     </RelativeLayout>
 
     <View
         android:id="@+id/view1"
         android:layout_width="fill_parent"
-        android:layout_height="2dp"
+        android:layout_height="1px"
          
         android:layout_alignBottom="@+id/Relative_Layout_Settings"
         android:background="#D3D3D3" />
@@ -64,7 +63,7 @@
             android:layout_marginTop="10dp"
             android:singleLine="true"
             android:text="Set Notification Creation Time"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textViewSubTitle_Refresh"
@@ -77,14 +76,14 @@
             android:maxLines="2"
             android:singleLine="true"
             android:text="A notification is set to be issued at 3:00pm"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
 
     </RelativeLayout>
     
     <View
         android:id="@+id/view5"
         android:layout_width="fill_parent"
-        android:layout_height="2dp"
+        android:layout_height="1px"
         android:layout_alignBottom="@+id/Relative_Layout_Settings"
         android:background="#D3D3D3" />
     
@@ -103,7 +102,7 @@
             android:layout_marginTop="10dp"
             android:singleLine="true"
             android:text="Edit Bands Button Position"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textViewSubTitle_Edit"
@@ -117,7 +116,7 @@
             android:maxLines="2"
             android:singleLine="true"
             android:text="Edit Button not in ActionBar"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
 
         <CheckBox
             android:id="@+id/checkBoxEdit"
@@ -131,7 +130,7 @@
         <View
         android:id="@+id/view4"
         android:layout_width="fill_parent"
-        android:layout_height="2dp"
+        android:layout_height="1px"
          
         android:layout_alignBottom="@+id/Relative_Layout_Settings"
         android:background="#D3D3D3" />
@@ -151,7 +150,7 @@
             android:layout_marginTop="10dp"
             android:singleLine="true"
             android:text="Swipeable Homework Items"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textViewSubTitle_Swipe"
@@ -165,7 +164,7 @@
             android:maxLines="2"
             android:singleLine="true"
             android:text="Homework Items are Swipeable"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
 
         <CheckBox
             android:id="@+id/checkBoxSwipe"

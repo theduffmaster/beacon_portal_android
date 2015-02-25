@@ -3,8 +3,8 @@
     
 
 	package="com.bernard.beaconportal.activities"
-    android:versionCode="50"
-    android:versionName="1.94"
+    android:versionCode="51"
+    android:versionName="1.95"
     >
 	
 	<uses-permission android:name="android.permission.BLUETOOTH" />
@@ -109,8 +109,8 @@
         </activity>
         
         <activity  
-         android:name=".homeworkdueDetailsActivity"
-         android:parentActivityName="com.bernard.beaconportal.activities.MainActivity"
+         android:name=".homeworkdue.HomeworkDueDetailsActivity"
+         android:parentActivityName="com.bernard.beaconportal.activities.homeworkdue.MainActivity"
         android:theme="@style/CustomActionBarTheme"
         >
          
@@ -488,8 +488,9 @@ otherwise it would make Mail start at the wrong time
             android:authorities="com.bernard.beaconportal.activities.provider.email"
             android:exported="false"
             />
-		<receiver android:name=".DailyHomeworkDownload"/> 
-		<receiver android:name=".MidnightHomeworkDownload"/> 
+
+       <receiver android:name="com.bernard.beaconportal.activities.homeworkdue.alarm.MidnightHomeworkDownload"/> 
+        
         <receiver
             android:name=".provider.UnreadWidgetProvider"
             android:label="@string/unread_widget_label"

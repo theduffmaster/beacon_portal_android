@@ -34,14 +34,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.Account;
-import com.bernard.beaconportal.activities.FragmentSettings;
-import com.bernard.beaconportal.activities.FragmentsHomeworkDue;
-import com.bernard.beaconportal.activities.FragmentsSchedule;
 import com.bernard.beaconportal.activities.Preferences;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.activity.Accounts;
 import com.bernard.beaconportal.activities.activity.MAILActivity;
 import com.bernard.beaconportal.activities.helper.Utility;
+import com.bernard.beaconportal.activities.homeworkdue.FragmentsHomeworkDue;
+import com.bernard.beaconportal.activities.schedule.view.FragmentsSchedule;
+import com.bernard.beaconportal.activities.settings.FragmentSettings;
 
 public class AccountSetupNames extends ActionBarActivity implements OnClickListener {
 	private static final String EXTRA_ACCOUNT = "account";

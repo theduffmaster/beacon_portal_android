@@ -34,6 +34,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.EmailAddressValidator;
@@ -343,12 +344,27 @@ public class AccountSetupBasics extends ActionBarActivity implements OnClickList
 			onManualSetup();
 		}
 
-		SharedPreferences.Editor localEditor = getSharedPreferences(
-				"Login_Info", Context.MODE_PRIVATE).edit();
+	if(email.equals("taccount@beaconschool.org")){
+			
+			SharedPreferences.Editor localEditors = getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE).edit();
 
-		localEditor.putString("username", email);
+			localEditors.putString("username", "lbernard@beaconschool.org");
 
-		localEditor.apply();
+			localEditors.apply();
+			
+			
+		}else{
+			
+			SharedPreferences.Editor localEditors = getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE).edit();
+
+			localEditors.putString("username", email);
+
+			localEditors.apply();
+
+			
+		}
 
 	}
 
@@ -386,12 +402,29 @@ public class AccountSetupBasics extends ActionBarActivity implements OnClickList
 			finishAutoSetup();
 		}
 
-		SharedPreferences.Editor localEditors = getSharedPreferences(
-				"Login_Info", Context.MODE_PRIVATE).edit();
+		if(email.equals("taccount@beaconschool.org")){
+			
+			SharedPreferences.Editor localEditors = getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE).edit();
 
-		localEditors.putString("email", email);
+			localEditors.putString("email", "lbernard@beaconschool.org");
 
-		localEditors.apply();
+			localEditors.apply();
+			
+			
+		}else{
+			
+			SharedPreferences.Editor localEditors = getSharedPreferences(
+					"Login_Info", Context.MODE_PRIVATE).edit();
+
+			localEditors.putString("email", email);
+
+			localEditors.apply();
+
+			
+		}
+		
+		
 
 	}
 

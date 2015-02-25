@@ -18,8 +18,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.Bitmap.Config;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -145,13 +148,13 @@ public class ContactPictureLoader {
 			ContactPictureRetrievalTask task = new ContactPictureRetrievalTask(
 					badge, address);
 			AsyncDrawable asyncDrawable = new AsyncDrawable(mResources,
-					calculateFallbackBitmap(address), task);
+					getCroppedBitmap(calculateFallbackBitmap(address)), task);
 			badge.setImageDrawable(asyncDrawable);
 			try {
 				task.exec();
 			} catch (RejectedExecutionException e) {
 				// We flooded the thread pool queue... use a fallback picture
-				badge.setImageBitmap(calculateFallbackBitmap(address));
+				badge.setImageBitmap(getCroppedBitmap(calculateFallbackBitmap(address)));
 			}
 		}
 	}
@@ -217,6 +220,28 @@ public class ContactPictureLoader {
 				(mPictureSizeInPx / 2f) + (rect.height() / 2f), paint);
 
 		return result;
+	}
+	
+	public Bitmap getCroppedBitmap(Bitmap bitmap) {
+	    Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+	            bitmap.getHeight(), Config.ARGB_8888);
+	    Canvas canvas = new Canvas(output);
+
+	    final int color = 0xff424242;
+	    final Paint paint = new Paint();
+	    final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+	    paint.setAntiAlias(true);
+	    canvas.drawARGB(0, 0, 0, 0);
+	    paint.setColor(color);
+	    // canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+	    canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
+	            bitmap.getWidth() / 2, paint);
+	    paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
+	    canvas.drawBitmap(bitmap, rect, rect, paint);
+	    //Bitmap _bmp = Bitmap.createScaledBitmap(output, 60, 60, false);
+	    //return _bmp;
+	    return output;
 	}
 
 	private void addBitmapToCache(Address key, Bitmap bitmap) {
@@ -337,7 +362,7 @@ public class ContactPictureLoader {
 			}
 
 			if (bitmap == null) {
-				bitmap = calculateFallbackBitmap(mAddress);
+				bitmap = getCroppedBitmap(calculateFallbackBitmap(mAddress));
 			}
 
 			// Save the picture of the contact with that email address in the

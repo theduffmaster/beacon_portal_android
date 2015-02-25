@@ -73,6 +73,10 @@ import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.activity.Accounts;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupBasics;
+import com.bernard.beaconportal.activities.homeworkdue.FragmentsHomeworkDue;
+import com.bernard.beaconportal.activities.homeworkdue.alarms.MidnightHomeworkDownload;
+import com.bernard.beaconportal.activities.schedule.view.FragmentsSchedule;
+import com.bernard.beaconportal.activities.settings.FragmentSettings;
 
 @SuppressLint("ResourceAsColor")
 public class MainActivity extends ActionBarActivity {

@@ -47,11 +47,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bernard.beaconportal.activities.FragmentSettings;
-import com.bernard.beaconportal.activities.FragmentsHomeworkDue;
-import com.bernard.beaconportal.activities.FragmentsSchedule;
 import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.homeworkdue.FragmentsHomeworkDue;
+import com.bernard.beaconportal.activities.schedule.view.FragmentsSchedule;
+import com.bernard.beaconportal.activities.settings.FragmentSettings;
 
 public class LoadingLayout extends ActionBarActivity {
 
