@@ -1008,22 +1008,22 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					.getSharedPreferences(due_tommorow_shared,
 							Context.MODE_PRIVATE);
 
-			String Band1 = Todays_Homework.getString("due_tommorow0", null);
+			String Band1 = Todays_Homework.getString("due_tommorow0", "");
 
-			String Number1 = Todays_Homework.getString("due_tommorow1", null);
+			String Number1 = Todays_Homework.getString("due_tommorow1", "");
 
-			String Class1 = Todays_Homework.getString("due_tommorow2", null);
+			String Class1 = Todays_Homework.getString("due_tommorow2", "");
 
-			String Teacher1 = Todays_Homework.getString("due_tommorow3", null);
+			String Teacher1 = Todays_Homework.getString("due_tommorow3", "");
 
-			String Title1 = Todays_Homework.getString("due_tommorow4", null);
+			String Title1 = Todays_Homework.getString("due_tommorow4", "");
 
-			String Date1 = Todays_Homework.getString("due_tommorow5", null);
+			String Date1 = Todays_Homework.getString("due_tommorow5", "");
 
-			String Type1 = Todays_Homework.getString("due_tommorow6", null);
+			String Type1 = Todays_Homework.getString("due_tommorow6", "");
 
 			String Description1 = Todays_Homework.getString("due_tommorow7",
-					null);
+					"");
 
 			SharedPreferences description_check = context
 					.getSharedPreferences("descriptioncheck",
@@ -1036,7 +1036,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			
 			System.out.println("datecheck ="+date);
 
-			if (Date1.contentEquals(date)) {
+			if (Date1.contentEquals(date) && Date1 != null) {
 				
 				SharedPreferences.Editor checkeditor = context
 

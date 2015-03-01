@@ -4,7 +4,7 @@
 
 	package="com.bernard.beaconportal.activities"
     android:versionCode="51"
-    android:versionName="1.95"
+    android:versionName="1.96"
     >
 	
 	<uses-permission android:name="android.permission.BLUETOOTH" />
@@ -489,8 +489,10 @@ otherwise it would make Mail start at the wrong time
             android:exported="false"
             />
 
-       <receiver android:name="com.bernard.beaconportal.activities.homeworkdue.alarm.MidnightHomeworkDownload"/> 
-        
+       <receiver android:name="com.bernard.beaconportal.activities.homeworkdue.alarms.DailyHomeworkDownload"/> 
+		
+		<receiver android:name="com.bernard.beaconportal.activities.homeworkdue.alarms.MidnightHomeworkDownload"/> 
+       
         <receiver
             android:name=".provider.UnreadWidgetProvider"
             android:label="@string/unread_widget_label"
