@@ -270,8 +270,6 @@ public class MidnightHomeworkDownload extends BroadcastReceiver {
 			intent.putExtra("message", "This is my message!");
 			LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
-			Toast.makeText(context, "Refresh Finished", 4000).show();
-
 			SharedPreferences download_error = context.getSharedPreferences(
 					"homework", Context.MODE_PRIVATE);
 

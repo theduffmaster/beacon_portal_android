@@ -473,10 +473,11 @@ public class LocalStore extends Store implements Serializable {
 
 							editor.commit();
 							long endTime = System.currentTimeMillis();
-							Log.i(MAIL.LOG_TAG, "Putting folder preferences for "
-									+ folders.size()
-									+ " folders back into Preferences took "
-									+ (endTime - startTime) + " ms");
+							Log.i(MAIL.LOG_TAG,
+									"Putting folder preferences for "
+											+ folders.size()
+											+ " folders back into Preferences took "
+											+ (endTime - startTime) + " ms");
 						} catch (Exception e) {
 							Log.e(MAIL.LOG_TAG,
 									"Could not replace Preferences in upgrade from DB_VERSION 41",
@@ -855,11 +856,13 @@ public class LocalStore extends Store implements Serializable {
 			Log.i(MAIL.LOG_TAG, "After prune / before compaction size = "
 					+ getSize());
 
-			Log.i(MAIL.LOG_TAG, "Before clear folder count = " + getFolderCount());
+			Log.i(MAIL.LOG_TAG, "Before clear folder count = "
+					+ getFolderCount());
 			Log.i(MAIL.LOG_TAG, "Before clear message count = "
 					+ getMessageCount());
 
-			Log.i(MAIL.LOG_TAG, "After prune / before clear size = " + getSize());
+			Log.i(MAIL.LOG_TAG, "After prune / before clear size = "
+					+ getSize());
 		}
 		// don't delete messages that are Local, since there is no copy on the
 		// server.
@@ -1930,8 +1933,8 @@ public class LocalStore extends Store implements Serializable {
 						.getString(id + ".displayMode",
 								prefHolder.displayClass.name()));
 			} catch (Exception e) {
-				Log.e(MAIL.LOG_TAG,
-						"Unable to load displayMode for " + getName(), e);
+				Log.e(MAIL.LOG_TAG, "Unable to load displayMode for "
+						+ getName(), e);
 			}
 			if (prefHolder.displayClass == FolderClass.NONE) {
 				prefHolder.displayClass = FolderClass.NO_CLASS;
@@ -1942,7 +1945,8 @@ public class LocalStore extends Store implements Serializable {
 						.getString(id + ".syncMode",
 								prefHolder.syncClass.name()));
 			} catch (Exception e) {
-				Log.e(MAIL.LOG_TAG, "Unable to load syncMode for " + getName(), e);
+				Log.e(MAIL.LOG_TAG, "Unable to load syncMode for " + getName(),
+						e);
 
 			}
 			if (prefHolder.syncClass == FolderClass.NONE) {
@@ -1954,7 +1958,8 @@ public class LocalStore extends Store implements Serializable {
 						.getString(id + ".pushMode",
 								prefHolder.pushClass.name()));
 			} catch (Exception e) {
-				Log.e(MAIL.LOG_TAG, "Unable to load pushMode for " + getName(), e);
+				Log.e(MAIL.LOG_TAG, "Unable to load pushMode for " + getName(),
+						e);
 			}
 			if (prefHolder.pushClass == FolderClass.NONE) {
 				prefHolder.pushClass = FolderClass.INHERITED;
@@ -2494,13 +2499,15 @@ public class LocalStore extends Store implements Serializable {
 								String oldUID = message.getUid();
 
 								if (MAIL.DEBUG) {
-									Log.d(MAIL.LOG_TAG, "Updating folder_id to "
-											+ lDestFolder.getId()
-											+ " for message with UID "
-											+ message.getUid() + ", id "
-											+ lMessage.getId()
-											+ " currently in folder "
-											+ getName());
+									Log.d(MAIL.LOG_TAG,
+											"Updating folder_id to "
+													+ lDestFolder.getId()
+													+ " for message with UID "
+													+ message.getUid()
+													+ ", id "
+													+ lMessage.getId()
+													+ " currently in folder "
+													+ getName());
 								}
 
 								String newUid = MAIL.LOCAL_UID_PREFIX
@@ -3694,8 +3701,8 @@ public class LocalStore extends Store implements Serializable {
 									return cursor.getInt(0);
 								}
 							} catch (Exception e) {
-								Log.e(MAIL.LOG_TAG, "Unable to updateLastUid: ",
-										e);
+								Log.e(MAIL.LOG_TAG,
+										"Unable to updateLastUid: ", e);
 							} finally {
 								Utility.closeQuietly(cursor);
 							}

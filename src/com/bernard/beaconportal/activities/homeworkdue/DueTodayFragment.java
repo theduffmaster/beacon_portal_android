@@ -619,7 +619,6 @@ public class DueTodayFragment extends Fragment {
 		lView.setRequireTouchBeforeDismiss(false);
 		lView.setSwipingLayout(R.id.homework_item);
 
-
 	}
 
 	public void parse_due_today_string() {
@@ -1295,8 +1294,7 @@ public class DueTodayFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View viewClicked,
 					int position, long id) {
 
-				DueTodayList clickedhomeworkdue = due_today_list
-						.get(position);
+				DueTodayList clickedhomeworkdue = due_today_list.get(position);
 
 				Intent intent = new Intent(mActivity,
 						HomeworkDueDetailsActivity.class);

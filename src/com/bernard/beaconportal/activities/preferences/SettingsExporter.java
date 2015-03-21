@@ -99,8 +99,9 @@ public class SettingsExporter {
 				try {
 					os.close();
 				} catch (IOException ioe) {
-					Log.w(MAIL.LOG_TAG, "Couldn't close exported settings file: "
-							+ filename);
+					Log.w(MAIL.LOG_TAG,
+							"Couldn't close exported settings file: "
+									+ filename);
 				}
 			}
 		}

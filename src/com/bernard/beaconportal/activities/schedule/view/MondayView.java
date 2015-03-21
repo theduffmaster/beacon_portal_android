@@ -79,22 +79,22 @@ public class MondayView extends Fragment {
 
 	@Override
 	public void onResume() {
-		
+
 		buildScheduleList();
-		
+
 		super.onResume();
 
 		myschedule = new ArrayList<ScheduleView>();
 		populatescheduleList();
 		populateListView();
-		
+
 		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
 				this.mClickedReceiver, new IntentFilter("refreshMonday"));
 
 	}
-	
-	private void buildScheduleList(){
-		
+
+	private void buildScheduleList() {
+
 		Calendar calendar = Calendar.getInstance();
 		int day = calendar.get(Calendar.DAY_OF_WEEK);
 
@@ -210,8 +210,8 @@ public class MondayView extends Fragment {
 
 	}
 
-	private void updateListView(){
-		
+	private void updateListView() {
+
 		adapter = new MyListAdapter();
 		list = (ListView) getView().findViewById(R.id.listView2);
 
@@ -225,9 +225,8 @@ public class MondayView extends Fragment {
 			}
 		});
 
-		
 	}
-	
+
 	public void showDialog() {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -489,8 +488,7 @@ public class MondayView extends Fragment {
 							Intent intent = new Intent("refreshMonday");
 
 							intent.putExtra("refresh", "refresh listview");
-							LocalBroadcastManager
-									.getInstance(getActivity())
+							LocalBroadcastManager.getInstance(getActivity())
 									.sendBroadcast(intent);
 
 						}

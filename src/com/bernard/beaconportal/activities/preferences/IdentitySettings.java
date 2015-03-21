@@ -86,7 +86,8 @@ public class IdentitySettings {
 
 		@Override
 		public Object getDefaultValue() {
-			return MAIL.app.getResources().getString(R.string.default_signature);
+			return MAIL.app.getResources()
+					.getString(R.string.default_signature);
 		}
 
 		@Override

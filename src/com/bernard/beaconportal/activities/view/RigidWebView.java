@@ -80,7 +80,8 @@ public class RigidWebView extends WebView {
 			mIgnoreNext = false;
 			if (recentlySized) {
 				if (MAIL.DEBUG) {
-					Log.w(MAIL.LOG_TAG, "Supressing size change in RigidWebView");
+					Log.w(MAIL.LOG_TAG,
+							"Supressing size change in RigidWebView");
 				}
 				return;
 			}

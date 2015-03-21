@@ -168,10 +168,10 @@ import de.cketti.library.changelog.ChangeLog;
  * shows a list of messages. From this Activity the user can perform all
  * standard message operations.
  */
-public class MessageList extends MAILListActivity implements OnItemClickListener,
-		MessageListFragmentListener, MessageViewFragmentListener,
-		OnBackStackChangedListener, OnSwipeGestureListener,
-		OnSwitchCompleteListener {
+public class MessageList extends MAILListActivity implements
+		OnItemClickListener, MessageListFragmentListener,
+		MessageViewFragmentListener, OnBackStackChangedListener,
+		OnSwipeGestureListener, OnSwitchCompleteListener {
 
 	private static final BaseAccount[] EMPTY_BASE_ACCOUNT_ARRAY = new BaseAccount[0];
 
@@ -660,7 +660,8 @@ public class MessageList extends MAILListActivity implements OnItemClickListener
 				@Override
 				public void run() {
 					AccountStats stats = accountStats.get(account.getUuid());
-					if (newSize != -1 && stats != null && MAIL.measureAccounts()) {
+					if (newSize != -1 && stats != null
+							&& MAIL.measureAccounts()) {
 						stats.size = newSize;
 					}
 					String toastText = getString(
@@ -1099,13 +1100,13 @@ public class MessageList extends MAILListActivity implements OnItemClickListener
 						.parseColor("#4285f4")));
 
 			}
-			
+
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor("#3367d6"));
-	}
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor("#3367d6"));
+			}
 
 		} else {
 
@@ -1123,11 +1124,11 @@ public class MessageList extends MAILListActivity implements OnItemClickListener
 			}
 
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor("#3367d6"));
-	}
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor("#3367d6"));
+			}
 
 		}
 
@@ -2389,8 +2390,10 @@ public class MessageList extends MAILListActivity implements OnItemClickListener
 					folder.flaggedMessageCount = folder.folder
 							.getFlaggedMessageCount();
 				} catch (Exception e) {
-					Log.e(MAIL.LOG_TAG, "Unable to get flaggedMessageCount for "
-							+ mAccount.getDescription() + ":" + folder.name);
+					Log.e(MAIL.LOG_TAG,
+							"Unable to get flaggedMessageCount for "
+									+ mAccount.getDescription() + ":"
+									+ folder.name);
 				}
 
 			}
@@ -2847,7 +2850,8 @@ public class MessageList extends MAILListActivity implements OnItemClickListener
 
 		if (mSingleAccountMode
 				&& (mAccount == null || !mAccount.isAvailable(this))) {
-			Log.i(MAIL.LOG_TAG, "not opening MessageList of unavailable account");
+			Log.i(MAIL.LOG_TAG,
+					"not opening MessageList of unavailable account");
 			onAccountUnavailable();
 			return false;
 		}

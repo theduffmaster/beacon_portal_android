@@ -327,7 +327,8 @@ public class AccountSettings {
 
 		@Override
 		public Object fromString(String value) {
-			StorageManager storageManager = StorageManager.getInstance(MAIL.app);
+			StorageManager storageManager = StorageManager
+					.getInstance(MAIL.app);
 			Map<String, String> providers = storageManager
 					.getAvailableProviders();
 			if (providers.containsKey(value)) {

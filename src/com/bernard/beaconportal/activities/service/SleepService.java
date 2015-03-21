@@ -51,13 +51,14 @@ public class SleepService extends CoreService {
 			boolean countedDown = latch.await(sleepTime, TimeUnit.MILLISECONDS);
 			if (!countedDown) {
 				if (MAIL.DEBUG)
-					Log.d(MAIL.LOG_TAG, "SleepService latch timed out for id = "
-							+ id + ", thread "
-							+ Thread.currentThread().getName());
+					Log.d(MAIL.LOG_TAG,
+							"SleepService latch timed out for id = " + id
+									+ ", thread "
+									+ Thread.currentThread().getName());
 			}
 		} catch (InterruptedException ie) {
-			Log.e(MAIL.LOG_TAG, "SleepService Interrupted while awaiting latch",
-					ie);
+			Log.e(MAIL.LOG_TAG,
+					"SleepService Interrupted while awaiting latch", ie);
 		}
 		SleepDatum releaseDatum = sleepData.remove(id);
 		if (releaseDatum == null) {

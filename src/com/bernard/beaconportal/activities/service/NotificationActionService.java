@@ -138,7 +138,8 @@ public class NotificationActionService extends CoreService {
 			 */
 			controller.notifyAccountCancel(this, account);
 		} else {
-			Log.w(MAIL.LOG_TAG, "Could not find account for notification action.");
+			Log.w(MAIL.LOG_TAG,
+					"Could not find account for notification action.");
 		}
 
 		return START_NOT_STICKY;

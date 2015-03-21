@@ -127,8 +127,8 @@ public class MailService extends CoreService {
 		syncBlocked = !(doBackground && hasConnectivity);
 
 		if (MAIL.DEBUG)
-			Log.i(MAIL.LOG_TAG, "MailService.onStart(" + intent + ", " + startId
-					+ "), hasConnectivity = " + hasConnectivity
+			Log.i(MAIL.LOG_TAG, "MailService.onStart(" + intent + ", "
+					+ startId + "), hasConnectivity = " + hasConnectivity
 					+ ", doBackground = " + doBackground);
 
 		// MessagingController.getInstance(getApplication()).addListener(mListener);
@@ -150,12 +150,14 @@ public class MailService extends CoreService {
 			rescheduleAllInBackground(hasConnectivity, doBackground, startId);
 		} else if (ACTION_RESTART_PUSHERS.equals(intent.getAction())) {
 			if (MAIL.DEBUG)
-				Log.v(MAIL.LOG_TAG, "***** MailService *****: restarting pushers");
+				Log.v(MAIL.LOG_TAG,
+						"***** MailService *****: restarting pushers");
 			reschedulePushersInBackground(hasConnectivity, doBackground,
 					startId);
 		} else if (ACTION_RESCHEDULE_POLL.equals(intent.getAction())) {
 			if (MAIL.DEBUG)
-				Log.v(MAIL.LOG_TAG, "***** MailService *****: rescheduling poll");
+				Log.v(MAIL.LOG_TAG,
+						"***** MailService *****: rescheduling poll");
 			reschedulePollInBackground(hasConnectivity, doBackground, startId,
 					true);
 		} else if (ACTION_REFRESH_PUSHERS.equals(intent.getAction())) {
@@ -206,7 +208,8 @@ public class MailService extends CoreService {
 	public static void saveLastCheckEnd(Context context) {
 		long lastCheckEnd = System.currentTimeMillis();
 		if (MAIL.DEBUG)
-			Log.i(MAIL.LOG_TAG, "Saving lastCheckEnd = " + new Date(lastCheckEnd));
+			Log.i(MAIL.LOG_TAG, "Saving lastCheckEnd = "
+					+ new Date(lastCheckEnd));
 		Preferences prefs = Preferences.getPreferences(context);
 		SharedPreferences sPrefs = prefs.getPreferences();
 		SharedPreferences.Editor editor = sPrefs.edit();

@@ -84,20 +84,20 @@ public class WednesdayView extends Fragment {
 		// TODO Auto-generated method stub
 
 		buildScheduleList();
-		
+
 		super.onResume();
 
 		myschedule = new ArrayList<ScheduleView>();
 		populatescheduleList();
 		populateListView();
-		
+
 		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
 				this.mClickedReceiver, new IntentFilter("refreshWednesday"));
 
 	}
-	
-	private void buildScheduleList(){
-		
+
+	private void buildScheduleList() {
+
 		SharedPreferences sharedpref = getActivity().getSharedPreferences(
 				"wednesday", Context.MODE_PRIVATE);
 		ABand = sharedpref.getString("a_Band", null);
@@ -142,7 +142,7 @@ public class WednesdayView extends Fragment {
 				"wednesday6", Context.MODE_PRIVATE);
 
 		count6 = sharedpref6.getInt("note_count", 1000);
-		
+
 	}
 
 	private void populatescheduleList() {
@@ -204,9 +204,9 @@ public class WednesdayView extends Fragment {
 		});
 
 	}
-	
-	private void updateListView(){
-		
+
+	private void updateListView() {
+
 		adapter = new MyListAdapter();
 		list = (ListView) getView().findViewById(R.id.listView2);
 
@@ -219,7 +219,7 @@ public class WednesdayView extends Fragment {
 				return onLongListItemClick(v, pos, id);
 			}
 		});
-		
+
 	}
 
 	public void showDialog() {
@@ -480,8 +480,7 @@ public class WednesdayView extends Fragment {
 							Intent intent = new Intent("refreshWednesday");
 
 							intent.putExtra("refresh", "refresh listview");
-							LocalBroadcastManager
-									.getInstance(getActivity())
+							LocalBroadcastManager.getInstance(getActivity())
 									.sendBroadcast(intent);
 
 						}

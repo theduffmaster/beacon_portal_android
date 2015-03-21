@@ -123,7 +123,7 @@ public class FragmentSettings extends Fragment {
 				.findViewById(R.id.textViewSubTitle_Refresh);
 
 		dateSubText.setText("A notification is set to be issued at " + time);
-		
+
 		relativelayout.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -234,7 +234,7 @@ public class FragmentSettings extends Fragment {
 					TextView SubTitle = (TextView) relative_views
 							.findViewById(R.id.textViewSubTitle_Edit);
 					SubTitle.setText(subTitleEdit);
-					
+
 					SubTitle.setTextColor(Color.parseColor(actionbar_colors));
 				}
 			}
@@ -259,7 +259,7 @@ public class FragmentSettings extends Fragment {
 				TextView SubTitle = (TextView) relative_views
 						.findViewById(R.id.textViewSubTitle_Swipe);
 				SubTitle.setText(subTitleSwipe);
-				
+
 				SubTitle.setTextColor(Color.parseColor(actionbar_colors));
 
 			} else {
@@ -270,7 +270,7 @@ public class FragmentSettings extends Fragment {
 					TextView SubTitle = (TextView) relative_views
 							.findViewById(R.id.textViewSubTitle_Swipe);
 					SubTitle.setText(subTitleSwipe);
-					
+
 					SubTitle.setTextColor(Color.parseColor(actionbar_colors));
 				}
 			}
@@ -346,7 +346,7 @@ public class FragmentSettings extends Fragment {
 					TextView SubTitle = (TextView) relative_views
 							.findViewById(R.id.textViewSubTitle_Edit);
 					SubTitle.setText(subTitleEdit);
-					
+
 					SubTitle.setTextColor(Color.parseColor(actionbar_colors));
 				}
 
@@ -372,7 +372,7 @@ public class FragmentSettings extends Fragment {
 				TextView SubTitle = (TextView) relative_views
 						.findViewById(R.id.textViewSubTitle_Swipe);
 				SubTitle.setText(subTitleSwipe);
-				
+
 				SubTitle.setTextColor(Color.parseColor(actionbar_colors));
 
 			} else {
@@ -383,7 +383,7 @@ public class FragmentSettings extends Fragment {
 					TextView SubTitle = (TextView) relative_views
 							.findViewById(R.id.textViewSubTitle_Swipe);
 					SubTitle.setText(subTitleSwipe);
-					
+
 				}
 			}
 
@@ -466,8 +466,7 @@ public class FragmentSettings extends Fragment {
 				actionbar_colors));
 
 		settings.add(new Settings("Set Secondary Color",
-				"Pick a color to compliment the theme color",
-				background_colors));
+				"Pick a color to compliment the theme color", background_colors));
 
 	}
 
@@ -520,18 +519,20 @@ public class FragmentSettings extends Fragment {
 			holder.TitleText.setText(currentsettings.getTitle());
 
 			holder.ColorText.setText(currentsettings.getColor());
-			
-			if(currentsettings.getTitle().equals("Set Theme Color")){
-			
-			holder.ColorText.setTextColor(Color.parseColor(actionbar_colors));
+
+			if (currentsettings.getTitle().equals("Set Theme Color")) {
+
+				holder.ColorText.setTextColor(Color
+						.parseColor(actionbar_colors));
+
+			} else if (currentsettings.getTitle().equals("Set Secondary Color")
+					&& !background_colors.equals("#ffffff")) {
+
+				holder.ColorText.setTextColor(Color
+						.parseColor(background_colors));
 
 			}
-			else if(currentsettings.getTitle().equals("Set Secondary Color") && !background_colors.equals("#ffffff")){
-				
-				holder.ColorText.setTextColor(Color.parseColor(background_colors));
-				
-			}
-			
+
 			holder.View_Color.setBackgroundColor(Color
 					.parseColor(currentsettings.getView_Color()));
 
@@ -567,7 +568,7 @@ public class FragmentSettings extends Fragment {
 					TextView SubTitle = (TextView) relative_views
 							.findViewById(R.id.textViewSubTitle_Edit);
 					SubTitle.setText(subTitle);
-					
+
 					SubTitle.setTextColor(Color.parseColor(actionbar_colors));
 
 				} else {
@@ -581,7 +582,7 @@ public class FragmentSettings extends Fragment {
 					TextView SubTitle = (TextView) relative_views
 							.findViewById(R.id.textViewSubTitle_Edit);
 					SubTitle.setText(subTitle);
-					
+
 					SubTitle.setTextColor(Color.parseColor(actionbar_colors));
 
 				}
@@ -617,7 +618,7 @@ public class FragmentSettings extends Fragment {
 					TextView SubTitle = (TextView) relative_views
 							.findViewById(R.id.textViewSubTitle_Swipe);
 					SubTitle.setText(subTitle);
-					
+
 					SubTitle.setTextColor(Color.parseColor(actionbar_colors));
 
 				} else {
@@ -631,7 +632,7 @@ public class FragmentSettings extends Fragment {
 					TextView SubTitle = (TextView) relative_views
 							.findViewById(R.id.textViewSubTitle_Swipe);
 					SubTitle.setText(subTitle);
-					
+
 					SubTitle.setTextColor(Color.parseColor(actionbar_colors));
 
 				}
@@ -815,11 +816,9 @@ public class FragmentSettings extends Fragment {
 
 		AlarmManager alarmManager = (AlarmManager) getActivity()
 				.getSystemService(Context.ALARM_SERVICE);
-		alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis(),
-				pendingIntent);
 
 		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-				targetCal.getTimeInMillis(), TimeUnit.HOURS.toMillis(24),
+				targetCal.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
 				pendingIntent);
 
 		System.out.println(targetCal);

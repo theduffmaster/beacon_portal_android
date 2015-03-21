@@ -74,6 +74,7 @@ import android.widget.Toast;
 import com.bernard.beaconportal.activities.activity.Accounts;
 import com.bernard.beaconportal.activities.activity.setup.AccountSetupBasics;
 import com.bernard.beaconportal.activities.homeworkdue.FragmentsHomeworkDue;
+import com.bernard.beaconportal.activities.homeworkdue.alarms.DailyHomeworkDownload;
 import com.bernard.beaconportal.activities.homeworkdue.alarms.MidnightHomeworkDownload;
 import com.bernard.beaconportal.activities.schedule.view.FragmentsSchedule;
 import com.bernard.beaconportal.activities.settings.FragmentSettings;
@@ -191,22 +192,29 @@ public class MainActivity extends ActionBarActivity {
 			SharedPreferences alarm = getSharedPreferences("alarm_check",
 					Context.MODE_PRIVATE);
 
-			if (alarm.contains("alarm") && alarm.contains("alarm_check")) {
+			if (alarm.contains("alarmrerun")) {
 
 			} else {
 
 				SharedPreferences.Editor alarmEditor = getSharedPreferences(
 						"alarm_check", Context.MODE_PRIVATE).edit();
 
-				alarmEditor.putString("alarm", "ran");
-
-				alarmEditor.putString("alarm_check", "ran");
+				alarmEditor.putString("alarmrerun", "ran");
 
 				alarmEditor.apply();
 
-				setAlarm();
+				setAlarm(this);
 
-				setAlarmCustom();
+				SharedPreferences refresh_time = getSharedPreferences("Alarm",
+						Context.MODE_PRIVATE);
+
+				int hour = refresh_time.getInt("Hour", 15);
+
+				int minute = refresh_time.getInt("Minute", 0);
+
+				setAlarmCustom(this, hour, minute);
+
+				Log.d("alarm_first_run_set", "yes");
 
 			}
 
@@ -335,13 +343,13 @@ public class MainActivity extends ActionBarActivity {
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
 					.parseColor("#4285f4")));
-			
+
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor("#3367d6"));
-	}
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor("#3367d6"));
+			}
 
 		} else {
 
@@ -356,16 +364,16 @@ public class MainActivity extends ActionBarActivity {
 					.parseColor(actionbar_colors)));
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor(actionbar_colors)));  
-			
+					.parseColor(actionbar_colors)));
+
 			mShadow.setBackgroundColor(Color.parseColor(actionbar_colors));
-			
+
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor(actionbar_colors));
-	            
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor(actionbar_colors));
+
 			}
 
 		}
@@ -2285,13 +2293,12 @@ public class MainActivity extends ActionBarActivity {
 	// }
 	// }
 
-	private void setAlarm() {
+	private void setAlarm(Context context) {
 
-		Intent intent = new Intent(getBaseContext(),
-				MidnightHomeworkDownload.class);
+		Intent intent = new Intent(context, MidnightHomeworkDownload.class);
 
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(
-				getBaseContext(), RQS_1, intent, 0);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
+				RQS_1, intent, 0);
 
 		Calendar calNow = Calendar.getInstance();
 		Calendar targetCal = (Calendar) calNow.clone();
@@ -2301,43 +2308,44 @@ public class MainActivity extends ActionBarActivity {
 		targetCal.set(Calendar.SECOND, 0);
 		targetCal.set(Calendar.MILLISECOND, 0);
 
-		AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		AlarmManager alarmManager = (AlarmManager) context
+				.getSystemService(Context.ALARM_SERVICE);
 		alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis(),
 				pendingIntent);
 
 		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-				targetCal.getTimeInMillis(), TimeUnit.HOURS.toMillis(24),
+				targetCal.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
 				pendingIntent);
 
 		System.out.println("midnight");
 
 	}
 
-	private void setAlarmCustom() {
-
-		Intent intent = new Intent(getBaseContext(),
-				MidnightHomeworkDownload.class);
-
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(
-				getBaseContext(), RQS_1, intent, 0);
+	private void setAlarmCustom(Context context, int hour, int minute) {
 
 		Calendar calNow = Calendar.getInstance();
 		Calendar targetCal = (Calendar) calNow.clone();
 
-		targetCal.set(Calendar.HOUR_OF_DAY, 15);
-		targetCal.set(Calendar.MINUTE, 0);
+		targetCal.set(Calendar.HOUR_OF_DAY, hour);
+		targetCal.set(Calendar.MINUTE, minute);
 		targetCal.set(Calendar.SECOND, 0);
 		targetCal.set(Calendar.MILLISECOND, 0);
 
-		AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-		alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis(),
-				pendingIntent);
+		Intent intent = new Intent(context, DailyHomeworkDownload.class);
+
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
+				RQS_1, intent, 0);
+
+		AlarmManager alarmManager = (AlarmManager) context
+				.getSystemService(Context.ALARM_SERVICE);
 
 		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-				targetCal.getTimeInMillis(), TimeUnit.HOURS.toMillis(24),
+				targetCal.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
 				pendingIntent);
 
-		System.out.println("three");
+		System.out.println(targetCal);
+
+		System.out.println("alarm reset three");
 
 	}
 

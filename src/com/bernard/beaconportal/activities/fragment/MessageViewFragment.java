@@ -350,7 +350,8 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 			return;
 		}
 
-		if (mAccount.getSpamFolderName().equals(dstFolder) && MAIL.confirmSpam()) {
+		if (mAccount.getSpamFolderName().equals(dstFolder)
+				&& MAIL.confirmSpam()) {
 			mDstFolder = dstFolder;
 			showDialog(R.id.dialog_confirm_spam);
 		} else {
@@ -643,7 +644,8 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 						mFragmentListener.updateMenu();
 
 					} catch (MessagingException e) {
-						Log.v(MAIL.LOG_TAG, "loadMessageForViewBodyAvailable", e);
+						Log.v(MAIL.LOG_TAG, "loadMessageForViewBodyAvailable",
+								e);
 					}
 				}
 			});

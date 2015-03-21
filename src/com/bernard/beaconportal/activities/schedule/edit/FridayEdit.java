@@ -101,7 +101,8 @@ public class FridayEdit extends Fragment {
 				Intent paramAnonymousIntent) {
 
 			// all the shared preferences stuff
-			SharedPreferences.Editor localEditor = FridayEdit.this.getActivity()
+			SharedPreferences.Editor localEditor = FridayEdit.this
+					.getActivity()
 					.getSharedPreferences("friday", Context.MODE_PRIVATE)
 					.edit();
 

@@ -513,9 +513,9 @@ public class MessageCompose extends MAILActivity implements OnClickListener,
 	public void onCreate(Bundle savedInstanceState) {
 
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		
+
 		super.onCreate(savedInstanceState);
-		
+
 		if (UpgradeDatabases.actionUpgradeDatabases(this, getIntent())) {
 			finish();
 			return;
@@ -528,13 +528,13 @@ public class MessageCompose extends MAILActivity implements OnClickListener,
 
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#4285f4")));
-			
+
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor("#3367d6"));
-	}
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor("#3367d6"));
+			}
 
 		} else {
 
@@ -559,22 +559,23 @@ public class MessageCompose extends MAILActivity implements OnClickListener,
 			}
 
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor(actionbar_colors));
-	}
-			
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor(actionbar_colors));
+			}
+
 		}
 
 		android.app.ActionBar bar = getActionBar();
-		
+
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
-		
+
 		bar.setElevation(0);
-		
-		bar.setTitle(Html.fromHtml("<font color='#ffffff'><b>Compose</b></font>"));
+
+		bar.setTitle(Html
+				.fromHtml("<font color='#ffffff'><b>Compose</b></font>"));
 
 		if (MAIL.getMAILComposerThemeSetting() != MAIL.Theme.USE_GLOBAL) {
 			// theme the whole content according to the theme (except the action
@@ -1835,7 +1836,8 @@ public class MessageCompose extends MAILActivity implements OnClickListener,
 		uri.appendQueryParameter(IdentityField.QUOTED_TEXT_MODE.value(),
 				mQuotedTextMode.name());
 
-		String mailidentity = IDENTITY_VERSION_1 + uri.build().getEncodedQuery();
+		String mailidentity = IDENTITY_VERSION_1
+				+ uri.build().getEncodedQuery();
 
 		if (MAIL.DEBUG) {
 			Log.d(MAIL.LOG_TAG, "Generated identity: " + mailidentity);
@@ -2195,7 +2197,8 @@ public class MessageCompose extends MAILActivity implements OnClickListener,
 			@Override
 			public void run() {
 				Log.e(MAIL.LOG_TAG, "OpenPGP Error ID:" + error.getErrorId());
-				Log.e(MAIL.LOG_TAG, "OpenPGP Error Message:" + error.getMessage());
+				Log.e(MAIL.LOG_TAG,
+						"OpenPGP Error Message:" + error.getMessage());
 
 				Toast.makeText(
 						MessageCompose.this,
@@ -2605,8 +2608,8 @@ public class MessageCompose extends MAILActivity implements OnClickListener,
 	private void onAccountChosen(Account account, Identity identity) {
 		if (!mAccount.equals(account)) {
 			if (MAIL.DEBUG) {
-				Log.v(MAIL.LOG_TAG, "Switching account from " + mAccount + " to "
-						+ account);
+				Log.v(MAIL.LOG_TAG, "Switching account from " + mAccount
+						+ " to " + account);
 			}
 
 			// on draft edit, make sure we don't keep previous message UID
@@ -3351,7 +3354,8 @@ public class MessageCompose extends MAILActivity implements OnClickListener,
 		}
 
 		if (mailidentity.containsKey(IdentityField.QUOTED_TEXT_MODE)) {
-			showQuotedTextMode = mailidentity.get(IdentityField.QUOTED_TEXT_MODE);
+			showQuotedTextMode = mailidentity
+					.get(IdentityField.QUOTED_TEXT_MODE);
 		}
 
 		mIdentity = newIdentity;
@@ -3363,15 +3367,16 @@ public class MessageCompose extends MAILActivity implements OnClickListener,
 				.valueOf(mailidentity.get(IdentityField.LENGTH)) : 0;
 		Integer bodyOffset = mailidentity.get(IdentityField.OFFSET) != null ? Integer
 				.valueOf(mailidentity.get(IdentityField.OFFSET)) : 0;
-		Integer bodyFooterOffset = mailidentity.get(IdentityField.FOOTER_OFFSET) != null ? Integer
+		Integer bodyFooterOffset = mailidentity
+				.get(IdentityField.FOOTER_OFFSET) != null ? Integer
 				.valueOf(mailidentity.get(IdentityField.FOOTER_OFFSET)) : null;
 		Integer bodyPlainLength = mailidentity.get(IdentityField.PLAIN_LENGTH) != null ? Integer
 				.valueOf(mailidentity.get(IdentityField.PLAIN_LENGTH)) : null;
 		Integer bodyPlainOffset = mailidentity.get(IdentityField.PLAIN_OFFSET) != null ? Integer
 				.valueOf(mailidentity.get(IdentityField.PLAIN_OFFSET)) : null;
 		mQuoteStyle = mailidentity.get(IdentityField.QUOTE_STYLE) != null ? QuoteStyle
-				.valueOf(mailidentity.get(IdentityField.QUOTE_STYLE)) : mAccount
-				.getQuoteStyle();
+				.valueOf(mailidentity.get(IdentityField.QUOTE_STYLE))
+				: mAccount.getQuoteStyle();
 
 		QuotedTextMode quotedMode;
 		try {
@@ -3866,8 +3871,8 @@ public class MessageCompose extends MAILActivity implements OnClickListener,
 		}
 
 		if (MAIL.DEBUG) {
-			Log.d(MAIL.LOG_TAG, "Open: hasHtmlTag:" + hasHtmlTag + " hasHeadTag:"
-					+ hasHeadTag + " hasBodyTag:" + hasBodyTag);
+			Log.d(MAIL.LOG_TAG, "Open: hasHtmlTag:" + hasHtmlTag
+					+ " hasHeadTag:" + hasHeadTag + " hasBodyTag:" + hasBodyTag);
 		}
 
 		// Given our inspections, let's figure out where to start our content.

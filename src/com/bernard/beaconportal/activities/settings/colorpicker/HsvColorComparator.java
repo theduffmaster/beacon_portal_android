@@ -1,4 +1,3 @@
-
 package com.bernard.beaconportal.activities.settings.colorpicker;
 
 import java.util.Comparator;

@@ -197,8 +197,8 @@ public class HtmlConverter {
 			}
 		} catch (IOException e) {
 			// Should never happen
-			Log.e(MAIL.LOG_TAG, "Could not read string to convert text to HTML:",
-					e);
+			Log.e(MAIL.LOG_TAG,
+					"Could not read string to convert text to HTML:", e);
 		}
 
 		buff.append(htmlifyMessageFooter());
@@ -294,8 +294,8 @@ public class HtmlConverter {
 			}
 		} catch (IOException e) {
 			// Should never happen
-			Log.e(MAIL.LOG_TAG, "Could not read string to convert text to HTML:",
-					e);
+			Log.e(MAIL.LOG_TAG,
+					"Could not read string to convert text to HTML:", e);
 		}
 		// Close off any quotes we may have opened.
 		if (quoteDepth > 0) {

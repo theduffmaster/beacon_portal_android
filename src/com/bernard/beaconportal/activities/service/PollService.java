@@ -158,7 +158,8 @@ public class PollService extends CoreService {
 		public void checkMailFinished(Context context, Account account) {
 
 			if (MAIL.DEBUG)
-				Log.v(MAIL.LOG_TAG, "***** PollService *****: checkMailFinished");
+				Log.v(MAIL.LOG_TAG,
+						"***** PollService *****: checkMailFinished");
 			release();
 		}
 

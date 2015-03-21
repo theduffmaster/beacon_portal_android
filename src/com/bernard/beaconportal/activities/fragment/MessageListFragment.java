@@ -2163,8 +2163,8 @@ public class MessageListFragment extends Fragment implements
 					Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 			// TODO: make this part of the theme
-			int color = (MAIL.getMAILTheme() == MAIL.Theme.LIGHT) ? Color.rgb(105,
-					105, 105) : Color.rgb(160, 160, 160);
+			int color = (MAIL.getMAILTheme() == MAIL.Theme.LIGHT) ? Color.rgb(
+					105, 105, 105) : Color.rgb(160, 160, 160);
 
 			// Set span (color) for preview message
 			str.setSpan(new ForegroundColorSpan(color),
@@ -3126,7 +3126,8 @@ public class MessageListFragment extends Fragment implements
 																				// =
 																				// true
 				if (!cancelSuccess) {
-					Log.e(MAIL.LOG_TAG, "Could not cancel remote search future.");
+					Log.e(MAIL.LOG_TAG,
+							"Could not cancel remote search future.");
 				}
 				// Closing the folder will kill off the connection if we're
 				// mid-search.
@@ -3345,8 +3346,8 @@ public class MessageListFragment extends Fragment implements
 		try {
 			return folder.getMessage(uid);
 		} catch (MessagingException e) {
-			Log.e(MAIL.LOG_TAG, "Something went wrong while fetching a message",
-					e);
+			Log.e(MAIL.LOG_TAG,
+					"Something went wrong while fetching a message", e);
 		}
 
 		return null;

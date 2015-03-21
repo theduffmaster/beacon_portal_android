@@ -191,11 +191,11 @@ public class FragmentsHomeworkDue extends Fragment {
 
 		}
 
-		NotificationManager mNotificationManager =
-		        (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-		
-		    mNotificationManager.cancelAll();
-		
+		NotificationManager mNotificationManager = (NotificationManager) getActivity()
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+
+		mNotificationManager.cancelAll();
+
 	}
 
 	@Override

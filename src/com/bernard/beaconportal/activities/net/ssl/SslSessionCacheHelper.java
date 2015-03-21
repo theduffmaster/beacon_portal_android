@@ -86,7 +86,8 @@ public class SslSessionCacheHelper {
 			sSetPersistentCacheMethod.invoke(sessionContext, sSessionCache);
 		} catch (Exception e) {
 			// Something went wrong. Proceed without a session cache.
-			Log.e(MAIL.LOG_TAG, "Failed to initialize persistent SSL cache: " + e);
+			Log.e(MAIL.LOG_TAG, "Failed to initialize persistent SSL cache: "
+					+ e);
 			sIsDisabled = true;
 		}
 	}

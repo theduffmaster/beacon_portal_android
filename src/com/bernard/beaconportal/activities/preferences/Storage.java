@@ -220,8 +220,8 @@ public class Storage implements SharedPreferences {
 				mDb.close();
 			}
 			long endTime = System.currentTimeMillis();
-			Log.i(MAIL.LOG_TAG, "Preferences load took " + (endTime - startTime)
-					+ "ms");
+			Log.i(MAIL.LOG_TAG, "Preferences load took "
+					+ (endTime - startTime) + "ms");
 		}
 	}
 

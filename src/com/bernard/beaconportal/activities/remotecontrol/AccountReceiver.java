@@ -21,9 +21,9 @@ class AccountReceiver extends BroadcastReceiver {
 				Log.w(MAILRemoteControl.LOG_TAG, "Response bundle is empty");
 				return;
 			}
-			receptor.accounts(bundle
-					.getStringArray(MAILRemoteControl.MAIL_ACCOUNT_UUIDS), bundle
-					.getStringArray(MAILRemoteControl.MAIL_ACCOUNT_DESCRIPTIONS));
+			receptor.accounts(
+					bundle.getStringArray(MAILRemoteControl.MAIL_ACCOUNT_UUIDS),
+					bundle.getStringArray(MAILRemoteControl.MAIL_ACCOUNT_DESCRIPTIONS));
 		}
 	}
 

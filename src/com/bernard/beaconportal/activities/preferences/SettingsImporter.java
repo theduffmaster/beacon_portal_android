@@ -848,7 +848,8 @@ public class SettingsImporter {
 								"More than one accounts element. Only using the first one!");
 					}
 				} else {
-					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG,
+							"Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();
@@ -931,7 +932,8 @@ public class SettingsImporter {
 						result.settings.put(key, value);
 					}
 				} else {
-					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG,
+							"Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();
@@ -970,7 +972,8 @@ public class SettingsImporter {
 										+ account.uuid + ". Ignoring!");
 					}
 				} else {
-					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG,
+							"Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();
@@ -1097,7 +1100,8 @@ public class SettingsImporter {
 					server.extras = parseSettings(xpp,
 							SettingsExporter.EXTRA_ELEMENT);
 				} else {
-					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG,
+							"Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();
@@ -1124,7 +1128,8 @@ public class SettingsImporter {
 					ImportedIdentity identity = parseIdentity(xpp);
 					identities.add(identity);
 				} else {
-					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG,
+							"Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();
@@ -1153,7 +1158,8 @@ public class SettingsImporter {
 					identity.settings = parseSettings(xpp,
 							SettingsExporter.SETTINGS_ELEMENT);
 				} else {
-					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG,
+							"Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();
@@ -1180,7 +1186,8 @@ public class SettingsImporter {
 					ImportedFolder folder = parseFolder(xpp);
 					folders.add(folder);
 				} else {
-					Log.w(MAIL.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+					Log.w(MAIL.LOG_TAG,
+							"Unexpected start tag: " + xpp.getName());
 				}
 			}
 			eventType = xpp.next();

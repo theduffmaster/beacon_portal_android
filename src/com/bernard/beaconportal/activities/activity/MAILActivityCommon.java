@@ -25,15 +25,15 @@ import com.bernard.beaconportal.activities.helper.StringUtils;
  */
 public class MAILActivityCommon {
 	/**
-	 * Creates a new instance of {@link MAILActivityCommon} bound to the specified
-	 * activity.
+	 * Creates a new instance of {@link MAILActivityCommon} bound to the
+	 * specified activity.
 	 * 
 	 * @param activity
 	 *            The {@link Activity} the returned {@code MAILActivityCommon}
 	 *            instance will be bound to.
 	 * 
-	 * @return The {@link MAILActivityCommon} instance that will provide the base
-	 *         functionality of the "MAIL" activities.
+	 * @return The {@link MAILActivityCommon} instance that will provide the
+	 *         base functionality of the "MAIL" activities.
 	 */
 	public static MAILActivityCommon newInstance(Activity activity) {
 		return new MAILActivityCommon(activity);
@@ -70,7 +70,7 @@ public class MAILActivityCommon {
 
 	private Activity mActivity;
 	private GestureDetector mGestureDetector;
-	
+
 	private String actionbar_colors;
 
 	private MAILActivityCommon(Activity activity) {
@@ -115,5 +115,5 @@ public class MAILActivityCommon {
 		mGestureDetector = new GestureDetector(mActivity,
 				new SwipeGestureDetector(mActivity, listener));
 	}
-	
+
 }

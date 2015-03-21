@@ -1132,8 +1132,8 @@ public class WebDavStore extends Store {
 						443), 443);
 				reg.register(s);
 			} catch (NoSuchAlgorithmException nsa) {
-				Log.e(MAIL.LOG_TAG, "NoSuchAlgorithmException in getHttpClient: "
-						+ nsa);
+				Log.e(MAIL.LOG_TAG,
+						"NoSuchAlgorithmException in getHttpClient: " + nsa);
 				throw new MessagingException(
 						"NoSuchAlgorithmException in getHttpClient: " + nsa);
 			} catch (KeyManagementException kme) {
@@ -1243,8 +1243,9 @@ public class WebDavStore extends Store {
 			boolean needsParsing) throws MessagingException {
 		DataSet dataset = new DataSet();
 		if (MAIL.DEBUG && MAIL.DEBUG_PROTOCOL_WEBDAV) {
-			Log.v(MAIL.LOG_TAG, "processRequest url = '" + url + "', method = '"
-					+ method + "', messageBody = '" + messageBody + "'");
+			Log.v(MAIL.LOG_TAG, "processRequest url = '" + url
+					+ "', method = '" + method + "', messageBody = '"
+					+ messageBody + "'");
 		}
 
 		if (url == null || method == null) {
@@ -1274,8 +1275,8 @@ public class WebDavStore extends Store {
 
 					dataset = myHandler.getDataSet();
 				} catch (SAXException se) {
-					Log.e(MAIL.LOG_TAG, "SAXException in processRequest() " + se
-							+ "\nTrace: " + processException(se));
+					Log.e(MAIL.LOG_TAG, "SAXException in processRequest() "
+							+ se + "\nTrace: " + processException(se));
 					throw new MessagingException(
 							"SAXException in processRequest() ", se);
 				} catch (ParserConfigurationException pce) {
@@ -1791,8 +1792,8 @@ public class WebDavStore extends Store {
 					}
 
 				} catch (IllegalArgumentException iae) {
-					Log.e(MAIL.LOG_TAG, "IllegalArgumentException caught " + iae
-							+ "\nTrace: " + processException(iae));
+					Log.e(MAIL.LOG_TAG, "IllegalArgumentException caught "
+							+ iae + "\nTrace: " + processException(iae));
 					throw new MessagingException(
 							"IllegalArgumentException caught", iae);
 				} catch (URISyntaxException use) {
@@ -2177,8 +2178,9 @@ public class WebDavStore extends Store {
 						"UnsupportedEncodingException caught in setUrl: " + uee
 								+ "\nTrace: " + processException(uee));
 			} catch (IllegalArgumentException iae) {
-				Log.e(MAIL.LOG_TAG, "IllegalArgumentException caught in setUrl: "
-						+ iae + "\nTrace: " + processException(iae));
+				Log.e(MAIL.LOG_TAG,
+						"IllegalArgumentException caught in setUrl: " + iae
+								+ "\nTrace: " + processException(iae));
 			}
 
 			for (int i = 0; i < length - 1; i++) {

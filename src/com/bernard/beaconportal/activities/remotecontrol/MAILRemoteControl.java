@@ -62,7 +62,8 @@ public class MAILRemoteControl {
 	public final static String MAIL_ACCOUNT_UUID = "com.bernard.beaconportal.activities.MAILRemoteControl.accountUuid";
 	/**
 	 * The key of the {@link Intent} Extra to set to control if the settings
-	 * will apply to all Accounts, or to the one specified with MAIL_ACCOUNT_UUID
+	 * will apply to all Accounts, or to the one specified with
+	 * MAIL_ACCOUNT_UUID
 	 */
 	public final static String MAIL_ALL_ACCOUNTS = "com.bernard.beaconportal.activities.MAILRemoteControl.allAccounts";
 
@@ -108,8 +109,8 @@ public class MAILRemoteControl {
 	 */
 	public final static String MAIL_POLL_CLASSES = "com.bernard.beaconportal.activities.MAILRemoteControl.pollClasses";
 
-	public final static String[] MAIL_POLL_FREQUENCIES = { "-1", "1", "5", "10",
-			"15", "30", "60", "120", "180", "360", "720", "1440" };
+	public final static String[] MAIL_POLL_FREQUENCIES = { "-1", "1", "5",
+			"10", "15", "30", "60", "120", "180", "360", "720", "1440" };
 	/**
 	 * Key for the {@link Intent} Extra to set with the desired poll frequency.
 	 * The value is a String representing a number of minutes. Acceptable values
@@ -131,7 +132,8 @@ public class MAILRemoteControl {
 
 	/**
 	 * Key for the {@link Intent} Extra to set for controlling which display
-	 * theme Mail will use. Acceptable values are MAIL_THEME_LIGHT, MAIL_THEME_DARK
+	 * theme Mail will use. Acceptable values are MAIL_THEME_LIGHT,
+	 * MAIL_THEME_DARK
 	 */
 	public final static String MAIL_THEME = "com.bernard.beaconportal.activities.MAILRemoteControl.theme";
 	public final static String MAIL_THEME_LIGHT = "LIGHT";
@@ -145,13 +147,14 @@ public class MAILRemoteControl {
 				MAILRemoteControl.MAIL_REMOTE_CONTROL_PERMISSION);
 	}
 
-	public static void fetchAccounts(Context context, MAILAccountReceptor receptor) {
+	public static void fetchAccounts(Context context,
+			MAILAccountReceptor receptor) {
 		Intent accountFetchIntent = new Intent();
 		accountFetchIntent.setAction(MAILRemoteControl.MAIL_REQUEST_ACCOUNTS);
 		AccountReceiver receiver = new AccountReceiver(receptor);
 		context.sendOrderedBroadcast(accountFetchIntent,
-				MAILRemoteControl.MAIL_REMOTE_CONTROL_PERMISSION, receiver, null,
-				Activity.RESULT_OK, null, null);
+				MAILRemoteControl.MAIL_REMOTE_CONTROL_PERMISSION, receiver,
+				null, Activity.RESULT_OK, null, null);
 	}
 
 }

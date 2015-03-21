@@ -103,13 +103,13 @@ public class AccountSetupCheckSettings extends MAILActivity implements
 
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#4285f4")));
-			
+
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor("#3367d6"));
-	}
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor("#3367d6"));
+			}
 
 		} else {
 
@@ -134,12 +134,12 @@ public class AccountSetupCheckSettings extends MAILActivity implements
 			}
 
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor(actionbar_colors));
-	}
-			
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor(actionbar_colors));
+			}
+
 		}
 
 		android.app.ActionBar bar = getActionBar();
@@ -342,8 +342,8 @@ public class AccountSetupCheckSettings extends MAILActivity implements
 				try {
 					sha1 = MessageDigest.getInstance("SHA-1");
 				} catch (NoSuchAlgorithmException e) {
-					Log.e(MAIL.LOG_TAG, "Error while initializing MessageDigest",
-							e);
+					Log.e(MAIL.LOG_TAG,
+							"Error while initializing MessageDigest", e);
 				}
 
 				final X509Certificate[] chain = ex.getCertChain();

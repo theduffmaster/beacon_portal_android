@@ -31,7 +31,8 @@ public class CoreReceiver extends BroadcastReceiver {
 		Integer tmpWakeLockId = wakeLockSeq.getAndIncrement();
 		wakeLocks.put(tmpWakeLockId, wakeLock);
 		if (MAIL.DEBUG)
-			Log.v(MAIL.LOG_TAG, "CoreReceiver Created wakeLock " + tmpWakeLockId);
+			Log.v(MAIL.LOG_TAG, "CoreReceiver Created wakeLock "
+					+ tmpWakeLockId);
 		return tmpWakeLockId;
 	}
 

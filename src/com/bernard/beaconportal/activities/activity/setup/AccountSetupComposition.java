@@ -68,13 +68,13 @@ public class AccountSetupComposition extends MAILActivityMaterial {
 
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#4285f4")));
-			
+
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor("#3367d6"));
-	}
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor("#3367d6"));
+			}
 
 		} else {
 
@@ -99,12 +99,12 @@ public class AccountSetupComposition extends MAILActivityMaterial {
 			}
 
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor(actionbar_colors));
-	}
-			
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor(actionbar_colors));
+			}
+
 		}
 
 		android.app.ActionBar bar = getActionBar();

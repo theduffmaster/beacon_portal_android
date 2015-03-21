@@ -566,8 +566,8 @@ public class Utility {
 			from.delete();
 			return true;
 		} catch (Exception e) {
-			Log.w(MAIL.LOG_TAG, "cannot move " + from.getAbsolutePath() + " to "
-					+ to.getAbsolutePath(), e);
+			Log.w(MAIL.LOG_TAG, "cannot move " + from.getAbsolutePath()
+					+ " to " + to.getAbsolutePath(), e);
 			return false;
 		}
 
@@ -590,9 +590,9 @@ public class Utility {
 				}
 			}
 			if (!fromDir.renameTo(toDir)) {
-				Log.w(MAIL.LOG_TAG, "cannot rename " + fromDir.getAbsolutePath()
-						+ " to " + toDir.getAbsolutePath()
-						+ " - moving instead");
+				Log.w(MAIL.LOG_TAG,
+						"cannot rename " + fromDir.getAbsolutePath() + " to "
+								+ toDir.getAbsolutePath() + " - moving instead");
 				move(fromDir, toDir);
 			}
 			return;
@@ -614,9 +614,10 @@ public class Utility {
 			} else {
 				File target = new File(toDir, file.getName());
 				if (!file.renameTo(target)) {
-					Log.w(MAIL.LOG_TAG, "cannot rename " + file.getAbsolutePath()
-							+ " to " + target.getAbsolutePath()
-							+ " - moving instead");
+					Log.w(MAIL.LOG_TAG,
+							"cannot rename " + file.getAbsolutePath() + " to "
+									+ target.getAbsolutePath()
+									+ " - moving instead");
 					move(file, target);
 				}
 			}

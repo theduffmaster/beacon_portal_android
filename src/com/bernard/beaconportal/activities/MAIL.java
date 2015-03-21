@@ -157,7 +157,8 @@ public class MAIL extends Application {
 	public static boolean DEBUG_PROTOCOL_POP3 = true;
 
 	/**
-	 * Should Mail log the conversation it has over the wire with WebDAV servers?
+	 * Should Mail log the conversation it has over the wire with WebDAV
+	 * servers?
 	 */
 
 	public static boolean DEBUG_PROTOCOL_WEBDAV = true;
@@ -322,8 +323,8 @@ public class MAIL extends Application {
 	public static final int MAX_ATTACHMENT_DOWNLOAD_SIZE = (128 * 1024 * 1024);
 
 	/*
-	 * How many times should Mail try to deliver a message before giving up until
-	 * the app is killed and restarted
+	 * How many times should Mail try to deliver a message before giving up
+	 * until the app is killed and restarted
 	 */
 
 	public static int MAX_SEND_ATTEMPTS = 5;
@@ -718,9 +719,11 @@ public class MAIL extends Application {
 						Intent intent = new Intent(
 								MAIL.Intents.EmailReceived.ACTION_REFRESH_OBSERVER,
 								null);
-						intent.putExtra(MAIL.Intents.EmailReceived.EXTRA_ACCOUNT,
+						intent.putExtra(
+								MAIL.Intents.EmailReceived.EXTRA_ACCOUNT,
 								account.getDescription());
-						intent.putExtra(MAIL.Intents.EmailReceived.EXTRA_FOLDER,
+						intent.putExtra(
+								MAIL.Intents.EmailReceived.EXTRA_FOLDER,
 								folderName);
 						MAIL.this.sendBroadcast(intent);
 

@@ -173,7 +173,8 @@ public class RemoteControlService extends CoreService {
 									needsReschedule |= needsReset;
 								}
 
-								String theme = intent.getStringExtra(MAIL_THEME);
+								String theme = intent
+										.getStringExtra(MAIL_THEME);
 								if (theme != null) {
 									MAIL.setMAILTheme(MAILRemoteControl.MAIL_THEME_DARK
 											.equals(theme) ? MAIL.Theme.DARK
@@ -210,7 +211,8 @@ public class RemoteControlService extends CoreService {
 											nextTime, i);
 								}
 							} catch (Exception e) {
-								Log.e(MAIL.LOG_TAG, "Could not handle MAIL_SET", e);
+								Log.e(MAIL.LOG_TAG,
+										"Could not handle MAIL_SET", e);
 								Toast toast = Toast.makeText(
 										RemoteControlService.this,
 										e.getMessage(), Toast.LENGTH_LONG);

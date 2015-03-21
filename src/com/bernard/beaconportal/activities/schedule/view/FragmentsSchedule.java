@@ -46,7 +46,7 @@ public class FragmentsSchedule extends Fragment {
 	private Fab mFab;
 
 	private String checkbox_edit;
-	
+
 	private ViewPager pager;
 
 	@Override
@@ -169,10 +169,10 @@ public class FragmentsSchedule extends Fragment {
 
 		return view;
 	}
-	
-	public void onResume(){
+
+	public void onResume() {
 		super.onResume();
-		
+
 		String weekDay;
 		SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.US);
 
@@ -203,7 +203,6 @@ public class FragmentsSchedule extends Fragment {
 
 		}
 
-		
 	}
 
 	public static int convertDip2Pixels(Context context, int dip) {

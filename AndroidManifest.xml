@@ -3,10 +3,10 @@
     
 
 	package="com.bernard.beaconportal.activities"
-    android:versionCode="51"
-    android:versionName="1.96"
+    android:versionCode="53"
+    android:versionName="1.98"
     >
-	
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 	<uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
@@ -504,6 +504,12 @@ otherwise it would make Mail start at the wrong time
                 android:name="android.appwidget.provider"
                 android:resource="@xml/unread_widget_info" />
         </receiver>
+            <receiver android:name="com.bernard.beaconportal.activities.homeworkdue.alarms.AlarmReset" >
+        <intent-filter>
+            <action
+                android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
         <activity android:name=".activity.UnreadWidgetConfiguration">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />

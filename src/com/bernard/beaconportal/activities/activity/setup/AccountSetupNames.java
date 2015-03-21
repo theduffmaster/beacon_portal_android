@@ -43,7 +43,8 @@ import com.bernard.beaconportal.activities.homeworkdue.FragmentsHomeworkDue;
 import com.bernard.beaconportal.activities.schedule.view.FragmentsSchedule;
 import com.bernard.beaconportal.activities.settings.FragmentSettings;
 
-public class AccountSetupNames extends ActionBarActivity implements OnClickListener {
+public class AccountSetupNames extends ActionBarActivity implements
+		OnClickListener {
 	private static final String EXTRA_ACCOUNT = "account";
 
 	public static final String PREF_NAME = "pref_name";
@@ -98,13 +99,13 @@ public class AccountSetupNames extends ActionBarActivity implements OnClickListe
 
 			getSupportActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#4285f4")));
-			
+
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor("#3367d6"));
-	}
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor("#3367d6"));
+			}
 
 		} else {
 
@@ -129,22 +130,23 @@ public class AccountSetupNames extends ActionBarActivity implements OnClickListe
 			}
 
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor(actionbar_colors));
-	}
-			
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor(actionbar_colors));
+			}
+
 		}
 
 		ActionBar bar = getSupportActionBar();
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
-		
+
 		bar.setElevation(0);
-		
-		bar.setTitle(Html.fromHtml("<font color='#ffffff'> Almost Done </font>"));
+
+		bar.setTitle(Html
+				.fromHtml("<font color='#ffffff'> Almost Done </font>"));
 
 		mDescription = (EditText) findViewById(R.id.account_description);
 		mName = (EditText) findViewById(R.id.account_name);

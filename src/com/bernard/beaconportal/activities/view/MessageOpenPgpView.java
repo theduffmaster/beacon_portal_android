@@ -330,8 +330,8 @@ public class MessageOpenPgpView extends LinearLayout {
 					}
 
 					if (MAIL.DEBUG)
-						Log.d(MAIL.LOG_TAG, "result: " + os.toByteArray().length
-								+ " str=" + output);
+						Log.d(MAIL.LOG_TAG, "result: "
+								+ os.toByteArray().length + " str=" + output);
 
 					// missing key -> PendingIntent to get keys
 					mMissingKeyPI = result
@@ -395,7 +395,8 @@ public class MessageOpenPgpView extends LinearLayout {
 				mProgress.setVisibility(View.GONE);
 
 				if (MAIL.DEBUG) {
-					Log.d(MAIL.LOG_TAG, "OpenPGP Error ID:" + error.getErrorId());
+					Log.d(MAIL.LOG_TAG,
+							"OpenPGP Error ID:" + error.getErrorId());
 					Log.d(MAIL.LOG_TAG,
 							"OpenPGP Error Message:" + error.getMessage());
 				}

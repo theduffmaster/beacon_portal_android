@@ -1217,8 +1217,10 @@ public class FolderList extends MAILListActivity {
 					folder.flaggedMessageCount = folder.folder
 							.getFlaggedMessageCount();
 				} catch (Exception e) {
-					Log.e(MAIL.LOG_TAG, "Unable to get flaggedMessageCount for "
-							+ mAccount.getDescription() + ":" + folder.name);
+					Log.e(MAIL.LOG_TAG,
+							"Unable to get flaggedMessageCount for "
+									+ mAccount.getDescription() + ":"
+									+ folder.name);
 				}
 
 			}

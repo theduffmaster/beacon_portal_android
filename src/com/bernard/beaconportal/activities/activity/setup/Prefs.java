@@ -184,13 +184,13 @@ public class Prefs extends MAILPreferenceActivity {
 
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#4285f4")));
-			
+
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor("#3367d6"));
-	}
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor("#3367d6"));
+			}
 
 		} else {
 
@@ -215,12 +215,12 @@ public class Prefs extends MAILPreferenceActivity {
 			}
 
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor(actionbar_colors));
-	}
-			
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor(actionbar_colors));
+			}
+
 		}
 
 		android.app.ActionBar bar = getActionBar();
@@ -492,11 +492,11 @@ public class Prefs extends MAILPreferenceActivity {
 				.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 					@Override
 					public boolean onPreferenceClick(Preference preference) {
-						FileBrowserHelper
-								.getInstance()
+						FileBrowserHelper.getInstance()
 								.showFileBrowserActivity(
 										Prefs.this,
-										new File(MAIL.getAttachmentDefaultPath()),
+										new File(MAIL
+												.getAttachmentDefaultPath()),
 										ACTIVITY_CHOOSE_FOLDER, callback);
 
 						return true;
@@ -577,8 +577,10 @@ public class Prefs extends MAILPreferenceActivity {
 
 		MAIL.setMAILTheme(themeNameToId(mTheme.getValue()));
 		MAIL.setUseFixedMessageViewTheme(mFixedMessageTheme.isChecked());
-		MAIL.setMAILMessageViewThemeSetting(themeNameToId(mMessageTheme.getValue()));
-		MAIL.setMAILComposerThemeSetting(themeNameToId(mComposerTheme.getValue()));
+		MAIL.setMAILMessageViewThemeSetting(themeNameToId(mMessageTheme
+				.getValue()));
+		MAIL.setMAILComposerThemeSetting(themeNameToId(mComposerTheme
+				.getValue()));
 
 		MAIL.setAnimations(mAnimations.isChecked());
 		MAIL.setGesturesEnabled(mGestures.isChecked());
@@ -602,7 +604,8 @@ public class Prefs extends MAILPreferenceActivity {
 		MAIL.setMeasureAccounts(mMeasureAccounts.isChecked());
 		MAIL.setCountSearchMessages(mCountSearch.isChecked());
 		MAIL.setHideSpecialAccounts(mHideSpecialAccounts.isChecked());
-		MAIL.setMessageListPreviewLines(Integer.parseInt(mPreviewLines.getValue()));
+		MAIL.setMessageListPreviewLines(Integer.parseInt(mPreviewLines
+				.getValue()));
 		MAIL.setMessageListCheckboxes(mCheckboxes.isChecked());
 		MAIL.setMessageListStars(mStars.isChecked());
 		MAIL.setShowCorrespondentNames(mShowCorrespondentNames.isChecked());

@@ -210,7 +210,8 @@ public class Accounts extends MAILListActivity implements OnItemClickListener {
 				@Override
 				public void run() {
 					AccountStats stats = accountStats.get(account.getUuid());
-					if (newSize != -1 && stats != null && MAIL.measureAccounts()) {
+					if (newSize != -1 && stats != null
+							&& MAIL.measureAccounts()) {
 						stats.size = newSize;
 					}
 					String toastText = getString(
@@ -451,7 +452,8 @@ public class Accounts extends MAILListActivity implements OnItemClickListener {
 		}
 
 		boolean startup = intent.getBooleanExtra(EXTRA_STARTUP, true);
-		if (startup && MAIL.startIntegratedInbox() && !MAIL.isHideSpecialAccounts()) {
+		if (startup && MAIL.startIntegratedInbox()
+				&& !MAIL.isHideSpecialAccounts()) {
 			onOpenAccount(mUnifiedInboxAccount);
 			finish();
 			return;

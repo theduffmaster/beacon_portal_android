@@ -2492,8 +2492,9 @@ public class MimeUtility {
 			}
 
 			if (charset.matches(rule[0])) {
-				Log.e(MAIL.LOG_TAG, "I don't know how to deal with the charset "
-						+ charset + ". Falling back to " + rule[1]);
+				Log.e(MAIL.LOG_TAG,
+						"I don't know how to deal with the charset " + charset
+								+ ". Falling back to " + rule[1]);
 				charset = rule[1];
 				try {
 					supported = Charset.isSupported(charset);

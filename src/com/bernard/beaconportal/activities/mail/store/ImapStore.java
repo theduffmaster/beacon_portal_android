@@ -1001,8 +1001,8 @@ public class ImapStore extends Store {
 			} catch (IOException ioe) {
 				throw ioExceptionHandler(mConnection, ioe);
 			} catch (MessagingException me) {
-				Log.e(MAIL.LOG_TAG,
-						"Unable to open connection for " + getLogId(), me);
+				Log.e(MAIL.LOG_TAG, "Unable to open connection for "
+						+ getLogId(), me);
 				throw me;
 			}
 		}
@@ -1343,9 +1343,11 @@ public class ImapStore extends Store {
 
 				if (exists(remoteTrashName)) {
 					if (MAIL.DEBUG)
-						Log.d(MAIL.LOG_TAG, "IMAPMessage.delete: copying remote "
-								+ messages.length + " messages to '"
-								+ trashFolderName + "' for " + getLogId());
+						Log.d(MAIL.LOG_TAG,
+								"IMAPMessage.delete: copying remote "
+										+ messages.length + " messages to '"
+										+ trashFolderName + "' for "
+										+ getLogId());
 
 					moveMessages(messages, remoteTrashFolder);
 				} else {
@@ -1668,13 +1670,15 @@ public class ImapStore extends Store {
 								try {
 									msgSeqUidMap.put(msgSeq, uid);
 									if (MAIL.DEBUG) {
-										Log.v(MAIL.LOG_TAG, "Stored uid '" + uid
-												+ "' for msgSeq " + msgSeq
-												+ " into map " /*
-																 * +
-																 * msgSeqUidMap
-																 * .toString()
-																 */);
+										Log.v(MAIL.LOG_TAG, "Stored uid '"
+												+ uid + "' for msgSeq "
+												+ msgSeq + " into map " /*
+																		 * +
+																		 * msgSeqUidMap
+																		 * .
+																		 * toString
+																		 * ()
+																		 */);
 									}
 								} catch (Exception e) {
 									Log.e(MAIL.LOG_TAG, "Unable to store uid '"
@@ -1776,8 +1780,8 @@ public class ImapStore extends Store {
 
 						if (!message.getUid().equals(uid)) {
 							if (MAIL.DEBUG)
-								Log.d(MAIL.LOG_TAG, "Did not ask for UID " + uid
-										+ " for " + getLogId());
+								Log.d(MAIL.LOG_TAG, "Did not ask for UID "
+										+ uid + " for " + getLogId());
 
 							handleUntaggedResponse(response);
 							continue;
@@ -1992,7 +1996,8 @@ public class ImapStore extends Store {
 				// }
 				// }
 			}
-			// Log.i(MAIL.LOG_TAG, "mMessageCount = " + mMessageCount + " for " +
+			// Log.i(MAIL.LOG_TAG, "mMessageCount = " + mMessageCount + " for "
+			// +
 			// getLogId());
 		}
 
@@ -2853,8 +2858,10 @@ public class ImapStore extends Store {
 							if (ImapResponseParser.equalsIgnoreCase(
 									response.get(0), COMMAND_NAMESPACE)) {
 								if (MAIL.DEBUG)
-									Log.d(MAIL.LOG_TAG, "Got NAMESPACE response "
-											+ response + " on " + getLogId());
+									Log.d(MAIL.LOG_TAG,
+											"Got NAMESPACE response "
+													+ response + " on "
+													+ getLogId());
 
 								Object personalNamespaces = response.get(1);
 								if (personalNamespaces != null
@@ -3599,19 +3606,19 @@ public class ImapStore extends Store {
 				ImapPushState pushState = ImapPushState.parse(pushStateS);
 				oldUidNext = pushState.uidNext;
 				if (MAIL.DEBUG)
-					Log.i(MAIL.LOG_TAG, "Got oldUidNext " + oldUidNext + " for "
-							+ getLogId());
+					Log.i(MAIL.LOG_TAG, "Got oldUidNext " + oldUidNext
+							+ " for " + getLogId());
 			} catch (Exception e) {
-				Log.e(MAIL.LOG_TAG, "Unable to get oldUidNext for " + getLogId(),
-						e);
+				Log.e(MAIL.LOG_TAG, "Unable to get oldUidNext for "
+						+ getLogId(), e);
 			}
 
 			Message[] messageArray = getMessages(end, end, null, true, null);
 			if (messageArray != null && messageArray.length > 0) {
 				long newUid = Long.parseLong(messageArray[0].getUid());
 				if (MAIL.DEBUG)
-					Log.i(MAIL.LOG_TAG, "Got newUid " + newUid + " for message "
-							+ end + " on " + getLogId());
+					Log.i(MAIL.LOG_TAG, "Got newUid " + newUid
+							+ " for message " + end + " on " + getLogId());
 				long startUid = oldUidNext;
 				if (startUid < newUid - 10) {
 					startUid = newUid - 10;
@@ -3699,8 +3706,9 @@ public class ImapStore extends Store {
 						long msgSeq = response.getLong(0);
 
 						if (MAIL.DEBUG)
-							Log.d(MAIL.LOG_TAG, "Got untagged FETCH for msgseq "
-									+ msgSeq + " for " + getLogId());
+							Log.d(MAIL.LOG_TAG,
+									"Got untagged FETCH for msgseq " + msgSeq
+											+ " for " + getLogId());
 
 						if (!flagSyncMsgSeqs.contains(msgSeq)) {
 							flagSyncMsgSeqs.add(msgSeq);
@@ -3738,8 +3746,9 @@ public class ImapStore extends Store {
 
 						for (long msgSeqNum : msgSeqs) {
 							if (MAIL.DEBUG) {
-								Log.v(MAIL.LOG_TAG, "Comparing EXPUNGEd msgSeq "
-										+ msgSeq + " to " + msgSeqNum);
+								Log.v(MAIL.LOG_TAG,
+										"Comparing EXPUNGEd msgSeq " + msgSeq
+												+ " to " + msgSeqNum);
 							}
 							if (msgSeqNum == msgSeq) {
 								String uid = msgSeqUidMap.get(msgSeqNum);
@@ -3907,8 +3916,9 @@ public class ImapStore extends Store {
 					try {
 						folderPusher.refresh();
 					} catch (Exception e) {
-						Log.e(MAIL.LOG_TAG, "Got exception while refreshing for "
-								+ folderPusher.getName(), e);
+						Log.e(MAIL.LOG_TAG,
+								"Got exception while refreshing for "
+										+ folderPusher.getName(), e);
 					}
 				}
 			}

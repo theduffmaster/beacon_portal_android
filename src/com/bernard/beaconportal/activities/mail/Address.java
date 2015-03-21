@@ -272,10 +272,12 @@ public class Address {
 				if (MAIL.changeContactNameColor()) {
 					final SpannableString coloredName = new SpannableString(
 							name);
-					coloredName.setSpan(
-							new ForegroundColorSpan(MAIL.getContactNameColor()),
-							0, coloredName.length(),
-							Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+					coloredName
+							.setSpan(
+									new ForegroundColorSpan(MAIL
+											.getContactNameColor()), 0,
+									coloredName.length(),
+									Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 					return coloredName;
 				} else {
 					return name;

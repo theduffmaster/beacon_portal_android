@@ -53,8 +53,8 @@ import com.bernard.beaconportal.activities.helper.Utility;
  * activity.
  */
 @SuppressLint("ResourceAsColor")
-public class AccountSetupBasics extends ActionBarActivity implements OnClickListener,
-		TextWatcher {
+public class AccountSetupBasics extends ActionBarActivity implements
+		OnClickListener, TextWatcher {
 	private final static String EXTRA_ACCOUNT = "com.bernard.beaconportal.activities.AccountSetupBasics.account";
 	private final static int DIALOG_NOTE = 1;
 	private final static String STATE_KEY_PROVIDER = "com.bernard.beaconportal.activities.AccountSetupBasics.provider";
@@ -87,13 +87,13 @@ public class AccountSetupBasics extends ActionBarActivity implements OnClickList
 
 			getSupportActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#4285f4")));
-			
+
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor("#3367d6"));
-	}
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor("#3367d6"));
+			}
 
 		} else {
 
@@ -118,21 +118,21 @@ public class AccountSetupBasics extends ActionBarActivity implements OnClickList
 			}
 
 			if (Build.VERSION.SDK_INT >= 21) {
-	            Window window = getWindow();
-	            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-	            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-	            window.setStatusBarColor(Color.parseColor(actionbar_colors));
-	}
-			
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor(actionbar_colors));
+			}
+
 		}
 
 		ActionBar bar = getSupportActionBar();
 
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
-		
+
 		bar.setElevation(0);
-		
+
 		bar.setTitle(Html.fromHtml("<font color='#ffffff'> Login </font>"));
 
 		mEmailView = (EditText) findViewById(R.id.account_email);
@@ -344,18 +344,17 @@ public class AccountSetupBasics extends ActionBarActivity implements OnClickList
 			onManualSetup();
 		}
 
-	if(email.equals("taccount@beaconschool.org")){
-			
+		if (email.equals("taccount@beaconschool.org")) {
+
 			SharedPreferences.Editor localEditors = getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE).edit();
 
 			localEditors.putString("username", "lbernard@beaconschool.org");
 
 			localEditors.apply();
-			
-			
-		}else{
-			
+
+		} else {
+
 			SharedPreferences.Editor localEditors = getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE).edit();
 
@@ -363,7 +362,6 @@ public class AccountSetupBasics extends ActionBarActivity implements OnClickList
 
 			localEditors.apply();
 
-			
 		}
 
 	}
@@ -402,18 +400,17 @@ public class AccountSetupBasics extends ActionBarActivity implements OnClickList
 			finishAutoSetup();
 		}
 
-		if(email.equals("taccount@beaconschool.org")){
-			
+		if (email.equals("taccount@beaconschool.org")) {
+
 			SharedPreferences.Editor localEditors = getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE).edit();
 
 			localEditors.putString("email", "lbernard@beaconschool.org");
 
 			localEditors.apply();
-			
-			
-		}else{
-			
+
+		} else {
+
 			SharedPreferences.Editor localEditors = getSharedPreferences(
 					"Login_Info", Context.MODE_PRIVATE).edit();
 
@@ -421,10 +418,7 @@ public class AccountSetupBasics extends ActionBarActivity implements OnClickList
 
 			localEditors.apply();
 
-			
 		}
-		
-		
 
 	}
 
@@ -727,8 +721,8 @@ public class AccountSetupBasics extends ActionBarActivity implements OnClickList
 				}
 			}
 		} catch (Exception e) {
-			Log.e(MAIL.LOG_TAG, "Error while trying to load provider settings.",
-					e);
+			Log.e(MAIL.LOG_TAG,
+					"Error while trying to load provider settings.", e);
 		}
 		return null;
 	}

@@ -192,9 +192,8 @@ public class DecoderUtil {
 		}
 
 		if (encodedText.isEmpty()) {
-			Log.w(MAIL.LOG_TAG,
-					"Missing encoded text in encoded word: '"
-							+ body.substring(begin, end) + "'");
+			Log.w(MAIL.LOG_TAG, "Missing encoded text in encoded word: '"
+					+ body.substring(begin, end) + "'");
 			return null;
 		}
 
