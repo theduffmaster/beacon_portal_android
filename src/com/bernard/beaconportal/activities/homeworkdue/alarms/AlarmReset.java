@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class AlarmReset extends BroadcastReceiver {
 
@@ -25,8 +26,19 @@ public class AlarmReset extends BroadcastReceiver {
 
 		int minute = refresh_time.getInt("Minute", 0);
 
+		
+		if(hour == 10000 && minute == 10000){
+			
+			Log.d("Alarm Reset","alarm was canceled");
+			
+		}else{
+		
 		setAlarmCustom(context, hour, minute);
+		
+		Log.d("Alarm Reset","alarm reset");
 
+		}
+		
 	}
 
 	private void setAlarm(Context context) {
