@@ -50,6 +50,7 @@ import android.util.Log;
 import com.bernard.beaconportal.activities.Account;
 import com.bernard.beaconportal.activities.AccountStats;
 import com.bernard.beaconportal.activities.MAIL;
+import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.MAIL.Intents;
 import com.bernard.beaconportal.activities.MAIL.NotificationHideSubject;
 import com.bernard.beaconportal.activities.MAIL.NotificationQuickDelete;
@@ -5387,6 +5388,9 @@ public class MessagingController implements Runnable {
 		}
 	}
 
+	
+	//notify when a user gets an email
+	
 	private void notifyAccountWithDataLocked(Context context, Account account,
 			Message message, NotificationData data) {
 		boolean updateSilently = false;
@@ -5446,6 +5450,16 @@ public class MessagingController implements Runnable {
 		String accountDescr = (account.getDescription() != null) ? account
 				.getDescription() : account.getEmail();
 		final ArrayList<MessageReference> allRefs = data.getAllMessageRefs();
+		
+//      temp fix for blank messageview
+		
+		Intent intent = new Intent(context, Accounts.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
+				| Intent.FLAG_ACTIVITY_NEW_TASK);
+		PendingIntent pIntent = PendingIntent
+				.getActivity(context, 0, intent,
+						PendingIntent.FLAG_UPDATE_CURRENT
+								| PendingIntent.FLAG_ONE_SHOT);
 
 		if (platformSupportsExtendedNotifications() && !privacyModeEnabled) {
 			if (newMessages > 1) {
@@ -5558,9 +5572,12 @@ public class MessagingController implements Runnable {
 			stack = buildMessageListBackStack(context, account, initialFolder);
 		}
 
-		builder.setContentIntent(stack.getPendingIntent(
-				account.getAccountNumber(), PendingIntent.FLAG_CANCEL_CURRENT
-						| PendingIntent.FLAG_ONE_SHOT));
+		builder.setContentIntent(pIntent);
+		
+//      currently this pending intent just leads to a blank message view		
+//		builder.setContentIntent(stack.getPendingIntent(
+//				account.getAccountNumber(), PendingIntent.FLAG_CANCEL_CURRENT
+//						| PendingIntent.FLAG_ONE_SHOT));
 		builder.setDeleteIntent(NotificationActionService.getAcknowledgeIntent(
 				context, account));
 

@@ -63,7 +63,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CheckBox;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
-import android.widget.QuickContactBadge;
+import com.bernard.beaconportal.activities.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -839,8 +839,6 @@ public class MessageListFragment extends Fragment implements
 
 		mInitialized = true;
 
-		MessageList.mDrawerToggle.setDrawerIndicatorEnabled(true);
-
 	}
 
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -871,6 +869,16 @@ public class MessageListFragment extends Fragment implements
 		mListView.setVerticalFadingEdgeEnabled(false);
 
 		// mListView.setBackgroundColor(Color.WHITE);
+		
+		if(MessageList.mDrawerToggle != null){
+			
+			MessageList.mDrawerToggle.setDrawerIndicatorEnabled(true);
+			
+			}else{
+			
+				//initializeActionBar();
+				
+			}
 
 		return view;
 	}

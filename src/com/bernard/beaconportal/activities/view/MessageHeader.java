@@ -21,7 +21,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.QuickContactBadge;
+import com.bernard.beaconportal.activities.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
