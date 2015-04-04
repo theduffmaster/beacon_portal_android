@@ -33,7 +33,7 @@
 
     </LinearLayout>
 
-    <com.bernard.beaconportal.activities.QuickContactBadge
+    <com.bernard.beaconportal.activities.OverlayLessQuickContactBadge
         android:id="@+id/contact_badge"
         android:layout_width="40dip"
         android:layout_height="40dip"

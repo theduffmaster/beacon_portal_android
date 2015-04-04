@@ -49,6 +49,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PorterDuff.Mode;
@@ -880,7 +881,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 		if (drawable instanceof BitmapDrawable) {
 			return ((BitmapDrawable) drawable).getBitmap();
 		}
-
+		
 		Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
 				drawable.getIntrinsicHeight(), Config.ARGB_8888);
 		Canvas canvas = new Canvas(bitmap);
@@ -933,18 +934,18 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 		final int color = 0xff424242;
 		final Paint paint = new Paint();
 		final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-
 		paint.setAntiAlias(true);
 		canvas.drawARGB(0, 0, 0, 0);
 		paint.setColor(color);
-		// canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
 		canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
 				bitmap.getWidth() / 2, paint);
 		paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
 		canvas.drawBitmap(bitmap, rect, rect, paint);
-		// Bitmap _bmp = Bitmap.createScaledBitmap(output, 60, 60, false);
-		// return _bmp;
 		return output;
+	}
+	
+	public static float pxFromDp(final Context context, final float dp) {
+	    return dp * context.getResources().getDisplayMetrics().density;
 	}
 
 	public void parse_due_tommorow_content() {
@@ -1067,6 +1068,21 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 		}
 
 	}
+	
+	public Bitmap getResizedBitmap(Bitmap bm, float f, float g) {
+	    int width = bm.getWidth();
+	    int height = bm.getHeight();
+	    float scaleWidth = ((float) f) / width;
+	    float scaleHeight = ((float) g) / height;
+	    // CREATE A MATRIX FOR THE MANIPULATION
+	    Matrix matrix = new Matrix();
+	    // RESIZE THE BIT MAP
+	    matrix.postScale(scaleWidth, scaleHeight);
+
+	    // "RECREATE" THE NEW BITMAP
+	    Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+	    return resizedBitmap;
+	}
 
 	public void createNotification() {
 		// prepare intent which is triggered if the
@@ -1082,6 +1098,8 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 				Context.MODE_PRIVATE);
 
 		String Show_View = sharedpre.getString("show_view", "");
+		
+		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
 
 		if (Show_View.equals("Homework Due")) {
 
@@ -1138,12 +1156,20 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			Canvas canvas = new Canvas(coloredBitmap);
 			canvas.drawColor(Color.parseColor(actionbar_colors));
 			canvas.drawBitmap(icon0, 0, 0, null);
+			
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+			    coloredBitmap = getCroppedBitmap(coloredBitmap);
+			} else{
+			    
+				coloredBitmap = getResizedBitmap(coloredBitmap, pxFromDp(context, 65), pxFromDp(context, 65));
+				
+			}
 
 			n = new NotificationCompat.Builder(context)
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("No Homework Due Tommorow!")
 					.setSmallIcon(R.drawable.ic_action_assignment_light)
-					.setLargeIcon(getCroppedBitmap(coloredBitmap))
+					.setLargeIcon(coloredBitmap)
 					.setContentText("Congratulations")
 					.setContentIntent(pIntent).setAutoCancel(true).build();
 
@@ -1157,12 +1183,20 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			Canvas canvas = new Canvas(coloredBitmap);
 			canvas.drawColor(Color.parseColor(actionbar_colors));
 			canvas.drawBitmap(icon1, 0, 0, null);
+			
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+			    coloredBitmap = getCroppedBitmap(coloredBitmap);
+			} else{
+			    
+				coloredBitmap = getResizedBitmap(coloredBitmap, 130, 130);
+				
+			}
 
 			n = new NotificationCompat.Builder(context)
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("1 Assignment Due " + day_due)
 					.setSmallIcon(R.drawable.ic_action_assignment_light)
-					.setLargeIcon(getCroppedBitmap(coloredBitmap))
+					.setLargeIcon(coloredBitmap)
 					.setContentText(due_tommorow_list.get(0))
 					.setContentIntent(pIntent)
 					.setStyle(
@@ -1180,12 +1214,20 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			Canvas canvas = new Canvas(coloredBitmap);
 			canvas.drawColor(Color.parseColor(actionbar_colors));
 			canvas.drawBitmap(icon2, 0, 0, null);
+			
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+			    coloredBitmap = getCroppedBitmap(coloredBitmap);
+			} else{
+			    
+				coloredBitmap = getResizedBitmap(coloredBitmap, 130, 130);
+				
+			}
 
 			n = new NotificationCompat.Builder(context)
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("2 Assignments Due " + day_due)
 					.setSmallIcon(R.drawable.ic_action_assignment_light)
-					.setLargeIcon(getCroppedBitmap(coloredBitmap))
+					.setLargeIcon(coloredBitmap)
 					.setContentText(due_tommorow_list.get(0))
 					.setContentIntent(pIntent)
 					.setStyle(
@@ -1204,12 +1246,20 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			Canvas canvas = new Canvas(coloredBitmap);
 			canvas.drawColor(Color.parseColor(actionbar_colors));
 			canvas.drawBitmap(icon3, 0, 0, null);
+			
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+			    coloredBitmap = getCroppedBitmap(coloredBitmap);
+			} else{
+			    
+				coloredBitmap = getResizedBitmap(coloredBitmap, 130, 130);
+				
+			}
 
 			n = new NotificationCompat.Builder(context)
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("3 Assignments Due " + day_due)
 					.setSmallIcon(R.drawable.ic_action_assignment_light)
-					.setLargeIcon(getCroppedBitmap(coloredBitmap))
+					.setLargeIcon(coloredBitmap)
 					.setContentText(due_tommorow_list.get(0))
 					.setContentIntent(pIntent)
 					.setStyle(
@@ -1229,12 +1279,20 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			Canvas canvas = new Canvas(coloredBitmap);
 			canvas.drawColor(Color.parseColor(actionbar_colors));
 			canvas.drawBitmap(icon4, 0, 0, null);
+			
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+			    coloredBitmap = getCroppedBitmap(coloredBitmap);
+			} else{
+			    
+				coloredBitmap = getResizedBitmap(coloredBitmap, 130, 130);
+				
+			}
 
 			n = new NotificationCompat.Builder(context)
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("4 Assignments Due " + day_due)
 					.setSmallIcon(R.drawable.ic_action_assignment_light)
-					.setLargeIcon(getCroppedBitmap(coloredBitmap))
+					.setLargeIcon(coloredBitmap)
 					.setContentText(due_tommorow_list.get(0))
 					.setStyle(
 							new NotificationCompat.InboxStyle()
@@ -1256,12 +1314,20 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			Canvas canvas = new Canvas(coloredBitmap);
 			canvas.drawColor(Color.parseColor(actionbar_colors));
 			canvas.drawBitmap(icon5, 0, 0, null);
+			
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+			    coloredBitmap = getCroppedBitmap(coloredBitmap);
+			} else{
+			    
+				coloredBitmap = getResizedBitmap(coloredBitmap, 130, 130);
+				
+			}
 
 			n = new NotificationCompat.Builder(context)
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("5 Assignments Due " + day_due)
 					.setSmallIcon(R.drawable.ic_action_assignment_light)
-					.setLargeIcon(getCroppedBitmap(coloredBitmap))
+					.setLargeIcon(coloredBitmap)
 					.setContentText(due_tommorow_list.get(0))
 					.setContentIntent(pIntent)
 					.setStyle(
@@ -1283,12 +1349,20 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			Canvas canvas = new Canvas(coloredBitmap);
 			canvas.drawColor(Color.parseColor(actionbar_colors));
 			canvas.drawBitmap(icon6, 0, 0, null);
+			
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+			    coloredBitmap = getCroppedBitmap(coloredBitmap);
+			} else{
+			    
+				coloredBitmap = getResizedBitmap(coloredBitmap, 130, 130);
+				
+			}
 
 			n = new NotificationCompat.Builder(context)
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("6 Assignments Due " + day_due)
 					.setSmallIcon(R.drawable.ic_action_assignment_light)
-					.setLargeIcon(getCroppedBitmap(coloredBitmap))
+					.setLargeIcon(coloredBitmap)
 					.setContentText(due_tommorow_list.get(0))
 					.setContentIntent(pIntent)
 					.setStyle(
@@ -1311,12 +1385,20 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			Canvas canvas = new Canvas(coloredBitmap);
 			canvas.drawColor(Color.parseColor(actionbar_colors));
 			canvas.drawBitmap(icon7, 0, 0, null);
+			
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+			    coloredBitmap = getCroppedBitmap(coloredBitmap);
+			} else{
+			    
+				coloredBitmap = getResizedBitmap(coloredBitmap, 130, 130);
+				
+			}
 
 			n = new NotificationCompat.Builder(context)
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("7 Assignments Due " + day_due)
 					.setSmallIcon(R.drawable.ic_action_assignment_light)
-					.setLargeIcon(getCroppedBitmap(coloredBitmap))
+					.setLargeIcon(coloredBitmap)
 					.setContentText(due_tommorow_list.get(0))
 					.setContentIntent(pIntent)
 					.setStyle(
@@ -1339,12 +1421,20 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			Canvas canvas = new Canvas(coloredBitmap);
 			canvas.drawColor(Color.parseColor(actionbar_colors));
 			canvas.drawBitmap(icon8, 0, 0, null);
+			
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+			    coloredBitmap = getCroppedBitmap(coloredBitmap);
+			} else{
+			    
+				coloredBitmap = getResizedBitmap(coloredBitmap, 130, 130);
+				
+			}
 
 			n = new NotificationCompat.Builder(context)
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("8 Assignments Due " + day_due)
 					.setSmallIcon(R.drawable.ic_action_assignment_light)
-					.setLargeIcon(getCroppedBitmap(coloredBitmap))
+					.setLargeIcon(coloredBitmap)
 					.setContentText(due_tommorow_list.get(0))
 					.setContentIntent(pIntent)
 					.setStyle(
@@ -1367,12 +1457,20 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			Canvas canvas = new Canvas(coloredBitmap);
 			canvas.drawColor(Color.parseColor(actionbar_colors));
 			canvas.drawBitmap(icon9, 0, 0, null);
+			
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+			    coloredBitmap = getCroppedBitmap(coloredBitmap);
+			} else{
+			    
+				coloredBitmap = getResizedBitmap(coloredBitmap, 130, 130);
+				
+			}
 
 			n = new NotificationCompat.Builder(context)
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("9 Assignments Due " + day_due)
 					.setSmallIcon(R.drawable.ic_action_assignment_light)
-					.setLargeIcon(getCroppedBitmap(coloredBitmap))
+					.setLargeIcon(coloredBitmap)
 					.setContentText(due_tommorow_list.get(0))
 					.setContentIntent(pIntent)
 					.setStyle(
@@ -1395,6 +1493,14 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			Canvas canvas = new Canvas(coloredBitmap);
 			canvas.drawColor(Color.parseColor(actionbar_colors));
 			canvas.drawBitmap(icon10, 0, 0, null);
+			
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+			    coloredBitmap = getCroppedBitmap(coloredBitmap);
+			} else{
+			    
+				coloredBitmap = getResizedBitmap(coloredBitmap, 130, 130);
+				
+			}
 
 			String howManyMore = "+" + Integer.toString(homeworkCount - 5)
 					+ " more";
@@ -1403,7 +1509,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 					.setColor(Color.parseColor("#607D8B"))
 					.setContentTitle("10 or More Assignments Due " + day_due)
 					.setSmallIcon(R.drawable.ic_action_assignment_light)
-					.setLargeIcon(getCroppedBitmap(coloredBitmap))
+					.setLargeIcon(coloredBitmap)
 					.setContentText(due_tommorow_list.get(0))
 					.setContentIntent(pIntent)
 					.setStyle(

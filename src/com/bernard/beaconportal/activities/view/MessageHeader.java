@@ -21,7 +21,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import com.bernard.beaconportal.activities.QuickContactBadge;
+import com.bernard.beaconportal.activities.OverlayLessQuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,7 +62,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
 
 	private MessageHelper mMessageHelper;
 	private ContactPictureLoader mContactsPictureLoader;
-	private QuickContactBadge mContactBadge;
+	private OverlayLessQuickContactBadge mContactBadge;
 
 	private OnLayoutChangedListener mOnLayoutChangedListener;
 
@@ -96,7 +96,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
 		mCcView = (TextView) findViewById(R.id.cc);
 		mCcLabel = (TextView) findViewById(R.id.cc_label);
 
-		mContactBadge = (QuickContactBadge) findViewById(R.id.contact_badge);
+		mContactBadge = (OverlayLessQuickContactBadge) findViewById(R.id.contact_badge);
 
 		mSubjectView = (TextView) findViewById(R.id.subject);
 		mAdditionalHeadersView = (TextView) findViewById(R.id.additional_headers_view);

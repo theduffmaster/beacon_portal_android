@@ -1,6 +1,12 @@
 package com.bernard.beaconportal.activities;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +40,10 @@ public class MenuListAdapter extends BaseAdapter {
 		return mTitle[position];
 	}
 
+	public Object getImage(int position) {
+		return mIcon[position];
+	}
+
 	@Override
 	public long getItemId(int position) {
 		return position;
@@ -50,8 +60,11 @@ public class MenuListAdapter extends BaseAdapter {
 
 		inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		
 		View itemView = inflater.inflate(R.layout.drawer_list_item1, parent,
 				false);
+
+		Log.d("Creating Drawer ListView", "Yes");
 
 		txtTitle = (TextView) itemView.findViewById(R.id.title);
 
@@ -64,6 +77,25 @@ public class MenuListAdapter extends BaseAdapter {
 		txtCount.setText(mCount[position]);
 
 		imgIcon.setImageResource(mIcon[position]);
+
+		int selectedItem = MainActivity.mDrawerList.getSelectedItemPosition();
+
+		// if(position == selectedItem + 1){
+		//
+		// ColorFilter filter = new LightingColorFilter( Color.BLACK,
+		// Color.BLACK);
+		//
+		// imgIcon.setColorFilter(filter);
+		//
+		// txtTitle.setTextColor(Color.BLACK);
+		//
+		// Log.d("Creating Drawer ListView", "Selected item" +
+		// Integer.toString(selectedItem + 1));
+		//
+		// Log.d("Creating Drawer ListView", "Position" +
+		// Integer.toString(position));
+		//
+		// }
 
 		return itemView;
 	}

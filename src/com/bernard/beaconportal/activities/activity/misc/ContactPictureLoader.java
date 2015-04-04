@@ -29,7 +29,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v4.util.LruCache;
-import com.bernard.beaconportal.activities.QuickContactBadge;
+import com.bernard.beaconportal.activities.OverlayLessQuickContactBadge;
 
 import com.bernard.beaconportal.activities.helper.Contacts;
 import com.bernard.beaconportal.activities.helper.StringUtils;
@@ -68,17 +68,18 @@ public class ContactPictureLoader {
 	 * @see <a href="http://developer.android.com/design/style/color.html">Color
 	 *      palette used</a>
 	 */
-	private final static int CONTACT_DUMMY_COLORS_ARGB[] = { 
-//		0xffe4c62e,
-//			0xffad62a7, 0xfff16364, 0xfff58559, 0xfff9a43e, 0xff59a2be,
-//			0xff67bf74, 0xff2093cd, 0xff00bcd4, 0xff607d8b 
-//		0xFFF44336, 0xFFF50057, 0xFF9C27B0, 0xFF673AB7, 0xFF3F51B5, 0xFF2979FF, 0xFF00B0FF,
-//		0xFF00E5FF, 0xFF1976D2, 0xFF009688,0xFF4CAF50, 0xFF00C853, 0xFF76FF03, 
-//		0xFFFFC107, 0xFFFF9100, 0xFFFF5722, 0xFF607D8B
-		0xff689f38, 0xffef6c00, 0xff039be5, 0xff0f9d58, 0xffe91e63, 
-		0xff3f51b5, 0xffdb4437, 0xff9c27b0, 0xffff5722, 0xff673ab7, 
-		0xff009688, 0xff00ACC1, 0xff00B8D4, 0xff2962FF
-			};
+	private final static int CONTACT_DUMMY_COLORS_ARGB[] = {
+			// 0xffe4c62e,
+			// 0xffad62a7, 0xfff16364, 0xfff58559, 0xfff9a43e, 0xff59a2be,
+			// 0xff67bf74, 0xff2093cd, 0xff00bcd4, 0xff607d8b
+			// 0xFFF44336, 0xFFF50057, 0xFF9C27B0, 0xFF673AB7, 0xFF3F51B5,
+			// 0xFF2979FF, 0xFF00B0FF,
+			// 0xFF00E5FF, 0xFF1976D2, 0xFF009688,0xFF4CAF50, 0xFF00C853,
+			// 0xFF76FF03,
+			// 0xFFFFC107, 0xFFFF9100, 0xFFFF5722, 0xFF607D8B
+			0xff689f38, 0xffef6c00, 0xff039be5, 0xff0f9d58, 0xffe91e63,
+			0xff3f51b5, 0xffdb4437, 0xff9c27b0, 0xffff5722, 0xff673ab7,
+			0xff009688, 0xff00ACC1, 0xff00B8D4, 0xff2962FF };
 
 	/**
 	 * Constructor.
@@ -144,7 +145,7 @@ public class ContactPictureLoader {
 	 * @see #mBitmapCache
 	 * @see #calculateFallbackBitmap(Address)
 	 */
-	public void loadContactPicture(Address address, QuickContactBadge badge) {
+	public void loadContactPicture(Address address, OverlayLessQuickContactBadge badge) {
 		Bitmap bitmap = getBitmapFromCache(address);
 		if (bitmap != null) {
 			// The picture was found in the bitmap cache
@@ -278,7 +279,7 @@ public class ContactPictureLoader {
 	 *         {@link ContactPictureRetrievalTask} was already scheduled to load
 	 *         that contact picture.
 	 */
-	private boolean cancelPotentialWork(Address address, QuickContactBadge badge) {
+	private boolean cancelPotentialWork(Address address, OverlayLessQuickContactBadge badge) {
 		final ContactPictureRetrievalTask task = getContactPictureRetrievalTask(badge);
 
 		if (task != null && address != null) {
@@ -297,7 +298,7 @@ public class ContactPictureLoader {
 	}
 
 	private ContactPictureRetrievalTask getContactPictureRetrievalTask(
-			QuickContactBadge badge) {
+			OverlayLessQuickContactBadge badge) {
 		if (badge != null) {
 			Drawable drawable = badge.getDrawable();
 			if (drawable instanceof AsyncDrawable) {
@@ -313,11 +314,11 @@ public class ContactPictureLoader {
 	 * Load a contact picture in a background thread.
 	 */
 	class ContactPictureRetrievalTask extends AsyncTask<Void, Void, Bitmap> {
-		private final WeakReference<QuickContactBadge> mQuickContactBadgeReference;
+		private final WeakReference<OverlayLessQuickContactBadge> mQuickContactBadgeReference;
 		private final Address mAddress;
 
-		ContactPictureRetrievalTask(QuickContactBadge badge, Address address) {
-			mQuickContactBadgeReference = new WeakReference<QuickContactBadge>(
+		ContactPictureRetrievalTask(OverlayLessQuickContactBadge badge, Address address) {
+			mQuickContactBadgeReference = new WeakReference<OverlayLessQuickContactBadge>(
 					badge);
 			mAddress = new Address(address);
 		}
@@ -383,7 +384,7 @@ public class ContactPictureLoader {
 		@Override
 		protected void onPostExecute(Bitmap bitmap) {
 			if (mQuickContactBadgeReference != null) {
-				QuickContactBadge badge = mQuickContactBadgeReference.get();
+				OverlayLessQuickContactBadge badge = mQuickContactBadgeReference.get();
 				if (badge != null
 						&& getContactPictureRetrievalTask(badge) == this) {
 					badge.setImageBitmap(bitmap);

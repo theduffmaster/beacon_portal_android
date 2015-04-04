@@ -572,8 +572,6 @@ public class MessageCompose extends MAILActivity implements OnClickListener,
 		bar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
-		bar.setElevation(0);
-
 		bar.setTitle(Html
 				.fromHtml("<font color='#ffffff'><b>Compose</b></font>"));
 

@@ -821,20 +821,19 @@ public class FragmentSettings extends Fragment {
 				targetCal.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
 				pendingIntent);
 
-		System.out.println(Calendar.getInstance().getTimeInMillis() - targetCal.getTimeInMillis());
+		System.out.println(Calendar.getInstance().getTimeInMillis()
+				- targetCal.getTimeInMillis());
 
 	}
 
 	private void cancelAlarm() {
-		
+
 		SharedPreferences.Editor localEditor = getActivity()
-				.getSharedPreferences("Alarm",
-						Context.MODE_PRIVATE).edit();
+				.getSharedPreferences("Alarm", Context.MODE_PRIVATE).edit();
 
 		localEditor.putInt("Hour", 10000);
 
 		localEditor.putInt("Minute", 10000);
-
 
 		Intent intent = new Intent(getActivity().getBaseContext(),
 				DailyHomeworkDownload.class);

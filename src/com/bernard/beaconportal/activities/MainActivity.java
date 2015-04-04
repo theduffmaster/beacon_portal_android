@@ -43,6 +43,8 @@ import android.content.res.Configuration;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -60,6 +62,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -103,11 +106,12 @@ public class MainActivity extends ActionBarActivity {
 
 	final static int RQS_1 = 1;
 
+	int selected_item;
 	DrawerLayout mDrawerLayout;
 	LinearLayout mDrawerLinear;
 	TextView mWelcomePerson;
 	TextView mWelcome;
-	ListView mDrawerList;
+	static ListView mDrawerList;
 	ImageView mShadow;
 	ActionBarDrawerToggle mDrawerToggle;
 	private MenuListAdapter mMenuAdapter;
@@ -125,6 +129,7 @@ public class MainActivity extends ActionBarActivity {
 	private CharSequence mDrawerTitleCheck;
 	private CharSequence mTitle;
 	private String KEY_STATE_TITLE;
+	private ActionBar mActionBar;
 
 	private HttpResponse response;
 
@@ -335,14 +340,16 @@ public class MainActivity extends ActionBarActivity {
 
 		if (!sharedpref.contains("actionbar_color")) {
 
+			actionbar_colors = "#4285f4";
+			
 			getSupportActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#4285f4")));
+					new ColorDrawable(Color.parseColor(actionbar_colors)));
 
 			mWelcomePerson.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#4285f4")));
+					.parseColor(actionbar_colors)));
 
 			mWelcome.setBackgroundDrawable(new ColorDrawable(Color
-					.parseColor("#4285f4")));
+					.parseColor(actionbar_colors)));
 
 			if (Build.VERSION.SDK_INT >= 21) {
 				Window window = getWindow();
@@ -369,34 +376,33 @@ public class MainActivity extends ActionBarActivity {
 			mShadow.setBackgroundColor(Color.parseColor(actionbar_colors));
 
 			if (Build.VERSION.SDK_INT >= 21) {
+				
+				//darken color for status bar
+				float[] hsv = new float[3];
+				int color = Color.parseColor(actionbar_colors);
+				Color.colorToHSV(color, hsv);
+				hsv[2] *= 0.85f; // value component
+				color = Color.HSVToColor(hsv);
+				
 				Window window = getWindow();
 				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				window.setStatusBarColor(Color.parseColor(actionbar_colors));
-
+				window.setStatusBarColor(color);
+//				decode(Color.parseColor(actionbar_colors))
 			}
 
 		}
 
-		ActionBar bar = getSupportActionBar();
+		mActionBar = getSupportActionBar();
 
-		bar.setIcon(new ColorDrawable(getResources().getColor(
+		mActionBar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
-
-		mDrawerTitleCheck = getTitle();
-
-		if (!mDrawerTitleCheck.equals("Beacon Portal")) {
-
-			mTitle = mDrawerTitle = getTitle();
-
-		}
 
 		SharedPreferences.Editor localEditor = getSharedPreferences(
 				"due_today", Context.MODE_PRIVATE).edit();
 
 		localEditor.putString("inbox", MAILcount);
 		localEditor.putString("homeworkdue", counterss);
-
 		localEditor.apply();
 
 		if (Show_View.equals("Homework Due")) {
@@ -459,8 +465,8 @@ public class MainActivity extends ActionBarActivity {
 
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-		getSupportActionBar().setHomeButtonEnabled(true);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		mActionBar.setHomeButtonEnabled(true);
+		mActionBar.setDisplayHomeAsUpEnabled(true);
 
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
 				R.drawable.ic_drawer, R.string.drawer_open) {
@@ -497,6 +503,12 @@ public class MainActivity extends ActionBarActivity {
 				if (savedInstanceState == null) {
 
 					selectItem(countss);
+					
+					CharSequence cs = mDrawerList.getItemAtPosition(countss).toString();
+					
+					mActionBar.setTitle(cs);
+					
+					mDrawerTitle = cs;
 
 				}
 
@@ -507,6 +519,15 @@ public class MainActivity extends ActionBarActivity {
 				if (savedInstanceState == null) {
 
 					selectItem(0);
+					
+					selected_item = 0;
+					
+					CharSequence cs = mDrawerList.getItemAtPosition(0).toString();
+					
+					mActionBar.setTitle(cs);
+					
+					mDrawerTitle = cs;
+					
 				}
 
 			}
@@ -516,6 +537,13 @@ public class MainActivity extends ActionBarActivity {
 			if (savedInstanceState == null) {
 
 				selectItem(0);
+				
+				CharSequence cs = mDrawerList.getItemAtPosition(0).toString();
+				
+				mActionBar.setTitle(cs);
+				
+				mDrawerTitle = cs;
+				
 			}
 
 		}
@@ -654,6 +682,22 @@ public class MainActivity extends ActionBarActivity {
 					.parseColor(actionbar_colors)));
 
 			mShadow.setBackgroundColor(Color.parseColor(actionbar_colors));
+			
+			if (Build.VERSION.SDK_INT >= 21) {
+				
+				//darken color for status bar
+				float[] hsv = new float[3];
+				int color = Color.parseColor(actionbar_colors);
+				Color.colorToHSV(color, hsv);
+				hsv[2] *= 0.85f; // value component
+				color = Color.HSVToColor(hsv);
+				
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(color);
+//				decode(Color.parseColor(actionbar_colors))
+			}
 
 		}
 
@@ -699,9 +743,9 @@ public class MainActivity extends ActionBarActivity {
 
 		}
 
-		ActionBar bar = getSupportActionBar();
+		mActionBar = getSupportActionBar();
 
-		bar.setIcon(new ColorDrawable(getResources().getColor(
+		mActionBar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
 		if (checkbox != null) {
@@ -718,15 +762,7 @@ public class MainActivity extends ActionBarActivity {
 			}
 		}
 
-		mDrawerTitleCheck = getTitle();
 
-		if (!mDrawerTitleCheck.equals("Beacon Portal")) {
-
-			mTitle = mDrawerTitle = getTitle();
-
-			getSupportActionBar().setTitle(mDrawerTitle);
-
-		}
 
 		String packageName = "com.bernard.beaconportal.activities";
 
@@ -1080,6 +1116,17 @@ public class MainActivity extends ActionBarActivity {
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
 			selectItem(position);
+			
+		TextView txtTitle = (TextView) view.findViewById(R.id.title);
+
+		ImageView imgIcon = (ImageView) view.findViewById(R.id.icon);
+		
+		ColorFilter filter = new LightingColorFilter( R.color.red,R.color.red);
+				
+				 imgIcon.setColorFilter(filter);
+				
+				 txtTitle.setTextColor(R.color.red);
+			
 		}
 	}
 
@@ -1092,24 +1139,33 @@ public class MainActivity extends ActionBarActivity {
 			switch (position) {
 			case 0:
 				ft.replace(R.id.content_frame, fragment2);
+				mActionBar.setTitle("Homework Due");
+				mDrawerTitle = "Homework Due";
 				break;
 			case 1:
 				ft.replace(R.id.content_frame, fragment1);
+				mActionBar.setTitle("Schedule");
+				mDrawerTitle = "Schedule";
 				break;
 			case 2:
-
+				
 				inbox();
-
+				mActionBar.setTitle("Mail");
 				break;
 			case 3:
 				ft.replace(R.id.content_frame, fragment4);
+				mActionBar.setTitle("Resource");
+				mDrawerTitle = "Resource";
 				break;
 			case 4:
 				ft.replace(R.id.content_frame, fragment3);
+				mActionBar.setTitle("Options");
+				mDrawerTitle = "Options";
 				break;
 
 			case 5:
 				alert_logout();
+				mActionBar.setTitle("Logout");
 				break;
 			}
 
@@ -1118,25 +1174,33 @@ public class MainActivity extends ActionBarActivity {
 			switch (position) {
 			case 0:
 				ft.replace(R.id.content_frame, fragment1);
+				mActionBar.setTitle("Schedule");
+				mDrawerTitle = "Schedule";
 				break;
 			case 1:
-
 				ft.replace(R.id.content_frame, fragment2);
-
+				mActionBar.setTitle("Homework Due");
+				mDrawerTitle = "Homework Due";
 				break;
 
 			case 2:
 				inbox();
+				mActionBar.setTitle("Mail");
 				break;
 			case 3:
 				ft.replace(R.id.content_frame, fragment4);
+				mActionBar.setTitle("Resources");
+				mDrawerTitle = "Resources";
 				break;
 			case 4:
 				ft.replace(R.id.content_frame, fragment3);
+				mActionBar.setTitle("Options");
+				mDrawerTitle = "Options";
 				break;
 
 			case 5:
 				alert_logout();
+				mActionBar.setTitle("Logout");
 				break;
 			}
 		}
@@ -1144,8 +1208,6 @@ public class MainActivity extends ActionBarActivity {
 		ft.commit();
 
 		mDrawerList.setItemChecked(position, true);
-
-		setTitle(title[position]);
 
 		mDrawerLayout.closeDrawer(mDrawerLinear);
 	}
@@ -1183,6 +1245,8 @@ public class MainActivity extends ActionBarActivity {
 						public void onClick(DialogInterface dialog, int id) {
 
 							dialog.dismiss();
+							
+							getSupportActionBar().setTitle(mDrawerTitle);
 
 						}
 					});
@@ -1237,15 +1301,15 @@ public class MainActivity extends ActionBarActivity {
 		super.onConfigurationChanged(newConfig);
 
 		mDrawerToggle.onConfigurationChanged(newConfig);
+		
+		mActionBar.setTitle(mDrawerTitle);
 
 	}
 
 	@Override
 	public void setTitle(CharSequence title) {
 
-		mTitle = title;
-
-		getSupportActionBar().setTitle(mTitle);
+		getSupportActionBar().setTitle(title);
 
 	}
 

@@ -5388,9 +5388,8 @@ public class MessagingController implements Runnable {
 		}
 	}
 
-	
-	//notify when a user gets an email
-	
+	// notify when a user gets an email
+
 	private void notifyAccountWithDataLocked(Context context, Account account,
 			Message message, NotificationData data) {
 		boolean updateSilently = false;
@@ -5450,9 +5449,9 @@ public class MessagingController implements Runnable {
 		String accountDescr = (account.getDescription() != null) ? account
 				.getDescription() : account.getEmail();
 		final ArrayList<MessageReference> allRefs = data.getAllMessageRefs();
-		
-//      temp fix for blank messageview
-		
+
+		// temp fix for blank messageview
+
 		Intent intent = new Intent(context, Accounts.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
 				| Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -5573,11 +5572,11 @@ public class MessagingController implements Runnable {
 		}
 
 		builder.setContentIntent(pIntent);
-		
-//      currently this pending intent just leads to a blank message view		
-//		builder.setContentIntent(stack.getPendingIntent(
-//				account.getAccountNumber(), PendingIntent.FLAG_CANCEL_CURRENT
-//						| PendingIntent.FLAG_ONE_SHOT));
+
+		// currently this pending intent just leads to a blank message view
+		// builder.setContentIntent(stack.getPendingIntent(
+		// account.getAccountNumber(), PendingIntent.FLAG_CANCEL_CURRENT
+		// | PendingIntent.FLAG_ONE_SHOT));
 		builder.setDeleteIntent(NotificationActionService.getAcknowledgeIntent(
 				context, account));
 

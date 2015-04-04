@@ -10,11 +10,14 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -222,7 +225,8 @@ public class ColorPickerDialogTheme extends Dialog implements
 		localEditor.putInt("Old_Color", color);
 
 		localEditor.commit();
-
+		
+		
 		SharedPreferences.Editor localEditor1 = getContext()
 				.getSharedPreferences("return_to_main", Context.MODE_PRIVATE)
 				.edit();

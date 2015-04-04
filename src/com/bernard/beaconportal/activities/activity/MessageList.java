@@ -1082,60 +1082,6 @@ public class MessageList extends MAILListActivity implements
 		// selectItem_Inbox(1);
 		// }
 
-		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
-				Context.MODE_PRIVATE);
-
-		final int splitBarId = getResources().getIdentifier("split_action_bar",
-				"id", "android");
-		final View splitActionBar = findViewById(splitBarId);
-
-		if (!sharedpref.contains("actionbar_color")) {
-
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#4285f4")));
-
-			if (splitActionBar != null) {
-
-				splitActionBar.setBackgroundDrawable(new ColorDrawable(Color
-						.parseColor("#4285f4")));
-
-			}
-
-			if (Build.VERSION.SDK_INT >= 21) {
-				Window window = getWindow();
-				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				window.setStatusBarColor(Color.parseColor("#3367d6"));
-			}
-
-		} else {
-
-			actionbar_colors = sharedpref.getString("actionbar_color", null);
-
-			getActionBar().setBackgroundDrawable(
-
-			new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-			if (splitActionBar != null) {
-
-				splitActionBar.setBackgroundDrawable(new ColorDrawable(Color
-						.parseColor(actionbar_colors)));
-
-			}
-
-			if (Build.VERSION.SDK_INT >= 21) {
-				Window window = getWindow();
-				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				window.setStatusBarColor(Color.parseColor("#3367d6"));
-			}
-
-		}
-
-		android.app.ActionBar bar = getActionBar();
-
-		bar.setIcon(new ColorDrawable(getResources().getColor(
-				android.R.color.transparent)));
 		// Enable gesture detection for MessageLists
 		// setupGestureDetector(this);
 
@@ -1272,6 +1218,70 @@ public class MessageList extends MAILListActivity implements
 		mListView.setLongClickable(true);
 		mListView.setFastScrollEnabled(true);
 		mListView.setScrollingCacheEnabled(false);
+		
+		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
+				Context.MODE_PRIVATE);
+
+		if (!sharedpref.contains("actionbar_color")) {
+
+			getActionBar().setBackgroundDrawable(
+					new ColorDrawable(Color.parseColor("#4285f4")));
+
+//			if (splitActionBar != null) {
+//
+//				splitActionBar.setBackgroundDrawable(new ColorDrawable(Color
+//						.parseColor("#4285f4")));
+//
+//			}
+			
+			getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#4285f4")));
+
+			if (Build.VERSION.SDK_INT >= 21) {
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(Color.parseColor("#3367d6"));
+			}
+
+		} else {
+
+			actionbar_colors = sharedpref.getString("actionbar_color", null);
+
+			getActionBar().setBackgroundDrawable(
+
+			new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+//			if (splitActionBar != null) {
+//
+//				splitActionBar.setBackgroundDrawable(new ColorDrawable(Color
+//						.parseColor(actionbar_colors)));
+//
+//			}
+			
+			getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+			if (Build.VERSION.SDK_INT >= 21) {
+				
+				//darken color for status bar
+				float[] hsv = new float[3];
+				int color = Color.parseColor(actionbar_colors);
+				Color.colorToHSV(color, hsv);
+				hsv[2] *= 0.85f; // value component
+				color = Color.HSVToColor(hsv);
+				
+				Window window = getWindow();
+				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				window.setStatusBarColor(color);
+//				decode(Color.parseColor(actionbar_colors))
+			}
+
+		}
+
+		android.app.ActionBar bar = getActionBar();
+
+		bar.setIcon(new ColorDrawable(getResources().getColor(
+				android.R.color.transparent)));
 
 		// mListView.addHeaderView(header_folders);
 
@@ -3417,32 +3427,21 @@ public class MessageList extends MAILListActivity implements
 			mMenu2.findItem(R.id.show_headers).setVisible(false);
 			mMenu2.findItem(R.id.hide_headers).setVisible(false);
 
-			final int splitBarId = getResources().getIdentifier(
-					"split_action_bar", "id", "android");
-			final View splitActionBar = findViewById(splitBarId);
-
 			SharedPreferences sharedpref = getSharedPreferences(
 					"actionbar_color", Context.MODE_PRIVATE);
 
 			if (!sharedpref.contains("actionbar_color")) {
 
-				if (splitActionBar != null) {
+				getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#4285f4")));
 
-					splitActionBar.setBackgroundDrawable(new ColorDrawable(
-							Color.parseColor("#4285f4")));
-
-				}
 
 			} else {
 
 				actionbar_colors = sharedpref
 						.getString("actionbar_color", null);
 
-				if (splitActionBar != null) {
+				getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor(actionbar_colors)));
 
-					splitActionBar.setBackgroundDrawable(new ColorDrawable(
-							Color.parseColor(actionbar_colors)));
-				}
 
 			}
 
@@ -3468,15 +3467,8 @@ public class MessageList extends MAILListActivity implements
 				// next.setEnabled(canDoNext);
 				// next.getIcon().setAlpha(canDoNext ? 255 : 127);
 
-				final int splitBarId = getResources().getIdentifier(
-						"split_action_bar", "id", "android");
-				final View splitActionBar = findViewById(splitBarId);
+				getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
 
-				if (splitActionBar != null) {
-
-					splitActionBar.setBackgroundDrawable(new ColorDrawable(
-							Color.parseColor("#ffffff")));
-				}
 
 			}
 

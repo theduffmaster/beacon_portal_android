@@ -68,10 +68,19 @@ public class FragmentsLinked extends ActionBarActivity {
 			new ColorDrawable(Color.parseColor(actionbar_colors)));
 
 			if (Build.VERSION.SDK_INT >= 21) {
+				
+				//darken color for status bar
+				float[] hsv = new float[3];
+				int darkerColor = Color.parseColor(actionbar_colors);
+				Color.colorToHSV(darkerColor, hsv);
+				hsv[2] *= 0.85f; // value component
+				darkerColor = Color.HSVToColor(hsv);
+				
 				Window window = getWindow();
 				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				window.setStatusBarColor(Color.parseColor(actionbar_colors));
+				window.setStatusBarColor(darkerColor);
+//				decode(Color.parseColor(actionbar_colors))
 			}
 		}
 
