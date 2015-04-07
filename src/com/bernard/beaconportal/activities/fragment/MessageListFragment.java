@@ -24,12 +24,14 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -49,6 +51,7 @@ import android.util.TypedValue;
 import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.View.OnClickListener;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -63,7 +66,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CheckBox;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
+
 import com.bernard.beaconportal.activities.OverlayLessQuickContactBadge;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -104,6 +109,7 @@ import com.bernard.beaconportal.activities.search.SearchSpecification;
 import com.bernard.beaconportal.activities.search.SearchSpecification.SearchCondition;
 import com.bernard.beaconportal.activities.search.SearchSpecification.Searchfield;
 import com.bernard.beaconportal.activities.search.SqlQueryBuilder;
+import com.faizmalkani.floatingactionbutton.Fab;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -368,6 +374,8 @@ public class MessageListFragment extends Fragment implements
 
 	private MessageListAdapter mAdapter;
 	private View mFooterView;
+	
+	private Fab mFab;
 
 	private FolderInfoHolder mCurrentFolder;
 
@@ -811,6 +819,7 @@ public class MessageListFragment extends Fragment implements
 			throw new ClassCastException(activity.getClass()
 					+ " must implement MessageListFragmentListener");
 		}
+	
 	}
 
 	@Override
@@ -879,6 +888,53 @@ public class MessageListFragment extends Fragment implements
 			// initializeActionBar();
 
 		}
+		
+		SharedPreferences sharedpref = getActivity().getSharedPreferences(
+				"actionbar_color", Context.MODE_PRIVATE);
+
+		if (!sharedpref.contains("actionbar_color")) {
+
+			getActivity().getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#4285f4")));
+
+
+		} else {
+
+			String actionbar_colors = sharedpref
+					.getString("actionbar_color", null);
+
+			getActivity().getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+		}
+		
+		mFab = (Fab) view.findViewById(R.id.fabbutton);
+
+		if (!sharedpref.contains("actionbar_color")) {
+
+			mFab.setFabColor(Color.parseColor("#4285f4"));
+
+		} else {
+
+			String actionbar_colors = sharedpref.getString("actionbar_color",
+					null);
+
+			mFab.setFabColor(Color.parseColor(actionbar_colors));
+
+		}
+
+		mFab.setFabDrawable(getResources().getDrawable(
+				R.drawable.ic_action_edit));
+
+		mFab.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				onCompose();
+
+			}
+
+		});
 
 		return view;
 	}
@@ -910,7 +966,7 @@ public class MessageListFragment extends Fragment implements
 			mCursorValid[i] = false;
 		}
 	}
-
+	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
@@ -3848,5 +3904,5 @@ public class MessageListFragment extends Fragment implements
 	private boolean isPullToRefreshAllowed() {
 		return (isRemoteSearchAllowed() || isCheckMailAllowed());
 	}
-
+	
 }

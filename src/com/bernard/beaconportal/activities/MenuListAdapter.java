@@ -71,14 +71,12 @@ public class MenuListAdapter extends BaseAdapter {
 		txtCount = (TextView) itemView.findViewById(R.id.counter);
 
 		imgIcon = (ImageView) itemView.findViewById(R.id.icon);
-
+		
 		txtTitle.setText(mTitle[position]);
 
 		txtCount.setText(mCount[position]);
 
 		imgIcon.setImageResource(mIcon[position]);
-
-		int selectedItem = MainActivity.mDrawerList.getSelectedItemPosition();
 
 		// if(position == selectedItem + 1){
 		//

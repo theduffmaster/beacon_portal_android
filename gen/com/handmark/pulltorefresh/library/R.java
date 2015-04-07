@@ -8,10 +8,10 @@ package com.handmark.pulltorefresh.library;
 
 public final class R {
 	public static final class anim {
-		public static final int slide_in_from_bottom = 0x7f040008;
-		public static final int slide_in_from_top = 0x7f040009;
-		public static final int slide_out_to_bottom = 0x7f04000e;
-		public static final int slide_out_to_top = 0x7f04000f;
+		public static final int slide_in_from_bottom = 0x7f04000a;
+		public static final int slide_in_from_top = 0x7f04000b;
+		public static final int slide_out_to_bottom = 0x7f040010;
+		public static final int slide_out_to_top = 0x7f040011;
 	}
 	public static final class attr {
 		public static final int ptrAdapterViewBackground = 0x7f0100d1;
@@ -35,18 +35,18 @@ public final class R {
 		public static final int ptrSubHeaderTextAppearance = 0x7f0100cc;
 	}
 	public static final class dimen {
-		public static final int header_footer_left_right_padding = 0x7f070033;
-		public static final int header_footer_top_bottom_padding = 0x7f070034;
-		public static final int indicator_corner_radius = 0x7f070031;
-		public static final int indicator_internal_padding = 0x7f070032;
-		public static final int indicator_right_padding = 0x7f070030;
+		public static final int header_footer_left_right_padding = 0x7f070038;
+		public static final int header_footer_top_bottom_padding = 0x7f070039;
+		public static final int indicator_corner_radius = 0x7f070036;
+		public static final int indicator_internal_padding = 0x7f070037;
+		public static final int indicator_right_padding = 0x7f070035;
 	}
 	public static final class drawable {
-		public static final int default_ptr_flip = 0x7f020065;
-		public static final int default_ptr_rotate = 0x7f020066;
-		public static final int indicator_arrow = 0x7f0201da;
-		public static final int indicator_bg_bottom = 0x7f0201db;
-		public static final int indicator_bg_top = 0x7f0201dc;
+		public static final int default_ptr_flip = 0x7f02006b;
+		public static final int default_ptr_rotate = 0x7f02006c;
+		public static final int indicator_arrow = 0x7f0201e3;
+		public static final int indicator_bg_bottom = 0x7f0201e4;
+		public static final int indicator_bg_top = 0x7f0201e5;
 	}
 	public static final class id {
 		public static final int both = 0x7f0b0025;

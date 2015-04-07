@@ -288,6 +288,9 @@ public class MessageList extends MAILListActivity implements
 	Fragment fragment2 = new FragmentsHomeworkDue();
 	Fragment fragment3 = new FragmentSettings();
 	private int mUnreadMessageCount = 0;
+	
+	String overflowDesc = null;
+	ViewGroup decor = null;
 
 	private String MAILcount;
 
@@ -838,8 +841,12 @@ public class MessageList extends MAILListActivity implements
 		}
 
 		Log.d(TAG, "onCreate()");
+		
+		overflowDesc = getString(R.string.accessibility_overflow);
 
 		String packageName = "com.bernard.beaconportal.activities";
+		
+		decor = (ViewGroup) getWindow().getDecorView();
 
 		counterss = "0";
 
@@ -1175,7 +1182,11 @@ public class MessageList extends MAILListActivity implements
 		// }
 		if (mAdapter == null)
 			initializeActivityView();
+		
+		overflowDesc = getString(R.string.accessibility_overflow);
 
+		decor = (ViewGroup) getWindow().getDecorView();
+		
 		MessagingController.getInstance(getApplication()).addListener(
 				mAdapter.mListener);
 		// mAccount.refresh(Preferences.getPreferences(this));
@@ -3192,10 +3203,10 @@ public class MessageList extends MAILListActivity implements
 
 		switch (itemId) {
 
-		case R.id.composeList: {
-			mMessageListFragment.onCompose();
-			return true;
-		}
+//		case R.id.composeList: {
+//			mMessageListFragment.onCompose();
+//			return true;
+//		}
 		case R.id.composeView: {
 			mMessageListFragment.onCompose();
 			return true;
@@ -3363,6 +3374,7 @@ public class MessageList extends MAILListActivity implements
 	public boolean onCreateOptionsMenu(android.view.Menu menu) {
 		getMenuInflater().inflate(R.menu.message_list_option, menu);
 		mMenu = menu;
+		menu.add("More Options");
 		mMenuButtonCheckMail = menu.findItem(R.id.check_mail);
 		return true;
 	}
@@ -3414,7 +3426,7 @@ public class MessageList extends MAILListActivity implements
 			mMenu2.findItem(R.id.previous_message).setVisible(false);
 			mMenu2.findItem(R.id.single_message_options).setVisible(false);
 			mMenu2.findItem(R.id.delete).setVisible(false);
-			mMenu2.findItem(R.id.composeList).setVisible(false);
+			//mMenu2.findItem(R.id.composeList).setVisible(false);
 			mMenu2.findItem(R.id.composeView).setVisible(false);
 			mMenu2.findItem(R.id.archive).setVisible(false);
 			mMenu2.findItem(R.id.move).setVisible(false);
@@ -3444,6 +3456,27 @@ public class MessageList extends MAILListActivity implements
 
 
 			}
+			
+			decor.postDelayed(new Runnable() {
+
+		        @Override
+		        public void run() {
+		            // The List that contains the matching views
+		            final ArrayList<View> outViews = new ArrayList<View>();
+		            // Traverse the view-hierarchy and locate the overflow button
+		            decor.findViewsWithText(outViews, overflowDesc,
+		                    View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+		            // Guard against any errors
+		            if (outViews.isEmpty()) {
+		                return;
+		            }
+		            // Do something with the view
+		            final ImageButton overflow = (ImageButton) outViews.get(0);
+		            overflow.setImageResource(R.drawable.ic_dots_vertical_white_24dp);
+
+		        }
+
+		    }, 0000);
 
 		} else {
 			// hide prev/next buttons in split mode
@@ -3468,7 +3501,27 @@ public class MessageList extends MAILListActivity implements
 				// next.getIcon().setAlpha(canDoNext ? 255 : 127);
 
 				getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+				
+				decor.postDelayed(new Runnable() {
 
+			        @Override
+			        public void run() {
+			            // The List that contains the matching views
+			            final ArrayList<View> outViews = new ArrayList<View>();
+			            // Traverse the view-hierarchy and locate the overflow button
+			            decor.findViewsWithText(outViews, overflowDesc,
+			                    View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+			            // Guard against any errors
+			            if (outViews.isEmpty()) {
+			                return;
+			            }
+			            // Do something with the view
+			            final ImageButton overflow = (ImageButton) outViews.get(0);
+			            overflow.setImageResource(R.drawable.ic_dots_vertical_grey600_24dp);
+
+			        }
+
+			    }, 0000);
 
 			}
 
@@ -3575,7 +3628,7 @@ public class MessageList extends MAILListActivity implements
 		} else {
 			mMenu2.findItem(R.id.set_sort).setVisible(true);
 			mMenu2.findItem(R.id.select_all).setVisible(true);
-			mMenu2.findItem(R.id.composeList).setVisible(true);
+//			mMenu2.findItem(R.id.composeList).setVisible(true);
 			mMenu2.findItem(R.id.mark_all_as_read).setVisible(
 					mMessageListFragment.isMarkAllAsReadSupported());
 

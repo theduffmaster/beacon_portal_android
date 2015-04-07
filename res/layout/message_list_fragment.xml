@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+ <FrameLayout 
+     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
 <com.bernard.beaconportal.activities.view.MAILPullToRefreshListView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/message_list"
@@ -8,6 +16,17 @@
    
     android:clickable="true"
     />
+
+ <com.faizmalkani.floatingactionbutton.Fab
+        android:id="@+id/fabbutton"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        />
+
+</FrameLayout>
     
 
        

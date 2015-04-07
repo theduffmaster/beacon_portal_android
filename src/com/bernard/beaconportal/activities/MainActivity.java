@@ -1115,17 +1115,8 @@ public class MainActivity extends ActionBarActivity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			selectItem(position);
 			
-		TextView txtTitle = (TextView) view.findViewById(R.id.title);
-
-		ImageView imgIcon = (ImageView) view.findViewById(R.id.icon);
-		
-		ColorFilter filter = new LightingColorFilter( R.color.red,R.color.red);
-				
-				 imgIcon.setColorFilter(filter);
-				
-				 txtTitle.setTextColor(R.color.red);
+			selectItem(position);
 			
 		}
 	}

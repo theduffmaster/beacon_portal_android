@@ -6,15 +6,13 @@
         android:alphabeticShortcut="c"
         android:title="@string/add_cc_bcc_action"
         android:icon="?attr/iconActionAddCcBcc"
-       app:showAsAction="always"
-        android:showAsAction="always"
+       	android:showAsAction="always"
     />
     <item
         android:id="@+id/add_attachment"
         android:alphabeticShortcut="n"
         android:title="@string/add_attachment_action"
-        android:icon="?attr/iconActionAddAttachment"
-        app:showAsAction="always"
+        android:icon="@drawable/ic_email_attachment"
         android:showAsAction="always"
     />
     <item
@@ -22,7 +20,6 @@
         android:alphabeticShortcut="s"
         android:title="@string/send_action"
         android:icon="?attr/iconActionSend"
-       app:showAsAction="always"
         android:showAsAction="always"
     />
     <item

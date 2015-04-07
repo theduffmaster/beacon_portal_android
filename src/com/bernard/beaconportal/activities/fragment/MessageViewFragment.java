@@ -12,6 +12,9 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -179,6 +182,7 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 			throw new ClassCastException(activity.getClass()
 					+ " must implement MessageViewFragmentListener");
 		}
+		
 	}
 
 	@Override
@@ -242,7 +246,7 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 		mFragmentListener.messageHeaderViewAvailable(mMessageView
 				.getMessageHeaderView());
 
-		// mMessageView.setBackgroundColor(Color.WHITE);
+		getActivity().getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
 
 		return view;
 	}
@@ -265,6 +269,13 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 		displayMessage(messageReference, (mPgpData == null));
 	}
 
+	
+	public void onResume(Activity activity) {
+
+			getActivity().getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+		
+	}
+	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
@@ -965,8 +976,27 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 			// called when the up affordance/carat in actionbar is pressed
 
 			getActivity().onBackPressed();
+			
+			SharedPreferences sharedpref = getActivity().getSharedPreferences(
+					"actionbar_color", Context.MODE_PRIVATE);
+
+			if (!sharedpref.contains("actionbar_color")) {
+
+				getActivity().getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#4285f4")));
+
+
+			} else {
+
+				String actionbar_colors = sharedpref
+						.getString("actionbar_color", null);
+
+				getActivity().getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor(actionbar_colors)));
+
+
+			}
 
 		}
 		return true;
 	}
+
 }

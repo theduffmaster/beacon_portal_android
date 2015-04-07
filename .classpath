@@ -12,5 +12,7 @@
 	<classpathentry kind="lib" path="libs/apache-mime4j-dom-0.7.2.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry exported="true" kind="lib" path="/cardview/libs/android-support-v7-cardview.jar"/>
+	<classpathentry exported="true" kind="lib" path="/RecyclerView/libs/android-support-v7-recyclerview.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
