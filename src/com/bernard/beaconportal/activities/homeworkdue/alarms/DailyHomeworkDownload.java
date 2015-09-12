@@ -248,7 +248,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 						e.printStackTrace();
 					}
 
-					createNotification();
+					//createNotification();
 
 				} catch (IllegalStateException e) {
 					// TODO Auto-generated catch block
@@ -271,7 +271,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 						e.printStackTrace();
 					}
 
-					createNotification();
+					//createNotification();
 
 					SharedPreferences.Editor localEditor = context
 							.getSharedPreferences("homework",
@@ -299,7 +299,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 						e.printStackTrace();
 					}
 
-					createNotification();
+					//createNotification();
 
 					SharedPreferences.Editor localEditor = context
 							.getSharedPreferences("homework",
@@ -326,7 +326,7 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 						e.printStackTrace();
 					}
 
-					createNotification();
+					//createNotification();
 
 					SharedPreferences.Editor localEditor = context
 							.getSharedPreferences("homework",

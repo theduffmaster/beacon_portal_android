@@ -7,12 +7,15 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.HeaderViewListAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.bernard.beaconportal.activities.MAIL;
@@ -24,6 +27,8 @@ public class MAILListActivity extends ListActivity implements MAILActivityMagic 
 	private MAILActivityCommon mBase;
 
 	private String actionbar_colors;
+	
+	private ListView mListView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -138,4 +143,5 @@ public class MAILListActivity extends ListActivity implements MAILActivityMagic 
 
 		return super.onKeyUp(keyCode, event);
 	}
+
 }

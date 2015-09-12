@@ -814,9 +814,10 @@ public class MessageList extends MAILListActivity implements
 	@SuppressLint("ResourceAsColor")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
+		
 		requestWindowFeature(Window.FEATURE_PROGRESS);
+		
+		super.onCreate(savedInstanceState);
 
 		if (!MAIL.isHideSpecialAccounts()) {
 			createSpecialAccounts();

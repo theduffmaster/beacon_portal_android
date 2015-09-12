@@ -619,15 +619,6 @@ public class Accounts extends MAILListActivity implements OnItemClickListener {
 	 * Save the reference to a currently displayed dialog or a running AsyncTask
 	 * (if available).
 	 */
-	@Override
-	public Object onRetainNonConfigurationInstance() {
-		Object retain = null;
-		if (mNonConfigurationInstance != null
-				&& mNonConfigurationInstance.retain()) {
-			retain = mNonConfigurationInstance;
-		}
-		return retain;
-	}
 
 	private BaseAccount[] accounts = new BaseAccount[0];
 

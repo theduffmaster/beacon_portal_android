@@ -409,11 +409,6 @@ public class FolderList extends MAILListActivity {
 	}
 
 	@Override
-	public Object onRetainNonConfigurationInstance() {
-		return (mAdapter == null) ? null : mAdapter.mFolders;
-	}
-
-	@Override
 	public void onPause() {
 		super.onPause();
 		MessagingController.getInstance(getApplication()).removeListener(
