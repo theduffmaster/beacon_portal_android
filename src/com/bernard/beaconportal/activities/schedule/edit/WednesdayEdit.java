@@ -1,9 +1,5 @@
 package com.bernard.beaconportal.activities.schedule.edit;
 
-import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.R.id;
-import com.bernard.beaconportal.activities.R.layout;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,11 +14,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.bernard.beaconportal.activities.R;
+
 public class WednesdayEdit extends Fragment {
 
-	private String GBand, BBand, FBand, DBand, EBand, HBand, ABand;
+	private String GBand, CBand, FBand, DBand, EBand, HBand, ABand;
 
-	private EditText editBBand;
+	private EditText editCBand;
 	private EditText editFBand;
 	private EditText editGBand;
 	private EditText editEBand;
@@ -39,7 +37,7 @@ public class WednesdayEdit extends Fragment {
 		SharedPreferences sharedpref = getActivity().getSharedPreferences(
 				"wednesday", Context.MODE_PRIVATE);
 		ABand = sharedpref.getString("a_Band", null);
-		BBand = sharedpref.getString("b_Band", null);
+		CBand = sharedpref.getString("c_Band", null);
 		GBand = sharedpref.getString("g_Band", null);
 		DBand = sharedpref.getString("d_Band", null);
 		EBand = sharedpref.getString("e_Band", null);
@@ -54,41 +52,41 @@ public class WednesdayEdit extends Fragment {
 		editABand = ((EditText) view.findViewById(R.id.editText1111));
 		editABand.setText(ABand, TextView.BufferType.EDITABLE);
 
-		TextView BValue = (TextView) view.findViewById(R.id.bandText2222);
-		BValue.setText("B Band");
-
-		editBBand = ((EditText) view.findViewById(R.id.editText2222));
-		editBBand.setText(BBand, TextView.BufferType.EDITABLE);
-
-		TextView GValue = (TextView) view.findViewById(R.id.bandText3333);
+		TextView GValue = (TextView) view.findViewById(R.id.bandText2222);
 		GValue.setText("G Band");
 
-		editGBand = ((EditText) view.findViewById(R.id.editText3333));
+		editGBand = ((EditText) view.findViewById(R.id.editText2222));
 		editGBand.setText(GBand, TextView.BufferType.EDITABLE);
 
-		TextView DValue = (TextView) view.findViewById(R.id.bandText4444);
-		DValue.setText("D Band");
-
-		editDBand = ((EditText) view.findViewById(R.id.editText4444));
-		editDBand.setText(DBand, TextView.BufferType.EDITABLE);
-
-		TextView EValue = (TextView) view.findViewById(R.id.bandText5555);
+		TextView EValue = (TextView) view.findViewById(R.id.bandText3333);
 		EValue.setText("E Band");
 
-		editEBand = ((EditText) view.findViewById(R.id.editText5555));
+		editEBand = ((EditText) view.findViewById(R.id.editText3333));
 		editEBand.setText(EBand, TextView.BufferType.EDITABLE);
 
-		TextView FValue = (TextView) view.findViewById(R.id.bandText6666);
-		FValue.setText("F Band");
+		TextView CValue = (TextView) view.findViewById(R.id.bandText4444);
+		CValue.setText("C Band");
 
-		editFBand = ((EditText) view.findViewById(R.id.editText6666));
-		editFBand.setText(FBand, TextView.BufferType.EDITABLE);
+		editCBand = ((EditText) view.findViewById(R.id.editText4444));
+		editCBand.setText(CBand, TextView.BufferType.EDITABLE);
 
-		TextView HValue = (TextView) view.findViewById(R.id.bandText7777);
+		TextView DValue = (TextView) view.findViewById(R.id.bandText5555);
+		DValue.setText("D Band");
+
+		editDBand = ((EditText) view.findViewById(R.id.editText5555));
+		editDBand.setText(DBand, TextView.BufferType.EDITABLE);
+
+		TextView HValue = (TextView) view.findViewById(R.id.bandText6666);
 		HValue.setText("H Band");
 
-		editHBand = ((EditText) view.findViewById(R.id.editText7777));
+		editHBand = ((EditText) view.findViewById(R.id.editText6666));
 		editHBand.setText(HBand, TextView.BufferType.EDITABLE);
+
+		TextView FValue = (TextView) view.findViewById(R.id.bandText7777);
+		FValue.setText("F Band");
+
+		editFBand = ((EditText) view.findViewById(R.id.editText7777));
+		editFBand.setText(FBand, TextView.BufferType.EDITABLE);
 
 		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
 				this.mClickedReceiver, new IntentFilter("clicked!"));
@@ -107,7 +105,7 @@ public class WednesdayEdit extends Fragment {
 					.edit();
 
 			localEditor.putString("a_Band", editABand.getText().toString());
-			localEditor.putString("b_Band", editBBand.getText().toString());
+			localEditor.putString("c_Band", editCBand.getText().toString());
 			localEditor.putString("g_Band", editGBand.getText().toString());
 			localEditor.putString("d_Band", editDBand.getText().toString());
 			localEditor.putString("e_Band", editEBand.getText().toString());

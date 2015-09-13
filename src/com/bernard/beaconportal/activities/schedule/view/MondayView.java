@@ -1,14 +1,5 @@
 package com.bernard.beaconportal.activities.schedule.view;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
-import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.R.drawable;
-import com.bernard.beaconportal.activities.R.id;
-import com.bernard.beaconportal.activities.R.layout;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
@@ -35,6 +26,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.bernard.beaconportal.activities.R;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 import de.timroes.android.listview.EnhancedListView;
 import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
 import de.timroes.android.listview.EnhancedListView.UndoStyle;
@@ -155,8 +153,8 @@ public class MondayView extends Fragment {
 		myschedule.add(new ScheduleView("C Band", CBand, count2));
 		myschedule.add(new ScheduleView("D Band", DBand, count3));
 		myschedule.add(new ScheduleView("E Band", EBand, count4));
-		myschedule.add(new ScheduleView("F Band", FBand, count5));
-		myschedule.add(new ScheduleView("H Band", HBand, count6));
+		myschedule.add(new ScheduleView("H Band", HBand, count5));
+		myschedule.add(new ScheduleView("F Band", FBand, count6));
 
 	}
 

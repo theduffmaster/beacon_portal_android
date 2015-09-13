@@ -1,9 +1,5 @@
 package com.bernard.beaconportal.activities.schedule.edit;
 
-import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.R.id;
-import com.bernard.beaconportal.activities.R.layout;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,9 +14,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.bernard.beaconportal.activities.R;
+
 public class ThursdayEdit extends Fragment {
 
-	private String GBand, CBand, FBand, DBand, EBand, HBand, ABand;
+	private String GBand, CBand, FBand, DBand, EBand, HBand, BBand;
 
 	private EditText editCBand;
 	private EditText editFBand;
@@ -28,7 +26,7 @@ public class ThursdayEdit extends Fragment {
 	private EditText editEBand;
 	private EditText editDBand;
 	private EditText editHBand;
-	private EditText editABand;
+	private EditText editBBand;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,51 +42,51 @@ public class ThursdayEdit extends Fragment {
 		CBand = sharedpref.getString("c_Band", null);
 		FBand = sharedpref.getString("f_Band", null);
 		HBand = sharedpref.getString("h_Band", null);
-		ABand = sharedpref.getString("a_Band", null);
+		BBand = sharedpref.getString("b_Band", null);
 
 		View view = inflater.inflate(R.layout.thursday, container, false);
 
-		TextView EValue = (TextView) view.findViewById(R.id.bandText11111);
-		EValue.setText("H Band");
+		TextView HValue = (TextView) view.findViewById(R.id.bandText11111);
+		HValue.setText("H Band");
 
 		editHBand = ((EditText) view.findViewById(R.id.editText11111));
 		editHBand.setText(HBand, TextView.BufferType.EDITABLE);
 
-		TextView GValue = (TextView) view.findViewById(R.id.bandText22222);
-		GValue.setText("G Band");
-
-		editGBand = ((EditText) view.findViewById(R.id.editText22222));
-		editGBand.setText(GBand, TextView.BufferType.EDITABLE);
-
-		TextView FValue = (TextView) view.findViewById(R.id.bandText33333);
+		TextView FValue = (TextView) view.findViewById(R.id.bandText22222);
 		FValue.setText("F Band");
 
-		editFBand = ((EditText) view.findViewById(R.id.editText33333));
+		editFBand = ((EditText) view.findViewById(R.id.editText22222));
 		editFBand.setText(FBand, TextView.BufferType.EDITABLE);
 
-		TextView HValue = (TextView) view.findViewById(R.id.bandText44444);
-		HValue.setText("E Band");
-
-		editEBand = ((EditText) view.findViewById(R.id.editText44444));
-		editEBand.setText(EBand, TextView.BufferType.EDITABLE);
-
-		TextView AValue = (TextView) view.findViewById(R.id.bandText55555);
-		AValue.setText("D Band");
-
-		editDBand = ((EditText) view.findViewById(R.id.editText55555));
-		editDBand.setText(DBand, TextView.BufferType.EDITABLE);
-
-		TextView CValue = (TextView) view.findViewById(R.id.bandText66666);
+		TextView CValue = (TextView) view.findViewById(R.id.bandText33333);
 		CValue.setText("C Band");
 
-		editCBand = ((EditText) view.findViewById(R.id.editText66666));
+		editCBand = ((EditText) view.findViewById(R.id.editText33333));
 		editCBand.setText(CBand, TextView.BufferType.EDITABLE);
 
-		TextView DValue = (TextView) view.findViewById(R.id.bandText77777);
-		DValue.setText("A Band");
+		TextView DValue = (TextView) view.findViewById(R.id.bandText44444);
+		DValue.setText("D Band");
 
-		editABand = ((EditText) view.findViewById(R.id.editText77777));
-		editABand.setText(ABand, TextView.BufferType.EDITABLE);
+		editDBand = ((EditText) view.findViewById(R.id.editText44444));
+		editDBand.setText(DBand, TextView.BufferType.EDITABLE);
+
+		TextView EValue = (TextView) view.findViewById(R.id.bandText55555);
+		EValue.setText("E Band");
+
+		editEBand = ((EditText) view.findViewById(R.id.editText55555));
+		editEBand.setText(EBand, TextView.BufferType.EDITABLE);
+
+		TextView BValue = (TextView) view.findViewById(R.id.bandText66666);
+		BValue.setText("B Band");
+
+		editBBand = ((EditText) view.findViewById(R.id.editText66666));
+		editBBand.setText(BBand, TextView.BufferType.EDITABLE);
+
+		TextView GValue = (TextView) view.findViewById(R.id.bandText77777);
+		GValue.setText("G Band");
+
+		editGBand = ((EditText) view.findViewById(R.id.editText77777));
+		editGBand.setText(GBand, TextView.BufferType.EDITABLE);
 
 		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
 				this.mClickedReceiver, new IntentFilter("clicked!"));
@@ -106,7 +104,7 @@ public class ThursdayEdit extends Fragment {
 					.getSharedPreferences("thursday", Context.MODE_PRIVATE)
 					.edit();
 
-			localEditor.putString("a_Band", editABand.getText().toString());
+			localEditor.putString("b_Band", editBBand.getText().toString());
 			localEditor.putString("c_Band", editCBand.getText().toString());
 			localEditor.putString("d_Band", editDBand.getText().toString());
 			localEditor.putString("e_Band", editEBand.getText().toString());

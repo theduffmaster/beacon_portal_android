@@ -6,7 +6,6 @@
     android:versionCode="60"
     android:versionName="1.993"
     >
-	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 	<uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
@@ -60,7 +59,7 @@
     
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="21" />
+        android:targetSdkVersion="22" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -285,10 +284,7 @@
             android:configChanges="locale"
             android:uiOptions="splitActionBarWhenNarrow"
             >
-            <intent-filter>
-                <!-- This action is only to allow an entry point for launcher shortcuts -->
-                
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".activity.MessageList"
@@ -298,10 +294,7 @@
             android:uiOptions="splitActionBarWhenNarrow"
             android:theme="@style/Theme.Custom.Dark.Base.Material.NoActionBar" 
             >
-            <intent-filter>
-                <!-- This action is only to allow an entry point for launcher shortcuts -->
-                
-            </intent-filter>
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <data

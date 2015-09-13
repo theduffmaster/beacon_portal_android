@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:background="#ffffff" >
+    android:background="@color/light_background" >
 
     <ProgressBar
         android:id="@+id/progress"
@@ -36,6 +36,7 @@
            	android:text="As of now, no homework due this day"
            	android:padding="30dp"
            	android:textSize="16sp"
+           	
            />
 
 </LinearLayout>

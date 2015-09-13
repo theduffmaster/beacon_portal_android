@@ -383,20 +383,20 @@ public class DailyHomeworkDownload extends BroadcastReceiver {
 			System.out.println("Homework List For Update = "
 					+ due_tommorow_list);
 
-			// parse_due_tommorow_content();
-			//
-			// try{
-			//
-			// createNotification();
-			//
-			// }catch (IndexOutOfBoundsException e) {
-			//
-			// parse_due_tommorow_content();
-			//
-			// createNotification();
-			//
-			// }
-			//
+			 parse_due_tommorow_content();
+			
+			 try{
+			
+			 createNotification();
+			
+			 }catch (IndexOutOfBoundsException e) {
+			
+			 parse_due_tommorow_content();
+			
+			 createNotification();
+			
+			 }
+			
 		}
 
 	}

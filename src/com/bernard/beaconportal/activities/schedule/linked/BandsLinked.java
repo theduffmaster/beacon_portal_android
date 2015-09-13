@@ -1,11 +1,5 @@
 package com.bernard.beaconportal.activities.schedule.linked;
 
-import com.bernard.beaconportal.activities.MainActivity;
-import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.R.id;
-import com.bernard.beaconportal.activities.R.layout;
-import com.bernard.beaconportal.activities.R.menu;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.bernard.beaconportal.activities.MainActivity;
+import com.bernard.beaconportal.activities.R;
 
 public class BandsLinked extends Fragment {
 
@@ -227,9 +224,9 @@ public class BandsLinked extends Fragment {
 
 			}
 
-			if (hasContent(editCBand)) {
+			if (hasContent(editABand)) {
 
-				Editor.putString("c_Band", editCBand.getText().toString());
+				Editor.putString("a_Band", editABand.getText().toString());
 
 			} else {
 
@@ -249,9 +246,9 @@ public class BandsLinked extends Fragment {
 					.getSharedPreferences("thursday", Context.MODE_PRIVATE)
 					.edit();
 
-			if (hasContent(editABand)) {
+			if (hasContent(editBBand)) {
 
-				ditor.putString("a_Band", editABand.getText().toString());
+				ditor.putString("b_Band", editBBand.getText().toString());
 
 			} else {
 
@@ -379,9 +376,9 @@ public class BandsLinked extends Fragment {
 
 			}
 
-			if (hasContent(editBBand)) {
+			if (hasContent(editCBand)) {
 
-				tor.putString("b_Band", editBBand.getText().toString());
+				tor.putString("c_Band", editCBand.getText().toString());
 
 			} else {
 

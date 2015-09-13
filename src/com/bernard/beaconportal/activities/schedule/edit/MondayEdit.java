@@ -78,17 +78,17 @@ public class MondayEdit extends Fragment {
 		editEBand = ((EditText) view.findViewById(R.id.editText55));
 		editEBand.setText(EBand, TextView.BufferType.EDITABLE);
 
-		TextView FValue = (TextView) view.findViewById(R.id.bandText66);
-		FValue.setText("F Band");
-
-		editFBand = ((EditText) view.findViewById(R.id.editText66));
-		editFBand.setText(FBand, TextView.BufferType.EDITABLE);
-
-		TextView HValue = (TextView) view.findViewById(R.id.bandText77);
+		TextView HValue = (TextView) view.findViewById(R.id.bandText66);
 		HValue.setText("H Band");
 
-		editHBand = ((EditText) view.findViewById(R.id.editText77));
+		editHBand = ((EditText) view.findViewById(R.id.editText66));
 		editHBand.setText(HBand, TextView.BufferType.EDITABLE);
+		
+		TextView FValue = (TextView) view.findViewById(R.id.bandText77);
+		FValue.setText("F Band");
+
+		editFBand = ((EditText) view.findViewById(R.id.editText77));
+		editFBand.setText(FBand, TextView.BufferType.EDITABLE);
 
 		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
 				this.mClickedReceiver, new IntentFilter("clicked!"));

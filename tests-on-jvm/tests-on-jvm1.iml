@@ -9,13 +9,12 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="compile-only-libs1" level="project" />
     <orderEntry type="library" name="compile-only-libs" level="project" />
-    <orderEntry type="module" module-name="fsck2" />
     <orderEntry type="module" module-name="BeaconPortal" />
-    <orderEntry type="module" module-name="_pasted_code_" />
-    <orderEntry type="module" module-name="fsck" />
+    <orderEntry type="module" module-name="K9Mail_With_Drawer" />
     <orderEntry type="module" module-name="fsck1" />
     <orderEntry type="module" module-name="fsck3" />
-    <orderEntry type="module" module-name="K9Mail_With_Drawer" />
+    <orderEntry type="module" module-name="fsck" />
+    <orderEntry type="module" module-name="fsck2" />
+    <orderEntry type="module" module-name="_pasted_code_" />
   </component>
 </module>
-

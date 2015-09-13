@@ -8,11 +8,10 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="compile-only-libs1" level="project" />
-    <orderEntry type="library" name="compile-only-libs" level="project" />
     <orderEntry type="library" name="libs1" level="project" />
+    <orderEntry type="library" name="compile-only-libs" level="project" />
     <orderEntry type="library" name="libs3" level="project" />
     <orderEntry type="module" module-name="BeaconPortal" />
     <orderEntry type="module" module-name="fsck1" />
   </component>
 </module>
-

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.bernard.beaconportal.activities.view.ViewSwitcher 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+
+    <FrameLayout
+        android:id="@+id/message_list_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <FrameLayout
+        android:id="@+id/message_view_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+</com.bernard.beaconportal.activities.view.ViewSwitcher><!-- From: file:/Users/lincoln/Dropbox/Android_Work/BeaconPortal/res/layout/message_list.xml -->

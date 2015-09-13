@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- package name must be unique so suffix with "tests" so package loader doesn't ignore us -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bernard.beaconportal.activities.test"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="22" />
+    <!--
+    This declares that this application uses the instrumentation test runner targeting
+    the package of com.bernard.beaconportal.activities.  To run the tests use the command:
+    "adb shell am instrument -w com.bernard.beaconportal.activities.tests/com.zutubi.android.junitreport.JUnitReportTestRunner"
+    -->
+    <instrumentation
+        android:name="com.zutubi.android.junitreport.JUnitReportTestRunner"
+        android:label="Tests for com.bernard.beaconportal.activities"
+        android:targetPackage="com.bernard.beaconportal.activities" />
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:functionalTest="false"
+        android:handleProfiling="false"
+        android:label="Tests for com.bernard.beaconportal.activities"
+        android:targetPackage="com.bernard.beaconportal.activities" />
+    <!--
+ We add an application tag here just so that we can indicate that
+         this package needs to link against the android.test library,
+         which is needed when building test cases.
+    -->
+    <application>
+        <uses-library android:name="android.test.runner" />
+    </application>
+
+</manifest>

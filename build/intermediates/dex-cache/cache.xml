@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.plugins/openpgp-api-library/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="612c3957721fa42ad5309c1dbd4637205f690e51">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/classes-2b4fbb69efe377b22a9f30ba832a81460044dc8e.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/libs/jzlib-1.0.7.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ef77872e6089f713d0b792ca1ffc39cfa2ce7e0b">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/jzlib-1.0.7-9b2192ee5e1d2904ba4a3d80ba0cfc1391fe55ab.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/libs/jutf7-1.0.1-SNAPSHOT.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="32234fa4cba8767204f8f6b55cafb5d9e2863584">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/jutf7-1.0.1-SNAPSHOT-8a0a377a5011f3ef3e4435cd67d27380b50984ec.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-da06562fa14818b46c54d35b813c1d120b7b5364.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/libs/android-support-v4.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="33b27a8d2a5b87e6eb6c60e87a5374ffbfeacc3a">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/android-support-v4-78aa59065212ce777c7a4e4d4537c310752eb10e.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/libs/htmlcleaner-2.2.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="076a31ac7401ad8423515208092b894fb5d8d8a7">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/htmlcleaner-2.2-00057eaba38cce69053d6f19c5844661c961841c.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.libraries/slidingtab/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6ed4c15f64b9a4482fbb0d883cd186ef6a98f021">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/classes-d08e07c503b87baea24d2befd502807fe7101f3c.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.libraries/extendedListView/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e24da04c58f5e5b058d14e19611858b45cb38053">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/classes-f48434ef0b589d278de2b8fd35b9c24dfa87a1a9.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/libs/apache-mime4j-core-0.7.2.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a81264fe0265ebe8fd1d8128aad06dc320de6eef">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/apache-mime4j-core-0.7.2-dbdc158213632de44cff8124c92ab9c7bb57096c.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Desktop/android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-581ce4b74ab0247d76fdbcd030f88bf49ab4a7fd.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/libs/commons-io-2.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="7ffdb02f95af1c1a208544e076cea5b8e66e731a">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/commons-io-2.0.1-d4aa4d84cc0252950de6ab84f0e989247199d4e1.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/library-2.4.0-f3523de73575ba4d81f7d94391b2c7467eb002f9.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.plugins/HoloColorPicker/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2529f9fe9c659ff01f849c071232539f7b1a29f1">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/classes-7ff073264f4cd5e167937c62578568603e924a64.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="39ae02ce40c3ac828abbf780ce0ff5d7a28b7d6a">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/classes-9964e06ce0d7f1337814d7d62bd5108e8648f402.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/libs/apache-mime4j-dom-0.7.2.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1c289aa264548a0a1f1b43685a9cb2ab23f67287">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/apache-mime4j-dom-0.7.2-f2dfbbd36f3ff6306d18b92797a0f0f9a239cb82.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/classes-7473daba717cbe7fb0c0189f24f1e53e2b3ce4d0.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.commonsware.cwac/sacklist/1.0.2/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e2a9a01b65a179a0160ecf9c425ff34832f7b3ee">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/classes-d9900280dcfd695413390157c2fbc92c95b270e5.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.plugins.Android-PullToRefresh/library/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="18f3d81faebbcdd37541fb53d9194ff57fa9ccda">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/classes-6cdd26b4690f3fa73f36b6e81665f6c8659cf827.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.libraries/floatingActionButtonCompatmaster/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5b95b91ddd9d1279045c38d5c1ef1f51bfedd847">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/classes-913329d0d241519f7487031404b1a934059eb84a.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.plugins.ckChangeLog/library/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="0d000dfda07560759f81dbcf5357db281a69538d">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/classes-c8796a979c104ac4ddcc369c2c026fead7e2183b.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.commonsware.cwac/merge/1.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="9ce0bc7820833726763258cf29ca83924b7b1c8d">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/classes-35deaebe645e71765f5e789a8a34f866b9d6dc29.jar" />
+    </item>
+    <item
+        jar="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/pre-dexed/debug/classes-ed2be8277908f5c92486009a7c0f22db7e68b0de.jar" />
+    </item>
+
+</items>

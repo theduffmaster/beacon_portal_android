@@ -1,14 +1,5 @@
 package com.bernard.beaconportal.activities.schedule.view;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
-import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.R.drawable;
-import com.bernard.beaconportal.activities.R.id;
-import com.bernard.beaconportal.activities.R.layout;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
@@ -35,13 +26,20 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.bernard.beaconportal.activities.R;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 import de.timroes.android.listview.EnhancedListView;
 import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
 import de.timroes.android.listview.EnhancedListView.UndoStyle;
 
 public class FridayView extends Fragment {
 
-	private String GBand, BBand, ADV1Band, ADV2Band, CBand, FBand;
+	private String GBand, BBand, ADV1Band, ADV2Band, ABand, FBand;
 
 	private int count0, count1, count2, count3, count4, count5;
 
@@ -107,7 +105,7 @@ public class FridayView extends Fragment {
 		BBand = sharedpref.getString("b_Band", null);
 		ADV1Band = sharedpref.getString("adv1_Band", null);
 		ADV2Band = sharedpref.getString("adv2_Band", null);
-		CBand = sharedpref.getString("c_Band", null);
+		ABand = sharedpref.getString("a_Band", null);
 		FBand = sharedpref.getString("f_Band", null);
 
 		SharedPreferences sharedpref0 = getActivity().getSharedPreferences(
@@ -143,12 +141,12 @@ public class FridayView extends Fragment {
 	}
 
 	private void populatescheduleList() {
-		myschedule.add(new ScheduleView("G Band", GBand, count0));
-		myschedule.add(new ScheduleView("B Band", BBand, count1));
+		myschedule.add(new ScheduleView("B Band", BBand, count0));
+		myschedule.add(new ScheduleView("F Band", FBand, count1));
 		myschedule.add(new ScheduleView("Advisory 1", ADV1Band, count2));
 		myschedule.add(new ScheduleView("Advisory 2", ADV2Band, count3));
-		myschedule.add(new ScheduleView("C Band", CBand, count4));
-		myschedule.add(new ScheduleView("F Band", FBand, count5));
+		myschedule.add(new ScheduleView("A Band", ABand, count4));
+		myschedule.add(new ScheduleView("G Band", GBand, count5));
 
 	}
 
