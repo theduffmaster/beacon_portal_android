@@ -1,10 +1,5 @@
 package com.bernard.beaconportal.activities.settings;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -37,13 +32,14 @@ import android.widget.Toast;
 
 import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.R.array;
-import com.bernard.beaconportal.activities.R.id;
-import com.bernard.beaconportal.activities.R.layout;
 import com.bernard.beaconportal.activities.homeworkdue.alarms.DailyHomeworkDownload;
 import com.bernard.beaconportal.activities.settings.colorpicker.ColorPickerDialogSecondary;
 import com.bernard.beaconportal.activities.settings.colorpicker.ColorPickerDialogTheme;
 import com.commonsware.cwac.merge.MergeAdapter;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class FragmentSettings extends Fragment {
 
@@ -94,7 +90,18 @@ public class FragmentSettings extends Fragment {
 		ActionBar actionBar = ((MainActivity) getActivity())
 				.getSupportActionBar();
 
-		actionBar.setElevation(2);
+        SharedPreferences sharedpref = getActivity().getSharedPreferences(
+                "actionbar_color", Context.MODE_PRIVATE);
+
+        if (!sharedpref.contains("actionbar_color")) {
+
+            actionbar_colors = "#4285f4";
+
+        } else {
+
+            actionbar_colors = sharedpref.getString("actionbar_color", null);
+
+        }
 
 		merge = new MergeAdapter();
 

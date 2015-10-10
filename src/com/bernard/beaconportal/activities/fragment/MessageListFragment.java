@@ -3041,7 +3041,7 @@ public class MessageListFragment extends Fragment implements
 		}
 
 		public void showMarkAsRead(boolean show) {
-			if (mActionMode != null) {
+			if (mActionMode != null && mMarkAsRead != null) {
 				mMarkAsRead.setVisible(show);
 				mMarkAsUnread.setVisible(!show);
 			}

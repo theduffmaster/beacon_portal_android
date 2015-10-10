@@ -1181,6 +1181,7 @@ public class MessageList extends MAILListActivity implements
 		// finish();
 		// return;
 		// }
+
 		if (mAdapter == null)
 			initializeActivityView();
 		
@@ -3443,20 +3444,48 @@ public class MessageList extends MAILListActivity implements
 			SharedPreferences sharedpref = getSharedPreferences(
 					"actionbar_color", Context.MODE_PRIVATE);
 
-			if (!sharedpref.contains("actionbar_color")) {
+            //Change split actionbar color in message list to blue
+            if (Build.VERSION.SDK_INT > 19) {
 
-				getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#4285f4")));
+                if (!sharedpref.contains("actionbar_color")) {
+
+                    final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+                    final View splitActionBar = findViewById(splitBarId);
+                    if (splitActionBar != null) {
+                        splitActionBar.setBackgroundColor(Color.parseColor("#4285f4"));
+                    }
+
+                } else {
+
+                    actionbar_colors = sharedpref
+                            .getString("actionbar_color", null);
+
+                    final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+                    final View splitActionBar = findViewById(splitBarId);
+                    if (splitActionBar != null) {
+                        splitActionBar.setBackgroundColor(Color.parseColor(actionbar_colors));
+                    }
+
+                }
+
+            } else {
+
+                if (!sharedpref.contains("actionbar_color")) {
+
+                    getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#4285f4")));
 
 
-			} else {
+                } else {
 
-				actionbar_colors = sharedpref
-						.getString("actionbar_color", null);
+                    actionbar_colors = sharedpref
+                            .getString("actionbar_color", null);
 
-				getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor(actionbar_colors)));
+                    getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor(actionbar_colors)));
 
 
-			}
+                }
+
+            }
 			
 			decor.postDelayed(new Runnable() {
 
@@ -3501,7 +3530,20 @@ public class MessageList extends MAILListActivity implements
 				// next.setEnabled(canDoNext);
 				// next.getIcon().setAlpha(canDoNext ? 255 : 127);
 
-				getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+				//Change split actionbar color in message view to white
+				if (Build.VERSION.SDK_INT > 19) {
+
+					final int splitBarId = getResources().getIdentifier("split_action_bar", "id", "android");
+					final View splitActionBar = findViewById(splitBarId);
+					if (splitActionBar != null) {
+						splitActionBar.setBackgroundColor(Color.parseColor("#ffffff"));
+					}
+
+				} else {
+
+					getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+
+				}
 				
 				decor.postDelayed(new Runnable() {
 

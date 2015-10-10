@@ -91,8 +91,8 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="android-support-v4" level="project" />
     <orderEntry type="library" exported="" name="jutf7-1.0.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="glide-3.6.1" level="project" />
     <orderEntry type="library" exported="" name="merge-1.1.1" level="project" />
     <orderEntry type="library" exported="" name="apache-mime4j-dom-0.7.2" level="project" />
     <orderEntry type="library" exported="" name="htmlcleaner-2.2" level="project" />

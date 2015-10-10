@@ -66,6 +66,7 @@ com/bernard/beaconportal/activities/helper/StringUtils.class
 -keep class com.bernard.beaconportal.activities.service.CoreReceiver { <init>(); }
 android/support/v7/app/ActionBar$OnNavigationListener.class
 com/bernard/beaconportal/activities/mail/internet/MimeMultipart.class
+com/bumptech/glide/load/DecodeFormat.class
 android/support/v7/appcompat/R.class
 com/bernard/beaconportal/activities/schedule/view/FragmentsSchedule$2.class
 com/bernard/beaconportal/activities/activity/setup/AccountSettings$4.class
@@ -107,6 +108,7 @@ com/bernard/beaconportal/activities/MAIL$Intents.class
 com/bernard/beaconportal/activities/NotificationSetting.class
 android/support/v4/media/session/MediaSessionCompat$MediaSessionImplApi21.class
 android/support/v4/app/ActivityCompat$OnRequestPermissionsResultCallback.class
+com/bumptech/glide/GlideBuilder.class
 android/support/annotation/DimenRes.class
 com/commonsware/cwac/merge/MergeAdapter.class
 com/bernard/beaconportal/activities/service/DatabaseUpgradeService$1.class
@@ -201,6 +203,7 @@ android/support/v4/media/session/MediaSessionCompat.class
 com/bernard/beaconportal/activities/activity/Accounts$7.class
 com/bernard/beaconportal/activities/activity/MessageCompose$6.class
 com/bernard/beaconportal/activities/activity/setup/AccountSettings$18.class
+com/bumptech/glide/DrawableRequestBuilder.class
 org/htmlcleaner/HtmlNode.class
 android/support/v4/app/FragmentController.class
 com/bernard/beaconportal/activities/homeworkdue/viewpager/ViewPagerAdapterHomeworkAfterThree.class
@@ -281,6 +284,7 @@ android/support/v4/app/NoSaveStateFrameLayout.class
 com/bernard/beaconportal/activities/settings/FragmentSettings$6.class
 com/bernard/beaconportal/activities/controller/MessagingController.class
 org/apache/commons/io/CopyUtils.class
+com/bumptech/glide/RequestManager.class
 com/bernard/beaconportal/activities/activity/ManageIdentities$1.class
 com/bernard/beaconportal/activities/service/CoreService$1.class
 android/support/v7/app/ActionBar$NavigationMode.class
@@ -355,6 +359,7 @@ android/support/v4/app/NotificationCompat$Builder.class
 android/support/v4/content/PermissionChecker.class
 com/bernard/beaconportal/activities/crypto/CryptoProvider$CryptoDecryptCallback.class
 com/commonsware/cwac/merge/MergeAdapter$1.class
+com/bumptech/glide/load/MultiTransformation.class
 -keep class com.bernard.beaconportal.activities.activity.setup.AccountSetupIncoming { <init>(); }
 com/bernard/beaconportal/activities/mail/internet/BinaryTempFileBody.class
 com/bernard/beaconportal/activities/activity/MessageList$FolderListHandler$1.class
@@ -366,6 +371,7 @@ com/bernard/beaconportal/activities/MenuListAdapter.class
 com/bernard/beaconportal/activities/mail/store/StorageManager$ExternalStorageProvider.class
 com/bernard/beaconportal/activities/provider/MessageProvider$CountExtractor.class
 com/bernard/beaconportal/activities/activity/setup/LoadingLayout.class
+com/bumptech/glide/GifRequestBuilder.class
 -keep class com.bernard.beaconportal.activities.schedule.linked.FragmentsLinked { <init>(); }
 android/support/v4/media/session/MediaSessionCompat$MediaSessionImpl.class
 -keep class com.bernard.beaconportal.activities.service.DatabaseUpgradeService { <init>(); }
@@ -455,6 +461,7 @@ com/bernard/beaconportal/activities/homeworkdue/alarms/DailyHomeworkDownload.cla
 android/support/v4/widget/MaterialProgressDrawable$ProgressDrawableSize.class
 com/bernard/beaconportal/activities/activity/setup/Prefs$6.class
 com/bernard/beaconportal/activities/provider/EmailProvider$2.class
+com/bumptech/glide/Glide.class
 com/bernard/beaconportal/activities/provider/MessageProvider$ThrottlingQueryHandler.class
 android/support/annotation/InterpolatorRes.class
 com/bernard/beaconportal/activities/settings/FragmentSettings$MyListAdapter.class
@@ -467,6 +474,7 @@ android/support/v4/app/FragmentState.class
 android/support/v4/media/session/MediaSessionCompat$ResultReceiverWrapper.class
 android/support/v4/app/TaskStackBuilder.class
 com/bernard/beaconportal/activities/activity/MAILPreferenceActivity$1.class
+com/bumptech/glide/load/model/GenericLoaderFactory.class
 com/bernard/beaconportal/activities/activity/AccessibleEmailContentActivity.class
 android/support/v4/media/MediaMetadataCompatApi21$Builder.class
 android/support/v4/app/ListFragment$2.class
@@ -523,6 +531,7 @@ com/bernard/beaconportal/activities/mail/store/ImapStore.class
 com/bernard/beaconportal/activities/activity/setup/AccountSettings$19.class
 com/bernard/beaconportal/activities/mail/store/UnavailableStorageException.class
 android/support/annotation/MenuRes.class
+com/bernard/beaconportal/activities/MainActivity$11.class
 android/support/v4/view/LayoutInflaterFactory.class
 android/support/v7/view/ActionMode$Callback.class
 com/bernard/beaconportal/activities/MainActivity$Update.class
@@ -556,6 +565,7 @@ com/bernard/beaconportal/activities/view/MessageOpenPgpView.class
 android/support/v7/widget/Toolbar.class
 -keep class com.bernard.beaconportal.activities.provider.MessageProvider { <init>(); }
 android/support/v4/app/FragmentManagerImpl$1.class
+com/bumptech/glide/load/model/stream/StreamByteArrayLoader.class
 com/bernard/beaconportal/activities/activity/setup/AccountSettings$14.class
 android/support/v4/app/FragmentPagerAdapter.class
 com/bernard/beaconportal/activities/MAIL.class
@@ -563,6 +573,7 @@ com/bernard/beaconportal/activities/activity/Accounts$AccountsHandler$6.class
 android/support/v4/app/Fragment$InstantiationException.class
 com/bernard/beaconportal/activities/view/MessageTitleView.class
 com/bernard/beaconportal/activities/activity/MessageCompose$3.class
+com/bumptech/glide/BitmapRequestBuilder.class
 com/bernard/beaconportal/activities/provider/MessageProvider$QueryHandler.class
 com/bernard/beaconportal/activities/activity/setup/Prefs$7.class
 com/bernard/beaconportal/activities/helper/Utility.class
@@ -593,6 +604,7 @@ android/support/v4/media/session/MediaSessionCompat$QueueItem.class
 org/apache/commons/io/filefilter/WildcardFilter.class
 com/bernard/beaconportal/activities/activity/MessageCompose$25.class
 com/bernard/beaconportal/activities/Account$MessageFormat.class
+com/bumptech/glide/GenericRequestBuilder.class
 -keep public class * extends java.lang.annotation.Annotation {
 org/htmlcleaner/HtmlSerializer.class
 com/bernard/beaconportal/activities/mail/store/WebDavStore.class
@@ -611,9 +623,11 @@ android/support/v4/app/FragmentContainer.class
 com/bernard/beaconportal/activities/R$array.class
 com/bernard/beaconportal/activities/activity/MAILActivityMaterial.class
 android/support/v4/app/FragmentManagerImpl$5.class
+com/bumptech/glide/load/resource/bitmap/TransformationUtils.class
 -keep class com.bernard.beaconportal.activities.activity.LauncherShortcuts { <init>(); }
 com/bernard/beaconportal/activities/mail/Part.class
 android/support/v4/media/session/PlaybackStateCompatApi21.class
+com/bumptech/glide/ListPreloader.class
 com/bernard/beaconportal/activities/activity/ChooseFolder$ChooseFolderHandler.class
 android/support/v4/media/session/PlaybackStateCompat$1.class
 -keep class com.bernard.beaconportal.activities.activity.setup.AccountSetupCheckSettings { <init>(); }
@@ -683,6 +697,7 @@ com/bernard/beaconportal/activities/mail/AuthType.class
 org/apache/james/mime4j/util/MimeUtil.class
 android/support/v7/widget/LinearLayoutCompat$LayoutParams.class
 com/bernard/beaconportal/activities/preferences/SettingsImporter$ImportResults.class
+com/bumptech/glide/DrawableOptions.class
 org/htmlcleaner/SimpleHtmlSerializer.class
 com/bernard/beaconportal/activities/activity/MessageCompose$17.class
 com/bernard/beaconportal/activities/activity/MessageReference.class
@@ -736,6 +751,7 @@ com/bernard/beaconportal/activities/activity/ChooseFolder$4.class
 android/support/annotation/StyleableRes.class
 com/bernard/beaconportal/activities/mail/store/LocalStore$TempFileMessageBody.class
 com/bernard/beaconportal/activities/activity/setup/AccountSetupAccountType.class
+com/bumptech/glide/load/model/Headers.class
 com/bernard/beaconportal/activities/activity/MessageList$1.class
 android/support/annotation/LayoutRes.class
 com/bernard/beaconportal/activities/activity/Accounts$AccountsHandler$1.class
@@ -754,6 +770,7 @@ com/bernard/beaconportal/activities/activity/MessageList$ImportSelectionDialog.c
 com/bernard/beaconportal/activities/activity/NotificationDeleteConfirmation$2.class
 android/support/v4/app/BaseFragmentActivityDonut.class
 com/bernard/beaconportal/activities/schedule/linked/FragmentsLinked.class
+com/bumptech/glide/util/Util.class
 com/bernard/beaconportal/activities/activity/setup/Prefs$1.class
 com/bernard/beaconportal/activities/activity/MessageCompose$WaitingAction.class
 com/bernard/beaconportal/activities/helper/power/TracingPowerManager$TracingWakeLock.class

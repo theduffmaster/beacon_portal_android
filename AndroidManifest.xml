@@ -79,6 +79,7 @@
             android:launchMode="singleTop"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:configChanges="orientation"
+                  android:hardwareAccelerated="true"
             >
       
             <intent-filter>
@@ -292,6 +293,7 @@
             android:configChanges="locale"
             android:launchMode="singleTop"
             android:uiOptions="splitActionBarWhenNarrow"
+            android:hardwareAccelerated="true"
             android:theme="@style/Theme.Custom.Dark.Base.Material.NoActionBar" 
             >
 

@@ -1,11 +1,6 @@
 package com.bernard.beaconportal.activities;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.LightingColorFilter;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 public class MenuListAdapter extends BaseAdapter {
 
@@ -54,13 +51,13 @@ public class MenuListAdapter extends BaseAdapter {
 
 		TextView txtTitle;
 
-		ImageView imgIcon;
-
 		TextView txtCount;
+
+        ImageView imgIcon;
 
 		inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		
+
 		View itemView = inflater.inflate(R.layout.drawer_list_item1, parent,
 				false);
 
@@ -76,7 +73,7 @@ public class MenuListAdapter extends BaseAdapter {
 
 		txtCount.setText(mCount[position]);
 
-		imgIcon.setImageResource(mIcon[position]);
+        Glide.with(context).load(mIcon[position]).into(imgIcon);
 
 		// if(position == selectedItem + 1){
 		//
@@ -97,5 +94,4 @@ public class MenuListAdapter extends BaseAdapter {
 
 		return itemView;
 	}
-
 }

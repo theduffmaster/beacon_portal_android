@@ -83,6 +83,7 @@
         <activity
             android:name="com.bernard.beaconportal.activities.MainActivity"
             android:configChanges="orientation"
+            android:hardwareAccelerated="true"
             android:launchMode="singleTop"
             android:theme="@style/CustomActionBarTheme"
             android:windowSoftInputMode="stateAlwaysHidden" >
@@ -256,6 +257,7 @@
         <activity
             android:name="com.bernard.beaconportal.activities.activity.MessageList"
             android:configChanges="locale"
+            android:hardwareAccelerated="true"
             android:launchMode="singleTop"
             android:theme="@style/Theme.Custom.Dark.Base.Material.NoActionBar"
             android:uiOptions="splitActionBarWhenNarrow" >

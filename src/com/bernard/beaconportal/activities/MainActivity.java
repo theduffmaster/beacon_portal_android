@@ -1,30 +1,5 @@
 package com.bernard.beaconportal.activities;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.DecimalFormatSymbols;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.BasicHttpContext;
-
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -43,8 +18,6 @@ import android.content.res.Configuration;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.LightingColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -62,7 +35,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.text.Html;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -81,6 +53,30 @@ import com.bernard.beaconportal.activities.homeworkdue.alarms.DailyHomeworkDownl
 import com.bernard.beaconportal.activities.homeworkdue.alarms.MidnightHomeworkDownload;
 import com.bernard.beaconportal.activities.schedule.view.FragmentsSchedule;
 import com.bernard.beaconportal.activities.settings.FragmentSettings;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.BasicHttpContext;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.DecimalFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 @SuppressLint("ResourceAsColor")
 public class MainActivity extends ActionBarActivity {
@@ -130,6 +126,8 @@ public class MainActivity extends ActionBarActivity {
 	private CharSequence mTitle;
 	private String KEY_STATE_TITLE;
 	private ActionBar mActionBar;
+
+    private Bundle savedInstanceState;
 
 	private HttpResponse response;
 
@@ -393,77 +391,77 @@ public class MainActivity extends ActionBarActivity {
 
 		}
 
-		mActionBar = getSupportActionBar();
+        SharedPreferences.Editor localEditor = getSharedPreferences(
+                "due_today", Context.MODE_PRIVATE).edit();
+
+        localEditor.putString("inbox", MAILcount);
+        localEditor.putString("homeworkdue", counterss);
+        localEditor.apply();
+
+        if (Show_View.equals("Homework Due")) {
+
+            title = new String[] { "Homework Due", "Schedule", "Mail",
+                    "Resources", "Options", "Logout" };
+
+            icon = new int[] { R.drawable.ic_action_duehomework,
+                    R.drawable.ic_action_go_to_today,
+                    R.drawable.ic_action_email, R.drawable.ic_action_resources,
+                    R.drawable.ic_action_settings, R.drawable.ic_action_logout };
+
+            if (counterss == null && counterss.isEmpty()) {
+
+                count = new String[] { "", "", MAILcount, "", "", "" };
+
+            } else {
+
+                count = new String[] { counterss, "", MAILcount, "", "", "", "" };
+
+            }
+
+        } else {
+
+            if (counterss == null && counterss.isEmpty()) {
+
+                count = new String[] { "", "", MAILcount, "", "", "" };
+
+            } else {
+
+                count = new String[] { "", counterss, MAILcount, "", "", "" };
+
+            }
+
+            title = new String[] { "Schedule", "Homework Due", "Mail",
+                    "Resources", "Options", "Logout" };
+
+            icon = new int[] { R.drawable.ic_action_go_to_today,
+                    R.drawable.ic_action_duehomework,
+                    R.drawable.ic_action_email, R.drawable.ic_action_resources,
+                    R.drawable.ic_action_settings, R.drawable.ic_action_logout };
+
+        }
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        mDrawerLinear = (LinearLayout) findViewById(R.id.left_drawer);
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
+                GravityCompat.START);
+
+        mMenuAdapter = new MenuListAdapter(MainActivity.this, title, icon,
+                count);
+
+        mDrawerList = (ListView) findViewById(R.id.listview_drawer);
+
+        mDrawerList.setAdapter(mMenuAdapter);
+
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+        mActionBar = getSupportActionBar();
 
 		mActionBar.setIcon(new ColorDrawable(getResources().getColor(
-				android.R.color.transparent)));
-
-		SharedPreferences.Editor localEditor = getSharedPreferences(
-				"due_today", Context.MODE_PRIVATE).edit();
-
-		localEditor.putString("inbox", MAILcount);
-		localEditor.putString("homeworkdue", counterss);
-		localEditor.apply();
-
-		if (Show_View.equals("Homework Due")) {
-
-			title = new String[] { "Homework Due", "Schedule", "Mail",
-					"Resources", "Options", "Logout" };
-
-			icon = new int[] { R.drawable.ic_action_duehomework,
-					R.drawable.ic_action_go_to_today,
-					R.drawable.ic_action_email, R.drawable.ic_action_resources,
-					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
-
-			if (counterss == null && counterss.isEmpty()) {
-
-				count = new String[] { "", "", MAILcount, "", "", "" };
-
-			} else {
-
-				count = new String[] { counterss, "", MAILcount, "", "", "", "" };
-
-			}
-
-		} else {
-
-			if (counterss == null && counterss.isEmpty()) {
-
-				count = new String[] { "", "", MAILcount, "", "", "" };
-
-			} else {
-
-				count = new String[] { "", counterss, MAILcount, "", "", "" };
-
-			}
-
-			title = new String[] { "Schedule", "Homework Due", "Mail",
-					"Resources", "Options", "Logout" };
-
-			icon = new int[] { R.drawable.ic_action_go_to_today,
-					R.drawable.ic_action_duehomework,
-					R.drawable.ic_action_email, R.drawable.ic_action_resources,
-					R.drawable.ic_action_settings, R.drawable.ic_action_logout };
-
-		}
-
-		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-		mDrawerLinear = (LinearLayout) findViewById(R.id.left_drawer);
-
-		mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-		mDrawerList = (ListView) findViewById(R.id.listview_drawer);
-
-		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
-				GravityCompat.START);
-
-		mMenuAdapter = new MenuListAdapter(MainActivity.this, title, icon,
-				count);
-
-		mDrawerList.setAdapter(mMenuAdapter);
-
-		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+                android.R.color.transparent)));
 
 		mActionBar.setHomeButtonEnabled(true);
 		mActionBar.setDisplayHomeAsUpEnabled(true);
@@ -503,11 +501,11 @@ public class MainActivity extends ActionBarActivity {
 				if (savedInstanceState == null) {
 
 					selectItem(countss);
-					
+
 					CharSequence cs = mDrawerList.getItemAtPosition(countss).toString();
-					
+
 					mActionBar.setTitle(cs);
-					
+
 					mDrawerTitle = cs;
 
 				}
@@ -519,15 +517,15 @@ public class MainActivity extends ActionBarActivity {
 				if (savedInstanceState == null) {
 
 					selectItem(0);
-					
+
 					selected_item = 0;
-					
+
 					CharSequence cs = mDrawerList.getItemAtPosition(0).toString();
-					
+
 					mActionBar.setTitle(cs);
-					
+
 					mDrawerTitle = cs;
-					
+
 				}
 
 			}
@@ -537,13 +535,13 @@ public class MainActivity extends ActionBarActivity {
 			if (savedInstanceState == null) {
 
 				selectItem(0);
-				
+
 				CharSequence cs = mDrawerList.getItemAtPosition(0).toString();
-				
+
 				mActionBar.setTitle(cs);
-				
+
 				mDrawerTitle = cs;
-				
+
 			}
 
 		}
@@ -567,11 +565,34 @@ public class MainActivity extends ActionBarActivity {
 
 		localEditor1.commit();
 
-	}
+    }
 
 	@Override
 	public void onResume() {
 		super.onResume();
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                R.drawable.ic_drawer, R.string.drawer_open) {
+
+            @Override
+            public void onDrawerClosed(View view) {
+                // TODO Auto-generated method stub
+                super.onDrawerClosed(view);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // TODO Auto-generated method stub
+
+                if (mDrawerTitle != null
+                        && !mDrawerTitle.equals("Beacon Portal")) {
+                    getSupportActionBar().setTitle(mDrawerTitle);
+                }
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -701,48 +722,6 @@ public class MainActivity extends ActionBarActivity {
 
 		}
 
-		if (Show_View.equals("Homework Due")) {
-
-			title = new String[] { "Homework Due", "Schedule", "Mail",
-					"Resources", "Options", "Logout" };
-
-			icon = new int[] { R.drawable.ic_action_duehomework,
-					R.drawable.ic_action_go_to_today,
-					R.drawable.ic_action_email, R.drawable.ic_action_settings,
-					R.drawable.ic_action_logout };
-
-			if (counterss == null && counterss.isEmpty()) {
-
-				count = new String[] { "", "", MAILcount, "", "" };
-
-			} else {
-
-				count = new String[] { counterss, "", MAILcount, "", "", "" };
-
-			}
-
-		} else {
-
-			if (counterss == null && counterss.isEmpty()) {
-
-				count = new String[] { "", "", MAILcount, "", "" };
-
-			} else {
-
-				count = new String[] { "", counterss, MAILcount, "", "" };
-
-			}
-
-			title = new String[] { "Schedule", "Homework Due", "Mail",
-					"Resources", "Options", "Logout" };
-
-			icon = new int[] { R.drawable.ic_action_go_to_today,
-					R.drawable.ic_action_duehomework,
-					R.drawable.ic_action_email, R.drawable.ic_action_settings,
-					R.drawable.ic_action_logout };
-
-		}
-
 		mActionBar = getSupportActionBar();
 
 		mActionBar.setIcon(new ColorDrawable(getResources().getColor(
@@ -761,8 +740,6 @@ public class MainActivity extends ActionBarActivity {
 				}
 			}
 		}
-
-
 
 		String packageName = "com.bernard.beaconportal.activities";
 
