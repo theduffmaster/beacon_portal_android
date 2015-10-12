@@ -25,10 +25,7 @@ import org.apache.http.protocol.BasicHttpContext;
 
 import com.bernard.beaconportal.activities.AppStatus;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.R.drawable;
-import com.bernard.beaconportal.activities.R.id;
-import com.bernard.beaconportal.activities.R.layout;
-import com.bernard.beaconportal.activities.R.menu;
+import com.bumptech.glide.Glide;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -39,8 +36,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.DialogFragment;
@@ -61,6 +61,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import de.timroes.android.listview.EnhancedListView;
@@ -1144,7 +1145,7 @@ public class DueTodayFragment extends Fragment {
 
 			Log.d("sender", "Broadcasting message");
 
-			Toast.makeText(mActivity, "Refresh Finished", 4000).show();
+			Toast.makeText(mActivity, "Refresh Finished", Toast.LENGTH_LONG).show();
 
 			SharedPreferences download_error = mActivity.getSharedPreferences(
 					"homework", Context.MODE_PRIVATE);
@@ -1617,6 +1618,26 @@ public class DueTodayFragment extends Fragment {
 				holder = (ViewHolder) convertView.getTag();
 			}
 
+            RelativeLayout swipedBackground = (RelativeLayout) convertView
+                    .findViewById(R.id.swiped_background);
+
+            SharedPreferences ThemeColor = getActivity().getSharedPreferences("actionbar_color",
+                    Context.MODE_PRIVATE);
+
+            if (!ThemeColor.contains("actionbar_color")) {
+
+                swipedBackground
+                        .setBackgroundColor(Color.parseColor("#4285f4"));
+
+            } else {
+
+                actionbar_colors = ThemeColor
+                        .getString("actionbar_color", null);
+
+                swipedBackground.setBackgroundColor(Color
+                        .parseColor(actionbar_colors));
+            }
+
 			DueTodayList currenthomeworkdue = due_today_list.get(position);
 
 			Teacher = currenthomeworkdue.getTeacher().substring(0, 1)
@@ -1630,206 +1651,247 @@ public class DueTodayFragment extends Fragment {
 
 			Description = Html.fromHtml(Description).toString();
 
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UU")) {
-
-				holder.imageView.setImageResource(R.drawable.uu);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UN")) {
-
-				holder.imageView.setImageResource(R.drawable.un);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UG")) {
-
-				holder.imageView.setImageResource(R.drawable.ug);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("TZ")) {
-
-				holder.imageView.setImageResource(R.drawable.tz);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("TQ")) {
-
-				holder.imageView.setImageResource(R.drawable.tq);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SR")) {
-
-				holder.imageView.setImageResource(R.drawable.sr);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SQ")) {
-
-				holder.imageView.setImageResource(R.drawable.sq);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SP")) {
-
-				holder.imageView.setImageResource(R.drawable.sp);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SK")) {
-
-				holder.imageView.setImageResource(R.drawable.sk);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SF")) {
-
-				holder.imageView.setImageResource(R.drawable.sf);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SC")) {
-
-				holder.imageView.setImageResource(R.drawable.sc);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SB")) {
-
-				holder.imageView.setImageResource(R.drawable.sb);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PQ")) {
-
-				holder.imageView.setImageResource(R.drawable.pq);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PP")) {
-
-				holder.imageView.setImageResource(R.drawable.pp);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PH")) {
-
-				holder.imageView.setImageResource(R.drawable.ph);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MS")) {
-
-				holder.imageView.setImageResource(R.drawable.ms);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MR")) {
-
-				holder.imageView.setImageResource(R.drawable.mr);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MQ")) {
-
-				holder.imageView.setImageResource(R.drawable.mq);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MP")) {
-
-				holder.imageView.setImageResource(R.drawable.mp);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MG")) {
-
-				holder.imageView.setImageResource(R.drawable.mg);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("ME")) {
-
-				holder.imageView.setImageResource(R.drawable.me);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MC")) {
-
-				holder.imageView.setImageResource(R.drawable.mc);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HU")) {
-
-				holder.imageView.setImageResource(R.drawable.hu);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HG")) {
-
-				holder.imageView.setImageResource(R.drawable.hg);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HF")) {
-
-				holder.imageView.setImageResource(R.drawable.hf);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DM")) {
-
-				holder.imageView.setImageResource(R.drawable.dm);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DW")) {
-
-				holder.imageView.setImageResource(R.drawable.dw);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("EE")) {
-
-				holder.imageView.setImageResource(R.drawable.ee);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DQ")) {
-
-				holder.imageView.setImageResource(R.drawable.dq);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DJ")) {
-
-				holder.imageView.setImageResource(R.drawable.dj);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CR")) {
-
-				holder.imageView.setImageResource(R.drawable.cr);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CQ")) {
-
-				holder.imageView.setImageResource(R.drawable.cq);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CJ")) {
-
-				holder.imageView.setImageResource(R.drawable.cj);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AQ")) {
-
-				holder.imageView.setImageResource(R.drawable.aq);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AJ")) {
-
-				holder.imageView.setImageResource(R.drawable.aj);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AN")) {
-
-				holder.imageView.setImageResource(R.drawable.an);
-
-			} else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AC")) {
-
-				holder.imageView.setImageResource(R.drawable.ac);
-
-			}
-
-			else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("FS")) {
-
-				holder.imageView.setImageResource(R.drawable.spanish);
-
-			}
-
-			else if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("FF")) {
-
-				holder.imageView.setImageResource(R.drawable.french);
-
-			}
+            String name = currenthomeworkdue.Band.substring(0,
+                    Math.min(currenthomeworkdue.Band.length(), 2));
+
+            Log.d("Drawable name= ", name);
+
+            StringBuilder sb = new StringBuilder(name);
+            for (int index = 0; index < sb.length(); index++) {
+                char c = sb.charAt(index);
+                if (Character.isLowerCase(c)) {
+                    sb.setCharAt(index, Character.toUpperCase(c));
+                } else {
+                    sb.setCharAt(index, Character.toLowerCase(c));
+                }
+            }
+
+            Log.d("Drawable name lowercase= ", sb.toString());
+
+            int resId = getResources().getIdentifier(sb.toString(), "drawable", getActivity().getPackageName());
+
+            Drawable d;
+
+            try {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    d = getActivity().getResources().getDrawable(resId, getActivity().getTheme());
+                } else {
+                    d = getActivity().getResources().getDrawable(resId);
+                }
+
+                System.out.println("Drawable id = " + d);
+
+                Glide.with(getActivity()).load(resId).into(holder.imageView);
+
+            }catch (Resources.NotFoundException e){
+
+                System.out.println("Uknown Class Identifier");
+
+                Glide.with(getActivity()).load(R.drawable.z).into(holder.imageView);
+
+            }
+
+//			if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UU")) {
+//
+//				holder.imageView.setImageResource(R.drawable.uu);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UN")) {
+//
+//				holder.imageView.setImageResource(R.drawable.un);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UG")) {
+//
+//				holder.imageView.setImageResource(R.drawable.ug);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("TZ")) {
+//
+//				holder.imageView.setImageResource(R.drawable.tz);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("TQ")) {
+//
+//				holder.imageView.setImageResource(R.drawable.tq);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SR")) {
+//
+//				holder.imageView.setImageResource(R.drawable.sr);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SQ")) {
+//
+//				holder.imageView.setImageResource(R.drawable.sq);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SP")) {
+//
+//				holder.imageView.setImageResource(R.drawable.sp);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SK")) {
+//
+//				holder.imageView.setImageResource(R.drawable.sk);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SF")) {
+//
+//				holder.imageView.setImageResource(R.drawable.sf);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SC")) {
+//
+//				holder.imageView.setImageResource(R.drawable.sc);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SB")) {
+//
+//				holder.imageView.setImageResource(R.drawable.sb);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PQ")) {
+//
+//				holder.imageView.setImageResource(R.drawable.pq);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PP")) {
+//
+//				holder.imageView.setImageResource(R.drawable.pp);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PH")) {
+//
+//				holder.imageView.setImageResource(R.drawable.ph);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MS")) {
+//
+//				holder.imageView.setImageResource(R.drawable.ms);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MR")) {
+//
+//				holder.imageView.setImageResource(R.drawable.mr);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MQ")) {
+//
+//				holder.imageView.setImageResource(R.drawable.mq);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MP")) {
+//
+//				holder.imageView.setImageResource(R.drawable.mp);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MG")) {
+//
+//				holder.imageView.setImageResource(R.drawable.mg);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("ME")) {
+//
+//				holder.imageView.setImageResource(R.drawable.me);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MC")) {
+//
+//				holder.imageView.setImageResource(R.drawable.mc);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HU")) {
+//
+//				holder.imageView.setImageResource(R.drawable.hu);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HG")) {
+//
+//				holder.imageView.setImageResource(R.drawable.hg);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HF")) {
+//
+//				holder.imageView.setImageResource(R.drawable.hf);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DM")) {
+//
+//				holder.imageView.setImageResource(R.drawable.dm);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DW")) {
+//
+//				holder.imageView.setImageResource(R.drawable.dw);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("EE")) {
+//
+//				holder.imageView.setImageResource(R.drawable.ee);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DQ")) {
+//
+//				holder.imageView.setImageResource(R.drawable.dq);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DJ")) {
+//
+//				holder.imageView.setImageResource(R.drawable.dj);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CR")) {
+//
+//				holder.imageView.setImageResource(R.drawable.cr);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CQ")) {
+//
+//				holder.imageView.setImageResource(R.drawable.cq);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CJ")) {
+//
+//				holder.imageView.setImageResource(R.drawable.cj);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AQ")) {
+//
+//				holder.imageView.setImageResource(R.drawable.aq);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AJ")) {
+//
+//				holder.imageView.setImageResource(R.drawable.aj);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AN")) {
+//
+//				holder.imageView.setImageResource(R.drawable.an);
+//
+//			} else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AC")) {
+//
+//				holder.imageView.setImageResource(R.drawable.ac);
+//
+//			}
+//
+//			else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("FS")) {
+//
+//				holder.imageView.setImageResource(R.drawable.fs);
+//
+//			}
+//
+//			else if (currenthomeworkdue.Band.substring(0,
+//					Math.min(currenthomeworkdue.Band.length(), 2)).equals("FF")) {
+//
+//				holder.imageView.setImageResource(R.drawable.ff);
+//
+//			}
 
 			holder.HomeworkDueText
 					.setText(currenthomeworkdue.getTitle().trim());

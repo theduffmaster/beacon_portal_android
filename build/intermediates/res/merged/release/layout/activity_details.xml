@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+     >
+     
+  
+    
+    <TextView
+        android:id="@+id/textdate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="Date"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:gravity="center" 
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/texthomeworkdue"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Headline"
+        android:background="#4285f4"
+       android:gravity="center" 
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/textdate" />
+    
+    <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/texthomeworkdue"
+     >
+    
+ <ScrollView
+     android:layout_width="fill_parent"
+     android:layout_height="392dp"
+     android:layout_below="@+id/texthomeworkdue" >
+
+    </ScrollView>
+
+ </FrameLayout>
+
+    <com.bernard.beaconportal.activities.view.MessageWebView
+        android:id="@+id/textdescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/texthomeworkdue"
+        android:padding="10dp"
+        android:text="Description"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/material_shadow_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/texthomeworkdue"
+        android:background="#00000000"
+        android:src="@drawable/material_shadow270" />
+
+</RelativeLayout><!-- From: file:/Users/lincoln/Dropbox/Android_Work/BeaconPortal/res/layout/activity_details.xml -->

@@ -4244,9 +4244,16 @@ public class MessageList extends MAILListActivity implements
 	public class DrawerItemClickListener implements
 			ListView.OnItemClickListener {
 		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
+		public void onItemClick(AdapterView<?> parent, View view, final int position,
 				long id) {
-			selectItem(position);
+
+            mDrawerLayout.closeDrawer(mDrawerLinear);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    selectItem(position);
+                }
+            }, 225);
 		}
 	}
 

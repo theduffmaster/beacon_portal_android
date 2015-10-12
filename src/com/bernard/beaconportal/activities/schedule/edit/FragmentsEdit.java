@@ -1,9 +1,5 @@
 package com.bernard.beaconportal.activities.schedule.edit;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -30,10 +27,11 @@ import android.widget.RelativeLayout;
 import com.astuetz.PagerSlidingTabStrip;
 import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.R.id;
-import com.bernard.beaconportal.activities.R.layout;
-import com.bernard.beaconportal.activities.R.menu;
 import com.bernard.beaconportal.activities.schedule.view.ViewPagerAdapterScheduleView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class FragmentsEdit extends ActionBarActivity {
 
@@ -98,27 +96,31 @@ public class FragmentsEdit extends ActionBarActivity {
 
 		}
 
-		SharedPreferences sharedpreference = getSharedPreferences(
-				"background_color", Context.MODE_PRIVATE);
+        SharedPreferences sharedpreference = this
+                .getSharedPreferences("background_color", Context.MODE_PRIVATE);
 
-		if (!sharedpreference.contains("background_color")) {
+        if (!sharedpreference.contains("background_color")) {
 
-			background_colors = "#ffffff";
+            background_colors = "#ffffff";
 
-			tabs.setTextColor(Color.parseColor(background_colors));
+            tabs.setTextColor(makeAlphaColor(background_colors));
 
-			tabs.setIndicatorColor(Color.parseColor(background_colors));
+            tabs.setActiveColor(Color.parseColor(background_colors), makeAlphaColor(background_colors));
 
-		} else {
+            tabs.setIndicatorColor(Color.parseColor(background_colors));
 
-			background_colors = sharedpreference.getString("background_color",
-					"#ffffff");
+        } else {
 
-			tabs.setTextColor(Color.parseColor(background_colors));
+            background_colors = sharedpreference.getString("background_color",
+                    "#ffffff");
 
-			tabs.setIndicatorColor(Color.parseColor(background_colors));
+            tabs.setTextColor(makeAlphaColor(background_colors));
 
-		}
+            tabs.setActiveColor(Color.parseColor(background_colors), makeAlphaColor(background_colors));
+
+            tabs.setIndicatorColor(Color.parseColor(background_colors));
+
+        }
 
 		ViewPager pager = (ViewPager) findViewById(R.id.viewPager1);
 
@@ -305,5 +307,15 @@ public class FragmentsEdit extends ActionBarActivity {
 		}
 
 	}
+
+    public int makeAlphaColor(String actionbar_colors) {
+
+        //darken color for status bar
+        float[] hsv = new float[3];
+        int alphaColor = ColorUtils.setAlphaComponent(Color.parseColor(actionbar_colors), 150);
+
+        return alphaColor;
+
+    }
 
 }

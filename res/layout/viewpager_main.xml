@@ -19,7 +19,7 @@
     app:pstsIndicatorHeight="2dp"
     app:pstsShouldExpand="true"
     android:textColor="#ffffff"
-    android:textSize="12sp"
+    android:textSize="14sp"
     />
     
    <com.bernard.beaconportal.activities.ScrollLock

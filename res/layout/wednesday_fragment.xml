@@ -8,6 +8,7 @@
     >
 
     <fragment
+        android:id="@+id/wednesday_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         class="com.bernard.beaconportal.activities.schedule.daydialogfragments.WednesdayFragment"

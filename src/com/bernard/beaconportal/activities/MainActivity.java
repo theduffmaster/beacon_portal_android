@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -727,6 +728,10 @@ public class MainActivity extends ActionBarActivity {
 		mActionBar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
+        if (mDrawerTitle != null){
+            mActionBar.setTitle(mDrawerTitle);
+        }
+
 		if (checkbox != null) {
 			if (checkbox.contains("true")) {
 				try {
@@ -1090,12 +1095,19 @@ public class MainActivity extends ActionBarActivity {
 	public class DrawerItemClickListener implements
 			ListView.OnItemClickListener {
 		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			
-			selectItem(position);
-			
-		}
+		public void onItemClick(AdapterView<?> parent, View view, final int position,
+                                long id) {
+
+
+            mDrawerLayout.closeDrawer(mDrawerLinear);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    selectItem(position);
+                }
+            }, 225);
+
+        }
 	}
 
 	void selectItem(int position) {

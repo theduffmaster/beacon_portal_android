@@ -1,10 +1,5 @@
 package com.bernard.beaconportal.activities.homeworkdue;
 
-import java.lang.reflect.Field;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -13,7 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,245 +22,261 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.R;
 import com.bernard.beaconportal.activities.ScrollLock;
-import com.bernard.beaconportal.activities.R.id;
-import com.bernard.beaconportal.activities.R.layout;
-import com.bernard.beaconportal.activities.R.menu;
 import com.bernard.beaconportal.activities.homeworkdue.viewpager.ViewPagerAdapterHomework;
 import com.bernard.beaconportal.activities.homeworkdue.viewpager.ViewPagerAdapterHomeworkAfterThree;
 import com.bernard.beaconportal.activities.homeworkdue.viewpager.ViewPagerAdapterHomeworkWeekend;
 
+import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class FragmentsHomeworkDue extends Fragment {
 
-	private String actionbar_colors, background_colors;
+    private String actionbar_colors, background_colors;
 
-	private View view;
+    private View view;
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-		view = inflater.inflate(R.layout.viewpager_main, container, false);
+        view = inflater.inflate(R.layout.viewpager_main, container, false);
 
-		System.out.println("create");
+        System.out.println("create");
 
-		setHasOptionsMenu(true);
+        setHasOptionsMenu(true);
 
-		ActionBar actionBar = ((MainActivity) getActivity())
-				.getSupportActionBar();
+        ActionBar actionBar = ((MainActivity) getActivity())
+                .getSupportActionBar();
 
-		actionBar.setElevation(0);
+        actionBar.setElevation(0);
 
-		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view
-				.findViewById(R.id.pagerTabStrip);
+        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view
+                .findViewById(R.id.pagerTabStrip);
 
-		SharedPreferences sharedprefer = getActivity().getSharedPreferences(
-				"actionbar_color", Context.MODE_PRIVATE);
+        SharedPreferences sharedprefer = getActivity().getSharedPreferences(
+                "actionbar_color", Context.MODE_PRIVATE);
 
-		if (!sharedprefer.contains("actionbar_color")) {
+        if (!sharedprefer.contains("actionbar_color")) {
 
-			actionbar_colors = "#4285f4";
+            actionbar_colors = "#4285f4";
 
-			tabs.setBackgroundColor(Color.parseColor(actionbar_colors));
+            tabs.setBackgroundColor(Color.parseColor(actionbar_colors));
 
-		} else {
+        } else {
 
-			actionbar_colors = sharedprefer.getString("actionbar_color", null);
+            actionbar_colors = sharedprefer.getString("actionbar_color", null);
 
-			tabs.setBackgroundColor(Color.parseColor(actionbar_colors));
+            tabs.setBackgroundColor(Color.parseColor(actionbar_colors));
 
-		}
+        }
 
-		SharedPreferences sharedpreference = getActivity()
-				.getSharedPreferences("background_color", Context.MODE_PRIVATE);
+        SharedPreferences sharedpreference = getActivity()
+                .getSharedPreferences("background_color", Context.MODE_PRIVATE);
 
-		if (!sharedpreference.contains("background_color")) {
+        if (!sharedpreference.contains("background_color")) {
 
-			background_colors = "#ffffff";
+            background_colors = "#ffffff";
 
-			tabs.setTextColor(Color.parseColor(background_colors));
+            tabs.setTextColor(makeAlphaColor(background_colors));
 
-			tabs.setIndicatorColor(Color.parseColor(background_colors));
+            tabs.setActiveColor(Color.parseColor(background_colors), makeAlphaColor(background_colors));
 
-		} else {
+            tabs.setIndicatorColor(Color.parseColor(background_colors));
 
-			background_colors = sharedpreference.getString("background_color",
-					"#ffffff");
+        } else {
 
-			tabs.setTextColor(Color.parseColor(background_colors));
+            background_colors = sharedpreference.getString("background_color",
+                    "#ffffff");
 
-			tabs.setIndicatorColor(Color.parseColor(background_colors));
+            tabs.setTextColor(makeAlphaColor(background_colors));
 
-		}
+            tabs.setActiveColor(Color.parseColor(background_colors), makeAlphaColor(background_colors));
 
-		ScrollLock pager = (ScrollLock) view.findViewById(R.id.viewPager);
+            tabs.setIndicatorColor(Color.parseColor(background_colors));
 
-		Calendar calendar = Calendar.getInstance();
+        }
 
-		int i = calendar.get(Calendar.DAY_OF_WEEK);
+        ScrollLock pager = (ScrollLock) view.findViewById(R.id.viewPager);
 
-		if (i == 6 || i == 7 || i == 1) {
+        Calendar calendar = Calendar.getInstance();
 
-			pager.setAdapter(new ViewPagerAdapterHomeworkWeekend(
-					getChildFragmentManager()));
+        int i = calendar.get(Calendar.DAY_OF_WEEK);
 
-		} else {
+        if (i == 6 || i == 7 || i == 1) {
 
-			String currHour = new SimpleDateFormat("kk").format(new Date());
+            pager.setAdapter(new ViewPagerAdapterHomeworkWeekend(
+                    getChildFragmentManager()));
 
-			if (Integer.parseInt(currHour) > 14
-					&& Integer.parseInt(currHour) < 24) {
+        } else {
 
-				pager.setAdapter(new ViewPagerAdapterHomeworkAfterThree(
-						getChildFragmentManager()));
+            String currHour = new SimpleDateFormat("kk").format(new Date());
 
-				tabs.setIndicatorColor(Color.parseColor(actionbar_colors));
+            if (Integer.parseInt(currHour) > 14
+                    && Integer.parseInt(currHour) < 24) {
 
-			} else {
+                pager.setAdapter(new ViewPagerAdapterHomeworkAfterThree(
+                        getChildFragmentManager()));
 
-				pager.setAdapter(new ViewPagerAdapterHomework(
-						getChildFragmentManager()));
+                tabs.setIndicatorColor(Color.parseColor(actionbar_colors));
 
-			}
+            } else {
 
-		}
+                pager.setAdapter(new ViewPagerAdapterHomework(
+                        getChildFragmentManager()));
 
-		tabs.setViewPager(pager);
+            }
 
-		return view;
-	}
+        }
 
-	@Override
-	public void onResume() {
-		super.onResume();
+        tabs.setViewPager(pager);
 
-		System.out.println("resume");
+        return view;
+    }
 
-		ScrollLock pager = (ScrollLock) view.findViewById(R.id.viewPager);
+    @Override
+    public void onResume() {
+        super.onResume();
 
-		RelativeLayout layout = (RelativeLayout) view
-				.findViewById(R.id.homeworkdue_container);
+        System.out.println("resume");
 
-		layout.setBackgroundColor(Color.parseColor(actionbar_colors));
+        ScrollLock pager = (ScrollLock) view.findViewById(R.id.viewPager);
 
-		PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view
-				.findViewById(R.id.pagerTabStrip);
+        RelativeLayout layout = (RelativeLayout) view
+                .findViewById(R.id.homeworkdue_container);
 
-		tabs.setDividerColor(Color.parseColor(actionbar_colors));
+        layout.setBackgroundColor(Color.parseColor(actionbar_colors));
 
-		tabs.setBackgroundColor(Color.parseColor(actionbar_colors));
+        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view
+                .findViewById(R.id.pagerTabStrip);
 
-		Calendar calendar = Calendar.getInstance();
+        tabs.setDividerColor(Color.parseColor(actionbar_colors));
 
-		int i = calendar.get(Calendar.DAY_OF_WEEK);
+        tabs.setBackgroundColor(Color.parseColor(actionbar_colors));
 
-		if (i == 6 || i == 7 || i == 1) {
+        Calendar calendar = Calendar.getInstance();
 
-			pager.setAdapter(new ViewPagerAdapterHomeworkWeekend(
-					getChildFragmentManager()));
+        int i = calendar.get(Calendar.DAY_OF_WEEK);
 
-		} else {
+        if (i == 6 || i == 7 || i == 1) {
 
-			String currHour = new SimpleDateFormat("kk").format(new Date());
+            pager.setAdapter(new ViewPagerAdapterHomeworkWeekend(
+                    getChildFragmentManager()));
 
-			if (Integer.parseInt(currHour) > 14
-					&& Integer.parseInt(currHour) < 24) {
+        } else {
 
-				pager.setAdapter(new ViewPagerAdapterHomeworkAfterThree(
-						getChildFragmentManager()));
+            String currHour = new SimpleDateFormat("kk").format(new Date());
 
-			} else {
+            if (Integer.parseInt(currHour) > 14
+                    && Integer.parseInt(currHour) < 24) {
 
-				pager.setAdapter(new ViewPagerAdapterHomework(
-						getChildFragmentManager()));
+                pager.setAdapter(new ViewPagerAdapterHomeworkAfterThree(
+                        getChildFragmentManager()));
 
-			}
+            } else {
 
-		}
+                pager.setAdapter(new ViewPagerAdapterHomework(
+                        getChildFragmentManager()));
 
-		SharedPreferences sharedprefer = getActivity().getSharedPreferences(
-				"first_run_starts", Context.MODE_PRIVATE);
+            }
 
-		if (!sharedprefer.contains("help_check_homeworkdue")) {
+        }
 
-			alert_help();
+        SharedPreferences sharedprefer = getActivity().getSharedPreferences(
+                "first_run_starts", Context.MODE_PRIVATE);
 
-		}
+        if (!sharedprefer.contains("help_check_homeworkdue")) {
 
-		NotificationManager mNotificationManager = (NotificationManager) getActivity()
-				.getSystemService(Context.NOTIFICATION_SERVICE);
+            alert_help();
 
-		mNotificationManager.cancelAll();
+        }
 
-	}
+        NotificationManager mNotificationManager = (NotificationManager) getActivity()
+                .getSystemService(Context.NOTIFICATION_SERVICE);
 
-	@Override
-	public void onDetach() {
-		super.onDetach();
-		try {
-			Field childFragmentManager = Fragment.class
-					.getDeclaredField("mChildFragmentManager");
-			childFragmentManager.setAccessible(true);
-			childFragmentManager.set(this, null);
-		} catch (NoSuchFieldException e) {
-			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
-			throw new RuntimeException(e);
-		}
+        mNotificationManager.cancelAll();
 
-	}
+    }
 
-	private void alert_help() {
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        try {
+            Field childFragmentManager = Fragment.class
+                    .getDeclaredField("mChildFragmentManager");
+            childFragmentManager.setAccessible(true);
+            childFragmentManager.set(this, null);
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
 
-		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-			builder.setMessage(
-					"Swipe down to refresh, and keep track of the homework you've done by swiping it away. You can turn off swipeable homework items in options. To manually add a homework, press add homework The number in the slide out drawer is the amount of homework you have due tommorow according to the Portal.")
-					.setTitle("About");
+    }
 
-			builder.setPositiveButton("OK",
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int id) {
+    private void alert_help() {
 
-							SharedPreferences.Editor localEditors = getActivity()
-									.getSharedPreferences("first_run_starts",
-											Context.MODE_PRIVATE).edit();
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(
+                    "Swipe down to refresh, and keep track of the homework you've done by swiping it away. You can turn off swipeable homework items in options. To manually add a homework, press add homework The number in the slide out drawer is the amount of homework you have due tommorow according to the Portal.")
+                    .setTitle("About");
 
-							localEditors.putString("help_check_homeworkdue",
-									"checked");
+            builder.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
 
-							localEditors.commit();
+                            SharedPreferences.Editor localEditors = getActivity()
+                                    .getSharedPreferences("first_run_starts",
+                                            Context.MODE_PRIVATE).edit();
 
-						}
-					});
+                            localEditors.putString("help_check_homeworkdue",
+                                    "checked");
 
-			AlertDialog alertDialog = builder.create();
+                            localEditors.commit();
 
-			alertDialog.show();
+                        }
+                    });
 
-		}
+            AlertDialog alertDialog = builder.create();
 
-	}
+            alertDialog.show();
 
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		// TODO Auto-generated method stub
+        }
 
-		inflater.inflate(R.menu.android_help, menu);
-	}
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem paramMenuItem) {
-		switch (paramMenuItem.getItemId()) {
-		case R.id.help:
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // TODO Auto-generated method stub
 
-			alert_help();
+        inflater.inflate(R.menu.android_help, menu);
+    }
 
-			return true;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem paramMenuItem) {
+        switch (paramMenuItem.getItemId()) {
+            case R.id.help:
 
-		}
-		return true;
+                alert_help();
 
-	}
+                return true;
+
+        }
+        return true;
+
+    }
+
+    public int makeAlphaColor(String actionbar_colors) {
+
+        //darken color for status bar
+        float[] hsv = new float[3];
+        int alphaColor = ColorUtils.setAlphaComponent(Color.parseColor(actionbar_colors), 150);
+
+        return alphaColor;
+
+    }
 
 }

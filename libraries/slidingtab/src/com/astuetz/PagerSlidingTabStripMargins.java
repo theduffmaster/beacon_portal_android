@@ -39,11 +39,11 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.astuetz.pagerslidingtabstrip.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-
-import com.astuetz.pagerslidingtabstrip.R;
 
 public class PagerSlidingTabStripMargins extends HorizontalScrollView {
 
@@ -97,6 +97,21 @@ public class PagerSlidingTabStripMargins extends HorizontalScrollView {
 	private int lastScrollX = 0;
 
 	private int tabBackgroundResId = R.drawable.background_tab;
+
+    private int activeTabTextColor;
+    private int inActiveTabTextColor;
+    private boolean useActiveColor =false;
+    public void setActiveColor(int active, int inactive){
+        useActiveColor=true;
+        activeTabTextColor=active;
+        inActiveTabTextColor=inactive;
+    }
+    public void disableActiveColor(){
+        useActiveColor=false;
+    }
+    public void enableActiveClor(){
+        useActiveColor = true;
+    }
 
 	private Locale locale;
 
@@ -172,17 +187,24 @@ public class PagerSlidingTabStripMargins extends HorizontalScrollView {
 		}
 	}
 
-	public void setViewPager(ViewPager pager) {
-		this.pager = pager;
+    public void setViewPager(ViewPager pager) {
+        this.pager = pager;
 
-		if (pager.getAdapter() == null) {
-			throw new IllegalStateException("ViewPager does not have adapter instance.");
-		}
+        if (pager.getAdapter() == null) {
+            throw new IllegalStateException("ViewPager does not have adapter instance.");
+        }
 
-		pager.setOnPageChangeListener(pageListener);
+        pager.setOnPageChangeListener(pageListener);
 
-		notifyDataSetChanged();
-	}
+        notifyDataSetChanged();
+        pageListener.curPage=currentPosition;
+        pageListener.prevPage=currentPosition;
+        if(useActiveColor){
+            TextView tab  = (TextView)tabsContainer.getChildAt(currentPosition);
+            tab.setTextColor(activeTabTextColor);
+        }
+
+    }
 
 	public void setOnPageChangeListener(OnPageChangeListener listener) {
 		this.delegatePageListener = listener;
@@ -394,42 +416,52 @@ public class PagerSlidingTabStripMargins extends HorizontalScrollView {
 		}
 	}
 
-	private class PageListener implements OnPageChangeListener {
+    private class PageListener implements OnPageChangeListener {
+        public int prevPage=0;
+        public int curPage=0;
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-		@Override
-		public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            currentPosition = position;
+            currentPositionOffset = positionOffset;
 
-			currentPosition = position;
-			currentPositionOffset = positionOffset;
+            scrollToChild(position, (int) (positionOffset * tabsContainer.getChildAt(position).getWidth()));
 
-			scrollToChild(position, (int) (positionOffset * tabsContainer.getChildAt(position).getWidth()));
+            invalidate();
 
-			invalidate();
+            if (delegatePageListener != null) {
+                delegatePageListener.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
+        }
 
-			if (delegatePageListener != null) {
-				delegatePageListener.onPageScrolled(position, positionOffset, positionOffsetPixels);
-			}
-		}
+        @Override
+        public void onPageScrollStateChanged(int state) {
+            if (state == ViewPager.SCROLL_STATE_IDLE) {
+                scrollToChild(pager.getCurrentItem(), 0);
+            }
 
-		@Override
-		public void onPageScrollStateChanged(int state) {
-			if (state == ViewPager.SCROLL_STATE_IDLE) {
-				scrollToChild(pager.getCurrentItem(), 0);
-			}
+            if (delegatePageListener != null) {
+                delegatePageListener.onPageScrollStateChanged(state);
+            }
+        }
 
-			if (delegatePageListener != null) {
-				delegatePageListener.onPageScrollStateChanged(state);
-			}
-		}
+        @Override
+        public void onPageSelected(int position) {
+            prevPage=curPage;
+            curPage=position;
+            if(useActiveColor) {
+                TextView tab = (TextView) tabsContainer.getChildAt(prevPage);
+                tab.setTextColor(inActiveTabTextColor);
+                //modify previous tab to display active text
+                tab = (TextView) tabsContainer.getChildAt(curPage);
+                tab.setTextColor(activeTabTextColor);
+            }
+            if (delegatePageListener != null) {
+                delegatePageListener.onPageSelected(position);
+            }
+        }
 
-		@Override
-		public void onPageSelected(int position) {
-			if (delegatePageListener != null) {
-				delegatePageListener.onPageSelected(position);
-			}
-		}
-
-	}
+    }
 
 	public void setIndicatorColor(int indicatorColor) {
 		this.indicatorColor = indicatorColor;

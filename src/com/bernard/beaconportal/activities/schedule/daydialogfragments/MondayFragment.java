@@ -1,20 +1,5 @@
 package com.bernard.beaconportal.activities.schedule.daydialogfragments;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.HttpResponse;
-
-import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.R.drawable;
-import com.bernard.beaconportal.activities.R.id;
-import com.bernard.beaconportal.activities.R.layout;
-import com.bernard.beaconportal.activities.homeworkdue.DueTodayList;
-import com.bernard.beaconportal.activities.homeworkdue.HomeworkDueDetailsActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +17,18 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.homeworkdue.DueTodayList;
+import com.bernard.beaconportal.activities.homeworkdue.HomeworkDueDetailsActivity;
+
+import org.apache.http.HttpResponse;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MondayFragment extends Fragment {
 	private List<DueTodayList> due_schedule_list;
@@ -562,14 +559,14 @@ public class MondayFragment extends Fragment {
 			if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("FS")) {
 
-				holder.imageView.setImageResource(R.drawable.spanish);
+				holder.imageView.setImageResource(R.drawable.fs);
 
 			}
 
 			if (currenthomeworkdue.Band.substring(0,
 					Math.min(currenthomeworkdue.Band.length(), 2)).equals("FF")) {
 
-				holder.imageView.setImageResource(R.drawable.french);
+				holder.imageView.setImageResource(R.drawable.ff);
 
 			}
 

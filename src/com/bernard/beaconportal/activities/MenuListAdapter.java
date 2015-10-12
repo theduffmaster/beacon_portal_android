@@ -75,23 +75,6 @@ public class MenuListAdapter extends BaseAdapter {
 
         Glide.with(context).load(mIcon[position]).into(imgIcon);
 
-		// if(position == selectedItem + 1){
-		//
-		// ColorFilter filter = new LightingColorFilter( Color.BLACK,
-		// Color.BLACK);
-		//
-		// imgIcon.setColorFilter(filter);
-		//
-		// txtTitle.setTextColor(Color.BLACK);
-		//
-		// Log.d("Creating Drawer ListView", "Selected item" +
-		// Integer.toString(selectedItem + 1));
-		//
-		// Log.d("Creating Drawer ListView", "Position" +
-		// Integer.toString(position));
-		//
-		// }
-
 		return itemView;
 	}
 }

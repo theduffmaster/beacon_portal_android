@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout 
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/Linear_Layout_Settings"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+	android:layout_gravity="center_horizontal"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+        android:id="@+id/Relative_Layout_Settings"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/app_start" >
+
+        <TextView
+            android:id="@+id/textViewTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp"
+             
+            android:singleLine="true"
+            android:text="Choose What to Show at App Start"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="12dp"
+            android:singleLine="true"
+            android:text="Show &quot;Schedule&quot; or &quot;Homework Due&quot;"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+         
+        android:layout_alignBottom="@+id/Relative_Layout_Settings"
+        android:background="#D3D3D3" />
+
+    <RelativeLayout
+        android:id="@+id/relative_Layout_Settings_Refresh"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/app_start" >
+
+        <TextView
+            android:id="@+id/textViewTitles_Refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="Set Notification Creation Time"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewSubTitle_Refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="12dp"
+            android:maxLines="2"
+            android:singleLine="true"
+            android:text="A notification is set to be issued at 3:00pm"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+    
+    <View
+        android:id="@+id/view5"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_alignBottom="@+id/Relative_Layout_Settings"
+        android:background="#D3D3D3" />
+    
+    <RelativeLayout
+        android:id="@+id/Relative_Layout_Settings_Edit"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/app_start" >
+
+        <TextView
+            android:id="@+id/textViewTitles_Edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="Edit Bands Button Position"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewSubTitle_Edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_toLeftOf="@+id/checkBoxEdit"
+            android:layout_alignParentLeft="true"
+            android:maxLines="2"
+            android:singleLine="true"
+            android:text="Edit Button not in ActionBar"
+            android:textSize="13sp" />
+
+        <CheckBox
+            android:id="@+id/checkBoxEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp" />
+    </RelativeLayout>
+
+        <View
+        android:id="@+id/view4"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+         
+        android:layout_alignBottom="@+id/Relative_Layout_Settings"
+        android:background="#D3D3D3" />
+    
+    <RelativeLayout
+        android:id="@+id/Relative_Layout_Settings_Swipe"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/app_start" >
+
+        <TextView
+            android:id="@+id/textViewTitles_Swipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="Swipeable Homework Items"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewSubTitle_Swipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_toLeftOf="@+id/checkBoxSwipe"
+            android:layout_alignParentLeft="true"
+            android:maxLines="2"
+            android:singleLine="true"
+            android:text="Homework Items are Swipeable"
+            android:textSize="13sp" />
+
+        <CheckBox
+            android:id="@+id/checkBoxSwipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp" />
+    </RelativeLayout>
+    
+</LinearLayout>
+
+
+
+<!-- From: file:/Users/lincoln/Dropbox/Android_Work/BeaconPortal/res/layout/settings_layouts.xml -->

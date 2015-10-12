@@ -1,10 +1,5 @@
 package com.bernard.beaconportal.activities.schedule.view;
 
-import java.lang.reflect.Field;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -15,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.util.TypedValue;
@@ -29,15 +25,14 @@ import android.view.ViewGroup;
 import com.astuetz.PagerSlidingTabStripMargins;
 import com.bernard.beaconportal.activities.MainActivity;
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.R.array;
-import com.bernard.beaconportal.activities.R.drawable;
-import com.bernard.beaconportal.activities.R.id;
-import com.bernard.beaconportal.activities.R.layout;
-import com.bernard.beaconportal.activities.R.menu;
-import com.bernard.beaconportal.activities.R.string;
 import com.bernard.beaconportal.activities.schedule.edit.FragmentsEdit;
 import com.bernard.beaconportal.activities.schedule.linked.FragmentsLinked;
 import com.faizmalkani.floatingactionbutton.Fab;
+
+import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class FragmentsSchedule extends Fragment {
 
@@ -93,7 +88,9 @@ public class FragmentsSchedule extends Fragment {
 
 			background_colors = "#ffffff";
 
-			tabs.setTextColor(Color.parseColor(background_colors));
+			tabs.setTextColor(makeAlphaColor(background_colors));
+
+            tabs.setActiveColor(Color.parseColor(background_colors), makeAlphaColor(background_colors));
 
 			tabs.setIndicatorColor(Color.parseColor(background_colors));
 
@@ -102,7 +99,9 @@ public class FragmentsSchedule extends Fragment {
 			background_colors = sharedpreference.getString("background_color",
 					"#ffffff");
 
-			tabs.setTextColor(Color.parseColor(background_colors));
+			tabs.setTextColor(makeAlphaColor(background_colors));
+
+            tabs.setActiveColor(Color.parseColor(background_colors), makeAlphaColor(background_colors));
 
 			tabs.setIndicatorColor(Color.parseColor(background_colors));
 
@@ -295,33 +294,43 @@ public class FragmentsSchedule extends Fragment {
 			builder.setTitle("Edit Schedule Items Using...");
 
 			builder.setItems(R.array.edit_mode,
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int arg) {
-							// TODO Auto-generated method stub
-							switch (arg) {
-							case 0:
-								Intent myIntent = new Intent(((Dialog) dialog)
-										.getContext(), FragmentsLinked.class);
-								startActivityForResult(myIntent, 0);
-								break;
-							case 1:
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int arg) {
+                            // TODO Auto-generated method stub
+                            switch (arg) {
+                                case 0:
+                                    Intent myIntent = new Intent(((Dialog) dialog)
+                                            .getContext(), FragmentsLinked.class);
+                                    startActivityForResult(myIntent, 0);
+                                    break;
+                                case 1:
 
-								Intent anIntent = new Intent(((Dialog) dialog)
-										.getContext(), FragmentsEdit.class);
-								startActivityForResult(anIntent, 0);
-								break;
-							default:
-								break;
-							}
-						}
+                                    Intent anIntent = new Intent(((Dialog) dialog)
+                                            .getContext(), FragmentsEdit.class);
+                                    startActivityForResult(anIntent, 0);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
 
-					});
+                    });
 			AlertDialog alertDialog = builder.create();
 
 			alertDialog.show();
 
 		}
 	}
+
+    public int makeAlphaColor(String actionbar_colors) {
+
+        //darken color for status bar
+        float[] hsv = new float[3];
+        int alphaColor = ColorUtils.setAlphaComponent(Color.parseColor(actionbar_colors), 150);
+
+        return alphaColor;
+
+    }
 
 }

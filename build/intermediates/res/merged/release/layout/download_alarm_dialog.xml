@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+  			 android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:textAlignment="center"
+        android:text="A notification will be issued daily at the time you specify here. Press stop to \&quot;stop\&quot; all homework notifications."
+        android:textSize="14sp" />
+
+     <TimePicker
+         android:id="@+id/timePicker1"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         />
+     
+</LinearLayout>
+<!-- From: file:/Users/lincoln/Dropbox/Android_Work/BeaconPortal/res/layout/download_alarm_dialog.xml -->
