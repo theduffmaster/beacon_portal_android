@@ -192,7 +192,7 @@ MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Andro
 MERGED from [BeaconPortal.libraries:extendedListView:unspecified] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.libraries/extendedListView/unspecified/AndroidManifest.xml:9:5-10:19
 MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
 	android:label
-		ADDED from /Users/lincoln/Dropbox/Android_Work/BeaconPortal/AndroidManifest.xml:67:2-34
+		ADDED from /Users/lincoln/Dropbox/Android_Work/BeaconPortal/AndroidManifest.xml:67:6-38
 	android:allowTaskReparenting
 		ADDED from /Users/lincoln/Dropbox/Android_Work/BeaconPortal/AndroidManifest.xml:69:9-45
 	android:icon
@@ -202,7 +202,7 @@ MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Andro
 	android:theme
 		ADDED from /Users/lincoln/Dropbox/Android_Work/BeaconPortal/AndroidManifest.xml:68:9-54
 	android:name
-		ADDED from /Users/lincoln/Dropbox/Android_Work/BeaconPortal/AndroidManifest.xml:66:7-27
+		ADDED from /Users/lincoln/Dropbox/Android_Work/BeaconPortal/AndroidManifest.xml:66:9-29
 meta-data#android.app.default_searchable
 ADDED from /Users/lincoln/Dropbox/Android_Work/BeaconPortal/AndroidManifest.xml:73:9-74:55
 	android:value

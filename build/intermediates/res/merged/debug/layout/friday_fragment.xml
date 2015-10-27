@@ -7,11 +7,12 @@
     >
 
     <fragment
-        android:id="@+id/friday_fragment"
+        android:id="@+id/friday_fragment1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         class="com.bernard.beaconportal.activities.schedule.daydialogfragments.FridayFragment"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        tools:layout="@layout/day_homework_fragment"/>
     
     
 

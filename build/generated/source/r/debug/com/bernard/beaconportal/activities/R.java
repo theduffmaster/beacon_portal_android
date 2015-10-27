@@ -2986,7 +2986,7 @@ containing a value of this type.
         public static final int folders=0x7f0e009e;
         public static final int forward=0x7f0e0222;
         public static final int forwarded=0x7f0e0149;
-        public static final int friday_fragment=0x7f0e00f0;
+        public static final int friday_fragment1=0x7f0e00f0;
         public static final int from=0x7f0e014a;
         public static final int green_panel=0x7f0e00c9;
         public static final int gridview=0x7f0e0007;
@@ -3064,7 +3064,7 @@ containing a value of this type.
         public static final int message_view=0x7f0e010b;
         public static final int message_view_container=0x7f0e00d9;
         public static final int middle=0x7f0e001c;
-        public static final int monday_fragment=0x7f0e0169;
+        public static final int monday_fragment1=0x7f0e0169;
         public static final int move=0x7f0e0217;
         public static final int move_down=0x7f0e01e5;
         public static final int move_up=0x7f0e01e4;
@@ -3227,7 +3227,7 @@ containing a value of this type.
         public static final int textdescription=0x7f0e00b3;
         public static final int texthomeworkdue=0x7f0e00b2;
         public static final int thread_count=0x7f0e013a;
-        public static final int thursday_fragment=0x7f0e01b1;
+        public static final int thursday_fragment1=0x7f0e01b1;
         public static final int time=0x7f0e017a;
         public static final int timePicker1=0x7f0e00cd;
         public static final int title=0x7f0e003c;
@@ -3240,7 +3240,7 @@ containing a value of this type.
         public static final int toggle_unread=0x7f0e022f;
         public static final int top=0x7f0e0208;
         public static final int topPanel=0x7f0e003e;
-        public static final int tuesday_fragment=0x7f0e01c3;
+        public static final int tuesday_fragment1=0x7f0e01c3;
         public static final int undo=0x7f0e00df;
         public static final int unflag=0x7f0e021a;
         public static final int unread_count=0x7f0e01c5;
@@ -3274,7 +3274,7 @@ containing a value of this type.
         public static final int webdav_owa_path_section=0x7f0e0081;
         public static final int webdav_path_prefix=0x7f0e0082;
         public static final int webview=0x7f0e000f;
-        public static final int wednesday_fragment=0x7f0e01dd;
+        public static final int wednesday_fragment1=0x7f0e01dd;
         public static final int welcome_message=0x7f0e01de;
         public static final int white_panel=0x7f0e00c5;
         public static final int withText=0x7f0e0021;
@@ -3425,7 +3425,7 @@ containing a value of this type.
         public static final int support_simple_spinner_dropdown_item=0x7f030085;
         public static final int swipe_view=0x7f030086;
         public static final int thursday=0x7f030087;
-        public static final int thursday_fragment=0x7f030088;
+        public static final int thursday_fragment =0x7f030088;
         public static final int today_item_view=0x7f030089;
         public static final int tommorow_item_view=0x7f03008a;
         public static final int tuesday=0x7f03008b;

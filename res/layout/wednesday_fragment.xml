@@ -4,14 +4,14 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.util.me.TestActivity"
     >
 
     <fragment
-        android:id="@+id/wednesday_fragment"
+        android:id="@+id/wednesday_fragment1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         class="com.bernard.beaconportal.activities.schedule.daydialogfragments.WednesdayFragment"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        tools:layout="@layout/day_homework_fragment"/>
 
 </RelativeLayout>

@@ -1401,7 +1401,7 @@ int id folder_status 0x7f0e00e2
 int id folders 0x7f0e009e
 int id forward 0x7f0e0222
 int id forwarded 0x7f0e0149
-int id friday_fragment 0x7f0e00f0
+int id friday_fragment1 0x7f0e00f0
 int id from 0x7f0e014a
 int id green_panel 0x7f0e00c9
 int id gridview 0x7f0e0007
@@ -1479,7 +1479,7 @@ int id message_title_view 0x7f0e00af
 int id message_view 0x7f0e010b
 int id message_view_container 0x7f0e00d9
 int id middle 0x7f0e001c
-int id monday_fragment 0x7f0e0169
+int id monday_fragment1 0x7f0e0169
 int id move 0x7f0e0217
 int id move_down 0x7f0e01e5
 int id move_up 0x7f0e01e4
@@ -1642,7 +1642,7 @@ int id textdate 0x7f0e00b1
 int id textdescription 0x7f0e00b3
 int id texthomeworkdue 0x7f0e00b2
 int id thread_count 0x7f0e013a
-int id thursday_fragment 0x7f0e01b1
+int id thursday_fragment1 0x7f0e01b1
 int id time 0x7f0e017a
 int id timePicker1 0x7f0e00cd
 int id title 0x7f0e003c
@@ -1655,7 +1655,7 @@ int id toggle_message_view_theme 0x7f0e023d
 int id toggle_unread 0x7f0e022f
 int id top 0x7f0e0208
 int id topPanel 0x7f0e003e
-int id tuesday_fragment 0x7f0e01c3
+int id tuesday_fragment1 0x7f0e01c3
 int id undo 0x7f0e00df
 int id unflag 0x7f0e021a
 int id unread_count 0x7f0e01c5
@@ -1689,7 +1689,7 @@ int id webdav_mailbox_path 0x7f0e0080
 int id webdav_owa_path_section 0x7f0e0081
 int id webdav_path_prefix 0x7f0e0082
 int id webview 0x7f0e000f
-int id wednesday_fragment 0x7f0e01dd
+int id wednesday_fragment1 0x7f0e01dd
 int id welcome_message 0x7f0e01de
 int id white_panel 0x7f0e00c5
 int id withText 0x7f0e0021
@@ -1836,7 +1836,7 @@ int layout split_message_list 0x7f030084
 int layout support_simple_spinner_dropdown_item 0x7f030085
 int layout swipe_view 0x7f030086
 int layout thursday 0x7f030087
-int layout thursday_fragment 0x7f030088
+int layout thursday_fragments 0x7f030088
 int layout today_item_view 0x7f030089
 int layout tommorow_item_view 0x7f03008a
 int layout tuesday 0x7f03008b
