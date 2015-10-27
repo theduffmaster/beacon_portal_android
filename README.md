@@ -11,3 +11,8 @@ Also, if anybody thinks they can come up with better icons/banners, please email
 
 
 Here is the previous home for the Beacon Portal source code: http://sourceforge.net/projects/beaconportal/
+
+<a href="https://play.google.com/store/apps/details?id=com.bernard.beaconportal.activities">
+  <img alt="Android app on Google Play"
+       src="https://developer.android.com/images/brand/en_app_rgb_wo_60.png" />
+</a>
