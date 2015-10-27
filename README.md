@@ -1,7 +1,7 @@
 beacon_portal_android
 =====================
 
-Please excuse the mess. I am currently reprogramming the app from scratch because when I began the project I barely knew how to program, and now the application is in an abysmal state.
+Please excuse the mess. I am currently reprogramming the app from scratch because when I began the project I barely knew how to program, and now the application's code is in an abysmal state.
 
 The Beacon Portal website and more, easily accessible from your phone for Beacon Teachers and Students!
 
