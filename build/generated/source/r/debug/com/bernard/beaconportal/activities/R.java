@@ -3064,7 +3064,7 @@ containing a value of this type.
         public static final int message_view=0x7f0e010b;
         public static final int message_view_container=0x7f0e00d9;
         public static final int middle=0x7f0e001c;
-        public static final int monday_fragment1=0x7f0e0169;
+        public static final int monday_day_container=0x7f0e0169;
         public static final int move=0x7f0e0217;
         public static final int move_down=0x7f0e01e5;
         public static final int move_up=0x7f0e01e4;
@@ -3425,7 +3425,7 @@ containing a value of this type.
         public static final int support_simple_spinner_dropdown_item=0x7f030085;
         public static final int swipe_view=0x7f030086;
         public static final int thursday=0x7f030087;
-        public static final int thursday_fragment =0x7f030088;
+        public static final int thursday_fragment=0x7f030088;
         public static final int today_item_view=0x7f030089;
         public static final int tommorow_item_view=0x7f03008a;
         public static final int tuesday=0x7f03008b;

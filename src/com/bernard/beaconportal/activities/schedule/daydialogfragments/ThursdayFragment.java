@@ -1,22 +1,16 @@
 package com.bernard.beaconportal.activities.schedule.daydialogfragments;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.HttpResponse;
-
-import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.homeworkdue.DueTodayList;
-import com.bernard.beaconportal.activities.homeworkdue.HomeworkDueDetailsActivity;
-
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.DialogFragment;
 import android.text.Html;
 import android.text.TextUtils.TruncateAt;
 import android.util.Log;
@@ -30,7 +24,20 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class ThursdayFragment extends Fragment {
+import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.homeworkdue.DueTodayList;
+import com.bernard.beaconportal.activities.homeworkdue.HomeworkDueDetailsActivity;
+import com.bumptech.glide.Glide;
+
+import org.apache.http.HttpResponse;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ThursdayFragment extends DialogFragment {
 	private List<DueTodayList> due_schedule_list;
 
 	private View swipe;
@@ -66,22 +73,31 @@ public class ThursdayFragment extends Fragment {
 	public static final String KEY_TYPE = "type";
 	public static final String KEY_BAND = "band";
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-		swipe = inflater.inflate(R.layout.day_homework_fragment, container,
-				false);
 
-		lView = (ListView) swipe.findViewById(R.id.listView1);
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        swipe = inflater.inflate(R.layout.day_homework_fragment, null);
 
-		progress = (ProgressBar) swipe.findViewById(R.id.progress);
+        lView = (ListView) swipe.findViewById(R.id.listView1);
+        progress = (ProgressBar) swipe.findViewById(R.id.progress);
+        lView.setVisibility(View.GONE);
 
-		lView.setVisibility(View.GONE);
 
-		return swipe;
 
-	}
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity())
+                .setView(swipe)
+                .setTitle("Homework Due Thursday")
+                .setNegativeButton("Dismiss",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.dismiss();
+                            }
+                        }
+                );
+
+        return alertDialogBuilder.create();
+    }
 
 	@Override
 	public void onResume() {
@@ -332,243 +348,46 @@ public class ThursdayFragment extends Fragment {
 			Description = Description.replaceAll("[\\n\\t]", "");
 
 			Description = Html.fromHtml(Description).toString();
+            String name = currenthomeworkdue.Band.substring(0,
+                    Math.min(currenthomeworkdue.Band.length(), 2));
 
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UU")) {
+            Log.d("Drawable name= ", name);
 
-				holder.imageView.setImageResource(R.drawable.uu);
+            StringBuilder sb = new StringBuilder(name);
+            for (int index = 0; index < sb.length(); index++) {
+                char c = sb.charAt(index);
+                if (Character.isLowerCase(c)) {
+                    sb.setCharAt(index, Character.toUpperCase(c));
+                } else {
+                    sb.setCharAt(index, Character.toLowerCase(c));
+                }
+            }
 
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UN")) {
+            Log.d("Drawable name lowercase= ", sb.toString());
 
-				holder.imageView.setImageResource(R.drawable.un);
+            int resId = getResources().getIdentifier(sb.toString(), "drawable", getActivity().getPackageName());
 
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("UG")) {
+            Drawable d;
 
-				holder.imageView.setImageResource(R.drawable.ug);
+            try {
 
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("TZ")) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    d = getActivity().getResources().getDrawable(resId, getActivity().getTheme());
+                } else {
+                    d = getActivity().getResources().getDrawable(resId);
+                }
 
-				holder.imageView.setImageResource(R.drawable.tz);
+                System.out.println("Drawable id = " + d);
 
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("TQ")) {
+                Glide.with(getActivity()).load(resId).into(holder.imageView);
 
-				holder.imageView.setImageResource(R.drawable.tq);
+            }catch (Resources.NotFoundException e){
 
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SR")) {
+                System.out.println("Uknown Class Identifier");
 
-				holder.imageView.setImageResource(R.drawable.sr);
+                Glide.with(getActivity()).load(R.drawable.z).into(holder.imageView);
 
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SQ")) {
-
-				holder.imageView.setImageResource(R.drawable.sq);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SP")) {
-
-				holder.imageView.setImageResource(R.drawable.sp);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SK")) {
-
-				holder.imageView.setImageResource(R.drawable.sk);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SF")) {
-
-				holder.imageView.setImageResource(R.drawable.sf);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SC")) {
-
-				holder.imageView.setImageResource(R.drawable.sc);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("SB")) {
-
-				holder.imageView.setImageResource(R.drawable.sb);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PQ")) {
-
-				holder.imageView.setImageResource(R.drawable.pq);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PP")) {
-
-				holder.imageView.setImageResource(R.drawable.pp);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("PH")) {
-
-				holder.imageView.setImageResource(R.drawable.ph);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MS")) {
-
-				holder.imageView.setImageResource(R.drawable.ms);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MR")) {
-
-				holder.imageView.setImageResource(R.drawable.mr);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MQ")) {
-
-				holder.imageView.setImageResource(R.drawable.mq);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MP")) {
-
-				holder.imageView.setImageResource(R.drawable.mp);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MG")) {
-
-				holder.imageView.setImageResource(R.drawable.mg);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("ME")) {
-
-				holder.imageView.setImageResource(R.drawable.me);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("MC")) {
-
-				holder.imageView.setImageResource(R.drawable.mc);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HU")) {
-
-				holder.imageView.setImageResource(R.drawable.hu);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HG")) {
-
-				holder.imageView.setImageResource(R.drawable.hg);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("HF")) {
-
-				holder.imageView.setImageResource(R.drawable.hf);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DM")) {
-
-				holder.imageView.setImageResource(R.drawable.dm);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DW")) {
-
-				holder.imageView.setImageResource(R.drawable.dw);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("EE")) {
-
-				holder.imageView.setImageResource(R.drawable.ee);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DQ")) {
-
-				holder.imageView.setImageResource(R.drawable.dq);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("DJ")) {
-
-				holder.imageView.setImageResource(R.drawable.dj);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CR")) {
-
-				holder.imageView.setImageResource(R.drawable.cr);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CQ")) {
-
-				holder.imageView.setImageResource(R.drawable.cq);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("CJ")) {
-
-				holder.imageView.setImageResource(R.drawable.cj);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AQ")) {
-
-				holder.imageView.setImageResource(R.drawable.aq);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AJ")) {
-
-				holder.imageView.setImageResource(R.drawable.aj);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AN")) {
-
-				holder.imageView.setImageResource(R.drawable.an);
-
-			}
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("AC")) {
-
-				holder.imageView.setImageResource(R.drawable.ac);
-
-			}
-
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("FS")) {
-
-				holder.imageView.setImageResource(R.drawable.fs);
-
-			}
-
-			if (currenthomeworkdue.Band.substring(0,
-					Math.min(currenthomeworkdue.Band.length(), 2)).equals("FF")) {
-
-				holder.imageView.setImageResource(R.drawable.ff);
-
-			}
+            }
 
 			holder.HomeworkDueText
 					.setText(currenthomeworkdue.getTitle().trim());

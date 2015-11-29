@@ -54,7 +54,7 @@ Please submit bug reports, contribute new features and ask questions at
 
 
     <!-- Default signature -->
-    <string name="default_signature">-- \nSent from my Android device with the Beacon Portal app.</string>
+    <string name="default_signature"></string>
 
 
     <!-- General strings that include the app name -->

@@ -728,10 +728,6 @@ public class MainActivity extends ActionBarActivity {
 		mActionBar.setIcon(new ColorDrawable(getResources().getColor(
 				android.R.color.transparent)));
 
-        if (mDrawerTitle != null){
-            mActionBar.setTitle(mDrawerTitle);
-        }
-
 		if (checkbox != null) {
 			if (checkbox.contains("true")) {
 				try {
@@ -803,6 +799,10 @@ public class MainActivity extends ActionBarActivity {
 		MAILcount = Integer.toString(countssssss);
 
 		System.out.println("mail Unread Count = " + countssssss);
+
+//        CharSequence cs = mDrawerList.getSelectedItem().toString();
+//
+//        mActionBar.setTitle(cs);
 
 	}
 

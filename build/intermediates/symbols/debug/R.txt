@@ -1479,7 +1479,7 @@ int id message_title_view 0x7f0e00af
 int id message_view 0x7f0e010b
 int id message_view_container 0x7f0e00d9
 int id middle 0x7f0e001c
-int id monday_fragment1 0x7f0e0169
+int id monday_day_container 0x7f0e0169
 int id move 0x7f0e0217
 int id move_down 0x7f0e01e5
 int id move_up 0x7f0e01e4
@@ -1836,7 +1836,7 @@ int layout split_message_list 0x7f030084
 int layout support_simple_spinner_dropdown_item 0x7f030085
 int layout swipe_view 0x7f030086
 int layout thursday 0x7f030087
-int layout thursday_fragments 0x7f030088
+int layout thursday_fragment 0x7f030088
 int layout today_item_view 0x7f030089
 int layout tommorow_item_view 0x7f03008a
 int layout tuesday 0x7f03008b

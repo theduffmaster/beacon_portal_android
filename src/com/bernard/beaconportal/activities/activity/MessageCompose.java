@@ -1,37 +1,7 @@
 package com.bernard.beaconportal.activities.activity;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.StringTokenizer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.james.mime4j.codec.EncoderUtil;
-import org.apache.james.mime4j.util.MimeUtil;
-import org.htmlcleaner.CleanerProperties;
-import org.htmlcleaner.HtmlCleaner;
-import org.htmlcleaner.SimpleHtmlSerializer;
-import org.htmlcleaner.TagNode;
-import org.openintents.openpgp.OpenPgpError;
-import org.openintents.openpgp.util.OpenPgpApi;
-import org.openintents.openpgp.util.OpenPgpServiceConnection;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
@@ -43,9 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.content.Loader;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -53,8 +21,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -67,7 +33,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -130,6 +95,35 @@ import com.bernard.beaconportal.activities.mail.store.LocalStore.LocalAttachment
 import com.bernard.beaconportal.activities.mail.store.LocalStore.TempFileBody;
 import com.bernard.beaconportal.activities.mail.store.LocalStore.TempFileMessageBody;
 import com.bernard.beaconportal.activities.view.MessageWebView;
+
+import org.apache.james.mime4j.codec.EncoderUtil;
+import org.apache.james.mime4j.util.MimeUtil;
+import org.htmlcleaner.CleanerProperties;
+import org.htmlcleaner.HtmlCleaner;
+import org.htmlcleaner.SimpleHtmlSerializer;
+import org.htmlcleaner.TagNode;
+import org.openintents.openpgp.OpenPgpError;
+import org.openintents.openpgp.util.OpenPgpApi;
+import org.openintents.openpgp.util.OpenPgpServiceConnection;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MessageCompose extends MAILActivity implements OnClickListener,
 		ProgressDialogFragment.CancelListener {
@@ -499,7 +493,6 @@ public class MessageCompose extends MAILActivity implements OnClickListener,
 	 * the message from the given folder.
 	 * 
 	 * @param context
-	 * @param message
 	 */
 	public static void actionEditDraft(Context context,
 			MessageReference messageReference) {
@@ -521,51 +514,51 @@ public class MessageCompose extends MAILActivity implements OnClickListener,
 			return;
 		}
 
-		SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
-				Context.MODE_PRIVATE);
-
-		if (!sharedpref.contains("actionbar_color")) {
-
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#4285f4")));
-
-			if (Build.VERSION.SDK_INT >= 21) {
-				Window window = getWindow();
-				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				window.setStatusBarColor(Color.parseColor("#3367d6"));
-			}
-
-		} else {
-
-			String actionbar_colors = sharedpref.getString("actionbar_color",
-					null);
-
-			getActionBar().setBackgroundDrawable(
-
-			new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-			final int splitBarId = getResources().getIdentifier(
-					"split_action_bar", "id", "android");
-
-			final View splitActionBar = findViewById(splitBarId);
-
-			if (splitActionBar != null) {
-
-				splitActionBar.setBackgroundDrawable(
-
-				new ColorDrawable(Color.parseColor(actionbar_colors)));
-
-			}
-
-			if (Build.VERSION.SDK_INT >= 21) {
-				Window window = getWindow();
-				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				window.setStatusBarColor(Color.parseColor(actionbar_colors));
-			}
-
-		}
+//        SharedPreferences sharedpref = getSharedPreferences("actionbar_color",
+//                Context.MODE_PRIVATE);
+//
+//        if (!sharedpref.contains("actionbar_color")) {
+//
+//            getActionBar().setBackgroundDrawable(
+//                    new ColorDrawable(Color.parseColor("#4285f4")));
+//
+//            if (Build.VERSION.SDK_INT >= 21) {
+//                Window window = getWindow();
+//                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//                window.setStatusBarColor(Color.parseColor("#3367d6"));
+//            }
+//
+//        } else {
+//
+//            String actionbar_colors = sharedpref.getString("actionbar_color",
+//                    null);
+//
+//            getActionBar().setBackgroundDrawable(
+//
+//                    new ColorDrawable(Color.parseColor(actionbar_colors)));
+//
+//            final int splitBarId = getResources().getIdentifier(
+//                    "split_action_bar", "id", "android");
+//
+//            final View splitActionBar = findViewById(splitBarId);
+//
+//            if (splitActionBar != null) {
+//
+//                splitActionBar.setBackgroundDrawable(
+//
+//                        new ColorDrawable(Color.parseColor(actionbar_colors)));
+//
+//            }
+//
+//            if (Build.VERSION.SDK_INT >= 21) {
+//                Window window = getWindow();
+//                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//                window.setStatusBarColor(Color.parseColor(actionbar_colors));
+//            }
+//
+//        }
 
 		android.app.ActionBar bar = getActionBar();
 

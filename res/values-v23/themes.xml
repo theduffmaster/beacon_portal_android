@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <style name="Theme.Custom.Dark.Base.Material" parent="@style/Theme.AppCompat.Light">
+    
+        <item name="android:colorPrimary">#4285f4</item>
+        
+    </style>
+    
+</resources>

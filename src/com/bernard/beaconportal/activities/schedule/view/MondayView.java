@@ -28,6 +28,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.schedule.daydialogfragments.MondayFragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -216,26 +217,21 @@ public class MondayView extends Fragment {
 		list.setAdapter(adapter);
 
 		list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-			@Override
-			public boolean onItemLongClick(AdapterView<?> av, View v, int pos,
-					long id) {
-				return onLongListItemClick(v, pos, id);
-			}
-		});
+            @Override
+            public boolean onItemLongClick(AdapterView<?> av, View v, int pos,
+                                           long id) {
+                return onLongListItemClick(v, pos, id);
+            }
+        });
 
 	}
 
-	public void showDialog() {
+    public void showDialog() {
 
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            FragmentManager fragmentManager = getFragmentManager();
+            MondayFragment dayHomeworkDialogFragment = new MondayFragment();
+            dayHomeworkDialogFragment.show(fragmentManager, "my_day_homework_fragment");
 
-		View view = getActivity().getLayoutInflater().inflate(
-				R.layout.monday_fragment, null);
-		builder.setView(view).setTitle("Homework Due Monday")
-				.setNegativeButton("Dismiss", null);
-
-		AlertDialog dialog = builder.create();
-		dialog.show();
 	}
 
 	public class MyListAdapter extends ArrayAdapter<ScheduleView> {

@@ -28,6 +28,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.R;
+import com.bernard.beaconportal.activities.schedule.daydialogfragments.MondayFragment;
+import com.bernard.beaconportal.activities.schedule.daydialogfragments.WednesdayFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -220,17 +222,13 @@ public class WednesdayView extends Fragment {
 
 	}
 
-	public void showDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    public void showDialog() {
 
-		View view = getActivity().getLayoutInflater().inflate(
-				R.layout.wednesday_fragment, null);
-		builder.setView(view).setTitle("Homework Due Wednesday")
-				.setNegativeButton("Dismiss", null);
+        FragmentManager fragmentManager = getFragmentManager();
+        WednesdayFragment dayHomeworkDialogFragment = new WednesdayFragment();
+        dayHomeworkDialogFragment.show(fragmentManager, "my_day_homework_fragment");
 
-		AlertDialog dialog = builder.create();
-		dialog.show();
-	}
+    }
 
 	public class MyListAdapter extends ArrayAdapter<ScheduleView> {
 		public MyListAdapter() {

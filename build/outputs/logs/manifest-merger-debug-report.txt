@@ -150,20 +150,20 @@ MERGED from [BeaconPortal.plugins.Android-PullToRefresh:library:unspecified] /Us
 MERGED from [BeaconPortal.plugins.ckChangeLog:library:unspecified] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.plugins.ckChangeLog/library/unspecified/AndroidManifest.xml:7:5-9:41
 MERGED from [BeaconPortal.plugins:HoloColorPicker:unspecified] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.plugins/HoloColorPicker/unspecified/AndroidManifest.xml:7:5-9:41
 MERGED from [BeaconPortal.plugins:openpgp-api-library:unspecified] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.plugins/openpgp-api-library/unspecified/AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:appcompat-v7:22.2.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:cardview-v7:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.0.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.1/AndroidManifest.xml:20:5-43
 MERGED from [com.commonsware.cwac:merge:1.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.commonsware.cwac/merge/1.1.1/AndroidManifest.xml:7:5-43
 MERGED from [com.commonsware.cwac:sacklist:1.0.2] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.commonsware.cwac/sacklist/1.0.2/AndroidManifest.xml:7:5-43
 MERGED from [com.commonsware.cwac:sacklist:1.0.2] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.commonsware.cwac/sacklist/1.0.2/AndroidManifest.xml:7:5-43
 MERGED from [BeaconPortal.libraries:slidingtab:unspecified] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.libraries/slidingtab/unspecified/AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
 MERGED from [BeaconPortal.libraries:floatingActionButtonCompatmaster:unspecified] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.libraries/floatingActionButtonCompatmaster/unspecified/AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
 MERGED from [BeaconPortal.libraries:extendedListView:unspecified] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.libraries/extendedListView/unspecified/AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
 	android:targetSdkVersion
 		ADDED from /Users/lincoln/Dropbox/Android_Work/BeaconPortal/AndroidManifest.xml:62:9-38
 		INJECTED from /Users/lincoln/Dropbox/Android_Work/BeaconPortal/AndroidManifest.xml
@@ -177,20 +177,20 @@ ADDED from /Users/lincoln/Dropbox/Android_Work/BeaconPortal/AndroidManifest.xml:
 MERGED from [BeaconPortal.plugins.Android-PullToRefresh:library:unspecified] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.plugins.Android-PullToRefresh/library/unspecified/AndroidManifest.xml:9:5-20
 MERGED from [BeaconPortal.plugins.ckChangeLog:library:unspecified] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.plugins.ckChangeLog/library/unspecified/AndroidManifest.xml:11:5-20
 MERGED from [BeaconPortal.plugins:openpgp-api-library:unspecified] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.plugins/openpgp-api-library/unspecified/AndroidManifest.xml:11:5-20
-MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:22.2.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:cardview-v7:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.0.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:cardview-v7:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.1/AndroidManifest.xml:22:5-20
 MERGED from [com.commonsware.cwac:merge:1.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.commonsware.cwac/merge/1.1.1/AndroidManifest.xml:9:5-20
 MERGED from [com.commonsware.cwac:sacklist:1.0.2] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.commonsware.cwac/sacklist/1.0.2/AndroidManifest.xml:9:5-20
 MERGED from [com.commonsware.cwac:sacklist:1.0.2] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.commonsware.cwac/sacklist/1.0.2/AndroidManifest.xml:9:5-20
 MERGED from [BeaconPortal.libraries:slidingtab:unspecified] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.libraries/slidingtab/unspecified/AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
 MERGED from [BeaconPortal.libraries:floatingActionButtonCompatmaster:unspecified] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.libraries/floatingActionButtonCompatmaster/unspecified/AndroidManifest.xml:11:5-12:19
-MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
 MERGED from [BeaconPortal.libraries:extendedListView:unspecified] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/BeaconPortal.libraries/extendedListView/unspecified/AndroidManifest.xml:9:5-10:19
-MERGED from [com.android.support:support-v4:23.0.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /Users/lincoln/Dropbox/Android_Work/BeaconPortal/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
 	android:label
 		ADDED from /Users/lincoln/Dropbox/Android_Work/BeaconPortal/AndroidManifest.xml:67:6-38
 	android:allowTaskReparenting

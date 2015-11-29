@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/lincoln/Dropbox/Android_Work/BeaconPortal/res/values-v23/color.xml -->
+    <eat-comment/>
+    <color name="dialog_divider">#ffffff</color>
+    <color name="light_background">#ffffff</color>
+    <color name="light_background_clicked">#eeeeee</color>
+    <!-- From: file:/Users/lincoln/Dropbox/Android_Work/BeaconPortal/res/values-v23/dimen.xml -->
+    <eat-comment/>
+    <dimen name="elv_undo_bottom_offset">50dp</dimen>
+    <!-- From: file:/Users/lincoln/Dropbox/Android_Work/BeaconPortal/res/values-v23/themes.xml -->
+    <eat-comment/>
+    <style name="Theme.Custom.Dark.Base.Material" parent="@style/Theme.AppCompat.Light">
+    
+        <item name="android:colorPrimary">#4285f4</item>
+        
+    </style>
+</resources>
