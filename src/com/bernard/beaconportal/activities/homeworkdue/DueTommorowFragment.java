@@ -90,6 +90,8 @@ public class DueTommorowFragment extends Fragment {
 
 	public TextView footer_text;
 
+    public String descriptionCheck;
+
 	private SharedPreferences Tommorow_Homework_Counter;
 
 	private SharedPreferences Tommorow_Homework;
@@ -1517,263 +1519,267 @@ public class DueTommorowFragment extends Fragment {
 
 		list.setDismissCallback(new OnDismissCallback() {
 
-			@Override
-			public EnhancedListView.Undoable onDismiss(
-					EnhancedListView listView, final int position) {
+            @Override
+            public EnhancedListView.Undoable onDismiss(
+                    EnhancedListView listView, final int position) {
 
-				Log.d("shared clear1", "yes");
+                Log.d("shared clear1", "yes");
 
-				final DueTodayList item = adapter.getItem(position);
-				// Store the item for later undo
+                final DueTodayList item = adapter.getItem(position);
+                // Store the item for later undo
 
-				final DueTodayList currenthomeworkdue = due_tommorow_list
-						.get(position);
+                final DueTodayList currenthomeworkdue = due_tommorow_list
+                        .get(position);
 
-				// Remove the item from the adapter
-				adapter.remove(adapter.getItem(position));
+                // Remove the item from the adapter
+                adapter.remove(adapter.getItem(position));
 
-				// return an Undoable
+                // return an Undoable
 
-				return new EnhancedListView.Undoable() {
+                return new EnhancedListView.Undoable() {
 
-					// Reinsert the item to the adapter
+                    // Reinsert the item to the adapter
 
-					@Override
-					public void undo() {
+                    @Override
+                    public void undo() {
 
-						System.out.println("undid");
+                        System.out.println("undid");
 
-						adapter.insert(item, position);
+                        adapter.insert(item, position);
 
-					}
+                    }
 
-					// Delete item completely from your persistent storage
-					@Override
-					public void discard() {
+                    // Delete item completely from your persistent storage
+                    @Override
+                    public void discard() {
 
-						String Description_Check = currenthomeworkdue
-								.getDescription();
+                        String Description_Check = currenthomeworkdue
+                                .getDescription();
 
-						int counterssss = Tommorow_Homework_Counter.getInt(
-								"last shared preference", 0);
+                        int counterssss = Tommorow_Homework_Counter.getInt(
+                                "last shared preference", 0);
 
-						int countersssss = counterssss + 1;
+                        int countersssss = counterssss + 1;
 
-						for (int i = 0; i < countersssss; i++) {
+                        for (int i = 0; i < countersssss; i++) {
 
-							due_tommorow_shared = "due_tommorow"
-									+ Integer.toString(i);
+                            due_tommorow_shared = "due_tommorow"
+                                    + Integer.toString(i);
 
-							SharedPreferences Tommorows_Homework = mActivity
-									.getSharedPreferences(due_tommorow_shared,
-											Context.MODE_PRIVATE);
+                            SharedPreferences Tommorows_Homework = mActivity
+                                    .getSharedPreferences(due_tommorow_shared,
+                                            Context.MODE_PRIVATE);
 
-							String Band1 = Tommorows_Homework.getString(
-									"due_tommorow0", null);
+                            String Band1 = Tommorows_Homework.getString(
+                                    "due_tommorow0", null);
 
-							String Number1 = Tommorows_Homework.getString(
-									"due_tommorow1", null);
+                            String Number1 = Tommorows_Homework.getString(
+                                    "due_tommorow1", null);
 
-							String Class1 = Tommorows_Homework.getString(
-									"due_tommorow2", null);
+                            String Class1 = Tommorows_Homework.getString(
+                                    "due_tommorow2", null);
 
-							String Teacher1 = Tommorows_Homework.getString(
-									"due_tommorow3", null);
+                            String Teacher1 = Tommorows_Homework.getString(
+                                    "due_tommorow3", null);
 
-							String Title1 = Tommorows_Homework.getString(
-									"due_tommorow4", null);
+                            String Title1 = Tommorows_Homework.getString(
+                                    "due_tommorow4", null);
 
-							String Date1 = Tommorows_Homework.getString(
-									"due_tommorow5", null);
+                            String Date1 = Tommorows_Homework.getString(
+                                    "due_tommorow5", null);
 
-							String Type1 = Tommorows_Homework.getString(
-									"due_tommorow6", null);
+                            String Type1 = Tommorows_Homework.getString(
+                                    "due_tommorow6", null);
 
-							String Description1 = Tommorows_Homework.getString(
-									"due_tommorow7", null);
+                            String Description1 = Tommorows_Homework.getString(
+                                    "due_tommorow7", null);
 
-							if (Band1 != null) {
+                            if (Band1 != null) {
 
-								Band = Band1.trim();
+                                Band = Band1.trim();
 
-							}
+                            }
 
-							if (Number1 != null) {
+                            if (Number1 != null) {
 
-								Number = Number1.trim();
+                                Number = Number1.trim();
 
-							}
+                            }
 
-							if (Class1 != null) {
+                            if (Class1 != null) {
 
-								Class = Class1.trim();
+                                Class = Class1.trim();
 
-							}
+                            }
 
-							if (Teacher1 != null) {
+                            if (Teacher1 != null) {
 
-								Teacher = Teacher1.trim();
+                                Teacher = Teacher1.trim();
 
-							}
+                            }
 
-							if (Title1 != null) {
+                            if (Title1 != null) {
 
-								Title = Title1.trim();
+                                Title = Title1.trim();
 
-							}
+                            }
 
-							if (Date1 != null) {
+                            if (Date1 != null) {
 
-								Date = Date1.trim();
+                                Date = Date1.trim();
 
-							}
+                            }
 
-							if (Type1 != null) {
+                            if (Type1 != null) {
 
-								Type = Type1.trim();
+                                Type = Type1.trim();
 
-							}
+                            }
 
-							if (Description1 != null) {
+                            if (Description1 != null) {
 
-								Description = Description1.trim();
+                                Description = Description1.trim();
 
-							}
+                            }
 
-							Log.d("shared clear", "no");
+                            Log.d("shared clear", "no");
 
-							if (Description_Check.equals(Description)) {
+                            if (Description_Check.equals(Description)) {
 
-								Log.d("shared clear", due_tommorow_shared);
+                                Log.d("shared clear", due_tommorow_shared);
 
-								SharedPreferences.Editor localeditor = mActivity
+                                SharedPreferences.Editor localeditor = mActivity
 
-								.getSharedPreferences(due_tommorow_shared,
-										Context.MODE_PRIVATE).edit();
+                                        .getSharedPreferences(due_tommorow_shared,
+                                                Context.MODE_PRIVATE).edit();
 
-								localeditor.clear();
+                                localeditor.clear();
 
-								localeditor.commit();
+                                localeditor.commit();
 
-							}
+                            }
 
-						}
+                        }
 
-						int add_counterssss = Add_Homework_Counter.getInt(
-								"add_homework_counter", 0);
+                        int add_counterssss = Add_Homework_Counter.getInt(
+                                "add_homework_counter", 0);
 
-						int add_countersssss = add_counterssss + 1;
+                        int add_countersssss = add_counterssss + 1;
 
-						System.out.println("Counter for Add Homework2= "
-								+ add_countersssss);
+                        System.out.println("Counter for Add Homework2= "
+                                + add_countersssss);
 
-						for (int i = 0; i < add_countersssss; i++) {
+                        for (int i = 0; i < add_countersssss; i++) {
 
-							String add_shared = "add_homework"
-									+ Integer.toString(i);
+                            String add_shared = "add_homework"
+                                    + Integer.toString(i);
 
-							SharedPreferences Add_Homework = mActivity
-									.getSharedPreferences(add_shared,
-											Context.MODE_PRIVATE);
+                            SharedPreferences Add_Homework = mActivity
+                                    .getSharedPreferences(add_shared,
+                                            Context.MODE_PRIVATE);
 
-							String Band1 = Add_Homework.getString("add_band",
-									null);
+                            String Band1 = Add_Homework.getString("add_band",
+                                    null);
 
-							String Number1 = Add_Homework.getString(
-									"add_number", null);
+                            String Number1 = Add_Homework.getString(
+                                    "add_number", null);
 
-							String Class1 = Add_Homework.getString("add_class",
-									null);
+                            String Class1 = Add_Homework.getString("add_class",
+                                    null);
 
-							String Teacher1 = Add_Homework.getString(
-									"add_teacher", null);
+                            String Teacher1 = Add_Homework.getString(
+                                    "add_teacher", null);
 
-							String Title1 = Add_Homework.getString("add_title",
-									null);
+                            String Title1 = Add_Homework.getString("add_title",
+                                    null);
 
-							String Date1 = Add_Homework.getString("add_date",
-									null);
+                            String Date1 = Add_Homework.getString("add_date",
+                                    null);
 
-							String Type1 = Add_Homework.getString("add_type",
-									null);
+                            String Type1 = Add_Homework.getString("add_type",
+                                    null);
 
-							String Description1 = Add_Homework.getString(
-									"add_description", null);
+                            String Description1 = Add_Homework.getString(
+                                    "add_description", null);
 
-							if (Band1 != null) {
+                            if (Band1 != null) {
 
-								Band = Band1.trim();
+                                Band = Band1.trim();
 
-							}
+                            }
 
-							if (Number1 != null) {
+                            if (Number1 != null) {
 
-								Number = Number1.trim();
+                                Number = Number1.trim();
 
-							}
+                            }
 
-							if (Class1 != null) {
+                            if (Class1 != null) {
 
-								Class = Class1.trim();
+                                Class = Class1.trim();
 
-							}
+                            }
 
-							if (Teacher1 != null) {
+                            if (Teacher1 != null) {
 
-								Teacher = Teacher1.trim();
+                                Teacher = Teacher1.trim();
 
-							}
+                            }
 
-							if (Title1 != null) {
+                            if (Title1 != null) {
 
-								Title = Title1.trim();
+                                Title = Title1.trim();
 
-							}
+                            }
 
-							if (Date1 != null) {
+                            if (Date1 != null) {
 
-								Date = Date1.trim();
+                                Date = Date1.trim();
 
-							}
+                            }
 
-							if (Type1 != null) {
+                            if (Type1 != null) {
 
-								Type = Type1.trim();
+                                Type = Type1.trim();
 
-							}
+                            }
 
-							if (Description1 != null) {
+                            if (Description1 != null) {
 
-								Description = Description1.trim();
+                                Description = Description1.trim();
 
-							}
+                            }
 
-							Log.d("shared clear add", "no");
+                            Log.d("shared clear add", "no");
 
-							if (Description_Check.equals(Description)) {
+                            if (Description_Check.equals(Description)) {
 
-								Log.d("shared clear add", "yes");
+                                Log.d("shared clear add", "yes");
 
-								SharedPreferences.Editor localeditor = mActivity
+                                SharedPreferences.Editor localeditor = mActivity
 
-								.getSharedPreferences(due_tommorow_shared,
-										Context.MODE_PRIVATE).edit();
+                                        .getSharedPreferences(due_tommorow_shared,
+                                                Context.MODE_PRIVATE).edit();
 
-								localeditor.clear();
+                                localeditor.clear();
 
-								localeditor.commit();
+                                localeditor.commit();
 
-							}
+                            }
 
-						}
+                        }
 
-					};
+                    }
 
-				};
+                    ;
 
-			}
+                };
 
-		});
+            }
+
+        });
+
+//        descriptionCheck = null;
 
 	}
 
@@ -1904,6 +1910,15 @@ public class DueTommorowFragment extends Fragment {
 			holder.TeacherText.setText(Teacher.trim());
 
 			holder.TypeText.setText(currenthomeworkdue.getType().trim());
+
+//            if(Description.equals(descriptionCheck)){
+//                convertView.setLayoutParams(new AbsListView.LayoutParams(0,0));
+//                convertView.setVisibility(View.GONE);
+//
+//                Log.d("Description Check", "Repeated");
+//            }
+//
+//            descriptionCheck = Description;
 
 			return convertView;
 

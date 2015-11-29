@@ -1,0 +1,100 @@
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:id="@+id/swipe" >
+    
+    <LinearLayout 
+    android:orientation="vertical"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    >
+        
+   	<ScrollView 
+    android:id="@+id/scrollView2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="8dp"
+    >
+        
+            <LinearLayout 
+    android:orientation="vertical"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    >
+        
+        <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="2sp"
+        >
+        
+    <de.timroes.android.listview.EnhancedListView
+        android:id="@+id/listView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+         android:divider="@null"
+		android:dividerHeight="0dp"
+         >
+        
+    </de.timroes.android.listview.EnhancedListView>
+    
+         <LinearLayout 
+    android:id="@+id/emptyView"         
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"  
+    >
+    
+           <TextView
+       	android:id="@+id/textView1"
+       	android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Woohoo! No assignments due! To reload swiped away homeworks, or to check for new homework, swipe down"
+        android:textAppearance="?android:attr/textAppearanceMedium" 
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="150dp"
+        android:paddingBottom="150dp"
+        android:textColor="@color/black_text"
+        android:gravity="center"
+        android:background="#ffffff"
+        />
+    
+        />
+    
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Add Homework Assignment"
+        android:textSize="16sp"
+        android:textColor="#4285f4"
+        android:background="@drawable/item_selector"
+       />
+
+           </LinearLayout>
+    
+        </android.support.v7.widget.CardView>
+        
+        </LinearLayout>
+         
+         </ScrollView>
+         
+         </LinearLayout>
+    
+</android.support.v4.widget.SwipeRefreshLayout>
+<!-- From: file:/Users/lincoln/Dropbox/Android_Work/BeaconPortal/res/layout/activity_main.xml -->

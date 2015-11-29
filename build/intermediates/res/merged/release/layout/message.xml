@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.bernard.beaconportal.activities.view.SingleMessageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/message_view"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1">
+
+    <com.bernard.beaconportal.activities.view.NonLockingScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingRight="5dp"
+        android:paddingLeft="10dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+	        android:layout_height="fill_parent" >
+
+	        <!-- Header area -->
+	        <include layout="@layout/message_view_header"/>
+	
+	        <!-- Content area -->
+	        <com.bernard.beaconportal.activities.view.MessageWebView
+	            android:id="@+id/message_content"
+	            android:layout_height="wrap_content"
+	            android:layout_width="fill_parent"
+	            
+	            />
+	
+	        <com.bernard.beaconportal.activities.view.AccessibleWebView
+	            android:id="@+id/accessible_message_content"
+	            android:layout_height="wrap_content"
+	            android:layout_width="fill_parent"
+	            />
+	
+	        <!-- Attachments area -->
+	
+	        <LinearLayout
+	            android:id="@+id/attachments_container"
+	            android:orientation="vertical"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	           
+	            >
+	
+	            <LinearLayout
+	                android:id="@+id/attachments"
+	                android:orientation="vertical"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:padding="4dip" />
+	
+	            <Button
+	                android:id="@+id/show_hidden_attachments"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:text="@string/message_view_show_more_attachments_action"/>
+	
+	            <LinearLayout
+	                android:id="@+id/hidden_attachments"
+	                android:orientation="vertical"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:padding="4dip"/>
+	
+	        </LinearLayout>
+	        
+	    </LinearLayout>
+	
+    </com.bernard.beaconportal.activities.view.NonLockingScrollView>
+
+    <Button android:id="@+id/download_remainder"
+        android:text="@string/message_view_download_remainder"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_width="fill_parent"/>
+    
+    <View 
+         android:layout_height="1dp"
+         android:layout_width="match_parent"
+         android:background="#eeeeee"
+        />
+
+</com.bernard.beaconportal.activities.view.SingleMessageView>
+<!-- From: file:/Users/lincoln/Dropbox/Android_Work/BeaconPortal/res/layout/message.xml -->

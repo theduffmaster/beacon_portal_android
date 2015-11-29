@@ -37,9 +37,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f502f47d-81cb-4817-bba7-4861c5849ff6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values-v23/color.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values-v23/dimen.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values-v23/themes.xml" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/bin/BeaconPortal.apk" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/bin/R.txt" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes.dex" afterPath="" />
@@ -2779,10 +2776,27 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/view/K9PullToRefreshListView.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/outputs/apk/BeaconPortal-debug-unaligned.apk" afterPath="$PROJECT_DIR$/build/outputs/apk/BeaconPortal-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/outputs/apk/BeaconPortal-debug.apk" afterPath="$PROJECT_DIR$/build/outputs/apk/BeaconPortal-debug.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment$ViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment$due_scheduleAdapter.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment$due_scheduleAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/BuildConfig.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/BuildConfig.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$2.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$3$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$3$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$3.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$4.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$5$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$5$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$5.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$6.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$7$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$7$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$7.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$8.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$Download.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$Download.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$NoteDialog$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$NoteDialog$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$NoteDialog$2.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$NoteDialog$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$NoteDialog.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$NoteDialog.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$Update.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$Update.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$UpdateAdd.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$UpdateAdd.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$ViewHolder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$due_tommorowAdapter.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment$due_tommorowAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/FridayView$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/FridayView$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/FridayView$2.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/FridayView$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/FridayView$3.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/FridayView$3.class" />
@@ -2800,78 +2814,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/FridayView$Update.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/FridayView$Update.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/FridayView$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/FridayView$ViewHolder.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/FridayView.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/FridayView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/MainActivity$5.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/MainActivity$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/MainActivity$6.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/MainActivity$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/MainActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$10.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$11.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$11.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$12.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$12.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$13.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$13.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$14.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$14.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$15.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$15.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$16.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$16.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$17.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$17.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$18.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$18.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$19.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$19.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$2.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$20.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$20.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$21.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$21.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$22.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$22.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$23.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$23.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$24.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$24.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$25.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$25.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$3.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$4.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$5.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$6.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$7.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$8.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$9.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$Action.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$Action.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$CaseInsensitiveParamWrapper.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$CaseInsensitiveParamWrapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$EolConvertingEditText.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$EolConvertingEditText.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$IdentityAdapter$AccountHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$IdentityAdapter$AccountHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$IdentityAdapter$IdentityHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$IdentityAdapter$IdentityHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$IdentityAdapter.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$IdentityAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$IdentityContainer.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$IdentityContainer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$IdentityField.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$IdentityField.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$Listener$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$Listener$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$Listener.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$Listener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$QuotedTextMode.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$QuotedTextMode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$SaveMessageTask.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$SaveMessageTask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$SendMessageTask.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$SendMessageTask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$SignEncryptCallback.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$SignEncryptCallback.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$SimpleMessageFormat.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$SimpleMessageFormat.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$WaitingAction.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose$WaitingAction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/activity/MessageCompose.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment$ViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment$due_scheduleAdapter.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment$due_scheduleAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$2.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$3.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$4.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$MyListAdapter.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$MyListAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$1$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$2.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$3.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$NoteDialog$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$NoteDialog$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$NoteDialog$2.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$NoteDialog$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$NoteDialog$3.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$NoteDialog$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$NoteDialog.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog$NoteDialog.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$NotesDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$Update.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$Update.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView$ViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/MondayView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/R$id.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/R$layout.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment$ViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment$due_scheduleAdapter.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment$due_scheduleAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/ThursdayView$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/ThursdayView$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/ThursdayView$2.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/ThursdayView$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/ThursdayView$3.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/ThursdayView$3.class" />
@@ -2889,10 +2832,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/ThursdayView$Update.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/ThursdayView$Update.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/ThursdayView$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/ThursdayView$ViewHolder.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/ThursdayView.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/ThursdayView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment$ViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment$due_scheduleAdapter.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment$due_scheduleAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/TuesdayView$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/TuesdayView$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/TuesdayView$2.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/TuesdayView$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/TuesdayView$3.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/TuesdayView$3.class" />
@@ -2910,10 +2849,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/TuesdayView$Update.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/TuesdayView$Update.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/TuesdayView$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/TuesdayView$ViewHolder.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/TuesdayView.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/TuesdayView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment$ViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment$due_scheduleAdapter.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment$due_scheduleAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/WednesdayView$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/WednesdayView$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/WednesdayView$2.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/WednesdayView$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/WednesdayView$3.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/bernard/beaconportal/activities/schedule/view/WednesdayView$3.class" />
@@ -2941,29 +2876,15 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/build/intermediates/res/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment.java" afterPath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/source/buildConfig/debug/com/bernard/beaconportal/activities/BuildConfig.java" afterPath="$PROJECT_DIR$/build/generated/source/buildConfig/debug/com/bernard/beaconportal/activities/BuildConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment.java" afterPath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/FridayView.java" afterPath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/FridayView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/activity/MessageCompose.java" afterPath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/activity/MessageCompose.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment.java" afterPath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/MondayView.java" afterPath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/MondayView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/source/r/debug/com/bernard/beaconportal/activities/R.java" afterPath="$PROJECT_DIR$/build/generated/source/r/debug/com/bernard/beaconportal/activities/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/build/intermediates/symbols/debug/R.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment.java" afterPath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/ThursdayView.java" afterPath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/ThursdayView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment.java" afterPath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/TuesdayView.java" afterPath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/TuesdayView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment.java" afterPath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/WednesdayView.java" afterPath="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/WednesdayView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/friday_fragment.xml" afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/friday_fragment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/friday_fragment.xml" afterPath="$PROJECT_DIR$/res/layout/friday_fragment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/multi-dex/debug/maindexlist.txt" afterPath="$PROJECT_DIR$/build/intermediates/multi-dex/debug/maindexlist.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/outputs/logs/manifest-merger-debug-report.txt" afterPath="$PROJECT_DIR$/build/outputs/logs/manifest-merger-debug-report.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental/mergeResourcesdebug/merger.xml" afterPath="$PROJECT_DIR$/build/intermediates/incremental/mergeResourcesdebug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/monday_fragment.xml" afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/monday_fragment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/monday_fragment.xml" afterPath="$PROJECT_DIR$/res/layout/monday_fragment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/res/merged/debug/values/values.xml" afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BeaconPortal.iws" />
@@ -3006,24 +2927,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FridayView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/FridayView.java">
+      <file leaf-file-name="TuesdayFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="223" column="19" selection-start-line="223" selection-start-column="19" selection-end-line="223" selection-end-column="19" />
+              <caret line="390" column="0" selection-start-line="390" selection-start-column="0" selection-end-line="390" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="imports" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WednesdayView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/WednesdayView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="227" column="69" selection-start-line="227" selection-start-column="69" selection-end-line="227" selection-end-column="69" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -3032,23 +2943,9 @@
         <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="71" column="2" selection-start-line="71" selection-start-column="2" selection-end-line="96" selection-end-column="5" />
+              <caret line="392" column="0" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
               <folding>
-                <element signature="e#2641#2877#0" expanded="true" />
-                <element signature="e#2876#2877#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TuesdayFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="51" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
-              <folding>
-                <element signature="e#2623#2859#0" expanded="true" />
-                <element signature="e#2858#2859#0" expanded="true" />
+                <element signature="imports" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -3058,69 +2955,85 @@
         <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="52" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
+              <caret line="389" column="13" selection-start-line="389" selection-start-column="13" selection-end-line="389" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="false" />
-                <element signature="e#2625#2861#0" expanded="true" />
-                <element signature="e#2860#2861#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FridayFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment.java">
+      <file leaf-file-name="DueTommorowFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="55" column="29" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
+            <state vertical-scroll-proportion="-5.5185184">
+              <caret line="1776" column="0" selection-start-line="1776" selection-start-column="0" selection-end-line="1776" selection-end-column="0" />
               <folding>
-                <element signature="e#2621#2857#0" expanded="true" />
-                <element signature="e#2856#2857#0" expanded="true" />
+                <element signature="e#43325#43326#0" expanded="true" />
+                <element signature="e#43398#43399#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="color.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values-v23/color.xml">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dimen.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values-v23/dimen.xml">
+      <file leaf-file-name="FridayView.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/FridayView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="themes.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/res/values-v23/themes.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MondayFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="96" column="5" selection-start-line="71" selection-start-column="4" selection-end-line="96" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.4894434">
+              <caret line="505" column="46" selection-start-line="505" selection-start-column="46" selection-end-line="505" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2635#2871#0" expanded="true" />
-                <element signature="e#2870#2871#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MondayView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/MondayView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="569" column="13" selection-start-line="569" selection-start-column="13" selection-end-line="569" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ThursdayView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/ThursdayView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="566" column="45" selection-start-line="566" selection-start-column="45" selection-end-line="566" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TuesdayView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/TuesdayView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="568" column="45" selection-start-line="568" selection-start-column="45" selection-end-line="568" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WednesdayView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/WednesdayView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="560" column="45" selection-start-line="560" selection-start-column="45" selection-end-line="560" selection-end-column="45" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -11926,31 +11839,31 @@
         <option value="$PROJECT_DIR$/res/layout/homeworkday_item_view.xml" />
         <option value="$PROJECT_DIR$/res/layout/today_item_view.xml" />
         <option value="$PROJECT_DIR$/res/layout/tommorow_item_view.xml" />
-        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/homeworkdue/DueTodayFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment.java" />
         <option value="$PROJECT_DIR$/src/MondayFragment.java" />
         <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/MondayFragment.java" />
         <option value="$PROJECT_DIR$/res/layout/thursday_fragment.xml" />
         <option value="$PROJECT_DIR$/res/layout/tuesday_fragment.xml" />
         <option value="$PROJECT_DIR$/res/layout/wednesday_fragment.xml" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/activity/MessageCompose.java" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/layout/friday_fragment.xml" />
         <option value="$PROJECT_DIR$/res/values/themes.xml" />
         <option value="$PROJECT_DIR$/res/layout/monday_fragment.xml" />
         <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/res/values-v23/color.xml" />
+        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/homeworkdue/DueTodayFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment.java" />
         <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/MondayView.java" />
-        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/FridayView.java" />
+        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/ThursdayView.java" />
         <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/TuesdayView.java" />
         <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/WednesdayView.java" />
-        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment.java" />
-        <option value="$PROJECT_DIR$/res/values-v23/color.xml" />
+        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/MondayView.java" />
+        <option value="$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/FridayView.java" />
       </list>
     </option>
   </component>
@@ -11965,9 +11878,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-163" />
-    <option name="y" value="125" />
-    <option name="width" value="928" />
+    <option name="x" value="-154" />
+    <option name="y" value="598" />
+    <option name="width" value="889" />
     <option name="height" value="962" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -11993,6 +11906,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -12077,6 +11992,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -12108,6 +12024,10 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -12119,15 +12039,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="schedule" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BeaconPortal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BeaconPortal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="schedule" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -12373,34 +12324,34 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-163" y="125" width="928" height="962" extended-state="0" />
-    <editor active="false" />
+    <frame x="-154" y="598" width="889" height="962" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288835" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3258786" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33495736" sideWeight="0.4878788" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3313033" sideWeight="0.7528217" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3313033" sideWeight="0.7742424" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.399361" sideWeight="0.49717513" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3313033" sideWeight="0.24717833" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3313033" sideWeight="0.22575757" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925338" sideWeight="0.49717513" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32845187" sideWeight="0.48351648" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34713763" sideWeight="0.46275395" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34713763" sideWeight="0.45757577" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980227" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298731" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38261852" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286052" sideWeight="0.47064304" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24793388" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3276492" sideWeight="0.47064304" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288835" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.4915254" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -12410,15 +12361,15 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925338" sideWeight="0.49717513" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3500612" sideWeight="0.4625706" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925338" sideWeight="0.5169492" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925338" sideWeight="0.49717513" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298731" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925338" sideWeight="0.5169492" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298731" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23940678" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -12431,8 +12382,8 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3500612" sideWeight="0.5374294" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -12479,20 +12430,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/homeworkdue/DueTodayFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1675" column="0" selection-start-line="1675" selection-start-column="0" selection-end-line="1675" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1877" column="0" selection-start-line="1877" selection-start-column="0" selection-end-line="1877" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/NotificationSetting.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -12515,25 +12452,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/viewpager_schedule_linked.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="11.620689">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/viewpager_main.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/viewpager_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.862068">
           <caret line="35" column="10" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/homeworkdue/viewpager/ViewPagerAdapterHomeworkWeekend.java">
@@ -12565,25 +12502,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/tuesday_fragment.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/wednesday_fragment.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/AlphaPatternDrawable.java">
@@ -12611,25 +12548,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/thursday.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/thursday_fragment.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/thursday_fragment.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/activity/setup/AccountSetupBasics.java">
@@ -12650,63 +12587,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="515" column="0" selection-start-line="515" selection-start-column="0" selection-end-line="515" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#25591#25592#0" expanded="false" />
-            <element signature="e#25613#25614#0" expanded="false" />
-            <element signature="e#28070#28071#0" expanded="false" />
-            <element signature="e#28123#28124#0" expanded="false" />
-            <element signature="e#28243#28244#0" expanded="false" />
-            <element signature="e#28296#28297#0" expanded="false" />
-            <element signature="e#28417#28418#0" expanded="false" />
-            <element signature="e#28471#28472#0" expanded="false" />
-            <element signature="e#49080#49081#0" expanded="false" />
-            <element signature="e#49128#49129#0" expanded="false" />
-            <element signature="e#58463#58464#0" expanded="false" />
-            <element signature="e#58490#58491#0" expanded="false" />
-            <element signature="e#58517#58518#0" expanded="false" />
-            <element signature="e#58538#58539#0" expanded="false" />
-            <element signature="e#65659#65660#0" expanded="false" />
-            <element signature="e#65697#65698#0" expanded="false" />
-            <element signature="e#65728#65729#0" expanded="false" />
-            <element signature="e#65766#65767#0" expanded="false" />
-            <element signature="e#75878#75879#0" expanded="false" />
-            <element signature="e#75909#75910#0" expanded="false" />
-            <element signature="e#79063#79064#0" expanded="false" />
-            <element signature="e#79099#79100#0" expanded="false" />
-            <element signature="e#80078#80079#0" expanded="false" />
-            <element signature="e#80114#80115#0" expanded="false" />
-            <element signature="e#80162#80163#0" expanded="false" />
-            <element signature="e#80196#80197#0" expanded="false" />
-            <element signature="e#86241#86242#0" expanded="false" />
-            <element signature="e#86299#86300#0" expanded="false" />
-            <element signature="e#92012#92013#0" expanded="false" />
-            <element signature="e#92054#92055#0" expanded="false" />
-            <element signature="e#92099#92100#0" expanded="false" />
-            <element signature="e#92149#92150#0" expanded="false" />
-            <element signature="e#97684#97685#0" expanded="false" />
-            <element signature="e#97717#97718#0" expanded="false" />
-            <element signature="e#133998#133999#0" expanded="false" />
-            <element signature="e#134021#134022#0" expanded="false" />
-            <element signature="e#146198#146199#0" expanded="false" />
-            <element signature="e#146227#146228#0" expanded="false" />
-            <element signature="e#146274#146275#0" expanded="false" />
-            <element signature="e#146291#146292#0" expanded="false" />
-            <element signature="e#146590#146591#0" expanded="false" />
-            <element signature="e#146626#146627#0" expanded="false" />
-            <element signature="e#146679#146680#0" expanded="false" />
-            <element signature="e#146703#146704#0" expanded="false" />
-            <element signature="e#146750#146751#0" expanded="false" />
-            <element signature="e#146771#146772#0" expanded="false" />
-            <element signature="e#150413#150414#0" expanded="false" />
-            <element signature="e#150467#150468#0" expanded="false" />
-            <element signature="e#151377#151378#0" expanded="false" />
-            <element signature="e#151407#151408#0" expanded="false" />
-            <element signature="e#151593#151594#0" expanded="false" />
-            <element signature="e#151651#151652#0" expanded="false" />
-            <element signature="e#151862#151863#0" expanded="false" />
-            <element signature="e#151917#151918#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -12722,36 +12602,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/friday.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/friday_fragment.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/friday_fragment.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="82" column="13" selection-start-line="82" selection-start-column="13" selection-end-line="82" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -12768,7 +12639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -12786,132 +12656,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/monday_fragment.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.1034484">
           <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="805" column="0" selection-start-line="802" selection-start-column="10" selection-end-line="805" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/MondayView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="228" column="0" selection-start-line="228" selection-start-column="0" selection-end-line="234" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#5732#5927#0" expanded="false" />
-            <element signature="e#5926#5927#0" expanded="false" />
-            <element signature="e#6126#6404#0" expanded="false" />
-            <element signature="e#6403#6404#0" expanded="false" />
-            <element signature="e#15517#15715#0" expanded="false" />
-            <element signature="e#15714#15715#0" expanded="false" />
-            <element signature="e#15850#16033#0" expanded="false" />
-            <element signature="e#16032#16033#0" expanded="false" />
-            <element signature="e#16080#17270#0" expanded="false" />
-            <element signature="e#17269#17270#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/ThursdayView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="232" column="63" selection-start-line="232" selection-start-column="63" selection-end-line="232" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/TuesdayView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="234" column="63" selection-start-line="234" selection-start-column="63" selection-end-line="234" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/WednesdayView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="227" column="69" selection-start-line="227" selection-start-column="69" selection-end-line="227" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="5" selection-start-line="71" selection-start-column="4" selection-end-line="96" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2635#2871#0" expanded="true" />
-            <element signature="e#2870#2871#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="71" column="2" selection-start-line="71" selection-start-column="2" selection-end-line="96" selection-end-column="5" />
-          <folding>
-            <element signature="e#2641#2877#0" expanded="true" />
-            <element signature="e#2876#2877#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/FridayView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="223" column="19" selection-start-line="223" selection-start-column="19" selection-end-line="223" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="51" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
-          <folding>
-            <element signature="e#2623#2859#0" expanded="true" />
-            <element signature="e#2858#2859#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="52" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2625#2861#0" expanded="true" />
-            <element signature="e#2860#2861#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="29" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
-          <folding>
-            <element signature="e#2621#2857#0" expanded="true" />
-            <element signature="e#2856#2857#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -12936,6 +12694,123 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/homeworkdue/DueTodayFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1692" column="13" selection-start-line="1692" selection-start-column="13" selection-end-line="1692" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/FridayFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="390" column="13" selection-start-line="390" selection-start-column="13" selection-end-line="390" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/MondayFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="391" column="13" selection-start-line="391" selection-start-column="13" selection-end-line="391" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/ThursdayFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="389" column="13" selection-start-line="389" selection-start-column="13" selection-end-line="389" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/TuesdayFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="390" column="0" selection-start-line="390" selection-start-column="0" selection-end-line="390" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/daydialogfragments/WednesdayFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="392" column="0" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/homeworkdue/DueTommorowFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.5185184">
+          <caret line="1776" column="0" selection-start-line="1776" selection-start-column="0" selection-end-line="1776" selection-end-column="0" />
+          <folding>
+            <element signature="e#43325#43326#0" expanded="true" />
+            <element signature="e#43398#43399#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/ThursdayView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="566" column="45" selection-start-line="566" selection-start-column="45" selection-end-line="566" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/TuesdayView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="568" column="45" selection-start-line="568" selection-start-column="45" selection-end-line="568" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/WednesdayView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="560" column="45" selection-start-line="560" selection-start-column="45" selection-end-line="560" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/MondayView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="569" column="13" selection-start-line="569" selection-start-column="13" selection-end-line="569" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bernard/beaconportal/activities/schedule/view/FridayView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4894434">
+          <caret line="505" column="46" selection-start-line="505" selection-start-column="46" selection-end-line="505" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

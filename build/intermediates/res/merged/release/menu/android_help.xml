@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <item android:id="@+id/help" 
+        android:titleCondensed="help" 
+        android:icon="@drawable/ic_action_help" 
+        android:title="help" 
+        android:showAsAction="always"
+        app:showAsAction="always"
+        ></item>
+    
+
+</menu>
+<!-- From: file:/Users/lincoln/Dropbox/Android_Work/BeaconPortal/res/menu/android_help.xml -->

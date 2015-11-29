@@ -28,7 +28,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bernard.beaconportal.activities.R;
-import com.bernard.beaconportal.activities.schedule.daydialogfragments.MondayFragment;
 import com.bernard.beaconportal.activities.schedule.daydialogfragments.ThursdayFragment;
 
 import java.util.ArrayList;
@@ -517,15 +516,7 @@ public class ThursdayView extends Fragment {
 				TextView band_times = (TextView) view
 						.findViewById(R.id.infotimeView);
 
-				band_times.setText("8:00-8:55");
-
-			}
-			if (bandString.equals("G Band")) {
-
-				TextView band_times = (TextView) view
-						.findViewById(R.id.infotimeView);
-
-				band_times.setText("9:00-10:00");
+				band_times.setText("8:15-9:10");
 
 			}
 			if (bandString.equals("F Band")) {
@@ -533,23 +524,7 @@ public class ThursdayView extends Fragment {
 				TextView band_times = (TextView) view
 						.findViewById(R.id.infotimeView);
 
-				band_times.setText("10:05-11:00");
-
-			}
-			if (bandString.equals("E Band")) {
-
-				TextView band_times = (TextView) view
-						.findViewById(R.id.infotimeView);
-
-				band_times.setText("11:05-12:00");
-
-			}
-			if (bandString.equals("D Band")) {
-
-				TextView band_times = (TextView) view
-						.findViewById(R.id.infotimeView);
-
-				band_times.setText("12:02-12:57");
+				band_times.setText("9:15-10:15");
 
 			}
 			if (bandString.equals("C Band")) {
@@ -557,15 +532,39 @@ public class ThursdayView extends Fragment {
 				TextView band_times = (TextView) view
 						.findViewById(R.id.infotimeView);
 
-				band_times.setText("1:02-1:57");
+				band_times.setText("10:20-11:15");
 
 			}
-			if (bandString.equals("A Band")) {
+			if (bandString.equals("D Band")) {
 
 				TextView band_times = (TextView) view
 						.findViewById(R.id.infotimeView);
 
-				band_times.setText("2:02-2:57");
+				band_times.setText("11:20-12:15");
+
+			}
+			if (bandString.equals("E Band")) {
+
+				TextView band_times = (TextView) view
+						.findViewById(R.id.infotimeView);
+
+				band_times.setText("12:20-1:15");
+
+			}
+			if (bandString.equals("B Band")) {
+
+				TextView band_times = (TextView) view
+						.findViewById(R.id.infotimeView);
+
+				band_times.setText("1:20-2:15");
+
+			}
+			if (bandString.equals("G Band")) {
+
+				TextView band_times = (TextView) view
+						.findViewById(R.id.infotimeView);
+
+				band_times.setText("2:20-3:15");
 
 			}
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    
+     <item android:state_checked="true" android:drawable="@drawable/ic_folder_star_holo_checked" />
+     <item android:state_checked="false" android:drawable="@drawable/ic_folder_star_holo_unchecked" />
+    
+</selector><!-- From: file:/Users/lincoln/Dropbox/Android_Work/BeaconPortal/res/drawable/btn_star.xml -->

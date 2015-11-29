@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:id="@+id/monday_day_container"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+    >
+
+</FrameLayout><!-- From: file:/Users/lincoln/Dropbox/Android_Work/BeaconPortal/res/layout/monday_fragment.xml -->
