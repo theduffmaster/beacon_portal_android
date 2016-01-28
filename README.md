@@ -1,7 +1,7 @@
 beacon_portal_android
 =====================
 
-Please excuse the mess. I am currently reprogramming the app from scratch because when I began the project I barely knew how to program, and now the application's code is in an abysmal state. Of course the app is still being supported and is updated quite frequently, so feel free to download it. To test it out without a Beacon account use "taccount@beaconschool.org" as the email and "password" as the password.
+Please excuse the mess. I am currently reprogramming the app from scratch because when I began the project I barely knew how to program, and now the application's code is in an abysmal state. Of course the app is still being supported and is updated quite frequently, so feel free to download it. To test it out without a Beacon account use "taccount@beaconschool.org" as the email and "P@ssword" as the password.
 
 The Beacon Portal website and more, easily accessible from your phone for Beacon Teachers and Students!
 
