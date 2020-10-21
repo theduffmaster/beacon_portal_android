@@ -1,7 +1,7 @@
 beacon_portal_android
 =====================
 
-As Beacon has switched to a new comprehensive method for conveniently checking homework/email via you phone, this app is unfortunately no longer supported. However, if you want to test it out and relive that Beacon Portal App experience use "taccount@beaconschool.org" as the email and "P@ssword" as the password.
+As Beacon has switched to a new comprehensive method for conveniently checking homework/email via you phone, this app is unfortunately no longer supported. However, if you want to test it out and relive that Beacon Portal App experience use "taccount@beaconschool.org" as the email and "P@ssword" as the password. A archive of its Play Store page (and 5 star rating) can be found here: https://play.google.com/store/apps/details?id=com.bernard.beaconportal.activities
 
 
 ![unnamed-6](https://user-images.githubusercontent.com/6335389/96686323-3cd84b80-1333-11eb-9ca7-038f39320d70.png)
