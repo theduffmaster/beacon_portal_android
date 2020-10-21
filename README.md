@@ -5,8 +5,8 @@ As Beacon has switched to a new comprehensive method for conveniently checking h
 
 
 ![unnamed-6](https://user-images.githubusercontent.com/6335389/96686323-3cd84b80-1333-11eb-9ca7-038f39320d70.png)
-![unnamed](https://user-images.githubusercontent.com/6335389/96686319-3cd84b80-1333-11eb-93cd-ec90c345b2f2.png)
 ![unnamed-1](https://user-images.githubusercontent.com/6335389/96686310-3b0e8800-1333-11eb-9909-261896028a46.png)
+![unnamed](https://user-images.githubusercontent.com/6335389/96686319-3cd84b80-1333-11eb-93cd-ec90c345b2f2.png)
 ![unnamed-3](https://user-images.githubusercontent.com/6335389/96686321-3cd84b80-1333-11eb-93d6-97a85bdfbc5f.png)
 ![unnamed-4](https://user-images.githubusercontent.com/6335389/96686316-3c3fb500-1333-11eb-90df-3211dfc8c8ff.png)
 ![unnamed-7](https://user-images.githubusercontent.com/6335389/96686325-3d70e200-1333-11eb-8a87-b68cacd249d6.png)
